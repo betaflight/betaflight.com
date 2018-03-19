@@ -1,0 +1,84 @@
+baseURL = "//betaflight.com/"
+languageCode = "en-us"
+title = "Betaflight"
+theme = "strata"
+
+disqusShortname = ""
+googleAnalytics = ""
+paginate = 10
+
+[params]
+	name = "Betaflight"
+	description = "The official home of the Betaflight development group"
+	date_format = "2006-01-02"
+
+	custom_js   = []
+	custom_css  = []
+
+
+	[params.sidebar]
+		avatar = "avatar.jpg"
+		bio = "**Welcome** to Betaflight."
+		twitter = "betaflightgroup"
+		github = "betaflight"
+		dribbble = ""
+		facebook = "betaflightgroup"
+		googleplus = ""
+		flickr = ""
+		linkedin = ""
+		slack = "betaflightgroup"
+
+		copyright = [
+			"&copy; Betaflight Group"
+		]
+
+
+	[params.about]
+		hide  = false
+		title = "What is Betaflight?"
+		content = ""
+
+
+	[params.portfolio]
+		hide  = true
+
+	[params.contact]
+		hide  = true
+		title = "Get In Touch"
+		content = "To contact the Betaflight team, use one of the standard methods."
+
+		address = [
+		]
+		phone = "000-000-0000"
+
+		email = ""
+
+		[params.contact.form]
+			# Set custom strings for the form if your native
+			# language isn't English
+			name = "Name"
+			email = "Email"
+			message = "Message"
+			submit = "Send message"
+
+
+# Menu links that appear on the left sidebar
+[[menu.main]]
+	name = "About"
+	url  = "/"
+	weight = 0
+
+[[menu.main]]
+	name = "Blog"
+	url  = "post/"
+	weight = 10
+
+[[menu.main]]
+	name = "Configurator"
+	url  = "configurator/"
+	weight = 5
+
+[[menu.main]]
+	name = "Releases"
+	url  = "releases/"
+	weight = 6
