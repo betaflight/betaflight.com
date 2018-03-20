@@ -4,3 +4,6 @@
 [submodule "themes/universal"]
 	path = themes/universal
 	url = https://github.com/devcows/hugo-universal-theme
+[submodule "themes/elate"]
+	path = themes/elate
+	url = https://github.com/saey55/hugo-elate-theme
