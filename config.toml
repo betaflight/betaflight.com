@@ -3,6 +3,7 @@ baseurl = "localhost:1313"
 title = "Betaflight Group"
 languageCode = "en-us"
 theme = "elate"
+defaultLanguage = "en-us"
 
 [params]
   
@@ -47,27 +48,27 @@ theme = "elate"
   [params.intro]
 
   [[params.intro.item]]
-    title = "Plan"
-    description = "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."
+    title = "Help"
+    description = "Help is but a click away. Getting started is usually easy, but sometimes there is just that little bit extra needed."
     url = "#"
-    button = "Get In Touch"
+    button = "Get Help"
     icon = "icon-bulb"
     img = "img_7.jpg"
 
   [[params.intro.item]]
     title = "Develop"
-    description = "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."
+    description = "Want to contribute to the development effort?"
     url = "#"
     button = "Click Me"
     icon = "icon-wrench"
     img = "img_8.jpg"
 
   [[params.intro.item]]
-    title = "Launch"
-    description = "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."
-    url = "#"
-    button = "Why us?"
-    icon = "icon-rocket"
+    title = "Donate"
+    description = "Want to help contribute to the cause? The donations you make will be utilised to help fund and run the Betaflight Group as a not-for-profit entity."
+    url = "//paypal.me/betaflight/10USD"
+    button = "Donate Now"
+    icon = "icon-paypal"
     img = "img_10.jpg"
 
   [params.intro.video]
@@ -197,19 +198,19 @@ theme = "elate"
     background = "full_image_1.jpg"
 
     [[params.counters.item]]
-      description = "Finished projects"
+      description = "Commits"
       icon = "icon-briefcase"
       from = 0
-      to = 89
+      to = 10279
       interval = 50
       speed = 5000
 
     [[params.counters.item]]
-      description = "Lines of code"
+      description = "Contributors"
       icon = "icon-code"
       from = 0
-      to = 2343409
-      interval = 50
+      to = 279
+      interval = 5
       speed = 5000
 
     [[params.counters.item]]
@@ -221,10 +222,10 @@ theme = "elate"
       speed = 5000
 
     [[params.counters.item]]
-      description = "Happy clients"
+      description = "Happy pilots"
       icon = "icon-people"
       from = 0
-      to = 52
+      to = 55000
       interval = 50
       speed = 5000
 
@@ -255,7 +256,9 @@ theme = "elate"
     enable = true
     copyright = '&copy; Betaflight Group. All Rights Reserved.'
     links = [
-        ["icon-twitter", "#twitter"],
-        ["icon-facebook", "#facebook"],
-        ["icon-youtube", "#youtube"]
+        ["icon-twitter", "//twitter.com/betaflightgroup"],
+        ["icon-facebook", "//facebook.com/betaflightgroup"],
+        ["icon-youtube", "//youtube.com/betaflightgroup"],
+        ["icon-slack", "//betaflight.slack.com"],
+        ["icon-github", "//github.com/betaflight"]
       ]
