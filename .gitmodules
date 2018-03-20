@@ -1,3 +1,9 @@
 [submodule "themes/strata"]
 	path = themes/strata
 	url = https://github.com/digitalcraftsman/hugo-strata-theme.git
+[submodule "themes/universal"]
+	path = themes/universal
+	url = https://github.com/devcows/hugo-universal-theme
+[submodule "themes/elate"]
+	path = themes/elate
+	url = https://github.com/saey55/hugo-elate-theme
