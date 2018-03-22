@@ -1,0 +1,231 @@
+{
+  "hero": {
+    "title": "Flash and fly.",
+    "subtitle": "We can all fly."
+  },
+  "intro": {
+    "item": [
+      {
+        "title": "Run Betaflight",
+        "description": "Download betaflight and get your aircraft up and running.",
+        "url": "#",
+        "button": "First Steps",
+        "icon": "icon-bulb",
+        "img": "img_7.jpg"
+      },
+      {
+        "title": "Perform Great",
+        "description": "Get the best by gaining a deeper understanding and tweak every bit.",
+        "url": "#",
+        "button": "Tuning Guide",
+        "icon": "icon-wrench",
+        "img": "img_8.jpg"
+      },
+      {
+        "title": "Take Part",
+        "description": "Join the Betaflight community and become part of it.",
+        "url": "#",
+        "button": "Connect",
+        "icon": "icon-paypal",
+        "img": "img_10.jpg"
+      }
+    ],
+    "video": {
+      "title": "Watch the video",
+      "icon": "icon-play2",
+      "url": "https://vimeo.com/channels/staffpicks/93951774"
+    }
+  },
+  "products": {
+    "title": "Products",
+    "description": "The Betaflight Ecosystem currently consists of three main products. Meant to be used as one, each of them serves a unique solution to the various tasks of setting up any flight machine.",
+    "footertext": "",
+    "row": [
+      {
+        "img": "work_1.jpg",
+        "alt": "Image2",
+        "title": "Betaflight",
+        "subtitle": "Flight controller firmware"
+      },
+      {
+        "img": "work_2.jpg",
+        "alt": "Image2",
+        "title": "Betaflight Configurator",
+        "subtitle": "Setup and Tuning"
+      },
+      {
+        "img": "work_3.jpg",
+        "alt": "Image2",
+        "title": "Blackbox Explorer",
+        "subtitle": "For deep analysis"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "description": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+    "item": [
+      {
+        "quote": "&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;",
+        "person": "Jean Doe, CEO <a href=\"http://freehtml5.co/\" target=\"_blank\">FREEHTML5.co</a> <span class=\"subtext\">Creative Director</span>",
+        "img": "person1.jpg",
+        "alt": "Person1"
+      },
+      {
+        "quote": "&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;",
+        "person": "John Doe, Senior UI <a href=\"http://freehtml5.co/\" target=\"_blank\">FREEHTML5.co</a> <span class=\"subtext\">Creative Director</span>",
+        "img": "person2.jpg",
+        "alt": "Person2"
+      },
+      {
+        "quote": "&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. &rdquo;",
+        "person": "Chris Nash, Director <a href=\"http://freehtml5.co/\" target=\"_blank\">FREEHTML5.co</a> <span class=\"subtext\">Creative Director</span>",
+        "img": "person3.jpg",
+        "alt": "Person3"
+      }
+    ]
+  },
+  "features": {
+    "title": "Features",
+    "description": "TEXT TEXT TEX",
+    "item": [
+      {
+        "title": "OSD",
+        "subtitle": "Your customized dashboard",
+        "description": "With the Betaflight OSD you get all relevant values during flight directly into your FPV video feed. An easy to use drag-and-drop configuration allows to place values like used mAh and LiPo Voltage readings.<br/><br/>Additionally you can change most firmware settings using stick commands wihtout even removing the goggles from your face.",
+        "icon": "icon-video2"
+      },
+      {
+        "title": "Supports your Hardware",
+        "subtitle": "Any FC. Any computer. Any protocol.",
+        "description": "Betaflight supports nearly all flight controllers on the market having at least an STM32F3 Processor.<br/>The Betaflight Configurator runs on Windows, Mac OS and Linux.<br/><br/>The Betaflight Firmware supports all major Remote Control manufacturers like FrSky, Graupner and FlySky. ESCs are directed using PWM, OneShot, MultiShot, DShot or even ProShot.<br/><br/>Not even less-related components stay untouched, so Betaflight allows to control VTX and Camera settings directly through the flight controller.",
+        "icon": "icon-anchor"
+      },
+      {
+        "title": "Flight Dynamics",
+        "subtitle": "Most complete, highest quality",
+        "description": "Betaflight not only strives to put the best flight code on your controller. Also it satisfies requirements as perfect performance, tiny footprint, newest features and a strong quality assurance process.<br/><br/>All flight related data can be logged into a blackbox for later analysis. So pilots and techniciants can base finest tunings on objective data.",
+        "icon": "icon-layers2"
+      },
+      {
+        "title": "Safety Features",
+        "subtitle": "Never navigate from flight to hospital",
+        "description": "Mini-drones are dangerous toys. As incidents with suddenly spinning props often end bloody, Betaflight implements several safety features to prevent dangerous behavior.<br/><br/>Features are implemented as preventing arming when the drone isn't leveled and switchig off drones in case of wrong motor or flight controller orientation.",
+        "icon": "icon-monitor"
+      },
+      {
+        "title": "Open Source",
+        "subtitle": "Whatever you want to implement",
+        "description": "Originating from baseflight and cleanflight, betaflight continues to live the idea of open source. Everybody having precious ideas is welcome to implement them for the main product.",
+        "icon": "icon-monitor"
+      }
+    ]
+  },
+  "about": {
+    "title": "About Betaflight",
+    "description": "",
+    "item": [
+      {
+        "name": "Jean Smith",
+        "position": "Web Designer",
+        "description": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts",
+        "img": "person1.jpg",
+        "alt": "Person1",
+        "social": [
+          [
+            "icon-twitter",
+            "#"
+          ],
+          [
+            "icon-facebook",
+            "#"
+          ],
+          [
+            "icon-linkedin",
+            "#"
+          ]
+        ]
+      },
+      {
+        "name": "Rob Smith",
+        "position": "Web Developer",
+        "description": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts",
+        "img": "person2.jpg",
+        "alt": "Person2",
+        "social": [
+          [
+            "icon-twitter",
+            "#"
+          ],
+          [
+            "icon-facebook",
+            "#"
+          ],
+          [
+            "icon-github",
+            "#"
+          ]
+        ]
+      },
+      {
+        "name": "Larry Ben",
+        "position": "Web Designer",
+        "description": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts",
+        "img": "person3.jpg",
+        "alt": "Person3",
+        "social": [
+          [
+            "icon-twitter",
+            "#"
+          ],
+          [
+            "icon-facebook",
+            "#"
+          ],
+          [
+            "icon-dribbble",
+            "#"
+          ]
+        ]
+      }
+    ]
+  },
+  "counters": {
+    "title": "Stats",
+    "background": "full_image_1.jpg",
+    "item": [
+      {
+        "description": "Commits",
+        "icon": "icon-briefcase",
+        "from": 0,
+        "to": 10279,
+        "interval": 50,
+        "speed": 5000
+      },
+      {
+        "description": "Contributors",
+        "icon": "icon-code",
+        "from": 0,
+        "to": 279,
+        "interval": 5,
+        "speed": 5000
+      },
+      {
+        "description": "Cups of coffee",
+        "icon": "icon-cup",
+        "from": 0,
+        "to": 1302,
+        "interval": 50,
+        "speed": 5000
+      },
+      {
+        "description": "Happy pilots",
+        "icon": "icon-people",
+        "from": 0,
+        "to": 55000,
+        "interval": 50,
+        "speed": 5000
+      }
+    ]
+  }
+}

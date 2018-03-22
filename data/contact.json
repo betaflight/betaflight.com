@@ -1,0 +1,29 @@
+{
+  "map": true,
+  "form": true,
+  "title": "Get in touch",
+  "description": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+  "details": [
+    [
+      "icon-home",
+      "5555 Love Paradise 56 New Clity 5655, <br> Excel Tower United Kingdom"
+    ],
+    [
+      "icon-phone",
+      "(123) 465-6789"
+    ],
+    [
+      "icon-envelope",
+      "info@freehtml5.co"
+    ],
+    [
+      "icon-globe",
+      "<a href=\"xxxhttp://freehtml5.co/\" target=\"_blank\">freehtml5.co</a>"
+    ]
+  ],
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone",
+  "message": "Message",
+  "button": "Send message"
+}

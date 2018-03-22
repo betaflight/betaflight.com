@@ -1,0 +1,52 @@
+{
+  "baseurl": "localhost:1313",
+  "title": "Betaflight Group",
+  "languageCode": "en-us",
+  "theme": "elate",
+  "defaultLanguage": "en-us",
+  "params": {
+    "custom_css": [
+      "css/custom1.css",
+      "css/custom2.css"
+    ],
+    "author": "",
+    "description": "",
+    "email": "",
+    "brand": "Betaflight",
+    "logo":{
+      "url": "https://raw.githubusercontent.com/betaflight/betaflight-configurator-ng/master/images/light-wide-2.svg?sanitize=true",
+      "height": "50px"
+    },
+    "navigation": [
+      {
+        "label": "Home",
+        "section": "home"
+      },
+      {
+        "label": "Products",
+        "section": "products"
+      },
+      {
+        "label": "Testimonials",
+        "section": "testimonials"
+      },
+      {
+        "label": "Features",
+        "section": "features"
+      },
+      {
+        "label": "About",
+        "section": "about"
+      },
+      {
+        "label": "Contact",
+        "section": "contact"
+      },
+      {
+        "label": "Google",
+        "url": "https://www.google.com"
+      }      
+    ]
+  }
+}
+
