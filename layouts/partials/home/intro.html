@@ -1,0 +1,26 @@
+	<section id="fh5co-intro">
+		<div class="container">
+			<div class="row row-bottom-padded-lg">
+				{{ range .homedata.intro.item }}
+				<div class="fh5co-block to-animate" style="background-image: url(images/{{ .img }});">
+					<div class="overlay-darker"></div>
+					<div class="overlay"></div>
+					<div class="fh5co-text">
+						<i class="fh5co-intro-icon {{ .icon }}"></i>
+						<h2>{{ .title }}</h2>
+						<p>{{ .description }}</p>
+						<p><a href="{{ .url }}" class="btn btn-primary">{{ .button}}</a></p>
+					</div>
+				</div>
+				{{ end }}
+			</div>
+			{{ if .homedata.intro.video.enable }}
+			<div class="row watch-video text-center to-animate">
+				<!-- <span>{{ with .homedata.intro.video }}{{ . }}{{ end }}</span> -->
+				<span>{{.homedata.intro.video.title | markdownify }}</span>
+
+				<a href="{{ .homedata.intro.video.url }}" class="popup-vimeo btn-video"><i class="{{ .homedata.intro.video.icon | markdownify }}"></i></a>
+			</div>
+			{{ end }}
+		</div>
+	</section>
