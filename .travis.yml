@@ -1,0 +1,36 @@
+language: go
+go:
+  - 1.9
+
+sudo: false
+
+install:
+  - go get github.com/magefile/mage
+  - go get -d github.com/gohugoio/hugo
+  - cd ${GOPATH:-$HOME/gopath}/src/github.com/gohugoio/hugo
+  - mage vendor
+  - mage install
+
+addons:
+  apt:
+    update: true
+
+before_script:
+  - ls -al
+  - hugo version
+
+script:
+  - hugo -s "${TRAVIS_BUILD_DIR}"
+  
+deploy:
+  provider: s3
+  access_key_id: 
+    secure: "nrUMRnCPMa2UwY/y2wMyo1G2++8cV0jzr4ekGZQyFrfNayZJHD+rsQwgESEdPb18luQVGzhj783rYe3FtjqmPp7jVYRBPWA10kFAJYvjUrS3EJRex39pUGvDxIxmgqeEcIovPq9hZkixQN/tAYSoryomqJVwuINO024TEDj/izRYOd94gi4BgSB6qIm0mJfGn7lHV35v5YizEj0QQr1iZK7BwtfsudEKstaw4jvAHQMJnjN2UO9gWzlV8jG9wTVmtdDY35Fn3JGdE4VBil4gXnwyJzWRsRM+YMu+gcRFHAU90HVoW4xP9t1h7WATdb060iK1I8La4quk2n9FsoVF52Xcg8j4vH57aM2qrzyCDJ8z1kmfFfR0MOfZzlczb+yXPqoODCTnDEUoOUadZOX9D9bxxWEEDxYYH42/uSRqiiuUX9/hfXE5Qo/4GNCs4dB9Hd+0NrvkWi/Xxny3791W4VRAzeBC/QuYK5k2fUhL2+XntKSg3tpdXwD1/64RNHaejmUG4PHUQa3gXqefYWe9rTKP9xkFHq0egVwhXTSkDRbrgCEwr1DHNIskCWyFF5aF7SZn8vc/LAxkIhKBbfCU27/Eb1ROsx8OdG6V8d9P5xYHfx0SOzep0K72r56GC6rDoMoMlom7JWOv8M73XnHn85ZOKXj8O9jSNBBHjfcmxI8="
+  secret_access_key: 
+    secure: "x3euELPEwW41iFaAheXZqDpHLdtOZ2kQklEslqkHNwnuqwvRb9LEpTwt5nKChPI4Ilwo1q/5NZSlBQ/dKD8VRkT6/OOIt32mOUuq1yzeHPHnBTjlRPcQhW80Ntq6dBAe/bi9qaP6aZPDYG3eby4yshkBCsQQbtTcoIVyhtmSNacq0oIl4QUU7n91KiUW4/wtEfu9e6RRseUygp2mUVrI1BgwB6CrVCIpJyXHp2ZGEnvNz624udltiDVbtlPOWxCj3jetPpfn4l18WzPUeuPQxJDz6t7yY4yXbDHTExChvvSP0sZxoKRw2MmsRefvrZfVyiXp3xgzW74yMUTr8offb2DAr3pPNen504tWNAjkp4HhJsKCAiFh1lrGR/R1vWk0lpD0mWyKg1aNZK3EP5PhOhVW1Y6P4tIxwHq2vHiQyTTRUjmHOiS56E9gTvRP1XER8nqRWChXUxHLifT+86eWkSwl4jLtEw7roP75My6pXYs7k/+s7ZDtJIv/XibFIfxhrAN/+f6DDdQDWI6xdv5TwuWvXyKl7ZcSxW2GPOrS0AohZzQlf1N4osdn+qooBNEjnoLqbw7Y+WC1f73ivgwdIjIECMfNqYRGLS8hhjmwmMI/60N6k1yHOXEZu7Tihkka8mBvJLmYieVft8ygC/Mi/eO5Ad5zY00psfStZylWguA="
+  bucket: betaflight.com
+  skip_cleanup: true
+  region: us-east-1
+  local_dir: public
+  on:
+    branch: master
