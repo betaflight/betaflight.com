@@ -19,7 +19,7 @@ before_script:
   - hugo version
 
 script:
-  - hugo -s "${TRAVIS_BUILD_DIR}"
+  - hugo -s "${TRAVIS_BUILD_DIR}" -d "${TRAVIS_BUILD_DIR}/public"
   
 deploy:
   provider: s3
@@ -30,6 +30,6 @@ deploy:
   bucket: betaflight.com
   skip_cleanup: true
   region: us-east-1
-  local_dir: public
+  local_dir: ${TRAVIS_BUILD_DIR}/public
   on:
     branch: master
