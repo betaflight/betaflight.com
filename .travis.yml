@@ -16,7 +16,6 @@ addons:
     update: true
 
 before_script:
-  - ls -al
   - hugo version
 
 script:
