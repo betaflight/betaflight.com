@@ -1,1 +1,3 @@
-# betaflight.tech
+# betaflight.com (betaflight.tech)
+
+Hugo website for betaflight.com
