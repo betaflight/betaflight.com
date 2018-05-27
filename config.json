@@ -14,7 +14,7 @@
     "email": "",
     "brand": "Betaflight",
     "logo":{
-      "url": "https://raw.githubusercontent.com/betaflight/betaflight-configurator-ng/master/images/light-wide-2.svg?sanitize=true",
+      "url": "/images/bf_logo_light.svg",
       "height": "50px"
     },
     "navigation": [
@@ -27,25 +27,9 @@
         "section": "products"
       },
       {
-        "label": "Testimonials",
-        "section": "testimonials"
-      },
-      {
         "label": "Features",
         "section": "features"
-      },
-      {
-        "label": "About",
-        "section": "about"
-      },
-      {
-        "label": "Contact",
-        "section": "contact"
-      },
-      {
-        "label": "Google",
-        "url": "https://www.google.com"
-      }      
+      }
     ]
   }
 }

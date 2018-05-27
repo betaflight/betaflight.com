@@ -1,0 +1,50 @@
+#fh5co-home {
+    background-color:  #3A3A3A;
+    background-image: repeating-linear-gradient(to bottom right, #3A3A3A 0%, #606060 100%);
+}
+
+#fh5co-home .gradient {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    opacity: .9;
+    -webkit-backface-visibility: hidden;
+    background-color: #606060;
+    /* IE9, iOS 3.2+ */
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiMzMjk5OTgiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzZjYzk5YyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
+    background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0, #3A3A3A), color-stop(1, #606060));
+    /* Android 2.3 */
+    background-image: -webkit-linear-gradient(top left, #3A3A3A 0%, #606060 100%);
+    /* IE10+ */
+    background-image: linear-gradient(to bottom right, #3A3A3A 0%, #606060 100%);
+    background-image: -ms-linear-gradient(top left, #3A3A3A 0%, #606060 100%);
+}
+
+#fh5co-work {
+    background-color:  #3A3A3A;
+    background-image: repeating-linear-gradient(to bottom right, #3A3A3A 0%, #606060 100%);
+}
+
+.gradient .animated {
+    background-image: repeating-linear-gradient(to bottom right, #3A3A3A 0%, #606060 100%);
+}
+
+#fh5co-services {
+    background-color:  #3A3A3A;
+    background-image: repeating-linear-gradient(to bottom right, #3A3A3A 0%, #606060 100%);
+}
+
+.btn.btn-primary {
+    background-color:  #3A3A3A;
+}
+
+#fh5co-intro .fh5co-block > .fh5co-text .fh5co-intro-icon {
+    color:  #3A3A3A;
+}
+
+#fh5co-header.navbar-fixed-top #navbar li.active a {
+    color:  #3A3A3A;
+}
