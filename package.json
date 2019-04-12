@@ -1,0 +1,15 @@
+{
+  "name": "betaflight.com",
+  "version": "1.0.0",
+  "description": "betaflight.com",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./node_modules/nanogen/lib/cli build"
+  },
+  "author": "betaflight.com (and others)",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.23.0",
+    "nanogen": "^0.4.2"
+  }
+}

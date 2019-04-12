@@ -1,19 +1,11 @@
-language: go
+language: node_js
 dist: trusty
-go:
-  - 1.9
+
 sudo: false
 env:
   global:
     - REGION=us-east-1
     - BUCKET=betaflight.com
-
-install:
-  - go get github.com/magefile/mage
-  - go get -d github.com/gohugoio/hugo
-  - cd ${GOPATH:-$HOME/gopath}/src/github.com/gohugoio/hugo
-  - mage vendor
-  - mage install
 
 addons:
   apt:
@@ -22,7 +14,6 @@ addons:
       - awscli
 
 before_script:
-  - hugo version
 
 script:
   - hugo -s "${TRAVIS_BUILD_DIR}" -d "${TRAVIS_BUILD_DIR}/public"

@@ -1,0 +1,383 @@
+
+			<!-- start banner Area -->
+			<section class="banner-area" id="home">	
+				<div class="container">
+					<div class="row fullscreen d-flex align-items-center justify-content-center">
+						<div class="banner-content col-lg-7">
+							<h1>
+								Are you ready to fly?				
+							</h1>
+							<p class="pt-20 pb-20">
+								Betaflight is flight controller software (firmware) used to fly multi-rotor craft and fixed wing craft.
+								This fork differs from Baseflight and Cleanflight in that it focuses on flight performance, leading-edge feature additions, and wide target support.
+							</p>
+						</div>											
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->	
+
+			<!-- Start latest-blog Area -->
+			<section class="latest-blog-area section-gap" id="news">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Latest News</h1>
+								<p>What has been happening in the world of betaflight?</p>
+							</div>
+						</div>
+					</div>					
+					<div class="row">
+						<div class="col-lg-6 single-blog">
+							<img class="img-fluid" src="/content/images/FastestMCU.jpg" alt="">
+							<a href="#"><h4>Release 4.0 delayed!</h4></a>
+							<p class="post-date">30th December, 2018</p>
+							<p>
+								As you might have learned from the Betaflight GitHub page, our next release will be 4.0. Betaflight 4.0 will bring unified targets, which is the the culmination of years of work that started in 2016 with the introduction of remappable resources, and it will drastically change the way how Betaflight is built and distributed. To you as the user, not much in how you download and install the Betaflight firmware will change, but you will get some noticeable improvements:
+							</p>
+							<ul class="unordered-list">
+								<li><span>We'll have to spend less time on maintaining and releasing the firmware, meaning that we'll have more time to work on new and exciting features;</span></li>
+								<li><span>manufacturers will have an easy way to release custom configurations for all of their boards and ready-to-fly (including RX setup and tuning) craft based on original Betaflight firmware - you will no longer be stuck on using old firmware, or recreating your configuration from scratch;</span></li>
+								<li><span>the tinkerers amongst you will be able to share Betaflight firmware with your home built improvements amongst your friends without having to build and distribute separate targets for everybody's board.</span></li>
+							</ul>
+							<p>					
+								(These changes are planned for F4 and F7, F3's flash space limitations mean we won't be able to fit all of this in.)
+							</p>
+							<p>
+								We are almost there with the implementation of these changes, but since they are quite complex, and getting 'almost there' doesn't buy us much, we have decided that we need to take more time to complete them, make sure the way users can use the firmware still works as expected, and properly test the new firmware. For this reason we have decided to postpone the planned release date for Betaflight to 01 April 2019. We will keep doing monthly releases of Betaflight 3.5 with bugfixes and new / updated targets in the meantime.
+								In addition to the drastic changes mentioned above, Betaflight 4.0 will have a number of other exciting new features and improvements:</p>
+							<ul class="unordered-list">
+								<li><span>yet again improved flight performance;</span></li>
+								<li><span>'Launch control' mode; and</span></li>
+								<li><span>switchable profiles for the OSD layout.</span></li>
+							</ul>
+							
+						</div>
+						<div class="col-lg-6 single-blog">
+							<img class="img-fluid" src="/content/images/cf-bf-test.jpg" alt="">
+							<a href="#"><h4>Important: Embargo on new targets for Betaflight 4.0!</h4></a>
+							<p class="post-date">30th December, 2018</p>
+							<p>
+								As announced earlier, Betaflight 4.0 will introduce a radically new way to define targets. At the moment, we are making the changes necessary for this, and this requires some changes to how targets are defined in the 'legacy' way. Because of this, any pull request opened against `master` that introduces a new target is likely to be outdated by the time it has been reviewed. This means extra work for the target maintainer and the reviewers, for little or no benefit.
+							</p>
+							<p>		
+								Because of this, the following embargo is put in place:
+							</p>
+							<ol class="ordered-list">
+								<li>
+									<span>From 30/12/2018 on until the release of Betaflight 4.0 (scheduled for 01/04/2019), no pull requests that introduce new targets against `master` are accepted. Because any such pull requests will be outdated by the time 4.0 is released, they will be closed;</span>
+								</li>
+								<li>
+									<span>During the time that 1. is in place, pull requests adding new targets (in 3.5 format) against the `3.5.x-maintenance` branch will be considered. This is an exception to the rule that all pull requests must be opened against `master`. This exception only applies to pull requests containing no other changes than a new target and a documentation page for the new target. These new targets will be included in upcoming 3.5 maintenance releases;</span>
+								</li>
+								<li>
+									<span>Targets added under the exception in 2. will have to be ported into 4.0 before 4.0 is released. The format that these targets will have in 4.0 is yet to be determined, and instructions for porting the targets will have to be written, but we expect the maintainers of these targets to make themselves available to assist with this task when the time comes. Please follow the news and updates that are posted here or to the <a href="https://github.com/betaflight/betaflight" target="_blank">Betaflight GitHub page</a> to keep track of when action is required.</span>
+								</li>
+							</ol>
+						</div>						
+					</div>
+				</div>	
+			</section>
+			<!-- End latest-blog Area -->
+
+			<!-- Start we-offer Area -->
+			<section class="we-offer-area section-gap" id="about">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-10">
+							<div class="title text-center">
+								<h1 class="mb-10">About</h1>
+								<p>So what is betaflight?</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="single-offer d-flex flex-row pb-30">
+								<div class="icon">
+									<img src="img/small_logo.png" alt="">
+								</div>
+								<div class="desc">
+									<a href="#"><h4>Supports your Hardware</h4></a>
+									<p>										
+Betaflight supports nearly all flight controllers on the market having at least an STM32F3 Processor.
+The Betaflight Configurator runs on Windows, Mac OS and Linux.
+									</p>
+									<p>
+The Betaflight Firmware supports all major Remote Control manufacturers like FrSky, Graupner and FlySky. ESCs are directed using PWM, OneShot, MultiShot, DShot or even ProShot.
+									</p>
+									<p>
+Not even less-related components stay untouched, so Betaflight allows to control VTX and Camera settings directly through the flight controller.
+									</p>
+								</div>
+							</div>
+							<div class="single-offer d-flex flex-row pb-30">
+								<div class="icon">
+									<img src="img/small_logo.png" alt="">
+								</div>
+								<div class="desc">
+									<a href="#"><h4>Community Support</h4></a>
+									<p>
+										There is so much support out there for betaflight users. Don't know where to look? We have compiled a list of our favourite resources.
+									</p>
+								</div>
+							</div>
+							<div class="single-offer d-flex flex-row pb-30">
+								<div class="icon">
+									<img src="img/small_logo.png" alt="">
+								</div>
+								<div class="desc">
+									<a href="#"><h4>Open Source</h4></a>
+									<p>
+										Originating from baseflight and cleanflight, betaflight continues to live the idea of open source. Everybody having precious ideas is welcome to implement them for the main product.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="single-offer d-flex flex-row pb-30">
+								<div class="icon">
+									<img src="img/small_logo.png" alt="">
+								</div>
+								<div class="desc">
+									<a href="#"><h4>OSD</h4></a>
+									<p>
+										With the Betaflight OSD you get all relevant values during flight directly into your FPV video feed. An easy to use drag-and-drop configuration allows to place values like used mAh and LiPo Voltage readings.
+									</p><p>
+Additionally you can change most firmware settings using stick commands wihtout even removing the goggles from your face.
+									</p>
+								</div>
+							</div>
+							<div class="single-offer d-flex flex-row pb-30">
+								<div class="icon">
+									<img src="img/small_logo.png" alt="">
+								</div>
+								<div class="desc">
+									<a href="#"><h4>Safety Features</h4></a>
+									<p>
+										Mini-drones are dangerous toys. As incidents with suddenly spinning props often end bloody, Betaflight implements several safety features to prevent dangerous behavior.
+									</p><p>
+Features are implemented as preventing arming when the drone isn’t leveled and switchig off drones in case of wrong motor or flight controller orientation.
+									</p>
+								</div>
+							</div>
+							<div class="single-offer d-flex flex-row pb-30">
+								<div class="icon">
+									<img src="img/small_logo.png" alt="">
+								</div>
+								<div class="desc">
+									<a href="#"><h4>Flight Dynamics</h4></a>
+									<p>
+										Betaflight not only strives to put the best flight code on your controller. Also it satisfies requirements as perfect performance, tiny footprint, newest features and a strong quality assurance process.
+									</p><p>
+										All flight related data can be logged into a blackbox for later analysis. So pilots and techniciants can base finest tunings on objective data.									
+									</p>
+								</div>
+							</div>
+						</div>												
+					</div>
+				</div>	
+			</section>
+			<!-- End we-offer Area -->
+			
+	
+			<!-- Start home-video Area -->
+			<section class="home-video-area" id="about">
+				<div class="container-fluid">
+					<div class="row justify-content-end align-items-center">
+						<div class="col-lg-4 no-padding video-right">
+							<p class="top-title">Tutorial for beginners</p>
+							<h1>Watch a tutorial <br>
+							video on how to get started</h1>
+							<p><span></span></p>
+							<p>
+								Don't know where to start, this video is for you. The basics all wrapped up into an easy to watch tutorial.
+							</p>
+						</div>
+						<section class="video-area col-lg-6">
+							<div class="overlay overlay-bg"></div>
+							<div class="container">
+								<div class="video-content">
+									<a href="http://www.youtube.com/watch?v=xmaTq4JgTXI" class="play-btn"><img src="img/play-btn.png" alt=""></a>
+								</div>
+							</div>
+						</section>											
+					</div>
+				</div>	
+			</section>
+			<!-- End home-aboutus Area -->
+
+
+			<!-- Start home-aboutus Area -->
+			<!--
+			<section class="home-aboutus-area">
+				<div class="container-fluid">
+					<div class="row justify-content-center align-items-center">
+						<div class="col-lg-8 no-padding about-left">
+							<img class="img-fluid" src="img/about-bg.jpg" alt="">
+						</div>
+						<div class="col-lg-4 no-padding about-right">
+							<p class="top-title">Fightcontroller firmware</p>
+							<h1 class="text-white">Awesome firmware<br>
+							System for the Software</h1>
+							<p><span>About betaflight.com</span></p>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. magna aliqua. Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. magna aliqua. Ut enim ad minim.
+							</p>
+						</div>
+					</div>
+				</div>	
+			</section>
+			-->
+			<!-- End home-aboutus Area -->
+			
+			<!-- Start contributors Area -->
+			<section class="testomial-area section-gap">
+				<div class="container" id="members">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Members & Contributors</h1>
+								<p>Here are the main members of the team and the consistent contributors to the betaflight project</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row">
+						<div class="active-tstimonial-carusel members_carousel" id="members_carousel">
+							<% site.members.forEach(function(member) { %>
+							<div class="single-testimonial item">
+								<img class="mx-auto avatar" src="<%= member.avatar_url %>" alt="">
+								<h4><%= member.login %></h4>
+								<p><%= member.status %></p>
+							</div>
+							<% }) %>
+						</div>
+					</div>
+				</div>	
+			</section>
+			<!-- End testomial Area -->
+
+			<!-- Start callto-action Area -->
+			<section class="callto-action-area relative section-gap">
+				<div class="overlay overlay-bg"></div>	
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content col-lg-9">
+							<div class="title text-center">
+								<h1 class="mb-10 text-white">Want to join in on Slack?</h1>
+								<p class="text-white">Slack is our tool of choice for instant messaging amongst the team. Join now and be a party to the conversations that flow freely.</p>
+								<a class="primary-btn" href="https://slack.betaflight.com" target="_blank">Join now</a>
+							</div>
+						</div>
+					</div>	
+				</div>	
+			</section>
+			<!-- End calto-action Area -->
+			
+			<!-- Start donate Area -->
+			<section class="price-area section-gap" id="price">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Want to help out by donating?</h1>
+								<p>Many of our users don't have the time to contribute but do love our software such that they want to continue to support us. The best way is to help out by donating.</p>
+							</div>
+						</div>
+					</div>					
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="single-price">
+								<div class="top-sec d-flex justify-content-between">
+									<div class="top-left">
+										<h4>Paypal</h4>
+										<p></p>
+									</div>
+									<div class="top-right">
+										<h1>$</h1>
+									</div>
+								</div>
+								<div class="bottom-sec">
+									<p>
+										For a once off donation to the cause with no ongoing commitment.
+									</p>
+								</div>
+								<div class="end-sec text-center">
+									<button class="primary-btn price-btn mt-20" onclick="window.open('https://paypal.me/betaflight')">Donate now</button>
+								</div>								
+							</div> 
+						</div>	
+						<div class="col-lg-4">
+							<div class="single-price">
+								<div class="top-sec d-flex justify-content-between">
+									<div class="top-left">
+										<h4>Patreon</h4>
+										<p></p>
+									</div>
+									<div class="top-right">
+										<h1>$$</h1>
+									</div>
+								</div>
+								<div class="bottom-sec">
+									<p>
+										To setup a monthly recurring donation for ongoing support and commitment.
+									</p>
+								</div>
+								<div class="end-sec text-center">
+									<button class="primary-btn price-btn mt-20" onclick="window.open('https://patreon.com/betaflight')">Setup now</button>
+								</div>								
+							</div> 
+						</div>							
+						<div class="col-lg-4">
+								<div class="single-price">
+									<div class="top-sec d-flex justify-content-between">
+										<div class="top-left">
+											<h4>Development</h4>
+											<p></p>
+										</div>
+										<div class="top-right">
+											<h1>{code}</h1>
+										</div>
+									</div>
+									<div class="bottom-sec">
+										<p>
+											To help out with development, checkout our github project.
+										</p>
+									</div>
+									<div class="end-sec text-center">
+										<button class="primary-btn price-btn mt-20" onclick="window.open('https://github.com/betaflight')">Code now</button>
+									</div>								
+								</div> 
+							</div>																							
+					</div>
+				</div>	
+			</section>
+			<!-- End price Area -->
+
+			<!-- Start testomial Area -->
+			<section class="testomial-area section-gap" id="pilots">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Featured pilots</h1>
+								<p>Want to get featured here? Drop us a line on the team betaflight Slack.</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row">
+						<div class="active-tstimonial-carusel testimonial_carousel" id="pilots_carousel">
+						<% site.pilots.forEach(function(pilot) { %>
+							<div class="single-testimonial item">
+								<img class="mx-auto pilot-image" src="<%= pilot.image %>" alt="">
+								<p class="desc"><%= pilot.description %></p>
+								<h4><a v-bind:href="pilot.link" target="_blank"><%= pilot.name %></a></h4>
+								<p><%= pilot.title %></p>
+							</div>
+						<% }) %>
+						</div>
+					</div>
+				</div>	
+			</section>
+			<!-- End testomial Area -->	
