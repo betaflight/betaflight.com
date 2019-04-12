@@ -16,12 +16,12 @@ addons:
 before_script:
 
 script:
-  - hugo -s "${TRAVIS_BUILD_DIR}" -d "${TRAVIS_BUILD_DIR}/public"
+  - bash "${TRAVIS_BUILD_DIR}/scripts/build.sh"
 
 deploy:
   provider: script
-  script: bash "${TRAVIS_BUILD_DIR}/scripts/deploy.sh"
+  script: bash "${TRAVIS_BUILD_DIR}/scripts/build.sh deploy"
   skip_cleanup: true
   on:
-    branch: master
+    branch: release
 

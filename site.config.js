@@ -1,4 +1,5 @@
-//const pilots = require('./data/pilots')
+const pilots = require('./data/pilots')
+const members = require('./data/members')
 const moment = require('moment')
 const glob = require('glob');
 const fse = require('fs-extra');
@@ -14,7 +15,14 @@ module.exports = {
     baseUrl: "https://betaflight.com",
     title: 'betaflight.com',
     description: 'Home of the famous betaflight flight controller firmware, and associated tools.',
-    authors,
+    staticContent: [
+      "content/images",
+      "js",
+      "css",
+      "img"
+    ],
+    pilots,
+    members,
     moment,
     glob,
     fse,
