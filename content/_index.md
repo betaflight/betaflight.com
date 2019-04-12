@@ -1,1 +1,0 @@
-This is actual frontpage content from the mark-down.
