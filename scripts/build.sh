@@ -5,7 +5,7 @@ set -e
 basepath="${PWD}"
 artifacts="${basepath}/public"
 
-if [ -d ${artifacts} ]; then  
+if [ -d ${artifacts} ]; then
   rm -R ${artifacts}
 fi
 
@@ -17,7 +17,7 @@ echo "Bucket:    ${BUCKET}"
 
 mkdir -p ${artifacts}
 
-npm install
+node --version
 node ${basepath}/node_modules/nanogen/lib/cli build
 
 if [ "${1}" == "deploy" ]; then

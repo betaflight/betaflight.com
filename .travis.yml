@@ -1,5 +1,10 @@
 language: node_js
+node_js:
+  - "8"
+
 dist: xenial
+
+cache: npm
 
 sudo: false
 env:
@@ -24,4 +29,3 @@ deploy:
   skip_cleanup: true
   on:
     branch: release
-
