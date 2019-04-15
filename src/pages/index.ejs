@@ -1,21 +1,21 @@
 
 			<!-- start banner Area -->
-			<section class="banner-area" id="home">	
+			<section class="banner-area" id="home">
 				<div class="container">
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-7">
 							<h1>
-								Are you ready to fly?				
+								Are you ready to fly?
 							</h1>
 							<p class="pt-20 pb-20">
 								Betaflight is flight controller software (firmware) used to fly multi-rotor craft and fixed wing craft.
 								This fork differs from Baseflight and Cleanflight in that it focuses on flight performance, leading-edge feature additions, and wide target support.
 							</p>
-						</div>											
+						</div>
 					</div>
 				</div>
 			</section>
-			<!-- End banner Area -->	
+			<!-- End banner Area -->
 
 			<!-- Start latest-blog Area -->
 			<section class="latest-blog-area section-gap" id="news">
@@ -27,32 +27,40 @@
 								<p>What has been happening in the world of betaflight?</p>
 							</div>
 						</div>
-					</div>					
+					</div>
 					<div class="row">
 						<div class="col-lg-6 single-blog">
 							<img class="img-fluid" src="/content/images/FastestMCU.jpg" alt="">
-							<a href="#"><h4>Release 4.0 delayed!</h4></a>
-							<p class="post-date">30th December, 2018</p>
-							<p>
-								As you might have learned from the Betaflight GitHub page, our next release will be 4.0. Betaflight 4.0 will bring unified targets, which is the the culmination of years of work that started in 2016 with the introduction of remappable resources, and it will drastically change the way how Betaflight is built and distributed. To you as the user, not much in how you download and install the Betaflight firmware will change, but you will get some noticeable improvements:
-							</p>
-							<ul class="unordered-list">
-								<li><span>We'll have to spend less time on maintaining and releasing the firmware, meaning that we'll have more time to work on new and exciting features;</span></li>
-								<li><span>manufacturers will have an easy way to release custom configurations for all of their boards and ready-to-fly (including RX setup and tuning) craft based on original Betaflight firmware - you will no longer be stuck on using old firmware, or recreating your configuration from scratch;</span></li>
-								<li><span>the tinkerers amongst you will be able to share Betaflight firmware with your home built improvements amongst your friends without having to build and distribute separate targets for everybody's board.</span></li>
-							</ul>
-							<p>					
-								(These changes are planned for F4 and F7, F3's flash space limitations mean we won't be able to fit all of this in.)
-							</p>
-							<p>
-								We are almost there with the implementation of these changes, but since they are quite complex, and getting 'almost there' doesn't buy us much, we have decided that we need to take more time to complete them, make sure the way users can use the firmware still works as expected, and properly test the new firmware. For this reason we have decided to postpone the planned release date for Betaflight to 01 April 2019. We will keep doing monthly releases of Betaflight 3.5 with bugfixes and new / updated targets in the meantime.
-								In addition to the drastic changes mentioned above, Betaflight 4.0 will have a number of other exciting new features and improvements:</p>
-							<ul class="unordered-list">
-								<li><span>yet again improved flight performance;</span></li>
-								<li><span>'Launch control' mode; and</span></li>
-								<li><span>switchable profiles for the OSD layout.</span></li>
-							</ul>
-							
+							<a href="#"><h4>Release 4.0 available now!</h4></a>
+							<p class="post-date">11th April, 2019</p>
+<p>It took us a long time, but now it’s here, and it’s got so many new things!</p>
+<p>When we released 3.5 in August last year, the number of different targets supported by Betaflight had reached 150,
+	and maintaining them was becoming a major effort and taking up a lot of our time. It became clear that we had to do
+	something. We had been working on changing the architecture of Betaflight to make it possible to use the same
+	firmware for different flight controllers for some time, and so we decided to complete this change before releasing
+	the next version, and that because of this fundamental change the next version would be 4.0.
+	As we approached the originally set release date for Betaflight 4.0, we realised that we were not quite ready, and
+	we decided to take another three months, in order to be able to complete the work we had started.
+	So now, here we are, ‘Unified Targets’, as we called the new ‘one firmware for many flight controllers’ technology,
+	is now a reality in Betaflight 4.0. There is still some work left to be done to add support for flashing Unified
+	Targets with their configurations to Betaflight configurator, but once this is done, we will be able to allow
+	manufacturers to make firmware for any number of boards, or RTF products, available directly in configurator.</p>
+<p>As you have come to expect from Betaflight, we have picked up a number of new and exciting improvements to the flight
+	performance, like ESC RPM based filtering, D term management with D_min, and throttle based dynamic gyro and D term
+	filtering.
+	And, again as expected we have added some more, non flight related new features like launch control, OSD profiles,
+	and support for on-board SPI attached RX.
+	For an extended list of new features see the release notes.</p>
+<p>To get the best out of the flight performance improvements, please read these tuning tips.</p>
+<p>If you are upgrading from an earlier version of Betaflight, please see the release notes for a list of things that
+	you might have to change in your configuration.
+	We have tried to make this release as bug free as possible. If you still find a bug, please report it back to us by
+	opening an issue here.
+	Betaflight also has a presence in the Slack messaging platform. Register here, and then come join us in Slack. Most
+	developers hang out there, so this is a great place to talk about the things you are tinkering with in Betaflight,
+	or get help with really complicated configuration problems.</p>
+<p><em>Kia kaha</em> (stay strong)</p>
+
 						</div>
 						<div class="col-lg-6 single-blog">
 							<img class="img-fluid" src="/content/images/cf-bf-test.jpg" alt="">
@@ -61,7 +69,7 @@
 							<p>
 								As announced earlier, Betaflight 4.0 will introduce a radically new way to define targets. At the moment, we are making the changes necessary for this, and this requires some changes to how targets are defined in the 'legacy' way. Because of this, any pull request opened against `master` that introduces a new target is likely to be outdated by the time it has been reviewed. This means extra work for the target maintainer and the reviewers, for little or no benefit.
 							</p>
-							<p>		
+							<p>
 								Because of this, the following embargo is put in place:
 							</p>
 							<ol class="ordered-list">
@@ -75,9 +83,9 @@
 									<span>Targets added under the exception in 2. will have to be ported into 4.0 before 4.0 is released. The format that these targets will have in 4.0 is yet to be determined, and instructions for porting the targets will have to be written, but we expect the maintainers of these targets to make themselves available to assist with this task when the time comes. Please follow the news and updates that are posted here or to the <a href="https://github.com/betaflight/betaflight" target="_blank">Betaflight GitHub page</a> to keep track of when action is required.</span>
 								</li>
 							</ol>
-						</div>						
+						</div>
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- End latest-blog Area -->
 
@@ -91,7 +99,7 @@
 								<p>So what is betaflight?</p>
 							</div>
 						</div>
-					</div>						
+					</div>
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="single-offer d-flex flex-row pb-30">
@@ -100,7 +108,7 @@
 								</div>
 								<div class="desc">
 									<a href="#"><h4>Supports your Hardware</h4></a>
-									<p>										
+									<p>
 Betaflight supports nearly all flight controllers on the market having at least an STM32F3 Processor.
 The Betaflight Configurator runs on Windows, Mac OS and Linux.
 									</p>
@@ -171,17 +179,17 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 									<p>
 										Betaflight not only strives to put the best flight code on your controller. Also it satisfies requirements as perfect performance, tiny footprint, newest features and a strong quality assurance process.
 									</p><p>
-										All flight related data can be logged into a blackbox for later analysis. So pilots and techniciants can base finest tunings on objective data.									
+										All flight related data can be logged into a blackbox for later analysis. So pilots and techniciants can base finest tunings on objective data.
 									</p>
 								</div>
 							</div>
-						</div>												
+						</div>
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- End we-offer Area -->
-			
-	
+
+
 			<!-- Start home-video Area -->
 			<section class="home-video-area" id="about">
 				<div class="container-fluid">
@@ -202,9 +210,9 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 									<a href="http://www.youtube.com/watch?v=xmaTq4JgTXI" class="play-btn"><img src="img/play-btn.png" alt=""></a>
 								</div>
 							</div>
-						</section>											
+						</section>
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- End home-aboutus Area -->
 
@@ -227,11 +235,11 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 							</p>
 						</div>
 					</div>
-				</div>	
+				</div>
 			</section>
 			-->
 			<!-- End home-aboutus Area -->
-			
+
 			<!-- Start contributors Area -->
 			<section class="testomial-area section-gap">
 				<div class="container" id="members">
@@ -242,7 +250,7 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								<p>Here are the main members of the team and the consistent contributors to the betaflight project</p>
 							</div>
 						</div>
-					</div>						
+					</div>
 					<div class="row">
 						<div class="active-tstimonial-carusel members_carousel" id="members_carousel">
 							<% site.members.forEach(function(member) { %>
@@ -254,13 +262,13 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 							<% }) %>
 						</div>
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- End testomial Area -->
 
 			<!-- Start callto-action Area -->
 			<section class="callto-action-area relative section-gap">
-				<div class="overlay overlay-bg"></div>	
+				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content col-lg-9">
@@ -270,11 +278,11 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								<a class="primary-btn" href="https://slack.betaflight.com" target="_blank">Join now</a>
 							</div>
 						</div>
-					</div>	
-				</div>	
+					</div>
+				</div>
 			</section>
 			<!-- End calto-action Area -->
-			
+
 			<!-- Start donate Area -->
 			<section class="price-area section-gap" id="price">
 				<div class="container">
@@ -285,7 +293,7 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								<p>Many of our users don't have the time to contribute but do love our software such that they want to continue to support us. The best way is to help out by donating.</p>
 							</div>
 						</div>
-					</div>					
+					</div>
 					<div class="row">
 						<div class="col-lg-4">
 							<div class="single-price">
@@ -305,9 +313,9 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								</div>
 								<div class="end-sec text-center">
 									<button class="primary-btn price-btn mt-20" onclick="window.open('https://paypal.me/betaflight')">Donate now</button>
-								</div>								
-							</div> 
-						</div>	
+								</div>
+							</div>
+						</div>
 						<div class="col-lg-4">
 							<div class="single-price">
 								<div class="top-sec d-flex justify-content-between">
@@ -326,9 +334,9 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								</div>
 								<div class="end-sec text-center">
 									<button class="primary-btn price-btn mt-20" onclick="window.open('https://patreon.com/betaflight')">Setup now</button>
-								</div>								
-							</div> 
-						</div>							
+								</div>
+							</div>
+						</div>
 						<div class="col-lg-4">
 								<div class="single-price">
 									<div class="top-sec d-flex justify-content-between">
@@ -347,11 +355,11 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 									</div>
 									<div class="end-sec text-center">
 										<button class="primary-btn price-btn mt-20" onclick="window.open('https://github.com/betaflight')">Code now</button>
-									</div>								
-								</div> 
-							</div>																							
+									</div>
+								</div>
+							</div>
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- End price Area -->
 
@@ -365,7 +373,7 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								<p>Want to get featured here? Drop us a line on the team betaflight Slack.</p>
 							</div>
 						</div>
-					</div>						
+					</div>
 					<div class="row">
 						<div class="active-tstimonial-carusel testimonial_carousel" id="pilots_carousel">
 						<% site.pilots.forEach(function(pilot) { %>
@@ -378,6 +386,6 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 						<% }) %>
 						</div>
 					</div>
-				</div>	
+				</div>
 			</section>
-			<!-- End testomial Area -->	
+			<!-- End testomial Area -->
