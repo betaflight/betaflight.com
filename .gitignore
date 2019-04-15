@@ -31,3 +31,4 @@ _ReSharper*/
 /node_modules/
 /package-lock.json
 /public/
+.vscode/
