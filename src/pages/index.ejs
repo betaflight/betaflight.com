@@ -1,21 +1,25 @@
+---
+title: Home
+
+---
 
 			<!-- start banner Area -->
-			<section class="banner-area" id="home">	
+			<section class="banner-area" id="home">
 				<div class="container">
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-7">
 							<h1>
-								Are you ready to fly?				
+								Are you ready to fly?
 							</h1>
 							<p class="pt-20 pb-20">
 								Betaflight is flight controller software (firmware) used to fly multi-rotor craft and fixed wing craft.
 								This fork differs from Baseflight and Cleanflight in that it focuses on flight performance, leading-edge feature additions, and wide target support.
 							</p>
-						</div>											
+						</div>
 					</div>
 				</div>
 			</section>
-			<!-- End banner Area -->	
+			<!-- End banner Area -->
 
 			<!-- Start latest-blog Area -->
 			<section class="latest-blog-area section-gap" id="news">
@@ -27,57 +31,21 @@
 								<p>What has been happening in the world of betaflight?</p>
 							</div>
 						</div>
-					</div>					
-					<div class="row">
-						<div class="col-lg-6 single-blog">
-							<img class="img-fluid" src="/content/images/FastestMCU.jpg" alt="">
-							<a href="#"><h4>Release 4.0 delayed!</h4></a>
-							<p class="post-date">30th December, 2018</p>
-							<p>
-								As you might have learned from the Betaflight GitHub page, our next release will be 4.0. Betaflight 4.0 will bring unified targets, which is the the culmination of years of work that started in 2016 with the introduction of remappable resources, and it will drastically change the way how Betaflight is built and distributed. To you as the user, not much in how you download and install the Betaflight firmware will change, but you will get some noticeable improvements:
-							</p>
-							<ul class="unordered-list">
-								<li><span>We'll have to spend less time on maintaining and releasing the firmware, meaning that we'll have more time to work on new and exciting features;</span></li>
-								<li><span>manufacturers will have an easy way to release custom configurations for all of their boards and ready-to-fly (including RX setup and tuning) craft based on original Betaflight firmware - you will no longer be stuck on using old firmware, or recreating your configuration from scratch;</span></li>
-								<li><span>the tinkerers amongst you will be able to share Betaflight firmware with your home built improvements amongst your friends without having to build and distribute separate targets for everybody's board.</span></li>
-							</ul>
-							<p>					
-								(These changes are planned for F4 and F7, F3's flash space limitations mean we won't be able to fit all of this in.)
-							</p>
-							<p>
-								We are almost there with the implementation of these changes, but since they are quite complex, and getting 'almost there' doesn't buy us much, we have decided that we need to take more time to complete them, make sure the way users can use the firmware still works as expected, and properly test the new firmware. For this reason we have decided to postpone the planned release date for Betaflight to 01 April 2019. We will keep doing monthly releases of Betaflight 3.5 with bugfixes and new / updated targets in the meantime.
-								In addition to the drastic changes mentioned above, Betaflight 4.0 will have a number of other exciting new features and improvements:</p>
-							<ul class="unordered-list">
-								<li><span>yet again improved flight performance;</span></li>
-								<li><span>'Launch control' mode; and</span></li>
-								<li><span>switchable profiles for the OSD layout.</span></li>
-							</ul>
-							
-						</div>
-						<div class="col-lg-6 single-blog">
-							<img class="img-fluid" src="/content/images/cf-bf-test.jpg" alt="">
-							<a href="#"><h4>Important: Embargo on new targets for Betaflight 4.0!</h4></a>
-							<p class="post-date">30th December, 2018</p>
-							<p>
-								As announced earlier, Betaflight 4.0 will introduce a radically new way to define targets. At the moment, we are making the changes necessary for this, and this requires some changes to how targets are defined in the 'legacy' way. Because of this, any pull request opened against `master` that introduces a new target is likely to be outdated by the time it has been reviewed. This means extra work for the target maintainer and the reviewers, for little or no benefit.
-							</p>
-							<p>		
-								Because of this, the following embargo is put in place:
-							</p>
-							<ol class="ordered-list">
-								<li>
-									<span>From 30/12/2018 on until the release of Betaflight 4.0 (scheduled for 01/04/2019), no pull requests that introduce new targets against `master` are accepted. Because any such pull requests will be outdated by the time 4.0 is released, they will be closed;</span>
-								</li>
-								<li>
-									<span>During the time that 1. is in place, pull requests adding new targets (in 3.5 format) against the `3.5.x-maintenance` branch will be considered. This is an exception to the rule that all pull requests must be opened against `master`. This exception only applies to pull requests containing no other changes than a new target and a documentation page for the new target. These new targets will be included in upcoming 3.5 maintenance releases;</span>
-								</li>
-								<li>
-									<span>Targets added under the exception in 2. will have to be ported into 4.0 before 4.0 is released. The format that these targets will have in 4.0 is yet to be determined, and instructions for porting the targets will have to be written, but we expect the maintainers of these targets to make themselves available to assist with this task when the time comes. Please follow the news and updates that are posted here or to the <a href="https://github.com/betaflight/betaflight" target="_blank">Betaflight GitHub page</a> to keep track of when action is required.</span>
-								</li>
-							</ol>
-						</div>						
 					</div>
-				</div>	
+					<div class="row">
+<%
+						site.news.slice(0, 2).forEach(function(article) {
+%>
+						<div class="col-lg-6 single-blog">
+							<img class="img-fluid" src="<%= article.image || '/content/images/default.jpg' %>" alt="">
+							<a href="<%= article.link %>"><h4><%= article.title %></h4></a>
+							<p class="post-date"><%= site.moment(article.date).format("DD MMM") %></p>
+							<p><span class="entry-excerpt"><p><%= article.description %></p></span>
+							<span class="readmore"><a class="hvr-underline-from-center" href="<%= article.link %>">Read More</a></span></p>
+						</div>
+<% }); %>
+					</div>
+				</div>
 			</section>
 			<!-- End latest-blog Area -->
 
@@ -91,16 +59,16 @@
 								<p>So what is betaflight?</p>
 							</div>
 						</div>
-					</div>						
+					</div>
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="single-offer d-flex flex-row pb-30">
 								<div class="icon">
-									<img src="img/small_logo.png" alt="">
+									<i class="fa fa-microchip fa-3x"></i>
 								</div>
 								<div class="desc">
 									<a href="#"><h4>Supports your Hardware</h4></a>
-									<p>										
+									<p>
 Betaflight supports nearly all flight controllers on the market having at least an STM32F3 Processor.
 The Betaflight Configurator runs on Windows, Mac OS and Linux.
 									</p>
@@ -114,7 +82,7 @@ Not even less-related components stay untouched, so Betaflight allows to control
 							</div>
 							<div class="single-offer d-flex flex-row pb-30">
 								<div class="icon">
-									<img src="img/small_logo.png" alt="">
+									<i class="fa fa-users fa-2x"></i>
 								</div>
 								<div class="desc">
 									<a href="#"><h4>Community Support</h4></a>
@@ -125,7 +93,7 @@ Not even less-related components stay untouched, so Betaflight allows to control
 							</div>
 							<div class="single-offer d-flex flex-row pb-30">
 								<div class="icon">
-									<img src="img/small_logo.png" alt="">
+									<i class="fa fa-code-branch fa-3x"></i>
 								</div>
 								<div class="desc">
 									<a href="#"><h4>Open Source</h4></a>
@@ -138,7 +106,7 @@ Not even less-related components stay untouched, so Betaflight allows to control
 						<div class="col-lg-6">
 							<div class="single-offer d-flex flex-row pb-30">
 								<div class="icon">
-									<img src="img/small_logo.png" alt="">
+									<i class="fa fa-camera-retro fa-3x"></i>
 								</div>
 								<div class="desc">
 									<a href="#"><h4>OSD</h4></a>
@@ -151,7 +119,7 @@ Additionally you can change most firmware settings using stick commands wihtout 
 							</div>
 							<div class="single-offer d-flex flex-row pb-30">
 								<div class="icon">
-									<img src="img/small_logo.png" alt="">
+									<i class="fa fa-hard-hat fa-3x"></i>
 								</div>
 								<div class="desc">
 									<a href="#"><h4>Safety Features</h4></a>
@@ -164,26 +132,26 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 							</div>
 							<div class="single-offer d-flex flex-row pb-30">
 								<div class="icon">
-									<img src="img/small_logo.png" alt="">
+									<i class="fa fa-fighter-jet fa-2x"></i>
 								</div>
 								<div class="desc">
 									<a href="#"><h4>Flight Dynamics</h4></a>
 									<p>
 										Betaflight not only strives to put the best flight code on your controller. Also it satisfies requirements as perfect performance, tiny footprint, newest features and a strong quality assurance process.
 									</p><p>
-										All flight related data can be logged into a blackbox for later analysis. So pilots and techniciants can base finest tunings on objective data.									
+										All flight related data can be logged into a blackbox for later analysis. So pilots and techniciants can base finest tunings on objective data.
 									</p>
 								</div>
 							</div>
-						</div>												
+						</div>
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- End we-offer Area -->
-			
-	
+
+
 			<!-- Start home-video Area -->
-			<section class="home-video-area" id="about">
+			<section class="home-video-area" id="tutorial">
 				<div class="container-fluid">
 					<div class="row justify-content-end align-items-center">
 						<div class="col-lg-4 no-padding video-right">
@@ -202,47 +170,112 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 									<a href="http://www.youtube.com/watch?v=xmaTq4JgTXI" class="play-btn"><img src="img/play-btn.png" alt=""></a>
 								</div>
 							</div>
-						</section>											
+						</section>
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- End home-aboutus Area -->
 
 
 			<!-- Start home-aboutus Area -->
-			<!--
-			<section class="home-aboutus-area">
-				<div class="container-fluid">
-					<div class="row justify-content-center align-items-center">
-						<div class="col-lg-8 no-padding about-left">
-							<img class="img-fluid" src="img/about-bg.jpg" alt="">
-						</div>
-						<div class="col-lg-4 no-padding about-right">
-							<p class="top-title">Fightcontroller firmware</p>
-							<h1 class="text-white">Awesome firmware<br>
-							System for the Software</h1>
-							<p><span>About betaflight.com</span></p>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. magna aliqua. Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. magna aliqua. Ut enim ad minim.
-							</p>
-						</div>
-					</div>
-				</div>	
+
+			<section class="home-aboutus-area section-gap" id="getting_started">
+				<div class="container">
+						<div class="row d-flex justify-content-center">
+								<div class="menu-content pb-60 col-lg-10">
+									<div class="title text-center">
+										<h1 class="mb-10 text-white">Getting started</h1>
+										<p>So what do you need to know?</p>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+							<div class="col-lg-6">
+									<div class="single-offer d-flex flex-row pb-30">
+										<div class="icon">
+											<i class="fa fa-upload fa-3x"></i>
+										</div>
+										<div class="desc">
+											<a href="#"><h4 class="text-white">Installation & Documentation</h4></a>
+											<p>
+		<a href="https://github.com/betaflight/betaflight/wiki">See the betaflight wiki</a>
+											</p>
+										</div>
+									</div>
+									<div class="single-offer d-flex flex-row pb-30">
+											<div class="icon">
+												<i class="fa fa-cogs fa-2x"></i>
+											</div>
+											<div class="desc">
+												<a href="#"><h4 class="text-white">Configuration Tool</h4></a>
+												<p>
+														To configure Betaflight you should use the Betaflight-configurator GUI tool (Windows/OSX/Linux) which can be found here:
+												</p><p>
+														<a href="https://github.com/betaflight/betaflight-configurator/releases/latest">Latest configurator releases</a>
+												</p>
+											</div>
+										</div>		
+										<div class="single-offer d-flex flex-row pb-30">
+												<div class="icon">
+													<i class="fa fa-chart-area fa-2x"></i>
+												</div>
+												<div class="desc">
+													<a href="#"><h4 class="text-white">BlackBox Viewer</h4></a>
+													<p>Viewer Releases are here: https://github.com/betaflight/blackbox-log-viewer/releases
+		
+															The Latest Viewer source is here:
+														</p>	<p>
+															https://github.com/betaflight/blackbox-log-viewer
+															See BB Logging and Usage Wiki page on using the BB logger.</p>
+												</div>
+											</div>
+								</div>
+							<div class="col-lg-6">
+									<div class="single-offer d-flex flex-row pb-30">
+										<div class="icon">
+											<i class="fa fa-folder fa-3x"></i>
+										</div>
+										<div class="desc">
+											<a href="#"><h4 class="text-white">Betaflight Releases</h4></a>
+											<p>
+													Releases can be found on <a href="https://github.com/betaflight/betaflight/releases">github.com/betaflight</a> or downloaded from within the firmware section within the configurator. Also check the Upgrading List to the Right for Release Notes and other Details on the various Versions.
+											</p>
+											<p>
+												<a href="https://github.com/betaflight/betaflight/releases">Releases</a>
+											</p>
+										</div>
+									</div>
+									<div class="single-offer d-flex flex-row pb-30">
+										<div class="icon">
+											<i class="fa fa-exclamation-circle fa-3x"></i>
+										</div>
+										<div class="desc">
+											<a href="#"><h4 class="text-white">BETA TESTING (WARNING)</h4></a>
+											<p>If you want to contribute to better development you can download the latest beta build directly from:</p>
+											<p><a href="https://ci.betaflight.tech/job/Betaflight/lastBuild/artifact/obj/">Nightly builds</a></p> 
+											</p><p>
+													You can find release planning here:
+											</p>
+											<p>https://github.com/betaflight/betaflight/milestones</p>
+										</div>
+									</div>
+		</div></div></div>
+				</div>
 			</section>
-			-->
+
 			<!-- End home-aboutus Area -->
-			
+
 			<!-- Start contributors Area -->
 			<section class="testomial-area section-gap">
 				<div class="container" id="members">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-60 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Members & Contributors</h1>
+								<h1 class="mb-10">Members &amp; Contributors</h1>
 								<p>Here are the main members of the team and the consistent contributors to the betaflight project</p>
 							</div>
 						</div>
-					</div>						
+					</div>
 					<div class="row">
 						<div class="active-tstimonial-carusel members_carousel" id="members_carousel">
 							<% site.members.forEach(function(member) { %>
@@ -254,13 +287,13 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 							<% }) %>
 						</div>
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- End testomial Area -->
 
 			<!-- Start callto-action Area -->
 			<section class="callto-action-area relative section-gap">
-				<div class="overlay overlay-bg"></div>	
+				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content col-lg-9">
@@ -270,11 +303,11 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								<a class="primary-btn" href="https://slack.betaflight.com" target="_blank">Join now</a>
 							</div>
 						</div>
-					</div>	
-				</div>	
+					</div>
+				</div>
 			</section>
 			<!-- End calto-action Area -->
-			
+
 			<!-- Start donate Area -->
 			<section class="price-area section-gap" id="price">
 				<div class="container">
@@ -285,7 +318,7 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								<p>Many of our users don't have the time to contribute but do love our software such that they want to continue to support us. The best way is to help out by donating.</p>
 							</div>
 						</div>
-					</div>					
+					</div>
 					<div class="row">
 						<div class="col-lg-4">
 							<div class="single-price">
@@ -305,9 +338,9 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								</div>
 								<div class="end-sec text-center">
 									<button class="primary-btn price-btn mt-20" onclick="window.open('https://paypal.me/betaflight')">Donate now</button>
-								</div>								
-							</div> 
-						</div>	
+								</div>
+							</div>
+						</div>
 						<div class="col-lg-4">
 							<div class="single-price">
 								<div class="top-sec d-flex justify-content-between">
@@ -326,9 +359,9 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								</div>
 								<div class="end-sec text-center">
 									<button class="primary-btn price-btn mt-20" onclick="window.open('https://patreon.com/betaflight')">Setup now</button>
-								</div>								
-							</div> 
-						</div>							
+								</div>
+							</div>
+						</div>
 						<div class="col-lg-4">
 								<div class="single-price">
 									<div class="top-sec d-flex justify-content-between">
@@ -347,11 +380,11 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 									</div>
 									<div class="end-sec text-center">
 										<button class="primary-btn price-btn mt-20" onclick="window.open('https://github.com/betaflight')">Code now</button>
-									</div>								
-								</div> 
-							</div>																							
+									</div>
+								</div>
+							</div>
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- End price Area -->
 
@@ -365,7 +398,7 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 								<p>Want to get featured here? Drop us a line on the team betaflight Slack.</p>
 							</div>
 						</div>
-					</div>						
+					</div>
 					<div class="row">
 						<div class="active-tstimonial-carusel testimonial_carousel" id="pilots_carousel">
 						<% site.pilots.forEach(function(pilot) { %>
@@ -378,6 +411,6 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 						<% }) %>
 						</div>
 					</div>
-				</div>	
+				</div>
 			</section>
-			<!-- End testomial Area -->	
+			<!-- End testomial Area -->
