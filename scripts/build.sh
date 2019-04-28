@@ -22,4 +22,5 @@ node ${basepath}/node_modules/nanogen/lib/cli build
 
 if [ "${1}" == "deploy" ]; then
   aws s3 sync ${artifacts} s3://${BUCKET} --delete --region "${REGION}"
+  aws cloudfront create-invalidation --distribution-id ${AWS_DISTRIBUTION_ID} --path /*
 fi
