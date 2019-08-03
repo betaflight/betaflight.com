@@ -1,5 +1,23 @@
 [
     {
+      "login": "dominicclifton",
+      "status": "Member",
+      "id": 57075,
+      "avatar_url": "https://avatars0.githubusercontent.com/u/57075?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hydra",
+      "html_url": "https://github.com/hydra"
+    },
+    {
+      "login": "jflyper",
+      "status": "Member",
+      "id": 14850998,
+      "avatar_url": "https://avatars1.githubusercontent.com/u/14850998?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jflyper",
+      "html_url": "https://github.com/jflyper"
+    },
+    {
       "login": "blckmn",
       "status": "Member",
       "id": 6168871,
