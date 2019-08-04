@@ -1,6 +1,6 @@
 # Uses NANOGEN module.
 
-Note: `npm install` to re-hydrate node_modules
+Note: `npm install` to re-hydrate node\_modules
 
 Setup for Visual Studio Code:
 
