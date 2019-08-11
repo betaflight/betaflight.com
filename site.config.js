@@ -1,43 +1,10 @@
 const pilots = require('./data/pilots')
 const members = require('./data/members')
 const moment = require('moment')
-const glob = require('glob');
-const fse = require('fs-extra');
-const frontMatter = require('front-matter');
-const path = require('path');
-
 const srcPath = './src';
+const util = require(`${srcPath}/js/util`)
 
-function getNews() { 
-  const files = glob.sync('news/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` });
-
-  var news = [];
-  
-  files.forEach(function(file) {
-  
-    const data = fse.readFileSync(`${srcPath}/pages/${file}`, 'utf-8');
-  
-    const pageData = frontMatter(data);
-    const page = pageData.attributes;
-  
-    if (!page.link) {
-      fileData = path.parse(file);
-      page.link = fileData.dir + "/" + fileData.name + "/";
-    }
-  
-    if (page.layout != "article") {
-      return;
-    }
-  
-    news.push(page);
-  });
-  
-  news.sort(function(a, b) {
-      return a.date > b.date ? -1 : 1;
-  });
-
-  return news;
-}
+const pagesPath = `${srcPath}/pages`;
 
 module.exports = {
   build: {
@@ -58,9 +25,6 @@ module.exports = {
     pilots,
     members,
     moment,
-    glob,
-    fse,
-    frontMatter,
-    news: getNews()
+    news: util.getPageData(pagesPath, 'article').sort((a, b) => a.date > b.date ? -1 : 1)
   }
 }
