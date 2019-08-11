@@ -14,7 +14,7 @@ const getPageData = (srcDirectory, layout) => {
   
     const files = glob.sync('**/*.@(md|ejs|html)', { cwd: `${srcDirectory}` });
 
-    files.forEach(function(file) {
+    files.forEach((file) => {
   
       const data = fse.readFileSync(`${srcDirectory}/${file}`, 'utf-8');
     
