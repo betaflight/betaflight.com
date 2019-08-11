@@ -25,6 +25,6 @@ module.exports = {
     pilots,
     members,
     moment,
-    news: util.getPageData(pagesPath, 'article').sort(function(a, b) { return a.date > b.date ? -1 : 1; })
+    news: util.getPageData(pagesPath, 'article').sort((a, b) => a.date > b.date ? -1 : 1)
   }
 }
