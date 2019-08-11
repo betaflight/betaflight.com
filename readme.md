@@ -1,8 +1,8 @@
-# Uses NANOGEN module.
+# Uses NANOGEN module
 
 Note: `npm install` to re-hydrate node\_modules
 
-Setup for Visual Studio Code:
+Setup for Visual Studio Code (allows for CTRL-SHIFT-B to trigger immediate build):
 
 tasks.json
 ```
@@ -12,13 +12,18 @@ tasks.json
         {
             "type": "npm",
             "script": "build",
-            "problemMatcher": []
+            "problemMatcher": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
 ```
 
-This will put the website into ./public folder. Using the Go Live (Live Server by Ritwick Dey) module plugin for Visual Studio Code you can go live this folder:
+This will put the website into ./public folder. Using the Go Live (Live Server by Ritwick Dey [https://github.com/ritwickdey/vscode-live-server]) module plugin for Visual Studio Code you can go live this folder:
 
 settings.json:
 ```
