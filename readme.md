@@ -2,7 +2,7 @@
 
 Note: `npm install` to re-hydrate node\_modules
 
-Setup for Visual Studio Code:
+Setup for Visual Studio Code (allows for CTRL-SHIFT-B to trigger immediate build):
 
 tasks.json
 ```
@@ -12,7 +12,12 @@ tasks.json
         {
             "type": "npm",
             "script": "build",
-            "problemMatcher": []
+            "problemMatcher": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
