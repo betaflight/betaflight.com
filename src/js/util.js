@@ -5,7 +5,7 @@ const path = require('path');
 
 const getLink = (file) => {
     fileData = path.parse(file);
-    return fileData.dir + "/" + fileData.name + "/";
+    return `${fileData.dir}/${fileData.name}/`;
   }
 
 const getPageData = (srcDirectory, layout) => {
