@@ -23,7 +23,7 @@ tasks.json
 }
 ```
 
-This will put the website into ./public folder. Using the Go Live (Live Server by Ritwick Dey) module plugin for Visual Studio Code you can go live this folder:
+This will put the website into ./public folder. Using the Go Live (Live Server by Ritwick Dey [https://github.com/ritwickdey/vscode-live-server]) module plugin for Visual Studio Code you can go live this folder:
 
 settings.json:
 ```
