@@ -1,4 +1,4 @@
-# Uses NANOGEN module.
+# Uses NANOGEN module
 
 Note: `npm install` to re-hydrate node\_modules
 
