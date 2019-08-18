@@ -1,18 +1,12 @@
 const pilots = require('./data/pilots')
-const members = require('./data/members')
 const moment = require('moment')
-const srcPath = './src';
-const util = require(`${srcPath}/js/util`)
-
-const pagesPath = `${srcPath}/pages`;
 
 module.exports = {
   build: {
-    srcPath,
+    srcPath: '',
     outputPath: './public'
   },
   site: {
-    srcPath,
     baseUrl: "https://betaflight.com",
     title: 'betaflight.com',
     description: 'Home of the famous betaflight flight controller firmware, and associated tools.',
@@ -23,8 +17,8 @@ module.exports = {
       "img"
     ],
     pilots,
-    members,
+    members: [],
     moment,
-    news: util.getPageData(pagesPath, 'article').sort((a, b) => a.date > b.date ? -1 : 1)
+    news: []
   }
 }

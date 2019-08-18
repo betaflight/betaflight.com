@@ -282,7 +282,11 @@ Features are implemented as preventing arming when the drone isn’t leveled and
 							<div class="single-testimonial item">
 								<img class="mx-auto avatar" src="<%= member.avatar_url %>" alt="">
 								<h4><%= member.login %></h4>
-								<p><%= member.status %></p>
+								<p>
+									<%= member.name %> <br />
+									<%= member.location %> <br />
+									&nbsp;<%= member.blog %>&nbsp;
+								</p>
 							</div>
 							<% }) %>
 						</div>
