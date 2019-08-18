@@ -3,7 +3,7 @@ const logger = require('./logger');
 
 const baseUrl = 'https://api.github.com';
 
-const config = {
+const axiosConfig = {
     auth: {
         username: process.env.GITHUB_LOGIN,
         password: process.env.GITHUB_TOKEN
@@ -12,7 +12,7 @@ const config = {
 
 const getMember = async (memberLogin) => {
     logger.info(` - getting member: ${memberLogin}`)
-    const response = await axios.get(`${baseUrl}/users/${memberLogin}`, config);
+    const response = await axios.get(`${baseUrl}/users/${memberLogin}`, axiosConfig);
     logger.success(`  -> ${response.data.login}`);
     return response.data;
 }
@@ -20,7 +20,7 @@ const getMember = async (memberLogin) => {
 const getMembers = async (org) => {
 
     logger.info('Getting public members:');
-    const response = await axios.get(`${baseUrl}/orgs/${org}/public_members`, config);
+    const response = await axios.get(`${baseUrl}/orgs/${org}/public_members`, axiosConfig);
 
     var memberLogins = response.data.map(member => member.login);
     logger.success(memberLogins);
