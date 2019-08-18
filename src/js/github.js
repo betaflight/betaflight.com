@@ -13,7 +13,7 @@ const config = {
 const getMember = async (memberLogin) => {
     logger.info(` - getting member: ${memberLogin}`)
     const response = await axios.get(`${baseUrl}/users/${memberLogin}`, config);
-    logger.success(` --> ${response.data.login}`);
+    logger.success(`  -> ${response.data.login}`);
     return response.data;
 }
 
@@ -25,9 +25,16 @@ const getMembers = async (org) => {
     var memberLogins = response.data.map(member => member.login);
     logger.success(memberLogins);
 
-    return await Promise.all(
-        memberLogins.map(async (login) => getMember(login))
-    );
+    try
+    {
+        return await Promise.all(
+            memberLogins.map(async (login) => getMember(login)));
+    }
+    catch (err)
+    {
+        logger.fail(err);
+        throw err;
+    }
 };
 
 module.exports = {

@@ -4,7 +4,7 @@
   "description": "betaflight.com",
   "main": "index.js",
   "scripts": {
-    "build": "node ./build"
+    "build": "node ./src/js/build"
   },
   "author": "betaflight.com (and others)",
   "license": "ISC",

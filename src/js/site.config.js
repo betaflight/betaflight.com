@@ -1,4 +1,4 @@
-const pilots = require('./data/pilots')
+const pilots = require('../../data/pilots')
 const moment = require('moment')
 
 module.exports = {
