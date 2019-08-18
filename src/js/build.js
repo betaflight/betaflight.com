@@ -1,22 +1,21 @@
 #!/usr/bin/env node
 
-const logger = require('./logger');
 const nanogen = require('nanogen');
-const config = require('./site.config');
 const path = require('path');
+const pageUtil = require('./pagedata');
+const github = require('./github');
+const config = require('./site.config');
+const logger = require('./logger');
 
 const srcPath = path.resolve('./src');
 const pagesPath = `${srcPath}/pages`;
-
-const pageUtil = require(`${srcPath}/js/pagedata`);
-const gh = require(`${srcPath}/js/github`);
 
 const prepare = async () => {
     logger.success(`Using path: ${srcPath}`);
     config.build.srcPath = srcPath;
 
     logger.info('*** Getting member data ***');
-    config.site.members = await gh.getMembers('betaflight');
+    config.site.members = await github.getMembers('betaflight');
     logger.info('----');
 
     logger.info('*** Getting page data ***');
