@@ -10,7 +10,7 @@ const axiosConfig = {
 };
 
 const getMember = async (memberLogin) => {
-    logger.info(` - getting member: ${memberLogin}`)
+    logger.info(` + ${memberLogin}`)
     const response = await axios.get(`/users/${memberLogin}`, axiosConfig);
     logger.success(`  -> ${response.data.login}`);
     return response.data;

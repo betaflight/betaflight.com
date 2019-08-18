@@ -6,7 +6,7 @@ const logger = require('./logger');
 
 const getLink = (file) => {
     fileData = path.parse(file);
-    return `${fileData.dir}/${fileData.name}/`;
+    return `/${fileData.dir}/${fileData.name}/`;
   }
 
 const getPageData = (srcDirectory, layout) => {
