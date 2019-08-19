@@ -1,4 +1,3 @@
-const pilots = require('../../data/pilots')
 const moment = require('moment')
 
 module.exports = {
@@ -16,7 +15,7 @@ module.exports = {
       "css",
       "img"
     ],
-    pilots,
+    pilots: [],
     members: [],
     moment,
     news: []
