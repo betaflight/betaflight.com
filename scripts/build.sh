@@ -18,7 +18,7 @@ echo "Bucket:    ${BUCKET}"
 mkdir -p ${artifacts}
 
 node --version
-node ${basepath}/node_modules/nanogen/lib/cli build
+node ${basepath}/src/js/build
 
 if [ "${1}" == "deploy" ]; then
   aws configure set preview.cloudfront true
