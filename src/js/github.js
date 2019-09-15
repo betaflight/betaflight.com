@@ -31,7 +31,7 @@ const getMembers = async (org) => {
     }
     catch (err)
     {
-        logger.fail(err);
+        logger.error(err);
         throw err;
     }
 };
