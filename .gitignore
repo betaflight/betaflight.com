@@ -29,6 +29,5 @@ public/
 _ReSharper*/
 [Tt]est[Rr]esult*
 /node_modules/
-/package-lock.json
 /public/
 .vscode/
