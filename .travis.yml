@@ -1,12 +1,13 @@
 language: node_js
 node_js:
-  - "8"
+  - "10"
 
-dist: xenial
+dist: bionic
 
-cache: npm
+cache: yarn
 
 sudo: false
+
 env:
   global:
     - REGION=us-east-1
