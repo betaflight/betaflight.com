@@ -29,4 +29,4 @@ deploy:
   script: ${TRAVIS_BUILD_DIR}/scripts/build.sh deploy
   skip_cleanup: true
   on:
-    branch: release
+    branch: master
