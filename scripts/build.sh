@@ -23,5 +23,5 @@ node ${basepath}/src/js/build
 if [ "${1}" == "deploy" ]; then
   aws configure set preview.cloudfront true
   aws s3 sync ${artifacts} s3://${BUCKET} --delete --region "${REGION}" --cache-control max-age=345600
-  aws cloudfront create-invalidation --distribution-id ${AWS_DISTRIBUTION_ID} --path /*
+  aws cloudfront create-invalidation --distribution-id ${AWS_DISTRIBUTION_ID} --path "/*"
 fi
