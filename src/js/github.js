@@ -11,12 +11,7 @@ const axiosConfig = {
 
 const getMember = async (memberLogin) => {
     logger.info(` + ${memberLogin}`)
-    const response = await axios.get(`/users/${memberLogin}`, axiosConfig)
-        .catch(error => {
-            logger.error(error.response);
-
-            reject(error);
-        });
+    const response = await axios.get(`/users/${memberLogin}`, axiosConfig);
     logger.success(`  -> ${response.data.login}`);
     return response.data;
 }
@@ -24,12 +19,7 @@ const getMember = async (memberLogin) => {
 const getMembers = async (org) => {
 
     logger.info('Getting public members:');
-    const response = await axios.get(`/orgs/${org}/public_members`, axiosConfig)
-        .catch(error => {
-            logger.error(error.response);
-
-            reject(error);
-        });
+    const response = await axios.get(`/orgs/${org}/public_members`, axiosConfig);
 
     var memberLogins = response.data.map(member => member.login);
     logger.success(memberLogins);
