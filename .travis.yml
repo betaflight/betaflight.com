@@ -22,11 +22,11 @@ addons:
 before_script:
 
 script:
-  - bash "${TRAVIS_BUILD_DIR}/scripts/build.sh"
+  - ${TRAVIS_BUILD_DIR}/scripts/build.sh
 
 deploy:
   provider: script
-  script: bash "${TRAVIS_BUILD_DIR}/scripts/build.sh" deploy
+  script: ${TRAVIS_BUILD_DIR}/scripts/build.sh deploy
   skip_cleanup: true
   on:
     branch: release

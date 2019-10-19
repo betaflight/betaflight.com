@@ -23,6 +23,11 @@ const prepare = async () => {
     logger.info('----');
 };
 
-prepare().then(() => {
-    nanogen.build(config);
-});
+prepare()
+    .catch(error => {
+        logger.error(error.message);
+        process.exit(1);
+    })
+    .then(() => {
+        nanogen.build(config)
+    });
