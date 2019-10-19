@@ -1,6 +1,6 @@
 # Uses NANOGEN module
 
-Note: `npm install` to re-hydrate node\_modules
+Note: `yarn` to re-hydrate node\_modules
 
 Setup for Visual Studio Code (allows for CTRL-SHIFT-B to trigger immediate build):
 
@@ -10,8 +10,13 @@ tasks.json
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "npm",
-            "script": "build",
+            "label": "build site",
+            "type": "shell",
+            "script": "bash",
+            "args": [
+                "-c",
+                "./scripts/build.sh"
+            ],
             "problemMatcher": [
             ],
             "group": {
