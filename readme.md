@@ -1,6 +1,6 @@
 # Uses NANOGEN module
 
-Note: `yarn` to re-hydrate node\_modules
+Note: Don't forget to run `yarn` (in the repository directory) to re-hydrate node\_modules
 
 Setup for Visual Studio Code (allows for CTRL-SHIFT-B to trigger immediate build):
 
