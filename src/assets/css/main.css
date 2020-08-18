@@ -1904,6 +1904,9 @@ h1, h2, h3, h4, h5, h6 {
 #header #logo img {
   padding: 0;
   margin: 0;
+  width: 120%;
+  padding-bottom: 4%;
+  margin-left: -18%;
 }
 
 @media (max-width: 768px) {
