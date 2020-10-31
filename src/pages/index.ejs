@@ -37,13 +37,17 @@ description: "Betaflight is flight controller software (firmware) used to fly mu
 <%
 						site.news.slice(0, 2).forEach(function(article) {
 %>
-						<div class="col-lg-6 single-blog">
-							<img class="img-fluid" src="<%= article.image || '/content/images/default.jpg' %>" alt="">
-							<a href="<%= article.link %>"><h4><%= article.title %></h4></a>
-							<p class="post-date"><%= site.moment(article.date).format("DD MMM") %></p>
-							<p><span class="entry-excerpt"><p><%= article.description %></p></span>
-							<span class="readmore"><a class="hvr-underline-from-center" href="<%= article.link %>">Read More</a></span></p>
+					<div class="col-lg-6">
+						<div class="card h-100">
+							<img style="height: 403px;object-fit: cover;" src="<%= article.image || '/content/images/default.jpg' %>" class="card-img-top" alt="...">
+							<div class="card-body">
+								<a href="<%= article.link %>"><h4 class="card-title"><%= article.title %></h4></a>
+								<p class="card-text text-muted"><%= site.moment(article.date).format("DD MMM") %></p>
+								<p class="card-text"><%= article.description %></p>
+								<a class="card-link" href="<%= article.link %>">Read more</a>
+							</div>
 						</div>
+					</div>
 <% }); %>
 					</div>
 				</div>
