@@ -4073,8 +4073,16 @@ tbody.collapse.show {
 
 .card-img-top {
   width: 100%;
+  height: 403px;
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
+  object-fit: cover;
+}
+
+@media (max-width: 576px) {
+  .card-img-top {
+    height: 210px
+  }
 }
 
 .card-img-bottom {
