@@ -39,7 +39,7 @@ description: "Betaflight is flight controller software (firmware) used to fly mu
 %>
 					<div class="col-lg-6">
 						<div class="card h-100">
-							<img style="height: 403px;object-fit: cover;" src="<%= article.image || '/content/images/default.jpg' %>" class="card-img-top" alt="...">
+							<img src="<%= article.image || '/content/images/default.jpg' %>" class="card-img-top" alt="...">
 							<div class="card-body">
 								<a href="<%= article.link %>"><h4 class="card-title"><%= article.title %></h4></a>
 								<p class="card-text text-muted"><%= site.moment(article.date).format("DD MMM") %></p>
