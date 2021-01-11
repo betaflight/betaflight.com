@@ -23,7 +23,7 @@ jobs:
 
     - if: github.ref == 'refs/heads/master' 
       name: Run the build script
-      run: ./scripts/build.sh
+      run: ./scripts/build.sh deploy
       env:
         AWS_DISTRIBUTION_ID: ${{secrets.AWS_DISTRIBUTION_ID}}
         AWS_REGION: ${{secrets.AWS_REGION}}
