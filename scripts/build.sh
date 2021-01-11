@@ -18,7 +18,10 @@ echo "Bucket:    ${AWS_BUCKET}"
 mkdir -p ${artifacts}
 
 node --version
-node ${basepath}/src/js/build
+npm --version
+
+npm install
+npm run build
 
 if [ "${1}" == "deploy" ]; then
   aws configure set preview.cloudfront true
