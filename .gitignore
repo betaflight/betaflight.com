@@ -31,3 +31,4 @@ _ReSharper*/
 /node_modules/
 /public/
 .vscode/
+/yarn.lock
