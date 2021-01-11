@@ -3,7 +3,7 @@ name: CI - Build only
 on: 
   push:
     branches:
-    - actions
+    - master
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-        
-    - if: github.ref == 'refs/heads/actions' 
+
+    - if: github.ref == 'refs/heads/master' 
       name: Run the build script
       run: ./scripts/build.sh
