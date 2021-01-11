@@ -1,9 +1,9 @@
-name: CI - Build only
+name: CI - Build only (deploy if master)
 
 on: 
   push:
     branches:
-    - master
+    - '**'
 
 jobs:
   build:
@@ -26,7 +26,12 @@ jobs:
       run: ./scripts/build.sh deploy
       env:
         AWS_DISTRIBUTION_ID: ${{secrets.AWS_DISTRIBUTION_ID}}
-        AWS_BUCKET: ${{secrets.AWS_BUCKET}}
-        AWS_REGION: ${{secrets.AWS_REGION}}
+        AWS_BUCKET: betaflight.com
+        AWS_REGION: us-east-1
+        AWS_DEFAULT_REGION: us-east-1
         AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
         AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+
+    - if: github.ref != 'refs/heads/master' 
+      name: Run the build script
+      run: ./scripts/build.sh
