@@ -1,7 +1,7 @@
 # Uses NANOGEN module
 
 ## Setup your environment variables
-You will need to set environment variables for your github username and token for the build script to complete successfully. How to generate a github (personal access token [https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token]).
+You will need to set environment variables for your github username and token for the build script to complete successfully. It is easy to generate a github [personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to use in place of your password.
 
 
 .\src\js\github.js
@@ -47,7 +47,7 @@ From a vs code bash terminal: $ bash ./scripts/build.sh
 
 ```
 
-This will put the website into ./public folder. Using the Go Live (Live Server by Ritwick Dey [https://github.com/ritwickdey/vscode-live-server]) module plugin for Visual Studio Code you can go live this folder:
+This will put the website into ./public folder. Using the Go Live ([Live Server by Ritwick Dey](https://github.com/ritwickdey/vscode-live-server)) module plugin for Visual Studio Code you can go live this folder:
 
 settings.json:
 ```
