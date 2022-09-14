@@ -83,6 +83,13 @@ iframe {
   border: 0;
 }
 
+@media (max-width: 576px) {
+  iframe {
+    height: auto;
+    width: auto;
+  }
+}
+
 a, a:focus, a:hover {
   text-decoration: none;
   outline: 0;
