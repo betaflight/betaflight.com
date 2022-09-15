@@ -4073,7 +4073,7 @@ tbody.collapse.show {
 
 .card-img-top {
   width: 100%;
-  height: 100%;
+  height: auto;
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
   object-fit: cover;
@@ -5728,7 +5728,6 @@ button.bg-dark:focus {
 
 .d-flex {
   display: flex !important;
-  overflow: scroll !important;
 }
 
 .d-inline-flex {
@@ -5792,6 +5791,9 @@ button.bg-dark:focus {
   }
   .d-md-inline-flex {
     display: inline-flex !important;
+  }
+  .d-flex {
+    overflow: scroll !important;
   }
 }
 
