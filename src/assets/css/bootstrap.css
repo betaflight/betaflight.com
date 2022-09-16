@@ -1637,6 +1637,9 @@ pre code {
   .table-responsive-sm > .table-bordered {
     border: 0;
   }
+  .d-flex {
+    overflow: scroll !important;
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -5791,9 +5794,6 @@ button.bg-dark:focus {
   }
   .d-md-inline-flex {
     display: inline-flex !important;
-  }
-  .d-flex {
-    overflow: scroll !important;
   }
 }
 
