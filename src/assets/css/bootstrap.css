@@ -1637,6 +1637,9 @@ pre code {
   .table-responsive-sm > .table-bordered {
     border: 0;
   }
+  .d-flex {
+    overflow: scroll !important;
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -4073,16 +4076,10 @@ tbody.collapse.show {
 
 .card-img-top {
   width: 100%;
-  height: 403px;
+  height: auto;
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
   object-fit: cover;
-}
-
-@media (max-width: 576px) {
-  .card-img-top {
-    height: 210px
-  }
 }
 
 .card-img-bottom {
