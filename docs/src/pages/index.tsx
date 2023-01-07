@@ -28,8 +28,12 @@ export default function Home(): JSX.Element {
       description="Are you ready to fly?">
       <HomepageHeader />
       <main>
-        <div>
-          <img src={require('@site/static/img/header-bg.jpg').default} />
+        <div
+          className="bg-no-repeat bg-cover bg-bottom h-[300px]"
+          style={{
+            backgroundImage: "url(" + require('@site/static/img/header-bg.jpg').default + ")"
+          }}
+        >
         </div>
       </main>
     </Layout>
