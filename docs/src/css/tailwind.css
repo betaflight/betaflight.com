@@ -1,3 +1,102 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.theme-doc-markdown h1 {
+	@apply text-6xl font-bold text-primary-500
+}
+
+.theme-doc-markdown h2 {
+	@apply text-3xl font-bold text-primary-500
+}
+
+.theme-doc-markdown a {
+	@apply hover:no-underline bg-gradient-to-r from-primary-500 to-primary-500 bg-no-repeat bg-left-bottom bg-0w hover:bg-100w duration-300 w-fit
+}
+
+.theme-doc-sidebar-container {
+	@apply !border-none
+}
+
+nav.menu.thin-scrollbar {
+	@apply p-4
+}
+
+.breadcrumbs {
+	@apply flex flex-row items-center
+}
+
+.breadcrumbs__item {
+	@apply flex h-fit items-center
+}
+
+.theme-doc-sidebar-menu {
+	@apply bg-neutral-500/10 !p-2 rounded-xl shadow-xl z-50 static
+}
+
+.menu__link {
+	@apply rounded-lg border-l-4 border-transparent
+}
+
+.menu__link:hover {
+	@apply bg-primary-500/5
+}
+
+.menu__link--active {
+	@apply border-primary-500 !bg-primary-500/20
+}
+
+/* collapsible item */
+.menu__link--sublist {
+	@apply bg-transparent border-transparent
+}
+
+.theme-doc-sidebar-item-category-level-1 {
+	@apply border-l-4 duration-300 border-primary-500 rounded-lg bg-neutral-500/5;
+}
+
+.menu__list-item--collapsed {
+	@apply border-transparent bg-transparent
+}
+
+.menu__list-item-collapsible {
+	@apply rounded-lg
+}
+
+.menu__list-item-collapsible:hover {
+	@apply bg-primary-500/10
+}
+
+.menu__list-item-collapsible--active {
+	@apply bg-primary-500/20
+}
+
+.menu__list-item-collapsible--active:hover {
+	@apply bg-primary-500/20
+}
+
+.menu__list {
+	@apply pb-1
+}
+
+/* arrow for collapsible menu list */
+.menu__caret {
+	@apply rounded-lg
+}
+
+.menu__caret:hover {
+	@apply bg-primary-500/10
+}
+
+/* table of contents */
+.theme-doc-toc-desktop {
+	@apply !overflow-y-visible
+}
+
+.table-of-contents {
+	@apply bg-neutral-500/5 !p-2 !rounded-xl shadow-xl !border-none
+}
+
+.table-of-contents__link--active {
+	@apply font-semibold tracking-[-0.15px]
+}
