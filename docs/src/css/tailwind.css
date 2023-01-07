@@ -56,7 +56,7 @@ nav.menu.thin-scrollbar {
 }
 
 .menu__list-item--collapsed {
-	@apply border-transparent bg-transparent
+	@apply !border-transparent !bg-transparent
 }
 
 .menu__list-item-collapsible {
