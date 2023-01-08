@@ -19,8 +19,8 @@ jobs:
           cache: npm
 
       - name: Install dependencies & build
-        working-directory: ./docs
         run: |
+          cd ./docs
           npm ci
           npm run build
 
