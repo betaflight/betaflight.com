@@ -97,7 +97,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'misc/mdx-reference',
             position: 'left',
             label: 'Tutorial',
           },

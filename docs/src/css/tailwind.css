@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.theme-doc-markdown h1 {
+.theme-doc-markdown h1, header h1 {
 	@apply text-6xl font-bold text-primary-500
 }
 
@@ -94,7 +94,7 @@ nav.menu.thin-scrollbar {
 }
 
 .menu__list-item-collapsible {
-	@apply rounded-lg
+	@apply rounded-lg -ml-1
 }
 
 .menu__list-item-collapsible:hover {
