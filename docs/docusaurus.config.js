@@ -35,6 +35,7 @@ const config = {
   themes: ['@docusaurus/theme-mermaid'],
 
   plugins: [
+    require.resolve('docusaurus-lunr-search'),
     async function tailwind(context, options) {
       return {
         name: "docusaurus-tailwindcss",
