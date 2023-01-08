@@ -71,7 +71,7 @@ const config = {
         },
         theme: {
           customCss: [
-            require.resolve('./src/css/tailwind.css'),
+            require.resolve('./src/css/tailwind.scss'),
             require.resolve('./src/css/mermaid.scss'),
             require.resolve('./src/css/custom.css'),
           ],
