@@ -1,0 +1,22 @@
+name: CI - Build only (deploy if master)
+
+on: 
+  push:
+    branches:
+    - 't-rex'
+
+jobs:
+  build:
+    name: Build and push docs
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: '18.x'
+    - run: npm ci
+    - run: npm run build
+    - run: npm run deploy
