@@ -100,3 +100,8 @@ nav.menu.thin-scrollbar {
 .table-of-contents__link--active {
 	@apply font-semibold tracking-[-0.15px]
 }
+
+/* navbar */
+.navbar .navbar__items svg {
+    @apply inline-block;
+}
