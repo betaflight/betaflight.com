@@ -7,20 +7,42 @@
 }
 
 .theme-doc-markdown h2 {
-	@apply text-3xl font-bold text-primary-500
+	@apply text-4xl font-bold text-primary-500
+}
+
+.theme-doc-markdown h3 {
+	@apply text-2xl font-bold text-primary-500
+}
+
+.theme-doc-markdown h4 {
+	@apply text-xl font-bold text-primary-500
+}
+
+.theme-doc-markdown h5 {
+	@apply text-xl font-bold text-lime-500
+}
+
+.theme-doc-markdown h6 {
+	@apply text-xl font-bold text-rose-500
+}
+
+.theme-doc-markdown .hash-link {
+	@apply hover:text-current p-0 ml-2 from-current to-current text-neutral-500
 }
 
 .theme-doc-markdown a {
-	@apply hover:no-underline bg-gradient-to-r from-primary-500 to-primary-500 bg-no-repeat bg-left-bottom bg-0w hover:bg-100w duration-300 w-fit
+	@apply no-underline bg-gradient-to-r from-primary-500 to-primary-500 bg-no-repeat bg-left-bottom 
+	bg-0w hover:bg-100w hover:text-primary-500 !duration-300 w-fit text-primary-200 transition-all
 }
 
-.theme-doc-sidebar-container {
-	@apply !border-none
+.navbar {
+	@apply p-4 !bg-transparent h-fit shadow-none
 }
 
-nav.menu.thin-scrollbar {
-	@apply p-4
+.navbar__inner {
+	@apply backdrop-blur-md bg-neutral-700/30 h-fit p-2 rounded-2xl shadow-xl
 }
+
 
 .breadcrumbs {
 	@apply flex flex-row items-center
@@ -28,6 +50,18 @@ nav.menu.thin-scrollbar {
 
 .breadcrumbs__item {
 	@apply flex h-fit items-center
+}
+
+.sidebar_node_modules-\@docusaurus-theme-classic-lib-theme-DocSidebar-Desktop-styles-module {
+	@apply !top-8 !h-fit
+}
+
+.theme-doc-sidebar-container {
+	@apply !border-none
+}
+
+nav.menu.thin-scrollbar {
+	@apply p-4 !h-fit
 }
 
 .theme-doc-sidebar-menu {
@@ -90,11 +124,11 @@ nav.menu.thin-scrollbar {
 
 /* table of contents */
 .theme-doc-toc-desktop {
-	@apply !overflow-y-visible
+	@apply !overflow-y-visible !top-[6.5rem]
 }
 
 .table-of-contents {
-	@apply bg-neutral-500/5 !p-2 !rounded-xl shadow-xl !border-none
+	@apply bg-neutral-500/5 !p-2 !rounded-xl shadow-xl !border-none relative
 }
 
 .table-of-contents__link--active {
