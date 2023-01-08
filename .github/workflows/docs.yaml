@@ -1,5 +1,4 @@
-name: CI - Build only (deploy if master)
-
+name: Build and deploy docs
 on: 
   push:
     branches:
@@ -17,6 +16,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '18.x'
-    - run: npm ci
-    - run: npm run build
-    - run: npm run deploy
+    - name: NPM CI & build & deploy
+      working-directory: ./docs
+      run: |
+        npm ci
+        npm run build
+        npm run deploy
