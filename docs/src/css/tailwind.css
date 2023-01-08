@@ -35,6 +35,10 @@
 	bg-0w hover:bg-100w hover:text-primary-500 !duration-300 w-fit text-primary-200 transition-all
 }
 
+.theme-doc-markdown img {
+	@apply rounded-xl shadow-[10px_10px_0px] shadow-primary-500
+}
+
 .navbar {
 	@apply p-4 !bg-transparent h-fit shadow-none
 }

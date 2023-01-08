@@ -22,14 +22,19 @@ Used to configure all of the settings that are specific to your receiver
 
 ### Receiver
 
-Select the communication protocol used by your receiver. Having an incorrect one will 
-likely result in no detected signal. The options are:
+Select the communication protocol used by your receiver. The options are:
 
 * **PPM/CPPM** - Legacy protocol, unlikely to be used in modern setups
 * **Serial-based** - Most modern receivers communicate over serial, using different protocols like CRSF or SBUS
 * **PWM** - Legacy protocol, unlikely to be used in modern setups
 * **MSP** - An advanced option, using the MSP protocol to communicate with the receiver
 * **SPI** - Used for most integrated receivers, like ExpressLRS on tinywhoop AIO boards
+
+:::caution
+
+Selecting the incorrect protocol will lead to no signal being detected, or the signal being interpreted incorrectly. You have to pick the correct one for your receiver
+
+:::
 
 ### Telemetry
 
@@ -49,12 +54,16 @@ Different receivers output the four main control channels:
 * **Throttle** - Throttle (up/down)
 * **Rudder** - Yaw (left/right)
 
+:::caution
+
 If your radio input does not match up to what you see in the preview, you need to change the channel map. 
 There are also preset options for some of the more common systems:
 
 * **FrSky/Futaba/Hitec** - FrSky, Futaba, and Hitec receivers output the channels in the same order as the 
   Betaflight default (AETR1234)
 * **Spektrum/Graupned/JR** - Spektrum receivers output the channels in a different order than the Betaflight default
+
+:::
 
 ### RSSI channel
 
