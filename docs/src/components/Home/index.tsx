@@ -113,7 +113,7 @@ export default function Home({ recentPosts }: BlogProps): JSX.Element {
         </div>
         <LandingPageFeature title="About" subtitle='So what is betaflight?' className="bg-black/80 text-primary-500">
           <div className=''>
-            <div className="grid grid-cols-3 gap-x-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-4 mb-4">
               <AboutCard
                 className='border-red-600 text-red-600'
                 title="Hardware support"
@@ -147,8 +147,6 @@ export default function Home({ recentPosts }: BlogProps): JSX.Element {
                   Originating from baseflight and cleanflight, Betaflight continues to live and breath the value of open source. Everybody is welcome to implement their amazing ideas within Betaflight, either directly (preferred) or through a fork.
                 </p>
               </AboutCard>
-            </div>
-            <div className='grid grid-cols-3 gap-x-4'>
               <AboutCard
                 className='border-blue-500 text-blue-500'
                 title="OSD"
