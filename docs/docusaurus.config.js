@@ -37,11 +37,18 @@ const config = {
   plugins: [
     [
       "./plugins/blog-plugin",
-      {
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
+      ({
         id: "blog",
         routeBasePath: "blog",
-        path: "./blog"
-      },
+        path: "./blog",
+        feedOptions: {
+          type: 'all',
+          title: 'Betaflight News',
+          language: 'en',
+          copyright: `Copyright © ${new Date().getFullYear()} All rights reserved Team Betaflight - Built with Docusaurus.`,
+        }
+      })
     ],
     'docusaurus-plugin-sass',
     require.resolve('docusaurus-lunr-search'),
