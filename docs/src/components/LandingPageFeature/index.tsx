@@ -4,6 +4,7 @@ import clsx from 'clsx';
 type Props = {
     title: string;
     className?: string;
+    children: React.ReactNode;
 }
 
 export default function LandingPageFeature({ title, children, className }: Props) {

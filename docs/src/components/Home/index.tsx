@@ -4,23 +4,17 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { CloudArrowUpIcon, FolderIcon } from '@heroicons/react/24/solid';
 
-import LandingPageFeature from '../components/LandingPageFeature';
+import LandingPageFeature from '../LandingPageFeature';
+import RecentPosts from '../RecentPosts';
+import { BlogProps } from '@site/src/types';
 
-import styles from './index.module.css';
-
-const recent: {
+type IconElementFeatureProps = {
+  Icon: React.ComponentType<React.ComponentProps<'svg'>>;
   title: string;
-  items: {
-    title: string;
-    permalink: string;
-  }[];
-} = require('@site/.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json')
-
-interface Props {
-  readonly recentPosts: readonly { readonly content: Content }[];
+  children: React.ReactNode;
 }
 
-function AboutFeature({ Icon, title, children }: Props) {
+function IconElementFeature({ Icon, title, children }: IconElementFeatureProps): JSX.Element {
   return (
     <div className="flex">
       <Icon className="h-[50px] w-[50px] min-w-[50px] min-h-[50px]"></Icon>
@@ -32,46 +26,47 @@ function AboutFeature({ Icon, title, children }: Props) {
   );
 }
 
-function HomepageHeader() {
+function HomepageHeader({ recentPosts }: BlogProps): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
 
   return (
-    <header className={clsx('hero hero--primary m-4 rounded-2xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.3)] shadow-primary-200', styles.heroBanner)}>
-      <div className="container">
-        <p className="hero__title">{siteConfig.tagline}</p>
-        <div className="flex justify-center mt-4">
-          <p className={clsx('hero__subtitle', 'max-w-[500px]')}>Betaflight is flight controller software (firmware) used to fly multi-rotor craft and fixed wing craft. This fork differs from Baseflight and Cleanflight in that it focuses on flight performance, leading-edge feature additions, and wide target support.</p>
+    <div className='text-black p-6'>
+      <div className='grid grid-cols-2 gap-4 w-full'>
+        <div className="container flex justify-center">
+          <div>
+            <div className='flex items-center justify-center'>
+              <img src={require('@site/static/img/logo_fb.png').default} className="min-w-[200px]"></img>
+              <p className="text-primary-500 text-5xl font-bold uppercase">{siteConfig.tagline}</p>
+            </div>
+            <div className="flex justify-center mt-4">
+              <p className={clsx('hero__subtitle', '')}>Betaflight is flight controller software (firmware) used to fly multi-rotor craft and fixed wing craft. This fork differs from Baseflight and Cleanflight in that it focuses on flight performance, leading-edge feature additions, and wide target support.</p>
+            </div>
+          </div>
         </div>
+        <RecentPosts recentPosts={recentPosts}></RecentPosts>
       </div>
-    </header>
+    </div>
   );
 }
 
-export default function Home(): JSX.Element {
+export default function Home({ recentPosts }: BlogProps): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
-  const lastThree = recent.items.slice(0, 3);
 
   return (
     <Layout
       title={`FlyFast - ${siteConfig.title}`}
       description="Are you ready to fly?"
-
     >
-      <HomepageHeader />
       <main className="m-4 flex flex-col space-y-4">
         <div
-          className="rounded-2xl bg-white bg-no-repeat bg-cover bg-bottom h-[700px]"
+          className="rounded-2xl bg-white bg-no-repeat bg-cover bg-bottom h-[900px]"
           style={{
             backgroundImage: "url(" + require('@site/static/img/header-bg.jpg').default + ")"
           }}
         >
+          <HomepageHeader recentPosts={recentPosts} />
         </div>
-        <LandingPageFeature title={recent.title} className="bg-black/20 text-primary-500">
-          <div className="flex space-x-10 justify-between text-white/80">
-            {lastThree.map((post) => <a href={post.permalink}>{post.title}</a>)}
-          </div>
-        </LandingPageFeature>
-        <LandingPageFeature title="About" className="bg-primary-500/10 text-white">
+        <LandingPageFeature title="About" className="bg-primary-500/80 text-white">
           <div>
             about
           </div>
@@ -80,18 +75,18 @@ export default function Home(): JSX.Element {
           <div className="flex justify-center">
             <div className="grid grid-cols-2 gap-x-4">
               <div>
-                <AboutFeature title="Installation & Documentation" Icon={CloudArrowUpIcon}>
+                <IconElementFeature title="Installation & Documentation" Icon={CloudArrowUpIcon}>
                   <div className="text-white">
                     <a className="underline" href='/docs'>See the Betaflight wiki</a>
                   </div>
-                </AboutFeature>
+                </IconElementFeature>
               </div>
               <div>
-                <AboutFeature title="Betaflight Releases" Icon={FolderIcon}>
+                <IconElementFeature title="Betaflight Releases" Icon={FolderIcon}>
                   <div className="text-white">
                     Releases can be found by following the link below or downloaded from within the firmware section within the Betaflight Configurator. Also check the Upgrading List to the Right for Release Notes and other Details on the various Versions.
                   </div>
-                </AboutFeature>
+                </IconElementFeature>
               </div>
             </div>
           </div>

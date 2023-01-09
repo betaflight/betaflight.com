@@ -13,11 +13,11 @@ async function blogPluginExtended(...pluginArgs) {
      */
     contentLoaded: async function (data) {
       // Get the 5 latest blog posts
-      const recentPosts = [...data.content.blogPosts].splice(0, 5);
-
+      const recentPosts = [...data.content.blogPosts].splice(0, 3);
+    
       data.actions.addRoute({
         // Add route for the home page
-        path: "/",
+        path: pluginArgs[0].siteConfig.baseUrl,
         exact: true,
 
         // The component to use for the "Home" page route
@@ -25,16 +25,18 @@ async function blogPluginExtended(...pluginArgs) {
 
         // These are the props that will be passed to our "Home" page component
         modules: {
-          recentPosts: recentPosts.map((post) => ({
-            content: {
-              __import: true,
-              // The markdown file for the blog post will be loaded by webpack
-              path: post.metadata.source,
-              query: {
-                truncated: true,
+          recentPosts: recentPosts.map((post) => {
+            return ({
+              content: {
+                __import: true,
+                // The markdown file for the blog post will be loaded by webpack
+                path: post.metadata.source,
+                query: {
+                  truncated: true,
+                },
               },
-            },
-          })),
+            })
+          }),
         },
       });
 
