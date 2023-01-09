@@ -111,7 +111,7 @@ export default function Home({ recentPosts }: BlogProps): JSX.Element {
             </div>
           </div>
         </div>
-        <LandingPageFeature title="About" subtitle='So what is betaflight?' className="bg-black/30 text-primary-500">
+        <LandingPageFeature title="About" subtitle='So what is betaflight?' className="bg-black/80 text-primary-500">
           <div className=''>
             <div className="grid grid-cols-3 gap-x-4 mb-4">
               <AboutCard
@@ -188,7 +188,7 @@ export default function Home({ recentPosts }: BlogProps): JSX.Element {
             </div>
           </div>
         </LandingPageFeature>
-        <LandingPageFeature title="Getting started" subtitle='So what do you need to know?' className="bg-black/10 shadow-[5px_5px_20px_-5px] shadow-primary-500 text-primary-500">
+        <LandingPageFeature title="Getting started" subtitle='So what do you need to know?' className="bg-black/80 text-primary-500">
           <>
             <div className="flex justify-center">
               <div className="grid grid-cols-2 gap-x-4">
