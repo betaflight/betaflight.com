@@ -113,7 +113,7 @@ export default function Home({ recentPosts }: BlogProps): JSX.Element {
         </div>
         <LandingPageFeature title="About" subtitle='So what is betaflight?' className="bg-black/80 text-primary-500">
           <div className=''>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-4">
               <AboutCard
                 className='border-red-600 text-red-600'
                 title="Hardware support"
