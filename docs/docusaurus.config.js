@@ -37,11 +37,18 @@ const config = {
   plugins: [
     [
       "./plugins/blog-plugin",
-      {
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
+      ({
         id: "blog",
         routeBasePath: "blog",
-        path: "./blog"
-      },
+        path: "./blog",
+        feedOptions: {
+          type: 'all',
+          title: 'Betaflight News',
+          language: 'en',
+          copyright: `Copyright © ${new Date().getFullYear()} All rights reserved Team Betaflight - Built with Docusaurus.`,
+        }
+      })
     ],
     'docusaurus-plugin-sass',
     require.resolve('docusaurus-lunr-search'),
@@ -101,7 +108,7 @@ const config = {
             type: 'doc',
             docId: 'misc/mdx-reference',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Wiki',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -109,6 +116,23 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          {
+            label: 'Feeds',
+            position: 'right',
+            items: [{
+              label: 'RSS',
+              target: '_blank',
+              href: '/blog/rss.xml'
+            },{
+              label: 'Atom',
+              target: '_blank',
+              href: '/blog/atom.xml'
+            },{
+              label: 'Json',
+              target: '_blank',
+              href: '/blog/feed.json'
+            }]
+          }
         ],
       },
       footer: {
