@@ -108,7 +108,7 @@ const config = {
             type: 'doc',
             docId: 'misc/mdx-reference',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Wiki',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -116,6 +116,20 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          {
+            label: 'Feeds',
+            position: 'right',
+            items: [{
+              label: 'RSS',
+              href: '/blog/rss.xml'
+            },{
+              label: 'Atom',
+              href: '/blog/atom.xml'
+            },{
+              label: 'Json',
+              href: '/blog/feed.json'
+            }]
+          }
         ],
       },
       footer: {
