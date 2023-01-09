@@ -91,7 +91,7 @@ export default function Home({ recentPosts }: BlogProps): JSX.Element {
       title={`FlyFast - ${siteConfig.title}`}
       description="Are you ready to fly?"
     >
-      <main className="m-4 flex flex-col space-y-4">
+      <main className="flex flex-col space-y-4 max-w-[1920px] m-auto mb-4">
         <div
           className="rounded-2xl bg-white bg-no-repeat bg-cover bg-bottom h-[1500px] lg:h-[1000px]"
           style={{
