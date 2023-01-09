@@ -149,3 +149,11 @@ nav.menu.thin-scrollbar {
 		@apply font-semibold tracking-[-0.15px];
 	}
 }
+
+.grid-card {
+	@apply rounded-2xl bg-black p-4 shadow-[5px_5px_20px_-5px] shadow-white/10 border-t-4 border-primary-500;
+
+	p + p {
+		@apply mt-2;
+	}
+}

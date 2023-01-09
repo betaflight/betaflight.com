@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import { CloudArrowDownIcon, CloudArrowUpIcon, Cog6ToothIcon, Cog8ToothIcon, DocumentTextIcon, ExclamationCircleIcon, FolderIcon, LinkIcon, PresentationChartLineIcon } from '@heroicons/react/24/solid';
+import { CameraIcon, CloudArrowDownIcon, CloudArrowUpIcon, CodeBracketIcon, Cog6ToothIcon, Cog8ToothIcon, CpuChipIcon, DocumentTextIcon, ExclamationCircleIcon, FolderIcon, ForwardIcon, LinkIcon, PresentationChartLineIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid';
 
 import LandingPageFeature from '../LandingPageFeature';
 import RecentPosts from '../RecentPosts';
 import { BlogProps } from '@site/src/types';
+import JetIcon from '@site/src/icons/jet.icon.svg';
 import slugify from 'react-slugify';
 
 type IconElementFeatureProps = {
@@ -63,6 +64,20 @@ function HomepageHeader({ recentPosts }: BlogProps): JSX.Element {
   );
 }
 
+function AboutCard({ title, Icon, className, children }: { title: string; className: string; Icon: React.ComponentType<React.ComponentProps<'svg'>>; children: React.ReactNode; }): JSX.Element {
+  return (
+    <div className={clsx(className, 'grid-card')}>
+      <div className='font-bold text-lg pb-4 flex items-center'>
+        <Icon className='h-8 w-8 mr-2'></Icon>
+        { title }
+      </div>
+      <div className='text-gray-400'>
+        { children }
+      </div>
+    </div>
+  );
+}
+
 export default function Home({ recentPosts }: BlogProps): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
 
@@ -70,8 +85,6 @@ export default function Home({ recentPosts }: BlogProps): JSX.Element {
     'About',
     'Getting started',
   ].map((title) => [slugify(title), title]);
-
-  console.log(anchorsList);
 
   return (
     <Layout
@@ -98,14 +111,85 @@ export default function Home({ recentPosts }: BlogProps): JSX.Element {
             </div>
           </div>
         </div>
-        <LandingPageFeature title="About" className="bg-primary-500/80 text-white">
-          <div>
-            about
+        <LandingPageFeature title="About" subtitle='So what is betaflight?' className="bg-black/30 text-primary-500">
+          <div className=''>
+            <div className="grid grid-cols-3 gap-x-4 mb-4">
+              <AboutCard
+                className='border-red-600 text-red-600'
+                title="Hardware support"
+                Icon={CpuChipIcon}
+              >
+                <p>
+                  Betaflight supports a wide range of flight controllers that have at least an STM32F4 Processor. The Betaflight Configurator runs on Windows, Mac OS, Linux, and Android.
+                </p>
+                <p>
+                  The Betaflight Firmware supports the majority of Remote Control manufacturers such as FrSky, Graupner, Spektrum, DJI and FlySky. ESCs are controlled using a variety of available protocols including PWM, OneShot, MultiShot, DShot or even ProShot.
+                </p>
+                <p>
+                  Even the less-related components do not remain untouched, with Betaflight allowing the control of many VTX and Camera settings directly from the flight controller.
+                </p>
+              </AboutCard>
+              <AboutCard
+                className='border-green-500 text-green-500'
+                title="Community Support"
+                Icon={UsersIcon}
+              >
+                <p>
+                  There is so much support out there for betaflight users. Don't know where to look? We have compiled a list of our favourite resources.
+                </p>
+              </AboutCard>
+              <AboutCard
+                className=''
+                title="Open Source"
+                Icon={CodeBracketIcon}
+              >
+                <p>
+                  Originating from baseflight and cleanflight, Betaflight continues to live and breath the value of open source. Everybody is welcome to implement their amazing ideas within Betaflight, either directly (preferred) or through a fork.
+                </p>
+              </AboutCard>
+            </div>
+            <div className='grid grid-cols-3 gap-x-4'>
+              <AboutCard
+                className='border-blue-500 text-blue-500'
+                title="OSD"
+                Icon={CameraIcon}
+              >
+                <p>
+                  With the Betaflight OSD you can get all relevant flight metrics directly into your FPV video feed. An easy to use drag-and-drop configuration allows the placement of values like used mAh and LiPo Voltage readings.
+                </p>
+                <p>
+                  Additionally you can change most firmware settings using stick commands wihtout even removing your goggles.
+                </p>
+              </AboutCard>
+              <AboutCard
+                className='border-orange-600 text-orange-600'
+                title="Safety Features"
+                Icon={ShieldCheckIcon}
+              >
+                <p>
+                  Drones are extremely dangerous toys. As incidents with suddenly spinning props often end with serious injury Betaflight implements several safety features to prevent dangerous situations occurring.
+                </p>
+                <p>
+                  Features are implemented to prevent arming when the drone isn't leveled, including disabling motors in case of wrong motor or incorrect flight controller orientation.
+                </p>
+              </AboutCard>
+              <AboutCard
+                className='border-purple-600 text-purple-600'
+                title="Flight Dynamics"
+                Icon={JetIcon}
+              >
+                <p>
+                  Betaflight not only strives to put the best flight code on your controller, it also looks to satisfy such requirements as perfect performance, tiny footprint, full feature set and a strong quality assurance process.
+                </p>
+                <p>
+                  To assist in this endeavour all flight related data can be logged into a blackbox for later analysis. So pilots and technicians can objectively base their tune on the most appropriate data.
+                </p>
+              </AboutCard>
+            </div>
           </div>
         </LandingPageFeature>
-        <LandingPageFeature title="Getting started" className="bg-black/40 shadow-[0_0_30px_-10px] shadow-primary-500 text-primary-500">
+        <LandingPageFeature title="Getting started" subtitle='So what do you need to know?' className="bg-black/10 shadow-[5px_5px_20px_-5px] shadow-primary-500 text-primary-500">
           <>
-            <div className='text-xl text-center text-gray-500 mb-4'>So what do you need to know?</div>
             <div className="flex justify-center">
               <div className="grid grid-cols-2 gap-x-4">
                 <div className='flex flex-col space-y-4'>
