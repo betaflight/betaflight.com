@@ -121,12 +121,15 @@ const config = {
             position: 'right',
             items: [{
               label: 'RSS',
+              target: '_blank',
               href: '/blog/rss.xml'
             },{
               label: 'Atom',
+              target: '_blank',
               href: '/blog/atom.xml'
             },{
               label: 'Json',
+              target: '_blank',
               href: '/blog/feed.json'
             }]
           }
