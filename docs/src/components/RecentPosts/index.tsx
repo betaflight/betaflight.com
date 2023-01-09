@@ -29,7 +29,7 @@ export default function RecentPosts({ recentPosts }: BlogProps ) {
             <div className="flex-grow flex flex-col space-y-4 text-white/80">
             {
                 recentPosts.map(({ content: BlogPostContent }) => (
-                        <div>
+                        <div key={BlogPostContent.metadata.source}>
                             <a className='text-primary-600 text-2xl font-bold' href={BlogPostContent.metadata.permalink}>{BlogPostContent.metadata.title}</a>
                             <div className='text-sm text-gray-600'>{ formatDate(BlogPostContent.metadata.date) } - { clampAndFormatMinutes(BlogPostContent.metadata.readingTime) }</div>
                             <div className='text-lg text-gray-700'>{BlogPostContent.metadata.description}</div>

@@ -28,3 +28,7 @@
   --ifm-color-success-contrast-background: #87cc5230 !important;
   --ifm-color-success-dark: #87cc52 !important;
 }
+
+html {
+  scroll-behavior:smooth;
+}
