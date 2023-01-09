@@ -49,11 +49,19 @@
 		@apply backdrop-blur-md bg-neutral-700/30 h-fit p-2 rounded-2xl shadow-xl;
 	}
 
+	&--fixed-top {
+		@apply w-full fixed
+	}
+
 	.navbar__items {
 		 svg {
 			@apply inline-block;
 		}
 	}
+}
+
+.container {
+	@apply pt-24 #{!important}
 }
 
 .breadcrumbs {
@@ -64,7 +72,7 @@
 }
 
 .sidebar_node_modules-\@docusaurus-theme-classic-lib-theme-DocSidebar-Desktop-styles-module {
-	@apply top-8 h-fit;
+	@apply h-fit pt-20 #{!important};
 }
 
 .theme-doc-sidebar-container {
@@ -139,7 +147,7 @@ nav.menu.thin-scrollbar {
 
 /* table of contents */
 .theme-doc-toc-desktop {
-	@apply overflow-y-visible top-[6.5rem] ;
+	@apply overflow-y-visible -mt-8 pt-6 sticky ;
 }
 
 .table-of-contents {
