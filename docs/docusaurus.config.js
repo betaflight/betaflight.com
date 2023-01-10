@@ -141,15 +141,39 @@ const config = {
       },
       footer: {
         style: 'dark',
+        logo: {
+          src: 'img/logo_fb.png',
+        },
         links: [
           {
-            title: 'Docs',
+            title: 'Youtube',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Joshuar Bardwell',
+                href: 'https://www.youtube.com/channel/UCX3eufnI7A2I7IkKHZn8KSQ',
+                icon: 'youtube'
+              },
+              {
+                label: 'Ivan Efimov',
+                href: 'https://www.youtube.com/channel/UCQtdpSBYlsWH6_m1Us_d8dg',
+                icon: 'youtube'
               },
             ],
+          },
+          {
+            title: 'Links',
+            items: [
+              {
+                label: 'Oscar Liang',
+                href: 'https://oscarliang.com/',
+                icon: 'site'
+              },
+              {
+                label: 'VitroidFPV',
+                href: 'https://www.vitroidfpv.com/',
+                icon: 'site'
+              },
+            ]
           },
           {
             title: 'Community',
@@ -157,7 +181,13 @@ const config = {
               {
                 label: 'Discord',
                 href: 'https://discord.betaflight.com/invite',
+                icon: 'discord'
               },
+              {
+                label: 'IntoFPV',
+                href: 'https://intofpv.com/',
+                icon: 'forum'
+              }
             ],
           },
           {
@@ -166,10 +196,12 @@ const config = {
               {
                 label: 'Blog',
                 to: '/blog',
+                icon: 'blog'
               },
               {
                 label: 'GitHub',
                 href: 'https://github.com/betaflight/betaflight',
+                icon: 'github'
               },
             ],
           },

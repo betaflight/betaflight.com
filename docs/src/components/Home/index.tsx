@@ -7,10 +7,11 @@ import JetIcon from '@site/src/icons/jet.icon.svg';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { BlogProps } from '@site/src/types';
 import BetaflightLayout from '../Layout';
+import HomepageFeature from '../HomepageFeature';
 
 function AboutCard({ title, Icon, className, children }: { title: string; className: string; Icon: React.ComponentType<React.ComponentProps<'svg'>>; children: React.ReactNode; }): JSX.Element {
 	return (
-		<div className="box flex flex-col w-full shadow-xl">
+		<div className="box flex flex-col w-full">
 			<div
 				className={clsx(className, `backdrop-blur-md relative flex text-2xl w-fit font-semibold items-center bg-neutral-500/10 py-2 px-4 rounded-t-xl`)}
 			>
@@ -19,7 +20,7 @@ function AboutCard({ title, Icon, className, children }: { title: string; classN
 				{title}
 				<AboutHeaderFix className='absolute right-[-32px] bottom-0 text-neutral-500/10'></AboutHeaderFix>
 			</div>
-			<div className="backdrop-blur-md w-full h-full bg-neutral-500/10 p-4 rounded-b-xl rounded-r-xl text-gray-200 text-base">{children}</div>
+			<div className="shadow-xl backdrop-blur-md w-full h-full bg-neutral-500/10 p-4 rounded-b-xl rounded-r-xl text-gray-200 text-base">{children}</div>
 		</div>
 	);
 }
@@ -80,62 +81,62 @@ export default function Home({ recentPosts }: BlogProps) {
 					</div>
 				</div>
 			</div>
+			<div className="px-16 pb-16">
+				<HomepageFeature title="About" compact={true}>
+					<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
+						<AboutCard 
+							title="Hardware" 
+							className="text-rose-500 fill-rose-500"
+							Icon={CpuChipIcon}
+							>
+								<p>Betaflight supports a wide range of flight controllers with at least an STM32F4 MCU</p>
+								<p>You can use nearly any piece of modern hardware out there. Full telemetry and high refresh rate for receivers, camera and VTX control, RGB LEDs, and much more!</p>
+								<p>Run the configurator on any device, wether it is using Windows, MacOS, Linux, and also Andoird</p>
+						</AboutCard>
 
-			<div className="w-full flex flex-col items-center xl:items-start md:px-16 md:pt-16 p-6">
-				<h2 className="text-primary-500 text-3xl font-bold my-4 ml-1">About</h2>
-				<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
-					<AboutCard 
-						title="Hardware" 
-						className="text-rose-500 fill-rose-500"
-						Icon={CpuChipIcon}
-						>
-							<p>Betaflight supports a wide range of flight controllers with at least an STM32F4 MCU</p>
-							<p>You can use nearly any piece of modern hardware out there. Full telemetry and high refresh rate for receivers, camera and VTX control, RGB LEDs, and much more!</p>
-							<p>Run the configurator on any device, wether it is using Windows, MacOS, Linux, and also Andoird</p>
-					</AboutCard>
+						<AboutCard
+							title="Community"
+							className="text-sky-500 fill-sky-500"
+							Icon={UsersIcon}
+							>
+								<p>Our community is very active and helpful. We have a very active Discord server with over 4,000 members, so you can get help if you're stuck on something</p>
+								<p>You can also find a ton of helpful info on youtube, and this very site</p>
+						</AboutCard>
 
-					<AboutCard
-						title="Community"
-						className="text-sky-500 fill-sky-500"
-						Icon={UsersIcon}
+						<AboutCard
+							title="Open Source"
+							className="text-lime-500 fill-lime-500"
+							Icon={CodeBracketIcon}
+							>
+							<p>Originating from Baseflight and Cleanflight, Betaflight is open source, and you can contribute to the project on GitHub</p>
+							<p>Nealy all contributions are welcome, for anything from the main flight control firmware, to the configurator, as well as this site</p>
+						</AboutCard>
+						<AboutCard
+							className='border-blue-500 text-blue-500'
+							title="OSD"
+							Icon={CameraIcon}
 						>
-							<p>Our community is very active and helpful. We have a very active Discord server with over 4,000 members, so you can get help if you're stuck on something</p>
-							<p>You can also find a ton of helpful info on youtube, and this very site</p>
-					</AboutCard>
-
-					<AboutCard
-						title="Open Source"
-						className="text-lime-500 fill-lime-500"
-						Icon={CodeBracketIcon}
+							<p>With the Betaflight OSD you can get all relevant flight metrics directly into your FPV video feed. An easy to use drag-and-drop configuration allows the placement of values like used mAh and LiPo Voltage readings.</p>
+							<p>Additionally you can change most firmware settings using stick commands wihtout even removing your goggles.</p>
+						</AboutCard>
+						<AboutCard
+							className='border-orange-600 text-orange-600'
+							title="Safety Features"
+							Icon={ShieldCheckIcon}
 						>
-						<p>Originating from Baseflight and Cleanflight, Betaflight is open source, and you can contribute to the project on GitHub</p>
-						<p>Nealy all contributions are welcome, for anything from the main flight control firmware, to the configurator, as well as this site</p>
-					</AboutCard>
-					<AboutCard
-						className='border-blue-500 text-blue-500'
-						title="OSD"
-						Icon={CameraIcon}
-					>
-						<p>With the Betaflight OSD you can get all relevant flight metrics directly into your FPV video feed. An easy to use drag-and-drop configuration allows the placement of values like used mAh and LiPo Voltage readings.</p>
-						<p>Additionally you can change most firmware settings using stick commands wihtout even removing your goggles.</p>
-					</AboutCard>
-					<AboutCard
-						className='border-orange-600 text-orange-600'
-						title="Safety Features"
-						Icon={ShieldCheckIcon}
-					>
-						<p>Drones are extremely dangerous toys. As incidents with suddenly spinning props often end with serious injury Betaflight implements several safety features to prevent dangerous situations occurring.</p>
-						<p>Features are implemented to prevent arming when the drone isn't leveled, including disabling motors in case of wrong motor or incorrect flight controller orientation.</p>
-					</AboutCard>
-					<AboutCard
-						className='border-purple-600 text-purple-600'
-						title="Flight Dynamics"
-						Icon={JetIcon}
-					>
-						<p>Betaflight not only strives to put the best flight code on your controller, it also looks to satisfy such requirements as perfect performance, tiny footprint, full feature set and a strong quality assurance process.</p>
-						<p>To assist in this endeavour all flight related data can be logged into a blackbox for later analysis. So pilots and technicians can objectively base their tune on the most appropriate data.</p>
-					</AboutCard>
-				</div>
+							<p>Drones are extremely dangerous toys. As incidents with suddenly spinning props often end with serious injury Betaflight implements several safety features to prevent dangerous situations occurring.</p>
+							<p>Features are implemented to prevent arming when the drone isn't leveled, including disabling motors in case of wrong motor or incorrect flight controller orientation.</p>
+						</AboutCard>
+						<AboutCard
+							className='border-purple-600 text-purple-600'
+							title="Flight Dynamics"
+							Icon={JetIcon}
+						>
+							<p>Betaflight not only strives to put the best flight code on your controller, it also looks to satisfy such requirements as perfect performance, tiny footprint, full feature set and a strong quality assurance process.</p>
+							<p>To assist in this endeavour all flight related data can be logged into a blackbox for later analysis. So pilots and technicians can objectively base their tune on the most appropriate data.</p>
+						</AboutCard>
+					</div>
+				</HomepageFeature>
 			</div>
 		</BetaflightLayout>
 	);

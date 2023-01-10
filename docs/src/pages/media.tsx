@@ -1,5 +1,6 @@
 import { Cog6ToothIcon, Cog8ToothIcon, DocumentTextIcon, ExclamationCircleIcon, FolderIcon, PresentationChartLineIcon } from "@heroicons/react/24/solid";
 import React from "react";
+import HomepageFeature from "../components/HomepageFeature";
 import BetaflightLayout from "../components/Layout";
 
 
@@ -49,9 +50,8 @@ export default function Media() {
 				</div>
 			</div>
             <div className="max-w-[1920px] m-auto p-16">
-                <h2 className="text-primary-500 text-3xl font-bold my-4 ml-1">Downloads</h2>
-                <div className="backdrop-blur-md shadow-xl flex justify-center bg-neutral-500/10 p-4 rounded-2xl">
-                    <div className="grid grid-cols-2 gap-x-4">
+                <HomepageFeature title="Downloads">
+                    <div className="grid grid-cols-2 gap-x-4 text-primary-200">
                         <div className='flex flex-col space-y-4'>
                         <IconElementFeature
                             title="Installation & Documentation"
@@ -121,7 +121,10 @@ export default function Media() {
                             </IconElementFeature>
                         </div>
                     </div>
-                </div>
+                </HomepageFeature>
+                <HomepageFeature title="Videos">
+
+                </HomepageFeature>
             </div>
         </BetaflightLayout>
     )
