@@ -1,8 +1,9 @@
 import React from "react";
-import { Cog6ToothIcon, Cog8ToothIcon, DocumentTextIcon, ExclamationCircleIcon, FolderIcon, PresentationChartLineIcon } from "@heroicons/react/24/solid";
+import { Cog6ToothIcon, Cog8ToothIcon, DocumentTextIcon, ExclamationCircleIcon, FolderIcon, PresentationChartLineIcon, PlayIcon } from "@heroicons/react/24/solid";
 import YouTube from 'react-youtube';
 import HomepageFeature from "../components/HomepageFeature";
 import BetaflightLayout from "../components/Layout";
+import AboutCard from "../components/AboutCard";
 
 
 type IconElementFeatureProps = {
@@ -123,19 +124,29 @@ export default function Media() {
                         </div>
                     </div>
                 </HomepageFeature>
-                <HomepageFeature title="Videos">
-                    <div className="flex justify-start space-x-4 w-full">
+                <HomepageFeature title="Videos" compact={true}>
+                    <div className="flex flex-wrap flex-col md:flex-row flex-start space-y-4 md:space-y-0 md:space-x-4">
                         <div>
-                            <h1 className="mb-2 text-xl font-bold text-primary-500">Betaflight 4.3 walkthrough</h1>
-                            <div>
-                                <YouTube videoId="LkBWRiEGKTI" />
-                            </div>
+                            <AboutCard
+                                title="Betaflight 4.3 walkthrough"
+                                className="text-red-500 inline-block"
+                                Icon={PlayIcon}
+                            >
+                                <div>
+                                    <YouTube videoId="LkBWRiEGKTI" />
+                                </div>
+                            </AboutCard>
                         </div>
-                        <div className="">
-                            <h1 className="mb-2 text-xl font-bold text-primary-500">Betaflight 4.3 for beginners</h1>
-                            <div>
-                                <YouTube videoId="UTFeh-SjH9A" />
-                            </div>
+                        <div>
+                            <AboutCard
+                                title="Betaflight 4.3 for beginners"
+                                className="text-red-500"
+                                Icon={PlayIcon}
+                            >
+                                <div>
+                                    <YouTube videoId="UTFeh-SjH9A" />
+                                </div>
+                            </AboutCard>
                         </div>
                     </div>
                 </HomepageFeature>
