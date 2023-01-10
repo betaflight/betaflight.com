@@ -1,34 +1,20 @@
+# Dependencies
+/node_modules
 
-#ignore thumbnails created by windows
-Thumbs.db
-#Ignore files build by Visual Studio
-*.obj
-*.exe
-*.pdb
-*.user
-*.aps
-*.pch
-*.vspscc
-*_i.c
-*_p.c
-*.ncb
-*.suo
-*.tlb
-*.tlh
-*.bak
-*.cache
-*.ilk
-*.log
-[Bb]in
-[Dd]ebug*/
-*.lib
-*.sbr
-obj/
-public/
-[Rr]elease*/
-_ReSharper*/
-[Tt]est[Rr]esult*
-/node_modules/
-/public/
-.vscode/
-/yarn.lock
+# Production
+/build
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
