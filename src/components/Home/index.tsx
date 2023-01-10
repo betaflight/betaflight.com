@@ -151,7 +151,7 @@ export default function Home({ recentPosts }: BlogProps) {
 							<div className='w-60 text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between'>
 								<h1 className='font-bold text-xl'>
 									<FontAwesomeIcon icon={faPatreon} className='text-red-600 mr-2' />
-									Paypal
+									Patreon
 								</h1>
 								<p className='my-4'>To setup a monthly recurring donation for ongoing support and commitment.</p>
 								<Button onClick={onClickDonate('patreon')}>Donate</Button>
