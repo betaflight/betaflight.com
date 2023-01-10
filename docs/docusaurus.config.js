@@ -110,6 +110,10 @@ const config = {
             position: 'left',
             label: 'Wiki',
           },
+          {
+            to: '/media',
+            label: 'Media', position: 'left'
+          },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/betaflight/betaflight',
