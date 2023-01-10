@@ -6,6 +6,9 @@ import { BlogProps } from '@site/src/types';
 import BetaflightLayout from '../Layout';
 import HomepageFeature from '../HomepageFeature';
 import AboutCard from '../AboutCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons';
+import Button from '../Button';
 
 
 export default function Home({ recentPosts }: BlogProps) {
@@ -25,6 +28,17 @@ export default function Home({ recentPosts }: BlogProps) {
             day: '2-digit'
         });
     }
+
+	function onClickDonate(service: string) {
+		switch (service) {
+			case 'paypal':
+				return () => window.open('https://paypal.me/betaflight', '_blank');
+			case 'patreon':
+				return () => window.open('https://patreon.com/betaflight', '_blank');
+			default:
+				break;
+		}
+	}
 
 	return (
 		<BetaflightLayout>
@@ -117,6 +131,32 @@ export default function Home({ recentPosts }: BlogProps) {
 							<p>Betaflight not only strives to put the best flight code on your controller, it also looks to satisfy such requirements as perfect performance, tiny footprint, full feature set and a strong quality assurance process.</p>
 							<p>To assist in this endeavour all flight related data can be logged into a blackbox for later analysis. So pilots and technicians can objectively base their tune on the most appropriate data.</p>
 						</AboutCard>
+					</div>
+				</HomepageFeature>
+				<HomepageFeature title="Donating">
+					<div className="flex space-x-4 justify-center items-center">
+						<div className='flex flex-col space-y-4 text-white text-xl'>
+							<p>Many of our users don't have the time to contribute but do love our software such that they want to continue to support us. The best way is to help out by donating.</p>
+							<p>What are donations used for? We use the donations to help with the maintainers out of pocket costs, e.g. running build servers etc. We also use it to purchase test equipment, e.g. Saleae logic analysers, and other items to assist consistent contributors in their efforts. We are exceptionally grateful for those who do donate, either their time or funds.</p>
+						</div>
+						<div className='flex space-x-4 mt-4'>
+							<div className='w-60 text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between'>
+								<h1 className='font-bold text-xl'>
+									<FontAwesomeIcon icon={faPaypal} className='text-blue-600 mr-2' />
+									Paypal
+								</h1>
+								<p className='my-4'>For a once off donation to the cause with no ongoing commitment.</p>
+								<Button onClick={onClickDonate('paypal')}>Donate</Button>
+							</div>
+							<div className='w-60 text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between'>
+								<h1 className='font-bold text-xl'>
+									<FontAwesomeIcon icon={faPatreon} className='text-red-600 mr-2' />
+									Paypal
+								</h1>
+								<p className='my-4'>To setup a monthly recurring donation for ongoing support and commitment.</p>
+								<Button onClick={onClickDonate('patreon')}>Donate</Button>
+							</div>
+						</div>
 					</div>
 				</HomepageFeature>
 			</div>

@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import AboutHeaderFix from '../../icons/about-header.svg';
 
-export default function AboutCard({ title, Icon, className, children }: { title: string; className: string; Icon: React.ComponentType<React.ComponentProps<'svg'>>; children: React.ReactNode; }): JSX.Element {
+export default function AboutCard({ title, Icon, className, children }: { title: string; className: string; Icon: React.ComponentType<React.ComponentProps<'svg'> | JSX.Element>; children: React.ReactNode; }): JSX.Element {
 	return (
 		<div className="box flex flex-col w-full">
 			<div
