@@ -56,7 +56,7 @@ export default function TeamFeature() {
         'McGiverGim',
         'SteveCEvans',
         'sugaarK',
-        'wind0r'
+        'wind0r',
         //tomche
         //'VitroidFPV',
         //'freasy'
@@ -65,15 +65,15 @@ export default function TeamFeature() {
     const [userData, setUserData] = useState<GitHubUser[]>([]);
 
     useEffect(async () => {
-         const data = await Promise.all(githubUsers.map(user => fetch(`https://api.github.com/users/${user}`)
-            .then(res => res.json())
+        const data = await Promise.all(githubUsers.map(user => fetch(`https://api.github.com/users/${user}`)
+            .then(res => res.json()),
         ));
 
         setUserData(data);
     }, []);
 
     function truncateStr(str: string) {
-        return str.length > 20 ? str.substring(0, 20) + '...' : str;
+        return str.length > 20 ? `${str.substring(0, 20)  }...` : str;
     }
 
     return (
@@ -85,19 +85,19 @@ export default function TeamFeature() {
                 </div>) }
             { userData && (
                 <div className="grid grid-cols-6 gap-4">
-                {
-                    userData.map((user) => (
-                        <div key={user.id}>
-                            <div className="h-full overflow-hidden relative flex flex-col items-center rounded-2xl bg-neutral-500/10 p-4">
-                                <img src={user.avatar_url} alt={user.login} className="rounded-full w-16 h-16" />
-                                <div className="mt-2">{user.login}</div>
-                                <div>{user.name}</div>
-                                { user.location && <div>{truncateStr(user.location)}</div> }
-                                { user.blog && <div className="text-blue-400"><a href={user.blog}>{truncateStr(user.blog)}</a></div>}
+                    {
+                        userData.map((user) => (
+                            <div key={user.id}>
+                                <div className="h-full overflow-hidden relative flex flex-col items-center rounded-2xl bg-neutral-500/10 p-4">
+                                    <img src={user.avatar_url} alt={user.login} className="rounded-full w-16 h-16" />
+                                    <div className="mt-2">{user.login}</div>
+                                    <div>{user.name}</div>
+                                    { user.location && <div>{truncateStr(user.location)}</div> }
+                                    { user.blog && <div className="text-blue-400"><a href={user.blog}>{truncateStr(user.blog)}</a></div>}
+                                </div>
                             </div>
-                        </div>
-                    ))
-                }
+                        ))
+                    }
                 </div>
             )}
         </>

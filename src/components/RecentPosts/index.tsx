@@ -8,7 +8,7 @@ export default function RecentPosts({ recentPosts }: BlogProps ) {
         if (minutes < 1) {
             return 'One minute read';
         }
-        return minutes + ' minutes read';
+        return `${minutes  } minutes read`;
     }
 
     function formatDate(date: string) {
@@ -16,7 +16,7 @@ export default function RecentPosts({ recentPosts }: BlogProps ) {
         return dateObj.toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
-            day: '2-digit'
+            day: '2-digit',
         });
     }
 
@@ -27,16 +27,16 @@ export default function RecentPosts({ recentPosts }: BlogProps ) {
                 Recent Posts
             </div>
             <div className="flex-grow flex flex-col space-y-4 text-white/80">
-            {
-                recentPosts.map(({ content: BlogPostContent }) => (
+                {
+                    recentPosts.map(({ content: BlogPostContent }) => (
                         <div key={BlogPostContent.metadata.source}>
                             <a className='text-primary-600 text-2xl font-bold' href={BlogPostContent.metadata.permalink}>{BlogPostContent.metadata.title}</a>
                             <div className='text-sm text-gray-600'>{ formatDate(BlogPostContent.metadata.date) } - { clampAndFormatMinutes(BlogPostContent.metadata.readingTime) }</div>
                             <div className='text-lg text-gray-700'>{BlogPostContent.metadata.description}</div>
                         </div>
+                    ),
                     )
-                )
-            }
+                }
             </div>
         </div>
     );

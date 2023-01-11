@@ -12,7 +12,11 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "lint": "eslint --ext .js,.tsx src",
+    "lint:fix": "eslint --ext .js,.tsx --fix src",
+    "format": "prettier --write src",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@docusaurus/core": "2.2.0",
@@ -38,6 +42,13 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.2.0",
     "@tsconfig/docusaurus": "^1.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "husky": "^8.0.2",
+    "prettier": "2.8.1",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.7.4"
   },

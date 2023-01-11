@@ -20,64 +20,64 @@ type IconElementFeatureProps = {
 
 function IconElementFeature({ Icon, title, description, link, children }: IconElementFeatureProps): JSX.Element {
     return (
-      <div className="flex">
-        <Icon className="h-[50px] w-[50px] min-w-[50px] min-h-[50px]"></Icon>
-        <div className="ml-2">
-          <div className="text-lg font-bold mb-2">{ title }</div>
-          { description && <div className="text-gray-400 mb-2">{ description }</div> }
-          { link &&
+        <div className="flex">
+            <Icon className="h-[50px] w-[50px] min-w-[50px] min-h-[50px]"></Icon>
+            <div className="ml-2">
+                <div className="text-lg font-bold mb-2">{ title }</div>
+                { description && <div className="text-gray-400 mb-2">{ description }</div> }
+                { link &&
             <a className="underline text-blue-400 flex items-center" href={link.href}>
-              { link.icon && <link.icon className="h-4 w-4 mr-2"></link.icon> }
-              { link.text }
+                { link.icon && <link.icon className="h-4 w-4 mr-2"></link.icon> }
+                { link.text }
             </a>
-          }
-          { children }
+                }
+                { children }
+            </div>
         </div>
-      </div>
     );
-  }
+}
 
 
 export default function Media() {
     return (
         <BetaflightLayout>
             <div className="relative w-full md:top-0 top-16">
-				<div className="w-full h-fit flex flex-col justify-start">
-					<div className="flex flex-col md:ml-32 ml-12 md:mt-48 mt-16 h-fit w-fit">
-						<h1 className="md:text-[6rem] text-6xl border-primary-500 font-bold mb-4">
+                <div className="w-full h-fit flex flex-col justify-start">
+                    <div className="flex flex-col md:ml-32 ml-12 md:mt-48 mt-16 h-fit w-fit">
+                        <h1 className="md:text-[6rem] text-6xl border-primary-500 font-bold mb-4">
 							Media
-						</h1>
-						<h2 className="text-white font-semibold md:text-3xl text-xl">Downloads & Videos</h2>
-					</div>
-				</div>
-			</div>
+                        </h1>
+                        <h2 className="text-white font-semibold md:text-3xl text-xl">Downloads & Videos</h2>
+                    </div>
+                </div>
+            </div>
             <div className="max-w-[1920px] m-auto p-16">
                 <HomepageFeature title="Downloads">
                     <div className="grid grid-cols-2 gap-x-4 text-primary-200">
                         <div className='flex flex-col space-y-4'>
-                        <IconElementFeature
-                            title="Installation & Documentation"
-                            link={{ text: 'See the Betaflight Wiki', href: '/docs'}}
-                            Icon={DocumentTextIcon}
-                        >
-                        </IconElementFeature>
-                        <IconElementFeature
-                            title="Configuration Tool"
-                            link={{ text: 'Latest configurator releases', href: 'https://github.com/betaflight/betaflight-configurator/releases/latest'}}
-                            description='To configure Betaflight you should use the Betaflight-configurator GUI tool (Windows/OSX/Linux) which can be found here:'
-                            Icon={Cog6ToothIcon}
-                        >
-                        </IconElementFeature>
-                        <IconElementFeature
-                            title='TX Lua Scripts'
-                            Icon={Cog8ToothIcon}
-                            description='Configure Betaflight from your radio with the Betaflight TX Lua Scripts:'
-                            link={{
-                            text: 'Latest lua scripts releases',
-                            href: 'https://github.com/betaflight/betaflight-tx-lua-scripts/releases/latest'
-                            }}
-                        >
-                        </IconElementFeature>
+                            <IconElementFeature
+                                title="Installation & Documentation"
+                                link={{ text: 'See the Betaflight Wiki', href: '/docs'}}
+                                Icon={DocumentTextIcon}
+                            >
+                            </IconElementFeature>
+                            <IconElementFeature
+                                title="Configuration Tool"
+                                link={{ text: 'Latest configurator releases', href: 'https://github.com/betaflight/betaflight-configurator/releases/latest'}}
+                                description='To configure Betaflight you should use the Betaflight-configurator GUI tool (Windows/OSX/Linux) which can be found here:'
+                                Icon={Cog6ToothIcon}
+                            >
+                            </IconElementFeature>
+                            <IconElementFeature
+                                title='TX Lua Scripts'
+                                Icon={Cog8ToothIcon}
+                                description='Configure Betaflight from your radio with the Betaflight TX Lua Scripts:'
+                                link={{
+                                    text: 'Latest lua scripts releases',
+                                    href: 'https://github.com/betaflight/betaflight-tx-lua-scripts/releases/latest',
+                                }}
+                            >
+                            </IconElementFeature>
                             <IconElementFeature
                                 title='BlackBox Viewer'
                                 Icon={PresentationChartLineIcon}

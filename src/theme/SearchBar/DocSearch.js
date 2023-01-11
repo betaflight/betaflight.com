@@ -16,13 +16,13 @@ class DocSearch {
         autocompleteOptions = {
             debug: false,
             hint: false,
-            autoselect: true
+            autoselect: true,
         },
         transformData = false,
         queryHook = false,
         handleSelected = false,
         enhancedSearchInput = false,
-        layout = "collumns"
+        layout = "collumns",
     }) {
         this.input = DocSearch.getInputFromSelector(inputSelector);
         this.queryDataCallback = queryDataCallback || null;
@@ -57,9 +57,9 @@ class DocSearch {
                 templates: {
                     suggestion: DocSearch.getSuggestionTemplate(this.isSimpleLayout),
                     footer: templates.footer,
-                    empty: DocSearch.getEmptyTemplate()
-                }
-            }
+                    empty: DocSearch.getEmptyTemplate(),
+                },
+            },
         ]);
 
         const customHandleSelected = handleSelected;
@@ -74,12 +74,12 @@ class DocSearch {
 
         this.autocomplete.on(
             "autocomplete:selected",
-            this.handleSelected.bind(null, this.autocomplete.autocomplete)
+            this.handleSelected.bind(null, this.autocomplete.autocomplete),
         );
 
         this.autocomplete.on(
             "autocomplete:shown",
-            this.handleShown.bind(null, this.input)
+            this.handleShown.bind(null, this.input),
         );
 
         if (enhancedSearchInput) {
@@ -165,7 +165,7 @@ class DocSearch {
                 // eslint-disable-next-line no-param-reassign
                 hit._highlightResult = utils.mergeKeyWithParent(
                     hit._highlightResult,
-                    "hierarchy"
+                    "hierarchy",
                 );
             }
             return utils.mergeKeyWithParent(hit, "hierarchy");
@@ -177,7 +177,7 @@ class DocSearch {
             const groupedHitsByLvl1 = utils.groupBy(collection, "lvl1");
             const flattenedHits = utils.flattenAndFlagFirst(
                 groupedHitsByLvl1,
-                "isSubCategoryHeader"
+                "isSubCategoryHeader",
             );
             groupedHits[level] = flattenedHits;
         });
@@ -194,10 +194,10 @@ class DocSearch {
                     utils.getHighlightedValue(hit, "lvl3"),
                     utils.getHighlightedValue(hit, "lvl4"),
                     utils.getHighlightedValue(hit, "lvl5"),
-                    utils.getHighlightedValue(hit, "lvl6")
+                    utils.getHighlightedValue(hit, "lvl6"),
                 ])
                 .join(
-                    '<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>'
+                    '<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>',
                 );
             const text = utils.getSnippetedValue(hit, "content");
             const isTextOrSubcategoryNonEmpty =
@@ -224,7 +224,7 @@ class DocSearch {
                 subcategory,
                 title: displayTitle,
                 text,
-                url
+                url,
             };
         });
     }
