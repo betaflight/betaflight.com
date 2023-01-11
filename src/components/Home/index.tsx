@@ -9,6 +9,7 @@ import AboutCard from '../AboutCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Button from '../Button';
+import TeamFeature from '../team';
 
 
 export default function Home({ recentPosts }: BlogProps) {
@@ -77,7 +78,7 @@ export default function Home({ recentPosts }: BlogProps) {
 					</div>
 				</div>
 			</div>
-			<div className="px-16 pb-16">
+			<div className="px-16 pb-16 flex flex-col space-y-4">
 				<HomepageFeature title="About" compact={true}>
 					<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
 						<AboutCard 
@@ -131,6 +132,11 @@ export default function Home({ recentPosts }: BlogProps) {
 							<p>Betaflight not only strives to put the best flight code on your controller, it also looks to satisfy such requirements as perfect performance, tiny footprint, full feature set and a strong quality assurance process.</p>
 							<p>To assist in this endeavour all flight related data can be logged into a blackbox for later analysis. So pilots and technicians can objectively base their tune on the most appropriate data.</p>
 						</AboutCard>
+					</div>
+				</HomepageFeature>
+				<HomepageFeature title="Team">
+					<div>
+						<TeamFeature></TeamFeature>
 					</div>
 				</HomepageFeature>
 				<HomepageFeature title="Donating">

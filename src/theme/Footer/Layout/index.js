@@ -10,6 +10,8 @@ export default function FooterLayout({style, links, logo, copyright}) {
           <div className="text-center">
             {logo && <div className="">{logo}</div>}
             {copyright}
+            <div className='text-sm text-neutral-500/60'>Built with Docusaurus</div>
+            <div className='mt-1 text-sm text-neutral-500/60'>made with <span className="text-red-500">❤️</span> by <a className='font-bold' href="https://github.com/vitroidfpv">VitroidFPV</a> and <a className='font-bold' href="https://github.com/freasy">un!t</a></div>
           </div>
         )}
       </div>
