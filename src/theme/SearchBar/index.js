@@ -13,7 +13,7 @@ const Search = props => {
   const isBrowser = useIsBrowser();
   const { baseUrl } = siteConfig;
   const initAlgolia = (searchDocs, searchIndex, DocSearch) => {
-      new DocSearch({
+      return new DocSearch({
         searchDocs,
         searchIndex,
         baseUrl,

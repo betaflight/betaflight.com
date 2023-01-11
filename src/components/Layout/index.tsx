@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from '@theme/Layout';
-import clsx from 'clsx';
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 type Props = {

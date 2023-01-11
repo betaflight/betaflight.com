@@ -3,7 +3,9 @@ import clsx from 'clsx';
 import AboutHeaderFix from '../icons/about-header.svg';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import { CameraIcon, CloudArrowDownIcon, CloudArrowUpIcon, CodeBracketIcon, Cog6ToothIcon, Cog8ToothIcon, CpuChipIcon, DocumentTextIcon, ExclamationCircleIcon, FolderIcon, ForwardIcon, LinkIcon, PresentationChartLineIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid';
+import { CameraIcon, CodeBracketIcon, Cog6ToothIcon, Cog8ToothIcon,
+  CpuChipIcon, DocumentTextIcon, ExclamationCircleIcon, FolderIcon,
+  PresentationChartLineIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid';
 
 import LandingPageFeature from '../components/LandingPageFeature';
 import RecentPosts from '../components/RecentPosts';

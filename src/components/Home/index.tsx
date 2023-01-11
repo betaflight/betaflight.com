@@ -1,7 +1,6 @@
 import React from 'react';
 import { CameraIcon, CodeBracketIcon, CpuChipIcon, DocumentTextIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid';
 import JetIcon from '@site/src/icons/jet.icon.svg';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { BlogProps } from '@site/src/types';
 import BetaflightLayout from '../Layout';
 import HomepageFeature from '../HomepageFeature';
@@ -33,9 +32,9 @@ export default function Home({ recentPosts }: BlogProps) {
 	function onClickDonate(service: string) {
 		switch (service) {
 			case 'paypal':
-				return () => window.open('https://paypal.me/betaflight', '_blank');
+				return () => window.open('https://paypal.me/betaflight', '_blank', 'noopener');
 			case 'patreon':
-				return () => window.open('https://patreon.com/betaflight', '_blank');
+				return () => window.open('https://patreon.com/betaflight', '_blank', 'noopener');
 			default:
 				break;
 		}

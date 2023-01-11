@@ -30,7 +30,7 @@ const config = {
   },
 
   markdown: {
-	  mermaid: true
+    mermaid: true,
   },
   themes: ['@docusaurus/theme-mermaid'],
 

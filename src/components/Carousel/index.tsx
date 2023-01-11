@@ -58,6 +58,7 @@ export default function Carousel({ children }: CarouselProps) {
         </button>
         {pages.map((_, i) => (
           <button
+            key={i}
             style={{
               ...styles.paginationButton,
               ...(activePageIndex === i ? styles.paginationButtonActive : {})

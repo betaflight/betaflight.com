@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Coursel, { CarouselItem } from '../Carousel';
 
-
-const settings = {
-  lazyload: true,
-  nav: true,
-  mouseDrag: true
-};
 
 type GitHubUser = {
     id: number;
@@ -93,8 +86,8 @@ export default function TeamFeature() {
             { userData && (
                 <div className="grid grid-cols-6 gap-4">
                 {
-                    userData.map((user, index) => (
-                        <div key={index}>
+                    userData.map((user) => (
+                        <div key={user.id}>
                             <div className="h-full overflow-hidden relative flex flex-col items-center rounded-2xl bg-neutral-500/10 p-4">
                                 <img src={user.avatar_url} alt={user.login} className="rounded-full w-16 h-16" />
                                 <div className="mt-2">{user.login}</div>

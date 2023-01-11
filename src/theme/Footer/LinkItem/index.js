@@ -2,7 +2,7 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import isInternalUrl from '@docusaurus/isInternalUrl';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faGlobe, faBlog, faComments } from '@fortawesome/free-solid-svg-icons';
 
