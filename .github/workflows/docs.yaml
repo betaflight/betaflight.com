@@ -21,7 +21,7 @@ jobs:
 
       - name: output
         run: |
-          if [ ${{ github.repository_owner }} === 'freasy' ]; then
+          if [ ${{ github.repository_owner }} == 'freasy' ]; then
             echo "URL=https://freasy.github.io" >> $GITHUB_OUTPUT
             echo "BASE_PATH=/betaflight.com/" >> $GITHUB_OUTPUT
           else
