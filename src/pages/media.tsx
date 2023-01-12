@@ -21,12 +21,12 @@ type IconElementFeatureProps = {
 function IconElementFeature({ Icon, title, description, link, children }: IconElementFeatureProps): JSX.Element {
   return (
     <div className="flex">
-      <Icon className="h-[50px] w-[50px] min-w-[50px] min-h-[50px]"></Icon>
+      <Icon className="h-[2rem] w-[2rem] min-w-[2rem] min-h-[2rem]"></Icon>
       <div className="ml-2">
         <div className="text-lg font-bold mb-2">{title}</div>
         {description && <div className="text-gray-400 mb-2">{description}</div>}
         {link && (
-          <a className="underline text-blue-400 flex items-center" href={link.href}>
+          <a className="fancy-link no-underline flex items-center" href={link.href}>
             {link.icon && <link.icon className="h-4 w-4 mr-2"></link.icon>}
             {link.text}
           </a>
@@ -56,15 +56,15 @@ export default function Media() {
 
   return (
     <BetaflightLayout>
-      <div className="relative w-full">
+      <div className="relative w-full mt-4 xl:mt-32">
         <div className="w-full h-fit flex flex-col justify-start">
-          <div className="flex flex-col md:ml-32 ml-12 md:mt-48 mt-16 h-fit w-fit">
+          <div className="flex flex-col p-6 h-fit w-fit xl:ml-12">
             <h1 className="md:text-[6rem] text-6xl border-primary-500 font-bold mb-4">Media</h1>
             <h2 className="text-white font-semibold md:text-3xl text-xl">Downloads & Videos</h2>
           </div>
         </div>
       </div>
-      <div className="w-screen xl:max-w-[1920px] m-auto p-4 xl:p-16">
+      <div className="xl:max-w-[1920px] m-auto p-4 xl:p-16">
         <HomepageFeature title="Downloads">
           <div className="grid max-w-fit grid-cols-1 md:grid-cols-2 gap-x-4 text-primary-200">
             <div className="flex flex-col space-y-4">
@@ -91,13 +91,13 @@ export default function Media() {
                 <div className="flex flex-col">
                   <div className="text-gray-400 flex flex-row space-x-1 mt-2">
                     <span>Viewer Releases are:</span>
-                    <a href="https://github.com/betaflight/blackbox-log-viewer/releases" className="text-blue-400 underline">
+                    <a href="https://github.com/betaflight/blackbox-log-viewer/releases" className="fancy-link no-underline">
                       Latest viewer releases
                     </a>
                   </div>
                   <div className="text-gray-400 flex flex-row space-x-1 mt-2">
                     <span>The Latest Viewer source is:</span>
-                    <a href="https://github.com/betaflight/blackbox-log-viewer" className="text-blue-400 underline">
+                    <a href="https://github.com/betaflight/blackbox-log-viewer" className="fancy-link no-underline">
                       Latest viewer source
                     </a>
                   </div>
@@ -121,21 +121,21 @@ export default function Media() {
                 description="If you want to contribute to better development you can download the latest beta build directly from:"
               >
                 <div className="flex flex-col">
-                  <a href="https://ci.betaflight.tech/job/Betaflight/lastBuild/artifact/obj/" className="text-blue-400 underline">
+                  <a href="https://ci.betaflight.tech/job/Betaflight/lastBuild/artifact/obj/" className="fancy-link no-underline">
                     Nightly builds
                   </a>
-                  <a href="https://github.com/betaflight/betaflight-configurator-nightlies/releases" className="text-blue-400 underline">
+                  <a href="https://github.com/betaflight/betaflight-configurator-nightlies/releases" className="fancy-link no-underline">
                     Betaflight Configurator Nightly builds
                   </a>
-                  <a href="https://github.com/betaflight/betaflight-tx-lua-scripts-nightlies/releases" className="text-blue-400 underline">
+                  <a href="https://github.com/betaflight/betaflight-tx-lua-scripts-nightlies/releases" className="fancy-link no-underline">
                     Betaflight TX Lua Scripts Nightly builds
                   </a>
-                  <a href="https://github.com/betaflight/blackbox-log-viewer-nightlies/releases" className="text-blue-400 underline">
+                  <a href="https://github.com/betaflight/blackbox-log-viewer-nightlies/releases" className="fancy-link no-underline">
                     Blackbox Viewer Nightly builds
                   </a>
                   <div className="text-gray-400 flex flex-col mt-2">
                     You can find release planning here:
-                    <a href="https://github.com/betaflight/betaflight/milestones" className="text-blue-400 underline">
+                    <a href="https://github.com/betaflight/betaflight/milestones" className="fancy-link no-underline">
                       Release planning
                     </a>
                   </div>
