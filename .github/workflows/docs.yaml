@@ -27,6 +27,9 @@ jobs:
           if [ ${{ github.repository_owner }} != 'betaflight' ]; then
             echo "URL=https://${{ github.repository_owner }}.github.io" >> $GITHUB_OUTPUT
             echo "BASE_PATH=/${GITHUB_REPOSITORY#*/}/" >> $GITHUB_OUTPUT
+          else if [ ${{ github.repository_owner }} == 'freasy' ]
+            echo "URL=https://betaflight.ahmels.org" >> $GITHUB_OUTPUT
+            echo "BASE_PATH=/" >> $GITHUB_OUTPUT
           else
             echo "URL=https://betaflight.com" >> $GITHUB_OUTPUT
             echo "BASE_PATH=/" >> $GITHUB_OUTPUT
