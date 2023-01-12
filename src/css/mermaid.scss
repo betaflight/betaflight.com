@@ -1,0 +1,10 @@
+.docusaurus-mermaid-container {
+  .node {
+    rect {
+      @apply stroke-2 stroke-primary-500 #{!important};
+    }
+  }
+  .edgeLabel {
+    @apply bg-[var(--ifm-background-color)] text-primary-500 #{!important};
+  }
+}
