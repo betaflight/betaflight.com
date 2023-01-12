@@ -19,13 +19,23 @@ jobs:
           cache: npm
           cache-dependency-path: ./package-lock.json
 
+      - name: output
+        run: |
+          if [ ${{ github.repository_owner }} === 'freasy' ]; then
+            echo "URL=https://freasy.github.io" >> $GITHUB_OUTPUT
+            echo "BASE_PATH=/betaflight.com/" >> $GITHUB_OUTPUT
+          else
+            echo "URL=https://betaflight.com" >> $GITHUB_OUTPUT
+            echo "BASE_PATH=/" >> $GITHUB_OUTPUT
+          fi
+
       - name: prepare env
         run: |
           touch .env
-          echo URL=https://betaflight.com > .env
-          echo BASE_PATH=/ >> .env
+          echo URL=${{ steps.output.outputs.URL }} > .env
+          echo BASE_PATH=${{ steps.output.outputs.BASE_PATH }} >> .env
           echo ORG=${{ github.repository_owner }} >> .env
-          
+
       - name: Install dependencies & build
         run: |
           npm ci

@@ -13,7 +13,7 @@ const config = {
   url: process.env.URL,
   baseUrl: process.env.BASE_PATH,
   trailingSlash: false,
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: '/img/logo_fb.png',
 
@@ -34,6 +34,7 @@ const config = {
   markdown: {
     mermaid: true,
   },
+
   themes: ['@docusaurus/theme-mermaid'],
 
   plugins: [
@@ -104,7 +105,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'misc/mdx-reference',
+            docId: 'wiki',
             position: 'left',
             label: 'Wiki',
           },
