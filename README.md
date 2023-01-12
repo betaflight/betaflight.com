@@ -2,45 +2,45 @@
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-### Installation
+## Installation
 
-```
+```bash
 $ npm i
 ```
 
-### Local Development
+## Local Development
 
-```
+```bash
 $ npm start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-### Build
+## Build
 
-```
+```bash
 $ npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-### ESLint Prettier
+## ESLint Prettier
 
 We use eslint and prettier for code formatting.
 
 Husky is configured as a pre-commit hook to run both on commit, make sure it is setup correct and it runns before you commit your code.
 
-### Deployment
+## Deployment
 
 Using SSH:
 
-```
+```bash
 $ USE_SSH=true npm run deploy
 ```
 
 Not using SSH:
 
-```
+```bash
 $ GIT_USER=<Your GitHub username> npm run deploy
 ```
 
