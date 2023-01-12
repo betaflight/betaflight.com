@@ -1,15 +1,15 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer/themes/github')
+const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Betaflight',
   tagline: 'Are you ready to fly?',
-  url: 'https://freasy.github.io',
-  baseUrl: '/betaflight.com/',
+  url: 'https://betaflight.com',
+  baseUrl: '/',
   trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -17,7 +17,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'freasy', // Usually your GitHub org/user name.
+  organizationName: 'betaflight', // Usually your GitHub org/user name.
   projectName: 'betaflight.com', // Usually your repo name.
   deploymentBranch: 'gh-pages',
 
@@ -36,32 +36,32 @@ const config = {
 
   plugins: [
     [
-      "./plugins/blog-plugin",
+      './plugins/blog-plugin',
       /** @type {import('@docusaurus/plugin-content-blog').Options} */
       ({
-        id: "blog",
-        routeBasePath: "blog",
-        path: "./blog",
+        id: 'blog',
+        routeBasePath: 'blog',
+        path: './blog',
         feedOptions: {
           type: 'all',
           title: 'Betaflight News',
           language: 'en',
           copyright: `Copyright © ${new Date().getFullYear()} All rights reserved BetaFlight Team`,
-        }
-      })
+        },
+      }),
     ],
     'docusaurus-plugin-sass',
     require.resolve('docusaurus-lunr-search'),
     async function tailwind(context, options) {
       return {
-        name: "docusaurus-tailwindcss",
+        name: 'docusaurus-tailwindcss',
         configurePostCss(postcssOptions) {
           // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(require("tailwindcss"));
-          postcssOptions.plugins.push(require("autoprefixer"));
-          return postcssOptions;
+          postcssOptions.plugins.push(require('tailwindcss'))
+          postcssOptions.plugins.push(require('autoprefixer'))
+          return postcssOptions
         },
-      };
+      }
     },
   ],
 
@@ -79,11 +79,7 @@ const config = {
         },
         blog: false,
         theme: {
-          customCss: [
-            require.resolve('./src/css/tailwind.scss'),
-            require.resolve('./src/css/mermaid.scss'),
-            require.resolve('./src/css/custom.css'),
-          ],
+          customCss: [require.resolve('./src/css/tailwind.scss'), require.resolve('./src/css/mermaid.scss'), require.resolve('./src/css/custom.css')],
         },
       }),
     ],
@@ -112,9 +108,10 @@ const config = {
           },
           {
             to: '/media',
-            label: 'Media', position: 'left'
+            label: 'Media',
+            position: 'left',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/betaflight/betaflight',
             label: 'GitHub',
@@ -123,20 +120,24 @@ const config = {
           {
             label: 'Feeds',
             position: 'right',
-            items: [{
-              label: 'RSS',
-              target: '_blank',
-              href: '/blog/rss.xml'
-            },{
-              label: 'Atom',
-              target: '_blank',
-              href: '/blog/atom.xml'
-            },{
-              label: 'Json',
-              target: '_blank',
-              href: '/blog/feed.json'
-            }]
-          }
+            items: [
+              {
+                label: 'RSS',
+                target: '_blank',
+                href: '/blog/rss.xml',
+              },
+              {
+                label: 'Atom',
+                target: '_blank',
+                href: '/blog/atom.xml',
+              },
+              {
+                label: 'Json',
+                target: '_blank',
+                href: '/blog/feed.json',
+              },
+            ],
+          },
         ],
       },
       footer: {
@@ -151,12 +152,12 @@ const config = {
               {
                 label: 'Joshuar Bardwell',
                 href: 'https://www.youtube.com/channel/UCX3eufnI7A2I7IkKHZn8KSQ',
-                icon: 'youtube'
+                icon: 'youtube',
               },
               {
                 label: 'Ivan Efimov',
                 href: 'https://www.youtube.com/channel/UCQtdpSBYlsWH6_m1Us_d8dg',
-                icon: 'youtube'
+                icon: 'youtube',
               },
             ],
           },
@@ -166,14 +167,14 @@ const config = {
               {
                 label: 'Oscar Liang',
                 href: 'https://oscarliang.com/',
-                icon: 'site'
+                icon: 'site',
               },
               {
                 label: 'VitroidFPV',
                 href: 'https://www.vitroidfpv.com/',
-                icon: 'site'
+                icon: 'site',
               },
-            ]
+            ],
           },
           {
             title: 'Community',
@@ -181,13 +182,13 @@ const config = {
               {
                 label: 'Discord',
                 href: 'https://discord.betaflight.com/invite',
-                icon: 'discord'
+                icon: 'discord',
               },
               {
                 label: 'IntoFPV',
                 href: 'https://intofpv.com/',
-                icon: 'forum'
-              }
+                icon: 'forum',
+              },
             ],
           },
           {
@@ -196,12 +197,12 @@ const config = {
               {
                 label: 'Blog',
                 to: '/blog',
-                icon: 'blog'
+                icon: 'blog',
               },
               {
                 label: 'GitHub',
                 href: 'https://github.com/betaflight/betaflight',
-                icon: 'github'
+                icon: 'github',
               },
             ],
           },
@@ -213,6 +214,6 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
-};
+}
 
-module.exports = config;
+module.exports = config

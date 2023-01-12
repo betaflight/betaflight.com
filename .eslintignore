@@ -3,3 +3,4 @@
 *.less
 *.css
 package.json
+docusaurus.config.js
