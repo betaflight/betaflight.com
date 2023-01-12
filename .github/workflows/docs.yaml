@@ -28,7 +28,7 @@ jobs:
             echo "URL=https://${{ github.repository_owner }}.github.io" >> $GITHUB_OUTPUT
             echo "BASE_PATH=/${GITHUB_REPOSITORY#*/}/" >> $GITHUB_OUTPUT
           elif [ ${{ github.repository_owner }} == 'freasy' ]; then
-            echo "URL=https://betaflight.ahmels.org" >> $GITHUB_OUTPUT
+            echo "URL=https://www.ahmels.org" >> $GITHUB_OUTPUT
             echo "BASE_PATH=/" >> $GITHUB_OUTPUT
           else
             echo "URL=https://betaflight.com" >> $GITHUB_OUTPUT
