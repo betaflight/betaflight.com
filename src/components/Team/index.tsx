@@ -55,19 +55,23 @@ export default function TeamFeature() {
     'SteveCEvans',
     'sugaarK',
     'wind0r',
-    //tomche
-    //'VitroidFPV',
-    //'freasy'
   ]
 
   const [userData, setUserData] = useState<GitHubUser[]>([])
 
   useEffect(() => {
-    const fetchData = async () =>
-      await Promise.all(githubUsers.map((user) => fetch(`https://api.github.com/users/${user}`).then((res) => res.json()))).then((data) => {
-        setUserData(data)
-      })
-
+    const githubUserData = localStorage.getItem('githubUserData')
+    const fetchData = async () => {
+      const timestamp = githubUserData ? new Date(githubUserData.split('|')[0]) : null
+      if (!timestamp || new Date().getTime() - timestamp.getTime() > 1000 * 60 * 60 * 24) {
+        await Promise.all(githubUsers.map((user) => fetch(`https://api.github.com/users/${user}`).then((res) => res.json()))).then((data) => {
+          setUserData(data)
+          localStorage.setItem('githubUserData', [new Date().getTime(), JSON.stringify(data)].join('|'))
+        })
+      } else {
+        setUserData(JSON.parse(githubUserData.split('|')[1]))
+      }
+    }
     fetchData()
   }, [])
 

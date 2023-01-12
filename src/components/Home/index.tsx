@@ -54,17 +54,20 @@ export default function Home({ recentPosts }: BlogProps) {
             <div className="flex-grow w-full xl:w-1/2">
               <AboutCard title="Recent posts" className="text-primary-500" Icon={DocumentTextIcon}>
                 <div className="flex flex-col space-y-4">
-                  {recentPosts.map(({ content: BlogPostContent }) => (
-                    <div key={BlogPostContent.metadata.source}>
-                      <a className="text-primary-500 text-2xl font-bold" href={BlogPostContent.metadata.permalink}>
-                        {BlogPostContent.metadata.title}
-                      </a>
-                      <div className="text-sm text-gray-500">
-                        {formatDate(BlogPostContent.metadata.date)} - {clampAndFormatMinutes(BlogPostContent.metadata.readingTime)}
+                  {recentPosts &&
+                    recentPosts.length > 0 &&
+                    recentPosts.map(({ content: BlogPostContent }) => (
+                      <div key={BlogPostContent.metadata.source}>
+                        <a className="text-primary-500 text-2xl font-bold" href={BlogPostContent.metadata.permalink}>
+                          {BlogPostContent.metadata.title}
+                        </a>
+                        <div className="text-sm text-gray-500">
+                          {formatDate(BlogPostContent.metadata.date)} - {clampAndFormatMinutes(BlogPostContent.metadata.readingTime)}
+                        </div>
+                        <div className="text-lg text-gray-300">{BlogPostContent.metadata.description}</div>
                       </div>
-                      <div className="text-lg text-gray-300">{BlogPostContent.metadata.description}</div>
-                    </div>
-                  ))}
+                    ))}
+                  {!recentPosts || (recentPosts.length === 0 && <div className="text-lg text-center">Nothing posted yet</div>)}
                 </div>
               </AboutCard>
             </div>
