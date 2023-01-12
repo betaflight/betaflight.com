@@ -49,9 +49,9 @@ export default function Home({ recentPosts }: BlogProps) {
 
     return (
         <BetaflightLayout>
-            <div className="relative w-full md:top-0 top-16">
+            <div className="relative w-full mt-4 xl:mt-16">
                 <div className="w-full h-fit flex flex-col justify-center md:justify-start">
-                    <div className="flex flex-col md:ml-32 ml-12 md:mt-48 mt-16 h-fit w-fit">
+                    <div className="flex flex-col p-6 h-fit w-fit">
                         <h1 className="md:text-[6rem] text-6xl border-primary-500 font-bold mb-4">
               Betaflight
                         </h1>
@@ -59,7 +59,7 @@ export default function Home({ recentPosts }: BlogProps) {
               Are you ready to fly?
                         </h2>
                     </div>
-                    <div className="mt-16 px-16 flex w-full justify-around flex-col xl:flex-row space-y-4 xl:space-y-0 space-x-0 xl:space-x-16">
+                    <div className="p-4 xl:p-16 flex w-full justify-around flex-col xl:flex-row space-y-4 xl:space-y-0 space-x-0 xl:space-x-16">
                         <div className="backdrop-blur-md shadow-xl w-full xl:w-1/2 flex xl:self-start self-center text-lg p-4 rounded-2xl bg-neutral-500/10">
               Betaflight is flight controller software (firmware) used to fly
               multi-rotor craft and fixed wing craft. This fork differs from
@@ -99,9 +99,9 @@ export default function Home({ recentPosts }: BlogProps) {
                     </div>
                 </div>
             </div>
-            <div className="px-16 pb-16 flex flex-col space-y-4">
+            <div className="p-4 xl:p-16 flex flex-col space-y-4">
                 <HomepageFeature title="About" compact={true}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
                         <AboutCard
                             title="Hardware"
                             className="text-rose-500 fill-rose-500"
@@ -207,12 +207,10 @@ export default function Home({ recentPosts }: BlogProps) {
                     </div>
                 </HomepageFeature>
                 <HomepageFeature title="Team">
-                    <div>
-                        <TeamFeature></TeamFeature>
-                    </div>
+                    <TeamFeature></TeamFeature>
                 </HomepageFeature>
                 <HomepageFeature title="Donating">
-                    <div className="flex flex-col xl:flwx-row space-x-4 justify-center items-center">
+                    <div className="flex flex-col xl:flex-row space-x-4 justify-center items-center">
                         <div className="flex flex-col space-y-4 text-white text-xl">
                             <p>
                 Many of our users don't have the time to contribute but do love
@@ -228,7 +226,7 @@ export default function Home({ recentPosts }: BlogProps) {
                 those who do donate, either their time or funds.
                             </p>
                         </div>
-                        <div className="flex space-x-4 mt-4">
+                        <div className="md:flex gap-4 mt-4">
                             <div className="w-60 text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between">
                                 <h1 className="font-bold text-xl">
                                     <FontAwesomeIcon
@@ -243,7 +241,7 @@ export default function Home({ recentPosts }: BlogProps) {
                                 </p>
                                 <Button onClick={onClickDonate("paypal")}>Donate</Button>
                             </div>
-                            <div className="w-60 text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between">
+                            <div className="mt-4 md:mt-0 w-60 text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between">
                                 <h1 className="font-bold text-xl">
                                     <FontAwesomeIcon
                                         icon={faPatreon}

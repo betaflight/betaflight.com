@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
     Cog6ToothIcon,
     Cog8ToothIcon,
@@ -8,6 +8,7 @@ import {
     PresentationChartLineIcon,
     PlayIcon,
 } from "@heroicons/react/24/solid";
+import { useMediaQuery } from "react-responsive";
 import YouTube from "react-youtube";
 import HomepageFeature from "../components/HomepageFeature";
 import BetaflightLayout from "../components/Layout";
@@ -22,7 +23,7 @@ type IconElementFeatureProps = {
     href: string;
     icon?: React.ComponentType<React.ComponentProps<"svg">>;
   };
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 function IconElementFeature({
@@ -54,9 +55,25 @@ function IconElementFeature({
 }
 
 export default function Media() {
+    const isXl = useMediaQuery({ query: "(min-width: 1280px)" });
+
+    const videoSize = useMemo(() => {
+        if (isXl) {
+            return {
+                width: 640,
+                height: 400,
+            };
+        } else {
+            return {
+                width: 320,
+                height: 200,
+            };
+        }
+    }, [isXl]);
+
     return (
         <BetaflightLayout>
-            <div className="relative w-full md:top-0 top-16">
+            <div className="relative w-full">
                 <div className="w-full h-fit flex flex-col justify-start">
                     <div className="flex flex-col md:ml-32 ml-12 md:mt-48 mt-16 h-fit w-fit">
                         <h1 className="md:text-[6rem] text-6xl border-primary-500 font-bold mb-4">
@@ -68,7 +85,7 @@ export default function Media() {
                     </div>
                 </div>
             </div>
-            <div className="w-screen xl:max-w-[1920px] m-auto p-16">
+            <div className="w-screen xl:max-w-[1920px] m-auto p-4 xl:p-16">
                 <HomepageFeature title="Downloads">
                     <div className="grid max-w-fit grid-cols-1 md:grid-cols-2 gap-x-4 text-primary-200">
                         <div className="flex flex-col space-y-4">
@@ -179,7 +196,7 @@ export default function Media() {
                         </div>
                     </div>
                 </HomepageFeature>
-                <HomepageFeature title="Videos" compact={true}>
+                <HomepageFeature className="" title="Videos" compact={true}>
                     <div className="flex flex-wrap flex-col md:flex-row flex-start space-y-4 md:space-y-0 md:space-x-4">
                         <div>
                             <AboutCard
@@ -188,7 +205,7 @@ export default function Media() {
                                 Icon={PlayIcon}
                             >
                                 <div>
-                                    <YouTube videoId="LkBWRiEGKTI" />
+                                    <YouTube videoId="LkBWRiEGKTI" opts={videoSize} />
                                 </div>
                             </AboutCard>
                         </div>
@@ -199,7 +216,7 @@ export default function Media() {
                                 Icon={PlayIcon}
                             >
                                 <div>
-                                    <YouTube videoId="UTFeh-SjH9A" />
+                                    <YouTube videoId="UTFeh-SjH9A" opts={videoSize} />
                                 </div>
                             </AboutCard>
                         </div>

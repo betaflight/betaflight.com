@@ -540,7 +540,7 @@ export default function BetaflightLayout({ children }: Props) {
                     </defs>
                 </svg>
             </div>
-            <div className="w-full xl:max-w-[1920px] m-auto flex flex-col items-center min-h-screen w-full">
+            <div className="xl:max-w-[1920px] xl:m-auto flex flex-col items-center min-h-screen mt-16 w-full">
                 {children}
             </div>
         </Layout>
