@@ -88,7 +88,7 @@ export default function TeamFeature() {
         </div>
       )}
       {userData && (
-        <div className="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4">
           {userData.map((user) => (
             <div key={user.id}>
               <div className="h-full overflow-hidden relative flex flex-col items-center rounded-2xl bg-neutral-500/10 p-4">

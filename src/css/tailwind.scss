@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.theme-doc-markdown {
-  a {
-    @apply no-underline bg-gradient-to-r from-primary-500 to-primary-500 bg-no-repeat bg-left-bottom 
+.theme-doc-markdown a, .fancy-link {
+    @apply no-underline bg-gradient-to-r from-primary-400 to-primary-400 bg-no-repeat bg-left-bottom 
 		bg-0w hover:bg-100w hover:text-primary-500 duration-300 w-fit text-primary-200 transition-all;
   }
+.theme-doc-markdown {
 
   h1,
   header h1 {
@@ -39,6 +39,14 @@
 
   .hash-link {
     @apply hover:text-current p-0 ml-2 from-current to-current text-neutral-500;
+  }
+
+  ul {
+	@apply list-disc ml-8;
+  }
+
+  ol {
+	@apply list-decimal ml-8;
   }
 }
 

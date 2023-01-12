@@ -33,7 +33,7 @@ export default function FooterLinkItem({ item }) {
 
   return (
     <Link
-      className="text-blue-400 underline flex items-center"
+      className="fancy-link pb-1 no-underline flex items-center"
       {...(href
         ? {
           href: prependBaseUrlToHref ? normalizedHref : href,

@@ -40,9 +40,9 @@ export default function Home({ recentPosts }: BlogProps) {
 
   return (
     <BetaflightLayout>
-      <div className="relative w-full mt-4 xl:mt-16">
+      <div className="relative w-full mt-4 xl:mt-32">
         <div className="w-full h-fit flex flex-col justify-center md:justify-start">
-          <div className="flex flex-col p-6 h-fit w-fit">
+          <div className="flex flex-col p-6 h-fit w-fit xl:ml-12">
             <h1 className="md:text-[6rem] text-6xl border-primary-500 font-bold mb-4">Betaflight</h1>
             <h2 className="text-white font-semibold md:text-3xl text-xl">Are you ready to fly?</h2>
           </div>
@@ -123,7 +123,7 @@ export default function Home({ recentPosts }: BlogProps) {
         </HomepageFeature>
         <HomepageFeature title="Donating">
           <div className="flex flex-col xl:flex-row space-x-4 justify-center items-center">
-            <div className="flex flex-col space-y-4 text-white text-xl">
+            <div className="flex flex-col space-y-4 text-white">
               <p>Many of our users don't have the time to contribute but do love our software such that they want to continue to support us. The best way is to help out by donating.</p>
               <p>
                 What are donations used for? We use the donations to help with the maintainers out of pocket costs, e.g. running build servers etc. We also use it to purchase test equipment, e.g.
@@ -131,7 +131,7 @@ export default function Home({ recentPosts }: BlogProps) {
               </p>
             </div>
             <div className="md:flex gap-4 mt-4">
-              <div className="w-60 text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between">
+              <div className="md:w-60 w-full text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between">
                 <h1 className="font-bold text-xl">
                   <FontAwesomeIcon icon={faPaypal} className="text-blue-600 mr-2" />
                   Paypal
@@ -139,7 +139,7 @@ export default function Home({ recentPosts }: BlogProps) {
                 <p className="my-4">For a once off donation to the cause with no ongoing commitment.</p>
                 <Button onClick={onClickDonate('paypal')}>Donate</Button>
               </div>
-              <div className="mt-4 md:mt-0 w-60 text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between">
+              <div className="mt-4 md:mt-0 md:w-60 w-full text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between">
                 <h1 className="font-bold text-xl">
                   <FontAwesomeIcon icon={faPatreon} className="text-red-600 mr-2" />
                   Patreon
