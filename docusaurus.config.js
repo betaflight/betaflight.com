@@ -4,12 +4,14 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github')
 const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
+require('dotenv').config()
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Betaflight',
   tagline: 'Are you ready to fly?',
-  url: 'https://betaflight.com',
-  baseUrl: '/',
+  url: process.env.URL,
+  baseUrl: process.env.BASE_PATH,
   trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -17,7 +19,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'betaflight', // Usually your GitHub org/user name.
+  organizationName: process.env.ORG, // Usually your GitHub org/user name.
   projectName: 'betaflight.com', // Usually your repo name.
   deploymentBranch: 'gh-pages',
 
