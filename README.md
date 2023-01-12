@@ -24,6 +24,12 @@ $ npm run build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
+### ESLint Prettier
+
+We use eslint and prettier for code formatting.
+
+Husky is configured as a pre-commit hook to run both on commit, make sure it is setup correct and it runns before you commit your code.
+
 ### Deployment
 
 Using SSH:
