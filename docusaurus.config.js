@@ -153,7 +153,7 @@ const config = {
             title: 'Youtube',
             items: [
               {
-                label: 'Joshuar Bardwell',
+                label: 'Joshua Bardwell',
                 href: 'https://www.youtube.com/channel/UCX3eufnI7A2I7IkKHZn8KSQ',
                 icon: 'youtube',
               },
