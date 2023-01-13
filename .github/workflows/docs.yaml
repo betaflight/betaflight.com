@@ -6,6 +6,7 @@ on:
       - t-rex
       - master
       - develop
+      - fix-actions
     # Review gh actions docs if you want to further define triggers, paths, etc
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
@@ -46,6 +47,7 @@ jobs:
         run: |
           npm ci
           npm run build
+          cp CNAME ./build/
 
       # Popular action to deploy to GitHub Pages:
       # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
