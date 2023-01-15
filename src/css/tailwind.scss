@@ -8,6 +8,10 @@
   }
 .theme-doc-markdown {
 
+  *[aria-hidden="true"] {
+	@apply hidden;
+  }
+
   h1,
   header h1 {
     @apply text-6xl font-bold text-primary-500;
