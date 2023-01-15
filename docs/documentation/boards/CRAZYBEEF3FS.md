@@ -67,7 +67,7 @@ https://www.banggood.com/Racerstar-Crazybee-F3-Flight-Controller-4-IN-1-5A-1S-Bl
 
 ## FAQ & Known Issues
 
-See the same item for [CrazyBeeF3FR](Board%20-%20CrazyBeeF3FR.md#FAQ%20&%20Known%20ssues)
+See the same item for [CrazyBeeF3FR](CRAZYBEEF3FR.md#FAQ%20&%20Known%20ssues)
 
 ## Other Resources
    User Manual: http://img.banggood.com/file/products/20180225215703Crazybeef3flysky.pdf
