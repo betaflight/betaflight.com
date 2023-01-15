@@ -24,4 +24,4 @@ T-Motor FPV (https://www.facebook.com/rctigermotor/)
 
 
 ![TMOTOR F4 top](images/TMOTORF4-TopSide.png)
-![TMOTOR F4 bottom](images/TMOTORF4-BottomSide.png)
+![TMOTOR F4 bottom](images/TMOTORF4-BottomSide.jpg)
