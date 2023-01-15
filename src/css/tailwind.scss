@@ -66,6 +66,9 @@
       @apply inline-block;
     }
   }
+  &__search-input {
+	@apply bg-neutral-500/10 focus-visible:outline-primary-500 focus-visible:outline-2 focus-visible:outline #{!important}
+  }
 }
 
 .container {
@@ -84,7 +87,7 @@ aside.theme-doc-sidebar-container > div {
 }
 
 .theme-doc-sidebar-container {
-  @apply border-none;
+  @apply border-none #{!important};
 }
 
 nav.menu.thin-scrollbar {
@@ -116,7 +119,7 @@ nav.menu.thin-scrollbar {
     @apply pb-1;
 
     &-item {
-      @apply border-primary-500;
+      @apply border-primary-500 mb-2;
 
       &--collapsed {
         @apply border-transparent bg-transparent;
