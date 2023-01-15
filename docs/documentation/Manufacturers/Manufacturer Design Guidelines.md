@@ -1,7 +1,7 @@
 # Betaflight Flight Controller Manufacturer Design Guidelines
 
 
-![Betaflight](assets/images/bf_logo.png)
+![Betaflight](../assets/images/bf_logo.png)
 
 
 Version Change Register
