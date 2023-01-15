@@ -183,7 +183,7 @@ Stabilized ROLL/PITCH/YAW is taken directly from RC command when in PASSTHRU mod
 
 - `<rate>` is used to scale `<source>`, -100% - 100% is allowed. Note that servo reversal may be applied, see below. Zero `<rate>` will terminate smix table.
 
-- `<speed>` will limit <source> speed when non-zero. This speed is taken per-rule, so you may limit only some sources. Value is maximal change of value per loop (1ms with default configuration)
+- `<speed>` will limit `<source>` speed when non-zero. This speed is taken per-rule, so you may limit only some sources. Value is maximal change of value per loop (1ms with default configuration)
 
 - `<min>` `<max>` - Value in percentage of full servo range. For symmetrical servo limits (equal distance between mid and min/max), 0% is servo min, 50% is servo center, 100% is max servo position. When mid position is asymmetrical, 0% and 100% limits will be shifted.
 
@@ -195,7 +195,7 @@ Print current servo reversal configuration
 
 ##### `smix reverse <servo> <source> r|n`
 
-Each `<source>` may be `r`eversed or `n`ormal for given `<servo>`. It is almost equivalent to using negative <rate> in given rule, but `<min>, `<max>` limits are applied to value before reversing.
+Each `<source>` may be `r`eversed or `n`ormal for given `<servo>`. It is almost equivalent to using negative `<rate>` in given rule, but `<min>`, `<max>` limits are applied to value before reversing.
 `smix reverse` works for non-custom mixers too.
 
 e.g. when using the TRI mixer to reverse the tail servo on a tricopter use this:
