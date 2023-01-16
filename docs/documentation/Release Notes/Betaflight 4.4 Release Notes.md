@@ -12,7 +12,7 @@ If you do have something missing then we suggest flashing the `core` version. Th
 
 For those missing a barometer: You can try any or all of `BARO_MS5611 BARO_SPI_MS5611 BARO_BMP280 BARO_SPI_BMP280 BARO_BMP388 BARO_SPI_BMP388 BARO_LPS BARO_SPI_LPS BARO_QMP6988 BARO_SPI_QMP6988 BARO_DPS310 BARO_SPI_DPS310 BARO_BMP085 BARO_2SMBP_02B BARO_SPI_2SMBP_02B` in the **custom defines** input box.
 
-For those missing the flash chip: You can try any or all of `USE_FLASH_W25P16 USE_FLASH_W25Q128FV USE_FLASH_W25M02G USE_FLASH_W25N01G USE_FLASH_W25M` in the custom defines input box.
+For those missing the flash chip: You can try any or all of `FLASH_W25P16 FLASH_W25Q128FV FLASH_W25M02G FLASH_W25N01G FLASH_W25M` in the **custom defines** input box.
 
 Thank you all for your patience and assistance in working through what boards have what hardware. Unfortunately we need our flyers to help crowd source this information - as there is such diverse hardware out there!
 
