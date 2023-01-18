@@ -114,8 +114,20 @@ const config = {
             label: 'Wiki',
           },
           {
-            to: '/media',
-            label: 'Media',
+            type: 'doc',
+            docId: 'development',
+            position: 'left',
+            label: 'Development',
+          },
+          {
+            type: 'doc',
+            docId: 'Manufacturers',
+            position: 'left',
+            label: 'Manufacturers',
+          },
+          {
+            to: '/download',
+            label: 'Download',
             position: 'left',
           },
           { to: '/blog', label: 'Blog', position: 'left' },
