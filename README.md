@@ -8,6 +8,18 @@ This website is built using [Docusaurus 2](https://docusaurus.io/), a modern sta
 $ npm i
 ```
 
+## Environment
+
+copy `.env.example` to `.env`
+
+and edit to your setup, the default is for a standard development environment
+
+```bash
+URL=http://localhost:3000
+BASE_PATH=/
+ORG=betaflight
+```
+
 ## Local Development
 
 ```bash
