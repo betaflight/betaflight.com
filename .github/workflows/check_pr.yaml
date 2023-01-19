@@ -22,5 +22,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: ENV file
+      run: |
+        echo "URL=http://localhost:3000" > .env
+        echo "BASE_PATH=/" >> .env
+        echo "ORG=betaflight" >> .env
+
     - name: Build package
       run: npm run build
