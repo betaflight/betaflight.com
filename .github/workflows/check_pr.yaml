@@ -1,4 +1,4 @@
-name: Check if pr is compilable
+name: Check if pr is compileable
 
 on:
   pull_request:
