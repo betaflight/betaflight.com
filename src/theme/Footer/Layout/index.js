@@ -1,12 +1,16 @@
 import React from 'react'
+import Logo from '../../../icons/logo.svg'
+
 export default function FooterLayout({ style, links, logo, copyright }) {
   return (
     <footer className="p-16 w-full bg-neutral-500/5 shadow-[0_20px_30px_0] shadow-black">
       <div className="">
         {links}
-        {(logo || copyright) && (
+        {copyright && (
           <div className="text-center">
-            {logo && <div className="">{logo}</div>}
+            <div className="text-center text-neutral-800">
+              <Logo className="w-52 h-52 inline-block"></Logo>
+            </div>
             {copyright}
             <div className="text-sm text-neutral-500/60">Built with Docusaurus</div>
             <div className="mt-1 text-sm text-neutral-500/60">
