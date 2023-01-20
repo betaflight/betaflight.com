@@ -113,18 +113,18 @@ const config = {
             position: 'left',
             label: 'Wiki',
           },
-          // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'development',
-          //   position: 'left',
-          //   label: 'Development',
-          // },
-          // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'manufacturer',
-          //   position: 'left',
-          //   label: 'Manufacturer',
-          // },
+          {
+            type: 'docSidebar',
+            sidebarId: 'development',
+            position: 'left',
+            label: 'Development',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'manufacturer',
+            position: 'left',
+            label: 'Manufacturer',
+          },
           {
             to: '/download',
             label: 'Download',

@@ -1,7 +1,7 @@
 # Development
 
 This document is primarily for developers.
-If you plan to contribute to Betaflight by opening a pull request for a bugfix or feature, please read the following text carefully before you start. This will help you in submitting your contribution in a form that has a good chance of being accepted. Please also read up on the [coding style](CodingStyle.md).
+If you plan to contribute to Betaflight by opening a pull request for a bugfix or feature, please read the following text carefully before you start. This will help you in submitting your contribution in a form that has a good chance of being accepted. Please also read up on the [coding style](./CodingStyle.md).
 
 ## General principles
 
@@ -114,7 +114,7 @@ If you open a pull request for the betaflight repository that contains a change 
 
 Example of a pull request with test firmware attached:
 
-![Pull request with test targets](assets/pull_request_test_targets.png)
+![Pull request with test targets](./assets/pull_request_test_targets.png)
 
 ### IDEs and .gitignore
 
