@@ -114,8 +114,20 @@ const config = {
             label: 'Wiki',
           },
           {
-            to: '/media',
-            label: 'Media',
+            type: 'docSidebar',
+            sidebarId: 'development',
+            position: 'left',
+            label: 'Development',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'manufacturer',
+            position: 'left',
+            label: 'Manufacturer',
+          },
+          {
+            to: '/download',
+            label: 'Download',
             position: 'left',
           },
           { to: '/blog', label: 'Blog', position: 'left' },
