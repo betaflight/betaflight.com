@@ -27,10 +27,10 @@ It has 6x dedicated UART ports with built-in inversion for peripherals (UART2 is
 ## Image
 
 Top View
-![](https://github.com/betaflight/betaflight/wiki/images/boards/kakuteH7/KakuteH7_top.jpg?raw=true)
+![](/img/boards/kakuteh7/kakuteh7_top.jpg?raw=true)
 
 Bottom View
-![](https://github.com/betaflight/betaflight/wiki/images/boards/kakuteH7/KakuteH7_bottom.jpg?raw=true)
+![](/img/boards/kakuteh7/kakuteh7_bottom.jpg?raw=true)
 
 ## Specifications
 
@@ -55,7 +55,7 @@ o Note: The Bluetooth onboard is set to automatically turn off when the flight c
 ## Pinout Diagram
 
 `Top View`
-![](https://github.com/betaflight/betaflight/wiki/images/boards/kakuteH7/KakuteH7_pin_diagram.jpg?raw=true)
+![](/img/boards/kakuteh7/kakuteh7_pin_diagram.jpg?raw=true)
 
 ## Target Code
 

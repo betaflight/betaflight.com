@@ -20,10 +20,10 @@ IMU updated to MPU6000,Re-designed and more reliable damping structure
 ## Image
 
 Top View
-![](https://github.com/betaflight/betaflight/wiki/images/boards/kakuteF7/KakuteF7_top.jpg?raw=true)
+![](/img/boards/kakutef7/kakutef7_top.jpg?raw=true)
 
 Bottom View
-![](https://github.com/betaflight/betaflight/wiki/images/boards/kakuteF7/KakuteF7_bottom.jpg?raw=true)
+![](/img/boards/kakutef7/kakutef7_bottom.jpg?raw=true)
 
 ## Specifications
 
@@ -43,7 +43,7 @@ Bottom View
 ## Pinout Diagram
 
 `Top View`
-![](https://github.com/betaflight/betaflight/wiki/images/boards/kakuteF7/KakuteF7_pin_diagram.jpg?raw=true)
+![](/img/boards/kakutef7/kakutef7_pin_diagram.jpg?raw=true)
 
 ## Target Code
 
