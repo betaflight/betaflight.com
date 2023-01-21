@@ -93,7 +93,7 @@ For example on [this target](https://github.com/betaflight/unified-targets/blob/
     board_name NOX
     manufacturer_id AIRB
 
-For more information see reference at the [Hardware specification](https://github.com/betaflight/betaflight/blob/master/docs/Manufacturer%20Design%20Guidelines.md#42-definitions-for-targets)
+For more information see reference at the [Hardware specification](../manufacturer/Manufacturer%20Design%20Guidelines.md#42-definitions-for-targets)
 
 ### 2.7 Add the board and manufacturer information
 

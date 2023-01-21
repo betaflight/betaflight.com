@@ -29,7 +29,7 @@ Collection of rate presets and rates of established pilots:
 
 More about Actual and Quick rates:
 
-- https://github.com/betaflight/betaflight/wiki/4.2-Tuning-Notes#New-Rates-modes
+- https://betaflight.com/docs/tuning/4.2-Tuning-Notes#New-Rates-modes
 - https://github.com/betaflight/betaflight/pull/9495
 - https://github.com/betaflight/betaflight/pull/9506
 

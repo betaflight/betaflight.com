@@ -20,7 +20,7 @@ Just remember that this is still Experimental code and may have serious limitati
 Read here to Learn exactly what firmware issues and features are being worked on:
 https://github.com/betaflight/betaflight/issues?q=is%3Aissue+is%3Aclosed+sort%3Aupdated-desc
 
-The Latest Development version of the Configurator is recommended. Link on [Home page](https://github.com/betaflight/betaflight/wiki).
+The Latest Development version of the Configurator is recommended.
 
 ### Some known limitations are:
 

@@ -65,7 +65,7 @@ quad behaving in a predictive and consistent manner
 ## VBat Sag Compensation
 
 This feature aims to provide motor response consistency across the
-entire flight ([BF doc ref](https://github.com/betaflight/betaflight/wiki/4.2-Tuning-Notes#dynamic-battery-sag-compensation)).
+entire flight ([BF doc ref](../tuning/4.2-Tuning-Notes.md#dynamic-battery-sag-compensation)).
 By enabling VBat Sag Compensation the craft will fly more consistently
 and predictively.
 
@@ -182,8 +182,8 @@ been introduced to address fast oscillations induced by high throttle
 motor noises on quads running high PID gains.
 
 Similar to D Min this settings could negatively affect consistency
-leading to an increase of rotation rate when more throttle applied ([BF
-doc ref](https://github.com/betaflight/betaflight/blob/021921252ce41ab69c60a249e955b69360dac3d5/docs/PID%20tuning.md#tpa-and-tpa-breakpointre%20throttle%20applied.)).
+leading to an increase of rotation rate when more throttle applied
+[BF doc ref](../development/PID%20tuning#tpa-and-tpa-breakpointre%20throttle%20applied.).
 
 **Increasing the default breakpoint value allows to keep D constant also
 around mid throttle .**
@@ -211,7 +211,7 @@ Set thrust_linear initially at a value around 25 and then increase in increments
 
 I term relax aims to inhibit I during fast manoeuvres by preventing it
 from further accumulating avoiding I term induced bounce back on flips
-and rolls ([BF doc ref](https://github.com/betaflight/betaflight/wiki/I-Term-Relax-Explained)).
+and rolls ([BF doc ref](I-Term-Relax-Explained)).
 
 ### Suggested setting: values for a 5"
 
@@ -223,7 +223,7 @@ and rolls ([BF doc ref](https://github.com/betaflight/betaflight/wiki/I-Term-Rel
 
 Anti Gravity boosts the I term when fast throttle changes are detected.
 It has been introduced to mitigate the craft nose tilt on throttle
-changes ([BF doc ref](https://github.com/betaflight/betaflight/wiki/PID-Tuning-Guide#antigravity)).
+changes ([BF doc ref](PID-Tuning-Guide#antigravity)).
 
 Anti gravity helps to increase smoothness and hold the attitude on
 maneuvers with fast throttle changes like boosts, powerloops, etc.
@@ -250,11 +250,11 @@ Thrust Linear helps to boost the PID gains low throttle helping to offset reduce
 
 ### Suggested setting: values for a 5"
 
-|                               | **Value**                                                                                                                                 |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| **Motor Idle Throttle Value** | 3% - 4%                                                                                                                                   |
-| **Dynamic Idle**              | Needs to be computed according to [doc](https://github.com/betaflight/betaflight/wiki/Tuning-Dynamic-Idle#setup---enabling-dynamic-idle). |
-| **Thrust Linear**             | 20-25                                                                                                                                     |
+|                               | **Value**                                                                                   |
+| ----------------------------- | ------------------------------------------------------------------------------------------- |
+| **Motor Idle Throttle Value** | 3% - 4%                                                                                     |
+| **Dynamic Idle**              | Needs to be computed according to [doc](Tuning-Dynamic-Idle#setup---enabling-dynamic-idle). |
+| **Thrust Linear**             | 20-25                                                                                       |
 
 ## RC smoothing
 

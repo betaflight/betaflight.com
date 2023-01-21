@@ -53,7 +53,7 @@ Smart Audio Debug[0] key:
 
 ## Setting up VTX Tables in CLI
 
-See https://github.com/betaflight/betaflight/blob/master/docs/VTX.md#vtx-table
+See https://betaflight.com/docs/development/VTX#vtx-table
 
 ## VTX Button usage
 

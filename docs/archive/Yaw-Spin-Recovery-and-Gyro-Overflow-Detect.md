@@ -22,7 +22,7 @@ Too low a threshold may cause false triggering, and delay return to normal contr
 
 ### How does it work?
 
-Once triggered, yaw_spin_recovery assigns full motor authority to the correction of the spin, and stops all unrelated PID and throttle activity. One pair of motors goes full on, the others go to minimum rpm. Once the yaw spin rate falls _below_ threshold by 100 degrees per second, and stays below threshold for 20ms, full control is returned to the pilot.
+Once triggered, yaw*spin_recovery assigns full motor authority to the correction of the spin, and stops all unrelated PID and throttle activity. One pair of motors goes full on, the others go to minimum rpm. Once the yaw spin rate falls \_below* threshold by 100 degrees per second, and stays below threshold for 20ms, full control is returned to the pilot.
 
 Without this feature active, it is possible for any quad to get indefinite spins when the spin rate confuses the gyro. See "What is the underlying cause" below...
 

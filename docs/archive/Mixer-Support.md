@@ -1,4 +1,4 @@
-### Introduction
+### Mixer Support
 
 - Beginning with 3.1.7, some rarely used mixers have being dropped from F1 and F3 firmwares due to flash space limitation.
 - In addition, some mixers are not supported from the beginning (or at least I couldn't find any remains of the code).
@@ -75,4 +75,4 @@ smix 7 7 11 100 0 0 100 0
 
 #### Other emulations
 
-It is easy to create a set of mmix/smix for a given mixer configuration; take corresponding lines from the source (`src/main/flight/{mixer,servos}.c`) and convert them to CLI format.
+It is easy to create a set of mmix/smix for a given mixer configuration; take corresponding lines from the source `src/main/flight/{mixer,servos}.c` and convert them to CLI format.

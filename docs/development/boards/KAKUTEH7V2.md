@@ -17,10 +17,10 @@ The integrated BetaFlight OSD makes it easy to display important information on 
 ## Image
 
 Top View
-![](https://github.com/betaflight/betaflight/wiki/images/boards/kakuteH7v2/KakuteH7v2_top.jpg?raw=true)
+![](/img/boards/kakuteh7v2/kakuteh7v2_top.jpg?raw=true)
 
 Bottom View
-![](https://github.com/betaflight/betaflight/wiki/images/boards/kakuteH7v2/KakuteH7v2_bottom.jpg?raw=true)
+![](/img/boards/kakuteh7v2/kakuteh7v2_bottom.jpg?raw=true)
 
 ## Specifications
 
@@ -45,7 +45,7 @@ Bottom View
 ## Pinout Diagram
 
 Top View
-![](https://github.com/betaflight/betaflight/wiki/images/boards/kakuteH7v2/KakuteH7v2_pinout.jpg?raw=true)
+![](/img/boards/kakuteh7v2/kakuteh7v2_pinout.jpg?raw=true)
 
 Pin
 ![](https://https://docs.holybro.com/fpv-flight-controller/kakute-h7-v2/pinout?raw=true)

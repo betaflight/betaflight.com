@@ -110,7 +110,7 @@ Be aware that when using Dshot and having 3D mode activated in the configurator 
 Some flight testing with Kiss 24A ESCs using Build #861 on a CC3D Revo F4 has been completed and no issues regarding flight performance were found as of 05-01-2017.
 
 30-04-2017:
-Additional information for BLHeli_S is that there's currently an issue where the motors _may_ spin a different way using Dshot to using oneshot/pwm and therefore motor direction MUST be checked when switching to Dshot with 3D, you may need to set some motors to Bi-Directional and others to Bi-Directional reverse.
+Additional information for BLHeli*S is that there's currently an issue where the motors \_may* spin a different way using Dshot to using oneshot/pwm and therefore motor direction MUST be checked when switching to Dshot with 3D, you may need to set some motors to Bi-Directional and others to Bi-Directional reverse.
 
 Dshot has an inverted lower section when compared to standard 3D. This means that full negative thrust in Dshot3D is 1499 and minumum negative thrust is 1000 (as opposed to standard/oneshot 3D where full negative thrust would be 1000 and minimum would be 1499). Positive thrust has it's minimum at 1501 and maximum at 2000 _Positive values are a guess, needs confirmation_ You will notice this in the configurator.
 

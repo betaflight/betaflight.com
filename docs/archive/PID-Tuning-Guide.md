@@ -99,7 +99,7 @@ voltage chart vs remaining capacity.
 - **I** = The Past (integral)
 - **D** = The Future (derivative / damping) !Dangerous
 
-https://github.com/betaflight/betaflight/wiki/Community-Presets?fbclid=IwAR10HqBt_ZjxHivCQ8Os55f1TzKGcTH9vdOiiuNWeWOKA_IlLX4JYaDLoJY#2---3-quad---11xx-12xx-motors
+[Community Presets](Community-Presets?fbclid=IwAR10HqBt_ZjxHivCQ8Os55f1TzKGcTH9vdOiiuNWeWOKA_IlLX4JYaDLoJY#2---3-quad---11xx-12xx-motors)
 
 ## P-term
 
@@ -231,7 +231,7 @@ D -> High values dampes the P (works against P, flattens the curve) D-term relat
 
 ## PID Tuning (borrowed from Betaflights manual)
 
-https://github.com/betaflight/betaflight/wiki/PID-Tuning-Guide
+[Guide](PID-Tuning-Guide)
 
 Start with slightly lower than default P gains as provided by the installed BetaFlight firmware. P of 4.0 on Pitch and Roll are good starting points. Also lower the I and D gains on pitch and roll in order to tune P with minimal interference from I and D. I of 20 and D of 5 are good starting points. For yaw, it is prudent to decrease default P by HALF and reduce I just a bit, to eliminate that axis as a source of oscillations. Yaw will be tuned last.
 
@@ -905,7 +905,7 @@ Another thing to take into account is the tuning of your transmitter antenna and
 
 # VTX TABLES
 
-https://github.com/betaflight/betaflight/wiki/VTX-Tables
+https://betaflight.com/docs/archive/VTX-Tables
 
 ### TBS UNIFY PRO 5G8 HV
 
