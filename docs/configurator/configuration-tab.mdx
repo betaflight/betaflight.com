@@ -21,6 +21,7 @@ that the gyro runs best at (8KHz for the MPU6000, 3.2KHz for the BMI270, etc...)
 The frequency at which the PID loop computations are done. This is basically all of the math that goes into actual 
 flight control. When using dshot300 you may see the PID loop reset to 4K if you manually attempt to set 8K, dshot300 
 does not send updates fast enough to make use of 8K PID loop so 4K is selected to save CPU time. 
+
 Recommended PID loop and motor output combinations, With RPM filtering enabled, are 2K/dshot150, 4K/dshot300 and 
 8K/dshot600. Exception is when using the BMI270 gyro in which case the rates are 3.2K/1.6K 
 
