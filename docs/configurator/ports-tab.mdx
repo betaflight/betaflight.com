@@ -38,7 +38,10 @@ If you toggle this on, you likely do not need to touch any ohter options for thi
 
 Used for older radio systems that would require telemetry data to be sent back to the receiver over a UART 
 separate from the one used for control. You may also need to set the baud rate for your device. This is 
-not used for most modern radio systems like ELRS
+not used for most modern radio systems like ELRS. Modern receivers use 2-way communication with the FC by 
+default which allows for telemetry to be sent over the same port used for Serial Rx link.
+Ensure that you have toggled Telemetry output to On in the Receiver tab to make the FC send telemetry to the 
+Receiver
 
 ## Sensor Input
 
@@ -49,4 +52,4 @@ or GPS. To get GPS working, you may need to manualy assign a baud rate as well
 
 Multiple options to allow the FC to control peripherals like VTXs, cameras, external OSDs, or even digital VTXs 
 along with MSP. Similar to `Telemetry Output` and `Sensor Input`, you may need to set a baud rate for your 
-device  
+device although common devices like SmartAudio, Tramp and MSP VTXs should work well with the default baud rates
