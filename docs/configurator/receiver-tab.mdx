@@ -38,12 +38,13 @@ Selecting the incorrect protocol will lead to no signal being detected, or the s
 
 ### Telemetry
 
-Toggle the telemetry output on or off.
+Toggle the telemetry output on or off. Also required for VTX control from ELRS receivers
 
 ### RSSI
 
-Mostly a legacy option, used to configure a separate RSSI input. Most modern receivers communicate 
+Mostly a legacy option, used to configure a separate analogue 0-3.3V RSSI input. Most modern receivers communicate 
 RSSI (along with other telemetry data) over the same serial connection as the control data.
+Do not enable this option with a modern receiver
 
 ### Channel Map
 
@@ -61,7 +62,8 @@ There are also preset options for some of the more common systems:
 
 * **FrSky/Futaba/Hitec** - FrSky, Futaba, and Hitec receivers output the channels in the same order as the 
   Betaflight default (AETR1234)
-* **Spektrum/Graupned/JR** - Spektrum receivers output the channels in a different order than the Betaflight default
+* **Spektrum/Graupned/JR** - Spektrum receivers output the channels in a different order than the Betaflight default 
+(TAER1234)
 
 :::
 
@@ -69,6 +71,11 @@ There are also preset options for some of the more common systems:
 
 Some older receivers only had RSSI output on a single channel. If you have an older receiver, you can set
 which channel is used to read the RSSI value. This is usually AUX 4 or 12.
+Leave this setting disabled if you have a modern receiver such one using the CRSF or GHST protocols
+
+One use case for this setting on modern equipment is to view LQ on DJI FPV goggles, which do not include a native LQ 
+field. In this case you can set this channel to the channel used for LQ - AUX11 on ELRS. A better solution is to 
+enable the `osd_craftname_msgs` CLI option or install WTFOS on your DJI FPV system for a full customisable OSD
 
 ### "Stick" Settings
 
