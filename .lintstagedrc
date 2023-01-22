@@ -4,5 +4,5 @@
         "eslint --fix --ext .tsx,.js"
     ],
     "**/*.{html,md,less,css,json}": ["prettier --write --ignore-unknown"],
-    "team_generation.js": ["node team_generation.js"]
+    "team_generation.js": ["node team_generation.js && git add src/json/team.json"]
 }

@@ -20,6 +20,7 @@ const githubUsers = [
   'SteveCEvans',
   'sugaarK',
   'wind0r',
+  'freasy',
 ]
 
 const filepath = 'src/json/team.json'
