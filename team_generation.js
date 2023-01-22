@@ -20,10 +20,11 @@ const githubUsers = [
   'SteveCEvans',
   'sugaarK',
   'wind0r',
+  'freasy',
 ]
 
 const filepath = 'src/json/team.json'
-const userAgent = 'my-app'
+const userAgent = 'betaflight.com-gh-action'
 
 function getUserInfo() {
   let userData = []
