@@ -59,13 +59,13 @@ export default function TeamFeature() {
             <div key={user.id}>
               <div className="h-full overflow-hidden relative flex flex-col items-center rounded-2xl bg-neutral-500/10 p-4">
                 <img src={user.avatar_url} alt={user.login} className="rounded-full w-16 h-16" />
-                <div className="mt-2">{user.login}</div>
-                <div>{user.name}</div>
-                {user.location && <div>{truncateStr(user.location)}</div>}
+                <div className="mt-2 text-primary-500 font-semibold">{user.login}</div>
+                <div className="text-sm text-neutral-500 font-semibold">{user.name}</div>
+                {user.location && <div className="text-sm text-neutral-500">{truncateStr(user.location)}</div>}
                 {user.blog && (
-                  <div className="text-blue-400">
-                    <a href={user.blog}>{truncateStr(user.blog)}</a>
-                  </div>
+                  <a className="fancy-link no-underline" href={user.blog}>
+                    {truncateStr(user.blog)}
+                  </a>
                 )}
               </div>
             </div>
