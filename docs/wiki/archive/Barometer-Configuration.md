@@ -1,4 +1,4 @@
-## Barometer Configuration
+# Barometer Configuration
 
 With 3.2, barometer driver was converted to be fully configurable / reconfigurable.
 

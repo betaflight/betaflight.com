@@ -1,4 +1,4 @@
-### Note
+# Channel Forwarding
 
 _Use SERVO_TILT for applications with servo count requirement less than or equal to 2._
 

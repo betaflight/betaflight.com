@@ -1,3 +1,5 @@
+# Bidirectional DShot
+
 ### Recent Announcements
 
 - [Bluejay](https://github.com/mathiasvr/bluejay) is a new, free, well-supported BlHeli-S firmware that supports DShot telemetry, with a range of options. It is most easily flashed using the [https://esc-configurator.com](https://esc-configurator.com) online ESC configurato, which can flash both BlHeli-S and Bluejay to BLHeli-S ESCs, and AM32 to BlHeli-32 ESCs.

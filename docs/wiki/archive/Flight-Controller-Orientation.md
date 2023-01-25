@@ -1,3 +1,5 @@
+# Flight Controller Orientation
+
 Usually, the gyro orientation on the FC is ink-marked by an arrow pointing forward.
 
 In rare cases or due to space limitations, the flight controller needs to be positioned on the frame in awkward alignment, i.e. pivoted around multiple axes, NOT lining up with the main axes of the frame anymore.

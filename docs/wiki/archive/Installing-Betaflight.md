@@ -1,3 +1,5 @@
+# Installing Betaflight
+
 ## How to install Betaflight firmware on your FC:
 
 Using Betaflight Configurator, select the Firmware Flasher tab and select what firmware to flash in one of two different ways, online or local firmware.

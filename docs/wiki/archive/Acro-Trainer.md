@@ -1,3 +1,5 @@
+# Acro Trainer
+
 Adds a new angle limiting mode for pilots who are learning to fly in acro mode. Primarily targeted at new LOS acro pilots, but can be used with FPV as well.
 
 The feature is activated with a new mode named "ACRO TRAINER". When the feature is active, the craft will fly in normal acro mode but will limit roll/pitch axes so that they don't exceed the configured angle limit. New pilots can start with a small angle limit and progressively increase as their skills improve.

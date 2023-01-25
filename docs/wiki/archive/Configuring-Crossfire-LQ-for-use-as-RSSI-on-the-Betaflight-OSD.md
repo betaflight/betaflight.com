@@ -1,3 +1,5 @@
+# Configuring Crossfire
+
 Betaflight has the ability to display on your OSD a measurement of Crossfire LQ (Link Quality). This measurement is based on a ratio of successful packets transmitted and received. This is the recommended performance indicator to use instead of RSSI, due to the overall signal strength of the Crossfire hardware.
 
 ### Betaflight 4.1 and later, with native Crossfire LQ and RSSI dbm support:

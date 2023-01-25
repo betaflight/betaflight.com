@@ -1,3 +1,5 @@
+# Spektrum and RC Smooting Filter
+
 ### A little background.
 
 Spektrum has two basic RC protocols, but they can operate at different frame rates:

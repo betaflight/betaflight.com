@@ -1,4 +1,4 @@
-# GPS Rescue in firmware 4.4
+# GPS Rescue 4.4
 
 Betaflight 4.4 brings huge improvements in the altitude, velocity, flightpath accuracy and landing behaviour of the GPS Rescue code. The Sanity Checks that monitor the status of the Rescue are less likely to disarm the quad or falsely declare a failure of the rescue.
 

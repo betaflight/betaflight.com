@@ -1,3 +1,5 @@
+# Buzzer Mute Mode
+
 With Beeper Mute Mode you can silence the buzzer as long it's not needed.
 
 Setup a switch to activate beeper and deactivate beeper mute mode. We can do that in the "Modes" tab of the Configurator.

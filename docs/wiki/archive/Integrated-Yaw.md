@@ -1,3 +1,5 @@
+# Integrated Yaw
+
 ### Overview
 
 Integrated Yaw is a feature which corrects a fundamental issue with quad control: while the pitch and roll axis are controlled by the thrust differentials the props generate yaw is different. Yaw gyro changes happen primarily due to inertia when the rpm of the motors change. A constant acceleration of yaw requires a constant rate of increase/decrease in the rpm of the yaw motor pairs.

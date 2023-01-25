@@ -1,3 +1,5 @@
+# IRC Tramp
+
 ## Prerequisite
 
 You own a IRC Tramp HV which has at least firmware version 1.26. Units distributed during summer 2016 at several FPV events do not have support yet for the serial interface. Units produced and shipped directly from china after the official launch should have version 1.26. For the serial interface to work on firmware 1.26, the TNR tag should be disconnected, otherwise, the tag is actively preventing the serial interface to work. This limitation will be discarded in the next batch starting mid february and including firmware version 1.27.

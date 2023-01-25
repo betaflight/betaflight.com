@@ -1,3 +1,5 @@
+# Launch Control
+
 ## Description
 
 Adds a race start assistance system that allows the pilot to pitch forward and then release the sticks with the quad holding position for the race start. Available starting with Betaflight 4.0.

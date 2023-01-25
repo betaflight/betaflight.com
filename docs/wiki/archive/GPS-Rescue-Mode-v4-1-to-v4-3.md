@@ -1,4 +1,4 @@
-# GPS Rescue for firmware version 4.1 to 4.3
+# GPS Rescue 4.1 to 4.3
 
 ### **WHAT THIS IS:**
 

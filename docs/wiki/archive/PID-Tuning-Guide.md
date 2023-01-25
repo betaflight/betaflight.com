@@ -1,4 +1,6 @@
-# Quadcopter and Betaflight cheat sheet
+# PID Tuning Guide
+
+## Quadcopter and Betaflight cheat sheet
 
 ## Introduction
 
