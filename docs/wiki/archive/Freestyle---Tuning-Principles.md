@@ -183,7 +183,7 @@ motor noises on quads running high PID gains.
 
 Similar to D Min this settings could negatively affect consistency
 leading to an increase of rotation rate when more throttle applied
-[BF doc ref](../development/PID%20tuning#tpa-and-tpa-breakpointre%20throttle%20applied.).
+[BF doc ref](../../development/PID%20tuning#tpa-and-tpa-breakpoint)
 
 **Increasing the default breakpoint value allows to keep D constant also
 around mid throttle .**
