@@ -44,11 +44,11 @@ The supported protocols are:
 
 1. in Betaflight configurator, go to the 'Configuration' tab, in 'Receiver' box, select 'SPI RX support' for 'Receiver mode':
 
-![FrSky SPI RX mode selection](assets/images/frsky_spi_rx_mode.png)
+![FrSky SPI RX mode selection](../assets/images/frsky_spi_rx_mode.png)
 
 2. in the 'SPI Bus Receiver Provider' drop down that appears, select 'FRSKY_D', 'FRSKY_X' or 'FRSKY_X_LBT' (depending on the desired protocol):
 
-![FrSky SPI RX protocol selection](assets/images/frsky_spi_rx_protocol.png)
+![FrSky SPI RX protocol selection](../assets/images/frsky_spi_rx_protocol.png)
 
 3. click 'Save & Reboot'. After the reboot, the RX LED will confirm that the FrSky RX is active by blinking slowly;
 4. enter bind mode by either:
@@ -60,11 +60,11 @@ The supported protocols are:
 
 FrSky D protocol:
 
-![FrSky SPI RX FrSky D binding with OpenTX](assets/images/frsky_spi_rx_d_binding.png)
+![FrSky SPI RX FrSky D binding with OpenTX](../assets/images/frsky_spi_rx_d_binding.png)
 
 FrSky X and X_LBT protocol:
 
-![FrSky SPI RX FrSky X binding with OpenTX](assets/images/frsky_spi_rx_x_binding.png)
+![FrSky SPI RX FrSky X binding with OpenTX](../assets/images/frsky_spi_rx_x_binding.png)
 
 6. Once binding has completed, the flight controller will indicate this by blinking the RX LED slowly. There's no indication on the CLI, but you can observe successful binding by quitting the bind mode on TX, and seeing if `status` doesn't list RXLOSS anymore in "Arming disable flags". A reboot of the flight controller is not required.
 

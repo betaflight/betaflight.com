@@ -255,29 +255,29 @@ Note that the configurator does not currently support the Center/Scale values, h
 
 The following 5 images show valid configurations. In all cases the entire usable range for the Range Channel is used.
 
-![Configurator example 1](Screenshots/adjustments-rate-profile-selection-via-3pos.png)
+![Configurator example 1](../Screenshots/adjustments-rate-profile-selection-via-3pos.png)
 
 ---
 
-![Configurator example 2](Screenshots/adjustments-pitch-and-roll-rate-adjustment-via-3pos.png)
+![Configurator example 2](../Screenshots/adjustments-pitch-and-roll-rate-adjustment-via-3pos.png)
 
 ---
 
-![Configurator example 3](Screenshots/adjustments-pid-via-two-3pos.png)
+![Configurator example 3](../Screenshots/adjustments-pid-via-two-3pos.png)
 
 ---
 
-![Configurator example 4](Screenshots/adjustments-pid-via-6pos-and-3pos.png)
+![Configurator example 4](../Screenshots/adjustments-pid-via-6pos-and-3pos.png)
 
 ---
 
-![Configurator example 5](Screenshots/adjustments-rates-via-a-2pos-and-3pos.png)
+![Configurator example 5](../Screenshots/adjustments-rates-via-a-2pos-and-3pos.png)
 
 The following examples shows **incorrect** configurations - the entire usable range for the Range Channel is not used in both cases.
 
-![Configurator example 6](Screenshots/adjustments-incorrect-config-1.png)
-![Configurator example 7](Screenshots/adjustments-incorrect-config-2.png)
+![Configurator example 6](../Screenshots/adjustments-incorrect-config-1.png)
+![Configurator example 7](../Screenshots/adjustments-incorrect-config-2.png)
 
 In the following example, the incorrect configuraton (above) has been corrected by adding a range that makes 'No changes'.
 
-![Configurator example 7](Screenshots/adjustments-incorrect-config-2-corrected.png)
+![Configurator example 7](../Screenshots/adjustments-incorrect-config-2-corrected.png)

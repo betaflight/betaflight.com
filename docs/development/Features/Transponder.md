@@ -21,7 +21,7 @@ Transponder codes are entered in the CF Configurator Transponder tab as 12 hex d
 
 Codes are theoretical unique. Codes are obtained for iLap or come with some flight controllers.
 
-![Provider iLap](Screenshots/Provider%20iLap.png)
+![Provider iLap](../Screenshots/Provider%20iLap.png)
 
 ## ArcTimer Provider
 
@@ -36,7 +36,7 @@ Arctimer is a commercial system that uses 9 byte transponder codes and a 42kHz c
 
 There are only 9 unique Arctimer codes. Codes are pick from a list on CF Configurator Transponder tab.
 
-![Provider ArcTimer](Screenshots/Provider%20ArcTimer.png)
+![Provider ArcTimer](../Screenshots/Provider%20ArcTimer.png)
 
 ## EasyRaceLapTimer (ERLT) Provider
 
@@ -53,4 +53,4 @@ EasyRaceLapTimer is a open source system that uses 6bit transponder codes and a 
 
 There are 64 unique ERLT codes. Codes are pick from a list on CF Configurator Transponder tab.
 
-![Provider ELRT](Screenshots/Provider%20ERLT.png)
+![Provider ELRT](../Screenshots/Provider%20ERLT.png)

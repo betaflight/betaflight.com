@@ -1,6 +1,6 @@
 # Blackbox flight data recorder
 
-![Rendered flight log frame](Screenshots/blackbox-screenshot-1.jpg)
+![Rendered flight log frame](../Screenshots/blackbox-screenshot-1.jpg)
 
 ## Introduction
 
@@ -171,7 +171,7 @@ The OpenLog can be wrapped in black electrical tape or heat-shrink in order to i
 carbon fiber), but this makes its status LEDs impossible to see. I recommend wrapping it with some clear heatshrink
 tubing instead.
 
-![OpenLog installed](Wiring/blackbox-installation-1.jpg 'OpenLog installed with double-sided tape, SDCard slot pointing outward')
+![OpenLog installed](../Wiring/blackbox-installation-1.jpg 'OpenLog installed with double-sided tape, SDCard slot pointing outward')
 
 ### Onboard dataflash storage
 
@@ -286,7 +286,7 @@ After your flights, you can use the [Cleanflight Configurator][] to download the
 computer. Go to the "dataflash" tab and click the "save flash to file..." button. Saving the log can take 2 or 3
 minutes.
 
-![Dataflash tab in Configurator](Screenshots/blackbox-dataflash.png)
+![Dataflash tab in Configurator](../Screenshots/blackbox-dataflash.png)
 
 After downloading the log, be sure to erase the chip to make it ready for reuse by clicking the "erase flash" button.
 

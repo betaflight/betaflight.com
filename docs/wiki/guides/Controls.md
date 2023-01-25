@@ -51,7 +51,7 @@ The stick positions are combined to activate different functions:
 | Enable LCD Page Cycling       | LOW      | CENTER | HIGH   | HIGH   |
 | Save setting                  | LOW      | LOW    | LOW    | HIGH   |
 
-![Stick Positions](assets/images/StickPositions.png)
+![Stick Positions](../../development/assets/images/StickPositions.png)
 
 ### History
 

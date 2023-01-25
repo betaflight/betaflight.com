@@ -23,7 +23,7 @@ The Cygwin environment provides some functionality similar to a Linux distributi
 
 Download the Setup\*.exe from https://www.cygwin.com/
 
-![Cygwin Installation](assets/001.cygwin_dl.png)
+![Cygwin Installation](../assets/001.cygwin_dl.png)
 
 Execute the downloaded Setup\*.exe and step through the installation wizard (no need to customize the settings here). Stop at the "Select Packages" Screen and select the following Packages
 for Installation:
@@ -37,19 +37,19 @@ for Installation:
 - Shells/mintty (should be already selected)
 - Archive/unzip
 
-![Cygwin Installation](assets/002.cygwin_setup.png)
+![Cygwin Installation](../assets/002.cygwin_setup.png)
 
-![Cygwin Installation](assets/003.cygwin_setup.png)
+![Cygwin Installation](../assets/003.cygwin_setup.png)
 
-![Cygwin Installation](assets/004.cygwin_setup.png)
+![Cygwin Installation](../assets/004.cygwin_setup.png)
 
-![Cygwin Installation](assets/005.cygwin_setup.png)
+![Cygwin Installation](../assets/005.cygwin_setup.png)
 
-![Cygwin Installation](assets/006.cygwin_setup.png)
+![Cygwin Installation](../assets/006.cygwin_setup.png)
 
 Continue with the Installation and accept all autodetected dependencies.
 
-![Cygwin Installation](assets/007.cygwin_setup.png)
+![Cygwin Installation](../assets/007.cygwin_setup.png)
 
 The Cygwin environment is now installed and can be used with the `Cygwin-Terminal` application.
 
@@ -57,7 +57,7 @@ The Cygwin environment is now installed and can be used with the `Cygwin-Termina
 
 Head over to the Betaflight Github page and grab the URL of the GIT Repository: "https://github.com/betaflight/betaflight.git"
 
-![GIT Checkout](assets/011.git_checkout.png)
+![GIT Checkout](../assets/011.git_checkout.png)
 
 Open the Cygwin-Terminal, navigate to the `/dev` folder and use the git command `git clone` to checkout the repository.
 
@@ -66,7 +66,7 @@ cd /dev
 git clone https://github.com/betaflight/betaflight.git
 ```
 
-![GIT Checkout](assets/012.git_checkout.png)
+![GIT Checkout](../assets/012.git_checkout.png)
 
 The `/dev/betaflight` folder now holds a copy of the current Betaflight source code repository.
 
@@ -115,13 +115,13 @@ Or via direct link:
 
 Extract the contents of this archive to any folder of your choice, for instance `C:\dev\gcc-arm`.
 
-![GNU ARM Toolchain Setup](assets/008.toolchain.png)
+![GNU ARM Toolchain Setup](../assets/008.toolchain.png)
 
 Add the "bin" subdirectory to the PATH Windows environment variable: `%PATH%;C:\dev\gcc-arm\bin`
 
-![GNU ARM Toolchain Setup](assets/009.toolchain_path.png)
+![GNU ARM Toolchain Setup](../assets/009.toolchain_path.png)
 
-![GNU ARM Toolchain Setup](assets/010.toolchain_path.png)
+![GNU ARM Toolchain Setup](../assets/010.toolchain_path.png)
 
 The ARM toolchain is now available within the Cygwin environment.
 
@@ -134,7 +134,7 @@ cd /dev/betaflight
 make TARGET=NAZE
 ```
 
-![GIT Checkout](assets/013.compile.png)
+![GIT Checkout](../assets/013.compile.png)
 
 Within few moments you should have your binary ready:
 

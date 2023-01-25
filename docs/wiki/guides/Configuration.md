@@ -14,7 +14,7 @@ some features and settings.
 
 ## GUI
 
-![Cleanflight Gui](Screenshots/cleanflight-gui.png)
+![Cleanflight Gui](../../development/Screenshots/cleanflight-gui.png)
 
 The GUI tool is the preferred way of configuration. The GUI tool also includes a terminal which
 can be used to interact with the CLI.

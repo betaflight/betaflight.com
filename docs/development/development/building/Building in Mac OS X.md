@@ -19,7 +19,7 @@ make: *** No targets specified and no makefile found.  Stop.
 If it isn't installed yet, you might get a popup like this. If so, click the "install" button to install the commandline
 developer tools:
 
-![Prompt to install developer tools](assets/mac-prompt-tools-install.png)
+![Prompt to install developer tools](../assets/mac-prompt-tools-install.png)
 
 If you just get an error like this instead of a helpful popup prompt:
 

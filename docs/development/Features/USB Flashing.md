@@ -62,7 +62,7 @@ With the board connected and in bootloader mode (reset it by sending the charact
 - Choose Options > List All Devices
 - Select `STM32 BOOTLOADER` in the device list
 - Choose `WinUSB (v6.x.x.x)` in the right hand box
-  ![Zadig Driver Procedure](assets/images/zadig-dfu.png)
+  ![Zadig Driver Procedure](../assets/images/zadig-dfu.png)
 - Click Replace Driver
 - Restart Chrome (make sure it is completely closed, logout and login if unsure)
 - Now the DFU device should be seen by Configurator
