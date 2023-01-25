@@ -120,7 +120,7 @@ mid_rc (Note: this is incorrectly label throttle middle in the CF config GUI) is
 The default max_throttle of 1850 comes from MultiWii and is a SAFE max value for ALL ESCs.
 Code from MW2.3 config.h file
 
-/****\*\*\*\*****\*\*\*\*****\*\*\*\***** Motor maxthrottle ******\*\*******\*\*\*******\*\*******/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\*** Motor maxthrottle **\*\***\*\***\*\***\*\*\***\*\***\*\***\*\***/
 /_ this is the maximum value for the ESCs at full power, this value can be increased up to 2000 _/
 #define MAXTHROTTLE 1850
 

@@ -107,9 +107,15 @@ const config = {
           src: 'img/logo_fb.png',
         },
         items: [
+          //   {
+          //     type: 'doc',
+          //     docId: 'wiki',
+          //     position: 'left',
+          //     label: 'Wiki',
+          //   },
           {
-            type: 'doc',
-            docId: 'wiki',
+            type: 'docSidebar',
+            sidebarId: 'wiki',
             position: 'left',
             label: 'Wiki',
           },
