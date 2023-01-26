@@ -1,4 +1,6 @@
-# Running with reversed motors in betaflight (Spinning outwards at the front and back)
+# Running with reversed motors
+
+### Spinning outwards at the front and back
 
 This page is primarily for myself since I always forget which command it is.
 

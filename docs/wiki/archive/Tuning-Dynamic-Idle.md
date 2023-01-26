@@ -1,3 +1,5 @@
+# Tuning Dynamic Idle
+
 ### Introduction
 
 Dynamic Idle improves how Betaflight controls the motors at the low end of the rpm range.

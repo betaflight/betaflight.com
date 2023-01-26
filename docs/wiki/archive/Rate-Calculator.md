@@ -1,3 +1,5 @@
+# Rate Calculator
+
 In order to convert between Betaflight, RaceFlight and FlightOne rates, the converters below can be used. There is also now a converter for Betaflight, Raceflight, KISS, Actual and QuickRates below. Please note that not every curve can be recreated perfectly in a different rate model.
 
 Actual and Quick rates use max velocity directly as a variable (velocity in degree/sec at maximum stick deflection). If you put rates of a different rate model into the configurator it shows you the corresponding max velocity.
@@ -29,7 +31,7 @@ Collection of rate presets and rates of established pilots:
 
 More about Actual and Quick rates:
 
-- https://betaflight.com/docs/tuning/4.2-Tuning-Notes#New-Rates-modes
+- https://betaflight.com/docs/wiki/tuning/4.2-Tuning-Notes#New-Rates-modes
 - https://github.com/betaflight/betaflight/pull/9495
 - https://github.com/betaflight/betaflight/pull/9506
 

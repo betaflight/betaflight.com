@@ -1,3 +1,5 @@
+# Led Strip Functionality
+
 ## Betaflight 4.0
 
 Add crash flip recovery_led_warning, this can be used instead of a buzzer

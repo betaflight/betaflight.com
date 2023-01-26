@@ -1,3 +1,5 @@
+# Paralyze For Team Races
+
 During team relay races it's unsafe to retrieve crashed quads because the course is continuously hot. In order to safely fly a backup quad with the primary quad crashed in the field (but powered up) it's necessary to:
 
 - Disable arming, so that the crashed quad doesn't unintentionally arm when taking off with the backup. This is specifically a problem when a transmitter can send signals to all powered up receivers (like FrSky ACCST D8/D16 and others)

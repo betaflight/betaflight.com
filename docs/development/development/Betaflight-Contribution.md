@@ -1,7 +1,7 @@
 # Contributing to Betaflight
 
 Contributing to Betaflight involves preparing your development environment and making a fork of the repository and working with Git.
-Look in https://github.com/betaflight/betaflight/tree/master/docs/development for installation notes for your environment.
+Look in https://betaflight.com/docs/development/development for installation notes for your environment.
 This document gives some instructions how to handle Git. First make a fork of the repository you want to work on from the github website.
 Please contribute to this article to help others make git easier to use.
 
@@ -26,11 +26,9 @@ If you omit to configure this you get a warning and have to use the following co
     git remote add upstream https://github.com/betaflight/betaflight.git
     git remote -v
 
-## Create branch and make changes
+## Create a branch and start making changes
 
-Git also has the new `switch` command.
-
-    git checkout -b fix
+    git checkout -b branch
 
 ## Stage files for commit
 
@@ -40,7 +38,7 @@ Commit your changes after making initial changes:
     git commit -m "message"
     git push origin branch
 
-Note: you either need to do `commit -am` or specify the files.
+Note: `git commit -am` or specify the files.
 
 ## Make more changes and commit on top of last commit
 
@@ -62,7 +60,7 @@ Note: you either need to do `commit -am` or specify the files.
 or
 
     git pull upstream master
-    switch to the branch I want to rebase and use git rebase -i master
+    git rebase -i master
 
 If you look at `git reflog --oneline` you will see these lines:
 
@@ -76,7 +74,7 @@ If you look at `git reflog --oneline` you will see these lines:
 
 or
 
-        git checkout --<filename>
+    git checkout --<filename>
 
 ## Recover from unwanted commit without push
 
@@ -149,7 +147,7 @@ In the example please substitute the contributor, betaflight_project and branch:
     git remote add contributor https://github.com/contributor/betaflight_project.git
     git remote -v
     git fetch contributor
-    git checkout --track -b branch contributor/branch
+    git switch branch
 
 The original author now can pull the changes to the local branch with:
 

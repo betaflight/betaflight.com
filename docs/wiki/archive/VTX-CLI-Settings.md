@@ -1,3 +1,5 @@
+# VTX CLI Settings
+
 As of Betaflight version 3.3.0, the CLI settings below can be used to
 configure addressable video transmitters (such as
 TBS-[SmartAudio](Unify-Smartaudio)

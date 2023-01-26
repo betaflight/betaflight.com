@@ -1,3 +1,5 @@
+# Runaway Takeoff Prevention
+
 ## Description
 
 Runaway Takeoff Prevention is a safety feature designed to detect and auto-disarm if an unsafe response is detected by the PID controller on the first takeoff after power-up. Sometimes referred to as a "Tasmanian Devil", some configuration or hardware issues can cause a violent and dangerous out-of-control spin immediately after arming or as the throttle is raised for takeoff. Some common causes are:

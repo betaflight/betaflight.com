@@ -1,3 +1,5 @@
+# Debug Modes
+
 ### CLI INFORMATION COMMANDS
 
 - "VERSION" - Shows the current firmware loaded and the last github code commit [ie: "(9f67a584b)"] for the specific build of the firmware.

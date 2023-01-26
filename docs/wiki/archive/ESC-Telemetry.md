@@ -1,3 +1,5 @@
+# ESC Telemetry
+
 **As of Version 3.1.0 RC1 the ability to read ESC telemetry from KISS 24A ESCs exists in Betaflight.**
 
 This page is intended to be a quick guide on how to set up ESC telemetry and will require a basic understanding of terms and equipment which can be found elsewhere within the wiki or through researching each term separately. This version of the guide won't cover how to get telemetry set up from the flight controller to the RC receiver and back to the RC Transmitter, that is part of the prerequisites and is currently listed as optional.

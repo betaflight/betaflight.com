@@ -1,3 +1,5 @@
+# Gyro and Dterm Filtering Recommendations
+
 ## Changes in Default Filter settings
 
 From version 2.7 onward, the default filtering strength settings are _reduced_ in order to provide the best possible flight characteristics. You may find that after upgrading, your aircraft becomes very twitchy or uncontrollable. This can be caused if you have a noisy quad because the vibrations are now making it past the filter into the PID loop.

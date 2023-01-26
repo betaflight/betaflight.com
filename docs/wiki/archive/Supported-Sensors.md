@@ -1,4 +1,6 @@
-# Introduction
+# Supported Sensors
+
+## Introduction
 
 This page is a _un_-complete list of supported sensors by betaflight. To be sure that your sensor is supported check in _/src/main/drivers/drivers/_ _accgyro_, _barometer_, _rangefinder_, _compass_
 

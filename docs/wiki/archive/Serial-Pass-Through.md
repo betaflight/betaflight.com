@@ -1,3 +1,5 @@
+# Serial Passthrough
+
 ## Update FrSky XSR RX Firmware
 
 I was unable to replicate due to issues with the FrSky tool not loading COM ports. If you are familiar with this procedure, please update if necessary.

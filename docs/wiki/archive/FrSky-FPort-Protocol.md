@@ -1,4 +1,6 @@
-# Motivation
+# FrSky FPORT Protocol
+
+## Motivation
 
 FPort is a new RC protocol that was developed by FrSky in collaboration with Betaflight. It has a number of improvements over existing protocols used by FrSky hardware:
 

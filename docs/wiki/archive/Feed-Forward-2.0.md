@@ -1,3 +1,5 @@
+# Feed Forward 2.0
+
 Betaflight 4.1 brings us `Feed Forward 2.0` - a comprehensive set of updates to FeedForward.
 
 Note that `ff_spread` from the development versions has been changed to `set ff_interpolate_sp = AVERAGED`. The time interval to spread is no longer required.

@@ -1,3 +1,5 @@
+# Single Wire FlySky IBUS
+
 It's now possible to combine the serial rx and ibus telemetry on the same fc uart on a single pin.
 
 I'm combining the ibus ports of the FS-iA6B receiver with a diode and a resistor.

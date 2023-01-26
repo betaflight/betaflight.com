@@ -1,3 +1,5 @@
+# Servos & Servo Tilt
+
 ### Introduction
 
 ## Starting with v3.1, default servo output assignments are deleted from the firmware. Instead, servo outputs must be explicitly assigned by`resource` CLI command. (For details of the `resource` command, please refer to [Betaflight resource remapping](Betaflight-resource-remapping).

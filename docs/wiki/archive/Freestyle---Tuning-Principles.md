@@ -1,12 +1,10 @@
-#
+# Freestyle Tuning Principles
 
-# This is a work in progress and not a final document.
-
-#
+## This is a work in progress and not a final document.
 
 > Authors: Elia Palme, Daniel Appel, Hugo Chiang(DusKing1), Mark Spatz and co.
 
-# Motivation
+## Motivation
 
 Provide easy and simple guidelines to set-up Betaflight for freestyle.
 
@@ -20,7 +18,7 @@ suggestions to make the best out of Betaflight for freestyle purposes.
 
 Note: before editing this guide consider discussing changes on the original [document](https://docs.google.com/document/d/1ki5_OdsD6xIo6t1pZLV04wH0uaplabWEtOenDJmnYX4).
 
-# Principles and Attributes
+## Principles and Attributes
 
 Freestyle is mainly about the footage of a smooth and precise acrobatic
 flight.
@@ -58,11 +56,11 @@ smoothly and consistently.
 Therefore it is advised to compromise on responsiveness to keep the
 quad behaving in a predictive and consistent manner
 
-# Betaflight Tune
+## Betaflight Tune
 
 **Important note:** the suggested tuning values are intended for a typical 5" setup either 6S with [1600 to 1800] KV motors or 4S with [2400-2600] KV motors.
 
-## VBat Sag Compensation
+### VBat Sag Compensation
 
 This feature aims to provide motor response consistency across the
 entire flight ([BF doc ref](../tuning/4.2-Tuning-Notes.md#dynamic-battery-sag-compensation)).
@@ -72,14 +70,14 @@ and predictively.
 If you plan to use this feature it's crucial to enable it before
 performing the PID tuning.
 
-### Suggested setting: values for a 5"
+#### Suggested setting: values for a 5"
 
 |                                           | **Value**       |
 | ----------------------------------------- | --------------- |
 | **VBat Sag Period (vbat_sag_lpf_period)** | 200 (20 second) |
 | **VBat compensation**                     | 40-70           |
 
-### :bulb: Advanced Considerations
+#### :bulb: Advanced Considerations
 
 <details>
   <summary>Click to expand!</summary>
@@ -183,7 +181,7 @@ motor noises on quads running high PID gains.
 
 Similar to D Min this settings could negatively affect consistency
 leading to an increase of rotation rate when more throttle applied
-[BF doc ref](../development/PID%20tuning#tpa-and-tpa-breakpointre%20throttle%20applied.).
+[BF doc ref](../../development/PID%20tuning#tpa-and-tpa-breakpoint)
 
 **Increasing the default breakpoint value allows to keep D constant also
 around mid throttle .**

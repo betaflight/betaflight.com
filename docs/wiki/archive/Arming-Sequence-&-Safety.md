@@ -1,10 +1,12 @@
-# Switch arming
+# Arming Sequence & Safety
+
+## Switch arming
 
 The AUX channel configured for arming will choose a default value that falls outside of the configured arm range (as configured in the "Modes" configurator tab), this value is either 1 "step" (25us) above or below the configured range. This is a safety feature to ensure the default value would not cause accidental arming.
 
 Note that this default value is overwritten by the first values data from the receiver, therefore bad RX initial states or failsafe settings can still cause issues.
 
-# Arming Prevention
+## Arming Prevention
 
 Betaflight 3.2 (and above) includes more detailed troubleshooting information for the case when a craft will not arm.
 

@@ -1,3 +1,5 @@
+# DMin
+
 Dmin allows us to have different amounts of D depending on what the quad is doing at the time.
 
 When enabled, we can have a lower amount of D in normal flight - the Dmin value - and a higher amount - the Dmax value - during quick manoeuvres like flips or rolls, and during propwash type events.
