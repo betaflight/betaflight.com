@@ -1,0 +1,32 @@
+name: Check if pr is compileable
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: npm
+        cache-dependency-path: ./package-lock.json
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: ENV file
+      run: |
+        echo "URL=http://localhost:3000" > .env
+        echo "BASE_PATH=/" >> .env
+        echo "ORG=betaflight" >> .env
+
+    - name: Build package
+      run: npm run build

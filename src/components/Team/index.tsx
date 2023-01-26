@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import teamInfo from '../../json/team.json'
 
 type GitHubUser = {
   id: number
@@ -38,42 +39,7 @@ type GitHubUser = {
 }
 
 export default function TeamFeature() {
-  const githubUsers = [
-    'Asizon',
-    'blckmn',
-    'borisbstyle',
-    'chmelevskij',
-    'daleckystepan',
-    'DieHertz',
-    'ctzsnooze',
-    'haslinghuis',
-    'JyeSmith',
-    'KarateBrot',
-    'klutvott123',
-    'limonspb',
-    'McGiverGim',
-    'SteveCEvans',
-    'sugaarK',
-    'wind0r',
-  ]
-
-  const [userData, setUserData] = useState<GitHubUser[]>([])
-
-  useEffect(() => {
-    const githubUserData = localStorage.getItem('githubUserData')
-    const fetchData = async () => {
-      const timestamp = githubUserData ? new Date(githubUserData.split('|')[0]) : null
-      if (!timestamp || new Date().getTime() - timestamp.getTime() > 1000 * 60 * 60 * 24) {
-        await Promise.all(githubUsers.map((user) => fetch(`https://api.github.com/users/${user}`).then((res) => res.json()))).then((data) => {
-          setUserData(data)
-          localStorage.setItem('githubUserData', [new Date().getTime(), JSON.stringify(data)].join('|'))
-        })
-      } else {
-        setUserData(JSON.parse(githubUserData.split('|')[1]))
-      }
-    }
-    fetchData()
-  }, [])
+  const userData: GitHubUser[] = teamInfo
 
   function truncateStr(str: string) {
     return str.length > 20 ? `${str.substring(0, 20)}...` : str
@@ -93,13 +59,13 @@ export default function TeamFeature() {
             <div key={user.id}>
               <div className="h-full overflow-hidden relative flex flex-col items-center rounded-2xl bg-neutral-500/10 p-4">
                 <img src={user.avatar_url} alt={user.login} className="rounded-full w-16 h-16" />
-                <div className="mt-2">{user.login}</div>
-                <div>{user.name}</div>
-                {user.location && <div>{truncateStr(user.location)}</div>}
+                <div className="mt-2 text-primary-500 font-semibold">{user.login}</div>
+                <div className="text-sm text-neutral-500 font-semibold">{user.name}</div>
+                {user.location && <div className="text-sm text-neutral-500">{truncateStr(user.location)}</div>}
                 {user.blog && (
-                  <div className="text-blue-400">
-                    <a href={user.blog}>{truncateStr(user.blog)}</a>
-                  </div>
+                  <a className="fancy-link no-underline" href={user.blog}>
+                    {truncateStr(user.blog)}
+                  </a>
                 )}
               </div>
             </div>

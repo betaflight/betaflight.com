@@ -1,0 +1,162 @@
+---
+sidebar_position: 21
+---
+
+# Firmware Flasher tab
+
+Here you update your firmware and select the features you require for you build.
+
+:::info
+
+The Firmware only contains only hardware support. Board configuration defines board specific hardware.
+With the Build Configuration you can add or remove features you need.
+
+:::
+
+
+![Firmware Flasher tab](/img/betaflight_configurator_firmware_flasher_tab.png)
+
+
+## Preparation
+
+* Upgrade to the latest Betaflight Configurator.
+
+* Before upgrading always save a `diff` of the current configuration. Using `status` command you get some info about hardware being used.
+* You can also save a `diff` using Presets tab using the `save backup` button.
+* Except `master` and `profile` most settings should be able to migrate from a previous version.
+
+:::note
+
+Configurator only supports Betaflight version 4.0 and beyond. Older versions only have access to the firmware flasher tab or CLI.
+
+:::
+
+
+## Flashing
+
+| Type | Version |
+| :--- | :--- |
+| Release | Stable | None |
+| Candidate | Preview |
+| Development | Test |
+
+* After selecting a build type select the board using the list or use the `Auto-detect` button.
+* Always use `Full Chip Erase` unless instructed otherwise.
+
+:::note
+
+Using `Show Release Candidates` with `Expert Mode` enabled gives access to development builds.
+
+:::
+
+
+### Board defines
+
+We have defines for `ACC`, `BARO`, `FLASH`, `GYRO`, `MAX7456`, `FLASH` or `SDCARD`  in the board configuration.
+
+:::note
+
+If we are missing any information please reach out on Discord to help us add any missing defines to the configuration.
+
+:::
+
+
+### Radio protocols
+
+Select the receiver wire protocol used. The most common are:
+
+| Protocol | Receiver |
+| :--- | :--- |
+| CRSF | TBS Crossfire or ExpressLRS |
+| GHST | Immersion RC Ghost |
+| SBUS | FrSky or Futaba |
+
+:::info
+
+EXPRESSLRS (SPI) receivers use CRSF protocol. FrSky (SPI) receivers uses SBUS or FPORT protocol depending on the receiver firmware used.
+
+:::
+
+
+### Telemetry protocols
+
+Select the telemetry protocol used. For CRSF, ELRS or GHST protocols this is included by default to ease configuraton.
+
+:::info
+
+ExpressLRS uses CRSF protocol. SPI configuration is done in the board configuration.
+
+:::
+
+
+### Other options
+
+| Option | Description |
+| :--- | :--- |
+| AKK (SA Fix) | Smartaudio patch for AKK hardware |
+| DASHBOARD | OSD Dashboard |
+| FLASH | Enable blackbox Flash Tools |
+| GPS | Enable GPS |
+| LED Strip | Enable 32 LEDs |
+| LED Strip 64 | Enable 64 LEDs |
+| MAG | Enable magnetometer |
+| OSD_SD | Enable SD OSD (onboard MAX7456 required) |
+| OSD_HD | Enable HD OSD |
+| PIN IO | Enable PINIO |
+| VTX | Enable VTX |
+
+
+### Motor protocol
+
+Select ESC protocol being used. DShot is default.
+
+:::tip
+
+When needed additional protocols like `PWM` or `SERVOS` please add them using Custom Defines.
+
+:::
+
+
+### Custom defines
+
+You can add a custom define to bake a feature into the build which would not fit before:
+
+| Define | Description |
+| :--- | :--- |
+| ACRO TRAINER | Adds Acro Trainer support |
+| BATTERY_CONTINUE | See [#11084](https://github.com/betaflight/betaflight/pull/11084) |
+| CAMERA_CONTROL | Adds Camera Control |
+| EMFAT_AUTORUN | Adds FAT emulation for onboard flash or MSC |
+| EMFAT_ICON | Adds (Windows) icon for FAT Emulation |
+| ESCSERIAL_SIMONK | Adds support for SimonK ESC Firmware |
+| FRSKYOSD | Adds FrSky OSD support |
+| GPS_PLUS_CODES | Use Open Location Code |
+| LAUNCH_CONTROL | Adds Launch Control |
+| SERIAL_4WAY_SK_BOOTLOADER | Allow flashing APD / BlHeli ESC using serial 4way |
+| SERVOS | Add Servo support |
+| VARIO | Add Vario support |
+
+
+## Local flashing
+
+To flash local development firmware with optional custom configuration use the `Load Firmware local` button to load board configuration or click `Auto-detect` or when in `DFU` mode select a board manually.
+
+:::note
+
+If using a local configuration file use the same button again to load a local hex file.
+
+:::
+
+
+:::tip
+
+* Use a good quality data cable not a power cable.
+* USB hubs are sometimes needed in other cases they can cause issues.
+* Try disconnecting all cables from your PC first, try rebooting, other ports, upgrade system drivers. Remove other USB connections.
+* Try DFU mode (use boot button on FC while plugging in, use `Activate Boot Loader / DFU` button in setup tab or use `bl` command in CLI.
+* Sometimes peripherals on the flight controller such as receivers or GPS devices can hijack port communication requiring de-soldering.
+* Linux needs configuration to allow flashing.
+* MacOS or Windows do not need any drivers.
+* If it still doesn't work try IRC Driver Fix or Zadig on Windows platform.
+
+:::
