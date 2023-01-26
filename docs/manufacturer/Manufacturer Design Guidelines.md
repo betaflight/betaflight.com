@@ -15,6 +15,7 @@ Version Change Register
 | Draft 0.7 | 17 November 2022 | Remove off-board hardware defines |
 | Draft 0.8 | 01 January 2023  | Update BARO and CC2500            |
 | Draft 0.9 | 14 January 2023  | Add FC LEDs                       |
+| Draft 1.0 | 26 January 2023  | Add Signal Rules                  |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -133,6 +134,18 @@ Castellations and use of mounting pads with through holes or edge continuity are
 For board layouts implementing transistor PINIO functionality for ‘pit switch’ or similar behaviors, solder bridge options are strongly recommended to enable users to select output voltage, or physically bypass the switching functionality by connecting to voltage sources. Particularly for video systems, it is strongly recommended to avoid performing this switching on the ground, due to interference concerns demonstrated with inconsistent ground planes.
 
 If providing direct mounting support for receivers, the following specification should be followed: the pin sequence must be GND, 5V, UART RX, UART TX with a 2.54mm pin pitch, and permit receivers sized up to 12x20mm. This mirrors the standard mounting (Gnd/5V/Tx/Rx) of CRSF Nano and ELRS Nano receivers, with mirrored UART communication allowing for Tx and Rx to be paired to the same UART.
+
+**Rules:**
+
+- GND should be as close to a signal as possible.
+- High speed signals should be away from power.
+- Keep similar signals next to each other.
+- Always minimize current flow path.
+
+:::note
+BAT/GND/CUR/TLM/M1/M2/M3/M4 is far better as it keeps noisy power far away from high-speed digital signals.
+M1-M4 being very high-speed, TLM being low speed, CUR being analog and current flow loop/return path between GND and BAT minimized.
+:::
 
 ### 3.1.2 Inertial Measurement Unit (IMU) Selection
 
