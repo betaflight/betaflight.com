@@ -32,11 +32,13 @@ jobs:
       continue-on-error: true
       run: |
         npm run check:file-names
+        exit $?
 
     - name: Check tile case in markdown files
       continue-on-error: true
       run: |
         npm run check:title-case
+        exit $?
 
     - name: Build package
       run: npm run build
