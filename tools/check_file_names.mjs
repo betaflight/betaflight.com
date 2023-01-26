@@ -20,8 +20,6 @@ function checkFileName(fileName) {
   }
 }
 
-let error = false;
-
 /**
  * 
  * @param {string} dir 
