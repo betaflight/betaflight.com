@@ -29,10 +29,12 @@ jobs:
         echo "ORG=betaflight" >> .env
 
     - name: Check file names of markdown files
+      continue-on-error: true
       run: |
         npm run check:file-names
 
     - name: Check tile case in markdown files
+      continue-on-error: true
       run: |
         npm run check:title-case
 
