@@ -28,5 +28,13 @@ jobs:
         echo "BASE_PATH=/" >> .env
         echo "ORG=betaflight" >> .env
 
+    - name: Check file names of markdown files
+      run: |
+        npm run check:file-names
+
+    - name: Check tile case in markdown files
+      run: |
+        npm run check:title-case
+
     - name: Build package
       run: npm run build
