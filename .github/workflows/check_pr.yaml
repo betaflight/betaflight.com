@@ -35,7 +35,7 @@ jobs:
         npm run check:file-names
         exit $?
 
-    - name: Check tile case in markdown files
+    - name: Check title case in markdown files
       id: check-title-case
       continue-on-error: true
       run: |
