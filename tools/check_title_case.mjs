@@ -33,27 +33,31 @@ function checkTitleCase(filePath) {
       log(chalk.green(`\t${lineNumber}: ${titleCase(line)}`));
     });
   }
+
+  return errorLines.length === 0;
 }
 
 function readDir(dir) {
   const files = fs.readdirSync(dir);
+  let error = false;
   for (const file of files) {
     const filePath = path.join(dir, file);
     const fileStat = fs.lstatSync(filePath);
     if (fileStat.isDirectory()) {
       // Recursively read the subdirectory
-      readDir(filePath);
+      error &= readDir(filePath);
     } else if (fileStat.isFile() && (file.endsWith('.md') || file.endsWith('.mdx'))) {
       // Check the file for title case
-      checkTitleCase(filePath);
+      error &= checkTitleCase(filePath);
     }
   }
+  return error;
 }
 
 function runFull() {
   // Example usage
   const directoryPath = './docs';
-  readDir(directoryPath);
+  return readDir(directoryPath);
 }
 
 function run() {
@@ -61,12 +65,15 @@ function run() {
   const hasArgs = process.argv.length > 2;
 
   if (!hasArgs) {
-    return runFull();
+    return runFull() ? 0 : 1;
   }
   const [,, ...args] = process.argv;
-  args.forEach(arg => {
-    checkTitleCase(arg);
-  });
+  
+  return args.map(arg => {
+    return checkTitleCase(arg);
+  }).includes(false) ? 1 : 0;
 }
 
-run();
+const exitCode = run();
+
+process.exit(exitCode);

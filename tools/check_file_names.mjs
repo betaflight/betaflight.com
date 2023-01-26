@@ -29,6 +29,7 @@ let error = false;
  */
 function processDir(dir, depth = 1) {
   const files = fs.readdirSync(dir, { withFileTypes: true });
+  let error = false;
   files.forEach((file) => {
     if (file.isDirectory()) {
       log(chalk.white.bgBlackBright(`${'\t'.repeat(depth)}${dir}/${file.name}:`));
@@ -40,19 +41,16 @@ function processDir(dir, depth = 1) {
       error = true;
     }
   });
+  return error;
 }
 
 function runFull() {
   const rootDir = fs.readdirSync('./docs', { withFileTypes: true });
 
-  rootDir.forEach(file => {
+  return rootDir.map(file => {
     log(chalk.white.bgBlackBright(`./docs:`));
-    processDir(`./docs/${  file.name}`);
+    return processDir(`./docs/${  file.name}`);
   });
-
-  if (error) {
-    throw new Error('Invalid file name(s) found.');
-  }
 }
 
 /**
@@ -70,12 +68,12 @@ function run() {
   const hasArgs = process.argv.length > 2;
 
   if (!hasArgs) {
-    return runFull();
+    return runFull().includes(false) ? 1 : 0;
   }
   const [,, ...args] = process.argv;
-  args.forEach(arg => {
-    runSingle(arg);
-  });
+  return args.map(arg => runSingle(arg)).includes(false) ? 1 : 0;
 }
 
-run();
+const exitCode = run();
+
+process.exit(exitCode);
