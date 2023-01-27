@@ -1,4 +1,4 @@
-## Custom Board Configuration Using CLI
+# Custom Board Configuration
 
 Warning: This section covers beyond the normal use-case for Betaflight. It's recommended that you use a pre-made target configuration for a flight controller that has been thoroughly tested before. Those configurations can be found in the [unified targets list](https://github.com/betaflight/unified-targets/tree/master/configs/default).
 

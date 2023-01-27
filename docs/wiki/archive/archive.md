@@ -1,10 +1,3 @@
----
-sidebar_position: 5
-sidebar_label: Archive
----
-
-# Archive
-
 ![BetaFlight](https://betaflight.com/assets/img/betaflight/bf_logo.png)
 
 ## Welcome to the BetaFlight Wiki!
