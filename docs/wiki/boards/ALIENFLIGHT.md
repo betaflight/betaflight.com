@@ -1,4 +1,4 @@
-# Board - AlienFlight (ALIENFLIGHTF1 and ALIENFLIGHTF3 target)
+# AlienFlight (ALIENFLIGHTF1 and ALIENFLIGHTF3 target)
 
 AlienWii is now AlienFlight. This target supports various variants of brushed and brusless flight controllers. The designs for them are released for public use at:
 
@@ -32,7 +32,7 @@ Here are the general hardware specifications for this boards:
     set serialrx_provider = 1   (0 for 1024bit, 1 for 2048bit)
     set spektrum_sat_bind = 5
 
-For more detail of the different bind modes please refer the [Spektrum Bind](../Spektrum%20bind.md) document
+For more detail of the different bind modes please refer the [Spektrum Bind](../../development/Spektrum%20bind.md) document
 
 Deltang receivers in serial mode will work like any other Spektrum satellite receiver (10bit, 22ms) only the bind process will be different.
 

@@ -1,4 +1,4 @@
-# Spektrum bind support
+# Spektrum Bind Support
 
 Spektrum bind with hardware bind plug support.
 

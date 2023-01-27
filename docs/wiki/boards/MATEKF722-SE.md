@@ -84,5 +84,5 @@ Pads are organised into two large banks of pads on left and right sides of board
 |                `TX6` | UART6-TX      |                                                                                               |
 |                `RX6` | UART6-RX      | (_One per board corner_) Duplicates of RX6 pad for ESC Telemetry                              |
 |               `Rssi` | RSSI          | FrSky RSSI input from RX (_Rear of board_)                                                    |
-|               `PA4 ` | ADC/DAC       | EXTERNAL1_ADC_PIN (_Rear of board_)                                                           |
+|               `PA4 ` | ADC/DAC       | EXTERNAL1*ADC_PIN (\_Rear of board*)                                                          |
 |       `D+, D-. VBus` | USB pins      | (_Rear of board_)                                                                             |
