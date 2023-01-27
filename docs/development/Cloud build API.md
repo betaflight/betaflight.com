@@ -11,6 +11,7 @@ The build log has information about the build in case of failure.
 ## Usage
 
 For optimal use please select ONLY the appropiate hardware for the flight controller after selecting the right target (using auto-detect button).
+Choices below are further described in the [wiki/Firmware Flasher page](https://betaflight.com/docs/wiki/configurator/firmware-flasher-tab)
 
 ### Radio Protocols
 
@@ -65,6 +66,7 @@ Note: telemetry for CRSF, ELRS, FPORT and GHST are included during the build.
 
 ### Custom Defines
 
+    ACRO_TRAINER
     BATTERY_CONTINUE
     DASHBOARD
     EMFAT_AUTORUN
