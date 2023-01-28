@@ -63,7 +63,7 @@ quad behaving in a predictive and consistent manner
 ### VBat Sag Compensation
 
 This feature aims to provide motor response consistency across the
-entire flight ([BF doc ref](../tuning/4.2-Tuning-Notes.md#dynamic-battery-sag-compensation)).
+entire flight ([BF doc ref](/docs/tuning/4.2-Tuning-Notes.md#dynamic-battery-sag-compensation)).
 By enabling VBat Sag Compensation the craft will fly more consistently
 and predictively.
 
@@ -181,7 +181,7 @@ motor noises on quads running high PID gains.
 
 Similar to D Min this settings could negatively affect consistency
 leading to an increase of rotation rate when more throttle applied
-[BF doc ref](../../development/PID%20tuning#tpa-and-tpa-breakpoint)
+[BF doc ref](/docs/development/PID-tuning#tpa-and-tpa-breakpoint)
 
 **Increasing the default breakpoint value allows to keep D constant also
 around mid throttle .**

@@ -1,4 +1,6 @@
-# General
+# Coding style
+
+## General
 
 This document overrides the original Baseflight style that was referenced before.
 This document has taken inspiration from that style, from Eclipse defaults and from Linux, as well as from some Cleanflight and Betaflight developers and existing code.

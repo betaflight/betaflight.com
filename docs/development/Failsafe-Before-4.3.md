@@ -1,4 +1,4 @@
-# Failsafe
+# Failsafe Before 4.3
 
 There are two types of failsafe:
 
