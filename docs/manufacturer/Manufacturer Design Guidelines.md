@@ -158,10 +158,6 @@ The ability to customize IMU lowpass filtering and operate within the same GRMS/
 
 The IMU sensors, designed for applications outside of sUAS, are typically subjected to very harsh electromagnetic environments. Ensuring electromagnetic compatibility when using these immediately adjacent to ultrasonically switched power MOSFET devices, constantly operational radio frequency devices (such as remote control and FPV video systems), under thermal stresses of moving over 1kW through the complete flight stack, are a nontrivial operation. In order to minimize risks of flyaway and brownout behaviors which can be observed if IMU data filtering and power delivery are inadequate, proper circuit design and validation testing must be performed.
 
-// Mention examples such as the ICM-42688-P and similar options that offer the same high precision and GRMS/Shock tolerances required.
-
-// Also reiterate the importance of these sensors being able to operate in the sometimes harsh EMI environment of being mounted immediately adjacent to, or on the same PCB as a system that is pushing 1kW or more power via ultrasonic power MOSFET switching through lightweight flight control stacks.
-
 ### 3.1.4 Electrical Isolation for Sensor Components
 
 Separate VDD from VDD_IO
@@ -211,7 +207,7 @@ Black box of at least 8mb should also be standard on all fcs as it’s literally
 
 FCs should implement at least one LED to indicate activity. The second is preferable, and the third optional. Having at least one LED is essential for users to help diagnose basic faults. More LEDs are beneficial to developers as we can build custom images to help diagnose user reported issues.
 
-Each LED should be connected to a GPIO line. Polarity of the output doesn not matter.
+Each LED should be connected to a GPIO line. Polarity of the output does not matter.
 
 | LED Number | Colour | Required   |
 | :--------- | :----- | :--------- |
