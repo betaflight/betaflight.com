@@ -47,9 +47,9 @@ Achieving state of the art performance requires minimizing latency in craft resp
 | :------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ADC                 | Analog to Digital Converter                                                                                                                                                                     |
 | BEC                 | Battery Elimination Circuit                                                                                                                                                                     | Electronic voltage regulator circuit that provides a specified voltage to a single output power rail                                                                                                                                               |
-| Bidirectional DSHOT | Two-Way DSHOT communication protocol to enable Electronic Speed Controller telemetry to be sent back to the flight controller                                                                   | https://betaflight.com/archive/Bidirectional-DSHOT-and-RPM-Filter                                                                                                                                                                                  |
+| Bidirectional DSHOT | Two-Way DSHOT communication protocol to enable Electronic Speed Controller telemetry to be sent back to the flight controller                                                                   | [Wiki](/wiki/archive/Bidirectional-DSHOT-and-RPM-Filter.md)                                                                                                                                                                                        |
 | Bit Bang            | Bit-banging refers to any instance of utilizing GPIO functionality to digitally create signals in place of dedicated hardware. This can alleviate some specific data buffer timing requirements |
-| DSHOT               | Digital Shot Communication Protocol used for Flight Controller to Electronic Speed Controller                                                                                                   | https://betaflight.com/docs/wiki/archive/DSHOT-ESC-Protocol                                                                                                                                                                                        |
+| DSHOT               | Digital Shot Communication Protocol used for Flight Controller to Electronic Speed Controller                                                                                                   | [Wiki](/wiki/archive/DSHOT-ESC-Protocol.md)                                                                                                                                                                                                        |
 | ESC                 | Electronic Speed Controller                                                                                                                                                                     | https://us.aspina-group.com/en/learning-zone/columns/what-is/021/                                                                                                                                                                                  |
 | FPV                 | First Person View                                                                                                                                                                               | This can also refer to the complete avionics-telemetry supplied via a camera & video transmission system                                                                                                                                           |
 | GPIO                | General Purpose Input/Output                                                                                                                                                                    | Reconfigurable digital signal pin that can be selected from an MCU pin                                                                                                                                                                             |
@@ -84,7 +84,7 @@ Achieving state of the art performance requires minimizing latency in craft resp
 - Request for specific targets
 
   - If the flight controller design is intended to have a dedicated Betaflight target, then a new target submission can accompany the process
-    - For additional information, see here: https://betaflight.com/news/new-target-requirements/
+    - For additional information, see [here](requirements-for-submission-of-targets)
 
 - Production Representative Samples
 
@@ -370,6 +370,10 @@ Define at least one gyro and one accelerometer.
     #define USE_ACC_SPI_MPU6000
     #define USE_GYRO_SPI_MPU6500
     #define USE_ACC_SPI_MPU6500
+    #define USE_GYRO_SPI_MPU9250
+    #define USE_ACC_SPI_MPU9250
+    #define USE_GYRO_SPI_ICM20602
+    #define USE_ACC_SPI_ICM20602
     #define USE_GYRO_SPI_ICM20689
     #define USE_ACC_SPI_ICM20689
     #define USE_ACCGYRO_BMI270

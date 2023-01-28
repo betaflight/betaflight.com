@@ -82,7 +82,7 @@ FrSky X and X_LBT protocol:
 ## Boards with FrSky SPI RX
 
 - [Matek F411-ONE](http://www.mateksys.com/?portfolio=f411-one);
-- [CrazyBee F3 FR](boards/CRAZYBEEF3FR.md);
-- [CrazyBee F4 FR Pro](boards/CRAZYBEEF4FRPRO.md);
+- [CrazyBee F3 FR](../wiki/boards/CRAZYBEEF3FR.md);
+- [CrazyBee F4 FR Pro](../wiki/boards/CRAZYBEEF4FRPRO.md);
 - [BetaFPV F4]
 - more to come...

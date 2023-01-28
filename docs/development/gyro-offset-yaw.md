@@ -1,4 +1,4 @@
-# CLI parameter <gyro_offset_yaw>
+# Gyro_offset_yaw
 
 ## Introduction
 
