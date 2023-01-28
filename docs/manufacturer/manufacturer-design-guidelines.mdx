@@ -151,7 +151,7 @@ M1-M4 being very high-speed, TLM being low speed, CUR being analog and current f
 
 Selecting an appropriate IMU for flight controller operation is critical to the resulting flight performance of systems. Proven examples of hardware using single Invensense MPU-6000, single or dual ICM-20602, and also Bosch BMI-270 and BMI-180 units have been successfully demonstrated to operate with Betaflight, although the latter two examples have required significand development effort to bring performance of the IMU gyroscope and accelerometer sensing behaviors up to the standards required to maximize flight performance.
 
-### 3.1.3 Future IMU Options and how to select preferred options
+### 3.1.3 Future IMU Options and How to Select Preferred Options
 
 Future IMU selection should be carried out with close involvement of the Betaflight development group. In cases such as the ICM-42688-P, ICM-42688-V, or ICM-42605, early hardware validation samples should be explored in collaboration with Betaflight developers to determine the suitability of these IMU units in relevant environments.
 The ability to customize IMU lowpass filtering and operate within the same GRMS/Shock environment allows for maximum portability of existing filtering and tune schemes, but this development must occur with complete hardware samples and flown in representative flight regimes in order to replicate the EMI environment end users will experience.
@@ -265,7 +265,7 @@ Practically, this means that all pins should be on the same port, or at most two
 
   As an additional reference design, see the Fenix F405: https://oshwlab.com/jyesmith/fenix-f405
 
-## 3.3 Markings, version numbers, and documentation
+## 3.3 Markings, Version Numbers, and Documentation
 
 It is highly recommended that the flight controller Manufacturer Name, Board Name, and Board Design Revision be marked clearly on the flight controller itself. Where possible, indicating the firmware target name, or selecting a firmware target name to minimize confusion reduces the likelihood of an end user attempting to configure the flight controller with an incorrect target.
 
@@ -358,7 +358,7 @@ Additionally, there are no RC ecosystems that are actively developing a supporte
 
 Note that the use of gyros such as the BMI270 lowers the gyro loop rate from 8kHz to 3.2kHz and is therefore advantageous for F411 designs.
 
-## 4.2 Definitions for targets
+## 4.2 Definitions for Targets
 
 As reference please choose the defines for your target from this list as applicable for the target to select appropiate hardware for the cloud build.
 
@@ -449,9 +449,9 @@ For SPI based CC2500 target designs add the following define:
 
     #define USE_RX_CC2500
 
-## 4.3 Usage of the cloud build API
+## 4.3 Usage of the Cloud Build API
 
-See reference to [cloud build API](../development/API/Cloud-Build-API.mdx)
+See reference to [cloud build API](docs/development/API/Cloud-Build-API)
 
 # 5 Information for Marketing Purposes
 
