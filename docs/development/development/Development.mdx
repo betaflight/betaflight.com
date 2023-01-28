@@ -128,9 +128,29 @@ For Windows: `git config --global core.excludesfile '%USERPROFILE%\.gitignore'`
 
 When you `git config --global --get core.excludesfile` a second time, you should get a file location back.
 
-### Custom Defaults - for developers
+### Creating a LOCAL hex file
+
+Given the roll out of the CLOUD BUILD platform, there is a need for those of you who want to build locally to add in the options for selecting the features you want. Surprisingly this has always been there in the form of the `EXTRA_FLAGS` command line parameter for `make`.
+
+The bets way to demonstrate this is to give an example:
+
+```
+make TARGET=STM32F411 EXTRA_FLAGS="-DUSE_GPS -DUSE_LED_STRIP"
+```
+
+The above would make a F411 target hex with GPS and LED_STRIP included. Happy compiling! :)
+
+### Custom Defaults - for developers - DEBUGGER USE ONLY
 
 As all targets are now MCU based (and cloud built), this poses a problem for developers in flashing and running a fully baked "hex" using the standard debugger. The board scratch space (located at the /src/main/board directory) allows developers to setup their environment like they were running a fully baked unified target.
+
+:::warning
+
+These instructions are for flashing with a debugger ONLY. Any hex created this way will not flash using the configurator.
+
+This is by design.
+
+:::
 
 Once setup, you can simply execute make with `make BOARD=BETAFLIGHTF7` where BETAFLIGHTF7 is the sub directory name under /src/main/board i.e. /src/main/board/BETAFLIGHTF7.
 
