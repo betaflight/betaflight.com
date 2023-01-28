@@ -128,17 +128,26 @@ For Windows: `git config --global core.excludesfile '%USERPROFILE%\.gitignore'`
 
 When you `git config --global --get core.excludesfile` a second time, you should get a file location back.
 
-### Creating a LOCAL hex file
+### Building a hex file locally
 
-Given the roll out of the CLOUD BUILD platform, there is a need for those of you who want to build locally to add in the options for selecting the features you want. Surprisingly this has always been there in the form of the `EXTRA_FLAGS` command line parameter for `make`.
+Given the roll out of the CLOUD BUILD platform, there is a need for those of you who want to build locally to add in the options for selecting the features you want. Surprisingly this has always been there in the form of the `EXTRA_FLAGS` command line parameter for `make`. The cloud building platform merely makes use of this parameter - extensively.
 
-The bets way to demonstrate this is to give an example:
+The best way to demonstrate this is to give an example:
 
 ```
 make TARGET=STM32F411 EXTRA_FLAGS="-DUSE_GPS -DUSE_LED_STRIP"
 ```
 
 The above would make a F411 target hex with GPS and LED_STRIP included. Happy compiling! :)
+
+:::note
+
+Please note the use of `-D` and the `USE_`. This differs from the way in which the configurator displays theses options.
+
+:::
+
+These defines that we add, either on the command line or in the custom defines (in expert mode) in the configurator, are called `gates`, and include or exclude whole sections of code.
+
 
 ### Custom Defaults - for developers - DEBUGGER USE ONLY
 
