@@ -28,25 +28,47 @@ jobs:
         echo "BASE_PATH=/" >> .env
         echo "ORG=betaflight" >> .env
 
-    # - name: Check file names of markdown files
-    #   id: check-file-names
-    #   continue-on-error: true
-    #   run: |
-    #     npm run check:file-names
-    #     exit $?
-
-    # - name: Check title case in markdown files
-    #   id: check-title-case
-    #   continue-on-error: true
-    #   run: |
-    #     npm run check:title-case
-    #     exit $?
-
     - name: Build package
       id: build-package
       continue-on-error: true
-      run: npm run build
-    
-    # - name: Check on failures
-    #   if: steps.build-package.outcome != 'success' || steps.check-title-case.outcome != 'success' || steps.check-file-names.outcome != 'success'
-    #   run: exit 1
+      run: npm run Build
+
+  check-file-names:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: npm
+        cache-dependency-path: ./package-lock.json
+
+    - name: Check file names of markdown files
+      id: check-file-names
+      continue-on-error: true
+      run: |
+        npm run check:file-names
+        exit $?
+
+  check-title-case:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: npm
+        cache-dependency-path: ./package-lock.json
+        
+    - name: Check title case in markdown files
+      id: check-title-case
+      continue-on-error: true
+      run: |
+        npm run check:title-case
+        exit $?

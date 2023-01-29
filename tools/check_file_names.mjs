@@ -1,6 +1,10 @@
 import fs from 'fs';
 import chalk from 'chalk';
-import { exit } from 'process';
+
+const skipDirs = [
+  'docs/development',
+  'docs/wiki',
+];
 
 const log = console.log;
 
@@ -30,6 +34,9 @@ function processDir(dir, depth = 1) {
   let error = false;
   files.forEach((file) => {
     if (file.isDirectory()) {
+      if (skipDirs.some(skipDir => `${dir}/${file.name}`.includes(skipDir))) {
+        return false;
+      }
       log(chalk.white.bgBlackBright(`${'\t'.repeat(depth)}${dir}/${file.name}:`));
       return processDir(`${dir}/${file.name}`, depth + 1);
     }
@@ -47,7 +54,7 @@ function runFull() {
 
   return rootDir.map(file => {
     log(chalk.white.bgBlackBright(`./docs:`));
-    return processDir(`./docs/${  file.name}`);
+    return processDir(`./docs/${ file.name }`);
   });
 }
 
@@ -56,7 +63,7 @@ function runFull() {
  * @param {string} fileName 
  */
 function runSingle(fileName) {
-  if (checkFileName(fileName)) {
+  if (checkFileName(fileName) && !skipDirs.some(skipDir => fileName.includes(skipDir))) {
     log(`${chalk.red(`${fileName}`)}: contains invalid characters`);
   }
 }
