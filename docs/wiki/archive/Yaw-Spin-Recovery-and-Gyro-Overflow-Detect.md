@@ -1,3 +1,5 @@
+# Yaw Spin Recovery and Gyro Overflow Detect
+
 ## Yaw Spin Recovery Notes
 
 This new feature, enabled by default in betaflight 3.4, reduces the severity and duration of un-commanded severe yaw spins.

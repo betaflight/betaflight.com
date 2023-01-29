@@ -1,3 +1,5 @@
+# DFU Hijacking
+
 ## Introduction
 
 If your board is not going into DFU mode

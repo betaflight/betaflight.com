@@ -132,6 +132,18 @@ const config = {
             label: 'Manufacturer',
           },
           {
+            type: 'docSidebar',
+            sidebarId: 'release',
+            position: 'left',
+            label: 'Release',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'tuning',
+            position: 'left',
+            label: 'Tuning',
+          },
+          {
             to: '/download',
             label: 'Download',
             position: 'left',

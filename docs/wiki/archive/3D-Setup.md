@@ -1,3 +1,5 @@
+# 3D Setup
+
 This page is under construction and will be used to outline how to set up 3D mode on a multirotor and should list out the important and easily missed steps in order to avoid incidents.
 
 **For Dshot specific information see the bottom section.**

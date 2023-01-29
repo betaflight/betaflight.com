@@ -4,5 +4,6 @@
         "eslint --fix --ext .tsx,.js"
     ],
     "**/*.{html,md,less,css,json}": ["prettier --write --ignore-unknown"],
-    "team_generation.js": ["node team_generation.js && git add src/json/team.json"]
+    "**/*.mdz": ["node tools/check_file_names.mjs", "node tools/check_title_case.mjs"],
+    "tools/team_generation.js": ["node tools/team_generation.js && git add src/json/team.json"]
 }

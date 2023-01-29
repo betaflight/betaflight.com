@@ -1,12 +1,14 @@
-# Introduction
+# Hardware Reference
+
+## Introduction
 
 This page provides details for hardware developers for future boards to ensure maximum compatibility with Betaflight.
 
-# Target Maintenance
+## Target Maintenance
 
 A hardware developer is responsible for developing, and maintaining, their target within Betaflight. Target files are being separated as much as possible to the main code so as to facilitate this.
 
-# Adding new targets
+## Adding new targets
 
 If you are adding a new flight controller then:
 
@@ -14,15 +16,15 @@ If you are adding a new flight controller then:
 2. Don't change the `travis.yml` or `fake_travis_build.sh` files - these are just for a subset off all builds to check PRs
 3. Add page to wiki describing the flight controller and giving a link to at least one supplier.
 
-# Hardware
+## Hardware
 
-## MPU (SPI versus I2C)
+### MPU (SPI versus I2C)
 
-## MPU Interrrupt
+### MPU Interrrupt
 
-## Blackbox Flash
+### Blackbox Flash
 
-## MCU
+### MCU
 
 Excerpts from the data sheets / reference manuals that cover possible pin / timer / DMA assignments:
 
@@ -33,10 +35,10 @@ Excerpts from the data sheets / reference manuals that cover possible pin / time
 - [STM32F745](reference/stm/stm32f745_pins_timers_dma.pdf)
 - [STM32H743](reference/stm/stm32h743_pins.pdf) (pins only)
 
-# Protocols
+## Protocols
 
-## Telemetry
+### Telemetry
 
-### IBus
+#### IBus
 
 [IBus telemetry specification](Ibus-telemetry)

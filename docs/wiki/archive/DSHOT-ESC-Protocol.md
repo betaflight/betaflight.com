@@ -1,4 +1,4 @@
-## Dshot & BetaFlight 3.1
+# Dshot & BetaFlight 3.1
 
 Dshot is new and currently code is being developed and tested. Since there are many dependencies and not all current hardware works this is to help keep track.
 

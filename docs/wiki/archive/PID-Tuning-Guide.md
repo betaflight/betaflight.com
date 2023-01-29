@@ -1,4 +1,6 @@
-# Quadcopter and Betaflight cheat sheet
+# PID Tuning Guide
+
+## Quadcopter and Betaflight cheat sheet
 
 ## Introduction
 
@@ -905,7 +907,7 @@ Another thing to take into account is the tuning of your transmitter antenna and
 
 # VTX TABLES
 
-https://betaflight.com/docs/archive/VTX-Tables
+https://betaflight.com/docs/wiki/archive/VTX-Tables
 
 ### TBS UNIFY PRO 5G8 HV
 
