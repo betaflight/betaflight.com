@@ -48,10 +48,7 @@ jobs:
 
     - name: Check file names of markdown files
       id: check-file-names
-      continue-on-error: true
-      run: |
-        npm run check:file-names
-        exit $?
+      run: npm run check:file-names
 
   check-title-case:
     runs-on: ubuntu-latest
@@ -65,10 +62,7 @@ jobs:
         node-version: 18
         cache: npm
         cache-dependency-path: ./package-lock.json
-        
+
     - name: Check title case in markdown files
       id: check-title-case
-      continue-on-error: true
-      run: |
-        npm run check:title-case
-        exit $?
+      run: npm run check:title-case
