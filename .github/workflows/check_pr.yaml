@@ -1,4 +1,4 @@
-name: Check if pr is compileable
+name: Test PR build and checks filenames + title case
 
 on:
   pull_request:
@@ -43,8 +43,6 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-        cache: npm
-        cache-dependency-path: ./package-lock.json
 
     - name: Check file names of markdown files
       id: check-file-names
@@ -60,8 +58,6 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-        cache: npm
-        cache-dependency-path: ./package-lock.json
 
     - name: Check title case in markdown files
       id: check-title-case
