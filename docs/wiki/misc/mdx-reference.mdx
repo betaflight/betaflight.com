@@ -25,6 +25,8 @@ Normal text
 
 > blockquote
 
+<br/>
+
 - list item 1
 - list item 2
 - list item 3
@@ -33,7 +35,7 @@ Normal text
 2. numbered list item 2
 3. numbered list item 3
 
-Code blocks:
+## Code Blocks
 
 `const foo = 'bar';`
 
@@ -63,6 +65,8 @@ Normal text
 
 > blockquote
 
+<br/>
+
 - list item 1
 - list item 2
 - list item 3
@@ -82,6 +86,20 @@ const foo: string = 'bar';
 {/* wow so meta */}
 ```
 
+## Tabs
+
+<Tabs>
+	<TabItem value="tab1" label="Tab 1" default>
+		This is tab 1
+	</TabItem>
+	<TabItem value="tab2" label="Tab 2">
+		This is tab 2
+	</TabItem>
+	<TabItem value="tab3" label="Tab 3">
+		This is tab 3
+	</TabItem>
+</Tabs>
+
 ```html
 <Tabs>
 	<TabItem value="tab1" label="Tab 1" default>
@@ -97,19 +115,7 @@ const foo: string = 'bar';
 <!-- even more meta -->
 ```
 
-<Tabs>
-	<TabItem value="tab1" label="Tab 1" default>
-		This is tab 1
-	</TabItem>
-	<TabItem value="tab2" label="Tab 2">
-		This is tab 2
-	</TabItem>
-	<TabItem value="tab3" label="Tab 3">
-		This is tab 3
-	</TabItem>
-</Tabs>
-
-Admonitions:
+## Admonitions
 
 :::note
 
@@ -141,9 +147,27 @@ This is a tip. It tips things.
 
 :::
 
+## Mermaid Flow Charts
+
 ```mermaid
 graph LR;
 	Quad <-- CRSF --> id1[ELRS Receiver] <-- 900MHz/2.4GHz ELRS --> id2[ELRS Transmitter];
 	Quad -- Analog Signal --> VTX -- 5.8GHz Analog --> id3[Goggle Video Receiver];
 	Quad -- Smart Audio --> VTX;
 ```
+
+## Latex Equations
+
+Let $f\colon[a,b]\to\R$ be Riemann integrable. Let $F\colon[a,b]\to\R$ be
+$F(x)=\int_{a}^{x} f(t)\,dt$. Then $F$ is continuous, and at all $x$ such that
+$f$ is continuous at $x$, $F$ is differentiable at $x$ with $F'(x)=f(x)$.
+
+This is a block of aligned $\LaTeX$ equations:
+$$
+\begin{align}
+    \nabla \cdot \vec{\bf{E}} &= \frac{\rho}{\epsilon_0} \\
+    \nabla \cdot \vec{\bf{B}} &= 0 \\
+    \nabla \times \vec{\bf{E}} &= - \frac{\partial \vec{\bf{B}}}{\partial \mathrm{t}} \\
+    \nabla \times \vec{\bf{B}} &= \mu_0 \left( \vec{\bf{J}} + \epsilon_0 \frac{\partial \vec{\bf{E}}}{\partial \mathrm{t}} \right)
+\end{align}
+$$
