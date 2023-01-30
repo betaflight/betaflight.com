@@ -45,6 +45,12 @@ export default function TeamFeature() {
     return str.length > 20 ? `${str.substring(0, 20)}...` : str
   }
 
+  function checkLink(link: string, short = false) {
+    let tmp = link.startsWith('http') ? link : `https://${link}`
+    tmp = short ? tmp.replace('https://', '').replace('www.', '') : tmp
+    return tmp.endsWith('/') ? tmp.slice(0, -1) : tmp
+  }
+
   return (
     <>
       {(!userData || userData.length === 0) && (
@@ -63,8 +69,8 @@ export default function TeamFeature() {
                 <div className="text-sm text-neutral-500 font-semibold">{user.name}</div>
                 {user.location && <div className="text-sm text-neutral-500">{truncateStr(user.location)}</div>}
                 {user.blog && (
-                  <a className="fancy-link no-underline" href={user.blog}>
-                    {truncateStr(user.blog)}
+                  <a className="fancy-link no-underline" href={checkLink(user.blog)} target="_blank" rel="noreferrer">
+                    {truncateStr(checkLink(user.blog, true))}
                   </a>
                 )}
               </div>
