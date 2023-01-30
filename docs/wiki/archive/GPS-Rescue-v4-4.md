@@ -27,17 +27,19 @@ Typical applications include
 
 :::danger
 
-Only use the CLI to make changes! The 4.3 Configurator is not aware of the changes to the GPS Rescue control parameters!
+Only use the 10.9 Configurator GUI.  For earlier Configurator versions, only make changes to GPS Rescue parameters in the CLI!
 
-You must test GPS Rescue, very carefully before relying on it. Initial testing should be done at close range, with defaults, over soft grass.
+Test GPS Rescue very carefully before relying on it. Initial testing should be done at close range, with defaults, over soft grass.
 
 If a switch-induced Rescue test has a problem, or seems to do nothing, DO NOT DISARM IN PANIC! Undo the Rescue switch promptly and you'll get full control back.
 
-Even if you do everything right, GPS Rescue may not bring the craft home.
+Even if you do everything right, GPS Rescue may not bring the craft home!
 
-Level mode must be calibrated to provide a stable hover, and the throttle value required for a stable hover should be set as the GPS Rescue Hover throttle value.
+Do NOT enable a compass/mag unless you have confirmed by logging that it correctly represents the attitude of the quad - mostly they DO NOT.
 
-3D mode is not supported, there will be no rescue if the quad is in 3D mode at the time of the failsafe.
+Level mode must provide a stable hover, after careful acc trimming.  The throttle value required for a stable hover should be set as the GPS Rescue Hover throttle value, and a slightly higher value must be set as the Stage 1 failsafe Throttle channel value..
+
+3D mode is not supported!  There will be no rescue if the quad is in 3D mode at the time of the failsafe.
 
 :::
 
@@ -53,16 +55,17 @@ Level mode must be calibrated to provide a stable hover, and the throttle value 
 
 ## Hardware requirements
 
-- A properly trimmed accelerometer and known hover throttle values
+- A properly trimmed accelerometer
 
 - A working GPS module. Modern UBlox units work well. Check that they support Ublox, 10hz updates, and that they have a backup battery, so that it will regain satellites during repeated power cycles much more quickly.
 - `set GPS_PROVIDER = GPS_UBLOX` enables `UBLOX` mode. This is recommended and is now the default.
 - if the GPS doesn't support `UBLOX`, try `NMEA`. Some, but not all, NMEA-only units will provide 10Hz data updates, and can work really well. NMEA at 1Hz makes it very difficult for the quad to fly home; it will jerk and jump every second, with very erratic rescue flight behaviour.
 - test the accuracy of your GPS by watching it in Configurator while stable on a desk outdoors. Zoom in on the map and see how the position moves around, especially if the quad is put on an angle and some satellites are lost. Note that altitude estimation is quite unstable. It can take a long time for the GPS to really settle down.
 
-- If a Baro is present, enabling it will improve IMU altitude estimations significantly. We recommend enabling Baro by default, especially for short flights (eg up to 10-15min). Usually this results in better altitude control and more reliable landings. Whether or not Baro is helpful is readily seen by doing some LOS rescues at low altitude over flat ground. For longer flights, and some Baro installations, Baro drift can be more of a problem than GPS drift. Hence do some testing with it on or off and then set your Baro trust value appropriately for the kind of flying you intend to do.
+- If a Baro is present, enabling it will improve IMU altitude estimations significantly. We recommend enabling Baro by default, especially for short flights (eg up to 10-15min). Usually this results in better altitude control and more reliable landings. Check the baro data in the sensors tab after enabling the `ALTITUDE` debug.  It should be reasonably smooth after arming.  Whether or not Baro is helpful is readily seen by doing some LOS rescues at low altitude over flat ground. For longer flights, and some Baro hardware, Baro drift can be more of a problem than GPS drift. Hence do some testing with it on or off and then set your Baro trust value appropriately for the kind of flying you intend to do.
 
 - If a Compass (mag, or magnetometer) is available, and if it has been properly calibrated, and the data is noise free, it may improve heading estimation. Compasses must be positioned well away from magnetic fields, including those from current flowing through wires. This is very difficult even on a 7" setup. Using an incorrectly calibrated or noisy compass will adversely affect the rescue. Be sure to log your compass data and check that it is accurate and clean before enabling it. In most 5" or smaller drones, Mag is too noisy to be useful.
+
 
 ## GPS hardware
 
@@ -76,13 +79,61 @@ A magnetometer is useful only if the GPS unit can be mounted well away from any 
 | Matek M8Q-5883      | yes   | yes  | yes       | QMC5883L | works well, mag noisy unless placed carefully                               |
 | iFlight M8Q-5883 V2 | yes   | yes  | yes       | QMC5883L | works well, minor spikes in GPS position, mag noisy unless placed carefully |
 
+## Software settings
+
+The defaults should be good for initial tests, but there are some important things to set that depend on your quad and how it behaves:
+
+- Calibrate your accelerometer so the quad hovers level
+- Set the Stage 1 Failsafe fallback throttle value (the value on the throttle channel) to a value that will make the quad climb steadily.  This is the value that will be applied when the quad initially loses signal.  If it is too low, and you're flying over water, before the GPS Rescue code kicks in - one second after signal loss - you may descend enough to end up in the water
+- Set the GPS Rescue throttle value to a value that is close to a hover.  This is the initial value that gets applied once the rescue kicks in.  The PIDs that control throttle will take over at this point, by adding or subtracting from this value.  It should be a value that is close to the hover value.
+
+Otherwise, read all the software settings below, and make sure they are suitable for what you want to do.  Do not change anything a long way off defaults quickly; take your time.
+
+## Ways to initiate a GPS Rescue
+
+**1.  RC Link Loss**
+
+Here we want the quad to enter Stage 1 Failsafe for the Stage 1 duration, just for long enough to be sure the link really is lost, then enter Stage 2 failsafe, which should be set to GPS Rescue and fly home.  Once the link is restored, control can be restored by wiggling the sticks more than 30 degrees out from centre.  WARNING: Do NOT wiggle the sticks until you've got an FPV video signal back, otherwise you may regain control but not know where you're going!  Wait until your signal strength indicator is good and you have a decent FPV feed, **then** wiggle the sticks.  
+
+If the radio or FPV link never recover, let it fly home and it will land itself.
+
+Basic necessities
+- enable GPS, check its settings, check in Configurator that it shows correct position
+- set Failsafe Stage 1 to manually enable level mode, and configure a manual throttle value that will make the quad climb steadily
+- set GPS Rescue as the Failsafe Stage 2 mode, set the GPS hover throttle to a value that hovers or climbs a little, check all the GPS Rescue settings
+- if you have a Baro, check it using the ALTITUDE debug (see debug info at the end), and enable it provided it works well and improves altitude control
+
+**2.  Stick-induced Failsafe emulation**
+
+Here we want the quad to emulate a link loss.  As soon as the switch is hit, the quad should enter Stage 1 and then Stage 2 failsafe.
+To regain control, just undo the Failsafe Switch.  DO NOT PANIC AND DISARM BY MISTAKE - just undo the failsafe switch!!!  
+This is great for testing.
+
+Basic setup:
+- configure all settings as above
+- configure a Mode switch to activate Failsafe
+- test carefully
+
+**3.  Directly enter GPS Rescue with the GPS Rescue Mode swith**
+
+Here we want the quad to immediately level out, climb and start to fly home - no waiting.  It makes sense when used as an emergency 'safety return' switch, perhaps, in cases where you're long-ranging and lose FPV signal, or in Acro and lose control in the distance.  Just hit the GPS Rescue Mode switch and it should level out, climb, and head back to home.  Undo the switch, and you're immediately back in control.
+
+This option does not require Failsafe to be enabled at all.
+
+Basic setup:
+- configure the GPS Rescue hover throttle value, and other GPS settings on the right side of the Failsafe panel
+- don't worry about the other Failsafe settings (unless you want Failsafe on true signal loss to work, in which case, set them up as above)
+- configure a Mode switch to activate GPS Rescue
+- test carefully
+
+
 ## Important notes:
 
 - **Do a LOT of GPS Rescue tests with switch initiation at close range over soft grass!** Then do them with true failsafe, by turning the radio off, and do these tests initially up close! Before doing radio-off tests, ensure that your radio link can re-establish itself if the radio is power-cycled when GPS Rescue is not enabled. Otherwise it can't re-establish when it needs to.
 
-- **Remember to set the GPS Rescue Hover throttle value accurately!** The correct value makes the quad hover, or very slowly descend, while in level mode with the heaviest battery you plan to use. The best value can be estimated by setting Failsafe Stage 1 to Level mode, and then set the throttle value to a value that gets it to climb while in stage 1. The GPS Hover value is the value that the quad will first apply to throttle on signal loss. If too low, it will tend to drop at that point; if too high, it will climb. It is better to 'err on the high side'; climbing too fast is usually less of a problem, than dropping like a stone, when you have signal loss.
+- **Remember to set the GPS Rescue Hover throttle value accurately!** The correct value makes the quad hover, or very slowly ascend, while in level mode with the heaviest battery you plan to use. The best value can be estimated by setting Failsafe Stage 1 to Level mode, and then set the throttle value to a value that gets it to climb while in stage 1. The GPS Hover value is the value that the quad will first apply to throttle on signal loss. If too low, it will tend to drop at that point; if too high, it will climb. It is better to 'err on the high side'; climbing too fast is usually less of a problem, than dropping like a stone, when you have signal loss.
 
-- **Also remember to set the Stage 1 throttle value manually to a hover value!** (See below). When entering a true RF loss failsafe, the quad will use the Stage 1 settings for throttle during the Stage 1 period while hoping to recover signal. If the Stage 1 throttle channel value is set to 'Auto' you will immediately fall from the sky. Set it to a hover value so that it won't do anything bad before starting the rescue.
+- **Remember to set the Stage 1 throttle value manually to a hover value!** (See below). When entering a true RF loss failsafe, the quad will use the Stage 1 settings for throttle during the Stage 1 period while hoping to recover signal. If the Stage 1 throttle channel value is set to 'Auto' you will immediately fall from the sky. Set it to a hover value so that it won't do anything bad before starting the rescue.
 
 - **Always ensure that level mode hovers flat and true before taking off**. If the quad drifts sideways during return, it's usually because the accelerometer has a roll offset.
 
@@ -104,9 +155,12 @@ A magnetometer is useful only if the GPS unit can be mounted well away from any 
 
 - NOTE: without a compass, the quad 'learns' the heading of the quad from the direction of travel over ground from data provided by the GPS. **The craft must be travelling at least 2m/s, in clean nose-forward flight, for at least several seconds, for its attitude to be correctly set by the GPS data.** Try to fly dead-straight and without side-wind, so that no roll correction is needed when the course over ground matches simple pitch-only flight-path of the quad. It's important fly straight and at least 2m/s before testing GPS Rescue at close range, or the IMU may be confused about the direction home. Check the Home Arrow before initiating the rescue. The default GPS_RESCUE_GROUND_SPEED value is 5m/s, and cannot be set under 2.5m/s, so that the quad will update the IMU heading during the rescue, even if the initial heading is incorrect, but may fly quite fast in the wrong direction beforehand. Hence it is really important to validate the Home Arrow early in the flight. The arrow in the OSD should be pointing to home, and the altitude and distance should be about right, soon after takeoff.
 
-- **The GPS Rescue 'mode' switch will immediately initiate GPS Rescue when activated**. This can be used as an 'emergency' rescue for loss of FPV signal or for disorientation when flying LOS. If a failsafe switch is configured, a similar outcome can be achieved by setting the switch mode to immediately action Stage 2. There will be only a short delay before the quad should level out and climb, but its momentum will keep it moving as it was for at least a few seconds, so don't expect miracles.
+- **The GPS Rescue 'mode' switch will immediately initiate GPS Rescue when activated**. It doesn't use the failsafe system.  This can be used as an 'emergency' rescue for loss of FPV signal or for disorientation when flying LOS. If a failsafe switch is configured, a similar outcome can be achieved by setting the switch mode to immediately action Stage 2. There will be only a short delay before the quad should level out and climb.  In both cases, after hitting the switch, the quad's momentum will keep it moving as it was for at least a few seconds, so don't expect miracles.
 
-- In strong winds the maximum allowed angle of the craft during a rescue, `GPS_RESCUE_ANGLE`, may need to be increased. The the craft may overshoot or land roughly if the wind is very strong.
+- In strong winds the maximum allowed angle of the craft during a rescue, `GPS_RESCUE_ANGLE`, may need to be increased enough that the quad can make forward speed into a headwind. The the craft may overshoot or land roughly if the wind is very strong, especially a strong tailwind.
+
+- During a rescue, the built-in Betaflight Crash Detection code is automatically activated (even if you disabled it in your settings).  If the quad has a hard crash or impact at any time on the way home, it may disarm immediately.  This mechanism is quite different from the much more sensitive landing impact detection, which is only activated late in the Rescue once the altitude of the quad falls below the `GPS_RESCUE_LANDING_ALT` height.
+
 
 ## Phases of the Rescue
 
@@ -126,6 +180,7 @@ Each phase has different targets. Specific exit criteria must be met to enter th
 
 Notes:
 
+- Sanity check failure or a bad crash during the rescue can also terminate a rescue
 - Yaw control is active in all phases, starting during the `ASCEND` phase. Yaw tries to keep the nose pointing towards the home point relative to the current estimated position of the craft, using a simple P controller. The maximum rotation rate to control yaw/heading error is 90 deg/s.
 - Throttle is adjusted either side of the set `GPS_RESCUE_THROTTLE_HOVER` value, within limits set by `GPS_RESCUE_THROTTLE_MIN` and `GPS_RESCUE_THROTTLE_MAX`, at all phases of the rescue, to control altitude using PID controller that includes an acceleration element. Throttle is dynamically adjusted according to the angle of the craft (the angle away from horizontal).
 - Pitch angle controls forward velocity, and becomes active, at half max rate, during the `ASCEND` phase, is fully active once the error angle to home is less than 45 degrees in `ROTATE` phase, and stays fully active until `LANDING` phase, when it again is reduced to half rate.
@@ -302,6 +357,7 @@ All the GPS configuration settings are included in the Blackbox Log Header.
 | GPS_RESCUE_TRACKING | Velocity to home cm/s       | Target velocity cm/s       | Current craft altitude cm         | Target altitude cm                                |
 | GPS_RESCUE_HEADING  | Yaw rescue rate deg/s \* 10 | Roll angle degrees \* 1000 | estimated craft heading deg \* 10 | estimated angle to home                           |
 | RTH                 | Pitch angle of quad         | Rescue Phase               | Rescue failure code               | seconds failing sanity (\*100) + seconds low sats |
+| ATTITUDE      | GPS Trust         | Baro Altitude (zeroed and smoothed on arming)               | GPS Altitude (zeroed on arming)               | Vario (smoothed only while armed, only present if Vario is enabled for the build) |
 
 Rescue Phase codes
 
