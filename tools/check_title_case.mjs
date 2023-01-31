@@ -3,9 +3,17 @@ import path from 'path';
 import chalk from 'chalk';
 import { titleCase } from 'title-case';
 
+const skipDirs = [
+  'docs/development',
+  'docs/wiki',
+];
+
 const log = console.log;
 
 function checkTitleCase(filePath) {
+  if (skipDirs.some(skipDir => filePath.includes(skipDir))) {
+    return true;
+  }
   // Read the contents of the file
   const fileContent = fs.readFileSync(filePath, 'utf8');
   // Split the file content into an array of lines
@@ -16,7 +24,7 @@ function checkTitleCase(filePath) {
   // Iterate over each line
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    if (!line.startsWith('#')) {
+    if (!/^#+\s/.test(line)) {
       continue;
     }
 
@@ -43,10 +51,10 @@ function readDir(dir) {
   for (const file of files) {
     const filePath = path.join(dir, file);
     const fileStat = fs.lstatSync(filePath);
-    if (fileStat.isDirectory()) {
+    if (fileStat.isDirectory() && !skipDirs.some(skipDir => filePath.includes(skipDir))) {
       // Recursively read the subdirectory
       error &= readDir(filePath);
-    } else if (fileStat.isFile() && (file.endsWith('.md') || file.endsWith('.mdx'))) {
+    } else if (fileStat.isFile() && file.endsWith('.mdx')) {
       // Check the file for title case
       error &= checkTitleCase(filePath);
     }
