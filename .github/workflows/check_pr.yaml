@@ -43,6 +43,11 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+        cache: npm
+        cache-dependency-path: ./package-lock.json
+
+    - name: Install dependencies
+      run: npm install chalk
 
     - name: Check file names of markdown files
       id: check-file-names
@@ -58,6 +63,11 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+        cache: npm
+        cache-dependency-path: ./package-lock.json
+
+    - name: Install dependencies
+      run: npm install chalk title-case
 
     - name: Check title case in markdown files
       id: check-title-case
