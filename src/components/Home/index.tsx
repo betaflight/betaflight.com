@@ -80,7 +80,7 @@ export default function Home({ recentPosts }: BlogProps) {
             <AboutCard title="Hardware" className="text-rose-500 fill-rose-500" Icon={CpuChipIcon}>
               <p>Betaflight supports a wide range of flight controllers with at least an STM32F4 MCU</p>
               <p>You can use nearly any piece of modern hardware out there. Full telemetry and high refresh rate for receivers, camera and VTX control, RGB LEDs, and much more!</p>
-              <p>Run the configurator on any device, wether it is using Windows, MacOS, Linux, and also Andoird</p>
+              <p>Run the configurator on any device, whether it is using Windows, MacOS, Linux, or Android</p>
             </AboutCard>
 
             <AboutCard title="Community" className="text-sky-500 fill-sky-500" Icon={UsersIcon}>
@@ -90,18 +90,18 @@ export default function Home({ recentPosts }: BlogProps) {
 
             <AboutCard title="Open Source" className="text-lime-500 fill-lime-500" Icon={CodeBracketIcon}>
               <p>Originating from Baseflight and Cleanflight, Betaflight is open source, and you can contribute to the project on GitHub</p>
-              <p>Nealy all contributions are welcome, for anything from the main flight control firmware, to the configurator, as well as this site</p>
+              <p>Nearly all contributions are welcome, for anything from the main flight control firmware, to the configurator, as well as this site</p>
             </AboutCard>
             <AboutCard className="border-blue-500 text-blue-500" title="OSD" Icon={CameraIcon}>
               <p>
                 With the Betaflight OSD you can get all relevant flight metrics directly into your FPV video feed. An easy to use drag-and-drop configuration allows the placement of values like used
                 mAh and LiPo Voltage readings.
               </p>
-              <p>Additionally you can change most firmware settings using stick commands wihtout even removing your goggles.</p>
+              <p>Additionally you can change most firmware settings using stick commands without even removing your goggles.</p>
             </AboutCard>
             <AboutCard className="border-orange-600 text-orange-600" title="Safety Features" Icon={ShieldCheckIcon}>
               <p>
-                Drones are extremely dangerous toys. As incidents with suddenly spinning props often end with serious injury Betaflight implements several safety features to prevent dangerous
+                Drones are extremely dangerous toys. As incidents with suddenly spinning props often end with serious injury, Betaflight implements several safety features to prevent dangerous
                 situations occurring.
               </p>
               <p>Features are implemented to prevent arming when the drone isn't leveled, including disabling motors in case of wrong motor or incorrect flight controller orientation.</p>
