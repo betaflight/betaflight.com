@@ -722,7 +722,7 @@ Allowed range: 0 - 7
 **camera_control_mode = HARDWARE_PWM**
 Allowed values: HARDWARE_PWM, SOFTWARE_PWM, DAC
 mode of operation, software_pwm is the least restrictive in terms of available PIN selection, but it requires both a resistor and a capacitor to work properly; hardware_pwm is almost guaranteed to work with just a resistor given you can spare a timer for it; dac (not yet implemented) is supported on the very few FCs that have a DAC pin broken out and unoccupied by other functions, it works by direct connection to the camera.
-FPV-Camera-Control-(Joystick-Emulation)
+[Camera Control](FPV-Camera-Control-Joystick-Emulation)
 
 **camera_control_ref_voltage = 330**
 Allowed range: 200 - 400
