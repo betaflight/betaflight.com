@@ -27,7 +27,7 @@ Typical applications include
 
 :::danger
 
-Only use the 10.9 Configurator GUI.  For earlier Configurator versions, only make changes to GPS Rescue parameters in the CLI!
+Only use the 10.9 Configurator GUI. For earlier Configurator versions, only make changes to GPS Rescue parameters in the CLI!
 
 Test GPS Rescue very carefully before relying on it. Initial testing should be done at close range, with defaults, over soft grass.
 
@@ -37,9 +37,9 @@ Even if you do everything right, GPS Rescue may not bring the craft home!
 
 Do NOT enable a compass/mag unless you have confirmed by logging that it correctly represents the attitude of the quad - mostly they DO NOT.
 
-Level mode must provide a stable hover, after careful acc trimming.  The throttle value required for a stable hover should be set as the GPS Rescue Hover throttle value, and a slightly higher value must be set as the Stage 1 failsafe Throttle channel value..
+Level mode must provide a stable hover, after careful acc trimming. The throttle value required for a stable hover should be set as the GPS Rescue Hover throttle value, and a slightly higher value must be set as the Stage 1 failsafe Throttle channel value..
 
-3D mode is not supported!  There will be no rescue if the quad is in 3D mode at the time of the failsafe.
+3D mode is not supported! There will be no rescue if the quad is in 3D mode at the time of the failsafe.
 
 :::
 
@@ -62,10 +62,9 @@ Level mode must provide a stable hover, after careful acc trimming.  The throttl
 - if the GPS doesn't support `UBLOX`, try `NMEA`. Some, but not all, NMEA-only units will provide 10Hz data updates, and can work really well. NMEA at 1Hz makes it very difficult for the quad to fly home; it will jerk and jump every second, with very erratic rescue flight behaviour.
 - test the accuracy of your GPS by watching it in Configurator while stable on a desk outdoors. Zoom in on the map and see how the position moves around, especially if the quad is put on an angle and some satellites are lost. Note that altitude estimation is quite unstable. It can take a long time for the GPS to really settle down.
 
-- If a Baro is present, enabling it will improve IMU altitude estimations significantly. We recommend enabling Baro by default, especially for short flights (eg up to 10-15min). Usually this results in better altitude control and more reliable landings. Check the baro data in the sensors tab after enabling the `ALTITUDE` debug.  It should be reasonably smooth after arming.  Whether or not Baro is helpful is readily seen by doing some LOS rescues at low altitude over flat ground. For longer flights, and some Baro hardware, Baro drift can be more of a problem than GPS drift. Hence do some testing with it on or off and then set your Baro trust value appropriately for the kind of flying you intend to do.
+- If a Baro is present, enabling it will improve IMU altitude estimations significantly. We recommend enabling Baro by default, especially for short flights (eg up to 10-15min). Usually this results in better altitude control and more reliable landings. Check the baro data in the sensors tab after enabling the `ALTITUDE` debug. It should be reasonably smooth after arming. Whether or not Baro is helpful is readily seen by doing some LOS rescues at low altitude over flat ground. For longer flights, and some Baro hardware, Baro drift can be more of a problem than GPS drift. Hence do some testing with it on or off and then set your Baro trust value appropriately for the kind of flying you intend to do.
 
 - If a Compass (mag, or magnetometer) is available, and if it has been properly calibrated, and the data is noise free, it may improve heading estimation. Compasses must be positioned well away from magnetic fields, including those from current flowing through wires. This is very difficult even on a 7" setup. Using an incorrectly calibrated or noisy compass will adversely affect the rescue. Be sure to log your compass data and check that it is accurate and clean before enabling it. In most 5" or smaller drones, Mag is too noisy to be useful.
-
 
 ## GPS hardware
 
@@ -84,48 +83,50 @@ A magnetometer is useful only if the GPS unit can be mounted well away from any 
 The defaults should be good for initial tests, but there are some important things to set that depend on your quad and how it behaves:
 
 - Calibrate your accelerometer so the quad hovers level
-- Set the Stage 1 Failsafe fallback throttle value (the value on the throttle channel) to a value that will make the quad climb steadily.  This is the value that will be applied when the quad initially loses signal.  If it is too low, and you're flying over water, before the GPS Rescue code kicks in - one second after signal loss - you may descend enough to end up in the water
-- Set the GPS Rescue throttle value to a value that is close to a hover.  This is the initial value that gets applied once the rescue kicks in.  The PIDs that control throttle will take over at this point, by adding or subtracting from this value.  It should be a value that is close to the hover value.
+- Set the Stage 1 Failsafe fallback throttle value (the value on the throttle channel) to a value that will make the quad climb steadily. This is the value that will be applied when the quad initially loses signal. If it is too low, and you're flying over water, before the GPS Rescue code kicks in - one second after signal loss - you may descend enough to end up in the water
+- Set the GPS Rescue throttle value to a value that is close to a hover. This is the initial value that gets applied once the rescue kicks in. The PIDs that control throttle will take over at this point, by adding or subtracting from this value. It should be a value that is close to the hover value.
 
-Otherwise, read all the software settings below, and make sure they are suitable for what you want to do.  Do not change anything a long way off defaults quickly; take your time.
+Otherwise, read all the software settings below, and make sure they are suitable for what you want to do. Do not change anything a long way off defaults quickly; take your time.
 
 ## Ways to initiate a GPS Rescue
 
-**1.  RC Link Loss**
+**1. RC Link Loss**
 
-Here we want the quad to enter Stage 1 Failsafe for the Stage 1 duration, just for long enough to be sure the link really is lost, then enter Stage 2 failsafe, which should be set to GPS Rescue and fly home.  Once the link is restored, control can be restored by wiggling the sticks more than 30 degrees out from centre.  WARNING: Do NOT wiggle the sticks until you've got an FPV video signal back, otherwise you may regain control but not know where you're going!  Wait until your signal strength indicator is good and you have a decent FPV feed, **then** wiggle the sticks.  
+Here we want the quad to enter Stage 1 Failsafe for the Stage 1 duration, just for long enough to be sure the link really is lost, then enter Stage 2 failsafe, which should be set to GPS Rescue and fly home. Once the link is restored, control can be restored by wiggling the sticks more than 30 degrees out from centre. WARNING: Do NOT wiggle the sticks until you've got an FPV video signal back, otherwise you may regain control but not know where you're going! Wait until your signal strength indicator is good and you have a decent FPV feed, **then** wiggle the sticks.
 
 If the radio or FPV link never recover, let it fly home and it will land itself.
 
 Basic necessities
+
 - enable GPS, check its settings, check in Configurator that it shows correct position
 - set Failsafe Stage 1 to manually enable level mode, and configure a manual throttle value that will make the quad climb steadily
 - set GPS Rescue as the Failsafe Stage 2 mode, set the GPS hover throttle to a value that hovers or climbs a little, check all the GPS Rescue settings
 - if you have a Baro, check it using the ALTITUDE debug (see debug info at the end), and enable it provided it works well and improves altitude control
 
-**2.  Stick-induced Failsafe emulation**
+**2. Stick-induced Failsafe emulation**
 
-Here we want the quad to emulate a link loss.  As soon as the switch is hit, the quad should enter Stage 1 and then Stage 2 failsafe.
-To regain control, just undo the Failsafe Switch.  DO NOT PANIC AND DISARM BY MISTAKE - just undo the failsafe switch!!!  
+Here we want the quad to emulate a link loss. As soon as the switch is hit, the quad should enter Stage 1 and then Stage 2 failsafe.
+To regain control, just undo the Failsafe Switch. DO NOT PANIC AND DISARM BY MISTAKE - just undo the failsafe switch!!!  
 This is great for testing.
 
 Basic setup:
+
 - configure all settings as above
 - configure a Mode switch to activate Failsafe
 - test carefully
 
-**3.  Directly enter GPS Rescue with the GPS Rescue Mode swith**
+**3. Directly enter GPS Rescue with the GPS Rescue Mode swith**
 
-Here we want the quad to immediately level out, climb and start to fly home - no waiting.  It makes sense when used as an emergency 'safety return' switch, perhaps, in cases where you're long-ranging and lose FPV signal, or in Acro and lose control in the distance.  Just hit the GPS Rescue Mode switch and it should level out, climb, and head back to home.  Undo the switch, and you're immediately back in control.
+Here we want the quad to immediately level out, climb and start to fly home - no waiting. It makes sense when used as an emergency 'safety return' switch, perhaps, in cases where you're long-ranging and lose FPV signal, or in Acro and lose control in the distance. Just hit the GPS Rescue Mode switch and it should level out, climb, and head back to home. Undo the switch, and you're immediately back in control.
 
 This option does not require Failsafe to be enabled at all.
 
 Basic setup:
+
 - configure the GPS Rescue hover throttle value, and other GPS settings on the right side of the Failsafe panel
 - don't worry about the other Failsafe settings (unless you want Failsafe on true signal loss to work, in which case, set them up as above)
 - configure a Mode switch to activate GPS Rescue
 - test carefully
-
 
 ## Important notes:
 
@@ -155,16 +156,15 @@ Basic setup:
 
 - NOTE: without a compass, the quad 'learns' the heading of the quad from the direction of travel over ground from data provided by the GPS. **The craft must be travelling at least 2m/s, in clean nose-forward flight, for at least several seconds, for its attitude to be correctly set by the GPS data.** Try to fly dead-straight and without side-wind, so that no roll correction is needed when the course over ground matches simple pitch-only flight-path of the quad. It's important fly straight and at least 2m/s before testing GPS Rescue at close range, or the IMU may be confused about the direction home. Check the Home Arrow before initiating the rescue. The default GPS_RESCUE_GROUND_SPEED value is 5m/s, and cannot be set under 2.5m/s, so that the quad will update the IMU heading during the rescue, even if the initial heading is incorrect, but may fly quite fast in the wrong direction beforehand. Hence it is really important to validate the Home Arrow early in the flight. The arrow in the OSD should be pointing to home, and the altitude and distance should be about right, soon after takeoff.
 
-- **The GPS Rescue 'mode' switch will immediately initiate GPS Rescue when activated**. It doesn't use the failsafe system.  This can be used as an 'emergency' rescue for loss of FPV signal or for disorientation when flying LOS. If a failsafe switch is configured, a similar outcome can be achieved by setting the switch mode to immediately action Stage 2. There will be only a short delay before the quad should level out and climb.  In both cases, after hitting the switch, the quad's momentum will keep it moving as it was for at least a few seconds, so don't expect miracles.
+- **The GPS Rescue 'mode' switch will immediately initiate GPS Rescue when activated**. It doesn't use the failsafe system. This can be used as an 'emergency' rescue for loss of FPV signal or for disorientation when flying LOS. If a failsafe switch is configured, a similar outcome can be achieved by setting the switch mode to immediately action Stage 2. There will be only a short delay before the quad should level out and climb. In both cases, after hitting the switch, the quad's momentum will keep it moving as it was for at least a few seconds, so don't expect miracles.
 
 - In strong winds the maximum allowed angle of the craft during a rescue, `GPS_RESCUE_ANGLE`, may need to be increased enough that the quad can make forward speed into a headwind. The the craft may overshoot or land roughly if the wind is very strong, especially a strong tailwind.
 
-- During a rescue, the built-in Betaflight Crash Detection code is automatically activated (even if you disabled it in your settings).  If the quad has a hard crash or impact at any time on the way home, it may disarm immediately.  This mechanism is quite different from the much more sensitive landing impact detection, which is only activated late in the Rescue once the altitude of the quad falls below the `GPS_RESCUE_LANDING_ALT` height.
-
+- During a rescue, the built-in Betaflight Crash Detection code is automatically activated (even if you disabled it in your settings). If the quad has a hard crash or impact at any time on the way home, it may disarm immediately. This mechanism is quite different from the much more sensitive landing impact detection, which is only activated late in the Rescue once the altitude of the quad falls below the `GPS_RESCUE_LANDING_ALT` height.
 
 ## Phases of the Rescue
 
-There are five phases in a Rescue: `ASCEND`,`ROTATE`, `FLY HOME`, `DESCEND`, `LAND`. They follow sequentially.
+There are five "normal" phases in a Rescue: `ASCEND`,`ROTATE`, `FLY HOME`, `DESCEND`, `LAND`. They follow sequentially. Normally the phase is `IDLE`.
 
 Each phase has different targets. Specific exit criteria must be met to enter the next phase.
 
@@ -319,16 +319,16 @@ This table explains the currently implemented sanity checks.
 
 | Mode                                | `SANITY_ON`, or true failsafe in `SANITY_FS_ONLY` | Stick induced `SANITY_FS_ONLY`, or `SANITY_OFF` | Notes                                                                                         |
 | ----------------------------------- | ------------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| No Home Fix on initiation           | Immediate disarm                                  | `Do_Nothing` for 10s then disarm                | Usually it is impossible to arm with no home fix.                                             |
+| No Home Fix on initiation           | Immediate disarm                                  | `Do_Nothing` for 20s then disarm                | Usually it is impossible to arm with no home fix.                                             |
 | Initiate inside min DTH             | immediately enters landing mode                   | immediately enters landing mode                 | Craft should slowly land itself and disarm on touch-down                                      |
 | GPS hardware failure                | immediate disarm                                  | disarm after 10s                                | Should never occur mid-flight                                                                 |
 | Initiate but in crash recovery mode | immediate disarm                                  | disarm after 10s                                | GPS Rescue cannot function while in crash recovery mode                                       |
 | Climb Phase failure                 | disarm after 10s                                  | disarm after 10s                                | climb rate less than half the set rate for cumulative 10s                                     |
-| Low Sats                            | disarm after 10s                                  | count 10s, `Do Nothing` for 10s, then disarm    | sat count less than half the GPS Rescue minimum number                                        |
-| FlyHome failure                     | 20s then disarm                                   | count 20s, `Do Nothing` for 10s                 | can't maintain at at least half the set velocity in the direction of home for cumulative 20s. |
+| Low Sats                            | disarm after 10s                                  | 10s, `Do Nothing` for 20s, then disarm          | sat count less than half the GPS Rescue minimum number for cumulative 10s                     |
+| FlyHome failure                     | 15s then disarm                                   | 15s, `Do Nothing` for 20s, then disarm          | can't maintain at at least half the set velocity in the direction of home for cumulative 15s. |
 | Landing Phase failure               | 10s then disarm                                   | 10s then disarm                                 | descend rate less than half the set rate for cumulative 10s                                   |
 
-- 'Do Nothing' centres sticks and hovers to give the user time to reverse the failsafe switch, if used.
+- 'Do Nothing' centres sticks and hovers to give the user time to reverse the failsafe switch, if used, or in case you just get lucky and signal comes back.
 
 \*\* In `SANITY_OFF` mode, the craft can be armed with no home fix, but the rescue will fail, and the craft will disarm and crash after 10s of hovering, whenever the pilot attempts to enable a GPS Rescue.
 
@@ -350,16 +350,49 @@ There are 4 debugs for GPS Rescue, of which the `GPS_RESCUE_TRACKING` debug give
 
 All the GPS configuration settings are included in the Blackbox Log Header.
 
-| Name                | Debug0                      | Debug1                     | Debug2                            | Debug3                                            |
-| ------------------- | --------------------------- | -------------------------- | --------------------------------- | ------------------------------------------------- |
-| GPS_RESCUE_THROTTLE | Throttle P                  | Throttle D                 | Current craft altitude, cm        | Target altitude cm                                |
-| GPS_RESCUE_VELOCITY | Velocity P                  | Velocity D                 | Current craft velocity cm/s       | Target velocity cm/s                              |
-| GPS_RESCUE_TRACKING | Velocity to home cm/s       | Target velocity cm/s       | Current craft altitude cm         | Target altitude cm                                |
-| GPS_RESCUE_HEADING  | Yaw rescue rate deg/s \* 10 | Roll angle degrees \* 1000 | estimated craft heading deg \* 10 | estimated angle to home                           |
-| RTH                 | Pitch angle of quad         | Rescue Phase               | Rescue failure code               | seconds failing sanity (\*100) + seconds low sats |
-| ATTITUDE      | GPS Trust         | Baro Altitude (zeroed and smoothed on arming)               | GPS Altitude (zeroed on arming)               | Vario (smoothed only while armed, only present if Vario is enabled for the build) |
+| Name                | Debug0                      | Debug1                                        | Debug2                                    | Debug3                                                                            |
+| ------------------- | --------------------------- | --------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------- |
+| GPS_RESCUE_THROTTLE | Throttle P                  | Throttle D                                    | Current craft altitude, cm                | Target altitude cm                                                                |
+| GPS_RESCUE_VELOCITY | Velocity P                  | Velocity D                                    | Current craft velocity cm/s               | Target velocity cm/s                                                              |
+| GPS_RESCUE_TRACKING | Velocity to home cm/s       | Target velocity cm/s                          | Current craft altitude cm                 | Target altitude cm                                                                |
+| GPS_RESCUE_HEADING  | Yaw rescue rate deg/s \* 10 | Roll angle degrees \* 1000                    | Estimated craft heading deg \* 10         | Estimated angle to home                                                           |
+| RTH                 | Max Altitude                | Current Altitude                              | Rescue failure code (\*10) + Rescue Phase | Seconds failing sanity (\*100) + Seconds low sats                                 |
+| ATTITUDE            | GPS Trust                   | Baro Altitude (zeroed and smoothed on arming) | GPS Altitude (zeroed on arming)           | Vario (smoothed only while armed, only present if Vario is enabled for the build) |
 
-Rescue Phase codes
+**Normal RTH Debug 2 progression**
+
+| Code seen | Name                | Notes                                                            |
+| --------- | ------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------ |
+| 0         | `RESCUE_IDLE`       | Rescue Phase and failure codes should be 0 while flying normally |
+| 1         | `RESCUE_INITIALIZE` | usually too brief to be seen in OSD or log                       |
+| 2         | `RESCUE_ATTAIN_ALT` | climbing phase, no yaw                                           |
+| 3         | `RESCUE_ROTATE`     | rotating (yawing)                                                |
+| 4         | `RESCUE_FLY_HOME`   | pitches forward to fly home                                      |
+| 5         | `RESCUE_DESCENT`    | slows down and descends                                          |
+| 6         | `RESCUE_LANDING`    | below landing altitude, waiting to hit ground                    |
+| 8         | `RESCUE_COMPLETE`   | too brief to be seen in OSD                                      |
+| 0         | `RESCUE_IDLE`       | returns to idle                                                  |
+| 11        | `RESCUE_FLYAWAY`    | failure while flying home                                        | failure code for flyaway followed by phase code for fly home |
+| 19        | `RESCUE_FLYAWAY`    | failure while flying home, within do nothing period              | failure code for flyaway in tens column, do nothing phase    |
+| 39        | `RESCUE_GPSLOST`    | failure while climbing, within do nothing period                 | climb failure code in tens column, do nothing phase          |
+
+There should never be a failure code in the 'tens' column of Debug 2; the failure code should always be zero, meaning `RESCUE_HEALTHY`.
+An active failure code will trigger either `RESCUE_DO_NOTHING`, `9`, or `RESCUE_LANDING`, `6`, or `RESCUE_ABORT`, `7`, depending on the settings (see the sanity check table, above).
+NB: some events will be too transient to visualise in OSD or even to be logged.
+
+**RTH Debug 3 examples**
+
+Debug 3 should be zero. If the sanity check time-out counter is non-zero, the value will be shown in the hundreds column.
+When a sanity check isn't correcting itself, the value in the hundreds column just keeps incrementing until it hits its limit.
+
+| Code seen | Notes                                                                        |
+| --------- | ---------------------------------------------------------------------------- |
+| 0         | Normal state = sanity check timers are zero, sats are more than half minimum |
+| 100       | a sanity check has failed for 1s, satellite count is good                    |
+| 200       | a sanity check has failed for 2s, satellite count is good                    |
+| 1203      | a sanity check has failed for 12s, satellite count has been low for 3s       |
+
+**Rescue Phase codes**
 
 ```
 0    RESCUE_IDLE,
@@ -374,7 +407,7 @@ Rescue Phase codes
 9    RESCUE_DO_NOTHING
 ```
 
-Rescue Failure codes:
+**Rescue Failure codes**
 
 ```
 0    RESCUE_HEALTHY,
