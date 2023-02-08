@@ -1,5 +1,12 @@
 import https from 'https';
 import fs from 'fs';
+import git from 'simple-git';
+
+function Sleep(milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+const g = git();
 
 const githubUsers = [
   'Asizon',
@@ -22,7 +29,6 @@ const githubUsers = [
   'SupaflyFPV',
   'VitroidFPV',
   'wind0r',
-  'freasy',
 ]
 
 const filepath = 'src/json/team.json'
@@ -31,8 +37,8 @@ const userAgent = 'betaflight.com-gh-action'
 function getUserInfo() {
   let userData = []
 
-  githubUsers.forEach((username) => {
-    https
+  return githubUsers.forEach((username) => {
+    return https
       .get(
         {
           host: 'api.github.com',
@@ -71,3 +77,10 @@ function writeToFile(data) {
 }
 
 getUserInfo()
+
+while (!(await g.status()).modified.includes(filepath)) {
+  await Sleep(200);
+  continue;
+}
+
+g.add(filepath);
