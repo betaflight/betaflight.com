@@ -25,5 +25,6 @@ module.exports = {
         SwitchCase: 1,
       },
     ],
+    semi: ['error', 'always'],
   },
-}
+};
