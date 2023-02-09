@@ -360,3 +360,32 @@ TARGET := STM32F7X2
 6. You should now be able to successfully make a debuggable version of Betaflight for the BETAFLIGHTF7 board, using the command line: `make BOARD=BETAFLIGHTF7`. Other command line options all remain valid also. e.g. `make BOARD=BETAFLIGHTF7 TARGET=STM32F7X2 EXTRA_FLAGS="-DUSE_BATTERY_CONTINUE"`.
 
 NOTE: The **/src/main/board** directory is GIT IGNORED. This is because it is a developers scratch space for this very purpose, so code you include will not be picked up for committing. You can create as many board "profiles" as you like in this directory.
+
+### Automating a local build for board targets
+
+Board targets in `unified-targets` can be used locally but require a little extra work.
+
+This can be placed into a local shell script for ease of use:
+
+```
+#!/bin/bash
+###############################################################################
+## make-target.sh <TARGET> 
+## Call with e.g. make.sh AIRB-OMNIBUSF4
+##
+## Must be run inside betaflight repo directory with unified-targets placed
+## alongside betaflight repo under same parent
+###############################################################################
+BOARD=$1
+mkdir -p src/main/board/${BOARD}
+grep -P '^#define' ../unified-targets/configs/default/${BOARD}.config > src/main/board/${BOARD}/board.h
+echo -e '#include "board.h"\n' > src/main/board/${BOARD}/board.c
+#echo 'const char __attribute__ ((section(".custom_defaults"), used, aligned(4))) customDefaults[] =' >> src/main/board/${BOARD}/board.c
+#echo '    "# Betaflight\n",' >> src/main/board/${BOARD}/board.c
+#grep -Ev '^#define|^$|^# ' ../unified-targets/configs/default/${BOARD}.config | awk '{ print "    \""$0"\\n\","}' >> src/main/board/${BOARD}/board.c
+#echo '    "\0";' >> src/main/board/${BOARD}/board.c
+head -n1 ../unified-targets/configs/default/${BOARD}.config | awk '{ print "TARGET := "$4"" }'  > src/main/board/${BOARD}/board.mk
+make BOARD=${BOARD}
+
+```
+
