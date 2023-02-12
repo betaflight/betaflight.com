@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Power & Battery
+# Power & Battery Tab
 
 Set up all your power and battery related settings. Set the voltage and current sensor sources and 
 calibration so that the FC can read the values and warn you accordingly. You can also check the current 
@@ -58,13 +58,15 @@ Settings for the voltage meter to measure the battery voltage correctly
 The scale of the voltage meter. This is used to calculate the correct voltage from the ADC value. If the battery 
 voltage is not displayed correctly, you can adjust this value up/down to fix it
 
-### Divider Value
+### Divider / Multiplier Value
 
-*PLEASE REVIEW, NOT SURE WHAT TO WRITE HERE*
+This defines how the value read by the ICs adc converts into a voltage value that makes sense to the pilot.
+In easy terms this sets how the ratio difference between the two voltage divider resistors are used in the voltage calculation formular.
 
-### Multiplier Value
-
-*PLEASE REVIEW, NOT SURE WHAT TO WRITE HERE*
+Example:  
+Scale: 110 = 10:1 voltage divider (10k:1k ohm resistors)  
+Divider: 10 = sets the direct resistor to resistor ratio  
+Multiplier: 1 = this is to finetune the outcome of the calculation, a value of 1 is "no correction"
 
 ## Amperage Meter
 
