@@ -107,9 +107,15 @@ const config = {
           src: 'img/logo_fb.png',
         },
         items: [
+          //   {
+          //     type: 'doc',
+          //     docId: 'wiki',
+          //     position: 'left',
+          //     label: 'Wiki',
+          //   },
           {
-            type: 'doc',
-            docId: 'wiki',
+            type: 'docSidebar',
+            sidebarId: 'wiki',
             position: 'left',
             label: 'Wiki',
           },
@@ -124,6 +130,18 @@ const config = {
             sidebarId: 'manufacturer',
             position: 'left',
             label: 'Manufacturer',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'release',
+            position: 'left',
+            label: 'Release',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'tuning',
+            position: 'left',
+            label: 'Tuning',
           },
           {
             to: '/download',

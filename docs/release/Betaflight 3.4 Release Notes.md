@@ -2,13 +2,13 @@
 
 **Version 3.4.0: The best Betaflight ever!**
 
-We recognise that most of our users just want to two things with new firmware: Install it, and then go fly it. That's why we have spent a lot of time on working out default settings that fly great on most quads. Just install it and try for yourself! To make your craft fly even better, we've added a brand-new, experimental mode to improve the response to stick input by filtering it instead of interpolating. For more info on setting up 3.4 to optimise flight performance, read [these notes](../archive/Tuning-Tips-for-Betaflight-3.4).
+We recognise that most of our users just want to two things with new firmware: Install it, and then go fly it. That's why we have spent a lot of time on working out default settings that fly great on most quads. Just install it and try for yourself! To make your craft fly even better, we've added a brand-new, experimental mode to improve the response to stick input by filtering it instead of interpolating. For more info on setting up 3.4 to optimise flight performance, read [these notes](/docs/tuning/Tuning-Tips-for-Betaflight-3.4).
 
 We've also put a lot of effort into optimising the performance of the firmware, especially for boards with an F7 MCU. Now you can go and buy that shiny new F7 board, while your friends still struggle with their boards with F3 and F4. :wink:
 
-For pilots who are into long range flying, we have added the brand new ['GPS Rescue' mode](../archive/GPS-rescue-mode). It is a simplified version of the 'return to home' mode that exists in other, more navigation oriented firmware, and the great news is that all it needs to work is a GPS, no fiddling to make a compass work required!
+For pilots who are into long range flying, we have added the brand new ['GPS Rescue' mode](/docs/wiki/archive/GPS-Rescue-Mode). It is a simplified version of the 'return to home' mode that exists in other, more navigation oriented firmware, and the great news is that all it needs to work is a GPS, no fiddling to make a compass work required!
 
-Last but not least, we've also added a bunch of new features to improve the convenience of using Betaflight: You can now copy / paste your logs from an SD card or the on board flash chip by [mounting the flight controller as a storage device](../archive/Mass-Storage-Device-(MSC)-Support), and you can use your flight controller / TX to [emulate a joystick](../archive/HID-Joystick-Support) with no extra hardware needed, in order to fly on a simulator.
+Last but not least, we've also added a bunch of new features to improve the convenience of using Betaflight: You can now copy / paste your logs from an SD card or the on board flash chip by [mounting the flight controller as a storage device](/docs/wiki/archive/Mass-Storage-Device-(MSC)-Support), and you can use your flight controller / TX to [emulate a joystick](/docs/wiki/archive/HID-Joystick-Support) with no extra hardware needed, in order to fly on a simulator.
 
 If you are upgrading from an earlier version of Betaflight, please read the following section containing a list of things that you might have to change in your configuration.
 
@@ -51,7 +51,7 @@ Happy Props!
 - Added throttle boost mode ([#5508](https://github.com/betaflight/betaflight/pull/5508));
 - Added support for throttle limiting ([#5608](https://github.com/betaflight/betaflight/pull/5608));
 - Added PID loop improvements ([#5968](https://github.com/betaflight/betaflight/pull/5968), [#5963](https://github.com/betaflight/betaflight/pull/5963), [#5962](https://github.com/betaflight/betaflight/pull/5962));
-- Added support for accelerated [yaw spin recovery](../archive/Yaw-Spin-Recovery-and-Gyro-Overflow-Detect) ([#5706](https://github.com/betaflight/betaflight/pull/5706));
+- Added support for accelerated [yaw spin recovery](/docs/wiki/archive/Yaw-Spin-Recovery-and-Gyro-Overflow-Detect) ([#5706](https://github.com/betaflight/betaflight/pull/5706));
 - Added support for direct adjustment of PID values through an RC channel ([#5584](https://github.com/betaflight/betaflight/pull/5584));
 - Added support for multiple overclocking speeds ([#5193](https://github.com/betaflight/betaflight/pull/5193));
 - Added MCU temperature monitoring ([#5322](https://github.com/betaflight/betaflight/pull/5322));

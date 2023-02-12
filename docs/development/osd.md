@@ -1,6 +1,6 @@
 # OSD Glyphs
 
-These symbols are defined in [src/main/drivers/max7456_symbols.h](../src/main/drivers/max7456_symbols.h) and are used in [src/main/osd/osd_elements.c](../src/main/osd/osd_elements.c)
+These symbols are used in [src/main/osd/osd_elements.c](https://github.com/betaflight/betaflight/blob/master/src/main/osd/osd_elements.c)
 
 | PNG                            | Hex  | Dec | Betaflight Name(s)            | Notes                                                                                                 |
 | ------------------------------ | ---- | --- | ----------------------------- | ----------------------------------------------------------------------------------------------------- |

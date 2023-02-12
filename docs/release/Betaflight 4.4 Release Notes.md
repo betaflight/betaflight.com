@@ -82,14 +82,16 @@ Thanks goes to @SteveCEvans for these improvements!
 ## 3. Preset Favourites
 
 This feature reduces the amount of search the users have to do in the presets tab. Configurator will remember the presets you are using, automatically marking them with the "star". Favorite presets will always appear first in the initial list and the search results. In combination with the fix that preselects the current firmware from the plugged in FC it allows users to completely avoid searching of the commonly used presets, and pick them right away. The UI "stars" are clickable, so users can manually add/remove favorite presets.
+
 ![image](https://user-images.githubusercontent.com/2925027/212130300-f67a5d82-dbc2-4726-9c07-b6aae0aa98ae.png)
+
 Favorite presets are being remembered by it's path+name in the repo. So a favorite preset in one repository becomes automatically a favorite in another, if it's sharing the same name and path withing the repos.
 
 ## 4. GPS Return to Home enhancements
 
 **GPS "Rescue" has been extensively revised and greatly improved.** The quad should reliably return at the set speed, descend at an angle, land within a few metres of the home point, and disarm automatically on touch-down. There are separate PID control elements for altitude and return velocity t home; the defaults work very well for 'typical' quads. The system should initially be tested with a switch at reasonably close range and low altitude. Setting up and testing GPS Rescue to provide a reliable return on the event of an RxLoss failsafe is a non-trivial task, but well worth the trouble.
 
-**We strongly recommend reading the [wiki entry](../archive/GPS-Rescue-v4-4) and following the instructions there.**
+**We strongly recommend reading the [wiki entry](/docs/wiki/archive/GPS-Rescue-v4-4) and following the instructions there.**
 
 Remember that in any true failsafe the quad will always enter Failsafe Stage 1 phase for 1s (user-configurable) before initiating the Rescue. You MUST set the Stage 1 behaviour NOT to DROP, or it will disarm and drop in Stage 1 and never enter GPS Rescue. The safest option for Stage 1 is to configure Angle Mode on an aux switch, and set Stage 1 Failsafe to enable Angle Mode at a fixed hover / light climb throttle value with all other sticks forced to center. When you get signal loss of more than 300ms, you'll enter Angle Mode, and the will start to level out. That will give you a clear advance warning that you are getting signal breakup. Alternatively, you can set Failsafe Stage 1 to hold all current values; the quad will then continue on the same path until Stage 1 Failsafe expires and the Rescue starts.
 
@@ -157,10 +159,10 @@ The default value is appropriate for nearly all quads. Heavy or very low authori
 iTermWindup complements iTermRelax, and is especially useful to prevent iterm windup in low authority quads where the machine is not able to meet the target rate for some time after the sticks have stopped moving. iTermRelax is most effective, and operates more smoothly, when the sticks are moving fast. iTermWindup also constrains iTerm growth in a variety of impact or failure states.
 For more information see [PR#11806](https://github.com/betaflight/betaflight/pull/11806) - thanks @ctzsnooze.
 
-**Smoother mixer behaviour when airmode is active with extreme stick inputs**
+**Smoother mixer throttle adjustment with extreme stick inputs or gyro rates**
 
 There were a number of edge cases where the onset of airmode throttle boost was not smooth, with different outcomes depending on the mixer type. The mixer is now better behaved.
-For more information see [PR#11867](https://github.com/betaflight/betaflight/pull/11867) - thanks @QuickFlash.
+For more information see [PR#11867](https://github.com/betaflight/betaflight/pull/11867) and [PR#11857](https://github.com/betaflight/betaflight/pull/11857) - thanks @QuickFlash.
 
 ## 7. ELRS 3.x support for ELRS SPI boards
 

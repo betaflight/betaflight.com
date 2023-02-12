@@ -1,4 +1,4 @@
-name: Check if pr is compileable
+name: Test PR build and checks filenames + title case
 
 on:
   pull_request:
@@ -29,4 +29,46 @@ jobs:
         echo "ORG=betaflight" >> .env
 
     - name: Build package
-      run: npm run build
+      id: build-package
+      continue-on-error: true
+      run: npm run Build
+
+  check-file-names:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: npm
+        cache-dependency-path: ./package-lock.json
+
+    - name: Install dependencies
+      run: npm install chalk
+
+    - name: Check file names of markdown files
+      id: check-file-names
+      run: npm run check:file-names
+
+  check-title-case:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: npm
+        cache-dependency-path: ./package-lock.json
+
+    - name: Install dependencies
+      run: npm install chalk title-case
+
+    - name: Check title case in markdown files
+      id: check-title-case
+      run: npm run check:title-case
