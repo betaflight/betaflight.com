@@ -5,5 +5,5 @@
     ],
     "**/*.{html,md,mdx,less,css,json}": ["prettier --write --ignore-unknown"],
     "**/*.mdx": ["node tools/check_file_names.mjs", "node tools/check_title_case.mjs"],
-    "tools/team_generation.js": ["node tools/team_generation.js && git add src/json/team.json"]
+    "tools/team_generation.mjs": ["node tools/team_generation.mjs"]
 }

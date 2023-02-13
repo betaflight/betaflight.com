@@ -159,10 +159,10 @@ The default value is appropriate for nearly all quads. Heavy or very low authori
 iTermWindup complements iTermRelax, and is especially useful to prevent iterm windup in low authority quads where the machine is not able to meet the target rate for some time after the sticks have stopped moving. iTermRelax is most effective, and operates more smoothly, when the sticks are moving fast. iTermWindup also constrains iTerm growth in a variety of impact or failure states.
 For more information see [PR#11806](https://github.com/betaflight/betaflight/pull/11806) - thanks @ctzsnooze.
 
-**Smoother mixer behaviour when airmode is active with extreme stick inputs**
+**Smoother mixer throttle adjustment with extreme stick inputs or gyro rates**
 
 There were a number of edge cases where the onset of airmode throttle boost was not smooth, with different outcomes depending on the mixer type. The mixer is now better behaved.
-For more information see [PR#11867](https://github.com/betaflight/betaflight/pull/11867) - thanks @QuickFlash.
+For more information see [PR#11867](https://github.com/betaflight/betaflight/pull/11867) and [PR#11857](https://github.com/betaflight/betaflight/pull/11857) - thanks @QuickFlash.
 
 ## 7. ELRS 3.x support for ELRS SPI boards
 
