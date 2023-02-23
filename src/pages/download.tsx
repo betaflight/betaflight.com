@@ -68,7 +68,7 @@ export default function Media() {
         <HomepageFeature title="Downloads">
           <div className="grid max-w-fit grid-cols-1 md:grid-cols-2 gap-x-4 text-primary-200">
             <div className="flex flex-col space-y-4">
-              <IconElementFeature title="Installation & Documentation" link={{ text: 'See the Betaflight Wiki', href: '/docs' }} Icon={DocumentTextIcon}></IconElementFeature>
+              <IconElementFeature title="Installation & Documentation" link={{ text: 'See the Betaflight Wiki', href: '/docs/wiki' }} Icon={DocumentTextIcon}></IconElementFeature>
               <IconElementFeature
                 title="Configuration Tool"
                 link={{
