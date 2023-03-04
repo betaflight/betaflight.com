@@ -5,12 +5,9 @@
 .theme-doc-markdown a, .fancy-link {
     @apply no-underline bg-gradient-to-r from-primary-400 to-primary-400 bg-no-repeat bg-left-bottom 
 		bg-0w hover:bg-100w hover:text-primary-500 duration-300 w-fit text-primary-200 transition-all;
-  }
-.theme-doc-markdown {
+}
 
-  *[aria-hidden="true"] {
-	@apply hidden;
-  }
+.theme-doc-markdown {
 
   h1,
   header h1 {
