@@ -124,7 +124,7 @@ export default function Home({ recentPosts }: BlogProps) {
         <HomepageFeature title="Team Sponsors">
           <div className="flex flex-col xl:flex-row gap-4 justify-center items-center">
             <div className="rounded-xl overflow-hidden max-h-[200px] xl:max-h-fit">
-              <a href="https://docs.google.com/document/d/1uBO-2Utu0vw24LitWpvWG6GAdGc6E_Zwg2Gv_XzHlbE/edit" target="_blank" rel="noreferrer">
+              <a href="/partner">
                 <img src="/img/sponsors/BF_Approved_Logo_G2X.png" alt="BetaflightApproved" className="h-full w-auto" />
               </a>
             </div>
