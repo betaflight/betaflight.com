@@ -10,7 +10,7 @@ However, this flexibility also puts the onus on target designers to be reasonabl
 
 Another expectation is that Target Configurations that are submitted for publication are **tested** - please, in the interest of your customers, do not submit untested configurations. Instructions on how to install Betaflight with a new and unpublished Target Configuration can be found [here](https://youtu.be/gO7HyoXYYLY).
 
-### 1.2. Minimum configuration
+### 1.2. Minimum Configuration
 
 The expectation is that a Target Configuration contains at least all of the settings to make the hardware on a board work for the user out of the box. The instructions in 2. can be used to create such a configuration from a legacy target. For any hardware that is not configured to work in the Target Configuration, Betaflight's answer to support requests for this hardware will be 'target X does not support this hardware'.
 
@@ -36,21 +36,21 @@ Betaflight advises target creators against adding any setting to their Target Co
 
 All of these are really user preferences, and adding them as part of a Target Configuration just means that most customers of this hardware will have to spend extra time on reverting the presets before they can set up their own preferences. There are no strict rules here, and what is reasonable will be dependent on what type of target it is, but manufacturers are advised to use common sense.
 
-## 2. Creating a Target Configuration for a new Board
+## 2. Creating a Target Configuration for a New Board
 
-These instructions explain how to create a new Target configuration. Creating Targets for a new board means you must start with a firmware for your MCU and build up the required pin mappings. The firmware can be a generic one, or one you have built locally. Start with this firmware and then validate pin mappings and hardware functionality needed in the configuration file.
+These instructions explain how to create a new Target configuration. Creating Targets for a new board means you must start with a firmware for Your MCU and build up the required pin mappings. The firmware can be a generic one, or one you have built locally. Start with this firmware and then validate pin mappings and hardware functionality needed in the configuration file.
 
-### 2.1 Obtaining a target firmware for your MCU
+### 2.1 Obtaining a Target Firmware for Your MCU
 
-Betaflight Configurator distributes customised targets featuring settings specific to each board. To create firmware for a new board it is recommended to build a generic firmware for your MCU type - STM32F411, STM32F405, STM32F7X2, and so on. If your board has special "compile time" configuration for specific hardware or boot configuration, these flags should be added as `EXTRA_PARAMS` on the make command line (e.g. `make TARGET=STM32F405 EXTRA_PARAMS="-D'MPU_I2C_INSTANCE=I2CDEV_1'"`. The `EXTRA_PARAMS` can be considered like the old target.h file.
+Betaflight Configurator distributes customised targets featuring settings specific to each board. To create firmware for a new board it is recommended to build a generic firmware for Your MCU type - STM32F411, STM32F405, STM32F7X2, and so on. If Your board has special "compile time" configuration for specific hardware or boot configuration, these flags should be added as `EXTRA_PARAMS` on the make command line (e.g. `make TARGET=STM32F405 EXTRA_PARAMS="-D'MPU_I2C_INSTANCE=I2CDEV_1'"`. The `EXTRA_PARAMS` can be considered like the old target.h file.
 
 These firmware types can be created by building locally and specifying the MCU type such as `make STM32F405`. Firmware files are created in the `obj` directory and can be flashed by choosing `Load local file` in Betaflight Configurator.
 
-### 2.2 Flashing the target firmware
+### 2.2 Flashing the Target Firmware
 
 (Theoretically there is no need for the board to match the firmware that is flashed in this step, but there is a chance that the board configuration is setting an input pin on the board to be an output pin, thus leading to a short and potential hardware damage.)
 
-- the important part is that this is the firmware for the MCU type your board uses.
+- the important part is that this is the firmware for the MCU type Your board uses.
 
 - make sure to enable 'Full chip erase' before flashing, or reset to default with `defaults` in CLI.
 
@@ -66,17 +66,17 @@ Configure changed or additional hardware with the command `resource <DEVICE> <ID
 
 Once all resources are present type `save` and the board configuration will be persisted.
 
-### 2.4 Validate resources
+### 2.4 Validate Resources
 
 After saving your resource please test your board to ensure all hardware is fully operational. If hardware is not fully working repeat the "Resource Mappings" step.
 
 Once testing is completed proceed to "Get a dump of your board configuration"
 
-### 2.5 Get a dump of your board configuration
+### 2.5 Get a Dump of Your Board Configuration
 
 - re-start CLI (Disconnect / Connect), then do a `dump hardware`, save the output into a file with 'Save to File'.
 
-### 2.6 Add #defines for hardware drivers
+### 2.6 Add Defines for Hardware Drivers
 
 - edit the file from the previous step, and add #defines for accelerometer, barometer, gyro and magnetometer hardware drivers to be included for the cloud build API.
 
@@ -95,13 +95,13 @@ For example on [this target](https://github.com/betaflight/unified-targets/blob/
 
 For more information see reference at the [Hardware specification](manufacturer-design-guidelines#42-definitions-for-targets)
 
-### 2.7 Add the board and manufacturer information
+### 2.7 Add the Board and Manufacturer Information
 
 - edit the file from the previous step, and verify that `board_name` is set to the target name, and `manufacturer_id` is set to the manufacturer's id as listed in [this document](https://github.com/betaflight/unified-targets/tree/master/Manufacturers.md);
 - if the manufacturer is not listed, open an [issue](https://github.com/betaflight/betaflight/issues) and ask for a new id to be assigned. This issue needs to contain the following: name of the company selling the board and supporting customers of it; a website URL for this company. In a future release of the Betaflight configurator, the listing for every board will include this company name, and users will be able to open the company's website from within Betaflight configurator. Allow for a day or two for the Betaflight team to respond to your issue and assign a manufacturer it;
 - for boards that are homebrew and / or not planned for commercial availability, use `CUST` as the `manufacturer_id`.
 
-### 2.8 Flash the Target firmware
+### 2.8 Flash the Target Firmware
 
 - find the correct Target for your board based on the MCU type, according to the table below. If your target's MCU is not listed, please open an [issue](https://github.com/betaflight/betaflight/issues) about this to let us know there is demand. Currently, MCU types with only one or two boards using them are not released as unified targets.
 
@@ -119,7 +119,7 @@ For more information see reference at the [Hardware specification](manufacturer-
 
 - find and install the firmware (4.0 or newer) for the Target identified above. The firmware is available the releases page as assets (generic) for Betaflight, or you may need to build your own. Be aware that after flashing this firmware, the LEDs on your board will not be working - this is normal.
 
-### 2.9 Do the initial setup for your Target configuration
+### 2.9 Do the Initial Setup for Your Target Configuration
 
 - connect to your board running the Target firmware, enter CLI;
 
@@ -127,7 +127,7 @@ For more information see reference at the [Hardware specification](manufacturer-
 
 - when the board reboots now, the LEDs should start working again - this is a sign that the previous step was successful.
 
-### 2.10 Add custom settings for your board to the Target configuration
+### 2.10 Add Custom Settings for Your Board to the Target Configuration
 
 - enter the command: `feature OSD` in CLI, just before the #master section (to switch on OSD by default);
 
@@ -139,7 +139,7 @@ For more information see reference at the [Hardware specification](manufacturer-
 
 - save the changes;
 
-### 2.11 Create a Target configuration file for your board
+### 2.11 Create a Target Configuration File for Your Board
 
 - re-start CLI (Disconnect / Connect), then do a `diff all bare`, save the output into a file named `<manufacturer_id>-<board_name>.config` with 'Save to File'. It is crucial that the name exactly matches the manufacturer id and board name specified in the file, or else checking of the pull request you are going to open in a subsequent step will fail;
 
@@ -149,6 +149,6 @@ For more information see reference at the [Hardware specification](manufacturer-
 
 - thoroughly test your new Target configuration with the actual hardware (or a prototype of it). Make sure you test all peripherals (gyro, OSD, flash, SDcard, ...) and all motor outputs (with analog and digital protocols). Ideally you want to flight test as well. Remember that Betaflight does no testing of your Target configuration, and once it has been accepted it will become available to your customers through Betaflight Configurator immediately - if it does not work then this will reflect badly onto your company and its products;
 
-### 3.0 Get it added to Betaflight
+### 3.0 Get It Added to Betaflight
 
 - open a [pull request](https://github.com/betaflight/unified-targets/pulls) to put your target configuration into `configs/default`.
