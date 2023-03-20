@@ -1,40 +1,40 @@
-import React from 'react'
-import { CameraIcon, CodeBracketIcon, CpuChipIcon, DocumentTextIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid'
-import JetIcon from '@site/src/icons/jet.icon.svg'
-import { BlogProps } from '@site/src/types'
-import BetaflightLayout from '../Layout'
-import HomepageFeature from '../HomepageFeature'
-import AboutCard from '../AboutCard'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons'
-import Button from '../Button'
-import TeamFeature from '../Team'
+import React from 'react';
+import { CameraIcon, CodeBracketIcon, CpuChipIcon, DocumentTextIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid';
+import JetIcon from '@site/src/icons/jet.icon.svg';
+import { BlogProps } from '@site/src/types';
+import BetaflightLayout from '../Layout';
+import HomepageFeature from '../HomepageFeature';
+import AboutCard from '../AboutCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons';
+import Button from '../Button';
+import TeamFeature from '../Team';
 
 export default function Home({ recentPosts }: BlogProps) {
   function clampAndFormatMinutes(minutes: number) {
     if (minutes < 1) {
-      return 'One minute read'
+      return 'One minute read';
     }
-    return `${minutes} minutes read`
+    return `${minutes} minutes read`;
   }
 
   function formatDate(date: string) {
-    const dateObj = new Date(date)
+    const dateObj = new Date(date);
     return dateObj.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: '2-digit',
-    })
+    });
   }
 
   function onClickDonate(service: string) {
     switch (service) {
       case 'paypal':
-        return () => window.open('https://paypal.me/betaflight', '_blank', 'noopener')
+        return () => window.open('https://paypal.me/betaflight', '_blank', 'noopener');
       case 'patreon':
-        return () => window.open('https://patreon.com/betaflight', '_blank', 'noopener')
+        return () => window.open('https://patreon.com/betaflight', '_blank', 'noopener');
       default:
-        break
+        break;
     }
   }
 
@@ -121,6 +121,25 @@ export default function Home({ recentPosts }: BlogProps) {
         <HomepageFeature title="Team">
           <TeamFeature></TeamFeature>
         </HomepageFeature>
+        <HomepageFeature title="Team Sponsors">
+          <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
+            <div className="relative rounded-xl overflow-hidden">
+              <a href="/partner">
+                <img src="/img/sponsors/Betaflight_Approved.png" alt="BetaflightApproved" className="max-h-[300px] w-auto" />
+              </a>
+            </div>
+            <div className="rounded-xl overflow-hidden">
+              <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer">
+                <img src="/img/sponsors/HQPROP.png" alt="HQProp" className="invert  max-h-[300px] w-auto" />
+              </a>
+            </div>
+            {/* <div className="rounded-xl overflow-hidden max-h-[200px] xl:max-h-fit">
+              <a href="https://www.tititop.com/" target="_blank" rel="noreferrer">
+                <img src="/img/sponsors/DOGCOM.png" alt="DogCom" className="h-full w-auto" />
+              </a>
+            </div> */}
+          </div>
+        </HomepageFeature>
         <HomepageFeature title="Donating">
           <div className="flex flex-col xl:flex-row space-x-4 justify-center items-center">
             <div className="flex flex-col space-y-4 text-white">
@@ -152,5 +171,5 @@ export default function Home({ recentPosts }: BlogProps) {
         </HomepageFeature>
       </div>
     </BetaflightLayout>
-  )
+  );
 }
