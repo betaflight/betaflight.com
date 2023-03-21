@@ -83,7 +83,7 @@ export default function Home({ recentPosts }: BlogProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
             <AboutCard title="Hardware" className="text-rose-500 fill-rose-500" Icon={CpuChipIcon}>
               <p>Betaflight supports a wide range of flight controllers from a variety of manufacturers.</p>
-              <p>The 'Approved Partner' program provides hardware recommendations from the development team based.</p>
+              <p>The 'Betaflight Partner' program provides hardware manufacturer recommendations from the development team.</p>
             </AboutCard>
 
             <AboutCard title="Community" className="text-sky-500 fill-sky-500" Icon={UsersIcon}>
