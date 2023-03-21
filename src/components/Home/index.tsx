@@ -122,22 +122,31 @@ export default function Home({ recentPosts }: BlogProps) {
           <TeamFeature></TeamFeature>
         </HomepageFeature>
         <HomepageFeature title="Team Sponsors">
-          <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
-            <div className="relative rounded-xl overflow-hidden">
-              <a href="/partner">
-                <img src="/img/sponsors/Betaflight_Approved.png" alt="BetaflightApproved" className="max-h-[300px] w-auto" />
-              </a>
+          <div>
+            <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
+              <div className="relative rounded-xl overflow-hidden">
+                <a href="/partner">
+                  <img src="/img/sponsors/Betaflight_Approved.png" alt="BetaflightApproved" className="max-h-[300px] w-auto" />
+                </a>
+              </div>
+              {/* <div className="rounded-xl overflow-hidden">
+                <a href="https://www.tititop.com/" target="_blank" rel="noreferrer">
+                  <img src="/img/sponsors/DOGCOM.png" alt="DogCom" className="max-h-[150px] w-auto" />
+                </a>
+              </div> */}
+              <div className="rounded-xl overflow-hidden">
+                <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer">
+                  <img src="/img/sponsors/HQPROP.png" alt="HQProp" className="invert  max-h-[300px] w-auto" />
+                </a>
+              </div>
             </div>
-            <div className="rounded-xl overflow-hidden">
-              <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer">
-                <img src="/img/sponsors/HQPROP.png" alt="HQProp" className="invert  max-h-[300px] w-auto" />
-              </a>
+            <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
+              <div className="rounded-xl overflow-hidden">
+                <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer">
+                  <img src="/img/sponsors/Radio-Master-Logo.png" alt="RadioMaster" className="invert max-h-[300px] w-auto" />
+                </a>
+              </div>
             </div>
-            {/* <div className="rounded-xl overflow-hidden max-h-[200px] xl:max-h-fit">
-              <a href="https://www.tititop.com/" target="_blank" rel="noreferrer">
-                <img src="/img/sponsors/DOGCOM.png" alt="DogCom" className="h-full w-auto" />
-              </a>
-            </div> */}
           </div>
         </HomepageFeature>
         <HomepageFeature title="Donating">

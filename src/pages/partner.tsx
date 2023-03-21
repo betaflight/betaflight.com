@@ -14,7 +14,7 @@ export default function Partner() {
       </div>
       <div className="w-full xl:max-w-[1920px] flex-grow p-4 xl:p-16 flex">
         <div className="flex-grow flex justify-center">
-          <iframe className="max-w-[850px]" src="http://localhost:3000/img/sponsors/Betaflight_4.4_Verified.pdf#toolbar=0" width="100%" height="1000px"></iframe>
+          <iframe className="max-w-[850px]" src="/img/sponsors/Betaflight_4.4_Verified.pdf#toolbar=0" width="100%" height="1000px"></iframe>
         </div>
       </div>
     </BetaflightLayout>
