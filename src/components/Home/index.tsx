@@ -142,7 +142,7 @@ export default function Home({ recentPosts }: BlogProps) {
             </div>
             <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
               <div className="rounded-xl overflow-hidden">
-                <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer">
+                <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer">
                   <img src="/img/sponsors/Radio-Master-Logo.png" alt="RadioMaster" className="invert max-h-[300px] w-auto" />
                 </a>
               </div>
