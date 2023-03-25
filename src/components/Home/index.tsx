@@ -123,27 +123,25 @@ export default function Home({ recentPosts }: BlogProps) {
         </HomepageFeature>
         <HomepageFeature title="Team Sponsors">
           <div>
-            <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-row flex-wrap gap-8 justify-center items-center">
               <div className="relative rounded-xl overflow-hidden">
                 <a href="/partner">
-                  <img src="/img/sponsors/Betaflight_Approved.png" alt="BetaflightApproved" className="max-h-[300px] w-auto" />
+                  <img src="/img/sponsors/Betaflight_Approved.png" alt="BetaflightApproved" className="max-h-[200px] w-auto" />
                 </a>
               </div>
-              {/* <div className="rounded-xl overflow-hidden">
+              <div className="rounded-xl overflow-hidden">
                 <a href="https://www.tititop.com/" target="_blank" rel="noreferrer">
-                  <img src="/img/sponsors/DOGCOM.png" alt="DogCom" className="max-h-[150px] w-auto" />
+                  <img src="/img/sponsors/DOGCOM.png" alt="DogCom" className="max-h-[100px] w-auto" />
                 </a>
-              </div> */}
+              </div>
               <div className="rounded-xl overflow-hidden">
                 <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer">
-                  <img src="/img/sponsors/HQPROP.png" alt="HQProp" className="invert  max-h-[300px] w-auto" />
+                  <img src="/img/sponsors/HQPROP.png" alt="HQProp" className="invert  max-h-[100px] w-auto" />
                 </a>
               </div>
-            </div>
-            <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
               <div className="rounded-xl overflow-hidden">
                 <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer">
-                  <img src="/img/sponsors/Radio-Master-Logo.png" alt="RadioMaster" className="invert max-h-[300px] w-auto" />
+                  <img src="/img/sponsors/Radio-Master-Logo.png" alt="RadioMaster" className="invert max-h-[100px] w-auto" />
                 </a>
               </div>
             </div>
