@@ -204,6 +204,7 @@ And each LED has overlays:
 - `T` - `T`hrust state.
 - `B` - `B`link (flash twice) mode.
 - `O` - Lars`O`n Scanner (Cylon Effect).
+- `Y` - Rainbow effect.
 - `V` - `V`TX Frequency.
 
 `cc` specifies the color number (0 based index).
@@ -290,6 +291,16 @@ This mode blinks the current LED, alternatively from black to the current active
 
 The Larson Scanner replicates the scanning "eye" effect seen on the mechanical Cylons and on Kitt from Knight Rider.
 This overlay dims all of the LEDs it is assigned to and brightens certain ones at certain times in accordance with the animation. The animation is active regardless of arm state.
+
+#### Rainbow Effect
+
+This mode is cycling through HSV colors periodically. Animation frequency can be changed with `set ledstrip_rainbow_freq = X` and HSV color difference between adjacent LEDs with `set ledstrip_rainbow_delta = Y`.
+
+:::info
+
+Can also be used with [Larson Scanner](#larson-scanner-cylon-effect) or [Blink](#blink).
+
+:::
 
 #### VTX Frequency
 
