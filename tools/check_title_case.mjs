@@ -47,19 +47,19 @@ function checkTitleCase(filePath) {
 
 function readDir(dir) {
   const files = fs.readdirSync(dir);
-  let error = false;
+  let hasError = false;
   for (const file of files) {
     const filePath = path.join(dir, file);
     const fileStat = fs.lstatSync(filePath);
     if (fileStat.isDirectory() && !skipDirs.some(skipDir => filePath.includes(skipDir))) {
       // Recursively read the subdirectory
-      error &= readDir(filePath);
+      hasError &= readDir(filePath);
     } else if (fileStat.isFile() && file.endsWith('.mdx')) {
       // Check the file for title case
-      error &= checkTitleCase(filePath);
+      hasError &= checkTitleCase(filePath);
     }
   }
-  return error;
+  return hasError;
 }
 
 function runFull() {
@@ -73,13 +73,13 @@ function run() {
   const hasArgs = process.argv.length > 2;
 
   if (!hasArgs) {
-    return runFull() ? 0 : 1;
+    return runFull() ? 1 : 0;
   }
   const [,, ...args] = process.argv;
   
   return args.map(arg => {
     return checkTitleCase(arg);
-  }).includes(false) ? 1 : 0;
+  }).includes(true) ? 1 : 0;
 }
 
 const exitCode = run();
