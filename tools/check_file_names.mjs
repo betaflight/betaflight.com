@@ -31,7 +31,7 @@ function checkFileName(fileName) {
  */
 function processDir(dir, depth = 1) {
   const files = fs.readdirSync(dir, { withFileTypes: true });
-  let error = false;
+  let hasError = false;
   files.forEach((file) => {
     if (file.isDirectory()) {
       if (skipDirs.some(skipDir => `${dir}/${file.name}`.includes(skipDir))) {
@@ -43,10 +43,10 @@ function processDir(dir, depth = 1) {
 
     if (checkFileName(file.name)) {
       log(`${chalk.red(`${'\t'.repeat(depth)}${file.name}`)}: contains invalid characters`);
-      error = true;
+      hasError = true;
     }
   });
-  return error;
+  return hasError;
 }
 
 function runFull() {
@@ -73,10 +73,10 @@ function run() {
   const hasArgs = process.argv.length > 2;
 
   if (!hasArgs) {
-    return runFull().includes(false) ? 1 : 0;
+    return runFull().includes(true) ? 1 : 0;
   }
   const [,, ...args] = process.argv;
-  return args.map(arg => runSingle(arg)).includes(false) ? 1 : 0;
+  return args.map(arg => runSingle(arg)).includes(true) ? 1 : 0;
 }
 
 const exitCode = run();
