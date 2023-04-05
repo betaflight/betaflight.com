@@ -34,7 +34,7 @@
     @apply text-xl font-bold text-rose-500;
   }
 
-  img {
+  img:not(.no-effect) {
     @apply rounded-xl shadow-[10px_10px_0px] shadow-primary-500;
   }
 
