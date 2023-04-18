@@ -1,5 +1,5 @@
-import React from 'react'
-import Logo from '../../../icons/logo.svg'
+import React from 'react';
+import Logo from '../../../icons/logo.svg';
 
 export default function FooterLayout({ style, links, logo, copyright }) {
   return (
@@ -9,7 +9,7 @@ export default function FooterLayout({ style, links, logo, copyright }) {
         {copyright && (
           <div className="text-center">
             <div className="text-center text-neutral-800">
-              <Logo className="w-52 h-52 inline-block"></Logo>
+              <Logo className="w-40 h-40 mr-12 mt-4 mb-2 inline-block"></Logo>
             </div>
             {copyright}
             <div className="text-sm text-neutral-500/60">Built with Docusaurus</div>
@@ -27,5 +27,5 @@ export default function FooterLayout({ style, links, logo, copyright }) {
         )}
       </div>
     </footer>
-  )
+  );
 }
