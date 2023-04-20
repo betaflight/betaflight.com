@@ -11,13 +11,13 @@ require('dotenv').config()
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Betaflight',
-  tagline: 'Are you ready to fly?',
+  tagline: 'Pushing the Limits of UAV Performance',
   url: process.env.URL,
   baseUrl: process.env.BASE_PATH,
   trailingSlash: false,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-  favicon: '/img/logo_fb.png',
+  favicon: '/img/betaflight/icon_light.svg',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -113,7 +113,7 @@ const config = {
         title: 'Betaflight',
         logo: {
           alt: 'Betaflight Logo',
-          src: 'img/logo_fb.png',
+          src: 'img/betaflight/icon_dark.svg',
         },
         items: [
           //   {
@@ -194,7 +194,7 @@ const config = {
       footer: {
         style: 'dark',
         logo: {
-          src: 'img/logo_fb.png',
+          src: 'img/betaflight/icon_dark.svg',
         },
         links: [
           {

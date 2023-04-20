@@ -1,16 +1,16 @@
-import React from 'react'
-import Layout from '@theme/Layout'
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import React from 'react';
+import Layout from '@theme/Layout';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 type Props = {
   children: React.ReactNode
 }
 
 export default function BetaflightLayout({ children }: Props) {
-  const { siteConfig } = useDocusaurusContext()
+  const { siteConfig } = useDocusaurusContext();
 
   return (
-    <Layout title={`FlyFast - ${siteConfig.title}`} description="Are you ready to fly?">
+    <Layout title={`${siteConfig.title} - Pushing the Limits of UAV Performance`} description="Are you ready to fly?">
       <div
         className="absolute w-full pointer-events-none -z-20 brightness-50"
         style={{
@@ -219,5 +219,5 @@ export default function BetaflightLayout({ children }: Props) {
       </div>
       <div className="xl:max-w-[1920px] xl:m-auto flex flex-col items-center min-h-screen mt-16 w-full">{children}</div>
     </Layout>
-  )
+  );
 }
