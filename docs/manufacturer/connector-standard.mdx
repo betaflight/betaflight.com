@@ -1,0 +1,153 @@
+# Drone Connector Standard
+
+Draft Proposal for Standardized Drone Connectors
+
+## Version Change Register
+
+| Version # | Revision Date    | Changes, Reasons, and Notes       |
+| :-------- | :--------------- | :-------------------------------- |
+| Draft 0.1 | 27 April 2023    | Initial Draft Format              |
+
+
+## Introduction
+
+The use of drones has increased significantly in recent years. The drone community has grown rapidly and there are now many different types of drones available on the market.
+The drone community is also very active and there are many different manufacturers of drones and components. This has led to a wide variety of drones and components that are not compatible with each other.
+This makes it difficult for users to build and maintain multi-rotor drones. With this increase comes the need for standardization.
+Standardization will help reduce confusion and ensure compatibility between components from different manufacturers, making it easier for users to build and maintain multi-rotor drones.
+Standardization would enable easier compatibility between components from different manufacturers, leading to more efficient and cost-effective and cost-effective industry.
+This proposal aims to establish a standard for drone connectors that will be wildly adopted by manufacturers and users.
+
+
+## Connector Standards
+
+### Availability
+
+Any harness should be widely available and easy to obtain.
+The harness should be available from multiple sources and should be easy to obtain from any source.
+
+
+### JST SH Series as Standard for Connectors.
+
+JST-SH is wildly used and reliable connector that proven to be a robust choice for drone applications.
+The connector should be the standard for all drone manufacturers, ensuring compatibility between components from different manufacturers.
+
+
+### JST GH Series as Optional Component.
+
+Some manufacturers also use other firmware like Ardupilot which has it's own standard.
+The connector type should be optional for drone manufacturers, allowing them to choose the connector that best suits their needs as long they provide a harness for both platforms.
+
+
+### ESC Pin Configuration
+
+An additional 2-pin connector for power (ext. power) can be used for high-powered devices or if the user wants to use an external power source.
+
+We recommend using twisted wires to eliminate any confusion about the mirroring of the connector and to ensure that the same wiring order is used on both sides of the connection.
+
+The pin configuration for the JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | GND         | Ground      |
+| 2     | V+          | Power       |
+| 3     | Current     | Current     |
+| 4     | Telemetry   | Telemetry   |
+| 5     | Signal 1    | Motor 1     |
+| 6     | Signal 2    | Motor 2     |
+| 7     | Signal 3    | Motor 3     |
+| 8     | Signal 4    | Motor 4     |
+
+<br />
+The pin configuration for the JST GH connector is as described in Ardupilot's documentation
+
+
+### RX Pin Configuration
+
+The pin configuration for the JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | GND         | Ground      |
+| 2     | V+          | Power       |
+| 3     | Signal 1    | RX          |
+| 4     | Signal 2    | TX          |
+
+
+### GPS Pin Configuration
+
+The pin configuration for the JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | GND         | Ground      |
+| 2     | V+          | Power       |
+| 3     | Signal 1    | RX          |
+| 4     | Signal 2    | TX          |
+
+
+### I2C Pin Configuration
+
+The pin configuration for the JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | GND         | Ground      |
+| 2     | V+          | Power       |
+| 3     | Signal 1    | SDA         |
+| 4     | Signal 2    | SCL         |
+
+<br />
+Note: The I2C connector should be used for all I2C devices, including compasses, barometers, and other sensors.
+Pins are shared with PB10 and PB11 for TX3 and RX3 so please keep this in mind when using onboard I2C device such as compasses and barometers.
+
+### Analog Camera Pin Configuration
+
+The pin configuration for the JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | GND         | Ground      |
+| 2     | V+          | Power       |
+| 3     | Signal 1    | Video       |
+| 4     | Signal 2    | RX          |
+| 5     | Signal 3    | TX          |
+
+
+### VTX Pin Configuration
+
+The pin configuration for the JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | GND         | Ground      |
+| 2     | V+          | Power       |
+| 3     | Signal 1    | Video       |
+| 4     | Signal 2    | RX          |
+| 5     | Signal 3    | TX          |
+
+
+### Digital Video Transmitter Pin Configuration
+
+The current pin configuration for the JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | V+          | Power       |
+| 2     | GND         | Ground      |
+| 3     | Signal 1    | TX          |
+| 4     | Signal 2    | RX          |
+| 5     | GND         | Ground (DJI)|
+| 6     | Signal 3    | SBUS (DJI)  |
+
+
+## Logo
+
+The provided logo should be used to identify the connector as a Betaflight standardized connector.
+The logo should be used on all components that use the standardized connector system.
+
+
+## Conclusion
+
+The standardized connector system proposed in this document will help reduce confusion and ensure compatibility between components from different manufacturers, making it easier for users to build and maintain multi-rotor drones.
+We recommend that drone manufacturers and component manufacturers adopt the Betaflight standardized connector system to benefit the entire drone community.
