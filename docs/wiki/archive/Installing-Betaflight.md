@@ -124,6 +124,8 @@ For this case, we add the group _dialout_ to our userid _user_ using the _usermo
 
 You will need to log out then log back in and now you should have access to the device.
 
+If you are still not added to the _dialout_ group (you can check that using the `groups` command), try restarting your system.
+
 #### Troubleshooting installation problems:
 
 If you see your ttyUSB device disappear right after the board is connected, chances are that the ModemManager service (that handles network connectivity for you) thinks it is a GSM modem. If this happens, you can issue the following command to disable the service:
