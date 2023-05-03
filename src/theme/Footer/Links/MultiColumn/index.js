@@ -1,5 +1,6 @@
-import React from 'react'
-import LinkItem from '@theme/Footer/LinkItem'
+import React from 'react';
+import LinkItem from '@theme/Footer/LinkItem';
+
 function ColumnLinkItem({ item }) {
   return item.html ? (
     <li
@@ -12,20 +13,22 @@ function ColumnLinkItem({ item }) {
     <li key={item.href ?? item.to} className="">
       <LinkItem item={item} />
     </li>
-  )
+  );
 }
+
 function Column({ column }) {
   return (
     <div className="p-2">
-      <div className="font-bold text-primary-500">{column.title}</div>
-      <ul className="">
+      <div className="font-bold text-primary-500 mb-1">{column.title}</div>
+      <ul className="flex flex-col items-center">
         {column.items.map((item, i) => (
           <ColumnLinkItem key={i} item={item} />
         ))}
       </ul>
     </div>
-  )
+  );
 }
+
 export default function FooterLinksMultiColumn({ columns }) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4">
@@ -33,5 +36,5 @@ export default function FooterLinksMultiColumn({ columns }) {
         <Column key={i} column={column} />
       ))}
     </div>
-  )
+  );
 }
