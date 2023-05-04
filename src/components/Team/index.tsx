@@ -1,7 +1,7 @@
-import React from 'react'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import teamInfo from '../../json/team.json'
+import React from 'react';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import teamInfo from '../../json/team.json';
 
 type GitHubUser = {
   id: number
@@ -39,16 +39,16 @@ type GitHubUser = {
 }
 
 export default function TeamFeature() {
-  const userData: GitHubUser[] = teamInfo
+  const userData: GitHubUser[] = teamInfo;
 
   function truncateStr(str: string) {
-    return str.length > 20 ? `${str.substring(0, 20)}...` : str
+    return str.length > 20 ? `${str.substring(0, 20)}...` : str;
   }
 
   function checkLink(link: string, short = false) {
-    let tmp = link.startsWith('http') ? link : `https://${link}`
-    tmp = short ? tmp.replace('https://', '').replace('www.', '') : tmp
-    return tmp.endsWith('/') ? tmp.slice(0, -1) : tmp
+    let tmp = link.startsWith('http') ? link : `https://${link}`;
+    tmp = short ? tmp.replace('https://', '').replace('www.', '') : tmp;
+    return tmp.endsWith('/') ? tmp.slice(0, -1) : tmp;
   }
 
   return (
@@ -79,5 +79,5 @@ export default function TeamFeature() {
         </div>
       )}
     </>
-  )
+  );
 }

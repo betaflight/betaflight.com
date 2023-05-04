@@ -1,39 +1,39 @@
-import React from 'react'
-import Link from '@docusaurus/Link'
-import useBaseUrl from '@docusaurus/useBaseUrl'
-import isInternalUrl from '@docusaurus/isInternalUrl'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faYoutube, faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faGlobe, faBlog, faComments } from '@fortawesome/free-solid-svg-icons'
+import React from 'react';
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import isInternalUrl from '@docusaurus/isInternalUrl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faYoutube, faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faGlobe, faBlog, faComments } from '@fortawesome/free-solid-svg-icons';
 
 export default function FooterLinkItem({ item }) {
-  const { to, href, label, icon, prependBaseUrlToHref, ...props } = item
-  const toUrl = useBaseUrl(to)
-  const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true })
+  const { to, href, label, icon, prependBaseUrlToHref, ...props } = item;
+  const toUrl = useBaseUrl(to);
+  const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
 
   function getFaIcon(icon) {
     switch (icon) {
       case 'youtube':
-        return faYoutube
+        return faYoutube;
       case 'discord':
-        return faDiscord
+        return faDiscord;
       case 'blog':
-        return faBlog
+        return faBlog;
       case 'github':
-        return faGithub
+        return faGithub;
       case 'forum':
-        return faComments
+        return faComments;
       case 'link':
       case 'site':
-        return faGlobe
+        return faGlobe;
       default:
-        return null
+        return null;
     }
   }
 
   return (
     <Link
-      className="fancy-link pb-1 no-underline flex items-center"
+      className="fancy-link pb-1 no-underline flex"
       {...(href
         ? {
           href: prependBaseUrlToHref ? normalizedHref : href,
@@ -44,12 +44,12 @@ export default function FooterLinkItem({ item }) {
       {...props}
     >
       {icon && (
-        <div className="w-[24px] mr-2 text-center">
-          <FontAwesomeIcon icon={getFaIcon(icon)} className="text-neutral-500" />
+        <div className="w-[24px]">
+          <FontAwesomeIcon icon={getFaIcon(icon)} className="" />
         </div>
       )}
       {label}
       {href && !isInternalUrl(href)}
     </Link>
-  )
+  );
 }
