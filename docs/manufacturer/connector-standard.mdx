@@ -8,6 +8,7 @@ Draft Proposal for Standardized Drone Connectors
 | Version # | Revision Date    | Changes, Reasons, and Notes       |
 | :-------- | :--------------- | :-------------------------------- |
 | Draft 0.1 | 27 April 2023    | Initial Draft Format              |
+| Draft 0.2 | 08 May 2023      | Added Logo and pinout correction  |
 
 
 ## Introduction
@@ -36,8 +37,8 @@ The connector should be the standard for all drone manufacturers, ensuring compa
 
 ### JST GH Series as Optional Component.
 
-Some manufacturers also use other firmware like Ardupilot which has it's own standard.
-The connector type should be optional for drone manufacturers, allowing them to choose the connector that best suits their needs as long they provide a harness for both platforms.
+Some manufacturers also use other firmware, such as Ardupilot or Pixhawk, which have their own [standard](https://github.com/pixhawk/Pixhawk-Standards).
+This connector type is optional for drone manufacturers, allowing them to choose the connector type that best suits their needs as long they provide a harness for both platforms.
 
 
 ### ESC Pin Configuration
@@ -50,17 +51,14 @@ The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
-| 1     | GND         | Ground      |
-| 2     | V+          | Power       |
+| 1     | V+          | Power       |
+| 2     | GND         | Ground      |
 | 3     | Current     | Current     |
 | 4     | Telemetry   | Telemetry   |
 | 5     | Signal 1    | Motor 1     |
 | 6     | Signal 2    | Motor 2     |
 | 7     | Signal 3    | Motor 3     |
 | 8     | Signal 4    | Motor 4     |
-
-<br />
-The pin configuration for the JST GH connector is as described in Ardupilot's documentation
 
 
 ### RX Pin Configuration
@@ -69,22 +67,29 @@ The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
-| 1     | GND         | Ground      |
-| 2     | V+          | Power       |
+| 1     | V+          | Power       |
+| 2     | GND         | Ground      |
 | 3     | Signal 1    | RX          |
 | 4     | Signal 2    | TX          |
+
+
+:::note
+This connector could also be used for other serial devices
+:::
 
 
 ### GPS Pin Configuration
 
 The pin configuration for the JST SH connector is as follows:
 
-| Pin # | Signal Name | Description |
-| :---- | :---------- | :---------- |
-| 1     | GND         | Ground      |
-| 2     | V+          | Power       |
-| 3     | Signal 1    | RX          |
-| 4     | Signal 2    | TX          |
+| Pin # | Signal Name | Description    |
+| :---- | :---------- | :------------- |
+| 1     | V+          | Power          |
+| 2     | GND         | Ground         |
+| 3     | Signal 1    | RX             |
+| 4     | Signal 2    | TX             |
+| 5     | Signal 3    | SDA (optional) |
+| 6     | Signal 4    | SCL (optional) |
 
 
 ### I2C Pin Configuration
@@ -93,14 +98,16 @@ The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
-| 1     | GND         | Ground      |
-| 2     | V+          | Power       |
+| 1     | V+          | Power       |
+| 2     | GND         | Ground      |
 | 3     | Signal 1    | SDA         |
 | 4     | Signal 2    | SCL         |
 
-<br />
-Note: The I2C connector should be used for all I2C devices, including compasses, barometers, and other sensors.
+
+:::note
+The I2C connector should be used for all I2C devices, including compasses, barometers, and other sensors.
 Pins are shared with PB10 and PB11 for TX3 and RX3 so please keep this in mind when using onboard I2C device such as compasses and barometers.
+:::
 
 ### Analog Camera Pin Configuration
 
@@ -108,8 +115,8 @@ The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
-| 1     | GND         | Ground      |
-| 2     | V+          | Power       |
+| 1     | V+          | Power       |
+| 2     | GND         | Ground      |
 | 3     | Signal 1    | Video       |
 | 4     | Signal 2    | RX          |
 | 5     | Signal 3    | TX          |
@@ -121,8 +128,8 @@ The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
-| 1     | GND         | Ground      |
-| 2     | V+          | Power       |
+| 1     | V+          | Power       |
+| 2     | GND         | Ground      |
 | 3     | Signal 1    | Video       |
 | 4     | Signal 2    | RX          |
 | 5     | Signal 3    | TX          |
@@ -145,8 +152,8 @@ The current pin configuration for the JST SH connector is as follows:
 ## Logo
 
 The provided logo should be used to identify the connector as a Betaflight standardized connector.
-The logo should be used on all components that use the standardized connector system.
-It can be used on PCBs, packaging, and other marketing materials.
+The logo should be used on all components that use the standardized connector system and can be used on PCBs, packaging, and other marketing materials.
+This way users know that the component is compatible with other components that use the standardized connector system.
 
 
 <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
