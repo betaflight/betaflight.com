@@ -44,7 +44,7 @@ export default function FooterLinkItem({ item }) {
       {...props}
     >
       {icon && (
-        <div className="w-[24px]">
+        <div className="w-[24px] self-center">
           <FontAwesomeIcon icon={getFaIcon(icon)} className="" />
         </div>
       )}

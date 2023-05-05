@@ -18,7 +18,7 @@ function ColumnLinkItem({ item }) {
 
 function Column({ column }) {
   return (
-    <div className="p-2">
+    <div>
       <div className="font-bold text-primary-500 mb-1">{column.title}</div>
       <ul className="flex flex-col items-center">
         {column.items.map((item, i) => (
@@ -31,7 +31,7 @@ function Column({ column }) {
 
 export default function FooterLinksMultiColumn({ columns }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {columns.map((column, i) => (
         <Column key={i} column={column} />
       ))}
