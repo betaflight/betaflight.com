@@ -41,40 +41,38 @@ export default function Home({ recentPosts }: BlogProps) {
   return (
     <BetaflightLayout>
       <div className="mt-4 xl:mt-32">
-        <div className="">
-          <div className="flex flex-col">
-            <img src="/img/betaflight/logo_dark.svg" alt="Betaflight" className="p-6 h-fit w-fit xl:ml-12"></img>
+        <div className="flex flex-col">
+          <img src="/img/betaflight/logo_dark.svg" alt="Betaflight" className="p-6 h-fit w-fit xl:ml-12"></img>
+        </div>
+        <div className="p-4 xl:p-16 flex w-full flex-col xl:flex-row space-y-4 xl:space-y-0 space-x-0 xl:space-x-16">
+          <div className="backdrop-blur-md shadow-xl w-full xl:w-1/2 flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
+            <p className="text-center text-lg">
+              <h2 className="text-primary-500 font-bold text-4xl mb-4">Pushing the Limits of UAV Performance</h2>
+              Betaflight is the name of a flight control software, used for flying multi-rotor radio controlled aircraft.<br></br>
+              Originating from the Baseflight and Cleanflight open source projects, the project was branched off as a high performance 'beta' testbed.<br></br>
+              Evidenced by years of lead development, Betaflight has matured and grown into the largest flight firmware in the FPV drone racing and freestyle community due to its cutting edge
+              performance, features, reliability and wide range of hardware support.
+            </p>
           </div>
-          <div className="p-4 xl:p-16 flex w-full flex-col xl:flex-row space-y-4 xl:space-y-0 space-x-0 xl:space-x-16">
-            <div className="backdrop-blur-md shadow-xl w-full xl:w-1/2 flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
-              <p className="text-center text-lg">
-                <h2 className="text-primary-500 font-bold text-4xl mb-4">Pushing the Limits of UAV Performance</h2>
-                Betaflight is the name of a flight control software, used for flying multi-rotor radio controlled aircraft.<br></br>
-                Originating from the Baseflight and Cleanflight open source projects, the project was branched off as a high performance 'beta' testbed.<br></br>
-                Evidenced by years of lead development, Betaflight has matured and grown into the largest flight firmware in the FPV drone racing and freestyle community due to its cutting edge
-                performance, features, reliability and wide range of hardware support.
-              </p>
-            </div>
-            <div className="flex-grow w-full xl:w-1/2">
-              <AboutCard title="Recent Posts" className="text-primary-200" Icon={DocumentTextIcon}>
-                <div className="flex flex-col space-y-4">
-                  {recentPosts &&
-                    recentPosts.length > 0 &&
-                    recentPosts.map(({ content: BlogPostContent }) => (
-                      <div key={BlogPostContent.metadata.source}>
-                        <a className="text-2xl font-bold" href={BlogPostContent.metadata.permalink}>
-                          {BlogPostContent.metadata.title}
-                        </a>
-                        <div className="text-sm text-gray-500">
-                          {formatDate(BlogPostContent.metadata.date)} - {clampAndFormatMinutes(BlogPostContent.metadata.readingTime)}
-                        </div>
-                        <div className="text-lg text-gray-300">{BlogPostContent.metadata.description}</div>
+          <div className="flex-grow w-full xl:w-1/2">
+            <AboutCard title="Recent Posts" className="text-primary-200" Icon={DocumentTextIcon}>
+              <div className="flex flex-col space-y-4">
+                {recentPosts &&
+                  recentPosts.length > 0 &&
+                  recentPosts.map(({ content: BlogPostContent }) => (
+                    <div key={BlogPostContent.metadata.source}>
+                      <a className="text-2xl font-bold" href={BlogPostContent.metadata.permalink}>
+                        {BlogPostContent.metadata.title}
+                      </a>
+                      <div className="text-sm text-gray-500">
+                        {formatDate(BlogPostContent.metadata.date)} - {clampAndFormatMinutes(BlogPostContent.metadata.readingTime)}
                       </div>
-                    ))}
-                  {!recentPosts || (recentPosts.length === 0 && <div className="text-lg text-center">Nothing posted yet</div>)}
-                </div>
-              </AboutCard>
-            </div>
+                      <div className="text-lg text-gray-300">{BlogPostContent.metadata.description}</div>
+                    </div>
+                  ))}
+                {!recentPosts || (recentPosts.length === 0 && <div className="text-lg text-center">Nothing posted yet</div>)}
+              </div>
+            </AboutCard>
           </div>
         </div>
       </div>
