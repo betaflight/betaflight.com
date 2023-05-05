@@ -164,7 +164,7 @@ export default function Home({ recentPosts }: BlogProps) {
                   Highly skilled developers lend their time for free in order to develop and maintain this project.<br></br>
                   If you enjoy this firmware or use it for professional work we would really appreciate your support.<br></br>
                   We use the donations to help with out of pocket costs, e.g. test hardware, hardware analysis equipment and running build servers.<br></br>
-                  For those who do donate either their time or funds, we are exceptionally gratful for.
+                  For those who do donate either their time or funds, we are exceptionally grateful for.
                 </p>
               </div>
             </div>
