@@ -82,7 +82,7 @@ export default function Home({ recentPosts }: BlogProps) {
             <AboutCard title="Hardware" className="text-primary-200 text-justify" Icon={CpuChipIcon}>
               <p>
                 Betaflight supports a wide range of flight controllers from a variety of manufacturers. The{' '}
-                <a className="fancy-link" href="/partner">
+                <a className="fancy-link no-underline" href="/partner">
                   Betaflight Partner
                 </a>{' '}
                 program provides hardware manufacturer recommendations from the development team.
@@ -92,17 +92,17 @@ export default function Home({ recentPosts }: BlogProps) {
             <AboutCard title="Community" className="text-primary-200 text-justify" Icon={UsersIcon}>
               <p>
                 The user community is active and helpful, with a Facebook group of over 30,000 members and a growing{' '}
-                <a className="fancy-link" href="https://discord.com/invite/gV4XSq3fus">
-                  Discord
-                </a>{' '}
-                server. Considerable support resources also exist on Youtube, made by third parties.
+                <a className="fancy-link no-underline" href="https://discord.com/invite/gV4XSq3fus">
+                  Discord server
+                </a>
+                . Considerable support resources also exist on Youtube, made by third parties.
               </p>
             </AboutCard>
 
             <AboutCard title="Open Source" className="text-primary-200 text-center" Icon={CodeBracketIcon}>
               <p>
-                Betaflight is 'Open Source' code, so you can view and contribute to the project on{' '}
-                <a className="fancy-link" href="https://github.com/betaflight/betaflight">
+                Betaflight is 'Open Source', so you can look at the source code and contribute to the project on{' '}
+                <a className="fancy-link no-underline" href="https://github.com/betaflight/betaflight">
                   GitHub
                 </a>
                 . The team has a robust review system in order to maintain clean code, and we are always looking for talented contributors.
