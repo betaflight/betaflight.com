@@ -1,5 +1,5 @@
-import React from 'react'
-import clsx from 'clsx'
+import React from 'react';
+import clsx from 'clsx';
 
 export default function Button({ children, className, ...props }: { children: React.ReactNode; className?: string; [key: string]: any }): JSX.Element {
   return (
@@ -15,5 +15,5 @@ export default function Button({ children, className, ...props }: { children: Re
     >
       {children}
     </button>
-  )
+  );
 }

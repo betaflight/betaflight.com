@@ -1,6 +1,6 @@
-import React from 'react'
-import clsx from 'clsx'
-import AboutHeaderFix from '../../icons/about-header.svg'
+import React from 'react';
+import clsx from 'clsx';
+import AboutHeaderFix from '../../icons/about-header.svg';
 
 export default function AboutCard({
   title,
@@ -22,5 +22,5 @@ export default function AboutCard({
       </div>
       <div className="shadow-xl backdrop-blur-md w-full h-full bg-neutral-500/10 p-4 rounded-b-xl rounded-r-xl text-gray-200 text-base">{children}</div>
     </div>
-  )
+  );
 }
