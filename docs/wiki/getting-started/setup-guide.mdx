@@ -133,7 +133,7 @@ When you find a VTX Table online, it can be in two formats:
 - **CLI Code** - This is the format that you can copy and paste into the CLI in the configurator, usually just found
   as text. It will look something like this:
 
-```
+```bfcli
 # vtxtable
 vtxtable bands 5
 vtxtable channels 8
@@ -154,43 +154,34 @@ vtxtable powerlabels 25 200 500 1.5 2.5
 <details>
 	<summary>Click to expand</summary>
 
-    ```json
-    {
-    	"description": "Betaflight VTX Config file for Rush Tank Ultimate",
-    	"version": "1.0",
-    	"vtx_table": {
-    		"bands_list": [
-    			{
-    				"name": "BAND_A  ",
-    				"letter": "A",
-    				"is_factory_band": true,
-    				"frequencies": [
-    					5865,
-    					5845,
-    					5825,
-    					5805,
-    					5785,
-    					5765,
-    					5745,
-    					5725
-    				]
-    			},
-    			// ... more bands
-    		],
-    		"powerlevels_list": [
-    			{
-    				"value": 0,
-    				"label": "25 "
-    			},
-    			{
-    				"value": 1,
-    				"label": "200"
-    			},
-    			// ... more power levels
-    		]
-    	}
-    }
-    ```
+```json
+{
+  "description": "Betaflight VTX Config file for Rush Tank Ultimate",
+  "version": "1.0",
+  "vtx_table": {
+    "bands_list": [
+      {
+        "name": "BAND_A  ",
+        "letter": "A",
+        "is_factory_band": true,
+        "frequencies": [5865, 5845, 5825, 5805, 5785, 5765, 5745, 5725]
+      }
+      // ... more bands
+    ],
+    "powerlevels_list": [
+      {
+        "value": 0,
+        "label": "25 "
+      },
+      {
+        "value": 1,
+        "label": "200"
+      }
+      // ... more power levels
+    ]
+  }
+}
+```
 
 </details>
 
@@ -211,9 +202,16 @@ Digital VTXs are a newer form of video system that is becoming more and more com
 analog, and needs setup to get OSD and VTX control working.
 
 Start in the [Ports Tab](/docs/wiki/configurator/ports-tab) by enabling `VTX (MSP + Displayport)` as a peripheral on
-the UART that your VTX is connected to. It should automatically enable `MSP` as well.
+the UART that your VTX is connected to. It should automatically enable `MSP` as well. If you're on a version older than 4.4, you will only need to enable MSP and then follow further.
 
-///_ THIS IS ABOUT WHERE MY KNOWLEDGE WITH DIGITAL ENDS. SUGGESTIONS WELCOME _///
+Then in the [Preset Tab](/docs/wiki/configurator/presets-tab), there are a few system-specific presets that you can use to make the setup easier:
+
+- HDZero for 4.2/4.3 and 4.4
+- Avatar 4.2/4.3
+- FPV.WTF MSP OSD 4.2/4.3
+- FPV.WTF + O3 + Avatar for 4.4
+
+For further information on the newest firmware (4.4), please read the [Release Notes](/docs/release/Betaflight%204.4%20Release%20Notes#2-hd-osd)
 
 ## Motor Settings
 
