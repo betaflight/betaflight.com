@@ -26,7 +26,7 @@ If you enable HID Joystil emulation in the configurator, it will take over the U
 
 ### Can Connect to the FC, But Can't Flash
 
-Usually also caused by missing drivers. You can install the drivers using the ImpulseRC Driver Fixer tool, which can be downloaded [here](https://impulserc.com/pages/downloads). You may also want to install all the necessary dirvers manually
+Usually also caused by missing drivers. You can install the drivers using the ImpulseRC Driver Fixer tool, which can be downloaded [here](https://impulserc.com/pages/downloads). You may also want to install all the necessary drivers manually. Starting from Windows 10 we no longer require STM32 VCP drivers.
 
 ## Setup
 
@@ -34,7 +34,7 @@ Usually also caused by missing drivers. You can install the drivers using the Im
 
 If all of the sensor indicators in the configurator are grayed out, it means that the flight controller is not detecting any sensors. This can be caused by a number of things:
 
-- The sensor(s) are not configured correctly and/or not enabled.
+- The sensor(s) are not configured correctly and/or not enabled
 
 - If using an external sensor or peripheral, make sure it's also connected correctly (If connected to a UART port, make sure that the signal wires connect as "TX to RX" and "RX to TX". If they're connected "TX to TX" and "RX to RX", it will not work)
 
