@@ -25,14 +25,10 @@ When you have a COM port selected, click the "Connect" button.
 
 If you do not see a new COM port appear, or the configurator cannot connect, there are a few ways to solve it:
 
-- Make sure that you are plugging the USB cable into the flight controller. A DJI Air Unit is a video transmitter.  
-  Neither should you try to connect your radio to the configurator. Betaflight Configurator is not meant be used to
-  set up your radio, use your radio's software for that (OpenTX companion, EdgeTX Buddy, etc.)
+- Make sure that you are plugging the USB cable into the flight controller, nothing else. Do not connect BetaFlight Configurator to an HD system. Do not connect BetaFlight Configurator to a radio transmitter. Betaflight Configurator is not meant be used with anything other than a flight controller
 - Make sure you are using a USB cable that is capable of data transfer. Some USB cables are only for charging
-- You may need to install the drivers for your flight controller. There is a download link for the ImpulseRC Driver
-  Fixer tool in the configurator, or you can download it from [here](https://impulserc.com/pages/downloads)
-- If you are still experiencing issues, try shutting down/uninstalling any other software that may be using the COM
-  port. 3d printing software is a common culprit
+- You may need to install the drivers for your flight controller. There is a download link for the ImpulseRC Driver Fixer tool in the configurator, or you can download it from [here](https://impulserc.com/pages/downloads)
+- If you are still experiencing issues, try shutting down/uninstalling any other software that may be using the COM port. 3d printing software is a common culprit
 
 :::
 
@@ -40,7 +36,7 @@ If you do not see a new COM port appear, or the configurator cannot connect, the
 
 Resist the urge to flash your flight controller with the latest firmware. If it's a pre-built drone, it is more than
 likely that your flight controller has already been pre-configured with most of the necessary settings by the
-manufacturer, and flashing it will bring you back to a complete default state. Even if you are building your own
+manufacturer, and flashing it will bring you back to a completely non-configured state. Even if you are building your own
 drone, the flight controller may have been set up with a default configuration that is possibly needed for some
 features. Just connect for now.
 
