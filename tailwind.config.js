@@ -14,6 +14,9 @@ module.exports = {
           700: '#DD9100',
           800: '#CC7E00',
         },
+        neutral: {
+          750: 'rgb(44 44 44)',
+        },
       },
       backgroundSize: {
         '0w': '0% 2px',

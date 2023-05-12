@@ -5,6 +5,7 @@ import { BlogProps } from '@site/src/types';
 import BetaflightLayout from '../Layout';
 import HomepageFeature from '../HomepageFeature';
 import AboutCard from '../AboutCard';
+import FancyAboutCard from '../FancyAboutCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Button from '../Button';
@@ -79,7 +80,7 @@ export default function Home({ recentPosts }: BlogProps) {
       <div className="p-4 xl:p-16 flex flex-col space-y-4">
         <HomepageFeature title="About" compact={true}>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
-            <AboutCard title="Hardware" className="text-primary-200 text-justify" Icon={CpuChipIcon}>
+            <FancyAboutCard title="Hardware" className="text-primary-200 text-justify" Icon={CpuChipIcon}>
               <p>
                 Betaflight supports a wide range of flight controllers from a variety of manufacturers. The{' '}
                 <a className="fancy-link no-underline" href="/partner">
@@ -87,9 +88,9 @@ export default function Home({ recentPosts }: BlogProps) {
                 </a>{' '}
                 program provides hardware manufacturer recommendations from the development team.
               </p>
-            </AboutCard>
+            </FancyAboutCard>
 
-            <AboutCard title="Community" className="text-primary-200 text-justify" Icon={UsersIcon}>
+            <FancyAboutCard title="Community" className="text-primary-200 text-justify" Icon={UsersIcon}>
               <p>
                 The user community is active and helpful, with a Facebook group of over 30,000 members and a growing{' '}
                 <a className="fancy-link no-underline" href="https://discord.com/invite/gV4XSq3fus">
@@ -97,9 +98,9 @@ export default function Home({ recentPosts }: BlogProps) {
                 </a>
                 . Considerable support resources also exist on Youtube, made by third parties.
               </p>
-            </AboutCard>
+            </FancyAboutCard>
 
-            <AboutCard title="Open Source" className="text-primary-200 text-center" Icon={CodeBracketIcon}>
+            <FancyAboutCard title="Open Source" className="text-primary-200 text-center" Icon={CodeBracketIcon}>
               <p>
                 Betaflight is 'Open Source', so you can look at the source code and contribute to the project on{' '}
                 <a className="fancy-link no-underline" href="https://github.com/betaflight/betaflight">
@@ -107,22 +108,22 @@ export default function Home({ recentPosts }: BlogProps) {
                 </a>
                 . The team has a robust review system in order to maintain clean code, and we are always looking for talented contributors.
               </p>
-            </AboutCard>
-            <AboutCard className="text-primary-200" title="OSD" Icon={CameraIcon}>
+            </FancyAboutCard>
+            <FancyAboutCard className="text-primary-200" title="OSD" Icon={CameraIcon}>
               <p>
                 With the Betaflight On Screen Display you can use drag-and-drop to set up key flight metrics into your FPV video feed. This allows data such as battery metrics, speed, altitude and
                 home direction.
               </p>
-            </AboutCard>
-            <AboutCard className="text-primary-200" title="Safety Features" Icon={ShieldCheckIcon}>
+            </FancyAboutCard>
+            <FancyAboutCard className="text-primary-200" title="Safety Features" Icon={ShieldCheckIcon}>
               <p>Alerts for and arming blocks for improper setup, and disarm mechanisms are built in to avoid accidents. A comprehensive failsafe mechanism is featured to assist in flight issues.</p>
-            </AboutCard>
-            <AboutCard className="text-primary-200" title="Flight Dynamics" Icon={JetIcon}>
+            </FancyAboutCard>
+            <FancyAboutCard className="text-primary-200" title="Flight Dynamics" Icon={JetIcon}>
               <p>
                 Betaflight was created for cutting edge flight performance. This has been achieved by optimizing the reaction time to disturbances, the accuracy of stick tracking, and the processing
                 of digital signals.
               </p>
-            </AboutCard>
+            </FancyAboutCard>
           </div>
         </HomepageFeature>
         <HomepageFeature title="Team">

@@ -28,6 +28,8 @@
 
   --ifm-color-success-contrast-background: #87cc5230 !important;
   --ifm-color-success-dark: #87cc52 !important;
+
+  --ifm-background-color: #18181b !important;
 }
 
 html {
