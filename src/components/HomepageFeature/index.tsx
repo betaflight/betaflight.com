@@ -1,5 +1,5 @@
-import React from 'react'
-import clsx from 'clsx'
+import React from 'react';
+import clsx from 'clsx';
 
 type Props = {
   title?: string
@@ -12,7 +12,7 @@ export default function HomepageFeature({ title = '<unset>', compact = false, cl
   return (
     <section className={className}>
       <h2 className="text-primary-500 text-3xl font-bold my-4 ml-1">{title}</h2>
-      <div className={clsx({ 'bg-neutral-500/10 shadow-xl p-8 backdrop-blur-md': !compact }, 'flex justify-center rounded-2xl')}>{children}</div>
+      <div className={clsx({ 'bg-neutral-500/10 shadow-xl p-8': !compact }, 'flex justify-center rounded-2xl')}>{children}</div>
     </section>
-  )
+  );
 }

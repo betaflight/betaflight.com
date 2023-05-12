@@ -55,7 +55,7 @@ export default function Home({ recentPosts }: BlogProps) {
             </p>
           </div>
           <div className="flex-grow w-full xl:w-1/2">
-            <AboutCard title="Recent Posts" className="text-primary-200" Icon={DocumentTextIcon}>
+            <AboutCard blur title="Recent Posts" className="text-primary-200" Icon={DocumentTextIcon}>
               <div className="flex flex-col space-y-4">
                 {recentPosts &&
                   recentPosts.length > 0 &&
