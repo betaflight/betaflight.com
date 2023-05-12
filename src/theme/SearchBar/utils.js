@@ -1,4 +1,4 @@
-import $ from 'autocomplete.js/zepto'
+import $ from 'autocomplete.js/zepto';
 
 const utils = {
   /*
@@ -24,14 +24,14 @@ const utils = {
    */
   mergeKeyWithParent(object, property) {
     if (object[property] === undefined) {
-      return object
+      return object;
     }
     if (typeof object[property] !== 'object') {
-      return object
+      return object;
     }
-    const newObject = $.extend({}, object, object[property])
-    delete newObject[property]
-    return newObject
+    const newObject = $.extend({}, object, object[property]);
+    delete newObject[property];
+    return newObject;
   },
   /*
    * Group all objects of a collection by the value of the specified attribute
@@ -65,23 +65,23 @@ const utils = {
    * @throws Error when one of the element does not have the specified property
    */
   groupBy(collection, property) {
-    const newCollection = {}
+    const newCollection = {};
     $.each(collection, (index, item) => {
       if (item[property] === undefined) {
-        throw new Error(`[groupBy]: Object has no key ${property}`)
+        throw new Error(`[groupBy]: Object has no key ${property}`);
       }
-      let key = item[property]
+      let key = item[property];
       if (typeof key === 'string') {
-        key = key.toLowerCase()
+        key = key.toLowerCase();
       }
       // fix #171 the given data type of docsearch hits might be conflict with the properties of the native Object,
       // such as the constructor, so we need to do this check.
       if (!Object.prototype.hasOwnProperty.call(newCollection, key)) {
-        newCollection[key] = []
+        newCollection[key] = [];
       }
-      newCollection[key].push(item)
-    })
-    return newCollection
+      newCollection[key].push(item);
+    });
+    return newCollection;
   },
   /*
    * Return an array of all the values of the specified object
@@ -97,7 +97,7 @@ const utils = {
    * @return {array}
    */
   values(object) {
-    return Object.keys(object).map((key) => object[key])
+    return Object.keys(object).map((key) => object[key]);
   },
   /*
    * Flattens an array
@@ -109,17 +109,17 @@ const utils = {
    * @return {array}
    */
   flatten(array) {
-    const results = []
+    const results = [];
     array.forEach((value) => {
       if (!Array.isArray(value)) {
-        results.push(value)
-        return
+        results.push(value);
+        return;
       }
       value.forEach((subvalue) => {
-        results.push(subvalue)
-      })
-    })
-    return results
+        results.push(subvalue);
+      });
+    });
+    return results;
   },
   /*
    * Flatten all values of an object into an array, marking each first element of
@@ -154,11 +154,11 @@ const utils = {
     const values = this.values(object).map((collection) =>
       collection.map((item, index) => {
         // eslint-disable-next-line no-param-reassign
-        item[flag] = index === 0
-        return item
+        item[flag] = index === 0;
+        return item;
       }),
-    )
-    return this.flatten(values)
+    );
+    return this.flatten(values);
   },
   /*
    * Removes all empty strings, null, false and undefined elements array
@@ -170,14 +170,14 @@ const utils = {
    * @return {array}
    */
   compact(array) {
-    const results = []
+    const results = [];
     array.forEach((value) => {
       if (!value) {
-        return
+        return;
       }
-      results.push(value)
-    })
-    return results
+      results.push(value);
+    });
+    return results;
   },
   /*
    * Returns the highlighted value of the specified key in the specified object.
@@ -206,12 +206,12 @@ const utils = {
       object._highlightResult.hierarchy_camel[property].matchLevel !== 'none' &&
       object._highlightResult.hierarchy_camel[property].value
     ) {
-      return object._highlightResult.hierarchy_camel[property].value
+      return object._highlightResult.hierarchy_camel[property].value;
     }
     if (object._highlightResult && object._highlightResult[property] && object._highlightResult[property].value) {
-      return object._highlightResult[property].value
+      return object._highlightResult[property].value;
     }
-    return object[property]
+    return object[property];
   },
   /*
    * Returns the snippeted value of the specified key in the specified object.
@@ -235,17 +235,17 @@ const utils = {
    **/
   getSnippetedValue(object, property) {
     if (!object._snippetResult || !object._snippetResult[property] || !object._snippetResult[property].value) {
-      return object[property]
+      return object[property];
     }
-    let snippet = object._snippetResult[property].value
+    let snippet = object._snippetResult[property].value;
 
     if (snippet[0] !== snippet[0].toUpperCase()) {
-      snippet = `…${snippet}`
+      snippet = `…${snippet}`;
     }
     if (['.', '!', '?'].indexOf(snippet[snippet.length - 1]) === -1) {
-      snippet = `${snippet}…`
+      snippet = `${snippet}…`;
     }
-    return snippet
+    return snippet;
   },
   /*
    * Deep clone an object.
@@ -254,8 +254,8 @@ const utils = {
    * @return {object}
    */
   deepClone(object) {
-    return JSON.parse(JSON.stringify(object))
+    return JSON.parse(JSON.stringify(object));
   },
-}
+};
 
-export default utils
+export default utils;

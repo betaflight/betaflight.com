@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react'
-import { Cog6ToothIcon, Cog8ToothIcon, DocumentTextIcon, ExclamationCircleIcon, FolderIcon, PresentationChartLineIcon, PlayIcon } from '@heroicons/react/24/solid'
-import { useMediaQuery } from 'react-responsive'
-import YouTube from 'react-youtube'
-import HomepageFeature from '../components/HomepageFeature'
-import BetaflightLayout from '../components/Layout'
-import AboutCard from '../components/AboutCard'
+import React, { useMemo } from 'react';
+import { Cog6ToothIcon, Cog8ToothIcon, DocumentTextIcon, ExclamationCircleIcon, FolderIcon, PresentationChartLineIcon, PlayIcon } from '@heroicons/react/24/solid';
+import { useMediaQuery } from 'react-responsive';
+import YouTube from 'react-youtube';
+import HomepageFeature from '../components/HomepageFeature';
+import BetaflightLayout from '../components/Layout';
+import AboutCard from '../components/AboutCard';
 
 type IconElementFeatureProps = {
   Icon: React.ComponentType<React.ComponentProps<'svg'>>
@@ -34,25 +34,25 @@ function IconElementFeature({ Icon, title, description, link, children }: IconEl
         {children}
       </div>
     </div>
-  )
+  );
 }
 
 export default function Media() {
-  const isXl = useMediaQuery({ query: '(min-width: 1280px)' })
+  const isXl = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const videoSize = useMemo(() => {
     if (isXl) {
       return {
         width: 640,
         height: 400,
-      }
+      };
     } else {
       return {
         width: 320,
         height: 200,
-      }
+      };
     }
-  }, [isXl])
+  }, [isXl]);
 
   return (
     <BetaflightLayout>
@@ -164,5 +164,5 @@ export default function Media() {
         </HomepageFeature>
       </div>
     </BetaflightLayout>
-  )
+  );
 }

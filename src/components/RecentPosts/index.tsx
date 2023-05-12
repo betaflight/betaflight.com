@@ -1,22 +1,22 @@
-import React from 'react'
-import { BlogProps } from '@site/src/types'
-import { NewspaperIcon } from '@heroicons/react/24/solid'
+import React from 'react';
+import { BlogProps } from '@site/src/types';
+import { NewspaperIcon } from '@heroicons/react/24/solid';
 
 export default function RecentPosts({ recentPosts }: BlogProps) {
   function clampAndFormatMinutes(minutes: number) {
     if (minutes < 1) {
-      return 'One minute read'
+      return 'One minute read';
     }
-    return `${minutes} minutes read`
+    return `${minutes} minutes read`;
   }
 
   function formatDate(date: string) {
-    const dateObj = new Date(date)
+    const dateObj = new Date(date);
     return dateObj.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: '2-digit',
-    })
+    });
   }
 
   return (
@@ -39,5 +39,5 @@ export default function RecentPosts({ recentPosts }: BlogProps) {
         ))}
       </div>
     </div>
-  )
+  );
 }
