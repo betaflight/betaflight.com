@@ -92,7 +92,7 @@ export default function Home({ recentPosts }: BlogProps) {
             <AboutCard title="Community" className="text-primary-200 text-justify" Icon={UsersIcon}>
               <p>
                 The user community is active and helpful, with a Facebook group of over 30,000 members and a growing{' '}
-                <a className="fancy-link no-underline" href="https://discord.com/invite/gV4XSq3fus">
+                <a className="fancy-link no-underline" href="https://discord.betaflight.com/invite">
                   Discord server
                 </a>
                 . Considerable support resources also exist on Youtube, made by third parties.
