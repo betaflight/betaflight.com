@@ -76,7 +76,7 @@ function run() {
     return runFull() ? 1 : 0;
   }
   const [,, ...args] = process.argv;
-  
+
   return args.map(arg => {
     return checkTitleCase(arg);
   }).includes(true) ? 1 : 0;

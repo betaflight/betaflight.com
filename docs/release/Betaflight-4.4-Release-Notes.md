@@ -1,10 +1,10 @@
 # Betaflight 4.4 Release Notes
 
-## 1. Cloud build
+## 1. Cloud Build
 
 This is predominantly brought to you for convenience, and to ensure we can keep the 512kb flash targets (STM32F411 and STM32F722) alive and well for years to come. The cloud build system will allow you, the flyer, to select the features you want, and a **custom firmware** will be created for you.
 
-Any issues with the cloud build process please check out the #cloud-build-issues Discord channel. Help us to help you, buy taking advantage of the new `Support` button in the Command Line Interface (CLI) tab in Configurator 10.9.0 (RC4 onwards). This will give us valuable information in trying to diagnose your issue.
+For any issues with the cloud build process please check out the #cloud-build-issues channel on the [Discord server](https://discord.betaflight.com/invite). Help us to help you, buy taking advantage of the new `Support` button in the Command Line Interface (CLI) tab in Configurator 10.9.0. This will give us valuable information in trying to diagnose your issue.
 
 **NOTE:** If you have something missing from your cloud build that you would normally expect to be present, e.g. a flash chip or barometer, the reason is because the board configuration (in unified targets) has not been updated with this information (either by the community, or the manufacturer).
 
@@ -87,7 +87,7 @@ This feature reduces the amount of search the users have to do in the presets ta
 
 Favorite presets are being remembered by it's path+name in the repo. So a favorite preset in one repository becomes automatically a favorite in another, if it's sharing the same name and path withing the repos.
 
-## 4. GPS Return to Home enhancements
+## 4. GPS Return to Home Enhancements
 
 **GPS "Rescue" has been extensively revised and greatly improved.** The quad should reliably return at the set speed, descend at an angle, land within a few metres of the home point, and disarm automatically on touch-down. There are separate PID control elements for altitude and return velocity t home; the defaults work very well for 'typical' quads. The system should initially be tested with a switch at reasonably close range and low altitude. Setting up and testing GPS Rescue to provide a reliable return on the event of an RxLoss failsafe is a non-trivial task, but well worth the trouble.
 
@@ -112,7 +112,7 @@ There are extensive changes to sanity checks, and in most cases the quad will at
 
 thanks to @ctzsnooze, @karatebrot, @haslinghuis
 
-## 5. Other OSD improvements
+## 5. Other OSD Improvements
 
 **Option to show 'READY' in the OSD with a mode switch**
 This is a niche improvement, intended for racing situations where all pilots video feeds are on one central screen.
@@ -129,12 +129,12 @@ For more info see [PR#11391](https://github.com/betaflight/betaflight/pull/11391
 
 Thanks @qvasic
 
-## 6. Support for extended DShot Telemetry
+## 6. Support for Extended DShot Telemetry
 
 If the ESC supports it, we now can get per-motor temp, current and voltage via DSHot Telemetry.
 For more info see [PR11694](https://github.com/betaflight/betaflight/pull/11694) - thanks @damosvil
 
-## 7. Flight improvements
+## 7. Flight Improvements
 
 **Antigravity**
 
@@ -164,11 +164,11 @@ For more information see [PR#11806](https://github.com/betaflight/betaflight/pul
 There were a number of edge cases where the onset of airmode throttle boost was not smooth, with different outcomes depending on the mixer type. The mixer is now better behaved.
 For more information see [PR#11867](https://github.com/betaflight/betaflight/pull/11867) and [PR#11857](https://github.com/betaflight/betaflight/pull/11857) - thanks @QuickFlash.
 
-## 7. ELRS 3.x support for ELRS SPI boards
+## 7. ELRS 3.x Support for ELRS SPI Boards
 
 NOTE: ELRS 2.x transmitters will not be able to bind to ELRS SPI Boards flashed with Betaflight 4.x.
 
-## Other changes
+## Other Changes
 
 - Four PID profiles (was 6), and 4 rate profiles (was 3) - thanks @haslinghuis
 - TPA settings inside the PID profile - thanks @haslinghuis
