@@ -133,22 +133,22 @@ export default function Home({ recentPosts }: BlogProps) {
             <div className="flex flex-row flex-wrap gap-8 justify-center items-center">
               <div className="relative rounded-xl overflow-hidden">
                 <a href="/partner">
-                  <img src="/img/sponsors/bf_partner_dark.svg" alt="BetaflightPartner" className="max-h-[200px] w-auto" />
+                  <img src="/img/betaflight/sponsors/bf_partner_dark.svg" alt="BetaflightPartner" className="max-h-[200px] w-auto" />
                 </a>
               </div>
               <div className="rounded-xl overflow-hidden">
                 <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/sponsors/DOGCOM.png" alt="DogCom" className="max-h-[100px] w-auto" />
+                  <img src="/img/betaflight/sponsors/DOGCOM.png" alt="DogCom" className="max-h-[100px] w-auto" />
                 </a>
               </div>
               <div className="rounded-xl overflow-hidden">
                 <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/sponsors/HQPROP.png" alt="HQProp" className="invert  max-h-[100px] w-auto" />
+                  <img src="/img/betaflight/sponsors/HQPROP.png" alt="HQProp" className="invert  max-h-[100px] w-auto" />
                 </a>
               </div>
               <div className="rounded-xl overflow-hidden">
                 <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/sponsors/Radio-Master-Logo.png" alt="RadioMaster" className="invert max-h-[100px] w-auto" />
+                  <img src="/img/betaflight/sponsors/Radio-Master-Logo.png" alt="RadioMaster" className="invert max-h-[100px] w-auto" />
                 </a>
               </div>
             </div>
