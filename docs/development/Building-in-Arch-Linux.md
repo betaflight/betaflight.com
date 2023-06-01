@@ -31,6 +31,7 @@ After the ARM toolchain is installed, you should be able to build from source.
 cd src
 git clone git@github.com:betaflight/betaflight.git
 cd betaflight
+make configs
 make MATEKF411
 ```
 
@@ -40,12 +41,12 @@ You'll see a set of files being compiled, and finally linked, yielding both an E
 ...
 $ ls -l obj/
 total 1516
--rwxr-xr-x 1 s-ol s-ol  428584 Jan 11 12:04 betaflight_4.2.0_MATEKF411.bin*
--rw-r--r-- 1 s-ol s-ol 1136991 Jan 11 12:04 betaflight_4.2.0_MATEKF411.hex
+-rwxr-xr-x 1 s-ol s-ol  428584 Jan 11 12:04 betaflight_4.4.2_MATEKF411.bin*
+-rw-r--r-- 1 s-ol s-ol 1136991 Jan 11 12:04 betaflight_4.4.2_MATEKF411.hex
 drwxr-xr-x 3 s-ol s-ol    4096 Jan 11 12:04 main/
 ```
 
-You can use the Betaflight-Configurator to flash the `obj/betaflight_4.2.0_MATEKF411.hex` file.
+You can use the Betaflight-Configurator to flash the `obj/betaflight_4.4.2_MATEKF411.hex` file.
 
 ## Updating and rebuilding
 
