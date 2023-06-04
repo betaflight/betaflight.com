@@ -21,7 +21,8 @@ If your logs show `unable to open serial port` you might have skipped this step.
 Linux requires udev rules to allow write access to USB devices for users. An example shell command to achieve this on Ubuntu is shown here:
 
 ```
-(echo '# DFU (Internal bootloader for STM32 MCUs)'
+(echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
+ echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"'
  echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
 ```
 
@@ -37,7 +38,8 @@ If you are using Fedora, you will not need to add your account to the plugdev gr
 Instead use the `uaccess` tag in your udev rule for dfu:
 
 ```
-(echo '# DFU (Internal bootloader for STM32 MCUs)'
+(echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
+ echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", TAG+="uaccess"'
  echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", TAG+="uaccess"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
 ```
 
