@@ -130,7 +130,7 @@ export default function Home({ recentPosts }: BlogProps) {
         </HomepageFeature>
         <HomepageFeature title="Team Sponsors">
           <div>
-            <div className="flex flex-row flex-wrap gap-8 justify-center items-center">
+            <div className="flex flex-row flex-wrap gap-20 justify-center items-center">
               <div className="relative rounded-xl overflow-hidden">
                 <a href="/partner">
                   <img src="/img/betaflight/sponsors/bf_partner_dark.svg" alt="BetaflightPartner" className="max-h-[200px] w-auto" />
@@ -138,17 +138,17 @@ export default function Home({ recentPosts }: BlogProps) {
               </div>
               <div className="rounded-xl overflow-hidden">
                 <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/DOGCOM.png" alt="DogCom" className="max-h-[100px] w-auto" />
+                  <img src="/img/betaflight/sponsors/dogcom.svg" alt="DogCom" className="max-h-[80px] w-auto mt-1" />
                 </a>
               </div>
               <div className="rounded-xl overflow-hidden">
                 <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/HQPROP.png" alt="HQProp" className="invert  max-h-[100px] w-auto" />
+                  <img src="/img/betaflight/sponsors/hqprop.svg" alt="HQProp" className="invert max-h-[120px] w-auto" />
                 </a>
               </div>
               <div className="rounded-xl overflow-hidden">
                 <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/Radio-Master-Logo.png" alt="RadioMaster" className="invert max-h-[100px] w-auto" />
+                  <img src="/img/betaflight/sponsors/radiomaster.svg" alt="RadioMaster" className="invert max-h-[90px] w-auto mb-12" />
                 </a>
               </div>
             </div>
