@@ -4,7 +4,7 @@
 
 .theme-doc-markdown a, .fancy-link {
     @apply no-underline bg-gradient-to-r from-primary-400 to-primary-400 bg-no-repeat bg-left-bottom 
-		bg-0w hover:bg-100w hover:text-primary-500 duration-300 w-fit text-primary-200 transition-all;
+		bg-0w hover:bg-100w hover:text-primary-400 duration-300 w-fit dark:text-primary-200 text-primary-500 transition-all font-medium;
 }
 
 .theme-doc-markdown {
@@ -55,7 +55,7 @@
   @apply p-4 bg-transparent h-fit shadow-none;
 
   &__inner {
-    @apply backdrop-blur-md bg-neutral-900/40 h-fit p-3 rounded-full shadow-xl outline outline-2 outline-neutral-500/10;
+    @apply backdrop-blur-md dark:bg-neutral-900/40 bg-neutral-400/20 h-fit p-3 rounded-full shadow-xl outline outline-2 outline-neutral-500/10;
   }
 
   &--fixed-top {
@@ -80,6 +80,20 @@
   @apply flex flex-row items-center;
   &__item {
     @apply flex h-fit items-center;
+
+    .breadcrumbs__link:hover {
+      @apply bg-primary-500/10;
+    }
+  }
+
+  &__item--active {
+    .breadcrumbs__link {
+      @apply bg-primary-500/20 font-semibold text-primary-500;
+    }
+
+    .breadcrumbs__link:hover {
+      @apply bg-primary-500/20;
+    }
   }
 }
 
@@ -92,7 +106,7 @@ aside.theme-doc-sidebar-container > div {
 }
 
 nav.menu.thin-scrollbar {
-  @apply p-4 h-fit;
+  @apply p-4 pb-12 h-fit;
 }
 
 .theme-doc-sidebar-menu {
@@ -104,11 +118,11 @@ nav.menu.thin-scrollbar {
     @apply rounded-lg border-l-4 border-transparent;
 
     &:hover {
-      @apply bg-primary-500/5;
+      @apply bg-primary-500/20;
     }
 
     &--active {
-      @apply bg-primary-500/20;
+      @apply bg-primary-500/30 dark:text-primary-500 text-primary-600 #{!important};
     }
 
     &--sublist {
@@ -134,7 +148,7 @@ nav.menu.thin-scrollbar {
         }
 
         &--active {
-          @apply bg-primary-500/20;
+          @apply bg-primary-500/30 #{!important};
 
           &:hover {
             @apply bg-primary-500/20;
@@ -154,12 +168,12 @@ nav.menu.thin-scrollbar {
 }
 
 .theme-doc-sidebar-item-category-level-1 {
-  @apply border-l-4 duration-300 rounded-lg bg-neutral-500/5;
+  @apply border-l-4 duration-300 rounded-lg bg-neutral-400/5;
 }
 
 /* table of contents */
 .theme-doc-toc-desktop {
-  @apply overflow-y-visible -mt-8 pt-6 sticky;
+  @apply overflow-y-visible -mt-8 pt-6 pb-12 px-4 sticky;
 }
 
 .table-of-contents {

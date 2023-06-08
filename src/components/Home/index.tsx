@@ -11,6 +11,58 @@ import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Button from '../Button';
 import TeamFeature from '../Team';
 
+import { useEffect, useState } from 'react';
+
+function Logo() {
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const html = document.querySelector('html');
+    const currentTheme = html.getAttribute('data-theme');
+    setTheme(currentTheme);
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          setTheme(mutation.target.getAttribute('data-theme'));
+        }
+      }
+    });
+    observer.observe(html, { attributes: true });
+    return () => observer.disconnect();
+  }, []);
+
+  const logoSrc = `/img/betaflight/logo_${theme === 'light' ? 'light' : 'dark'}.svg`;
+
+  console.log(theme);
+
+  return <img src={logoSrc} alt="Betaflight" className="p-6 h-fit w-fit xl:ml-12"></img>;
+}
+
+function SponsorLogo() {
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const html = document.querySelector('html');
+    const currentTheme = html.getAttribute('data-theme');
+    setTheme(currentTheme);
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          setTheme(mutation.target.getAttribute('data-theme'));
+        }
+      }
+    });
+    observer.observe(html, { attributes: true });
+    return () => observer.disconnect();
+  }, []);
+
+  const logoSrc = `/img/sponsors/bf_partner_${theme === 'light' ? 'light' : 'dark'}.svg`;
+
+  console.log(theme);
+
+  return <img src={logoSrc} alt="Betaflight" className="max-h-[200px] w-auto"></img>;
+}
+
 export default function Home({ recentPosts }: BlogProps) {
   function clampAndFormatMinutes(minutes: number) {
     if (minutes < 1) {
@@ -43,7 +95,8 @@ export default function Home({ recentPosts }: BlogProps) {
     <BetaflightLayout>
       <div className="mt-4 xl:mt-32">
         <div className="flex flex-col">
-          <img src="/img/betaflight/logo_dark.svg" alt="Betaflight" className="p-6 h-fit w-fit xl:ml-12"></img>
+          {/* <img src="/img/betaflight/logo_dark.svg" alt="Betaflight" className="p-6 h-fit w-fit xl:ml-12"></img> */}
+          <Logo />
         </div>
         <div className="p-4 xl:p-16 flex w-full flex-col xl:flex-row space-y-4 xl:space-y-0 space-x-0 xl:space-x-16">
           <div className="backdrop-blur-md shadow-xl w-full xl:w-1/2 flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
@@ -56,7 +109,7 @@ export default function Home({ recentPosts }: BlogProps) {
             </p>
           </div>
           <div className="flex-grow w-full xl:w-1/2">
-            <AboutCard blur title="Recent Posts" className="text-primary-200" Icon={DocumentTextIcon}>
+            <AboutCard blur title="Recent Posts" className="text-primary-500" Icon={DocumentTextIcon}>
               <div className="flex flex-col space-y-4">
                 {recentPosts &&
                   recentPosts.length > 0 &&
@@ -65,10 +118,10 @@ export default function Home({ recentPosts }: BlogProps) {
                       <a className="text-2xl font-bold" href={BlogPostContent.metadata.permalink}>
                         {BlogPostContent.metadata.title}
                       </a>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm">
                         {formatDate(BlogPostContent.metadata.date)} - {clampAndFormatMinutes(BlogPostContent.metadata.readingTime)}
                       </div>
-                      <div className="text-lg text-gray-300">{BlogPostContent.metadata.description}</div>
+                      <div className="text-lg">{BlogPostContent.metadata.description}</div>
                     </div>
                   ))}
                 {!recentPosts || (recentPosts.length === 0 && <div className="text-lg text-center">Nothing posted yet</div>)}
@@ -80,7 +133,7 @@ export default function Home({ recentPosts }: BlogProps) {
       <div className="p-4 xl:p-16 flex flex-col space-y-4">
         <HomepageFeature title="About" compact={true}>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
-            <FancyAboutCard title="Hardware" className="text-primary-200 text-justify" Icon={CpuChipIcon}>
+            <FancyAboutCard title="Hardware" className="text-primary-500 text-justify" Icon={CpuChipIcon}>
               <p>
                 Betaflight supports a wide range of flight controllers from a variety of manufacturers. The{' '}
                 <a className="fancy-link no-underline" href="/partner">
@@ -90,7 +143,7 @@ export default function Home({ recentPosts }: BlogProps) {
               </p>
             </FancyAboutCard>
 
-            <FancyAboutCard title="Community" className="text-primary-200 text-justify" Icon={UsersIcon}>
+            <FancyAboutCard title="Community" className="text-primary-500 text-justify" Icon={UsersIcon}>
               <p>
                 The user community is active and helpful, with a Facebook group of over 30,000 members and a growing{' '}
                 <a className="fancy-link no-underline" href="https://discord.com/invite/gV4XSq3fus">
@@ -100,7 +153,7 @@ export default function Home({ recentPosts }: BlogProps) {
               </p>
             </FancyAboutCard>
 
-            <FancyAboutCard title="Open Source" className="text-primary-200 text-center" Icon={CodeBracketIcon}>
+            <FancyAboutCard title="Open Source" className="text-primary-500 text-center" Icon={CodeBracketIcon}>
               <p>
                 Betaflight is 'Open Source', so you can look at the source code and contribute to the project on{' '}
                 <a className="fancy-link no-underline" href="https://github.com/betaflight/betaflight">
@@ -109,16 +162,16 @@ export default function Home({ recentPosts }: BlogProps) {
                 . The team has a robust review system in order to maintain clean code, and we are always looking for talented contributors.
               </p>
             </FancyAboutCard>
-            <FancyAboutCard className="text-primary-200" title="OSD" Icon={CameraIcon}>
+            <FancyAboutCard className="text-primary-500" title="OSD" Icon={CameraIcon}>
               <p>
                 With the Betaflight On Screen Display you can use drag-and-drop to set up key flight metrics into your FPV video feed. This allows data such as battery metrics, speed, altitude and
                 home direction.
               </p>
             </FancyAboutCard>
-            <FancyAboutCard className="text-primary-200" title="Safety Features" Icon={ShieldCheckIcon}>
+            <FancyAboutCard className="text-primary-500" title="Safety Features" Icon={ShieldCheckIcon}>
               <p>Alerts for and arming blocks for improper setup, and disarm mechanisms are built in to avoid accidents. A comprehensive failsafe mechanism is featured to assist in flight issues.</p>
             </FancyAboutCard>
-            <FancyAboutCard className="text-primary-200" title="Flight Dynamics" Icon={JetIcon}>
+            <FancyAboutCard className="text-primary-500" title="Flight Dynamics" Icon={JetIcon}>
               <p>
                 Betaflight was created for cutting edge flight performance. This has been achieved by optimizing the reaction time to disturbances, the accuracy of stick tracking, and the processing
                 of digital signals.
@@ -131,25 +184,25 @@ export default function Home({ recentPosts }: BlogProps) {
         </HomepageFeature>
         <HomepageFeature title="Team Sponsors">
           <div>
-            <div className="flex flex-row flex-wrap gap-8 justify-center items-center">
-              <div className="relative rounded-xl overflow-hidden">
-                <a href="/partner">
-                  <img src="/img/sponsors/bf_partner_dark.svg" alt="BetaflightPartner" className="max-h-[200px] w-auto" />
+            <div className="flex flex-row md:flex-nowrap flex-wrap gap-8 justify-center items-center h-fit">
+              <div className="h-full w-full reltive flex flex-col items-center">
+                <a href="/partner" className="w-full flex justify-center">
+                  <SponsorLogo />
                 </a>
               </div>
-              <div className="rounded-xl overflow-hidden">
-                <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener">
+              <div className="h-full w-full reltive flex flex-col items-center rounded-2xl bg-neutral-400/10 hover:bg-neutral-300/10 duration-150 p-4 shadow-none hover:shadow-lg shadow-neutral-900/5">
+                <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener" className="w-full flex justify-center">
                   <img src="/img/sponsors/DOGCOM.png" alt="DogCom" className="max-h-[100px] w-auto" />
                 </a>
               </div>
-              <div className="rounded-xl overflow-hidden">
-                <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/sponsors/HQPROP.png" alt="HQProp" className="invert  max-h-[100px] w-auto" />
+              <div className="h-full w-full reltive flex flex-col items-center rounded-2xl bg-neutral-400/10 hover:bg-neutral-300/10 duration-150 p-4 shadow-none hover:shadow-lg shadow-neutral-900/5">
+                <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener" className="w-full flex justify-center">
+                  <img src="/img/sponsors/HQPROP.png" alt="HQProp" className="dark:invert max-h-[100px] w-auto" />
                 </a>
               </div>
-              <div className="rounded-xl overflow-hidden">
-                <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/sponsors/Radio-Master-Logo.png" alt="RadioMaster" className="invert max-h-[100px] w-auto" />
+              <div className="h-full w-full reltive flex flex-col items-center rounded-2xl bg-neutral-400/10 hover:bg-neutral-300/10 duration-150 p-4 shadow-none hover:shadow-lg shadow-neutral-900/5">
+                <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener" className="w-full flex justify-center">
+                  <img src="/img/sponsors/Radio-Master-Logo.png" alt="RadioMaster" className="dark:invert max-h-[100px] w-auto" />
                 </a>
               </div>
             </div>
@@ -157,7 +210,7 @@ export default function Home({ recentPosts }: BlogProps) {
         </HomepageFeature>
         <HomepageFeature title="Donations">
           <div className="flex flex-col xl:flex-row space-x-4 justify-center items-center gap-4">
-            <div className="space-y-4 text-white">
+            <div className="space-y-4">
               <div className="float-right">
                 <p className="text-lg text-center">
                   Highly skilled developers lend their time for free in order to develop and maintain this project.<br></br>
@@ -168,7 +221,7 @@ export default function Home({ recentPosts }: BlogProps) {
               </div>
             </div>
             <div className="md:flex gap-4 mt-4">
-              <div className="md:w-60 w-full text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between">
+              <div className="md:w-60 w-full text-center rounded-2xl bg-neutral-400/10 p-6 flex flex-col justify-between">
                 <h1 className="font-bold text-xl">
                   <FontAwesomeIcon icon={faPaypal} className="text-blue-600 mr-2" />
                   Paypal

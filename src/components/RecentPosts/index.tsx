@@ -1,22 +1,22 @@
-import React from 'react'
-import { BlogProps } from '@site/src/types'
-import { NewspaperIcon } from '@heroicons/react/24/solid'
+import React from 'react';
+import { BlogProps } from '@site/src/types';
+import { NewspaperIcon } from '@heroicons/react/24/solid';
 
 export default function RecentPosts({ recentPosts }: BlogProps) {
   function clampAndFormatMinutes(minutes: number) {
     if (minutes < 1) {
-      return 'One minute read'
+      return 'One minute read';
     }
-    return `${minutes} minutes read`
+    return `${minutes} minutes read`;
   }
 
   function formatDate(date: string) {
-    const dateObj = new Date(date)
+    const dateObj = new Date(date);
     return dateObj.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: '2-digit',
-    })
+    });
   }
 
   return (
@@ -25,19 +25,19 @@ export default function RecentPosts({ recentPosts }: BlogProps) {
         <NewspaperIcon className="h-8 w-8 inline-block mr-4"></NewspaperIcon>
         Recent Posts
       </div>
-      <div className="flex-grow flex flex-col space-y-4 text-white/80">
+      <div className="flex-grow flex flex-col space-y-4 text-inherit">
         {recentPosts.map(({ content: BlogPostContent }) => (
           <div key={BlogPostContent.metadata.source}>
             <a className="text-primary-600 text-2xl font-bold" href={BlogPostContent.metadata.permalink}>
               {BlogPostContent.metadata.title}
             </a>
-            <div className="text-sm text-gray-600">
+            <div className="text-sm">
               {formatDate(BlogPostContent.metadata.date)} - {clampAndFormatMinutes(BlogPostContent.metadata.readingTime)}
             </div>
-            <div className="text-lg text-gray-700">{BlogPostContent.metadata.description}</div>
+            <div className="text-lg">{BlogPostContent.metadata.description}</div>
           </div>
         ))}
       </div>
     </div>
-  )
+  );
 }

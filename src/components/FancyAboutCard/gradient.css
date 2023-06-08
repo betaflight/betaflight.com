@@ -1,0 +1,31 @@
+@property --color {
+  syntax: '<color>';
+  initial-value: rgb(240 240 240);
+  inherits: false;
+}
+
+@property --background {
+  syntax: '<color>';
+  initial-value: rgb(240 240 240);
+  inherits: false;
+}
+
+[data-theme='dark'] .gradient-group .gradient {
+  --color: rgb(38 38 38);
+  --background: rgb(38 38 38);
+}
+
+.gradient {
+  background: linear-gradient(to right, var(--background), var(--color), var(--background));
+  transition: --color 150ms, --background 150ms;
+}
+
+.gradient-group:hover .gradient {
+  --color: #ffbb00ff;
+  --background: rgb(245 245 245);
+}
+
+[data-theme='dark'] .gradient-group:hover .gradient {
+  --color: #ffbb00ff;
+  --background: rgb(44 44 44);
+}

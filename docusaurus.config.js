@@ -106,8 +106,8 @@ const config = {
     ({
       colorMode: {
         defaultMode: 'dark',
-        disableSwitch: true,
-        respectPrefersColorScheme: false,
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
       },
       navbar: {
         title: 'Betaflight',
@@ -163,6 +163,10 @@ const config = {
             position: 'left',
           },
           { to: '/blog', label: 'Blog', position: 'left' },
+          //   {
+          // 	type: 'theme',
+          // 	position: 'right',
+          //   },
           {
             href: 'https://github.com/betaflight/betaflight',
             label: 'GitHub',
