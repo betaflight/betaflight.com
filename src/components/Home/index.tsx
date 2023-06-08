@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CameraIcon, CodeBracketIcon, CpuChipIcon, DocumentTextIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid';
 import JetIcon from '@site/src/icons/jet.icon.svg';
 import { BlogProps } from '@site/src/types';
@@ -10,8 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Button from '../Button';
 import TeamFeature from '../Team';
-
-import { useEffect, useState } from 'react';
 
 function Logo() {
   const [theme, setTheme] = useState('light');

@@ -163,10 +163,6 @@ const config = {
             position: 'left',
           },
           { to: '/blog', label: 'Blog', position: 'left' },
-          //   {
-          // 	type: 'theme',
-          // 	position: 'right',
-          //   },
           {
             href: 'https://github.com/betaflight/betaflight',
             label: 'GitHub',
