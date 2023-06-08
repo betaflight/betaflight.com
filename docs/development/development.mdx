@@ -19,21 +19,23 @@ for more info.
 
 ## Contributing
 
-Contributions are welcome and encouraged. You can contribute in many ways:
+Contributions are welcome and encouraged. The best place to start is the [Discord server](https://discord.betaflight.com/invite), specifically in the [**Development section**](https://discord.com/channels/868013470023548938/1073533061330915328). You can contribute in many ways:
 
-- implement a new feature in the firmware or in configurator (see [below](#Developers));
-- documentation updates and corrections;
+- Implementation of a new feature in the firmware or in the configurator (see [below](#development));
+- Documentation updates and corrections
 - How-To guides - received help? Help others!
-- bug reporting & fixes;
-- new feature ideas & suggestions;
-- provide a new translation for configurator, or help us maintain the existing ones (see [below](#Translators)).
+- Bug reporting & fixes;
+- New feature ideas & suggestions;
+- Providing a new translation for the configurator, or help us maintain the existing ones (see [below](#translators)).
 
-The best place to start is the Betaflight Slack (registration [here](https://slack.betaflight.com/)). Next place is the github issue tracker:
+Besides the Discord server, the next best place to look out for is the GitHub issue tracker:
 
-https://github.com/betaflight/betaflight/issues
-https://github.com/betaflight/betaflight-configurator/issues
+- [Firmware issues](https://github.com/betaflight/betaflight/issues)
+- [Configurator issues](https://github.com/betaflight/betaflight-configurator/issues)
+- [Blackbox Log Viewer issues](https://github.com/betaflight/blackbox-log-viewer/issues)
+- [Documentation issues](https://github.com/betaflight/betaflight.com/issues)
 
-Before creating new issues please check to see if there is an existing one, search first otherwise you waste people's time when they could be coding instead!
+Before creating new issues please check to see if there is an existing one already. Otherwise you risk wasting people's time when they could be coding instead!
 
 If you want to contribute to our efforts financially, please consider making a donation to us through [PayPal](https://paypal.me/betaflight).
 
@@ -53,8 +55,8 @@ GitHub actions are used to run automatic builds
 We want to make Betaflight accessible for pilots who are not fluent in English, and for this reason we are currently maintaining translations into 21 languages for Betaflight Configurator: Català, Dansk, Deutsch, Español, Euskera, Français, Galego, Hrvatski, Bahasa Indonesia, Italiano, 日本語, 한국어, Latviešu, Português, Português Brasileiro, polski, Русский язык, Svenska, 简体中文, 繁體中文.
 We have got a team of volunteer translators who do this work, but additional translators are always welcome to share the workload, and we are keen to add additional languages. If you would like to help us with translations, you have got the following options:
 
-- if you help by suggesting some updates or improvements to translations in a language you are familiar with, head to [crowdin](https://crowdin.com/project/betaflight-configurator) and add your suggested translations there;
-- if you would like to start working on the translation for a new language, or take on responsibility for proof-reading the translation for a language you are very familiar with, please head to the Betaflight Discord chat (registration [here](https://discord.gg/n4E6ak4u3c)), and join the ['translation'](https://discord.com/channels/868013470023548938/1057773726915100702) channel - the people in there can help you to get a new language added, or set you up as a proof reader.
+- If you would like to help by suggesting some updates or improvements to translations in a language you are familiar with, head to [crowdin](https://crowdin.com/project/betaflight-configurator) and add your suggested translations there
+- If you would like to start working on the translation for a new language, or take on responsibility for proof-reading the translation for a language you are very familiar with, please head over to the Betaflight [Discord server](https://discord.betaflight.com/invite), and join the translation channel in the [Development section](https://discord.com/channels/868013470023548938/1073533061330915328) - the people in there can help you to get a new language added, or set you up as a proof reader
 
 ## General Principles
 
@@ -94,7 +96,7 @@ All pull requests to add/improve the testability of the code or testing methods 
 
 Note: Tests are written in C++ and linked with with firmware's C code. All code is also instrumented using gcov to make test coverage analysis possible.
 
-### Running The Tests.
+### Running the Tests
 
 The tests and test build system is very simple and based off the googletest example files, it will be improved in due course. From the root folder of the project simply do:
 
@@ -181,7 +183,7 @@ For Windows: `git config --global core.excludesfile '%USERPROFILE%\.gitignore'`
 
 When you `git config --global --get core.excludesfile` a second time, you should get a file location back.
 
-### Building a hex file locally
+### Building a Hex File Locally
 
 Given the roll out of the CLOUD BUILD platform, there is a need for those of you who want to build locally to add in the options for selecting the features you want. Surprisingly this has always been there in the form of the `EXTRA_FLAGS` command line parameter for `make`. The cloud building platform merely makes use of this parameter - extensively.
 

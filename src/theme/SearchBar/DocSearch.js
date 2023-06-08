@@ -1,9 +1,9 @@
-import Hogan from 'hogan.js'
-import LunrSearchAdapter from './lunar-search'
-import autocomplete from 'autocomplete.js'
-import templates from './templates'
-import utils from './utils'
-import $ from 'autocomplete.js/zepto'
+import Hogan from 'hogan.js';
+import LunrSearchAdapter from './lunar-search';
+import autocomplete from 'autocomplete.js';
+import templates from './templates';
+import utils from './utils';
+import $ from 'autocomplete.js/zepto';
 
 class DocSearch {
   constructor({
@@ -24,23 +24,23 @@ class DocSearch {
     enhancedSearchInput = false,
     layout = 'collumns',
   }) {
-    this.input = DocSearch.getInputFromSelector(inputSelector)
-    this.queryDataCallback = queryDataCallback || null
-    const autocompleteOptionsDebug = autocompleteOptions && autocompleteOptions.debug ? autocompleteOptions.debug : false
+    this.input = DocSearch.getInputFromSelector(inputSelector);
+    this.queryDataCallback = queryDataCallback || null;
+    const autocompleteOptionsDebug = autocompleteOptions && autocompleteOptions.debug ? autocompleteOptions.debug : false;
     // eslint-disable-next-line no-param-reassign
-    autocompleteOptions.debug = debug || autocompleteOptionsDebug
-    this.autocompleteOptions = autocompleteOptions
-    this.autocompleteOptions.cssClasses = this.autocompleteOptions.cssClasses || {}
-    this.autocompleteOptions.cssClasses.prefix = this.autocompleteOptions.cssClasses.prefix || 'ds'
-    const inputAriaLabel = this.input && typeof this.input.attr === 'function' && this.input.attr('aria-label')
-    this.autocompleteOptions.ariaLabel = this.autocompleteOptions.ariaLabel || inputAriaLabel || 'search input'
+    autocompleteOptions.debug = debug || autocompleteOptionsDebug;
+    this.autocompleteOptions = autocompleteOptions;
+    this.autocompleteOptions.cssClasses = this.autocompleteOptions.cssClasses || {};
+    this.autocompleteOptions.cssClasses.prefix = this.autocompleteOptions.cssClasses.prefix || 'ds';
+    const inputAriaLabel = this.input && typeof this.input.attr === 'function' && this.input.attr('aria-label');
+    this.autocompleteOptions.ariaLabel = this.autocompleteOptions.ariaLabel || inputAriaLabel || 'search input';
 
-    this.isSimpleLayout = layout === 'simple'
+    this.isSimpleLayout = layout === 'simple';
 
-    this.client = new LunrSearchAdapter(searchDocs, searchIndex, baseUrl)
+    this.client = new LunrSearchAdapter(searchDocs, searchIndex, baseUrl);
 
     if (enhancedSearchInput) {
-      this.input = DocSearch.injectSearchBox(this.input)
+      this.input = DocSearch.injectSearchBox(this.input);
     }
     this.autocomplete = autocomplete(this.input, autocompleteOptions, [
       {
@@ -51,49 +51,49 @@ class DocSearch {
           empty: DocSearch.getEmptyTemplate(),
         },
       },
-    ])
+    ]);
 
-    const customHandleSelected = handleSelected
-    this.handleSelected = customHandleSelected || this.handleSelected
+    const customHandleSelected = handleSelected;
+    this.handleSelected = customHandleSelected || this.handleSelected;
 
     // We prevent default link clicking if a custom handleSelected is defined
     if (customHandleSelected) {
       $('.algolia-autocomplete').on('click', '.ds-suggestions a', (event) => {
-        event.preventDefault()
-      })
+        event.preventDefault();
+      });
     }
 
-    this.autocomplete.on('autocomplete:selected', this.handleSelected.bind(null, this.autocomplete.autocomplete))
+    this.autocomplete.on('autocomplete:selected', this.handleSelected.bind(null, this.autocomplete.autocomplete));
 
-    this.autocomplete.on('autocomplete:shown', this.handleShown.bind(null, this.input))
+    this.autocomplete.on('autocomplete:shown', this.handleShown.bind(null, this.input));
 
     if (enhancedSearchInput) {
-      DocSearch.bindSearchBoxEvent()
+      DocSearch.bindSearchBoxEvent();
     }
   }
 
   static injectSearchBox(input) {
-    input.before(templates.searchBox)
-    const newInput = input.prev().prev().find('input')
-    input.remove()
-    return newInput
+    input.before(templates.searchBox);
+    const newInput = input.prev().prev().find('input');
+    input.remove();
+    return newInput;
   }
 
   static bindSearchBoxEvent() {
     $('.searchbox [type="reset"]').on('click', function () {
-      $('input#docsearch').focus()
-      $(this).addClass('hide')
-      autocomplete.autocomplete.setVal('')
-    })
+      $('input#docsearch').focus();
+      $(this).addClass('hide');
+      autocomplete.autocomplete.setVal('');
+    });
 
     $('input#docsearch').on('keyup', () => {
-      const searchbox = document.querySelector('input#docsearch')
-      const reset = document.querySelector('.searchbox [type="reset"]')
-      reset.className = 'searchbox__reset'
+      const searchbox = document.querySelector('input#docsearch');
+      const reset = document.querySelector('.searchbox [type="reset"]');
+      reset.className = 'searchbox__reset';
       if (searchbox.value.length === 0) {
-        reset.className += ' hide'
+        reset.className += ' hide';
       }
-    })
+    });
   }
 
   /**
@@ -104,8 +104,8 @@ class DocSearch {
    * @returns {void}
    */
   static getInputFromSelector(selector) {
-    const input = $(selector).filter('input')
-    return input.length ? $(input[0]) : null
+    const input = $(selector).filter('input');
+    return input.length ? $(input[0]) : null;
   }
 
   /**
@@ -121,46 +121,46 @@ class DocSearch {
     return (query, callback) => {
       if (queryHook) {
         // eslint-disable-next-line no-param-reassign
-        query = queryHook(query) || query
+        query = queryHook(query) || query;
       }
       this.client.search(query).then((hits) => {
         if (this.queryDataCallback && typeof this.queryDataCallback == 'function') {
-          this.queryDataCallback(hits)
+          this.queryDataCallback(hits);
         }
         if (transformData) {
-          hits = transformData(hits) || hits
+          hits = transformData(hits) || hits;
         }
-        callback(DocSearch.formatHits(hits))
-      })
-    }
+        callback(DocSearch.formatHits(hits));
+      });
+    };
   }
 
   // Given a list of hits returned by the API, will reformat them to be used in
   // a Hogan template
   static formatHits(receivedHits) {
-    const clonedHits = utils.deepClone(receivedHits)
+    const clonedHits = utils.deepClone(receivedHits);
     const hits = clonedHits.map((hit) => {
       if (hit._highlightResult) {
         // eslint-disable-next-line no-param-reassign
-        hit._highlightResult = utils.mergeKeyWithParent(hit._highlightResult, 'hierarchy')
+        hit._highlightResult = utils.mergeKeyWithParent(hit._highlightResult, 'hierarchy');
       }
-      return utils.mergeKeyWithParent(hit, 'hierarchy')
-    })
+      return utils.mergeKeyWithParent(hit, 'hierarchy');
+    });
 
     // Group hits by category / subcategory
-    let groupedHits = utils.groupBy(hits, 'lvl0')
+    let groupedHits = utils.groupBy(hits, 'lvl0');
     $.each(groupedHits, (level, collection) => {
-      const groupedHitsByLvl1 = utils.groupBy(collection, 'lvl1')
-      const flattenedHits = utils.flattenAndFlagFirst(groupedHitsByLvl1, 'isSubCategoryHeader')
-      groupedHits[level] = flattenedHits
-    })
-    groupedHits = utils.flattenAndFlagFirst(groupedHits, 'isCategoryHeader')
+      const groupedHitsByLvl1 = utils.groupBy(collection, 'lvl1');
+      const flattenedHits = utils.flattenAndFlagFirst(groupedHitsByLvl1, 'isSubCategoryHeader');
+      groupedHits[level] = flattenedHits;
+    });
+    groupedHits = utils.flattenAndFlagFirst(groupedHits, 'isCategoryHeader');
 
     // Translate hits into smaller objects to be send to the template
     return groupedHits.map((hit) => {
-      const url = DocSearch.formatURL(hit)
-      const category = utils.getHighlightedValue(hit, 'lvl0')
-      const subcategory = utils.getHighlightedValue(hit, 'lvl1') || category
+      const url = DocSearch.formatURL(hit);
+      const category = utils.getHighlightedValue(hit, 'lvl0');
+      const subcategory = utils.getHighlightedValue(hit, 'lvl1') || category;
       const displayTitle = utils
         .compact([
           utils.getHighlightedValue(hit, 'lvl2') || subcategory,
@@ -169,13 +169,13 @@ class DocSearch {
           utils.getHighlightedValue(hit, 'lvl5'),
           utils.getHighlightedValue(hit, 'lvl6'),
         ])
-        .join('<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>')
-      const text = utils.getSnippetedValue(hit, 'content')
-      const isTextOrSubcategoryNonEmpty = (subcategory && subcategory !== '') || (displayTitle && displayTitle !== '')
-      const isLvl1EmptyOrDuplicate = !subcategory || subcategory === '' || subcategory === category
-      const isLvl2 = displayTitle && displayTitle !== '' && displayTitle !== subcategory
-      const isLvl1 = !isLvl2 && subcategory && subcategory !== '' && subcategory !== category
-      const isLvl0 = !isLvl1 && !isLvl2
+        .join('<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>');
+      const text = utils.getSnippetedValue(hit, 'content');
+      const isTextOrSubcategoryNonEmpty = (subcategory && subcategory !== '') || (displayTitle && displayTitle !== '');
+      const isLvl1EmptyOrDuplicate = !subcategory || subcategory === '' || subcategory === category;
+      const isLvl2 = displayTitle && displayTitle !== '' && displayTitle !== subcategory;
+      const isLvl1 = !isLvl2 && subcategory && subcategory !== '' && subcategory !== category;
+      const isLvl0 = !isLvl1 && !isLvl2;
 
       return {
         isLvl0,
@@ -190,32 +190,32 @@ class DocSearch {
         title: displayTitle,
         text,
         url,
-      }
-    })
+      };
+    });
   }
 
   static formatURL(hit) {
-    const { url, anchor } = hit
+    const { url, anchor } = hit;
     if (url) {
-      const containsAnchor = url.indexOf('#') !== -1
-      if (containsAnchor) return url
-      else if (anchor) return `${hit.url}#${hit.anchor}`
-      return url
-    } else if (anchor) return `#${hit.anchor}`
+      const containsAnchor = url.indexOf('#') !== -1;
+      if (containsAnchor) return url;
+      else if (anchor) return `${hit.url}#${hit.anchor}`;
+      return url;
+    } else if (anchor) return `#${hit.anchor}`;
     /* eslint-disable */
     console.warn('no anchor nor url for : ', JSON.stringify(hit))
     /* eslint-enable */
-    return null
+    return null;
   }
 
   static getEmptyTemplate() {
-    return (args) => Hogan.compile(templates.empty).render(args)
+    return (args) => Hogan.compile(templates.empty).render(args);
   }
 
   static getSuggestionTemplate(isSimpleLayout) {
-    const stringTemplate = isSimpleLayout ? templates.suggestionSimple : templates.suggestion
-    const template = Hogan.compile(stringTemplate)
-    return (suggestion) => template.render(suggestion)
+    const stringTemplate = isSimpleLayout ? templates.suggestionSimple : templates.suggestion;
+    const template = Hogan.compile(stringTemplate);
+    return (suggestion) => template.render(suggestion);
   }
 
   handleSelected(input, event, suggestion, datasetNumber, context = {}) {
@@ -223,32 +223,32 @@ class DocSearch {
     // browser will take care of it. This allow Ctrl-Clicking on results and not
     // having the main window being redirected as well
     if (context.selectionMethod === 'click') {
-      return
+      return;
     }
 
-    input.setVal('')
-    window.location.assign(suggestion.url)
+    input.setVal('');
+    window.location.assign(suggestion.url);
   }
 
   handleShown(input) {
-    const middleOfInput = input.offset().left + input.width() / 2
-    let middleOfWindow = $(document).width() / 2
+    const middleOfInput = input.offset().left + input.width() / 2;
+    let middleOfWindow = $(document).width() / 2;
 
     if (isNaN(middleOfWindow)) {
-      middleOfWindow = 900
+      middleOfWindow = 900;
     }
 
-    const alignClass = middleOfInput - middleOfWindow >= 0 ? 'algolia-autocomplete-right' : 'algolia-autocomplete-left'
-    const otherAlignClass = middleOfInput - middleOfWindow < 0 ? 'algolia-autocomplete-right' : 'algolia-autocomplete-left'
-    const autocompleteWrapper = $('.algolia-autocomplete')
+    const alignClass = middleOfInput - middleOfWindow >= 0 ? 'algolia-autocomplete-right' : 'algolia-autocomplete-left';
+    const otherAlignClass = middleOfInput - middleOfWindow < 0 ? 'algolia-autocomplete-right' : 'algolia-autocomplete-left';
+    const autocompleteWrapper = $('.algolia-autocomplete');
     if (!autocompleteWrapper.hasClass(alignClass)) {
-      autocompleteWrapper.addClass(alignClass)
+      autocompleteWrapper.addClass(alignClass);
     }
 
     if (autocompleteWrapper.hasClass(otherAlignClass)) {
-      autocompleteWrapper.removeClass(otherAlignClass)
+      autocompleteWrapper.removeClass(otherAlignClass);
     }
   }
 }
 
-export default DocSearch
+export default DocSearch;

@@ -10,6 +10,7 @@ This document is tested and based on the latest Ubuntu 22.04 LTS release and can
     $ git clone https://github.com/betaflight/betaflight.git
     $ cd betaflight
     $ make arm_sdk_install
+    $ make configs
 
 ### Updating and Rebuilding Firmware
 
@@ -45,7 +46,7 @@ In most Linux distributions the user won't have access to serial interfaces by d
     $ sudo usermod -a -G plugdev $USER
     $ sudo apt-get remove modemmanager
     $ sudo tee -a /etc/udev/rules.d/46-stdfu-permissions.rules <<EOF
-# DFU (Internal bootloader for STM32 MCUs)
+# DFU (Internal bootloader for STM32 and AT32 MCUs)
 
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"EOF

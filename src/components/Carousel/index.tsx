@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSnapCarousel } from 'react-snap-carousel'
+import React from 'react';
+import { useSnapCarousel } from 'react-snap-carousel';
 
 const styles = {
   root: {},
@@ -32,14 +32,15 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
   },
-}
+};
 
 interface CarouselProps {
   readonly children?: React.ReactNode
 }
 
 export default function Carousel({ children }: CarouselProps) {
-  const { scrollRef, pages, activePageIndex, prev, next, goTo } = useSnapCarousel()
+  const { scrollRef, pages, activePageIndex, prev, next, goTo } = useSnapCarousel();
+
   return (
     <div style={styles.root}>
       <ul style={styles.scroll} ref={scrollRef}>
@@ -81,7 +82,7 @@ export default function Carousel({ children }: CarouselProps) {
         {activePageIndex + 1} / {pages.length}
       </div>
     </div>
-  )
+  );
 }
 
 interface CarouselItemProps {
@@ -89,5 +90,5 @@ interface CarouselItemProps {
 }
 
 export function CarouselItem({ children }: CarouselItemProps) {
-  return <li style={styles.item}>{children}</li>
+  return <li style={styles.item}>{children}</li>;
 }

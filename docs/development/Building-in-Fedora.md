@@ -6,6 +6,7 @@
     $ git clone https://github.com/betaflight/betaflight.git
     $ cd betaflight
     $ make arm_sdk_install
+    $ make configs
     $ make TARGET=MATEKF411
 
 ### Building Configurator in Fedora 35
@@ -38,8 +39,11 @@ Save and reboot after adding the following contents:
     ENV{DEVTYPE}!="usb_device", GOTO="mm_usb_device_blacklist_end"
 
     ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", ENV{ID_MM_DEVICE_IGNORE}="1"
+    ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", ENV{ID_MM_DEVICE_IGNORE}="1"
 
     LABEL="mm_usb_device_blacklist_end"
 
     #STM32 DFU Access
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", TAG+="uaccess"
+    #AT32 DFU Access
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", TAG+="uaccess"

@@ -29,13 +29,13 @@ const githubUsers = [
   'SupaflyFPV',
   'VitroidFPV',
   'wind0r',
-]
+];
 
-const filepath = 'src/json/team.json'
-const userAgent = 'betaflight.com-gh-action'
+const filepath = 'src/json/team.json';
+const userAgent = 'betaflight.com-gh-action';
 
 function getUserInfo() {
-  let userData = []
+  let userData = [];
 
   return githubUsers.forEach((username) => {
     return https
@@ -46,37 +46,37 @@ function getUserInfo() {
           headers: { 'User-Agent': userAgent },
         },
         (res) => {
-          let body = ''
+          let body = '';
 
           res.on('data', (chunk) => {
-            body += chunk
-          })
+            body += chunk;
+          });
 
           res.on('end', () => {
-            userData.push(JSON.parse(body))
+            userData.push(JSON.parse(body));
             if (userData.length === githubUsers.length) {
-              writeToFile(userData)
+              writeToFile(userData);
             }
-          })
+          });
         },
       )
       .on('error', (err) => {
-        console.log(`Error: ${err.message}`)
-      })
-  })
+        console.log(`Error: ${err.message}`);
+      });
+  });
 }
 
 function writeToFile(data) {
   fs.writeFile(filepath, JSON.stringify(data), (err) => {
     if (err) {
-      console.log(`Error writing to file: ${err}`)
+      console.log(`Error writing to file: ${err}`);
     } else {
-      console.log('User information saved to file.')
+      console.log('User information saved to file.');
     }
-  })
+  });
 }
 
-getUserInfo()
+getUserInfo();
 
 while (!(await g.status()).modified.includes(filepath)) {
   await Sleep(200);
