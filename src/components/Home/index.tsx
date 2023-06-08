@@ -146,7 +146,7 @@ export default function Home({ recentPosts }: BlogProps) {
             <FancyAboutCard title="Community" className="text-primary-500 text-justify" Icon={UsersIcon}>
               <p>
                 The user community is active and helpful, with a Facebook group of over 30,000 members and a growing{' '}
-                <a className="fancy-link no-underline" href="https://discord.com/invite/gV4XSq3fus">
+                <a className="fancy-link no-underline" href="https://discord.betaflight.com/invite">
                   Discord server
                 </a>
                 . Considerable support resources also exist on Youtube, made by third parties.
@@ -184,25 +184,25 @@ export default function Home({ recentPosts }: BlogProps) {
         </HomepageFeature>
         <HomepageFeature title="Team Sponsors">
           <div>
-            <div className="flex flex-row md:flex-nowrap flex-wrap gap-8 justify-center items-center h-fit">
-              <div className="h-full w-full reltive flex flex-col items-center">
-                <a href="/partner" className="w-full flex justify-center">
-                  <SponsorLogo />
+            <div className="flex flex-row flex-wrap gap-20 justify-center items-center">
+              <div className="relative rounded-xl overflow-hidden">
+                <a href="/partner">
+                  <img src="/img/betaflight/sponsors/bf_partner_dark.svg" alt="BetaflightPartner" className="max-h-[200px] w-auto" />
                 </a>
               </div>
-              <div className="h-full w-full reltive flex flex-col items-center rounded-2xl bg-neutral-400/10 hover:bg-neutral-300/10 duration-150 p-4 shadow-none hover:shadow-lg shadow-neutral-900/5">
-                <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener" className="w-full flex justify-center">
-                  <img src="/img/sponsors/DOGCOM.png" alt="DogCom" className="max-h-[100px] w-auto" />
+              <div className="rounded-xl overflow-hidden">
+                <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener">
+                  <img src="/img/betaflight/sponsors/dogcom.svg" alt="DogCom" className="max-h-[80px] w-auto mt-1" />
                 </a>
               </div>
-              <div className="h-full w-full reltive flex flex-col items-center rounded-2xl bg-neutral-400/10 hover:bg-neutral-300/10 duration-150 p-4 shadow-none hover:shadow-lg shadow-neutral-900/5">
-                <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener" className="w-full flex justify-center">
-                  <img src="/img/sponsors/HQPROP.png" alt="HQProp" className="dark:invert max-h-[100px] w-auto" />
+              <div className="rounded-xl overflow-hidden">
+                <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener">
+                  <img src="/img/betaflight/sponsors/hqprop.svg" alt="HQProp" className="invert max-h-[120px] w-auto" />
                 </a>
               </div>
-              <div className="h-full w-full reltive flex flex-col items-center rounded-2xl bg-neutral-400/10 hover:bg-neutral-300/10 duration-150 p-4 shadow-none hover:shadow-lg shadow-neutral-900/5">
-                <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener" className="w-full flex justify-center">
-                  <img src="/img/sponsors/Radio-Master-Logo.png" alt="RadioMaster" className="dark:invert max-h-[100px] w-auto" />
+              <div className="rounded-xl overflow-hidden">
+                <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener">
+                  <img src="/img/betaflight/sponsors/radiomaster.svg" alt="RadioMaster" className="invert max-h-[90px] w-auto mb-12" />
                 </a>
               </div>
             </div>

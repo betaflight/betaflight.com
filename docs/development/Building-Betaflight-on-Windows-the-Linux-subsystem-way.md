@@ -57,7 +57,7 @@ First, enter `sudo apt install build-essential`. This is the package that will a
 
 Once that is done, your system is ready to spit out those sweet hex files.
 
-Enter `make <targetname>` to build Betaflight for your chosen board. For example `make BETAFLIGHTF3` or even `make BETAFLIGHTF3 BETAFLIGHTF4` for multiple targets. `make help` is also your friend.
+First use `make configs` to download the board targets. Enter `make <targetname>` to build Betaflight for your chosen board. For example `make MATEKF411` or even `make MATEKF411 MATEKH743` for multiple targets. `make help` is also your friend.
 Alternatively, you can try `make all` if you have some spare time.
 
 The hex files will be in the `/obj` folder of the betaflight folder

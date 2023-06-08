@@ -54,9 +54,9 @@ To install the needed compiler you just need to enter the betaflight directory a
 
 ## Build the code
 
-Enter the betaflight directory and run `make TARGET=BETAFLIGHTF4` to build firmware for the BETAFLIGHTF4. When the build completes,
-the .hex firmware should be available as `obj/betaflight_3.5.2_BETAFLIGHTF4.hex` for you to flash using the Betaflight
-Configurator.
+Enter the betaflight directory and run `make configs` to retrieve board targets then `make TARGET=MATEKH743` to
+ build firmware for the BETAFLIGHTF4. When the build completes, the .hex firmware should be available as 
+ `obj/betaflight_4.4.2_MATEKH743.hex` for you to flash using the Betaflight Configurator.
 
 ## Updating to the latest source
 
@@ -68,6 +68,6 @@ changes from the repository, then rebuild the firmware:
 git reset --hard
 git pull
 
-make clean TARGET=BETAFLIGHTF4
-make TARGET=BETAFLIGHTF4
+make clean TARGET=MATEKH743
+make TARGET=MATEKH743
 ```
