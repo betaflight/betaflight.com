@@ -80,24 +80,7 @@ const Tooltip = ({ point, children }) => {
   );
 };
 
-const MajorChart = () => {
-  const [data, setData] = useState(null);
-  const [maxY, setMaxY] = useState(null);
-
-  useEffect(() => {
-    getStats().then((stats) => {
-      const totalData = stats.total;
-
-      if (totalData) {
-        const yValues = totalData.map((dataPoint) => dataPoint.y);
-        const maxBuildCount = Math.max(...yValues);
-
-        setData(totalData);
-        setMaxY(maxBuildCount);
-      }
-    });
-  }, []);
-
+const MajorChart = ({ data, maxY }) => {
   return (
     <div className="h-96 w-full flex">
       {data ? (
@@ -157,36 +140,28 @@ const MajorChart = () => {
   );
 };
 
-const MinorChart = ({ type }) => {
+const MajorChartWrapper = () => {
   const [data, setData] = useState(null);
   const [maxY, setMaxY] = useState(null);
 
   useEffect(() => {
     getStats().then((stats) => {
-      let filteredData = null;
-      let maxCount = null;
+      const totalData = stats.total;
 
-      if (type === 'releases') {
-        filteredData = stats.releases;
-        maxCount = Math.max(
-          ...stats.releases.map((release) => {
-            return Math.max(...release.data.map((dataPoint) => dataPoint.y));
-          }),
-        );
-      } else if (type === 'targets') {
-        filteredData = stats.targets;
-        maxCount = Math.max(
-          ...stats.targets.map((target) => {
-            return Math.max(...target.data.map((dataPoint) => dataPoint.y));
-          }),
-        );
+      if (totalData) {
+        const yValues = totalData.map((dataPoint) => dataPoint.y);
+        const maxBuildCount = Math.max(...yValues);
+
+        setData(totalData);
+        setMaxY(maxBuildCount);
       }
-
-      setData(filteredData);
-      setMaxY(maxCount);
     });
-  }, [type]);
+  }, []);
 
+  return <MajorChart data={data} maxY={maxY} />;
+};
+
+const MinorChart = ({ type, data, maxY }) => {
   return (
     <div className="h-96 w-full flex">
       {data ? (
@@ -268,6 +243,39 @@ const MinorChart = ({ type }) => {
   );
 };
 
+const MinorChartWrapper = ({ type }) => {
+  const [data, setData] = useState(null);
+  const [maxY, setMaxY] = useState(null);
+
+  useEffect(() => {
+    getStats().then((stats) => {
+      let filteredData = null;
+      let maxCount = null;
+
+      if (type === 'releases') {
+        filteredData = stats.releases;
+        maxCount = Math.max(
+          ...stats.releases.map((release) => {
+            return Math.max(...release.data.map((dataPoint) => dataPoint.y));
+          }),
+        );
+      } else if (type === 'targets') {
+        filteredData = stats.targets;
+        maxCount = Math.max(
+          ...stats.targets.map((target) => {
+            return Math.max(...target.data.map((dataPoint) => dataPoint.y));
+          }),
+        );
+      }
+
+      setData(filteredData);
+      setMaxY(maxCount);
+    });
+  }, [type]);
+
+  return <MinorChart type={type} data={data} maxY={maxY} />;
+};
+
 export default function Stats() {
   return (
     <BetaflightLayout>
@@ -283,15 +291,15 @@ export default function Stats() {
         <HomepageFeature title="Stats">
           <div className="flex flex-col w-full h-full">
             <h2 className="text-primary-500 text-3xl font-bold">Total Builds</h2>
-            <MajorChart />
+            <MajorChartWrapper />
             <div className="flex xl:flex-row flex-col mt-12">
               <div className="xl:w-1/2 w-full">
                 <h2 className="text-primary-500 text-3xl font-bold">Top 5 Targets</h2>
-                <MinorChart type="targets" />
+                <MinorChartWrapper type="targets" />
               </div>
               <div className="xl:w-1/2 w-full xl:mt-0 mt-12">
                 <h2 className="text-primary-500 text-3xl font-bold">Top 3 Releases</h2>
-                <MinorChart type="releases" />
+                <MinorChartWrapper type="releases" />
               </div>
             </div>
           </div>
