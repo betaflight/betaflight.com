@@ -65,6 +65,21 @@ async function getStats() {
   };
 }
 
+type Props = {
+  children?: React.ReactNode
+}
+
+const Tooltip = ({ point, children }) => {
+  return (
+    <div className="backdrop-blur-xl bg-neutral-700/90 h-fit p-2 rounded-full border-2 border-neutral-500/50 shadow-xl z-10">
+      <span style={{ color: point.serieColor }} className="font-semibold">
+        {point.data.yFormatted}
+      </span>
+      {children}
+    </div>
+  );
+};
+
 const MajorChart = () => {
   const [data, setData] = useState(null);
   const [maxY, setMaxY] = useState(null);
@@ -108,13 +123,7 @@ const MajorChart = () => {
             stacked: true,
             reverse: false,
           }}
-          tooltip={({ point }) => {
-            return (
-              <div className="backdrop-blur-xl bg-neutral-700/90 h-fit p-2 rounded-full border-2 border-neutral-500/50 shadow-xl z-10">
-                <span className="text-primary-400 font-semibold">{point.data.yFormatted}</span> Builds
-              </div>
-            );
-          }}
+          tooltip={({ point }) => <Tooltip point={point}> Builds</Tooltip>}
           areaBaselineValue={2000}
           enableGridX={false}
           enableGridY={true}
@@ -202,16 +211,7 @@ const MinorChart = ({ type }) => {
             stacked: false,
             reverse: false,
           }}
-          tooltip={({ point }) => {
-            return (
-              <div className="backdrop-blur-xl bg-neutral-700/90 h-fit p-2 rounded-full border-2 border-neutral-500/50 shadow-xl z-10">
-                <span style={{ color: point.serieColor }} className="font-semibold">
-                  {point.data.yFormatted}
-                </span>{' '}
-                {point.serieId}
-              </div>
-            );
-          }}
+          tooltip={({ point }) => <Tooltip point={point}>{` ${point.serieId}`}</Tooltip>}
           enableGridX={false}
           enableGridY={true}
           enableCrosshair={false}
