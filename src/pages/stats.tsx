@@ -55,7 +55,7 @@ async function getStats() {
       .reverse(),
   }));
 
-  targets.length = 3;
+  targets.length = 5;
   releases.length = 3;
 
   return {
@@ -200,9 +200,10 @@ const MinorChart = ({ type }) => {
           }))}
           theme={theme}
           enableArea={true}
-          colors={['#5ad8e6', '#87cc52', '#FF5E5E']}
-          lineWidth={4}
-          margin={{ top: 48, right: 48, bottom: 64, left: 48 }}
+          areaOpacity={0.1}
+          colors={['#5ad8e6', '#87cc52', '#ffcc00', '#ff9742', '#d6395b']}
+          lineWidth={2}
+          margin={{ top: 48, right: 48, bottom: 72, left: 48 }}
           xScale={{ type: 'point' }}
           yScale={{
             type: 'linear',
@@ -229,7 +230,7 @@ const MinorChart = ({ type }) => {
             tickPadding: 16,
             tickRotation: 0,
           }}
-          pointSize={12}
+          pointSize={6}
           pointColor={{ from: 'color', modifiers: [] }}
           pointBorderWidth={2}
           pointBorderColor={{ from: 'serieColor' }}
@@ -241,11 +242,11 @@ const MinorChart = ({ type }) => {
               direction: 'row',
               justify: false,
               translateY: 64,
-              itemsSpacing: 0,
-              itemDirection: 'left-to-right',
-              itemWidth: 164,
+              itemsSpacing: 32,
+              itemDirection: 'top-to-bottom',
+              itemWidth: 78,
               itemHeight: 20,
-              symbolSize: 12,
+              symbolSize: 10,
               symbolShape: 'circle',
               symbolBorderColor: 'rgba(0, 0, 0, .5)',
               effects: [
@@ -285,7 +286,7 @@ export default function Stats() {
             <MajorChart />
             <div className="flex xl:flex-row flex-col mt-12">
               <div className="xl:w-1/2 w-full">
-                <h2 className="text-primary-500 text-3xl font-bold">Top 3 Targets</h2>
+                <h2 className="text-primary-500 text-3xl font-bold">Top 5 Targets</h2>
                 <MinorChart type="targets" />
               </div>
               <div className="xl:w-1/2 w-full xl:mt-0 mt-12">
