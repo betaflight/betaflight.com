@@ -158,6 +158,11 @@ const config = {
             position: 'left',
           },
           {
+            to: '/stats',
+            label: 'Stats',
+            position: 'left',
+          },
+          {
             to: '/partner',
             label: 'Partner',
             position: 'left',
