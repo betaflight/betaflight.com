@@ -167,6 +167,11 @@ const config = {
             label: 'Partner',
             position: 'left',
           },
+          {
+            to: '/sponsors',
+            label: 'Sponsors',
+            position: 'left',
+          },
           { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/betaflight/betaflight',
