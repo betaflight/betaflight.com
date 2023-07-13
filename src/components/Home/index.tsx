@@ -22,8 +22,6 @@ function Logo({ sponsor }: LogoProps) {
   const logoSrc = `/img/betaflight/logo_${colorMode === 'light' ? 'light' : 'dark'}.svg`;
   const sponsorLogoSrc = `/img/betaflight/sponsors/bf_partner_${colorMode === 'light' ? 'light' : 'dark'}.svg`;
 
-  console.log(useColorMode());
-
   return <img src={sponsor ? sponsorLogoSrc : logoSrc} alt="Betaflight" className={sponsor ? 'max-h-[200px] w-auto' : 'p-6 h-fit w-fit xl:ml-12'} />;
 }
 
