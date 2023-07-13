@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useColorMode } from '@docusaurus/theme-common';
 import { CameraIcon, CodeBracketIcon, CpuChipIcon, DocumentTextIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid';
 import JetIcon from '@site/src/icons/jet.icon.svg';
 import { BlogProps } from '@site/src/types';
@@ -11,54 +12,19 @@ import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Button from '../Button';
 import TeamFeature from '../Team';
 
-function Logo() {
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    const html = document.querySelector('html');
-    const currentTheme = html.getAttribute('data-theme');
-    setTheme(currentTheme);
-    const observer = new MutationObserver((mutationsList) => {
-      for (const mutation of mutationsList) {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-          setTheme(mutation.target.getAttribute('data-theme'));
-        }
-      }
-    });
-    observer.observe(html, { attributes: true });
-    return () => observer.disconnect();
-  }, []);
-
-  const logoSrc = `/img/betaflight/logo_${theme === 'light' ? 'light' : 'dark'}.svg`;
-
-  console.log(theme);
-
-  return <img src={logoSrc} alt="Betaflight" className="p-6 h-fit w-fit xl:ml-12"></img>;
+type LogoProps = {
+  sponsor?: boolean
 }
 
-function SponsorLogo() {
-  const [theme, setTheme] = useState('light');
+function Logo({ sponsor }: LogoProps) {
+  const { colorMode } = useColorMode();
 
-  useEffect(() => {
-    const html = document.querySelector('html');
-    const currentTheme = html.getAttribute('data-theme');
-    setTheme(currentTheme);
-    const observer = new MutationObserver((mutationsList) => {
-      for (const mutation of mutationsList) {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-          setTheme(mutation.target.getAttribute('data-theme'));
-        }
-      }
-    });
-    observer.observe(html, { attributes: true });
-    return () => observer.disconnect();
-  }, []);
+  const logoSrc = `/img/betaflight/logo_${colorMode === 'light' ? 'light' : 'dark'}.svg`;
+  const sponsorLogoSrc = `/img/betaflight/sponsors/bf_partner_${colorMode === 'light' ? 'light' : 'dark'}.svg`;
 
-  const logoSrc = `/img/sponsors/bf_partner_${theme === 'light' ? 'light' : 'dark'}.svg`;
+  console.log(useColorMode());
 
-  console.log(theme);
-
-  return <img src={logoSrc} alt="Betaflight" className="max-h-[200px] w-auto"></img>;
+  return <img src={sponsor ? sponsorLogoSrc : logoSrc} alt="Betaflight" className={sponsor ? 'max-h-[200px] w-auto' : 'p-6 h-fit w-fit xl:ml-12'} />;
 }
 
 export default function Home({ recentPosts }: BlogProps) {
@@ -185,7 +151,7 @@ export default function Home({ recentPosts }: BlogProps) {
             <div className="flex flex-row flex-wrap gap-20 justify-center items-center">
               <div className="relative rounded-xl overflow-hidden">
                 <a href="/partner">
-                  <img src="/img/betaflight/sponsors/bf_partner_dark.svg" alt="BetaflightPartner" className="max-h-[200px] w-auto" />
+                  <Logo sponsor />
                 </a>
               </div>
               <div className="rounded-xl overflow-hidden">
@@ -195,12 +161,12 @@ export default function Home({ recentPosts }: BlogProps) {
               </div>
               <div className="rounded-xl overflow-hidden">
                 <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/hqprop.svg" alt="HQProp" className="invert max-h-[120px] w-auto" />
+                  <img src="/img/betaflight/sponsors/hqprop.svg" alt="HQProp" className="dark:invert max-h-[120px] w-auto" />
                 </a>
               </div>
               <div className="rounded-xl overflow-hidden">
                 <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/radiomaster.svg" alt="RadioMaster" className="invert max-h-[90px] w-auto mb-12" />
+                  <img src="/img/betaflight/sponsors/radiomaster.svg" alt="RadioMaster" className="dark:invert max-h-[90px] w-auto mb-12" />
                 </a>
               </div>
             </div>
