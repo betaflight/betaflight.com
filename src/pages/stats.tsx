@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import HomepageFeature from '../components/HomepageFeature';
 import BetaflightLayout from '../components/Layout';
 import { ResponsiveLine } from '@nivo/line';
-import { theme } from './nivoTheme.js';
+import { themeLight } from '../theme/nivoThemeLight.js';
+import { themeDark } from '../theme/nivoThemeDark.js';
+import { useColorMode } from '@docusaurus/theme-common';
 
 interface Volume {
   date: string
@@ -31,28 +33,23 @@ async function getStats() {
   const stats = await fetch(`https://build.betaflight.com/api/stats`).then((res) => res.json());
   const data = stats.volumes.map((volume: Volume) => ({
     x: new Date(volume.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
-    y: volume.cached,
+    y: volume.cached + volume.built,
   }));
-  data.reverse();
 
   const targets = stats.volumes[0].targets.map((target: Target) => ({
     id: target.name,
-    data: stats.volumes
-      .map((volume: Volume) => ({
-        x: new Date(volume.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
-        y: volume.targets.find((t: Target) => t.name === target.name)?.volume,
-      }))
-      .reverse(),
+    data: stats.volumes.map((volume: Volume) => ({
+      x: new Date(volume.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+      y: volume.targets.find((t: Target) => t.name === target.name)?.volume,
+    })),
   }));
 
   const releases = stats.volumes[0].releases.map((release: Release) => ({
     id: release.name,
-    data: stats.volumes
-      .map((volume: Volume) => ({
-        x: new Date(volume.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
-        y: volume.releases.find((r: Release) => r.name === release.name)?.volume,
-      }))
-      .reverse(),
+    data: stats.volumes.map((volume: Volume) => ({
+      x: new Date(volume.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+      y: volume.releases.find((r: Release) => r.name === release.name)?.volume,
+    })),
   }));
 
   targets.length = 5;
@@ -65,13 +62,9 @@ async function getStats() {
   };
 }
 
-type Props = {
-  children?: React.ReactNode
-}
-
 const Tooltip = ({ point, children }) => {
   return (
-    <div className="backdrop-blur-xl bg-neutral-700/90 h-fit p-2 rounded-full border-2 border-neutral-500/50 shadow-xl z-10">
+    <div className="backdrop-blur-xl dark:bg-neutral-700/90 bg-neutral-200 h-fit p-2 rounded-full border-2 dark:border-neutral-500/50 border-neutral-300/50 shadow-xl z-10">
       <span style={{ color: point.serieColor }} className="font-semibold">
         {point.data.yFormatted}
       </span>
@@ -81,6 +74,7 @@ const Tooltip = ({ point, children }) => {
 };
 
 const MajorChart = ({ data, maxY }) => {
+  const isDark = useColorMode().isDarkTheme;
   return (
     <div className="h-96 w-full flex">
       {data ? (
@@ -94,7 +88,7 @@ const MajorChart = ({ data, maxY }) => {
               })),
             },
           ]}
-          theme={theme}
+          theme={isDark ? themeDark : themeLight}
           colors={['#FFBB00']}
           lineWidth={4}
           margin={{ top: 0, right: 48, bottom: 48, left: 48 }}
@@ -162,6 +156,7 @@ const MajorChartWrapper = () => {
 };
 
 const MinorChart = ({ type, data, maxY }) => {
+  const isDark = useColorMode().isDarkTheme;
   return (
     <div className="h-96 w-full flex">
       {data ? (
@@ -173,7 +168,7 @@ const MinorChart = ({ type, data, maxY }) => {
               y: dataPoint.y,
             })),
           }))}
-          theme={theme}
+          theme={isDark ? themeDark : themeLight}
           enableArea={true}
           areaOpacity={0.1}
           colors={['#5ad8e6', '#87cc52', '#ffcc00', '#ff9742', '#d6395b']}

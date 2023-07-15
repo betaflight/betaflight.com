@@ -1,8 +1,8 @@
-export const theme = {
+export const themeLight = {
   background: 'transparent',
   text: {
     fontSize: 16,
-    fill: '#ffffff',
+    fill: '#181818',
     outlineWidth: 0,
     outlineColor: 'transparent',
   },
@@ -14,19 +14,19 @@ export const theme = {
     },
     legend: {
       text: {
-        fill: '#ffffff',
+        fill: '#181818',
       },
     },
     ticks: {
       text: {
-        fill: '#ffffff',
+        fill: '#181818',
         fontSize: 12,
       },
     },
   },
   grid: {
     line: {
-      stroke: 'rgba(255, 255, 255, 0.1)',
+      stroke: 'rgba(25, 25, 25, 0.1)',
       strokeWidth: 1,
     },
   },
@@ -38,7 +38,7 @@ export const theme = {
   },
   legends: {
     text: {
-      fill: '#ffffff',
+      fill: '#181818',
     },
   },
 };
