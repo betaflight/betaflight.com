@@ -8,7 +8,7 @@ The compass/mag sensor should be well away from sources of magnetic interference
 
 Two GPS protocols are supported. NMEA text and UBLOX binary.
 
-## Configuration
+## Enable GPS in BF configurator
 
 Enable the GPS from the CLI as follows:
 
@@ -46,13 +46,16 @@ When using a UBLOX GPS the SBAS mode can be configured using `gps_sbas_mode`.
 
 The default is AUTO.
 
-| Value | Region        |
-| ----- | ------------- |
-| AUTO  | Global        |
-| EGNOS | Europe        |
-| WAAS  | North America |
-| MSAS  | Asia          |
-| GAGAN | India         |
+| Value            | Region        |
+| -----            | ------------- |
+| AUTO             | Global        |
+| EGNOS            | Europe        |
+| WAAS             | North America |
+| MSAS             | Asia          |
+| GAGAN            | India         |
+| SouthPAN (SPAN)* | Australia     |
+
+*NOTE: Currently being rolled out, usable in beta mode (safety-of-life certification planned in 2028). SBAS is region specific, make sure to check if your area is covered by an SBAS, and your receiver is capable of processing the area-sepcific signal (not all SBAS receivers can work with all SBAS satellites).
 
 If you use a regional specific setting you may achieve a faster GPS lock than using AUTO.
 
@@ -60,50 +63,74 @@ This setting only works when `gps_auto_config=ON`
 
 ## GPS Receiver Configuration
 
-UBlox GPS units can either be configured using the FC or manually.
+GPS units can either be configured using BF or manually.
 
-### UBlox GPS manual configuration
+### u-blox GPS automatic (BF) configuration
 
-Use UBox U-Center and connect your GPS to your computer. The CLI `gpspassthrough` command may be of use if you do not have a spare USART to USB adapter.
+If `gps_auto_config=ON`, BF will go through several steps to automatically set up your GPS, taking into account whether it is connected to the configurator (enabling satellite view messages), and whether the module supports newer message types. If not, it will fall back to older message models automatically. Have a look in `gps.c`, in the `gpsInitUblox`method, in section `GPS_STATE_CONFIGURE`. 
 
-Note that many boards will not provide +5V from USB to the GPS module, such as the SPRacingF3; if you are using `gpspassthrough` you may need to connect a BEC to the controller if your board permits it, or use a standalone UART adapter. Check your board documentation to see if your GPS port is powered from USB.
+### u-blox GPS manual configuration
 
-Display the Packet Console (so you can see what messages your receiver is sending to your computer).
+Modern GPS receivers can use the binary UBX protocol to communicate back and forth (in contrast to the old, plain-text NMEA protocol). They can also be configured what to do exactly - how often send a position signal, to include or not to include what satellites are in view, whether to calculate speed, and so on.
 
-Display the Configation View.
+For our purposes, we want to receive the right amount of data (message types) frequently enough (rate) reliably (baud) using the right protocol (UBX) so we can calculate home-distance, our seed, altitude and so on.
+
+#### Connecting the GPS module for configuration
+
+Use the CLI `gpspassthrough` to enable connecting the GPS module through the FC. If you see random code being dumped to your console, it's working, close BF configurator and open the GPS software (below).
+
+Note that some older boards will not provide +5V from USB to the GPS module, such as the SPRacingF3; if you are using `gpspassthrough` you may need to connect a BEC to the controller if your board permits it, or use a standalone UART adapter. Check your board documentation to see if your GPS port is powered from USB.
+
+#### Configuring using u-blox u-center
+
+You will need [u-blox u-center](https://www.u-blox.com/en/product/u-center) (Windows only). You can use either v1 or v2, their configuration view is a bit different, but they do essentially the same (we will use the old u-center here).
+
+Once you enabled `gpspassthrough` and closed BF configurator, open u-center and connect to the FC (same port - but now the GPS module is directly routed through, BF is not active).
+
+Display the View/Packet Console, which will display what type of messages are being received. We will need to both remove some (to spare resources), and add some. You can pause it using the lock icon to have a look at the incoming messages.
+
+Display View/Configuration View.
 
 Navigate to CFG (Configuration)
 
 Select `Revert to default configuration`.
 Click `Send`.
 
+#### Port speed
+
 At this point you might need to disconnect and reconnect at the default baudrate - probably 9600 baud.
 
 Navigate to PRT (Ports)
 
 Set `Target` to `1 - Uart 1`
-Set `Protocol In` to `0+1+2`
-Set `Protocol Out` to `0+1`
-Set `Buadrate` to `57600` `115200`
+Set `Protocol In` to `0+1` (NMEA and UBX)
+Set `Protocol Out` to `0+1` (NMEA and UBX)
+Set `Buadrate` to `57600` `115200` (NOTE: 115200 will often have intermittent connection problems)
 Press `Send`
 
-This will immediatly "break" communication to the GPS. Since you haven't saved the new baudrate setting to the non-volatile memory you need to change the baudrate you communicate to the GPS without resetting the GPS. So `Disconnect`, Change baud rate to match, then `Connect`.
+This will immediately "break" communication to the GPS. Since you haven't saved the new baudrate setting to the non-volatile memory you need to change the baudrate you communicate to the GPS without resetting the GPS. So `Disconnect`, Change baud rate to match, then `Connect`.
 
 Click on `PRT` in the Configuration view again and inspect the packet console to make sure messages are being sent and acknowledged.
 
-Next, to ensure the FC doesn't waste time processing unneeded messages, click on `MSG` and enable the following on UART1 alone with a rate of 1. When changing message target and rates remember to click `Send` after changing each message.:
+#### Message types to enable
 
-    NAV-POSLLH
-    NAV-DOP
-    NAV-SOL
-    NAV-VELNED
-    NAV-TIMEUTC
+Next, to ensure the FC doesn't waste time processing unneeded messages. Click on `MSG` and enable the following on UART1 alone with a rate of 1 (our rate will be set later to 10Hz, 10 messages / sec; rate 1 means for every tick, so every 100ms).
 
-Enable the following on UART1 with a rate of 5, to reduce bandwidth and load on the FC.
+When changing message target and rates remember to click `Send` after changing each message.:
+| Message type | Rate | Description                                                                                                                                          |
+|--------------|------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| NAV-PVT      | 1    | Navigation position velocity time solution, combines position, velocity and time solution, including accuracy figures.                               |
+| NAV-DOP      | 1    | Dilution of precision, a dimensionless number that accounts for the contribution of relative satellite geometry to errors in position determination. |
+| NAV-SAT      | 10   | Displays information about satellites that are either known to be visible or currently tracked by the receiver.                                      |
 
-    NAV-SVINFO
+##### Fallback-only option if you GPS module does not support the above message types:
+~~NAV-POSLLH NAV-DOP NAV-SOL NAV-VELNED~~
+~~With the rate of 10, enable NAV-SVINFO to see what satellites are in view~~
 
-All other message types should be disabled.
+
+Double check with the Packet View that you are only receiving the messages we wanted (if more, disable those you don't need; if less, make sure you enabled the ones above).
+
+#### Rate of messages
 
 Next change the global update rate, click `Rate (Rates)` in the Configuration view.
 
@@ -111,33 +138,56 @@ Set `Measurement period` to `100` ms.
 Set `Navigation rate` to `1`.
 Click `Send`.
 
-This will cause the GPS receive to send the require messages out 10 times a second. If your GPS receiver cannot be set to use `100`ms try `200`ms (5hz) - this is less precise.
+This will cause the GPS receive to send the require messages out 10 times a second (10Hz). If your GPS receiver cannot be set to use `100`ms try `200`ms (5Hz) - this is less precise.
+
+#### Dynamic Platform Model
 
 Next change the mode, click `NAV5 (Navigation 5)` in the Configuration View.
 
-Set to `Dynamic Model` to `Pedestrian` and click `Send`.
+Set to `Dynamic Model` to `Airborne <1g` and click `Send`.
 
-Next change the SBAS settings. Click `SBAS (SBAS Settings)` in the Configuration View.
+This enables sanity checks for a maximum altitude of 50,000m, maximum vertical or horizontal speed of 100m/s. Any measurement outside these would invalidate the fix as they are not plausible.
 
-Set `Subsystem` to `Enabled`.
-Set `PRN Codes` to `Auto-Scan`.
-Click `Send`.
+Betaflight on auto-config will use `Stationary` before arming and `Airborne <4g` after arming.
 
-Finally, we need to save the configuration.
+It is recommended to use Airborne <1g, but consult the u-blox documentation for sanity checks.
 
-Click `CFG (Configuration` in the Configuration View.
-
-Select `Save current configuration` and click `Send`.
-
-### UBlox Navigation model
-
-Cleanflight will use `Pedestrian` when gps auto config is used.
-
-From the UBlox documentation:
+From the [u-blox protocol specification](https://www.u-blox.com/en/product-resources?query=protocol&legacy=Current):
 
 - Pedestrian - Applications with low acceleration and speed, e.g. how a pedestrian would move. Low acceleration assumed. MAX Altitude [m]: 9000, MAX Velocity [m/s]: 30, MAX Vertical, Velocity [m/s]: 20, Sanity check type: Altitude and Velocity, Max Position Deviation: Small.
 - Portable - Applications with low acceleration, e.g. portable devices. Suitable for most situations. MAX Altitude [m]: 12000, MAX Velocity [m/s]: 310, MAX Vertical Velocity [m/s]: 50, Sanity check type: Altitude and Velocity, Max Position Deviation: Medium.
 - Airborne < 1G - Used for applications with a higher dynamic range and vertical acceleration than a passenger car. No 2D position fixes supported. MAX Altitude [m]: 50000, MAX Velocity [m/s]: 100, MAX Vertical Velocity [m/s]: 100, Sanity check type: Altitude, Max Position Deviation: Large
+
+####  Satellite-Based Augmentation System (SBAS) settings
+
+Click `SBAS (SBAS Settings)` in the Configuration View.
+
+Set `Subsystem` to `Enabled`.
+Set `PRN Codes` to `Auto-Scan` or select the specific PRN code for your region. [For instance, the PRN for SPAN is 122](https://www.gps.gov/technical/prn-codes/L1-CA-PRN-code-assignments-2019-Oct.pdf).
+
+Click `Send`.
+
+#### Enabling Global Navigation Satellite Systems (GNSS)
+
+Click `GNSS (GNSS config)` in the Configuration View.
+
+Most GPS modules support up to 3 concurrent GNSS systems.
+
+Usually it is a good idea to enable GPS (Tick Configure, Enable, Signals).
+
+If you live in Oceania (Japan/Australia line), the [Quasi-Zenith Satellite System (QZSS)](https://qzss.go.jp/en/overview/services/sv01_what.html) can help you to obtain higher accuracy, if your receiver supports it.
+
+It is typically a good combination to enable GPS, Galileo, BeiDou, and either SBAS or QZSS. Check what satellites are mostly available where you live using a [GNSS View](https://app.qzss.go.jp/GNSSView/gnssview.html).
+
+Click `Send`. Make sure your configuration was saved (the checkboxes are ticked as needed). The module might reject certain combinations.
+
+#### Save (persist) the configuration
+
+So far all changes are in the RAM only, we want to save them to permanent storage on the GPS module.
+
+Click `CFG (Configuration` in the Configuration View.
+
+Select `Save current configuration` and click `Send`.
 
 ## Hardware
 
@@ -145,8 +195,6 @@ There are many GPS receivers available on the market.
 Below are some examples of user-tested hardware.
 
 ### Ublox
-
-###U-Blox
 
 #### NEO-M8
 
