@@ -8,7 +8,7 @@ The compass/mag sensor should be well away from sources of magnetic interference
 
 Two GPS protocols are supported. NMEA text and UBLOX binary.
 
-## Enable GPS in BF configurator
+## Enable GPS in BF Configurator
 
 Enable the GPS from the CLI as follows:
 
