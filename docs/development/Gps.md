@@ -73,7 +73,7 @@ If `gps_auto_config=ON`, BF will go through several steps to automatically set u
 
 Modern GPS receivers can use the binary UBX protocol to communicate back and forth (in contrast to the old, plain-text NMEA protocol). They can also be configured what to do exactly - how often send a position signal, to include or not to include what satellites are in view, whether to calculate speed, and so on.
 
-For our purposes, we want to receive the right amount of data (message types) frequently enough (rate) reliably (baud) using the right protocol (UBX) so we can calculate home-distance, our seed, altitude and so on.
+For our purposes, we want to receive the right amount of data (message types) frequently enough (rate) reliably (baud) using the right protocol (UBX) so we can calculate home-distance, our speed, altitude and so on.
 
 #### Connecting the GPS module for configuration
 
