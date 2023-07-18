@@ -1,4 +1,4 @@
-# Board - EXF722AIO
+# EXF722AIO
 
 ### Hardware
 

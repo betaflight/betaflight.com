@@ -1,4 +1,4 @@
-# Board - IFlightF4_TWIN_G
+# IFlightF4_TWIN_G
 
 > **IFlightF4_TWIN_G : Real Twin Gyroscopes.**
 >

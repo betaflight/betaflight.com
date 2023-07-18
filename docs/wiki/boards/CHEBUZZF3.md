@@ -1,4 +1,4 @@
-# Board - ChebuzzF3
+# ChebuzzF3
 
 The ChebuzzF3 is a daugter board which connects to the bottom of an STM32F3Discovery board and provides pin headers and ports for various FC connections.
 

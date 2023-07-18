@@ -1,6 +1,4 @@
-# NAME
-
-MATEKSYS F405-STD
+# MATEKSYS F405-STD
 
 ## Description
 

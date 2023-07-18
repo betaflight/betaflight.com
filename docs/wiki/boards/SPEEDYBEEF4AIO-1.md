@@ -1,4 +1,4 @@
-# Board - SpeedyBee F4 AIO
+# SpeedyBee F4 AIO
 
 ### Descriptions
 

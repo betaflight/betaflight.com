@@ -1,6 +1,4 @@
-# NAME
-
-VGOODDHF4
+# VGOODDHF4
 
 ## Description
 

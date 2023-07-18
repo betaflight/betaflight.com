@@ -1,4 +1,4 @@
-# Board - MERAKRCF405
+# MERAKRCF405
 
 MERAKRCF405 flight control is carefully optimized layout, so that users can be more concise,convenient wiring,.For ensure a good flight experience ,we use of high-performance MPU6000 gyroscope. After a long flight verification test, the flight control ensures stable flight performance. For details of flight control, please visit MERAK RC website:(http://www.merakrc.com)
 

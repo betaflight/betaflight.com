@@ -1,4 +1,4 @@
-# Board - RUSHCORE7
+# RUSHCORE7
 
 The RUSHCORE7 described here:
 

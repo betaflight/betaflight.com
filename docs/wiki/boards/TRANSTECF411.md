@@ -1,4 +1,4 @@
-# Board - TRANSTEC F411 Series
+# TRANSTEC F411 Series
 
 ## Description
 

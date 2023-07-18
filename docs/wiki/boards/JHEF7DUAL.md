@@ -1,4 +1,4 @@
-# Board - JHEF7DUAL
+# JHEF7DUAL
 
 ## Features
 

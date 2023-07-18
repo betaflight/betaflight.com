@@ -1,4 +1,4 @@
-# Board - FOXEERF722DUAL
+# FOXEERF722DUAL
 
 The FOXEERF722DUAL described here:
 

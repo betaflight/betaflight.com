@@ -1,4 +1,4 @@
-# Board - HAKRCF405
+# HAKRCF405
 
 ### Hardware and Features
 

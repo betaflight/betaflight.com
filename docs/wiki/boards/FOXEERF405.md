@@ -1,4 +1,4 @@
-# Board - FOXEERF405
+# FOXEERF405
 
 The FOXEERF405 described here:
 

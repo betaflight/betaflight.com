@@ -1,4 +1,4 @@
-# Board - EXF405DUAL
+# EXF405DUAL
 
 ### Hardware
 

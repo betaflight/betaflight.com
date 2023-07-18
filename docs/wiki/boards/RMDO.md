@@ -1,4 +1,4 @@
-# Board - RMRC Dodo
+# RMRC Dodo
 
 The RMRC Dodo board is made and sold by Ready Made RC. In terms of CPU pin mapping it is a clone of the SPRacingF3 board (also see the SPRacingF3 documentation). Currently there are three versions with slightly different hardware available: Rev. 1, 2, and 3.
 

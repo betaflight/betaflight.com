@@ -1,4 +1,4 @@
-# Board - TBS Colibri RACE
+# TBS Colibri RACE
 
 The Colibri RACE is a STM32F3 based flight control designed specifically to work with the TBS POWERCUBE multi rotor stack.
 
