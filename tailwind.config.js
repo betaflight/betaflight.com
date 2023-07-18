@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   important: true,
+  darkMode: ['class', '[data-theme="dark"]'],
   content: ['./src/**/*.{js,jsx,ts,tsx,mdx}'],
   theme: {
     extend: {
@@ -13,6 +14,10 @@ module.exports = {
           600: '#EEA600',
           700: '#DD9100',
           800: '#CC7E00',
+        },
+        neutral: {
+          150: 'rgb(240, 240, 240)',
+          750: 'rgb(44 44 44)',
         },
       },
       backgroundSize: {

@@ -21,10 +21,10 @@ type IconElementFeatureProps = {
 function IconElementFeature({ Icon, title, description, link, children }: IconElementFeatureProps): JSX.Element {
   return (
     <div className="flex">
-      <Icon className="h-[2rem] w-[2rem] min-w-[2rem] min-h-[2rem]"></Icon>
+      <Icon className="h-[2rem] w-[2rem] min-w-[2rem] min-h-[2rem] text-primary-500"></Icon>
       <div className="ml-2">
-        <div className="text-lg font-bold mb-2">{title}</div>
-        {description && <div className="text-gray-400 mb-2">{description}</div>}
+        <div className="text-lg font-bold mb-2 text-primary-500">{title}</div>
+        {description && <div className="mb-2">{description}</div>}
         {link && (
           <a className="fancy-link no-underline flex items-center" href={link.href}>
             {link.icon && <link.icon className="h-4 w-4 mr-2"></link.icon>}
@@ -60,13 +60,13 @@ export default function Media() {
         <div className="w-full h-fit flex flex-col justify-start">
           <div className="flex flex-col p-6 h-fit w-fit xl:ml-12">
             <h1 className="md:text-[6rem] text-6xl border-primary-500 font-bold mb-4">Download</h1>
-            <h2 className="text-white font-semibold md:text-3xl text-xl">Downloads & Videos</h2>
+            <h2 className="font-semibold md:text-3xl text-xl">Downloads & Videos</h2>
           </div>
         </div>
       </div>
       <div className="xl:max-w-[1920px] m-auto p-4 xl:p-16">
-        <HomepageFeature title="Downloads">
-          <div className="grid max-w-fit grid-cols-1 md:grid-cols-2 gap-x-4 text-primary-200">
+        <HomepageFeature blur title="Downloads">
+          <div className="grid max-w-fit grid-cols-1 md:grid-cols-2 gap-x-4">
             <div className="flex flex-col space-y-4">
               <IconElementFeature title="Installation & Documentation" link={{ text: 'See the Betaflight Wiki', href: '/docs/wiki' }} Icon={DocumentTextIcon}></IconElementFeature>
               <IconElementFeature
@@ -89,19 +89,19 @@ export default function Media() {
               ></IconElementFeature>
               <IconElementFeature title="BlackBox Viewer" Icon={PresentationChartLineIcon}>
                 <div className="flex flex-col">
-                  <div className="text-gray-400 flex flex-row space-x-1 mt-2">
+                  <div className="flex flex-row space-x-1 mt-2">
                     <span>Viewer Releases are:</span>
                     <a href="https://github.com/betaflight/blackbox-log-viewer/releases" className="fancy-link no-underline">
                       Latest viewer releases
                     </a>
                   </div>
-                  <div className="text-gray-400 flex flex-row space-x-1 mt-2">
+                  <div className="flex flex-row space-x-1 mt-2">
                     <span>The Latest Viewer source is:</span>
                     <a href="https://github.com/betaflight/blackbox-log-viewer" className="fancy-link no-underline">
                       Latest viewer source
                     </a>
                   </div>
-                  <div className="text-gray-400 flex flex-col mt-2">See BB Logging and Usage Wiki page on using the BlackBox logger.</div>
+                  <div className="flex flex-col mt-2">See BB Logging and Usage Wiki page on using the BlackBox logger.</div>
                 </div>
               </IconElementFeature>
             </div>
