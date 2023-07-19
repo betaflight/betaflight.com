@@ -1,4 +1,4 @@
-# Board - CJMCU
+# CJMCU
 
 The CJMCU is a tiny (80mm) board running a STM32F103, which contains a 3-Axis Compass (HMC5883L)
 and an Accelerometer/Gyro (MPU6050).

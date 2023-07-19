@@ -1,4 +1,4 @@
-# Board - F3FC Racing
+# F3FC Racing
 
 Designed by RCExplorer.se
 

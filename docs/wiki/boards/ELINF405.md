@@ -1,4 +1,4 @@
-# Board - Elin F405
+# Elin F405
 
 ## Hardware Features
 

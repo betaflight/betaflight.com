@@ -1,4 +1,4 @@
-# Board - Speedy Bee F7 AIO
+# Speedy Bee F7 AIO
 
 ## Description
 

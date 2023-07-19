@@ -1,4 +1,4 @@
-# Board - PYRODRONEF4
+# PYRODRONEF4
 
 The PYRODRONEF4 target is new board developed by http://pirofliprc.com/
 

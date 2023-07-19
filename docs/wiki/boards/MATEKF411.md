@@ -1,6 +1,4 @@
-# NAME
-
-MATEKSYS F411-MINI
+# MATEKSYS F411-MINI
 
 ![Matek F411-MINI](http://www.mateksys.com/downloads/FC/MATEK_F411-MINI.jpg)
 

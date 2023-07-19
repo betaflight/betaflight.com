@@ -1,4 +1,4 @@
-# Board - DALRCF405
+# DALRCF405
 
 The DALRCF405 described here:
 http://www.dalrcmodel.com/DALRC/plus/view.php?aid=184

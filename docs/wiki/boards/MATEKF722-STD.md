@@ -1,6 +1,4 @@
-# NAME
-
-MATEKSYS F722-STD
+# MATEKSYS F722-STD
 
 ## Description
 

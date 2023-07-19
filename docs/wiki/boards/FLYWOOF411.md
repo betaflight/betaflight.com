@@ -1,4 +1,4 @@
-# Board - FLYWOOF411
+# FLYWOOF411
 
 This board use the STM32F411CEU6 microcontroller and have the following features:
 

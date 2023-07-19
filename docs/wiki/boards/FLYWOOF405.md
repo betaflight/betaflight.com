@@ -1,4 +1,4 @@
-# Board - FLYWOOF405
+# FLYWOOF405
 
 This board use the STM32F405RGT6 microcontroller and have the following features:
 

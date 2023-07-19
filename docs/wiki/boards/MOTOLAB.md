@@ -1,4 +1,4 @@
-# Board - MotoLab
+# MotoLab
 
 The MOTOLAB build target supports the STM32F3-based boards provided by MotoLab.
 

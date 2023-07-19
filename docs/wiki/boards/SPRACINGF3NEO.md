@@ -1,4 +1,4 @@
-# Board - Seriously Pro SP Racing F3 NEO
+# Seriously Pro SP Racing F3 NEO
 
 The Seriously Pro Racing F3 NEO board (SPRacingF3NEO) is a full-featured board designed specifically for quadcopters. The NEO FC/PDB features the latest gyro technology and stacks with an OSD/VTX board. The stack makes for an extremely compact and easy to install solution with the minimal of solder connections and external cables required. It's perfect for beginners and experienced pilots. The acc/gyro is an ICM20602, which is newer than you'll find in all other F3 boards and most F4 boards as of December 2016.
 

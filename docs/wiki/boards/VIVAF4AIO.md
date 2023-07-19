@@ -1,4 +1,4 @@
-# Board - VIVAF4AIO
+# VIVAF4AIO
 
 The VIVAF4AIO described here:
 https://team-blacksheep.com/products/prod:viva_f4_fc

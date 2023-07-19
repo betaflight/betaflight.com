@@ -1,6 +1,4 @@
-# NAME
-
-MATEKSYS F722-OSD
+# MATEKSYS F722-OSD
 ![MATEKF722](https://betaflight.com/assets/img/boards/matekf722/MATEKF722-OSD.JPG)
 
 ## Description

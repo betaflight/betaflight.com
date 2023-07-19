@@ -1,4 +1,4 @@
-# Board - Sparky
+# Sparky
 
 The Sparky is a very low cost and very powerful board.
 

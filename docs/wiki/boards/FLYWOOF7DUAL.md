@@ -1,4 +1,4 @@
-# Board - FLYWOOF7DUAL
+# FLYWOOF7DUAL
 
 This board use the STM32F722RET6 microcontroller and have the following features:
 

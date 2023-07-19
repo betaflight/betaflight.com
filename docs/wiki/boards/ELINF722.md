@@ -1,4 +1,4 @@
-# Board - Elin F722
+# Elin F722
 
 ## Hardware Features
 

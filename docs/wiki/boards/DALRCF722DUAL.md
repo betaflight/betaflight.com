@@ -1,4 +1,4 @@
-# Board - DALRCF722DUAL
+# DALRCF722DUAL
 
 The DALRCF722DUAL described here:
 
