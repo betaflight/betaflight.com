@@ -9,7 +9,7 @@ type Props = {
   blur?: boolean
 }
 
-export default function HomepageFeature({ title = '<unset>', compact = false, className, children }: Props): JSX.Element {
+export default function HomepageFeature({ title = '<unset>', compact = false, className, children, blur }: Props): JSX.Element {
   return (
     // <section className={className}>
     //   <h2 className="text-primary-500 text-3xl font-bold my-4 ml-1">{title}</h2>
