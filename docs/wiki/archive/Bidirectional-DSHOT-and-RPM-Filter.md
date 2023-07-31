@@ -26,6 +26,8 @@ On clean quads, lowpass filter delay can usually be improved by moving cutoff fr
 
 [**RPM filtering**](https://github.com/betaflight/betaflight/pull/7271) is a bank of 36 notch filters on gyro and (optionally) on Dterm which use the RPM telemetry data to remove motor noise with surgical precision. By default it runs 12 notch filters each on pitch, roll, and yaw, covering the first 3 harmonics of each motor's noise signature.
 
+[**Extended DSHOT telemetry**](https://github.com/bird-sanctuary/extended-dshot-telemetry) standardises the format used for RPM telemetry into an extensible telemetry protocol which can be used for ESC voltage, temperature and other sensors where a dedicated ESC UART connection is not available. The RPM telemetry is typically sent most frequently, with other fields sent at less frequent intervals.
+
 For RPM Filtering to work, the ESC must support the Bidirectional DShot protocol and Bidirectional DShot must be enabled in the CLI.
 
 These two features are supported by BetaFlight 4.1 and higher on all flight controllers, and most modern BLHeli_32 and BLHeli-S ESCs. Betaflight 4.0 is no longer supported.
