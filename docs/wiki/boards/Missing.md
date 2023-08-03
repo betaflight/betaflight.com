@@ -1,6 +1,6 @@
 # Missing Board Description
 
-The Betaflight WIKI still haven't got a description for this board or version of board.
+Betaflight wiki currently has no description for this board.
 
 You can try to find a previous board / board version from same Manufacturer at [https://betaflight.com/docs/wiki/boards](https://betaflight.com/docs/category/boards)
 
