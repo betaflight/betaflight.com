@@ -1,4 +1,4 @@
-# Missing Board decription
+# Missing Board Description
 
 The Betaflight WIKI still haven't got a description for this board or version of board.
 
