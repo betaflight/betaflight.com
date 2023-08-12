@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useColorMode } from '@docusaurus/theme-common';
 import { CameraIcon, CodeBracketIcon, CpuChipIcon, DocumentTextIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid';
 import JetIcon from '@site/src/icons/jet.icon.svg';
@@ -17,10 +17,24 @@ type LogoProps = {
 }
 
 function Logo({ sponsor }: LogoProps) {
-  const { colorMode } = useColorMode();
+  const [theme, setTheme] = useState('light');
+  const themeData = useColorMode();
+  const isDarkTheme = theme === 'dark';
 
-  const logoSrc = `/img/betaflight/logo_${colorMode === 'light' ? 'light' : 'dark'}.svg`;
-  const sponsorLogoSrc = `/img/betaflight/sponsors/bf_partner_${colorMode === 'light' ? 'light' : 'dark'}.svg`;
+  const logoSrc = `/img/betaflight/logo_${isDarkTheme ? 'dark' : 'light'}.svg`;
+  const sponsorLogoSrc = `/img/betaflight/sponsors/bf_partner_${isDarkTheme ? 'dark' : 'light'}.svg`;
+
+  useLayoutEffect(() => {
+    const initialTheme = document.documentElement.getAttribute('data-theme');
+    setTheme(initialTheme);
+  }, [])
+
+  useEffect(() => {
+    const themeColorMode = themeData.colorMode;
+    if (themeColorMode !== theme) {
+      setTheme(themeData.colorMode);
+    }
+  }, [themeData.colorMode])
 
   return <img src={sponsor ? sponsorLogoSrc : logoSrc} alt="Betaflight" className={sponsor ? 'max-h-[200px] w-auto' : 'p-6 h-fit w-fit xl:ml-12'} />;
 }
