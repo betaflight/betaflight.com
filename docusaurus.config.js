@@ -113,7 +113,8 @@ const config = {
         title: 'Betaflight',
         logo: {
           alt: 'Betaflight Logo',
-          src: 'img/betaflight/icon_dark.svg',
+          src: 'img/betaflight/icon_light.svg',
+          srcDark: 'img/betaflight/icon_dark.svg',
         },
         items: [
           //   {
