@@ -349,7 +349,7 @@ Looptime and Performance Recommendation Table:
 | F411 SPI Rx \*\*\*            | MPU6000, MPU6050, ICM20601            | 8 kHz         | Enabled                    | 2 kHz         | DShot 300      |
 |                               | MPU6000, MPU6050, ICM20601            | 8 kHz         | Disabled (not recommended) | 4 kHz         | DShot 300      |
 |                               | BMI-270                               | 3.2 kHz       | Enabled                    | 1.6 kHz       | DShot 300      |
-|                               | BMI-270                               | 8 kHz         | Disabled (not recommended) | 3.2 kHz       | DShot 300      |
+|                               | BMI-270                               | 3.2 kHz       | Disabled (not recommended) | 3.2 kHz       | DShot 300      |
 
 \*\* For F411 UART Rx applications, using both available UARTs AND enabling SoftSerial, Accelerometer, large numbers of OSD elements, and using a larger number of filters, stability may require lowering looprate to 2kHz
 
@@ -387,7 +387,7 @@ Define at least one gyro and one accelerometer.
 Define correct flash driver(s) only if physical present on the board.
 
     #define USE_FLASH_M25P16           // 16MB Micron M25P16 and others (https://github.com/betaflight/betaflight/blob/master/src/main/drivers/flash_m25p16.c#L68)
-    #define USE_FLASH_W25N01G          // 1Gb NAND flash support
+    #define USE_FLASH_W25N01G          // 1Gb NAND flash support - PLEASE AVOID USING this chip (slow, OSD issues)
     #define USE_FLASH_W25M             // 16, 32, 64 or 128MB Winbond stacked die support
     #define USE_FLASH_W25M512          // 512Kb (256Kb x 2 stacked) NOR flash support
     #define USE_FLASH_W25M02G          // 2Gb (1Gb x 2 stacked) NAND flash support
@@ -425,6 +425,7 @@ Define a magnetometer only if physical present of the board.
     #define USE_MAG_MPU925X_AK8963
     #define USE_MAG_SPI_AK8963
     #define USE_MAG_AK8975
+    #define USE_MAG_IST8310
 
 ### 4.2.5 Defines for SX1280
 
