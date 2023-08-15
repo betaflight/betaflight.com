@@ -46,16 +46,16 @@ When using a UBLOX GPS the SBAS mode can be configured using `gps_sbas_mode`.
 
 The default is AUTO.
 
-| Value            | Region        |
-| -----            | ------------- |
-| AUTO             | Global        |
-| EGNOS            | Europe        |
-| WAAS             | North America |
-| MSAS             | Asia          |
-| GAGAN            | India         |
-| SouthPAN (SPAN)* | Australia     |
+| Value             | Region        |
+| ----------------- | ------------- |
+| AUTO              | Global        |
+| EGNOS             | Europe        |
+| WAAS              | North America |
+| MSAS              | Asia          |
+| GAGAN             | India         |
+| SouthPAN (SPAN)\* | Australia     |
 
-*NOTE: Currently being rolled out, usable in beta mode (safety-of-life certification planned in 2028). SBAS is region specific, make sure to check if your area is covered by an SBAS, and your receiver is capable of processing the area-sepcific signal (not all SBAS receivers can work with all SBAS satellites).
+\*NOTE: Currently being rolled out, usable in beta mode (safety-of-life certification planned in 2028). SBAS is region specific, make sure to check if your area is covered by an SBAS, and your receiver is capable of processing the area-sepcific signal (not all SBAS receivers can work with all SBAS satellites).
 
 If you use a regional specific setting you may achieve a faster GPS lock than using AUTO.
 
@@ -67,7 +67,7 @@ GPS units can either be configured using BF or manually.
 
 ### u-blox GPS automatic (BF) configuration
 
-If `gps_auto_config=ON`, BF will go through several steps to automatically set up your GPS, taking into account whether it is connected to the configurator (enabling satellite view messages), and whether the module supports newer message types. If not, it will fall back to older message models automatically. Have a look in `gps.c`, in the `gpsInitUblox`method, in section `GPS_STATE_CONFIGURE`. 
+If `gps_auto_config=ON`, BF will go through several steps to automatically set up your GPS, taking into account whether it is connected to the configurator (enabling satellite view messages), and whether the module supports newer message types. If not, it will fall back to older message models automatically. Have a look in `gps.c`, in the `gpsInitUblox`method, in section `GPS_STATE_CONFIGURE`.
 
 ### u-blox GPS manual configuration
 
@@ -116,17 +116,18 @@ Click on `PRT` in the Configuration view again and inspect the packet console to
 
 Next, to ensure the FC doesn't waste time processing unneeded messages. Click on `MSG` and enable the following on UART1 alone with a rate of 1 (our rate will be set later to 10Hz, 10 messages / sec; rate 1 means for every tick, so every 100ms).
 
-When changing message target and rates remember to click `Send` after changing each message.:
+When changing message target and rates remember to click `Send` after changing each message:
+
 | Message type | Rate | Description                                                                                                                                          |
-|--------------|------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| NAV-PVT      | 1    | Navigation position velocity time solution, combines position, velocity and time solution, including accuracy figures.                               |
-| NAV-DOP      | 1    | Dilution of precision, a dimensionless number that accounts for the contribution of relative satellite geometry to errors in position determination. |
-| NAV-SAT      | 10   | Displays information about satellites that are either known to be visible or currently tracked by the receiver.                                      |
+| ------------ | ---: | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NAV-PVT      |    1 | Navigation position velocity time solution, combines position, velocity and time solution, including accuracy figures.                               |
+| NAV-DOP      |    1 | Dilution of precision, a dimensionless number that accounts for the contribution of relative satellite geometry to errors in position determination. |
+| NAV-SAT      |   10 | Displays information about satellites that are either known to be visible or currently tracked by the receiver.                                      |
 
 ##### Fallback-only option if you GPS module does not support the above message types:
+
 ~~NAV-POSLLH NAV-DOP NAV-SOL NAV-VELNED~~
 ~~With the rate of 10, enable NAV-SVINFO to see what satellites are in view~~
-
 
 Double check with the Packet View that you are only receiving the messages we wanted (if more, disable those you don't need; if less, make sure you enabled the ones above).
 
@@ -158,7 +159,7 @@ From the [u-blox protocol specification](https://www.u-blox.com/en/product-resou
 - Portable - Applications with low acceleration, e.g. portable devices. Suitable for most situations. MAX Altitude [m]: 12000, MAX Velocity [m/s]: 310, MAX Vertical Velocity [m/s]: 50, Sanity check type: Altitude and Velocity, Max Position Deviation: Medium.
 - Airborne < 1G - Used for applications with a higher dynamic range and vertical acceleration than a passenger car. No 2D position fixes supported. MAX Altitude [m]: 50000, MAX Velocity [m/s]: 100, MAX Vertical Velocity [m/s]: 100, Sanity check type: Altitude, Max Position Deviation: Large
 
-####  Satellite-Based Augmentation System (SBAS) settings
+#### Satellite-Based Augmentation System (SBAS) settings
 
 Click `SBAS (SBAS Settings)` in the Configuration View.
 
