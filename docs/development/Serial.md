@@ -6,7 +6,7 @@ Betaflight has the concept of a function (MSP, GPS, Serial RX, etc) and a port (
 Not all functions can be used on all ports due to hardware pin mapping, conflicting features, hardware, and software
 constraints.
 
-## Serial port types
+## Serial Port Types
 
 - USB Virtual Com Port (VCP) - USB pins on a USB port connected directly to the processor without requiring
   a dedicated USB to UART adapter. VCP does not 'use' a physical UART port.
@@ -76,7 +76,7 @@ Note: for Identifier see serialPortIdentifier_e in the source; for Function bitm
 ### 1. Serial Port Identifier
 
 | Identifier              | Value |
-| ----------------------- | ----- |
+| ----------------------- | ----: |
 | SERIAL_PORT_NONE        | -1    |
 | SERIAL_PORT_USART1      | 0     |
 | SERIAL_PORT_USART2      | 1     |
@@ -101,36 +101,38 @@ Other devices can be added starting from id 50.
 
 ### 2. Serial Port Function
 
-| Function                     | Value  | Bit                       |
-| ---------------------------- | ------ | ------------------------- |
-| FUNCTION_NONE                | 0      | 0                         |
-| FUNCTION_MSP                 | 1      | 1 << 0                    |
-| FUNCTION_GPS                 | 2      | 1 << 1                    |
-| FUNCTION_TELEMETRY_FRSKY_HUB | 4      | 1 << 2                    |
-| FUNCTION_TELEMETRY_HOTT      | 8      | 1 << 3                    |
-| FUNCTION_TELEMETRY_LTM       | 16     | 1 << 4                    |
-| FUNCTION_TELEMETRY_SMARTPORT | 32     | 1 << 5                    |
-| FUNCTION_RX_SERIAL           | 64     | 1 << 6                    |
-| FUNCTION_BLACKBOX            | 128    | 1 << 7                    |
-| NOT USED                     | 256    | 1 << 8                    |
-| FUNCTION_TELEMETRY_MAVLINK   | 512    | 1 << 9                    |
-| FUNCTION_ESC_SENSOR          | 1024   | 1 << 10                   |
-| FUNCTION_VTX_SMARTAUDIO      | 2048   | 1 << 11                   |
-| FUNCTION_TELEMETRY_IBUS      | 4096   | 1 << 12                   |
-| FUNCTION_VTX_TRAMP           | 8192   | 1 << 13                   |
-| FUNCTION_RCDEVICE            | 16384  | 1 << 14                   |
-| FUNCTION_LIDAR_TF            | 32768  | 1 << 15                   |
-| FUNCTION_FRSKY_OSD           | 65536  | 1 << 16                   |
-| FUNCTION_VTX_MSP             | 131072 | 1 << 17                   |
-| FUNCTION_MSP_DISPLAYPORT     | 262145 | (1 << 18) \| FUNCTION_MSP |
+| Function                     | Value  | Bit     |
+| ---------------------------- | -----: | ------: |
+| FUNCTION_NONE                | 0      | 0       |
+| FUNCTION_MSP                 | 1      | 1 << 0  |
+| FUNCTION_GPS                 | 2      | 1 << 1  |
+| FUNCTION_TELEMETRY_FRSKY_HUB | 4      | 1 << 2  |
+| FUNCTION_TELEMETRY_HOTT      | 8      | 1 << 3  |
+| FUNCTION_TELEMETRY_LTM       | 16     | 1 << 4  |
+| FUNCTION_TELEMETRY_SMARTPORT | 32     | 1 << 5  |
+| FUNCTION_RX_SERIAL           | 64     | 1 << 6  |
+| FUNCTION_BLACKBOX            | 128    | 1 << 7  |
+| NOT USED                     | 256    | 1 << 8  |
+| FUNCTION_TELEMETRY_MAVLINK   | 512    | 1 << 9  |
+| FUNCTION_ESC_SENSOR          | 1024   | 1 << 10 |
+| FUNCTION_VTX_SMARTAUDIO      | 2048   | 1 << 11 |
+| FUNCTION_TELEMETRY_IBUS      | 4096   | 1 << 12 |
+| FUNCTION_VTX_TRAMP           | 8192   | 1 << 13 |
+| FUNCTION_RCDEVICE            | 16384  | 1 << 14 |
+| FUNCTION_LIDAR_TF            | 32768  | 1 << 15 |
+| FUNCTION_FRSKY_OSD           | 65536  | 1 << 16 |
+| FUNCTION_VTX_MSP             | 131072 | 1 << 17 |
 
-Note: `FUNCTION_FRSKY_OSD` = `(1<<16)` requires 17 bits.
-Note2: We can use up to 32 bits (1<<32) here.
+Notes:
+
+`FUNCTION_FRSKY_OSD` = `(1<<16)` requires 17 bits . We can use up to 32 bits (1<<32) here.
+
+To configure `MSP_DISPLAYPORT` use the combination `FUNCTION_VTX_MSP | FUNCTION_MSP`.
 
 ### 3. MSP Baudrates
 
 | Baudrate |
-| -------- |
+| -------: |
 | 9600     |
 | 19200    |
 | 38400    |
@@ -144,7 +146,7 @@ Note2: We can use up to 32 bits (1<<32) here.
 ### 4 GPS Baudrates
 
 | Baudrate |
-| -------- |
+| -------: |
 | 9600     |
 | 19200    |
 | 38400    |
@@ -156,7 +158,7 @@ Note: Also has a boolean AUTOBAUD. It is recommended to use a fixed baudrate. Co
 ### 5. Telemetry Baudrates
 
 | Baudrate |
-| -------- |
+| -------: |
 | AUTO     |
 | 9600     |
 | 19200    |
@@ -167,7 +169,7 @@ Note: Also has a boolean AUTOBAUD. It is recommended to use a fixed baudrate. Co
 ### 6. Blackbox Baudrates
 
 | Baudrate |
-| -------- |
+| -------: |
 | 19200    |
 | 38400    |
 | 57600    |
@@ -188,7 +190,7 @@ Note: Also has a boolean AUTOBAUD. It is recommended to use a fixed baudrate. Co
 The Serial Port baudrates are defined as follows:
 
 | ID  | Baudrate |
-| --- | -------- |
+| --- | -------: |
 | 0   | Auto     |
 | 1   | 9600     |
 | 2   | 19200    |
