@@ -265,6 +265,32 @@ Practically, this means that all pins should be on the same port, or at most two
 
   As an additional reference design, see the Fenix F405: https://oshwlab.com/jyesmith/fenix-f405
 
+### 3.2.2 Select appropriate default UARTs to avoid hijacking USB DFU 
+
+When selecting UARTs, for the default RX connection or to route to JST sockets, care should be taken to avoid those MCU pins which may interfere with USB DFU.
+
+The DFU protocol will attach to any MCU UART which is sending traffic, not only the USB DFU connection. This is a design feature of STM32 F4 MCUs and cannot be disabled.
+
+Meaning that any receiver or GPS unit attached to UART1 or UART3 (by default on F405 boards) can "hijack" DFU and make the MCU think that the serial UART should be used for DFU traffic instead of USB.
+
+Avoiding this means selecting appropriate UARTs for default connectors so the pilot will be unlikely to connect receivers or GPS units to these ports. This is mainly a problem for peripherals which are powered from the 4v5 pads and so are powered on when USB is attached.
+
+More details on STM32 Bootloaders can be found in Application Node 2606
+https://www.st.com/resource/en/application_note/an2606-stm32-microcontroller-system-memory-boot-mode-stmicroelectronics.pdf
+
+AT32 Bootloaders are described in section 2.5 at
+https://www.arterychip.com/download/DS/DS_AT32F435_437_V2.02-EN.pdf
+
+| MCU        | Pins                                                     |
+| :--------- | :------------------------------------------------------- |
+| STM32F411  | (PD05, PD06)                                             |
+| STM32F405  | (PA09, PA10), (PB10, PB11)                               |
+| STM32G473  | (PA09, PA10), (PA02, PA03), (PC10, PC11)                 |
+| STM32H725  | (PA09, PA10), (PA02, PA03), (PB10, PB11), (PD08, PD09)   |
+| STM32H735  | (PA09, PA10), (PA02, PA03), (PB10, PB11), (PD08, PD09)   |
+| STM32H743  | (PA09, PA10), (PB14, PB15), (PA02, PA03), (PB10, PB11)   |
+| AT32F435   | (PA09, PA10), (PA02, PA03), (PB10, PB11)                 |
+
 ## 3.3 Markings, Version Numbers, and Documentation
 
 It is highly recommended that the flight controller Manufacturer Name, Board Name, and Board Design Revision be marked clearly on the flight controller itself. Where possible, indicating the firmware target name, or selecting a firmware target name to minimize confusion reduces the likelihood of an end user attempting to configure the flight controller with an incorrect target.
