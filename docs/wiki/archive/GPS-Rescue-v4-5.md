@@ -1,7 +1,7 @@
 # GPS Rescue 4.5
 
 Betaflight 4.5 makes the following significant improvements to GPS rescue:
-- greatly improved support for UBlox GPS modules, particularly M9 and M10, improving rescue reliability and smoothness.  
+- Greatly improved support for UBlox GPS modules, particularly M9 and M10, improving rescue reliability and smoothness.  
 - Flyaways due to heading errors are now much less likely, due to major improvements in IMU heading determination code.
 - Angle mode with earth referencing gives more effective roll during a rescue.  
 - Rescues can be initiated closer to home than previously without disarming.  
@@ -11,7 +11,7 @@ Betaflight 4.5 makes the following significant improvements to GPS rescue:
 - New CLI settings to fine-tune the disarm threshold, adjust the smoothing of the velocity D factor, and adjust how aggressively the IMU will handle a heading IMU error
 - Some CLI settings have been re-named to be more consistent.
 - A new `GPS_CONNECTION` debug to help resolve technical issues relating to the connection with the module and the CPU usage of the GPS code
-- the Status CLI menu now reports the status of the connection to the GPS unit, including baud rate and the detected type of module
+- The Status CLI menu now reports the status of the connection to the GPS unit, including baud rate and the detected type of module
 - Numerous bugfixes and tweaks for both safety and performance
 
 With these changes, GPS Rescue is now far more reliable than ever before.
@@ -51,7 +51,7 @@ Typical applications include:
 
 :::danger
 
-- Only use the 10.10 Configurator GUI. For earlier Configurator versions, only make changes to GPS Rescue parameters in the CLI!
+- Only use the 10.10.x Configurator GUI. For earlier Configurator versions, only make changes to GPS Rescue parameters in the CLI!
 
 - Test GPS Rescue *very carefully** before relying on it. Initial testing should be done at close range, with defaults, over soft grass.
 
