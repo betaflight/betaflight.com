@@ -38,6 +38,7 @@ NMEA support is now very limited:
 - 4800baud is no longer supported.
 - An NMEA GPS will only connect if the GPS Ports tab is set to a matching baud rate.
 - We do not attempt to re-configure the GPS data being sent from the module. Excessive amounts of data may be sent, choking the serial buffer, by some NMEA modules.
+- Do not use the module for GPS Rescue unless it sends data at 5Hz or more.
 
 On the plus side:
 
@@ -104,6 +105,7 @@ Typical applications include:
 - **SBAS** mode may cause problems getting reliable GPS data, and may not function in some regions; if so, try setting SBAS mode off.
 - **Unreliable GPS Modules**. GPS modules vary greatly in performance and reliability. Don't use unreliable modules, meaning those where you do not quickly get at least 10 solid sats, and modules that lose sats readily when the quad is put at an angle.
 - **Using `GPS_RESCUE_ALLOW_ARMING_WITHOUT_FIX` is NOT recommended!** While you can take off without the long wait for the GPS fix, if you do need a rescue, due to Rx loss, the quad will immediately disarm and crash. This option should only be used when the pilot only needs to record basic GPS info to the log, or their radio, to help them find it after they crash.
+- **Do not use GPS rescue with a 1hz data update rate**. The minimum for smooth operation is 5Hz, although 2Hz can be used and should be successful, despite a jerky return. 1Hz and 2Hz are OK only suitable for showing latitude and longitude in the log or on the OSD.
 - **DO NOT share the Failsafe switch aux channel activation range with any other flight mode!**
 
 ## Hardware requirements
@@ -114,13 +116,12 @@ Typical applications include:
   -- set throttle full up
   -- use taps of the pitch/roll stick to trim the acc. eg tap left 5-10 times to fix a tendency to drift right.
 
-- A working GPS module that supports UBlox commands. `set GPS_PROVIDER = GPS_UBLOX` enables `UBLOX` mode. This is recommended and is now the default. We support M6 through M10 UBlox hardware.
+- A working GPS module that supports UBlox commands. UBlox is recommended and is now the default. We support M6 through M10 UBlox modules.
+- If the GPS module doesn't support UBlox, NMEA can be used, but is not recommended unless you know how to check the module output, and re-configure its default power-on state. See the previous note about NMEA.
 
 :::note
 Modules with a backup battery will regain satellites more quickly during subsequent power cycles.
 :::
-
-- if the GPS doesn't support `UBLOX`, NMEA can be used to provide basic latitude, longitude, height and speed information. The GPS port must be manually configured to match the serial rate of the module. NMEA should not be relied on for a rescue unless it has been configured (using uCenter or pyGPSclient) to send position data at 5hz, to connect at 38400 baud or higher, and to not send any junk that we don't need. Our support for NMEA is currently very limited.
 
 - When checking a new GPS unit, connect up in Configurator and check how quickly satellites are gained, while stable on a desk outdoors. The Status CLI command should report baud rate set and returned, and (for UBlox only) the module type.
 
