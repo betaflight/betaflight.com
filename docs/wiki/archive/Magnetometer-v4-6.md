@@ -207,4 +207,4 @@ Incoming mag X, Y and Z values are always logged to Blackbox, and should be exam
 
 ---
 
-Drafted by ctzsnooze 2023-09. Huge shout out to ledvinap and pichim for their help and guidance
+Drafted by ctzsnooze 2023-09. Huge shout out to ledvinap and pichim for their help and guidance.
