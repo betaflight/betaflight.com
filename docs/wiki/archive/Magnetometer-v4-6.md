@@ -1,13 +1,16 @@
-# Magnetometer / Compass notes for Betaflight 4.6
+import MagOrientation from '/img/MagOrientationDiagram.png'
+
+# Magnetometer / Compass
 
 :::warning
-Do NOT enable a magnetometer unless you have confirmed:
+
+Do **NOT** enable a magnetometer unless you have confirmed:
 
 - that it is oriented correctly
 - that the calibration is accurate
 - that the returned values are clean and noise-free
 - that the heading returned by the mag is correct
-  :::
+:::
 
 ## Introduction
 
@@ -17,56 +20,63 @@ Mag information is essential for position hold, which we intend to support.
 
 GPS Rescue does not require Mag data, but heading control may be improved if reliable, accurate Mag information is available, especially during descents on windy days. Note: DO NOT enable Mag if you rely on GPS rescue, unless you are ABSOLUTELY CERTAIN that the Mag data is accurate and reliable, and have confirmed that enabling Mag makes a significant improvement in rescue behaviour!
 
-## What is a Magenetometer?
+## What is a Magenetometer? {#magnetometer-explanation}
 
-A magnetometer is a three-axis device that detects the strength of the earth's magnetic field on each of three orthogonal sensor axes.
+A magnetometer is a three-axis device that detects the local strength and direction of the [earth's magnetic field](https://en.wikipedia.org/wiki/Earth%27s_magnetic_field)[^1].
 
-Magnetometers output data on three axes: X, Y and Z. Typically, these axes are arranged as follows:
+Magnetometers output data on three axes: X, Y and Z. The orientation of the axes can be arbitrary, depending on the magnetometer model. But typically, the axes are arranged as follows:
 
-- Y is 90 degrees to the left of X
-- Z is up
+- Y is pointing 90° to the left of X
+- Z is pointing up
 
-The reported value for the field strength on any particular axis will be positive, and maximal, when it is closely aligned with the axis of the local magnetic field, and is pointing towards the North of that field. It will be maximally negative when aligned with the South of the local magnetic field.
+The reported value for the field strength on any particular axis will be positive, and maximal, when it is aligned parallel to the orientation of the local magnetic field (pointing towards North). It will be maximally negative when aligned antiparallel to the local magnetic field (pointing towards South). The other two axes will report values close to zero. This way you can determine that one axis is perfectly aligned with the local magnetic field.
 
+:::caution
 The orientation of the magnetometer on the quad is very important. In Betaflight, the data from the magnetometer must be provided as follows:
 
-- X forward
-- Y left
-- Z up
+- X points **forward**
+- Y points **left**
+- Z points **up**
+:::
 
-![Mag axes and orientation](../images/MagOrientationDiagram.png)
-Fig 1 - Mag axes and orientation
+<figure className="align-center">
+  <img src={MagOrientation} alt="Figure of magnetometer axes and orientation" className="no-effect " />
+  <figcaption><b>Fig. 1</b> - Magnetometer axes and orientation in relation to the drone as expected by Betaflight</figcaption>
+  <br/>
+</figure>
 
-If the magnetometer cannot be physically positioned so that it's axes are aligned as per the diagram above, the `Mag alignment` setting in Configurator (`align_mag` in CLI) may be used to correct for unusual Mag orientations. For example, some GPS units mount the mag unit upside down.
+If the magnetometer cannot be physically positioned so that its axes are aligned as per the diagram above, the `Mag alignment` setting in Configurator (`align_mag` in the [CLI](../configurator/cli-tab)) may be used to correct for other mag orientations. For example, some GPS units mount the mag unit upside down and some mag models use an unusual axis orientation.
 
 Correct orientation for a given axis can be confirmed by checking the Magnetometer data in the Sensors tab.
 
-## About the earth's magnetic field vector
+## About the Earth's Magnetic Vector Field
 
-The magnetic field of the earth doesn't simply point North and South, and is not parallel to the ground.
+[Earth's magnetic field](https://en.wikipedia.org/wiki/Earth%27s_magnetic_field)[^1] is not a uniform vector field. It is not simply oriented to the geographic North or South, and is not parallel to the ground in most places around the world. In other words: The field direction and field strength both vary from place to place.
 
-It is a vector that usually points a few degrees away from true North, and points either down into the ground in the Northern Hemisphere, or up out of the ground in the Southern Hemisphere. There are considerable angular deviations, depending upon where you are on the surface of the Earth.
+Earth's magnetic field usually gets represented in a **NED** (north-east-down) frame of reference. This means that the X axis points North, the Y axis points East, and the Z axis points Down. This is not at all relevant for Betaflight's mag orientation on the quad, but it's useful to know for interpreting the magnetic field at your location and for navigating around the earth's surface.
 
-The sideways deviation of the Earth's magnetic field from true north is called the `magnetic declination`. It is measured in degrees, with positive values meaning that the magnetic North is to the East of true North.
+If you measure the magnetic field at a particular point on earth, you will measure a vector, which usually points a few degrees away from the geographic North, and points either down into the ground in the Northern Hemisphere, or up out of the ground in the Southern Hemisphere. There are considerable angular deviations, depending upon where you are on the surface of the Earth.
 
-The angle at which the field points into, or out of, the Earth's surface, is called the `magnetic inclination`, or `magnetic dip`. See [physicsmax.com](https://physicsmax.com/inclination-dip-7371) for a nice explanation and graphic. Incination is measured in degrees; positive values point 'into' the earth. In the Northern Hemisphere the Earth's magnetic field points down into the ground (positive inclination values), and in the Southern Hemisphere it points up into the sky (negative inclination values).
+The sideways deviation of the Earth's magnetic field from the geographic north is called the **magnetic declination**. It is measured in degrees, with positive values meaning that the magnetic North is to the East of the geographic North.
 
-Local declination and inclination values are available from online sources such as [NOAA](https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml), or via clickable map at sites like [magnetic-declination.com](https://www.magnetic-declination.com).
+The angle at which the field points into (or out of) the Earth's surface, is called the **magnetic inclination**, or **magnetic dip**. See [physicsmax.com](https://physicsmax.com/inclination-dip-7371)[^2] for a nice explanation and graphic. Inclination is measured in degrees; positive values point down 'into' the earth. In the Northern Hemisphere the Earth's magnetic field points down into the ground (positive inclination values), and in the Southern Hemisphere it points up into the sky (negative inclination values).
 
-As an example, in Sydney, Australia, 34 degrees South and 151 degrees East, the Earth's magnetic field is 13 degrees east of true North, and points out of the ground, steeply upwards, at 65 degrees. With a properly calibrated and correctly oriented Mag, a maximallly positive value on the Mag X axis should be seen in the Sensors tab, and close to zero on the Y and Z axes, when the nose of my quad is pointed 13 degrees East of North, and 65 degrees up.
+Local declination and inclination values are available from online sources such as [NOAA](https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml)[^3], or via clickable map at sites like [magnetic-declination.com](https://www.magnetic-declination.com)[^4].
+
+As an example, in Sydney, Australia, 34 degrees South and 151 degrees East, the Earth's magnetic field is 13 degrees east of the geographic North, and points out of the ground, steeply upwards, at 65 degrees. With a properly calibrated and correctly oriented Mag, a maximallly positive value on the Mag X axis should be seen in the Sensors tab, and close to zero on the Y and Z axes, when the nose of my quad is pointed 13 degrees East of North, and 65 degrees up.
 
 The absolute strength of the field is measured in Gauss, or milliTeslas, where 10 Gauss = 1 milliTesla. In my location, the field strength is approximately 0.57 Gauss. Betaflight's sensors tab shows different numbers, perhaps due to internal scaling factors. Absolute field strength is not important for heading calculations.
 
-## Hardware and connection
+## Hardware and Connection
 
 Flight / FC firmware must be specially built to include `Magnetometers` for the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware on the FC.
 
 Betaflight supports the following magnetometers:
 
-- [AK8963](https://www.alldatasheet.com/datasheet-pdf/pdf/535561/AKM/AK8963.html) and [AK8975](https://www.alldatasheet.com/datasheet-pdf/pdf/535562/AKM/AK8975.html), (both discontinued; some versions have Z up, others down)
-- [HMC5883L](https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf) and [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf). These are provided on the common, and cheap, GY-217 module, and many GPS units.
-- [IST8310](https://intofpv.com/attachment.php?aid=8104)
-- [STM's LIS3MDL](https://www.st.com/resource/en/datasheet/lis3mdl.pdf)
+- [AK8963](https://www.alldatasheet.com/datasheet-pdf/pdf/535561/AKM/AK8963.html)[^5] and [AK8975](https://www.alldatasheet.com/datasheet-pdf/pdf/535562/AKM/AK8975.html)[^6], (both discontinued; some versions have Z up, others down)
+- [HMC5883L](https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf)[^7] and [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)[^8]. These are provided on the common, and cheap, GY-217 module, and many GPS units.
+- [IST8310](https://intofpv.com/attachment.php?aid=8104)[^9]
+- [STM's LIS3MDL](https://www.st.com/resource/en/datasheet/lis3mdl.pdf)[^10]
 
 `set mag_hardware = AUTO` in CLI is the default, and will automatically identify a connected and supported Mag.
 
@@ -101,7 +111,7 @@ If you have an external Mag module that can be mounted in any angle you like, eg
 - as far as possible away from motors and other metallic onjects
 - with the X axis pointing forward, directly to the nose of the quad, with Y left and Z up
 
-If the Mag is provided with a GPS module, the above requirements also apply. Additionally, make sure the GPS is flat to the quad, otherwise you'll be messing with custom alignment settings. Also note that the Mag sensor may be inverted, or in an unknown orientation; it will be absolutely essential to confirm the alignment properly before using the Mag!
+If the Mag is provided with a GPS module, the above requirements also apply. Additionally, make sure the GPS is flat to the quad, otherwise you'll be messing with custom alignment settings. Also note that the Mag sensor may be inverted, or in an unknown orientation, as explained [above](#magnetometer-explanation). It will be absolutely essential to confirm the alignment properly before using the Mag!
 
 :::tip
 When the Mag orientation (alignment) is correct, the 'quad' icon in the Home screen of Configurator should move fairly smoothly and appropriately as the quad is rotated, pitched and rolled. Note that when the quad's attitude is changed very quickly, the heading will initially react quickly on the basis of Gyro and Acc data, and then over the next half second it will be adjusted by the Mag. If the orientation of the Mag data axes is wrong, or the calibration is way off, then these movements will be jerky or completely wrong.
@@ -116,7 +126,7 @@ If you're unsure, or if you know it is rotated, or upside down, the `Mag alignme
 - if the mag is upright but rotated 90 degrees right, choose `CW90`, etc
 - if the mag is inverted, choose one of the 'flip' options.
 
-Note that 'flip' functionally rotates the Mag 180 degrees around the Y axis. You pretty much have to experiment with each possible orientation and hope, after checking, that you can find one that works. For the HMC5883L/QMC5883L, [this post](https://intofpv.com/t-betaflight-internals-coordinate-system?pid=55575#pid55575) shows a 'cheat sheet' that may help, but only if the chip itself is visible.
+Note that 'flip' functionally rotates the Mag 180 degrees around the Y axis. You pretty much have to experiment with each possible orientation and hope, after checking, that you can find one that works. For the HMC5883L/QMC5883L, [this post](https://intofpv.com/t-betaflight-internals-coordinate-system?pid=55575#pid55575)[^11] shows a 'cheat sheet' that may help, but only if the chip itself is visible.
 
 ### Checking Magnetometer Orientation using Configurator's Sensors Tab
 
@@ -133,7 +143,7 @@ We can use this fact to check the orientation of the Mag after it is attached to
 
 We need to know the 'north' direction of the Earth's magnetic field, approximately, at our location, so that we can point the nose of the quad kind of directly into that magnetic field vector when we go looking at the data returned by our Mag.
 
-First, get your phone out, open it's Compass app, and mark a line on the bench or ground or whatever that points due North/South. Then draw a second line that takes into account the magnetic Declination for your location. In my case, some 13 degrees east of true North. That declination-adjusted line is the direction that Magnetic North will be in.
+First, get your phone out, open it's Compass app, and mark a line on the bench or ground or whatever that points due North/South. Then draw a second line that takes into account the magnetic Declination for your location. In my case, some 13 degrees east of the geographic North. That declination-adjusted line is the direction that Magnetic North will be in.
 
 Second, look up your local Inclination value. If you're in the Northern Hemisphere, you'll be pointing the nose of the quad downwards at that angle into the ground, along the North/South magnetic line, when testing the X axis of your sensor. If you're in the Southern Hemisphere, you'll be pointing at that angle up into the sky.
 
@@ -169,11 +179,11 @@ For the most accurate calibration results:
 
 Calibration values should not need to change much from flying area to area, within your local district. They may require updating or checking in areas of high magnetism or very variable local field strength.
 
-:::note:
-Calibration itself DOES NOT check that the orientation of the sensor is correct!
+:::note
+Calibration itself **DOES NOT** check that the orientation of the sensor is correct!
 :::
 
-### Calibration using the 'calibrate Magnetometer` button in Configurator.
+### Calibration Using the 'Calibrate Magnetometer` Button in Configurator.
 
 This method is the quickest and easiest way to calibrate the sensor. It's best to do several runs and to check that the values you get are consistent.
 
@@ -187,7 +197,7 @@ Check the `mag_calibration` CLI parameter after each run to see how consistent t
 
 If accuracy is important, you can choose to average the values in the most consistent runs. It's also possible to explicitly focus on rotating on pitch alone in the magnetic field axis, trying to get consistent X and Z values, and choosing the most consistent numbers there; then rotating on roll alone, again aiming to traverse the magnetic field axis frequently, until you get consistent Y and Z values.
 
-### Checking and fine-tuning the calibration in Sensors tab.
+### Checking and Fine-Tuning in Sensors Tab.
 
 Once you get consistent values from your calibration tests, the pilot can validate the accuracy of the cal factor by checking that the absolute minimum and maximum values are, for a given axis, equal. This must be done in the exact same location that the original calibration was performed at, ideally soon after, or at the same time.
 
@@ -195,7 +205,7 @@ This is done by carefully pointing, say, the nose of the quad carefully and dire
 
 Using the sensors tab in this manner to check max and min for each axis will also identify whether the existing calibration is suitable for a new location, or not. If max and min are very close to equal, you don't need to recalibrate.
 
-## What about my 'heading' information? And signal noise?
+## What About My Heading Information and Signal Noise?
 
 Heading information is provided to the quad by the GPS unit (course over ground), the IMU (gyro information while turning quickly), and the Mag unit. The IMU code uses 'sensor fusion' methods to integrate this data to a final 'attitude' or 'heading' value for the quad.
 
@@ -205,6 +215,18 @@ The reported Mag heading can be seen in Debug 4 of the GPS Heading Debug in the 
 
 Incoming mag X, Y and Z values are always logged to Blackbox, and should be examined to ensure they are not really noisy. The noise should be much less than the signal. If noise is obviously an issue, mount the mag further away from the motors, ensuring that the sensor is equidistant from pairs of motors, and check that there is adequate filtering on the power supply to the Mag module.
 
----
+_Drafted by **ctzsnooze** in 2023-09 for Betaflight 4.6. Huge shout out to **ledvinap** and **pichim** for their help and guidance._
 
-Drafted by ctzsnooze 2023-09. Huge shout out to ledvinap and pichim for their help and guidance.
+## External Links
+
+[^1]: [Earth's Magnetic Field - Wikipedia](https://en.wikipedia.org/wiki/Earth%27s_magnetic_field)
+[^2]: [Inclination or Dip - PhysicsMax](https://physicsmax.com/inclination-dip-7371)
+[^3]: [Magnetic Field Calculators - NOAA](https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml)
+[^4]: [Inclination and Declination map](https://www.magnetic-declination.com)
+[^5]: [AK8963 datasheet (disccontinued)](https://www.alldatasheet.com/datasheet-pdf/pdf/535561/AKM/AK8963.html)
+[^6]: [AK8975 datasheet (discontinued)](https://www.alldatasheet.com/datasheet-pdf/pdf/535562/AKM/AK8975.html)
+[^7]: [HMC5883L datasheet](https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf)
+[^8]: [QMC5883L datasheet](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)
+[^9]: [IST8310 datasheet](https://intofpv.com/attachment.php?aid=8104)
+[^10]: [LIS3MDL datasheet](https://www.st.com/resource/en/datasheet/lis3mdl.pdf)
+[^11]: [HMC5883L/QMC5883L cheat sheet](https://intofpv.com/t-betaflight-internals-coordinate-system?pid=55575#pid55575)
