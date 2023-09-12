@@ -102,3 +102,16 @@ The esc needs to be ready after 40us + one dshot frame length to receive the nex
 See https://en.wikipedia.org/wiki/Run-length_limited#GCR:_(0,2)_RLL for more details on the GCR encoding.
 
 See https://github.com/betaflight/betaflight/pull/8554
+
+### CPU optimisation and `dshot_telemetry_start_margin` setting
+
+Bidirectional DSHOT requires that the data sent from the ESC to the FC be decoded as per the above. After the DSHOT command is sent the FC switches to input mode and starts to sample the data being sent by the ESC. Once a given sized sample has been received the FC then has to do the following:
+
+1. Find the telemetry data in the received data, scanning for the start of the data
+1. Decode the telemetry data
+
+Step 1 is a rather CPU intensive task. To optimise this, as of [PR #12612](https://github.com/betaflight/betaflight/pull/12612) the position of the start of the telemetry data within the buffer is noted so that for subsequently received telemetry the search for the start of the data need not be done from the start of the buffer, but from just before the expected location, referred to as the start margin. By starting just before the expected location of the telemetry data small variations in the timing of the ESC's transmission of the ESC data can be accomodated.
+
+Unfortunately, if the timing of the received data is subject to a lot of jitter, as may be the case with older ESC firmware, this optimisation can result in the start of the incoming data being missed, resulting in an increase in the error rate reported on the configurator motors tab.
+
+[PR #129120(https://github.com/betaflight/betaflight/pull/12912) therefore added the `dshot_telemetry_start_margin` setting, with a range of 0 to 100, with a default value of 20, which allows the start margin to be increased. This allows telemetry data which is subject to excessive timing jitter to still be decoded, but at the expense of more CPU cycles.
