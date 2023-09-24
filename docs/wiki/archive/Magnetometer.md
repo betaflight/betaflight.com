@@ -12,7 +12,8 @@ Do **NOT** enable a magnetometer unless you have confirmed that:
 - the heading returned by the mag is correct
 - Acc is enabled, correctly oriented, and calibrated
 - GPS is included in the firmware and enabled, to see the heading data
-  :::
+
+:::
 
 ## Introduction
 
@@ -41,7 +42,8 @@ The orientation of the magnetometer on the quad is very important. In Betaflight
 - X must point **forward**
 - Y must point **left**
 - Z must point **up**
-  :::
+
+:::
 
 <figure className="align-center">
   <img src={MagOrientation} alt="Figure of magnetometer axes and orientation" className="no-effect " />
