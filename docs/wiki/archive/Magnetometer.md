@@ -24,8 +24,8 @@ Mag information is essential for position hold, which we intend to support, and 
 
 GPS Rescue will have improved eading control if reliable, accurate Mag information is available, especially during ascents and descents on windy days.
 
-:::note
-DO NOT enable Mag if you rely on GPS rescue, unless you are ABSOLUTELY CERTAIN that the Mag data is accurate and reliable, and have confirmed that enabling Mag makes a significant improvement in rescue behaviour!
+:::danger
+DO NOT enable Mag if you rely on GPS rescue, unless you are ABSOLUTELY CERTAIN that the Mag data is accurate and reliable!
 :::
 
 ## What is a Magenetometer? {#magnetometer-explanation}
