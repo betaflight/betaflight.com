@@ -8,6 +8,8 @@ const katex = require('rehype-katex')
 
 require('dotenv').config()
 
+const sortDescending = ['release']
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Betaflight',
@@ -83,6 +85,11 @@ const config = {
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',*/
           remarkPlugins: [math],
           rehypePlugins: [katex],
+          async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
+            const sidebarItems = await defaultSidebarItemsGenerator(args)
+            const mustReverse = sortDescending.includes(args.item.dirName)
+            return mustReverse ? sidebarItems.reverse() : sidebarItems
+          },
         },
         blog: false,
         theme: {
