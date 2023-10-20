@@ -1,8 +1,8 @@
 
-# BetaFlight 3.0.x Release Notes
+# BetaFlight 3.0 Release Notes
 
 This is really a major release. The full detailed change list can be found in the the commit history.
-[https://github.com/betaflight/betaflight/commits/master]
+[https://github.com/betaflight/betaflight/commits/master] 
 
 Here is a 3.0.0 Release overview video by joshuabardwell:
 [https://www.youtube.com/watch?v=Fz1IcxWpZfg]

@@ -1,5 +1,5 @@
 
-# BetaFlight 3.1.x Release Notes
+# BetaFlight 3.1 Release Notes
 
 ## Betaflight 3.1.7 Release Notes
 
