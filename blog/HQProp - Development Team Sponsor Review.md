@@ -6,6 +6,10 @@ We are therefore delighted to partner with them as an offical Betaflight Team Sp
 
 Some comments from developers:
 
+SugarK:
+
+_“Been a fan of HQ and their props for a long time. I love the way they are easy to bend back with the simple shapes which is a big plus in racing. I race ultralite quads and the Ethix range has the perfect range of sub 4g props with different amounts of pitch to suit all the different tracks i might fly. Having been in the hobby a long time the owner of HQ is a real gentleman and very supportive of the hobby, so he was the first person i reached out to when i started looking for sponsors for the Betaflight Dev team”.._
+
 Vitroid:
 
 _“I love the J37 and P3.5 for all of my 5” builds, and the 3x2x3 for my 3” practice rig. So far a set has outlived an arm or two! HQ did an amazing job”_
