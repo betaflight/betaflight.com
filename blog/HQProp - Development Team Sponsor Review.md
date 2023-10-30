@@ -16,7 +16,7 @@ _“I love the J37 and P3.5 for all of my 5” builds, and the 3x2x3 for my 3”
 
 Limon:
 
-_“R37 is my favorite prop ever. R38 are also good. They are very durable for racing and crashing, well-designed to be fast enough, but not too fast draining the battery. R37 is an awesome combination of authority, power, and style. HQProp is always super supportive for droneracing community, love that!”_
+_“R36 is my favourite prop ever. R38 are also good. They are very durable for racing and crashing, well-designed to be fast enough, but not too fast draining the battery. R36 is an awesome combination of authority, power, and style. HQProp is always super supportive for droneracing community, love that!”_
 
 Un!t:
 
