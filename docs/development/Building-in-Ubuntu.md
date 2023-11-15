@@ -6,7 +6,7 @@ This document is tested and based on the latest Ubuntu 22.04 LTS release and can
 ### Clone Betaflight Repository and Install Toolchain
 
     $ sudo apt update && sudo apt upgrade
-    $ sudo apt install build-essential libblocksruntime-dev libtool git curl clang
+    $ sudo apt install build-essential libblocksruntime-dev libtool git curl clang-12
     $ git clone https://github.com/betaflight/betaflight.git
     $ cd betaflight
     $ make arm_sdk_install
@@ -37,7 +37,7 @@ Make sure to remove `obj/` and `make clean`, before building again.
 
 See [Betaflight Configurator Development](https://github.com/betaflight/betaflight-configurator#development) for how to build the Betaflight Configurator.
 
-### Flashing a Target with Betaflight Configurator on Ubuntu 22.04
+### Flashing a Target with Betaflight Configurator
 
 In most Linux distributions the user won't have access to serial interfaces by default. Flashing a target requires configuration of usb for dfu mode. To add this access right type the following command in a terminal:
 
