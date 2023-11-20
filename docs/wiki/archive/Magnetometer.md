@@ -28,7 +28,7 @@ GPS Rescue will have improved eading control if reliable, accurate Mag informati
 DO NOT enable Mag if you rely on GPS rescue, unless you are ABSOLUTELY CERTAIN that the Mag data is accurate and reliable!
 :::
 
-## What is a Magenetometer? {#magnetometer-explanation}
+## What is a Magnetometer? {#magnetometer-explanation}
 
 A magnetometer is a three-axis device that detects the local strength and direction of the [earth's magnetic field](https://en.wikipedia.org/wiki/Earth%27s_magnetic_field)[^1].
 
@@ -93,13 +93,17 @@ In Betaflight 4.5, the CLI variable `mag_declination` was introduced, to correct
 
 Flight / FC firmware must be specially built to include `Magnetometers` for the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware on the FC. Additionally, GPS firmware should be included in the build, because we display the Mag heading on Configurator's GPS tab, and use GPS debugs to display the Mag heading information.
 
-Betaflight supports the following magnetometers:
+Betaflight provides drivers the following magnetometers, but not all have been validated to work with Betaflight 4.5's revised scheduling code:
 
-- [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)[^8]. The QMC5883L is provided on the common, and cheap, GY-217 module, and many GPS units. It provides a 200Hz data update rate, 8x sample averaging and 3000 LSB/Gauss sensitivity. Standard axis orientation.
+- [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)[^8]. The QMC5883L is provided on the common, and cheap, GY-217 module, and many GPS units. It provides a 200Hz data update rate, 8x sample averaging and 3000 LSB/Gauss sensitivity. Standard axis orientation. We recommend using this mag if it is an option for your build, because it's performance has been carefully validated during testing and we know it works well.
 - [IST8310](https://intofpv.com/attachment.php?aid=8104)[^9] Note that this gyro has a highly unusual axis orientation, with Y to the _right_ when X is forward and Z is up, and will _always_ require a custom axis orientation in the CLI. Data update rate is 160Hz with 16x sample averaging and 330 LSB/Gauss sensitivity.
 - [STM's LIS3MDL](https://www.st.com/resource/en/datasheet/lis3mdl.pdf)[^10] This mag is integral to a combined Gyro, Acc and Mag '9 axis' chip from STM. Standard axis orientation.
 - [HMC5883L](https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf)[^7] ODR is 75Hz with 1090 LSB/Gauss sensitivity; discontinued and replaced by the QMC6883L. Standard axis orientation.
-- [AK8963](https://www.alldatasheet.com/datasheet-pdf/pdf/535561/AKM/AK8963.html)[^5] and [AK8975](https://www.alldatasheet.com/datasheet-pdf/pdf/535562/AKM/AK8975.html)[^6], (both discontinued; some versions have Z up, others down, all return standard axis orientation when mounted with X forward).
+- Deprecated: [AK8963](https://www.alldatasheet.com/datasheet-pdf/pdf/535561/AKM/AK8963.html)[^5] and [AK8975](https://www.alldatasheet.com/datasheet-pdf/pdf/535562/AKM/AK8975.html)[^6], (both discontinued; some versions have Z up, others down, all return standard axis orientation when mounted with X forward).
+
+:::caution
+The AK8963 and AK8975 driver code is deprecated in Betaflight 4.5, and will be removed at some point. These Mags, or may not, work with Betaflight 4.5. No developers have these units, so we can't test them. Please take particular care when using 4.5 with these Mag units. Confirm that the Mag task does not cause issues with other i2c devices, and that the data from these units is usable. We strongly recommend using a current Mag like the QMC5883L.
+:::
 
 The user can use`set mag_hardware = AUTO` in CLI, which is the default, and Betaflight will automatically identify a connected and supported Mag.
 
@@ -292,9 +296,9 @@ Check the `mag_calibration` CLI numbers after each run to see how consistent the
 Take great care not to initiate a Mag Cal accidentally! If you fail to rotate the quad properly after a Cal starts, your old cal values will be lost, and the Mag data will be useless!
 :::
 
-It's also possible to do a 'manual' calibration 'one axis at a time'. For example, if we want to get an accurate cal value for the X axis, we can point the nose randomly in the general direction of Magnetic field North (which requires knowing both the declination and inclination angles) for some 12-13s, then rotate the quad 180 degrees, and randomly point the tail into the field for the same period of time. Alternatively, we can make full 360 degree turns with the nose pointing generally in the North-South field plane. This will _only_ return an accurate Cal value for the X axis (the values for the other axes will be incorect). You can get then the cal value for X from the CLI and write it down. After repeating the same process separately for Y and Z, you will have all three cal values. Then you can type in the cal value for each axis into the CLI.
+It's also possible to do a 'manual' calibration 'one axis at a time'. This is not a normal or recommended calibration process, but can be used to check the cal value for a particular axis. For example, if we want to get an accurate cal value for the X axis, we can point the nose randomly in the general direction of Magnetic field North (which requires knowing both the declination and inclination angles) for some 12-13s, then rotate the quad 180 degrees, and randomly point the tail of the quad into the field for the same period of time. If we are connected to the Sensors tab, we should see the X axis being close to maximal and the other two axes close to zero when the nose is pointing mostly into the field, and to show its most negative value when reversed. Alternatively, we can make full 360 degree turns with the nose/tail axis pointing generally in the North-South field plane. This will _only_ return an accurate Cal value for the X axis (the values for the other axes will be incorrect). You can get then the cal value for X from the CLI and write it down. After repeating the same process separately for the Y and Z axes, you will have all three cal values. Then you can type in the cal value for each axis into the CLI.
 
-Typically, the random arm swinging while rotating method works best.
+Typically, the random arm swinging while rotating method works best, because it gets a cal value for each axis within one calibration run.
 
 ### Validating and Fine-Tuning the Mag Cal in Sensors Tab.
 
@@ -306,7 +310,7 @@ Using the sensors tab in this manner to check max and min for each axis can also
 
 Checking in Sensors confirms that the orientation of the Mag is correct, by confirming that the maximum positive values are as follows:
 
-- on X, when the nose points durectly into the field (ie Nose points to Magnetic North at the local field inclination angle),
+- on X, when the nose points directly into the field (ie Nose points to Magnetic North at the local field inclination angle),
 - on Y, when the left of the quad points into the field, and
 - on Z, when the top of the quad points into the field
 
