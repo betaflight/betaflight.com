@@ -93,7 +93,7 @@ In Betaflight 4.5, the CLI variable `mag_declination` was introduced, to correct
 
 Flight / FC firmware must be specially built to include `Magnetometers` for the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware on the FC. Additionally, GPS firmware should be included in the build, because we display the Mag heading on Configurator's GPS tab, and use GPS debugs to display the Mag heading information.
 
-Betaflight provides drivers the following magnetometers, but not all have been validated to work with Betaflight 4.5's revised scheduling code:
+Betaflight provides drivers for the following magnetometers, but not all have been validated to work with Betaflight 4.5's revised scheduling code:
 
 - [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)[^8]. The QMC5883L is provided on the common, and cheap, GY-217 module, and many GPS units. It provides a 200Hz data update rate, 8x sample averaging and 3000 LSB/Gauss sensitivity. Standard axis orientation. We recommend using this mag if it is an option for your build, because it's performance has been carefully validated during testing and we know it works well.
 - [IST8310](https://intofpv.com/attachment.php?aid=8104)[^9] Note that this gyro has a highly unusual axis orientation, with Y to the _right_ when X is forward and Z is up, and will _always_ require a custom axis orientation in the CLI. Data update rate is 160Hz with 16x sample averaging and 330 LSB/Gauss sensitivity.
