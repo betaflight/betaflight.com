@@ -21,6 +21,23 @@ If you omit to configure this you get a warning and have to use the following co
     git config --global --edit
     git commit --amend --reset-author
 
+## Recommended git global environment:
+
+# Windows:
+
+    git config --global core.autocrlf true
+
+# Linux/OSX:
+
+    git config --global core.autocrlf input
+
+# Cross-platform:
+
+    git config --global core.safecrlf warn
+    git config --global core.whitespace cr-at-eol
+    git config --global core.filemode false
+    git config --global help.autocorrect true
+
 ## Setup remotes
 
     git remote add upstream https://github.com/betaflight/betaflight.git
