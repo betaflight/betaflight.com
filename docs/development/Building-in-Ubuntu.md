@@ -45,12 +45,9 @@ In most Linux distributions the user won't have access to serial interfaces by d
     $ sudo usermod -a -G dialout $USER
     $ sudo usermod -a -G plugdev $USER
     $ sudo apt-get remove modemmanager
-    $ sudo tee -a /etc/udev/rules.d/46-stdfu-permissions.rules <<EOF
-# DFU (Internal bootloader for STM32 and AT32 MCUs)
-
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"EOF
-EOF
+    (echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
+ echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"'
+ echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
 ```
 
 Please log out and log in to active the settings. You should now be able to flash your target using Betaflight Configurator.
