@@ -2,7 +2,11 @@
 
 Betaflight 4.5 is an incremental release, focusing mostly on bugfixes, optimisations, GPS Rescue improvement, Magnetometer support, and many small, useful improvements and options.
 
-The basic flight parameters have not changed from 4.4 to 4.5.  Your previous filter setup, PID settings, and other tuning values should not need to change.
+The basic flight parameters have not changed from 4.4 to 4.5.  Previous filters, PID settings, and other tuning values should not need to change.
+
+:::note
+IMPORTANT: use Configurator 10.10!  The most recent release version is available [here](https://github.com/betaflight/betaflight-configurator/tags), or you could use the [latest nightly build](https://github.com/betaflight/betaflight-configurator-nightlies).
+:::
 
 As usual, Full Chip Erase is mandatory, and re-configuring from scratch safer than importing a CLI dump or a saved Preset.  Users of GPS Rescue, Angle and Horizon modes shold NOT use their old values.  Otherwise, most flight, Rx, Mode, OSD, and GPS parameters have not changed since 4.4, and new / re-named parameters will get default values, so importing a 4.4 save file (Presets>Save) is in most cases, OK.  
 
@@ -37,7 +41,7 @@ NMEA support is now very limited.  Using NMEA is not recommended.  Modern M10 GP
 
 There should be no need for a user with an M8 or higher UBlox module to customise it in any way, e.g. with uCenter, unless it is somehow strangely locked and unresponsive to normal UBlox configuration commands.  They should essentially all work 'out of the box'.
 
-Thanks to unit(freasy), ctzsnooze, SteveCEvans and rabbitAmbulance for this epic effort.
+Thanks to unit(freasy), ctzsnooze, ledvinap, SteveCEvans and rabbitAmbulance for this epic effort.
 
 ## 3. GPS Return to Home Improvements
 
@@ -92,7 +96,7 @@ The `MAG_CALIB` and `MAG_TASK_RATE` debugs have been added to investigate calibr
 
 Please read the [wiki note](https://betaflight.com/docs/wiki/archive/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
 
-thanks to pichim, ctzsnooze, SteveCEvans
+thanks to pichim, ctzsnooze, SteveCEvans, ledvinap
 
 ## 5. Automatic LEDstrip colour based on VTx channel
 
@@ -126,7 +130,7 @@ Horizon mode has been changed a lot.  Horizon mode provides self-levelling when 
 
 For more information, and sample configuration snippets, see [PR 12231](https://github.com/betaflight/betaflight/pull/12231)
 
-Thanks ChrisRosser and ctzsnooze
+Thanks ChrisRosser, ctzsnooze, ledvinap
 
 ## 8. Failsafe changes
 
@@ -162,7 +166,7 @@ A higher value can be useful if the motors need a higher idle value to spin prop
 
 thanks tbolin
 
-## NN. Low throttle TPA
+## 11. Low throttle TPA
 
 Allows the user to apply TPA attenuation in the low end of the throttle range.  In highly tuned quads, this may help avoid excessive D shaking at low throttle values.
 
@@ -178,13 +182,21 @@ For more information see [13006](https://github.com/betaflight/betaflight/pull/1
 
 Thanks: pichim, 
 
-## NN. Keep i-term at zero for fixed wings at zero throttle
+## 12. Keep i-term at zero for fixed wings at zero throttle
 
 Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
 
 thanks Limonspb
 
-## 11 Custom build options
+## 13. Mapping of GPS flights with Export GPX
+
+Awesome feature that adds an `Export GPX` button to the top of a log file which contains GPS data.  The exported `.gpx` file can be imported into online mapping software, such as [gpxStudio](https://gpx.studio), drawing your flights over a map.  
+
+Detailed explanatory video [here](https://www.youtube.com/watch?v=dhgQ8aPUq_U).  
+
+thanks: bonchan
+
+## 14. Custom build options
 
 These are additional code blocks that will only be available if they are built into the firmware that is flashed onto the FC. They are optional because either they are still in development, or cater for the requirements of a small group of users.  At some point, if they become popular, we may merge them into the master code; for now, they are custom build options.
 
@@ -196,7 +208,7 @@ When making a build in a Terminal on your local computer, the build option must 
 
 The following build options were added in 4.5: 
 
-### 11.1 RPM Limiter build option
+### 14.1 RPM Limiter build option
 
 This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.
 
@@ -204,7 +216,7 @@ To use: include `RPM_LIMIT` to Custom Defines when building.
 
 Thanks Tdogb, Limonspb, karatebrot
 
-### 11.2 Quick OSD Menu build option
+### 14.2 Quick OSD Menu build option
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
@@ -214,7 +226,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 thanks Limonspb
 
-### 11.3 RC Stats OSD build option
+### 14.3 RC Stats OSD build option
  
 This is a custom build option which adds flight throttle statistics, such as time on 100% throttle and average throttle, to the post-flight stats pages.
 
@@ -222,7 +234,7 @@ To use: include `RC_STATS` in Custom Defines, when building.
 
 For more information, see [PR 12978](https://github.com/betaflight/betaflight/pull/12978)
 
-### 11.4 USE_GPS_LAP_TIMER
+### 14.4 USE_GPS_LAP_TIMER
 
 Allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).  
 
@@ -236,7 +248,7 @@ For more information see [PR 11856](https://github.com/betaflight/betaflight/pul
 
 thanks SpencerGraffunder
 
-## 12. Blackbox and logging updates
+## 15. Blackbox and logging updates
 
 Blackbox now supports 8 channels of data per debug.  Not all debugs have been updated to take advantage of this, but it is extremely helpful when developing.
 
@@ -244,15 +256,11 @@ All eight values can be seen in Sensors
 
 A number of new debugs have been added, and their display in Blackbox should be correct.
 
-thanks bw1129, ctzsnooze, karatebrot, mcgivergim
+Blackbox GPX export to enable GPS mapping.
 
-## 13. Configurator updates
+thanks bw1129, ctzsnooze, karatebrot, McGiverGim, bonchon
 
-Many improvements, big and small
-
-thanks haslinghuis
-
-## 14. Hardware support
+## 16. Hardware support
 
 As a result of our improving engagement with manufacturers, we were able to respond to user feedback and improve the target configs for many boards.  We are actively encouraging good design principles and working to ensure that new configurations will work reliably.
 
@@ -267,13 +275,15 @@ A number of H7 improvements and fixes were implemented.
 
 thanks: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, bkleiner
 
-## 15 Other Changes and fixes
+## 17 Other Changes and fixes
 
+- configurator: haslinghuis (our Configurator guru), nerdCopter, HThuren,  VitroidFPV, McGiverGim, chmelevskij, ASDosjani, stoneman, flaviopinzarrone, lipskij, blckmn, limonspb, asizon, atomgomba, andygfpv, Benky, shanggl, benlumley, rumpelst1lzk1n
 - liaison with manufacturers: sugark, unit
-- discord: unit, rabbitAmbulance, vitroid, limonspb, 
+- discord: unit, rabbitAmbulance, vitroid, limonspb
 - user support: Vitroid, nerdCopter, BrandonBakedBeans, V-22, HRoll, hypOdermic, TechNinja, Darkmann, ctzsnooze, Sek101, ZogBarr, Steve Fisher, PIDToolBoxGuy, ASDojani, haslinghuis
 - extra testing: rabbitAmbulance, xxXyz, sek101
-- Launch Control is now a standard option
+- all the really tough stuff: SteveCEvans, ledvinap, karatebrot
+- Launch Control now a standard option
 - an issue where a sensor that was not enabled on power was incorrectly saved as not being enabled by the user
 - DShot Telemetry now independent of RPM Filtering, fixing minor related issues including dynamic idle: ctzsnooze, 
 - Extended DShot telemetry: danielMosquera, haslinghuis
