@@ -146,7 +146,13 @@ The following example shows how to configure the serial ports for a flight contr
     #define VTX_SMARTAUDIO_UART SERIAL_PORT_USART3
     #define GPS_UART SERIAL_PORT_USART4
 
-Note: serial command is zero index based, so the first serial port is `SERIAL_PORT_USART1` and not `SERIAL_PORT_USART0`.
+:::note
+
+Serial command is zero index based, so the first serial port is `SERIAL_PORT_USART1` and not `SERIAL_PORT_USART0`.
+
+The USART is meant to do all of the “heavy lifting” serial communication during periods of “high” energy consumption. When the microcontroller is asleep and in a low power mode, though, the UART peripheral can handle low speed communications while offering a reduced energy footprint. Betaflight has UART4 and UART5. Other serial ports are USUART as some board provide LPUART1
+
+:::
 
 ### Serial Receiver Provider
 
