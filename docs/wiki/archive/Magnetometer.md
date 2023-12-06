@@ -1,8 +1,10 @@
 import MagOrientation from '/img/MagOrientationDiagram.png'
 
-# Magnetometer / Compass 4.5
+# Magnetometer / Compass
 
 :::warning
+
+These notes only apply to Magentometers in Betaflight 4.5 or higher
 
 Do **NOT** use a magnetometer unless you have confirmed that:
 
@@ -264,7 +266,7 @@ Calibration 'zeroes out' local magnetic fields arising from nearby ferrous objec
 
 The calibration process can be initiated while connected to Configurator, or by using stick commands.
 
-:::important
+:::note
 In Betaflight 4.5, the frame must be 'tapped' quite hard, within 15s of initiating the calibration process, to start acquiring data. Once the data acquisition phase commences, the LED stops flashing. Data will be acquired over the next 30s and used to calibrate the sensor.
 :::
 
@@ -335,7 +337,7 @@ If we are connected to the Sensors tab, we should see the X axis being close to 
 
 The resulting cal value for X can be returned with `get mag_calibration` the CLI; the first value is the X cal value. Record that value. Repeat the process to be sure the X cal value is reliable. Then repeat separately for the Y and Z axes, until you have all three cal values. Then you can type in the cal value for each axis into the CLI in the form `set mag_calibration = X,Y,Z`.
 
-Typically, the arm swinging while rotating method works very well, and it returns a cal value for all three axes in the one calibration run.
+Normally the method of swinging the arm as it rotates works very well, returning a calibration value for all three axes in one calibration run.
 
 ### Validating the Heading using a mobile phone.
 
