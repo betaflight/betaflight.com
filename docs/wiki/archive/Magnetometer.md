@@ -4,6 +4,8 @@ import MagOrientation from '/img/MagOrientationDiagram.png'
 
 :::warning
 
+These notes only apply to Magnetometers in Betaflight 4.5 or higher
+
 Do **NOT** use a magnetometer unless you have confirmed that:
 
 - the magnetometer's axes are correctly oriented
@@ -24,8 +26,21 @@ Mag information is essential for position hold, which we intend to support, and 
 
 GPS Rescue will have improved eading control if reliable, accurate Mag information is available, especially during ascents and descents on windy days.
 
+## Summary
+
+- please read _all_ of this document before using a magnetometer (3D compass)
+- the firmware must be custom built to include Mag support
+- the magnetometer must power up at the same time as the flight controller
+- the CLI `status` command must show the correct hardware as being connected
+- the magnetometer must be oriented correctly, and the orientation must be checked
+- the magnetometer must be calibrated accurately
+- the user must set the local declination angle in the CLI
+- the user must confirm that the reported heading is correct while in flight, from mag alone
+- the user must get GPS Rescue working properly, without Mag, before enabling the Mag
+- the user must make careful tests of GPS Rescue when adding Mag. With Mag, the initial rotation/climb phase, and the descent phase, should show more accurate heading control, especially in windy conditions. If it makes no difference to the rescue, or causes problems, don't use it.
+
 :::danger
-DO NOT enable Mag if you rely on GPS rescue, unless you are ABSOLUTELY CERTAIN that the Mag data is accurate and reliable!
+DO NOT enable Mag if you rely on GPS rescue, until you are ABSOLUTELY CERTAIN that the Mag data is accurate and reliable!
 :::
 
 ## What is a Magnetometer? {#magnetometer-explanation}
@@ -67,15 +82,15 @@ If the magnetometer cannot be physically positioned so that its axes are aligned
 
 The correct orientation of a given axis should be confirmed by checking the Magnetometer data in the Sensors tab.
 
-## About the Earth's Magnetic Vector Field
+## About the Earth's Magnetic Field
 
-[The earth's magnetic field](https://en.wikipedia.org/wiki/Earth%27s_magnetic_field)[^1] is not uniform. Its field lines usually point a few degrees away from geographic North and point either slightly down or up in most places around the world. In other words: both the field direction and field strength vary from place to place.
+[The earth's magnetic field](https://en.wikipedia.org/wiki/Earth%27s_magnetic_field)[^1] is not uniform. Its field lines usually point a few degrees away from geographic North and either down (in the Northern Hemisphere) or up (in the Southern Hemisphere). Both the field direction and strength vary from place to place.
 
-If you check the earth's magnetic field at your location, it usually gets represented in a **NED** (north-east-down) frame of reference. This means that the X axis points North, the Y axis points East, and the Z axis points Down. This is not at all relevant for Betaflight's mag orientation on the quad, but it's useful to know for interpreting the magnetic field strength and direction at your location.
+The earth's magnetic field is usually represented in a **NED** (north-east-down) frame of reference. This means that the X axis of the earth's field points North, the Y axis points East, and the Z axis points Down. This representation is not at all relevant for Betaflight's mag orientation, but may be useful when interpreting the magnetic field strength and direction values reported for your location.
 
 The absolute strength of the field is measured in Gauss, or milliTeslas, where 1.0 Gauss = 0.1 milliTesla. In my location, the field strength is approximately 0.57 Gauss. Betaflight's sensors tab shows the values reported by the sensor, and these depend on the sensor gain, which can be found in the specification sheet. For example, the QMC5883L returns a value of 3000 for a field strength of 1 Gauss, so that in Sydney I would expect to get a value 1710 when that sensor, after calibration, was aligned directly into the field.
 
-When we measure the magnetic field at a particular point on earth, we are measuring a local field vector which usually points a few degrees away from geographic North, and either down into the ground in the Northern Hemisphere, or up out of the ground in the Southern Hemisphere. There are considerable angular deviations, depending upon where you are on the surface of the Earth.
+When we measure the magnetic field at a particular point on earth, we are measuring a local field vector which usually points a few degrees away from geographic North, and either down into the ground in the Northern Hemisphere, or up out of the ground in the Southern Hemisphere. There are considerable angular deviations, especially in the up or down angle, depending upon where you are on the surface of the Earth.
 
 The sideways deviation of the Earth's magnetic field from the geographic north is called the **magnetic declination**. It is measured in degrees, with positive values meaning that the magnetic North is to the East of the geographic North.
 
@@ -87,18 +102,18 @@ As an example, in Sydney, Australia, 34 degrees South and 151 degrees East, the 
 
 ## Setting local declination in the CLI
 
-In Betaflight 4.5, the CLI variable `mag_declination` was introduced, to correct for declination offsets. When correctly set, the Mag will return "true North", not "magnetic North", and will match the GPS course over ground values, which are returned relative to true North. Declination values should be entered in decidegrees; in the above example, `set mag_declination = 130` would correct for a 13 degree positive declination. A negative local declination, eg -3 degrees, should be entered as `set mag_declination = 3570`.
+In Betaflight 4.5, the CLI variable `mag_declination` was introduced, to correct for declination offsets. When correctly set, Betaflight will return "true North", not "magnetic North", and will match the GPS course over ground values, which are returned relative to true North. Declination values should be entered in decidegrees; in the above example, `set mag_declination = 130` would correct for a 13 degree positive declination. A negative local declination, eg -3 degrees, should be entered as `set mag_declination = 3570`.
 
 ## Hardware and Connection
 
-Flight / FC firmware must be specially built to include `Magnetometers` for the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware on the FC. Additionally, GPS firmware should be included in the build, because we display the Mag heading on Configurator's GPS tab, and use GPS debugs to display the Mag heading information.
+Betaflight's build system must include `Magnetometers`, from the dropdown in the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware. Additionally, GPS firmware should be included in the build, because we display the Mag heading on Configurator's GPS tab, and use GPS debugs to display the Mag heading information.
 
-Betaflight provides drivers for the following magnetometers, but not all have been validated to work with Betaflight 4.5's revised scheduling code:
+Betaflight provides drivers for the following magnetometers, but not all have been validated to work with Betaflight 4.5 at the time of writing:
 
-- [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)[^8]. The QMC5883L is provided on the common, and cheap, GY-217 module, and many GPS units. It provides a 200Hz data update rate, 8x sample averaging and 3000 LSB/Gauss sensitivity. Standard axis orientation. We recommend using this mag if it is an option for your build, because it's performance has been carefully validated during testing and we know it works well.
+- [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)[^8]. The QMC5883L is provided on the common, and cheap, GY-217 module, and many GPS units. It provides a 200Hz data update rate, 8x sample averaging and 3000 LSB/Gauss sensitivity. Standard axis orientation. We recommend using this mag if it is an option for your build, because it's performance has been validated during testing - we know it works well.
 - [IST8310](https://intofpv.com/attachment.php?aid=8104)[^9] Note that this gyro has a highly unusual axis orientation, with Y to the _right_ when X is forward and Z is up, and will _always_ require a custom axis orientation in the CLI. Data update rate is 160Hz with 16x sample averaging and 330 LSB/Gauss sensitivity.
 - [STM's LIS3MDL](https://www.st.com/resource/en/datasheet/lis3mdl.pdf)[^10] This mag is integral to a combined Gyro, Acc and Mag '9 axis' chip from STM. Standard axis orientation.
-- [HMC5883L](https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf)[^7] ODR is 75Hz with 1090 LSB/Gauss sensitivity; discontinued and replaced by the QMC6883L. Standard axis orientation.
+- [HMC5883L](https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf)[^7] ODR is 75Hz with 1090 LSB/Gauss sensitivity; discontinued and replaced by the QMC6883L. Standard axis orientation. Validated.
 - Deprecated: [AK8963](https://www.alldatasheet.com/datasheet-pdf/pdf/535561/AKM/AK8963.html)[^5] and [AK8975](https://www.alldatasheet.com/datasheet-pdf/pdf/535562/AKM/AK8975.html)[^6], (both discontinued; some versions have Z up, others down, all return standard axis orientation when mounted with X forward).
 
 :::caution
@@ -107,7 +122,12 @@ The AK8963 and AK8975 driver code is deprecated in Betaflight 4.5, and will be r
 
 The user can use`set mag_hardware = AUTO` in CLI, which is the default, and Betaflight will automatically identify a connected and supported Mag.
 
-The magnetometer is usually connected via i2C. Wire up the SCL and SDA pins on the module to the pins of the same name on the FC, and power the module with either 5V or 3.3V depending what it needs.
+:::warning
+Magnetometer detection takes place on power up. Make sure that the Mag powers up at the same time as the FC.
+
+:::
+
+The magnetometer is usually connected via i2C. Wire up the SCL and SDA pins on the module to the pins of the same name on the FC, and power the module with either 5V or 3.3V depending its requirements.
 
 When connected by i2C, the following CLI settings are needed:
 
@@ -128,22 +148,24 @@ The Accelerometer must always be enabled when using a Mag, to correct the headin
 
 ## Magnetometer Mounting and Orientation
 
-As noted previously, Betaflight expects that, with respect to the Accelerometer, the magnetic field information matches the following requirements:
+As noted previously, Betaflight expects that, with respect to _both_ the Accelerometer, and the frame of the quad, the magnetic field information matches the following requirements:
 
 - X axis functionally points forward,
 - Y axis functionally points left, and
 - Z axis functionally points up.
 
-If this is not the case, the Mag data will be useless, and could cause a GPS rescue to fail. The key orientation requirement is that the Mag axes exactly match those of the Accelerometer.
+If this is not the case, the Mag data will be useless, and could cause a GPS rescue to fail. Software adjustments may be required to get the 'orientation-corrected' Mag axes and 'orientation-corrected' Accelerometer axes to match the orientation of the frame.
 
-If you have an external Mag module that can be mounted anywhere you like, eg a GY-271, mount it:
+A stand-alone external Mag module that can be mounted anywhere on the quad, eg a GY-271, is best mounted:
 
 - centrally
 - in the same plane of the FC, usually meaning both are 'flat to the quad'
 - as far as possible, away from motors and other metallic onjects, or high-current wires
 - with the X axis pointing forward, directly to the nose of the quad, Y left and Z up
 
-If the Mag is part of your GPS module, the above requirements also apply. It's definitely easier if the GPS is flat to the quad, otherwise you'll need to figure how to enter the correct custom alignment settings. Also note that the Mag sensor may be inverted, or in an unknown orientation, as explained [above](#magnetometer-explanation). It is absolutely essential to confirm proper alignment before using the Mag!
+If the Mag is part of your GPS module, the above requirements also apply. It's definitely easier if the GPS is flat to the quad, otherwise you'll need to figure how to enter the correct custom alignment settings. Also note that the Mag sensor may be inverted, or in an unknown orientation, as explained [above](#magnetometer-explanation).
+
+No matter how it is mounted, is absolutely essential to confirm proper orientation of the Mag before using it!
 
 :::tip
 When the Mag orientation (alignment) is correct, the 'quad' icon in the Home screen of Configurator should move smoothly and appropriately as the quad is rotated, pitched and rolled. Note that when the quad's attitude is changed very quickly, the heading will initially react quickly on the basis of Gyro and Acc data, and then over the next half second it will be adjusted by the Mag. If the orientation of the Mag data axes is wrong, or the calibration is way off, then these movements will be jerky or completely wrong.
@@ -238,11 +260,17 @@ Note that if the board is rotated 90 degrees, corrections for pitch must be done
 
 ## Magnetometer Calibration
 
-For accurate heading readings, an accurate calibration is needed.
+For accurate heading readings, accurate calibration is essential.
 
-Calibration 'zeroes out' offsets in the local magnetic field, typically caused by nearby ferrous objects on the quad, including nearby circuit board components.
+Calibration 'zeroes out' local magnetic fields arising from nearby ferrous objects on the quad, such as nearby circuit board components, and any inherent offsets in the sensor.
 
-The 'centre' or 'cal' value for an axis is the value midway between the min and max values detected for a given axis. This 'cal' value is subtracted from every reading, centring all readings on that axis around zero. Once the cal value is applied, the reported maximum (most positive) and minimum (most negative) values, for each axis, should then be equal in value, but opposite in sign.
+The calibration process can be initiated while connected to Configurator, or by using stick commands.
+
+:::note
+In Betaflight 4.5, the frame must be 'tapped' quite hard, within 15s of initiating the calibration process, to start acquiring data. Once the data acquisition phase commences, the LED stops flashing. Data will be acquired over the next 30s and used to calibrate the sensor.
+:::
+
+The 'centre' or 'cal' value for an axis is typically a value midway between the min and max values detected for that axis. It is then is subtracted from every reading, centering all readings on that axis around zero. Once the cal value is applied, the reported maximum (most positive) and minimum (most negative) values, for each axis, should be equal in value, but opposite in sign.
 
 Cal values are saved in the `mag_calibration` CLI parameter. For example, `set mag_calibration = 35,-130,-75` will cause the heading code to subtract 35 from every X reading, add 130 to every Y reading, and add 75 ro every Z reading.
 
@@ -266,59 +294,66 @@ Calibration itself **DOES NOT** check that the orientation of the sensor is corr
 
 ### Calibration Initiation
 
-The quad must be disarmed. There are two ways to start a calibration. The first is by clicking the `Calibrate Magnetometer` button in Configurator, while connected by a long USB cable. The second is by using the following stick commands on the radio - being absolutely sure that the quad is disarmed:
+The quad must be disarmed. There are two ways to initiate the calibration process:
 
-- right stick straight dowm (pitch low with roll centred)
-- left stick in the top right corner (throttle high and yaw fully right)
+- clicking the `Calibrate Magnetometer` button in Configurator, keeping connected with a long USB cable.
+- using stick commands on the radio (be absolutely sure that the quad is disarmed!):
+  - right stick straight dowm (pitch low with roll centred)
+  - left stick in the top right corner (throttle high and yaw fully right)
+- you then have 15s in which to 'tap the frame' hard, which starts the calibration process itself
 
-Once the calibration is activated, the LED on the FC stops flashing.
+Once the calibration process is activated, the LED on the FC stops flashing.
 
 ### Calibration Technique
 
 It's best to record your previous calibration values before re-calibrating, especially if they were OK. This can be done with a Preset>Save command.
 
-After initiating a calibration you have 15s to get ready to move the quad around. When you're ready to start moving, tap the arm of the frame quite hard, to make a big spike in the gyro signal, and the calibration count-down commences. You then have 30s in which the quad should be moved so that all the magnetometer axes point to all the possible points of the magnetic field.
+After initiating a calibration you have 15s to get ready to move the quad around. When you're ready to start moving the frame, tap the arm of the frame quite hard, to make a big spike in the gyro signal. The calibration count-down commences, and the status LED stops flashing. You now have 30s in which to move the quad so that all the magnetometer axes point to all the possible points of the magnetic field.
 
 A good way to cover every possible angle is to:
 
 - hold the quad by the battery
 - swing your arm around in a big circle, eg forwards -> up ->over -> backwards -> downwards, and keep swinging it around like this
-- yaw the quad at the same time, randomly
-- slowly rotate your whole body about its vertical axis by taking small steps, so that you have completed a full rotation in about 30s.
+- yaw the quad, randomly, left and right, at the same time
+- slowly rotate your whole body about its vertical axis by taking small steps, so that in 30s you have completed a full 360 degree rotation.
 
-If you know the local field direction, you can start and finish by facing North, though this is not necessary.
+If you know the local field direction, you may start and finish facing North, though this is not necessary.
 
-Smoothly completing full rotations about every 1.5-2 seconds works best, but keep in mind that you only have 30s. A QMC5883L takes samples at 200hz and can be rotated fairly quickly, but some older mag units sample at only 50Hz, resulting in fewer data points.
+Smoothly completing full rotations about every 1.5-2 seconds works best, but keep in mind that you only have 30s.
 
 Check the `mag_calibration` CLI numbers after each run to see how consistent the values are. If each value is within 50 units of the last couple of runs, that's pretty good. Also check in the Sensors Tab that the Min and Max for each axis are approximately the same number.
 
 :::warning
-Take great care not to initiate a Mag Cal accidentally! If you fail to rotate the quad properly after a Cal starts, your old cal values will be lost, and the Mag data will be useless!
+Take great care not to initiate a Mag Cal accidentally! If you 'tap' the frame, but fail to rotate the quad properly after a Cal starts, your old cal values will be lost, and the Mag data will be useless!
 :::
 
-It's also possible to do a 'manual' calibration 'one axis at a time'. This is not a normal or recommended calibration process, but can be used to check the cal value for a particular axis. For example, if we want to get an accurate cal value for the X axis, we can point the nose randomly in the general direction of Magnetic field North (which requires knowing both the declination and inclination angles) for some 12-13s, then rotate the quad 180 degrees, and randomly point the tail of the quad into the field for the same period of time. If we are connected to the Sensors tab, we should see the X axis being close to maximal and the other two axes close to zero when the nose is pointing mostly into the field, and to show its most negative value when reversed. Alternatively, we can make full 360 degree turns with the nose/tail axis pointing generally in the North-South field plane. This will _only_ return an accurate Cal value for the X axis (the values for the other axes will be incorrect). You can get then the cal value for X from the CLI and write it down. After repeating the same process separately for the Y and Z axes, you will have all three cal values. Then you can type in the cal value for each axis into the CLI.
+### Single-axis calibration
 
-Typically, the random arm swinging while rotating method works best, because it gets a cal value for each axis within one calibration run.
+It's possible to do a 'manual' calibration 'one axis at a time'. This is not the normal or recommended method, but can be used to check the cal value for a particular axis.
 
-### Validating and Fine-Tuning the Mag Cal in Sensors Tab.
+For example, if we want to get an accurate cal value for the X axis, we can point the nose in the general direction of Magnetic North, and move it randomly around while keeping it generally pointing in the North field vector. Note that both the inclination and declination angles must be considered. This requires knowing the local declination and inclination angles. The idea is to get lots of values that are close to magnetic North, so that at least some are 'spot on'. The nose should be pointed directly North for some 12-13s, then the quad should be reversed 180 degrees, pointing the tail of the quad directly into the field, and moving it around a bit, for the same period of time.
 
-The heading value can be checked against a mobile phone. Ensure that the mobile phone is set to display true North, not magnetic north, and be sure that your local declination value is entered into the CLI. Point the quad due North. The heading value on the front page of Configurator, or in the goggles, should read close to 0 / 360 when pointing due North.
+If we are connected to the Sensors tab, we should see the X axis being close to maximum, and the other two axes close to zero, when the nose is pointing directly into the field. Conversely, it should show the most negative value when the tail points directly into the field.
 
-The accuracy of the calibration values can be validated by checking the absolute minimum and maximum values, for each axis, using Configurator's Sensors tab. With a 'perfect' calibration, the min and max for any individual axis, at the point when the values on the other two axes are zero, should be numerically equal.
+The resulting cal value for X can be returned with `get mag_calibration` the CLI; the first value is the X cal value. Record that value. Repeat the process to be sure the X cal value is reliable. Then repeat separately for the Y and Z axes, until you have all three cal values. Then you can type in the cal value for each axis into the CLI in the form `set mag_calibration = X,Y,Z`.
 
-Using the sensors tab in this manner to check max and min for each axis can also validate the accuracy of the existing calibration when flying in a new location. If max and min are very similar, you don't need to recalibrate.
+Normally the method of swinging the arm as it rotates works very well, returning a calibration value for all three axes in one calibration run.
 
-Checking in Sensors confirms that the orientation of the Mag is correct, by confirming that the maximum positive values are as follows:
+### Validating the Heading using a mobile phone.
 
-- on X, when the nose points directly into the field (ie Nose points to Magnetic North at the local field inclination angle),
-- on Y, when the left of the quad points into the field, and
-- on Z, when the top of the quad points into the field
+The heading value can be checked against a mobile phone. Ensure that the mobile phone is set to display true North, not magnetic north, and be sure that your local declination value has been entered into the CLI. Point the quad due North, using your phone to determine North. The heading value on the front page of Configurator, or in the goggles, should read close to 0 / 360 when pointing due North.
 
-## What About My Heading Information and Signal Noise?
+### Fine-tuning Calibration in Sensors Tab.
 
-Heading information is provided to the quad by the GPS unit (course over ground), the IMU (gyro information while turning quickly), and the Mag unit. The IMU code uses 'sensor fusion' methods to integrate this data to a final 'attitude' or 'heading' value for the quad.
+For a well-calibrated Mag, the highest and lowest values, for any individual axis, when the values on the other two axes are close to zero, should be numerically equal.
 
-The current Heading is shown shown on the main front screen of Configurator, at the top left of the quad icon area. If Mag is enabled, the heading shown reflects Mag data. Otherwise it starts at 0 or 359 degrees, and changes when the frame is yawed.
+Using the sensors tab to check max and min values for each axis can also validate the accuracy of the existing calibration when flying in a new location. If max and min are very similar, when the other two axes are zero, you don't need to recalibrate.
+
+## Where is heading information displayed?
+
+Heading information is provided to the quad by the GPS unit (course over ground), the IMU (gyro information while turning quickly), and the Mag unit. The IMU code uses 'sensor fusion' methods to integrate the available data to a final 'attitude' or 'heading' value for the quad.
+
+The current Heading is shown shown on the main front screen of Configurator, at the top left of the quad icon area. If Mag is enabled, the heading shown reflects Mag data, and will return a value indicating the angle of the nose of the quad relative to North. Without a mag, the heading value always starts at 0 or 359 degrees, and only changes because integral of the gyro data can be used to indicate a relative change in yaw since arming.
 
 If the code is built with GPS support, both the current Mag heading and the GPS course over ground heading are shown in Configurator's GPS tab.
 
@@ -330,7 +365,7 @@ If everything is working properly, the quad's icon, as shown in the main page of
 
 If GPS working properly, and GPS Rescue enabled in the Failsafe tab, heading information from Mag can be logged in Debug 4 of the `GPS_RESCUE_HEADING` debug.
 
-MagADC X, Y and Z values are always logged to Blackbox, and should be examined to ensure they are not really noisy. The noise should be much less than the signal. If noise is obviously an issue, mount the mag further away from the motors, and away from high-current wires, ensuring that the sensor is equidistant from pairs of motors, and check that there is adequate filtering on the power supply to the Mag module.
+MagADC X, Y and Z values are always logged to Blackbox, and should be examined after an initial flight to ensure they are not really noisy. The noise should be much less than the signal. If noise is obviously an issue, mount the mag further away from the motors, and away from high-current wires, ensuring that the sensor is equidistant from pairs of motors, and check that there is adequate filtering on the power supply to the Mag module.
 
 _Drafted by **ctzsnooze** in 2023-09 for Betaflight 4.5. Huge shout out to **ledvinap** and **pichim** for their help and guidance._
 
