@@ -4,7 +4,7 @@ import MagOrientation from '/img/MagOrientationDiagram.png'
 
 :::warning
 
-These notes only apply to Magentometers in Betaflight 4.5 or higher
+These notes only apply to Magnetometers in Betaflight 4.5 or higher
 
 Do **NOT** use a magnetometer unless you have confirmed that:
 
