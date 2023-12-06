@@ -1,5 +1,18 @@
 # Betaflight 4.5 Release Notes
 
+Betaflight 4.5 is an incremental release, focusing mostly on bugfixes, optimisations, GPS Rescue improvement, Magnetometer support, and many small, useful improvements and options.
+
+The basic flight parameters have not changed from 4.4 to 4.5.  Your previous filter setup, PID settings, and other tuning values should not need to change.
+
+As usual, Full Chip Erase is mandatory, and re-configuring from scratch safer than importing a CLI dump or a saved Preset.  Users of GPS Rescue, Angle and Horizon modes shold NOT use their old values.  Otherwise, most flight, Rx, Mode, OSD, and GPS parameters have not changed since 4.4, and new / re-named parameters will get default values, so importing a 4.4 save file (Presets>Save) is in most cases, OK.  
+
+:::warning
+Angle, Horizon and GPS Rescue users should NOT use previous values in 4.5.  Start out with the new 4.5 defaults!
+Always test new firmware carefully and in a controlled environment.
+:::
+ 
+Do not use 4.3 or earlier dumps or Presets in 4.5.
+
 ## 1. Cloud Build
 
 The cloud build system [introduced in 4.4](https://betaflight.com/docs/release/Betaflight-4.4-Release-Notes#1-cloud-build) retains the same user interface.  Updated board configurations should result in correct default hardware assignment.
@@ -117,11 +130,11 @@ Angle and Horizon mode motor control is now significantly smoother, due to filte
 
 Horizon mode has been changed a lot.  Horizon mode provides self-levelling when the sticks are centered and the quad is close to being flat, but flies like acro at higher stick angles or when the quad is steeply angled.  The 'self-levelling' strength, when the sticks are in the center region and the quad is nearly flat, can be as strong, or as gentle, as the pilot likes.  The angle of the frame at which there is no self-levelling can als be adjusted.  With the default settings, flips and rolls to be performed, and with a bit of tweaking, inverted hangs are possible.
 
-For more information, and sample configuration snippets, see [PR 12231] (https://github.com/betaflight/betaflight/pull/12231)
+For more information, and sample configuration snippets, see [PR 12231](https://github.com/betaflight/betaflight/pull/12231)
 
 Thanks @ChrisRosser and @ctzsnooze
 
-## 7. Failsafe changes
+## 8. Failsafe changes
 
 Failsafe indicators at the time on Rx loss are slightly different, and some safety related issues have been fixed.
 
@@ -135,7 +148,7 @@ Finally, the `BADRX` OSD message now says `NOT_DISARMED`.  This occurs when the 
 
 thanks @ctzsnooze
 
-## 8. Dimmable RPM Harmonics
+## 9. Dimmable RPM Harmonics
 
 The user can set how much 'strength' is applied by each of the three RPM filters.
 
@@ -145,7 +158,7 @@ The main benefit is lag reduction on clean builds.  Attenuating a notch filter r
 
 thanks @karatebrot
 
-## 9. Customisable initial Dynamic Idle percentage
+## 10. Customisable initial Dynamic Idle percentage
 
 After arming, but before airmode activates, the motors receive a fixed idle value.  
 
@@ -155,7 +168,7 @@ A higher value can be useful if the motors need a higher idle value to spin prop
 
 thanks @tbolin
 
-## 10. Quick OSD Menu build option
+## 11. Quick OSD Menu build option
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
@@ -165,7 +178,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 thanks @Limonspb
 
-## 11. RC Stats OSD build option
+## 12. RC Stats OSD build option
  
 This is a custom build option which adds flight throttle statistics, such as time on 100% throttle and average throttle, to the post-flight stats pages.
 
@@ -173,7 +186,7 @@ Include `USE_RC_STATS` when building.
 
 For more information, see [PR 12978](https://github.com/betaflight/betaflight/pull/12978)
 
-## 12. Blackbox and logging updates
+## 13. Blackbox and logging updates
 
 Blackbox now supports 8 channels of data per debug.  Not all debugs have been updated to take advantage of this, but it is extremely helpful when developing.
 
@@ -183,13 +196,13 @@ A number of new debugs have been added, and their display in Blackbox should be 
 
 thanks @bw1129, @ctzsnooze, @karatebrot, @mcgivergim
 
-## 13. Configurator updates
+## 14. Configurator updates
 
 Many improvements, big and small
 
 thanks @haslinghuis
 
-## 14. Hardware support
+## 15. Hardware support
 
 As a result of our improving engagement with manufacturers, we were able to respond to user feedback and improve the target configs for many boards.  We are actively encouraging good design principles and working to ensure that new configurations will work reliably.
 
