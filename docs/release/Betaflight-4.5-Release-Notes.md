@@ -19,7 +19,7 @@ The cloud build system [introduced in 4.4](https://betaflight.com/docs/release/B
 
 ## 2. GPS
 
-The code connecting Betaflight to a GPS Module has been thoroughly overhauled.  
+The code connecting Betaflight to a GPS Module has been thoroughly overhauled.
 
 When the FC boots, our UBLox code cycles through all available baud rates on the GPS Port until we connect to the module.  Then we instruct the module to change its baud rate to match the requested baud rate, which defaults to 57600, and we re-connect at that baud rate.  We then detect the 'class' of GPS module (M10, M8 etc) so that we know what kind of configuration requests it will respond to, and we re-configure it to send only the values we need, and stop it sending any other data. This ensures that the traffic on the serial port is the absolute minimum required for our purposes, and reduces CPU time.
 
@@ -37,7 +37,7 @@ NMEA support is now very limited.  Using NMEA is not recommended.  Modern M10 GP
 
 There should be no need for a user with an M8 or higher UBlox module to customise it in any way, e.g. with uCenter, unless it is somehow strangely locked and unresponsive to normal UBlox configuration commands.  They should essentially all work 'out of the box'.
 
-Thanks to @unit/freasy, ctzsnooze and SteveCEvans for this epic effort.
+Thanks to unit(freasy), ctzsnooze, SteveCEvans and rabbitAmbulance for this epic effort.
 
 ## 3. GPS Return to Home Improvements
 
@@ -65,7 +65,7 @@ An edge case issue where the motors could spin up if the Rx link initiated at a 
 
 Please carefully read the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/archive/GPS-Rescue-v4-5) for more information.  
 
-thanks to @ctzsnooze, @ledvinap, @SteveCEvans @haslinghuis
+thanks to ctzsnooze, ledvinap, SteveCEvans haslinghuis
 
 ## 4. Magnetometer update
 
@@ -92,19 +92,19 @@ The `MAG_CALIB` and `MAG_TASK_RATE` debugs have been added to investigate calibr
 
 Please read the [wiki note](https://betaflight.com/docs/wiki/archive/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
 
-thanks to @pichim, @ctzsnooze, @SteveCEvans
+thanks to pichim, ctzsnooze, SteveCEvans
 
 ## 5. Automatic LEDstrip colour based on VTx channel
 
 Ledstrip colour can now be automatically set according to VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
 
-Thanks @cruwaller
+Thanks cruwaller
 
 ## 6. Rainbow colour effect for LEDstrip
 
 See: [PR12323](https://github.com/betaflight/betaflight/pull/12323/files)
 
-Thanks @ASDosjani
+Thanks ASDosjani
 
 ## 7. Angle and Horizon Mode update
 
@@ -114,7 +114,7 @@ Angle mode is a lot snappier, due to `angle_feedforward`.  High angle P values, 
 
 It also now uses the user's RC Rate settings to determine stick feel, facilitating the transition to Acro or Horizon.  Angle no longer has its own specific stick configuration.
 
-Angle Mode is now 'earth referenced' by default.  This means that a pure yaw stick input, while pitched forward, will result in a perfectly coordinated turn.  The code mixes in exactly the right amount of roll so that the horizon stays 'level' in the camera.  It also helps stabilise the quad during fast yaw inputs in Angle mode.  
+Angle Mode is now 'earth referenced' by default.  This means that a pure yaw stick input, while pitched forward, will result in a perfectly coordinated turn.  The code by Chris Rosser mixes in exactly the right amount of roll so that the horizon stays 'level' in the camera.  It also helps stabilise the quad during fast yaw inputs in Angle mode.  
 
 Roll inputs in angle mode will always add extra roll, and the 'horizon' in the camera will respond accordingly, if that's what the pilot wants to achieve.  
 
@@ -126,7 +126,7 @@ Horizon mode has been changed a lot.  Horizon mode provides self-levelling when 
 
 For more information, and sample configuration snippets, see [PR 12231](https://github.com/betaflight/betaflight/pull/12231)
 
-Thanks @ChrisRosser and @ctzsnooze
+Thanks ChrisRosser and ctzsnooze
 
 ## 8. Failsafe changes
 
@@ -140,7 +140,7 @@ Additionally, on restoration of signal, the `failsafe_recovery_delay` period is 
 
 Finally, the `BADRX` OSD message now says `NOT_DISARMED`.  This occurs when the Rx signal has recovered, or has just been detected, wbut the arming switch has been left in the Armed position.  The new message provides a better explanation to the user that they must Disarm before attempting to re-arm after signal loss.
 
-thanks @ctzsnooze
+thanks ctzsnooze
 
 ## 9. Dimmable RPM Harmonics
 
@@ -150,7 +150,7 @@ In many tri-blade situations, the second RPM harmonic can be relatively low in a
 
 The main benefit is lag reduction on clean builds.  Attenuating a notch filter reduces filter-associated lag, which, in turn, can improve propwash.  This is an advanced tuning option.
 
-thanks @karatebrot
+thanks karatebrot
 
 ## 10. Customisable initial Dynamic Idle percentage
 
@@ -160,7 +160,29 @@ This value can now be customised in the CLI, instead of being always 5%.  Use th
 
 A higher value can be useful if the motors need a higher idle value to spin properly on arming when Dynamic Idle is active, and conversely if large motors spin well at low idle percentage, it can be reduced.
 
-thanks @tbolin
+thanks tbolin
+
+## NN. Low throttle TPA
+
+Allows the user to apply TPA attenuation in the low end of the throttle range.  In highly tuned quads, this may help avoid excessive D shaking at low throttle values.
+
+The threshold or break point is set by `tpa_breakpoint_lower`, and the magnitude of the attenuation at zero throttle is set by `tpa_rate_lower`.  The default value for `tpa_rate_lower` is 20, which means a reduction in D of 20%, or that the D effect in the PIDs  will be 80% of normal, at zero throttle.
+
+By default, the default behaviour is to apply the reduction only briefly after arming.  Once until the throttle is raised above `tpa_breakpoint_lower`, TPA lower is inactivated for the rest of the armed period. 
+
+Hence, by default, there will be only a minimal effect on arming, and no effect in flight..  
+
+If the user wants TPA reduction to be active at low throttle during the flight, use `set tpa_breakpoint_lower_fade = OFF`.  TPA will now attenuate whenever throttle is low.
+
+For more information see [13006](https://github.com/betaflight/betaflight/pull/13006)
+
+Thanks: pichim, 
+
+## NN. Keep i-term at zero for fixed wings at zero throttle
+
+Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
+
+thanks Limonspb
 
 ## 11 Custom build options
 
@@ -180,7 +202,7 @@ This limits the max average RPM to a user-specified value, and is primarily inte
 
 To use: include `RPM_LIMIT` to Custom Defines when building.
 
-Thanks @Tdogb, @Limonspb, @karatebrot
+Thanks Tdogb, Limonspb, karatebrot
 
 ### 11.2 Quick OSD Menu build option
  
@@ -190,7 +212,7 @@ To use: include `QUICK_MENU` in Custom Defines when building, and enter `set osd
 
 For more information see [PR 12977](https://github.com/betaflight/betaflight/pull/12977)
 
-thanks @Limonspb
+thanks Limonspb
 
 ### 11.3 RC Stats OSD build option
  
@@ -212,7 +234,7 @@ To use: include `GPS_LAP_TIMER` in Custom Defines, when building, and watch the 
 
 For more information see [PR 11856](https://github.com/betaflight/betaflight/pull/11856)
 
-thanks @SpencerGraffunder
+thanks SpencerGraffunder
 
 ## 12. Blackbox and logging updates
 
@@ -222,13 +244,13 @@ All eight values can be seen in Sensors
 
 A number of new debugs have been added, and their display in Blackbox should be correct.
 
-thanks @bw1129, @ctzsnooze, @karatebrot, @mcgivergim
+thanks bw1129, ctzsnooze, karatebrot, mcgivergim
 
 ## 13. Configurator updates
 
 Many improvements, big and small
 
-thanks @haslinghuis
+thanks haslinghuis
 
 ## 14. Hardware support
 
@@ -243,14 +265,21 @@ Support for the following hardware has been added:
 
 A number of H7 improvements and fixes were implemented.
 
-thanks @SteveCEvans, @blckmn, @karatebrot, @sugark
+thanks: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, bkleiner
 
 ## 15 Other Changes and fixes
 
+- liaison with manufacturers: sugark, unit
+- discord: unit, rabbitAmbulance, vitroid, limonspb, 
+- user support: Vitroid, nerdCopter, BrandonBakedBeans, V-22, HRoll, hypOdermic, TechNinja, Darkmann, ctzsnooze, Sek101, ZogBarr, Steve Fisher, PIDToolBoxGuy, ASDojani, haslinghuis
+- extra testing: rabbitAmbulance, xxXyz, sek101
 - Launch Control is now a standard option
 - an issue where a sensor that was not enabled on power was incorrectly saved as not being enabled by the user
-- DShot Telemetry now independent of RPM Filtering, fixing minor related issues including dynamic idle
+- DShot Telemetry now independent of RPM Filtering, fixing minor related issues including dynamic idle: ctzsnooze, 
+- Extended DShot telemetry: danielMosquera, haslinghuis
+- ICM42605 added to list of gyros with overflow protection: tbolin
 - DShot code stability improvements
+- kaaak: Limonspb
 - improved support for higher ESC telemetry voltage readings
 - less likely to have issues where a connected radio Tx could affect DFU
 - stops softSerial adversely affecting USB on F411
@@ -265,6 +294,7 @@ thanks @SteveCEvans, @blckmn, @karatebrot, @sugark
 - Fix for sag compensation when RPM limiting is active
 - Improved at32 support: UARTs, i2c code, SITL port number, SRAM configuration, camera control, evaluation order. additional timers
 - fix for USB comp port failures on some hosts
+- code optimisation: karatebrot, SteveCEvans,ctzsnooze, tbolin, haslinghuis
 - RPM limiter bugfixes
 - sending commands to motors improved
 - improved handling of invalid baro readings
@@ -279,6 +309,6 @@ thanks @SteveCEvans, @blckmn, @karatebrot, @sugark
 - cleaner MPU6000 reset
 - dynamic idle won't now fail if RPM filtering is turned off
 - RPM Limiter fixes
-- many other bugfixes, target updates, driver updates and fixes
+- many other bugfixes, target updates, driver updates and fixes: valeriyvan
 
-Wow!
+Wow!  A huge THANK YOU to all our developers, testers and support people!
