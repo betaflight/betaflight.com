@@ -94,19 +94,13 @@ Please read the [wiki note](https://betaflight.com/docs/wiki/archive/Magnetomete
 
 thanks to @pichim, @ctzsnooze, @SteveCEvans
 
-## 5. RPM Limiter build option
-
-This is a custom build option, requiring `USE_RPM_LIMIT` in the custom flashing options.  It limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.
-
-Thanks @Tdogb, @Limonspb, @karatebrot
-
-## 6. Automatic LEDstrip colour based on VTx channel
+## 5. Automatic LEDstrip colour based on VTx channel
 
 Ledstrip colour can now be automatically set according to VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
 
 Thanks @cruwaller
 
-## 7. Rainbow colour effect for LEDstrip
+## 6. Rainbow colour effect for LEDstrip
 
 See: [PR12323](https://github.com/betaflight/betaflight/pull/12323/files)
 
@@ -168,25 +162,59 @@ A higher value can be useful if the motors need a higher idle value to spin prop
 
 thanks @tbolin
 
-## 11. Quick OSD Menu build option
+## 11 Custom build options
+
+These are additional code blocks that will only be available if they are built into the firmware that is flashed onto the FC. They are optional because either they are still in development, or cater for the requirements of a small group of users.  At some point, if they become popular, we may merge them into the master code; for now, they are custom build options.
+
+When making an online build, the user includes the name of the build option in the Custom Defines field.  More than one such option can be included, separated by spaces, eg `OSD_QUICK_MENU RC_STATS`.
+
+:::note
+When making a build in a Terminal on your local computer, the build option must be preceded by `DUSE_`.  This is not necessary for a cloud build.
+:::
+
+The following build options were added in 4.5: 
+
+### 11.1 RPM Limiter build option
+
+This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.
+
+To use: include `RPM_LIMIT` to Custom Defines when building.
+
+Thanks @Tdogb, @Limonspb, @karatebrot
+
+### 11.2 Quick OSD Menu build option
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
-Include `USE_OSD_QUICK_MENU` when building, and enter `set osd_use_quick_menu = ON` in the CLI
+To use: include `QUICK_MENU` in Custom Defines when building, and enter `set osd_use_quick_menu = ON` in the CLI
 
 For more information see [PR 12977](https://github.com/betaflight/betaflight/pull/12977)
 
 thanks @Limonspb
 
-## 12. RC Stats OSD build option
+### 11.3 RC Stats OSD build option
  
 This is a custom build option which adds flight throttle statistics, such as time on 100% throttle and average throttle, to the post-flight stats pages.
 
-Include `USE_RC_STATS` when building.
+To use: include `RC_STATS` in Custom Defines, when building.
 
 For more information, see [PR 12978](https://github.com/betaflight/betaflight/pull/12978)
 
-## 13. Blackbox and logging updates
+### 11.4 USE_GPS_LAP_TIMER
+
+Allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).  
+
+Requires GPS in the build, and a GPS module with good signal reception even when the quad at a steep angle.  The video above explains how to set it up.  Basic configration is to add the relevant fields to the OSD, and in Modes, enable 'Lap Timer Reset' on a switch.  At the field, the quad is placed at the start/finish gate, and `MISC/GPS LAP TIMER/SET POSITION` is activated until the gate is known.  The gate 'tolerance' or 'size' can be adjusted, and the minimum lap time can be used to avoid false triggers when some other gate is close to the main start-finish gate.  Go `Save Exit` to store the settings and do some laps!  
+
+I think the minimum lap time and the gate size are saved between batteries, but the start/finish gate must be re-set each battery.  With M10 battery-backed up GPS the new location should be detected quickly, but for best results wait a while until the GPS position is stable before locking in the gate position.
+
+To use: include `GPS_LAP_TIMER` in Custom Defines, when building, and watch the video
+
+For more information see [PR 11856](https://github.com/betaflight/betaflight/pull/11856)
+
+thanks @SpencerGraffunder
+
+## 12. Blackbox and logging updates
 
 Blackbox now supports 8 channels of data per debug.  Not all debugs have been updated to take advantage of this, but it is extremely helpful when developing.
 
@@ -196,13 +224,13 @@ A number of new debugs have been added, and their display in Blackbox should be 
 
 thanks @bw1129, @ctzsnooze, @karatebrot, @mcgivergim
 
-## 14. Configurator updates
+## 13. Configurator updates
 
 Many improvements, big and small
 
 thanks @haslinghuis
 
-## 15. Hardware support
+## 14. Hardware support
 
 As a result of our improving engagement with manufacturers, we were able to respond to user feedback and improve the target configs for many boards.  We are actively encouraging good design principles and working to ensure that new configurations will work reliably.
 
@@ -217,7 +245,7 @@ A number of H7 improvements and fixes were implemented.
 
 thanks @SteveCEvans, @blckmn, @karatebrot, @sugark
 
-## Other Changes and fixes
+## 15 Other Changes and fixes
 
 - Launch Control is now a standard option
 - an issue where a sensor that was not enabled on power was incorrectly saved as not being enabled by the user
