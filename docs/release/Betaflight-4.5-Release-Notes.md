@@ -27,9 +27,9 @@ The code connecting Betaflight to a GPS Module has been thoroughly overhauled.
 
 When the FC boots, our UBLox code cycles through all available baud rates on the GPS Port until we connect to the module.  Then we instruct the module to change its baud rate to match the requested baud rate, which defaults to 57600, and we re-connect at that baud rate.  We then detect the 'class' of GPS module (M10, M8 etc) so that we know what kind of configuration requests it will respond to, and we re-configure it to send only the values we need, and stop it sending any other data. This ensures that the traffic on the serial port is the absolute minimum required for our purposes, and reduces CPU time.
 
-If the FC is connected to Configurator at boot time, we request the full satellite information list, so that we can populate the detailed satellite information list on the left side of Congfigurator's GPS tab.  Otherwise this information is not requested, because we do not require it while in flight, and it adds a lot of serial port traffic when enabled.
+If the FC is connected to Configurator at boot time, we request the full satellite information list, so that we can populate the detailed satellite information list on the left side of Configurator's GPS tab.  Otherwise this information is not requested, because we do not require it while in flight, and it adds a lot of serial port traffic when enabled.
 
-The CPU cost and task timing for GPS data has been extensively reviewed and optimised.  Even so, GPS Rescue puts a huge load on a CPU.  For reliability it is best to use a 4k PID loop on all F4 processors, especially at 57600 baud.  More information about CPU load vs Baud Rate is available in the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/archive/GPS-Rescue-v4-5).  The CLI `tasks` command may be used to check CPU usage and task over-runs when evaluating the impact of baud rate in relation to PID loop frequency. 
+The CPU cost and task timing for GPS data has been extensively reviewed and optimised.  Even so, GPS Rescue puts a huge load on a CPU.  For reliability it is best to use a 4k PID loop on most processors, especially at 57600 baud.  More information about CPU load vs Baud Rate is available in the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/archive/GPS-Rescue-v4-5).  The CLI `tasks` command may be used to check CPU usage and task over-runs when evaluating the impact of baud rate in relation to PID loop frequency. 
 
 The UBlox module 'class', and the baud rate it is actually connected at, may be checked with the CLI `status` command.
 
@@ -148,13 +148,32 @@ thanks ctzsnooze
 
 ## 9. Dimmable RPM Harmonics
 
-The user can set how much 'strength' is applied by each of the three RPM filters.
+With this feature, the user can adjust the 'strength' or 'weight' of each of the three RPM filters, individually.  A weight of 100 applies the filter at full strength, while 0 means 'completely off'.  The Q factor of the RPM filter still sets the 'width' of each filter.
 
-In many tri-blade situations, the second RPM harmonic can be relatively low in amplitude.  With this PR, it's possible to disable it selectively, or to any desired amount.  For example, `set rpm_filter_weights = 100, 0, 80` effectively disables the second harmonic and only attenuates the third harmonic by 20%.  
+With a triblade prop, there are typically three harmonics of the motor frequency that generate RPM-dependent noise:
+- the first harmonic of the motor frequency is at the same frequency as the motors, in Hz, and typically is the strongest,
+- the second harmonic, which is at twice the motor frequency, and
+- the third harmonic, which is at three times the motor frequency.
 
-The main benefit is lag reduction on clean builds.  Attenuating a notch filter reduces filter-associated lag, which, in turn, can improve propwash.  This is an advanced tuning option.
+In many tri-blade situations, we usually see three harmonics.  Typically the first is strongest, the second almost invisible, and the third is a bit less than the first.
 
-thanks karatebrot
+The relative strength of each harmonic may be visualised if a blackbox log is recorded.  A throttle vs frequency or rpm vs frequency spectrum graph, from un-filtered gyro, can be compared to 'filtered' gyro.  Typically, with the default filtering, we see very strong attenuation of all three harmonics.
+
+With tri-blade pops, the second harmonic often needs very little filtering to reduce its noise contribution to acceptable levels.  The third harmonic may need less filtering than the first.  
+
+With this feature, we could, for example, use `set rpm_filter_weights = 100, 0, 80`.  This effectively disables the second harmonic and applies 80% of the normal filter strength to the third harmonic.  Previously it was not possible to selectively remove the second harmonic filter, but now we can.  By checking the end result in a log, we can now use only just as much RPM filtering as we need.
+
+The main benefit of this is reduced filter delay, compared to running all three filters at full strength, and this may improve propwash.
+
+With bi-blade props, we typically only see a first harmonic and a weaker second harmonic.  We may find that `set rpm_filter_weights = 100, 80, 0` gives acceptable results.
+
+Note that the Q factor sets the 'width' of the RPM filter, with the same value being applied to each filter.
+
+This is an advanced tuning option because sometimes the motor noise in a spectrum from un-filtered gyro can seem acceptable, but those small amounts of residual motor noise in the post filter gyro can cause a large effect downstream in Dterm. Hence we recommend using the frequency PSD spectrogram in PID toolbox, or making a spectrum from the D value or a motor trace in Blackbox Log viewer.  It's best to have only just enough RPM filtering that the motor harmonic lines are only just not visible in a D or motor trace spectrum.
+
+If in doubt, when fine-tuning RPM filters with tri-blades, we recommend enabling all 3 RPM RPM filters, and start by making all three RPM filters narrower, by stepwise increasing the Q from the default of 500 up to a max of 1000, and checking the noise at each step. After this we can use this feature to reduce the weight of the 2nd and 3rd harmonic individually, and assess the impact on overall noise.
+
+thanks karatebrot for the code; @SupaflyFPV and @bw1129 for testing and encouragement
 
 ## 10. Customisable initial Dynamic Idle percentage
 
@@ -164,7 +183,7 @@ This value can now be customised in the CLI, instead of being always 5%.  Use th
 
 A higher value can be useful if the motors need a higher idle value to spin properly on arming when Dynamic Idle is active, and conversely if large motors spin well at low idle percentage, it can be reduced.
 
-thanks tbolin
+Thanks: tbolin
 
 ## 11. Low throttle TPA
 
@@ -194,7 +213,7 @@ Awesome feature that adds an `Export GPX` button to the top of a log file which 
 
 Detailed explanatory video [here](https://www.youtube.com/watch?v=dhgQ8aPUq_U).  
 
-thanks: bonchan
+Thanks: bonchan
 
 ## 14. Custom build options
 
@@ -250,6 +269,8 @@ thanks SpencerGraffunder
 
 ## 15. Blackbox and logging updates
 
+Un-filtered gyro and RPM data are now logged by default.  Enabling the `gyro_scaled` debug isn't needed any more for basic spectral analysis of pre- and post- filter noise in Blackbox Log Explorer.  The latest version of PID Toolbox can read this un-filtered gyro directly, but if you're using software that expects `gyro_scaled` as usual.  
+
 Blackbox now supports 8 channels of data per debug.  Not all debugs have been updated to take advantage of this, but it is extremely helpful when developing.
 
 All eight values can be seen in Sensors
@@ -273,7 +294,7 @@ Support for the following hardware has been added:
 
 A number of H7 improvements and fixes were implemented.
 
-thanks: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, bkleiner
+Thanks: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, bkleiner
 
 ## 17 Other Changes and fixes
 
