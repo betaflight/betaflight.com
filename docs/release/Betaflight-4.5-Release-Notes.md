@@ -185,7 +185,29 @@ A higher value can be useful if the motors need a higher idle value to spin prop
 
 Thanks: tbolin
 
-## 11. Low throttle TPA
+## 11. EzLanding
+
+This is a newly developed feature, CLI only, that makes landings less bouncy, even when airmode is on.  This is achieved by restricting the amount to which airmode can increase throttle, and by attenuating iTerm, when throttle is low and sticks are centred.
+
+EzLanding is disabled by default.
+
+- To enable, go `set mixer_type = EZLANDING` in CLI.
+- To return to normal behaviour, go `set mixer_type = LEGACY` in CLI.
+
+There are two tuning parameters:
+- `ez_landing_limit`: Default: 5, Range: 0-75.  Allowed maximum percentage throttle increase via airmode, even with maximum anti-bounce activity. Higher values provide a bit more stability when perching or in flat drops. Lower values make landings less bouncy.
+- `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which full throttle authority is returned, with linear throttle authority attention towards center.  
+
+Maximum anti-bounce effect occurs when sticks are centred and throttle is at zero.  Under these conditions there will be a small reduction in PID stabilisation. To retain a bit more stability, eg when trying to 'perch' on an object, or during flat or inverted zero throttle drops, retain a tiny bit of throttle during the move.
+
+When trying to 'perch'
+
+For more information and to provide feedback, go to [PR 12094](https://github.com/betaflight/betaflight/pull/12094).
+Debug: `set debug_mode = EZLANDING`
+
+Thanks: tbolin
+
+## 12. Low throttle TPA
 
 Allows the user to apply TPA attenuation in the low end of the throttle range.  In highly tuned quads, this may help avoid excessive D shaking at low throttle values.
 
@@ -197,17 +219,17 @@ Hence, by default, there will be only a minimal effect on arming, and no effect 
 
 If the user wants TPA reduction to be active at low throttle during the flight, use `set tpa_breakpoint_lower_fade = OFF`.  TPA will now attenuate whenever throttle is low.
 
-For more information see [13006](https://github.com/betaflight/betaflight/pull/13006)
+For more information see [PR 13006](https://github.com/betaflight/betaflight/pull/13006)
 
 Thanks: pichim, 
 
-## 12. Keep i-term at zero for fixed wings at zero throttle
+## 13. Keep i-term at zero for fixed wings at zero throttle
 
 Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
 
 thanks Limonspb
 
-## 13. Mapping of GPS flights with Export GPX
+## 14. Mapping of GPS flights with Export GPX
 
 Awesome feature that adds an `Export GPX` button to the top of a log file which contains GPS data.  The exported `.gpx` file can be imported into online mapping software, such as [gpxStudio](https://gpx.studio), drawing your flights over a map.  
 
@@ -215,7 +237,7 @@ Detailed explanatory video [here](https://www.youtube.com/watch?v=dhgQ8aPUq_U).
 
 Thanks: bonchan
 
-## 14. Custom build options
+## 15. Custom build options
 
 These are additional code blocks that will only be available if they are built into the firmware that is flashed onto the FC. They are optional because either they are still in development, or cater for the requirements of a small group of users.  At some point, if they become popular, we may merge them into the master code; for now, they are custom build options.
 
@@ -227,7 +249,7 @@ When making a build in a Terminal on your local computer, the build option must 
 
 The following build options were added in 4.5: 
 
-### 14.1 RPM Limiter build option
+### 15.1 RPM Limiter build option
 
 This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.
 
@@ -235,7 +257,7 @@ To use: include `RPM_LIMIT` to Custom Defines when building.
 
 Thanks Tdogb, Limonspb, karatebrot
 
-### 14.2 Quick OSD Menu build option
+### 15.2 Quick OSD Menu build option
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
@@ -245,7 +267,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 thanks Limonspb
 
-### 14.3 RC Stats OSD build option
+### 15.3 RC Stats OSD build option
  
 This is a custom build option which adds flight throttle statistics, such as time on 100% throttle and average throttle, to the post-flight stats pages.
 
@@ -253,7 +275,7 @@ To use: include `RC_STATS` in Custom Defines, when building.
 
 For more information, see [PR 12978](https://github.com/betaflight/betaflight/pull/12978)
 
-### 14.4 USE_GPS_LAP_TIMER
+### 15.4 USE_GPS_LAP_TIMER
 
 Allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).  
 
@@ -267,7 +289,7 @@ For more information see [PR 11856](https://github.com/betaflight/betaflight/pul
 
 thanks SpencerGraffunder
 
-## 15. Blackbox and logging updates
+## 16. Blackbox and logging updates
 
 Un-filtered gyro and RPM data are now logged by default.  Enabling the `gyro_scaled` debug isn't needed any more for basic spectral analysis of pre- and post- filter noise in Blackbox Log Explorer.  The latest version of PID Toolbox can read this un-filtered gyro directly, but if you're using software that expects `gyro_scaled` as usual.  
 
