@@ -21,6 +21,8 @@ Do not use 4.3 or earlier dumps or Presets in 4.5.
 
 The cloud build system [introduced in 4.4](https://betaflight.com/docs/release/Betaflight-4.4-Release-Notes#1-cloud-build) retains the same user interface.  Updated board configurations should result in correct default hardware assignment.
 
+Thanks to: blckmn, unit, haslinghuis, many others
+
 ## 2. GPS
 
 The code connecting Betaflight to a GPS Module has been thoroughly overhauled.
@@ -41,7 +43,7 @@ NMEA support is now very limited.  Using NMEA is not recommended.  Modern M10 GP
 
 There should be no need for a user with an M8 or higher UBlox module to customise it in any way, e.g. with uCenter, unless it is somehow strangely locked and unresponsive to normal UBlox configuration commands.  They should essentially all work 'out of the box'.
 
-Thanks to unit(freasy), ctzsnooze, ledvinap, SteveCEvans and rabbitAmbulance for this epic effort.
+Thanks to: unit(freasy), ctzsnooze, ledvinap, SteveCEvans, rabbitAmbulance
 
 ## 3. GPS Return to Home Improvements
 
@@ -69,7 +71,7 @@ An edge case issue where the motors could spin up if the Rx link initiated at a 
 
 Please carefully read the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/archive/GPS-Rescue-v4-5) for more information.  
 
-thanks to ctzsnooze, ledvinap, SteveCEvans haslinghuis
+Thanks to: ctzsnooze, ledvinap, SteveCEvans, Zzyzx, haslinghuis
 
 ## 4. Magnetometer update
 
@@ -96,19 +98,23 @@ The `MAG_CALIB` and `MAG_TASK_RATE` debugs have been added to investigate calibr
 
 Please read the [wiki note](https://betaflight.com/docs/wiki/archive/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
 
-thanks to pichim, ctzsnooze, SteveCEvans, ledvinap
+Thanks to: pichim, ctzsnooze, SteveCEvans, ledvinap
 
 ## 5. Automatic LEDstrip colour based on VTx channel
 
 Ledstrip colour can now be automatically set according to VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
 
-Thanks cruwaller
+Thanks to:  cruwaller
 
 ## 6. Rainbow colour effect for LEDstrip
 
+:::warning
+Very CPU intensive; may cause glitching, use with caution.
+:::
+
 See: [PR12323](https://github.com/betaflight/betaflight/pull/12323/files)
 
-Thanks ASDosjani
+Thanks to:  ASDosjani
 
 ## 7. Angle and Horizon Mode update
 
@@ -130,7 +136,7 @@ Horizon mode has been changed a lot.  Horizon mode provides self-levelling when 
 
 For more information, and sample configuration snippets, see [PR 12231](https://github.com/betaflight/betaflight/pull/12231)
 
-Thanks ChrisRosser, ctzsnooze, ledvinap
+Thanks to:  ChrisRosser, ctzsnooze, ledvinap
 
 ## 8. Failsafe changes
 
@@ -144,7 +150,7 @@ Additionally, on restoration of signal, the `failsafe_recovery_delay` period is 
 
 Finally, the `BADRX` OSD message now says `NOT_DISARMED`.  This occurs when the Rx signal has recovered, or has just been detected, wbut the arming switch has been left in the Armed position.  The new message provides a better explanation to the user that they must Disarm before attempting to re-arm after signal loss.
 
-thanks ctzsnooze
+Thanks to:  ctzsnooze
 
 ## 9. Dimmable RPM Harmonics
 
@@ -173,7 +179,7 @@ This is an advanced tuning option because sometimes the motor noise in a spectru
 
 If in doubt, when fine-tuning RPM filters with tri-blades, we recommend enabling all 3 RPM RPM filters, and start by making all three RPM filters narrower, by stepwise increasing the Q from the default of 500 up to a max of 1000, and checking the noise at each step. After this we can use this feature to reduce the weight of the 2nd and 3rd harmonic individually, and assess the impact on overall noise.
 
-thanks karatebrot for the code; @SupaflyFPV and @bw1129 for testing and encouragement
+Thanks to:  karatebrot, mikeNomatter, SupaflyFPV, bw1129
 
 ## 10. Customisable initial Dynamic Idle percentage
 
@@ -183,7 +189,7 @@ This value can now be customised in the CLI, instead of being always 5%.  Use th
 
 A higher value can be useful if the motors need a higher idle value to spin properly on arming when Dynamic Idle is active, and conversely if large motors spin well at low idle percentage, it can be reduced.
 
-Thanks: tbolin
+Thanks to: : tbolin
 
 ## 11. EzLanding
 
@@ -205,7 +211,7 @@ When trying to 'perch'
 For more information and to provide feedback, go to [PR 12094](https://github.com/betaflight/betaflight/pull/12094).
 Debug: `set debug_mode = EZLANDING`
 
-Thanks: tbolin
+Thanks to: : tbolin
 
 ## 12. Low throttle TPA
 
@@ -221,13 +227,13 @@ If the user wants TPA reduction to be active at low throttle during the flight, 
 
 For more information see [PR 13006](https://github.com/betaflight/betaflight/pull/13006)
 
-Thanks: pichim, 
+Thanks to: : pichim, 
 
 ## 13. Keep i-term at zero for fixed wings at zero throttle
 
 Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
 
-thanks Limonspb
+Thanks to:  Limonspb
 
 ## 14. Mapping of GPS flights with Export GPX
 
@@ -235,7 +241,7 @@ Awesome feature that adds an `Export GPX` button to the top of a log file which 
 
 Detailed explanatory video [here](https://www.youtube.com/watch?v=dhgQ8aPUq_U).  
 
-Thanks: bonchan
+Thanks to: : bonchan
 
 ## 15. Custom build options
 
@@ -255,7 +261,7 @@ This limits the max average RPM to a user-specified value, and is primarily inte
 
 To use: include `RPM_LIMIT` to Custom Defines when building.
 
-Thanks Tdogb, Limonspb, karatebrot
+Thanks to:  Tdogb, Limonspb, karatebrot
 
 ### 15.2 Quick OSD Menu build option
  
@@ -265,7 +271,7 @@ To use: include `QUICK_MENU` in Custom Defines when building, and enter `set osd
 
 For more information see [PR 12977](https://github.com/betaflight/betaflight/pull/12977)
 
-thanks Limonspb
+Thanks to:  Limonspb
 
 ### 15.3 RC Stats OSD build option
  
@@ -287,7 +293,7 @@ To use: include `GPS_LAP_TIMER` in Custom Defines, when building, and watch the 
 
 For more information see [PR 11856](https://github.com/betaflight/betaflight/pull/11856)
 
-thanks SpencerGraffunder
+Thanks to:  SpencerGraffunder
 
 ## 16. Blackbox and logging updates
 
@@ -301,14 +307,14 @@ A number of new debugs have been added, and their display in Blackbox should be 
 
 Blackbox GPX export to enable GPS mapping.
 
-thanks bw1129, ctzsnooze, karatebrot, McGiverGim, bonchon
+Thanks to:  bw1129, ctzsnooze, karatebrot, McGiverGim, bonchon
 
 ## 16. Hardware support
 
 As a result of our improving engagement with manufacturers, we were able to respond to user feedback and improve the target configs for many boards.  We are actively encouraging good design principles and working to ensure that new configurations will work reliably.
 
 Support for the following hardware has been added:
-- AT32 CPU
+- AT32 CPU : note only one ADC pin can be defined at present, other minor bugs may exist
 - ICM4268x IMU
 - LSM6DSV16X IMU
 - LPS22DF Baro
@@ -316,7 +322,7 @@ Support for the following hardware has been added:
 
 A number of H7 improvements and fixes were implemented.
 
-Thanks: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, bkleiner
+Thanks to: : SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, bkleiner
 
 ## 17 Other Changes and fixes
 
