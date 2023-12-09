@@ -72,28 +72,38 @@ Typical applications include:
 
 ## Important:
 
-:::danger
+:::caution
 
-- Only use the 10.10.x Configurator GUI. For earlier Configurator versions, only make changes to GPS Rescue parameters in the CLI!
+- Only use the 10.10.x Configurator!
 
 - Test GPS Rescue \*very carefully\*\* before relying on it. Initial testing should be done at close range, with defaults, over soft grass.
 
-- **Remember: During a real failsafe, the sticks MUST be wobbled by more than 30%, after the link is restored (and after FPV video is restored), before you can regain control over the quad.** Otherwise it will fly all the way home and land.
+- **Remember: During a real failsafe, after the link is restored, the sticks MUST be wobbled by more than 30%, before you can regain control over the quad.** Control does not return to the pilot automatically! If you touch the sticks before video is returned, you may terminate the rescue. Hence, **During a real failsafe, DO NOT TOUCH THE STICKS**, at least not until:
 
-- If a switch-induced Rescue test has a problem, or seems to float around, DO NOT DISARM IN PANIC! Undo the Rescue switch _promptly_ and you'll get full control back immediately. Do not wait more than 15s or it may disarm and crash. Stick wobbling is _not_ required during a switch induced rescue; control is immediately returned immediately the switch is reset.
+  - your video has returned and is solid,
+  - the `RXLOSS` indicator has gone,
+  - the signal strength indicator is OK.
+
+- If a switch-induced Rescue test has a problem, or seems to float around, DO NOT DISARM IN PANIC! Undo the Rescue switch _promptly_ and you'll get full control back immediately. Do not wait more than 15s or it may disarm and crash.
+
+- Stick wobbling is _not_ required during a switch induced rescue; control is immediately returned immediately the switch is reset.
 
 - **Be 100% sure you have a valid Home Point before arming** or the quad will disarm and crash when a true failsafe occurs.
 
-- Do _NOT_ enable a compass/mag unless you have confirmed by logging that it correctly represents the attitude of the quad - mostly they DO NOT.
+- Do _NOT_ enable a Magnetometer unless you have absolutely confirmed that it correctly returns the attitude of the quad.
 
-- Level mode must be trimmed to provide a stable, level, hover, for a rescue to work properly Check, using a level mode switch, before flying out.
+- Level mode MUST be trimmed to provide a stable, level, hover, for a rescue to work properly Check, using a level mode switch, before flying out. Sticks can be used to calibrate the Acc at the field.
 
-- The GPS Rescue Hover throttle value and the Stage 1 failsafe Throttle channel value should be set to the throttle value required for a stable hover.
+- The GPS Rescue Hover throttle value and the Stage 1 failsafe Throttle channel value should be set return a stable hover. This method can be used to accurately determine the value to use:
 
-- To find the correct hover value, set the Failsafe switch action to `Stage 2`, set the `Stage 2 Failsafe Procedure` to `Land`, and adjust the `Throttle value used while landing` until the quad hovers or descends slowly. Then set `GPS Rescue Throttle Hover`, and the Stage 1 Channel Fallback value for Throttle to this value. When done, set the `Stage 2 Failsafe Procedure` to `GPS Rescue`
+  - set the Failsafe switch action to `Stage 2`, and the `Stage 2 Failsafe Procedure` to `Land`.
+  - adjust the `Throttle value used while landing` until the quad descends gently.
+  - set the `GPS Rescue Throttle Hover`, and the `Stage 1 Channel Fallback value` for throttle to this value.
+  - return the `Stage 2 Failsafe Procedure` to `GPS Rescue`.
 
 - 3D mode is not supported! There will be no rescue if the quad is in 3D mode at the time of the failsafe.
-  :::
+
+:::
 
 ## Known issues
 
@@ -119,7 +129,9 @@ Typical applications include:
 - A working GPS module that supports UBlox commands. UBlox is recommended and is now the default. We support M6 through M10 UBlox modules.
 - If the GPS module doesn't support UBlox, NMEA can be used, but is not recommended unless you know how to check the module output, and re-configure its default power-on state. See the previous note about NMEA.
 
-:::note
+To be detected properly, the GPS module must be powered up at the same time as the flight controller.
+
+:::tip
 Modules with a backup battery will regain satellites more quickly during subsequent power cycles.
 :::
 
