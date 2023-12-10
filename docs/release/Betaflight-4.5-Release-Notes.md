@@ -100,7 +100,24 @@ Please read the [wiki note](https://betaflight.com/docs/wiki/archive/Magnetomete
 
 Thanks to: pichim, ctzsnooze, SteveCEvans, ledvinap
 
-## 5. Support for colour fonts if supported by the HD VTX
+## 5. Mapping of GPS flights within Blackbox Explorer and with Export GPX
+
+Two awesome mapping features for GPS users who have made a log file that contains GPS data.
+
+`Export GPX` enables the `Export GPX` button at the top of the BBE window when a log file with GPS data is opened.  The exported `.gpx` file can be imported into online mapping software, such as [gpxStudio](https://gpx.studio), drawing your flights over a map.
+
+Detailed explanatory video [here](https://www.youtube.com/watch?v=dhgQ8aPUq_U).
+For more information see [PR 614](https://github.com/betaflight/blackbox-log-viewer/pull/614)
+
+`Within BBE GPS Mapping` shows a smaller, simple map within Blackbox explorer itself.  To open the map, user only has to click the view/hide map icon from the `Overlay` group of menu icons (at the top of the normal blackbox screen).
+
+The position of the quad moves over the map as the cursor moves through the file.  The colour trail can show altitude (see the 'cog' for BBE settings to configure this).
+
+For more information see [PR 613](https://github.com/betaflight/blackbox-log-viewer/pull/613)
+
+Thanks for both to: bonchan
+
+## 6. Support for colour fonts if supported by the HD VTX
 
 White, green, orange or red colours can now be used for text and symbols are now supported for compatible HD Vtx modules, eg Walksnail.
 
@@ -108,13 +125,13 @@ See: [13005](https://github.com/betaflight/betaflight/pull/13005)
 
 Thanks to: SteveCEvans
 
-## 6. Automatic LEDstrip colour based on VTx channel
+## 7. Automatic LEDstrip colour based on VTx channel
 
 Ledstrip colour can now be automatically set according to VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
 
 Thanks to: cruwaller
 
-## 7. Rainbow colour effect for LEDstrip
+## 8. Rainbow colour effect for LEDstrip
 
 :::warning
 Very CPU intensive; may cause glitching, use with caution.
@@ -124,7 +141,7 @@ See: [PR12323](https://github.com/betaflight/betaflight/pull/12323/files)
 
 Thanks to: ASDosjani
 
-## 8. Angle and Horizon Mode update
+## 9. Angle and Horizon Mode update
 
 Angle and Horizon modes are completely different from 4.4.
 
@@ -146,7 +163,7 @@ For more information, and sample configuration snippets, see [PR 12231](https://
 
 Thanks to: ChrisRosser, ctzsnooze, ledvinap
 
-## 9. Failsafe changes
+## 10. Failsafe changes
 
 Failsafe indicators at the time on Rx loss are slightly different, and some safety related issues have been fixed.
 
@@ -160,7 +177,7 @@ Finally, the `BADRX` OSD message now says `NOT_DISARMED`.  This occurs when the 
 
 Thanks to: ctzsnooze
 
-## 10. Dimmable RPM Harmonics
+## 11. Dimmable RPM Harmonics
 
 With this feature, the user can adjust the 'strength' or 'weight' of each of the three RPM filters, individually.  A weight of 100 applies the filter at full strength, while 0 means 'completely off'.  The Q factor of the RPM filter still sets the 'width' of each filter.
 
@@ -189,7 +206,7 @@ If in doubt, when fine-tuning RPM filters with tri-blades, we recommend enabling
 
 Thanks to: karatebrot, mikeNomatter, SupaflyFPV, bw1129
 
-## 11. Customisable initial Dynamic Idle percentage
+## 12. Customisable initial Dynamic Idle percentage
 
 After arming, but before airmode activates, the motors receive a fixed idle value.
 
@@ -199,7 +216,7 @@ A higher value can be useful if the motors need a higher idle value to spin prop
 
 Thanks to: : tbolin
 
-## 12. EzLanding
+## 13. EzLanding
 
 This is a newly developed feature, CLI only, that makes landings less bouncy, even when airmode is on.  This is achieved by restricting the amount to which airmode can increase throttle, and by attenuating iTerm, when throttle is low and sticks are centred.
 
@@ -221,7 +238,7 @@ Debug: `set debug_mode = EZLANDING`
 
 Thanks to: : tbolin
 
-## 13. Low throttle TPA
+## 14. Low throttle TPA
 
 Allows the user to apply TPA attenuation in the low end of the throttle range.  In highly tuned quads, this may help avoid excessive D shaking at low throttle values.
 
@@ -237,21 +254,7 @@ For more information see [PR 13006](https://github.com/betaflight/betaflight/pul
 
 Thanks to: : pichim, 
 
-## 14. Keep i-term at zero for fixed wings at zero throttle
-
-Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
-
-Thanks to: Limonspb
-
-## 15. Mapping of GPS flights with Export GPX
-
-Awesome feature that adds an `Export GPX` button to the top of a log file which contains GPS data.  The exported `.gpx` file can be imported into online mapping software, such as [gpxStudio](https://gpx.studio), drawing your flights over a map.
-
-Detailed explanatory video [here](https://www.youtube.com/watch?v=dhgQ8aPUq_U).
-
-Thanks to: : bonchan, haslinghuis
-
-## 16. Custom build options
+## 15. Custom build options
 
 These are additional code blocks that will only be available if they are built into the firmware that is flashed onto the FC. They are optional because either they are still in development, or cater for the requirements of a small group of users.  At some point, if they become popular, we may merge them into the master code; for now, they are custom build options.
 
@@ -263,7 +266,7 @@ When making a build in a Terminal on your local computer, the build option must 
 
 The following build options were added in 4.5: 
 
-### 16.1 RPM Limiter build option
+### 15.1 RPM Limiter build option
 
 This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.  
 
@@ -291,7 +294,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 Thanks to: Tdogb, Limonspb, karatebrot
 
-### 16.2 Quick OSD Menu build option
+### 15.2 Quick OSD Menu build option
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
@@ -311,7 +314,7 @@ For more information, see [PR 12978](https://github.com/betaflight/betaflight/pu
 
 Thanks to: limonspb
 
-### 16.3 Pre-arm Spec Race settings OSD build option
+### 15.3 Pre-arm Spec Race settings OSD build option
  
 This is a custom build option which adds a special "prearm" OSD screen for racers, particularly spec class racers, where both pilot and race organisers can verify the settings. 
 
@@ -330,11 +333,11 @@ For more information, see [PR 13210](https://github.com/betaflight/betaflight/pu
 
 Thanks to: limonspb
 
-### 16.4 USE_GPS_LAP_TIMER
+### 15.4 GPS Lap Timer
 
 This is a custom build option that allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).
 
-Requires GPS in the build, and a GPS module with good enough signal reception to track location even when the quad at a steep angle.  Basic configration is to add the relevant fields to the OSD display, and in Modes, enable 'Lap Timer Reset' on a switch.  At the field, the quad is placed at the start/finish gate, and `MISC/GPS LAP TIMER/SET POSITION` is activated until the gate is known.  The gate 'tolerance' or 'size' can be adjusted, and the minimum lap time can be used to avoid false triggers when some other gate is close to the main start-finish gate.  Go `Save Exit` to store the settings and do some laps!  
+Requires GPS in the firmware build, and a GPS module with good enough signal reception to track location even when the quad at a steep angle.  Basic configration is to add the relevant fields to the OSD display, and in Modes, enable 'Lap Timer Reset' on a switch.  At the field, the quad is placed at the start/finish gate, and `MISC/GPS LAP TIMER/SET POSITION` is activated until the gate is known.  The gate 'tolerance' or 'size' can be adjusted, and the minimum lap time can be used to avoid false triggers when some other gate is close to the main start-finish gate.  Go `Save Exit` to store the settings and do some laps!  
 
 The minimum lap time and the gate size are saved between batteries (?), but the start/finish gate must be re-set each battery(?).  With M10 battery-backed up GPS the new location should be detected quickly, but for best results wait a while until the GPS position is stable before locking in the gate position.  
 
@@ -343,6 +346,12 @@ To use: include `GPS_LAP_TIMER` in Custom Defines, when building, and watch the 
 For more information see [PR 11856](https://github.com/betaflight/betaflight/pull/11856)
 
 Thanks to: SpencerGraffunder
+
+## 16. Keep i-term at zero for fixed wings at zero throttle
+
+Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
+
+Thanks to: Limonspb
 
 ## 17. Blackbox and logging updates
 
@@ -354,9 +363,9 @@ All eight values can be seen in Sensors
 
 A number of new debugs have been added, and their display in Blackbox should be correct.
 
-Blackbox GPX export to enable GPS mapping.
+Blackbox GPS Map display, and GPX export to enable external GPS mapping.
 
-Thanks to: bw1129, ctzsnooze, karatebrot, McGiverGim, bonchon
+Thanks to: bw1129, ctzsnooze, karatebrot, McGiverGim, bonchan
 
 ## 18. Hardware support
 
