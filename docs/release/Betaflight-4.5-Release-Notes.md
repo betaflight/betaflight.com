@@ -265,9 +265,29 @@ The following build options were added in 4.5:
 
 ### 16.1 RPM Limiter build option
 
-This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.
+This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.  
 
-To use: include `RPM_LIMIT` to Custom Defines when building.
+RPM Limiter actively limits the average rpms across all active motors.  For example, `set rpm_limit_value = 13000` will limit average RPM to 13000.
+
+When racing with matching props and weight, the rpm limiter is designed to level the playing field. 
+
+It can also be used to compare propellers and current consumption, e.g. by checking GPS speed at full throttle, or lap time (for expert racers).
+
+:::note
+RPM_LIMIT is *not* a substitute for motor limit, because it does not limit motors individually. But RPM limit can be combined with motor limit for high KV high voltage builds.
+:::
+
+To use:
+- include `RPM_LIMIT` to Custom Defines when building
+- set `motor_kv` correctly.
+- ensure the motor magnet count is correct
+- ensure that DShot telemetry is active
+- set a suitable rpm limit value in CLI
+- enable or disable with `set RPM_LIMIT` to on or off, in CLI, or with Quick menu
+
+The accuracy of the RPM limit control function can be modified by tuning the RPM_LIMIT PIDs (advanced users only).
+
+For more information see [PR 12977](https://github.com/betaflight/betaflight/pull/12054)
 
 Thanks to:  Tdogb, Limonspb, karatebrot
 
