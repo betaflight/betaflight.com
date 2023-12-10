@@ -106,13 +106,13 @@ White, green, orange or red colours can now be used for text and symbols are now
 
 See: [13005](https://github.com/betaflight/betaflight/pull/13005)
 
-Thanks to:  SteveCEvans
+Thanks to: SteveCEvans
 
 ## 6. Automatic LEDstrip colour based on VTx channel
 
 Ledstrip colour can now be automatically set according to VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
 
-Thanks to:  cruwaller
+Thanks to: cruwaller
 
 ## 7. Rainbow colour effect for LEDstrip
 
@@ -122,7 +122,7 @@ Very CPU intensive; may cause glitching, use with caution.
 
 See: [PR12323](https://github.com/betaflight/betaflight/pull/12323/files)
 
-Thanks to:  ASDosjani
+Thanks to: ASDosjani
 
 ## 8. Angle and Horizon Mode update
 
@@ -144,7 +144,7 @@ Horizon mode has been changed a lot.  Horizon mode provides self-levelling when 
 
 For more information, and sample configuration snippets, see [PR 12231](https://github.com/betaflight/betaflight/pull/12231)
 
-Thanks to:  ChrisRosser, ctzsnooze, ledvinap
+Thanks to: ChrisRosser, ctzsnooze, ledvinap
 
 ## 9. Failsafe changes
 
@@ -158,7 +158,7 @@ Additionally, on restoration of signal, the `failsafe_recovery_delay` period is 
 
 Finally, the `BADRX` OSD message now says `NOT_DISARMED`.  This occurs when the Rx signal has recovered, or has just been detected, wbut the arming switch has been left in the Armed position.  The new message provides a better explanation to the user that they must Disarm before attempting to re-arm after signal loss.
 
-Thanks to:  ctzsnooze
+Thanks to: ctzsnooze
 
 ## 10. Dimmable RPM Harmonics
 
@@ -187,7 +187,7 @@ This is an advanced tuning option because sometimes the motor noise in a spectru
 
 If in doubt, when fine-tuning RPM filters with tri-blades, we recommend enabling all 3 RPM RPM filters, and start by making all three RPM filters narrower, by stepwise increasing the Q from the default of 500 up to a max of 1000, and checking the noise at each step. After this we can use this feature to reduce the weight of the 2nd and 3rd harmonic individually, and assess the impact on overall noise.
 
-Thanks to:  karatebrot, mikeNomatter, SupaflyFPV, bw1129
+Thanks to: karatebrot, mikeNomatter, SupaflyFPV, bw1129
 
 ## 11. Customisable initial Dynamic Idle percentage
 
@@ -241,7 +241,7 @@ Thanks to: : pichim,
 
 Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
 
-Thanks to:  Limonspb
+Thanks to: Limonspb
 
 ## 15. Mapping of GPS flights with Export GPX
 
@@ -249,7 +249,7 @@ Awesome feature that adds an `Export GPX` button to the top of a log file which 
 
 Detailed explanatory video [here](https://www.youtube.com/watch?v=dhgQ8aPUq_U).
 
-Thanks to: : bonchan
+Thanks to: : bonchan, haslinghuis
 
 ## 16. Custom build options
 
@@ -289,7 +289,7 @@ The accuracy of the RPM limit control function can be modified by tuning the RPM
 
 For more information see [PR 12977](https://github.com/betaflight/betaflight/pull/12054)
 
-Thanks to:  Tdogb, Limonspb, karatebrot
+Thanks to: Tdogb, Limonspb, karatebrot
 
 ### 16.2 Quick OSD Menu build option
  
@@ -299,7 +299,7 @@ To use: include `QUICK_MENU` in Custom Defines when building, and enter `set osd
 
 For more information see [PR 12977](https://github.com/betaflight/betaflight/pull/12977)
 
-Thanks to:  Limonspb
+Thanks to: limonspb
 
 ### 16.3 RC Stats OSD build option
  
@@ -309,19 +309,40 @@ To use: include `RC_STATS` in Custom Defines, when building.
 
 For more information, see [PR 12978](https://github.com/betaflight/betaflight/pull/12978)
 
+Thanks to: limonspb
+
+### 16.3 Pre-arm Spec Race settings OSD build option
+ 
+This is a custom build option which adds a special "prearm" OSD screen for racers, particularly spec class racers, where both pilot and race organisers can verify the settings. 
+
+The OSD will show:
+- RPM limit settings, 
+- throttle limit, 
+- motor limit, 
+- current &voltage, and
+- Betaflight version.
+
+The screen disappears upon arming. It is helpfull especially for spec racers and race organizers to verify the settings.
+
+To use: include `SPEC_PREARM_SCREEN` in Custom Defines, when building, and then enable with `set osd_show_spec_prearm = ON`.
+
+For more information, see [PR 13210](https://github.com/betaflight/betaflight/pull/13210)
+
+Thanks to: limonspb
+
 ### 16.4 USE_GPS_LAP_TIMER
 
-Allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).
+This is a custom build option that allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).
 
-Requires GPS in the build, and a GPS module with good signal reception even when the quad at a steep angle.  The video above explains how to set it up.  Basic configration is to add the relevant fields to the OSD, and in Modes, enable 'Lap Timer Reset' on a switch.  At the field, the quad is placed at the start/finish gate, and `MISC/GPS LAP TIMER/SET POSITION` is activated until the gate is known.  The gate 'tolerance' or 'size' can be adjusted, and the minimum lap time can be used to avoid false triggers when some other gate is close to the main start-finish gate.  Go `Save Exit` to store the settings and do some laps!  
+Requires GPS in the build, and a GPS module with good enough signal reception to track location even when the quad at a steep angle.  Basic configration is to add the relevant fields to the OSD display, and in Modes, enable 'Lap Timer Reset' on a switch.  At the field, the quad is placed at the start/finish gate, and `MISC/GPS LAP TIMER/SET POSITION` is activated until the gate is known.  The gate 'tolerance' or 'size' can be adjusted, and the minimum lap time can be used to avoid false triggers when some other gate is close to the main start-finish gate.  Go `Save Exit` to store the settings and do some laps!  
 
-I think the minimum lap time and the gate size are saved between batteries, but the start/finish gate must be re-set each battery.  With M10 battery-backed up GPS the new location should be detected quickly, but for best results wait a while until the GPS position is stable before locking in the gate position.
+The minimum lap time and the gate size are saved between batteries (?), but the start/finish gate must be re-set each battery(?).  With M10 battery-backed up GPS the new location should be detected quickly, but for best results wait a while until the GPS position is stable before locking in the gate position.  
 
-To use: include `GPS_LAP_TIMER` in Custom Defines, when building, and watch the video
+To use: include `GPS_LAP_TIMER` in Custom Defines, when building, and watch the [video](https://www.youtube.com/watch?v=TA5cWwFafY4). for detailed setup and usage instructions and tips.
 
 For more information see [PR 11856](https://github.com/betaflight/betaflight/pull/11856)
 
-Thanks to:  SpencerGraffunder
+Thanks to: SpencerGraffunder
 
 ## 17. Blackbox and logging updates
 
@@ -335,7 +356,7 @@ A number of new debugs have been added, and their display in Blackbox should be 
 
 Blackbox GPX export to enable GPS mapping.
 
-Thanks to:  bw1129, ctzsnooze, karatebrot, McGiverGim, bonchon
+Thanks to: bw1129, ctzsnooze, karatebrot, McGiverGim, bonchon
 
 ## 18. Hardware support
 
