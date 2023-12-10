@@ -8,7 +8,7 @@ The basic flight parameters have not changed from 4.4 to 4.5.  Previous filters,
 IMPORTANT: use Configurator 10.10!  The most recent release version is available [here](https://github.com/betaflight/betaflight-configurator/tags), or you could use the [latest nightly build](https://github.com/betaflight/betaflight-configurator-nightlies).
 :::
 
-As usual, Full Chip Erase is mandatory, and re-configuring from scratch safer than importing a CLI dump or a saved Preset.  Users of GPS Rescue, Angle and Horizon modes shold NOT use their old values.  Otherwise, most flight, Rx, Mode, OSD, and GPS parameters have not changed since 4.4, and new / re-named parameters will get default values, so importing a 4.4 save file (Presets>Save) is in most cases, OK.  
+As usual, Full Chip Erase is mandatory, and re-configuring from scratch safer than importing a CLI dump or a saved Preset.  Users of GPS Rescue, Angle and Horizon modes shold NOT use their old values.  Otherwise, most flight, Rx, Mode, OSD, and GPS parameters have not changed since 4.4, and new / re-named parameters will get default values, so importing a 4.4 save file (Presets>Save) is in most cases, OK.
 
 :::warning
 Angle, Horizon and GPS Rescue users should NOT use previous values in 4.5.  Start out with the new 4.5 defaults!
@@ -31,7 +31,7 @@ When the FC boots, our UBLox code cycles through all available baud rates on the
 
 If the FC is connected to Configurator at boot time, we request the full satellite information list, so that we can populate the detailed satellite information list on the left side of Configurator's GPS tab.  Otherwise this information is not requested, because we do not require it while in flight, and it adds a lot of serial port traffic when enabled.
 
-The CPU cost and task timing for GPS data has been extensively reviewed and optimised.  Even so, GPS Rescue puts a huge load on a CPU.  For reliability it is best to use a 4k PID loop on most processors, especially at 57600 baud.  More information about CPU load vs Baud Rate is available in the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/archive/GPS-Rescue-v4-5).  The CLI `tasks` command may be used to check CPU usage and task over-runs when evaluating the impact of baud rate in relation to PID loop frequency. 
+The CPU cost and task timing for GPS data has been extensively reviewed and optimised.  Even so, GPS Rescue puts a huge load on a CPU.  For reliability it is best to use a 4k PID loop on most processors, especially at 57600 baud.  More information about CPU load vs Baud Rate is available in the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/archive/GPS-Rescue-v4-5).  The CLI `tasks` command may be used to check CPU usage and task over-runs when evaluating the impact of baud rate in relation to PID loop frequency.
 
 The UBlox module 'class', and the baud rate it is actually connected at, may be checked with the CLI `status` command.
 
@@ -39,7 +39,7 @@ The `GPS_CONNECTION` debug has been added, including a number of fields to help 
 
 Note that the GPS module must be powered up at the same time as the FC for it to be correctly configured.
 
-NMEA support is now very limited.  Using NMEA is not recommended.  Modern M10 GPS modules with a backup battery are highly recommended.  
+NMEA support is now very limited.  Using NMEA is not recommended.  Modern M10 GPS modules with a backup battery are highly recommended.
 
 There should be no need for a user with an M8 or higher UBlox module to customise it in any way, e.g. with uCenter, unless it is somehow strangely locked and unresponsive to normal UBlox configuration commands.  They should essentially all work 'out of the box'.
 
@@ -49,9 +49,9 @@ Thanks to: unit(freasy), ctzsnooze, ledvinap, SteveCEvans, rabbitAmbulance
 
 In 4.5 there was a determined effort to make GPS Rescue even more reliable and precise than in 4.4.  Many significant changes and improvements were implemented.
 
-Task timing was carefully optimised.  
+Task timing was carefully optimised.
 
-Note: for most standard F4xx GPS Rescue builds, looptime should not exceed 4k, to provide enough clock cycles for all the required sensor data to be analysed and handled properly. 
+Note: for most standard F4xx GPS Rescue builds, looptime should not exceed 4k, to provide enough clock cycles for all the required sensor data to be analysed and handled properly.
 
 In 4.4, if there was significant drift, due to wind, when initiating GPS Rescue, and a long climb period, the quad could think that it was flying nose-forward in the direction of the drift.  This caused the initial yaw correction to be wrong, and the quad would then fly off in the wrong direction, often at high speed.  After a few seconds, it would correct, but take a wide arc to return to the correct heading.  4.5 improves this considerably, but without a Mag, it still can happen, to some extent.
 
@@ -69,7 +69,7 @@ The GPS tab in Configurator has been updated to include a more useful satellite 
 
 An edge case issue where the motors could spin up if the Rx link initiated at a vulnerable time, and when GPS Rescue was set to ignore home point, was fixed.
 
-Please carefully read the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/archive/GPS-Rescue-v4-5) for more information.  
+Please carefully read the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/archive/GPS-Rescue-v4-5) for more information.
 
 Thanks to: ctzsnooze, ledvinap, SteveCEvans, Zzyzx, haslinghuis
 
@@ -85,7 +85,7 @@ The biggest improvement is in our calibration process.  This now works much bett
 
 We can now use `set mag_declination` in the CLI to enter our local Magnetic Declination value and better correct Magnetic to True North.
 
-A [detailed wiki note](https://betaflight.com/docs/wiki/archive/Magnetometer) now explains how magnetometers work, how to orient the mag and check that the orientation is correct, how to calibrate the mag and how to check the calibration, how to set the correct declination value in the CLI etc.  
+A [detailed wiki note](https://betaflight.com/docs/wiki/archive/Magnetometer) now explains how magnetometers work, how to orient the mag and check that the orientation is correct, how to calibrate the mag and how to check the calibration, how to set the correct declination value in the CLI etc.
 
 Users can now set up a Mag and be sure that it works.
 
@@ -100,13 +100,21 @@ Please read the [wiki note](https://betaflight.com/docs/wiki/archive/Magnetomete
 
 Thanks to: pichim, ctzsnooze, SteveCEvans, ledvinap
 
-## 5. Automatic LEDstrip colour based on VTx channel
+## 5. Support for colour fonts if supported by the HD VTX
+
+White, green, orange or red colours can now be used for text and symbols are now supported for compatible HD Vtx modules, eg Walksnail.
+
+See: [13005](https://github.com/betaflight/betaflight/pull/13005)
+
+Thanks to:  SteveCEvans
+
+## 6. Automatic LEDstrip colour based on VTx channel
 
 Ledstrip colour can now be automatically set according to VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
 
 Thanks to:  cruwaller
 
-## 6. Rainbow colour effect for LEDstrip
+## 7. Rainbow colour effect for LEDstrip
 
 :::warning
 Very CPU intensive; may cause glitching, use with caution.
@@ -116,7 +124,7 @@ See: [PR12323](https://github.com/betaflight/betaflight/pull/12323/files)
 
 Thanks to:  ASDosjani
 
-## 7. Angle and Horizon Mode update
+## 8. Angle and Horizon Mode update
 
 Angle and Horizon modes are completely different from 4.4.
 
@@ -124,9 +132,9 @@ Angle mode is a lot snappier, due to `angle_feedforward`.  High angle P values, 
 
 It also now uses the user's RC Rate settings to determine stick feel, facilitating the transition to Acro or Horizon.  Angle no longer has its own specific stick configuration.
 
-Angle Mode is now 'earth referenced' by default.  This means that a pure yaw stick input, while pitched forward, will result in a perfectly coordinated turn.  The code by Chris Rosser mixes in exactly the right amount of roll so that the horizon stays 'level' in the camera.  It also helps stabilise the quad during fast yaw inputs in Angle mode.  
+Angle Mode is now 'earth referenced' by default.  This means that a pure yaw stick input, while pitched forward, will result in a perfectly coordinated turn.  The code by Chris Rosser mixes in exactly the right amount of roll so that the horizon stays 'level' in the camera.  It also helps stabilise the quad during fast yaw inputs in Angle mode.
 
-Roll inputs in angle mode will always add extra roll, and the 'horizon' in the camera will respond accordingly, if that's what the pilot wants to achieve.  
+Roll inputs in angle mode will always add extra roll, and the 'horizon' in the camera will respond accordingly, if that's what the pilot wants to achieve.
 
 The earth referencing behaviour can be disabled with `set angle_earth_ref = 0`, or its strength halved with `set angle_earth_ref = 50`.  Whoop racers may well prefer to disable it, however most beginners, and anyone doing cinematic shooting in Angle mode, should find it really nice.
 
@@ -138,13 +146,13 @@ For more information, and sample configuration snippets, see [PR 12231](https://
 
 Thanks to:  ChrisRosser, ctzsnooze, ledvinap
 
-## 8. Failsafe changes
+## 9. Failsafe changes
 
 Failsafe indicators at the time on Rx loss are slightly different, and some safety related issues have been fixed.
 
-If `RXLOSS` is triggered by 100ms of no valid data, the message will appear in the OSD for a minimum period of 1.0s, instead of clearing immediately.  This is consistent with the arming block after Rx loss, which persists for 1.0s by default, even a brief loss of signal.  
+If `RXLOSS` is triggered by 100ms of no valid data, the message will appear in the OSD for a minimum period of 1.0s, instead of clearing immediately.  This is consistent with the arming block after Rx loss, which persists for 1.0s by default, even a brief loss of signal.
 
-The change prevents a potentially dangerous arming conditions which could arise if GPS Rescue was active and the Rx signal at arm time was unreliable, or the user armed then quickly disarmed.  
+The change prevents a potentially dangerous arming conditions which could arise if GPS Rescue was active and the Rx signal at arm time was unreliable, or the user armed then quickly disarmed.
 
 Additionally, on restoration of signal, the `failsafe_recovery_delay` period is now 500ms, recovering twice as fast as before after signal is restored.
 
@@ -152,7 +160,7 @@ Finally, the `BADRX` OSD message now says `NOT_DISARMED`.  This occurs when the 
 
 Thanks to:  ctzsnooze
 
-## 9. Dimmable RPM Harmonics
+## 10. Dimmable RPM Harmonics
 
 With this feature, the user can adjust the 'strength' or 'weight' of each of the three RPM filters, individually.  A weight of 100 applies the filter at full strength, while 0 means 'completely off'.  The Q factor of the RPM filter still sets the 'width' of each filter.
 
@@ -165,7 +173,7 @@ In many tri-blade situations, we usually see three harmonics.  Typically the fir
 
 The relative strength of each harmonic may be visualised if a blackbox log is recorded.  A throttle vs frequency or rpm vs frequency spectrum graph, from un-filtered gyro, can be compared to 'filtered' gyro.  Typically, with the default filtering, we see very strong attenuation of all three harmonics.
 
-With tri-blade pops, the second harmonic often needs very little filtering to reduce its noise contribution to acceptable levels.  The third harmonic may need less filtering than the first.  
+With tri-blade pops, the second harmonic often needs very little filtering to reduce its noise contribution to acceptable levels.  The third harmonic may need less filtering than the first.
 
 With this feature, we could, for example, use `set rpm_filter_weights = 100, 0, 80`.  This effectively disables the second harmonic and applies 80% of the normal filter strength to the third harmonic.  Previously it was not possible to selectively remove the second harmonic filter, but now we can.  By checking the end result in a log, we can now use only just as much RPM filtering as we need.
 
@@ -181,17 +189,17 @@ If in doubt, when fine-tuning RPM filters with tri-blades, we recommend enabling
 
 Thanks to:  karatebrot, mikeNomatter, SupaflyFPV, bw1129
 
-## 10. Customisable initial Dynamic Idle percentage
+## 11. Customisable initial Dynamic Idle percentage
 
-After arming, but before airmode activates, the motors receive a fixed idle value.  
+After arming, but before airmode activates, the motors receive a fixed idle value.
 
-This value can now be customised in the CLI, instead of being always 5%.  Use the `dyn_idle_start_increase` value, which defaults to 50, meaning 5%.  
+This value can now be customised in the CLI, instead of being always 5%.  Use the `dyn_idle_start_increase` value, which defaults to 50, meaning 5%.
 
 A higher value can be useful if the motors need a higher idle value to spin properly on arming when Dynamic Idle is active, and conversely if large motors spin well at low idle percentage, it can be reduced.
 
 Thanks to: : tbolin
 
-## 11. EzLanding
+## 12. EzLanding
 
 This is a newly developed feature, CLI only, that makes landings less bouncy, even when airmode is on.  This is achieved by restricting the amount to which airmode can increase throttle, and by attenuating iTerm, when throttle is low and sticks are centred.
 
@@ -202,7 +210,7 @@ EzLanding is disabled by default.
 
 There are two tuning parameters:
 - `ez_landing_limit`: Default: 5, Range: 0-75.  Allowed maximum percentage throttle increase via airmode, even with maximum anti-bounce activity. Higher values provide a bit more stability when perching or in flat drops. Lower values make landings less bouncy.
-- `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which full throttle authority is returned, with linear throttle authority attention towards center.  
+- `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which full throttle authority is returned, with linear throttle authority attention towards center.
 
 Maximum anti-bounce effect occurs when sticks are centred and throttle is at zero.  Under these conditions there will be a small reduction in PID stabilisation. To retain a bit more stability, eg when trying to 'perch' on an object, or during flat or inverted zero throttle drops, retain a tiny bit of throttle during the move.
 
@@ -213,15 +221,15 @@ Debug: `set debug_mode = EZLANDING`
 
 Thanks to: : tbolin
 
-## 12. Low throttle TPA
+## 13. Low throttle TPA
 
 Allows the user to apply TPA attenuation in the low end of the throttle range.  In highly tuned quads, this may help avoid excessive D shaking at low throttle values.
 
 The threshold or break point is set by `tpa_breakpoint_lower`, and the magnitude of the attenuation at zero throttle is set by `tpa_rate_lower`.  The default value for `tpa_rate_lower` is 20, which means a reduction in D of 20%, or that the D effect in the PIDs  will be 80% of normal, at zero throttle.
 
-By default, the default behaviour is to apply the reduction only briefly after arming.  Once until the throttle is raised above `tpa_breakpoint_lower`, TPA lower is inactivated for the rest of the armed period. 
+By default, the default behaviour is to apply the reduction only briefly after arming.  Once until the throttle is raised above `tpa_breakpoint_lower`, TPA lower is inactivated for the rest of the armed period.
 
-Hence, by default, there will be only a minimal effect on arming, and no effect in flight..  
+Hence, by default, there will be only a minimal effect on arming, and no effect in flight..
 
 If the user wants TPA reduction to be active at low throttle during the flight, use `set tpa_breakpoint_lower_fade = OFF`.  TPA will now attenuate whenever throttle is low.
 
@@ -229,21 +237,21 @@ For more information see [PR 13006](https://github.com/betaflight/betaflight/pul
 
 Thanks to: : pichim, 
 
-## 13. Keep i-term at zero for fixed wings at zero throttle
+## 14. Keep i-term at zero for fixed wings at zero throttle
 
 Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
 
 Thanks to:  Limonspb
 
-## 14. Mapping of GPS flights with Export GPX
+## 15. Mapping of GPS flights with Export GPX
 
-Awesome feature that adds an `Export GPX` button to the top of a log file which contains GPS data.  The exported `.gpx` file can be imported into online mapping software, such as [gpxStudio](https://gpx.studio), drawing your flights over a map.  
+Awesome feature that adds an `Export GPX` button to the top of a log file which contains GPS data.  The exported `.gpx` file can be imported into online mapping software, such as [gpxStudio](https://gpx.studio), drawing your flights over a map.
 
-Detailed explanatory video [here](https://www.youtube.com/watch?v=dhgQ8aPUq_U).  
+Detailed explanatory video [here](https://www.youtube.com/watch?v=dhgQ8aPUq_U).
 
 Thanks to: : bonchan
 
-## 15. Custom build options
+## 16. Custom build options
 
 These are additional code blocks that will only be available if they are built into the firmware that is flashed onto the FC. They are optional because either they are still in development, or cater for the requirements of a small group of users.  At some point, if they become popular, we may merge them into the master code; for now, they are custom build options.
 
@@ -255,7 +263,7 @@ When making a build in a Terminal on your local computer, the build option must 
 
 The following build options were added in 4.5: 
 
-### 15.1 RPM Limiter build option
+### 16.1 RPM Limiter build option
 
 This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.
 
@@ -263,7 +271,7 @@ To use: include `RPM_LIMIT` to Custom Defines when building.
 
 Thanks to:  Tdogb, Limonspb, karatebrot
 
-### 15.2 Quick OSD Menu build option
+### 16.2 Quick OSD Menu build option
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
@@ -273,7 +281,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 Thanks to:  Limonspb
 
-### 15.3 RC Stats OSD build option
+### 16.3 RC Stats OSD build option
  
 This is a custom build option which adds flight throttle statistics, such as time on 100% throttle and average throttle, to the post-flight stats pages.
 
@@ -281,9 +289,9 @@ To use: include `RC_STATS` in Custom Defines, when building.
 
 For more information, see [PR 12978](https://github.com/betaflight/betaflight/pull/12978)
 
-### 15.4 USE_GPS_LAP_TIMER
+### 16.4 USE_GPS_LAP_TIMER
 
-Allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).  
+Allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).
 
 Requires GPS in the build, and a GPS module with good signal reception even when the quad at a steep angle.  The video above explains how to set it up.  Basic configration is to add the relevant fields to the OSD, and in Modes, enable 'Lap Timer Reset' on a switch.  At the field, the quad is placed at the start/finish gate, and `MISC/GPS LAP TIMER/SET POSITION` is activated until the gate is known.  The gate 'tolerance' or 'size' can be adjusted, and the minimum lap time can be used to avoid false triggers when some other gate is close to the main start-finish gate.  Go `Save Exit` to store the settings and do some laps!  
 
@@ -295,9 +303,9 @@ For more information see [PR 11856](https://github.com/betaflight/betaflight/pul
 
 Thanks to:  SpencerGraffunder
 
-## 16. Blackbox and logging updates
+## 17. Blackbox and logging updates
 
-Un-filtered gyro and RPM data are now logged by default.  Enabling the `gyro_scaled` debug isn't needed any more for basic spectral analysis of pre- and post- filter noise in Blackbox Log Explorer.  The latest version of PID Toolbox can read this un-filtered gyro directly, but if you're using software that expects `gyro_scaled` as usual.  
+Un-filtered gyro and RPM data are now logged by default.  Enabling the `gyro_scaled` debug isn't needed any more for basic spectral analysis of pre- and post- filter noise in Blackbox Log Explorer.  The latest version of PID Toolbox can read this un-filtered gyro directly, but if you're using software that expects `gyro_scaled` as usual.
 
 Blackbox now supports 8 channels of data per debug.  Not all debugs have been updated to take advantage of this, but it is extremely helpful when developing.
 
@@ -309,7 +317,7 @@ Blackbox GPX export to enable GPS mapping.
 
 Thanks to:  bw1129, ctzsnooze, karatebrot, McGiverGim, bonchon
 
-## 16. Hardware support
+## 18. Hardware support
 
 As a result of our improving engagement with manufacturers, we were able to respond to user feedback and improve the target configs for many boards.  We are actively encouraging good design principles and working to ensure that new configurations will work reliably.
 
@@ -322,22 +330,23 @@ Support for the following hardware has been added:
 
 A number of H7 improvements and fixes were implemented.
 
-Thanks to: : SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, bkleiner
+Thanks to: : SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, belrik, bkleiner
 
-## 17 Other Changes and fixes
+## 19. Other Changes and fixes
 
 - configurator: haslinghuis (our Configurator guru), nerdCopter, HThuren,  VitroidFPV, McGiverGim, chmelevskij, ASDosjani, stoneman, flaviopinzarrone, lipskij, blckmn, limonspb, asizon, atomgomba, andygfpv, Benky, shanggl, benlumley, rumpelst1lzk1n
 - liaison with manufacturers: sugark, unit
 - discord: unit, rabbitAmbulance, vitroid, limonspb
 - user support: Vitroid, nerdCopter, BrandonBakedBeans, V-22, HRoll, hypOdermic, TechNinja, Darkmann, ctzsnooze, Sek101, ZogBarr, Steve Fisher, PIDToolBoxGuy, ASDojani, haslinghuis
+- documentation: ctzsnooze, Vitroid, haslinghuis, belrik
 - extra testing: rabbitAmbulance, xxXyz, sek101
 - all the really tough stuff: SteveCEvans, ledvinap, karatebrot
 - Launch Control now a standard option
 - an issue where a sensor that was not enabled on power was incorrectly saved as not being enabled by the user
 - DShot Telemetry now independent of RPM Filtering, fixing minor related issues including dynamic idle: ctzsnooze, 
-- Extended DShot telemetry: danielMosquera, haslinghuis
+- Extended DShot telemetry: danielMosquera, belrik, haslinghuis
 - ICM42605 added to list of gyros with overflow protection: tbolin
-- DShot code stability improvements
+- DShot code stability improvements and fixes: many people
 - kaaak: Limonspb
 - improved support for higher ESC telemetry voltage readings
 - less likely to have issues where a connected radio Tx could affect DFU
