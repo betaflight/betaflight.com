@@ -429,4 +429,6 @@ Thanks to: : SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis,
 - RPM Limiter fixes
 - many other bugfixes, target updates, driver updates and fixes: valeriyvan
 
+This is the [full list](https://github.com/betaflight/betaflight/pulls?q=is%3Apr+milestone%3A4.5) of every firmware PR consdiered for 4.5.
+
 Wow!  A huge THANK YOU to all our developers, testers and support people!
