@@ -121,13 +121,15 @@ Thanks for both to: bonchan
 
 White, green, orange or red colours can now be used for text and symbols are now supported for compatible HD Vtx modules, eg Walksnail.
 
-See: [13005](https://github.com/betaflight/betaflight/pull/13005)
+See: [PR 13005](https://github.com/betaflight/betaflight/pull/13005)
 
 Thanks to: SteveCEvans
 
 ## 7. Automatic LEDstrip colour based on VTx channel
 
 Ledstrip colour can now be automatically set according to VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
+
+For more information see [PR 13096](https://github.com/betaflight/betaflight/pull/13096)
 
 Thanks to: cruwaller
 
@@ -137,7 +139,7 @@ Thanks to: cruwaller
 Very CPU intensive; may cause glitching, use with caution.
 :::
 
-See: [PR12323](https://github.com/betaflight/betaflight/pull/12323/files)
+See: [PR 12323](https://github.com/betaflight/betaflight/pull/12323/files)
 
 Thanks to: ASDosjani
 
@@ -175,6 +177,8 @@ Additionally, on restoration of signal, the `failsafe_recovery_delay` period is 
 
 Finally, the `BADRX` OSD message now says `NOT_DISARMED`.  This occurs when the Rx signal has recovered, or has just been detected, wbut the arming switch has been left in the Armed position.  The new message provides a better explanation to the user that they must Disarm before attempting to re-arm after signal loss.
 
+For more information, see [PR 13033](https://github.com/betaflight/betaflight/pull/13033).
+
 Thanks to: ctzsnooze
 
 ## 11. Dimmable RPM Harmonics
@@ -204,6 +208,8 @@ This is an advanced tuning option because sometimes the motor noise in a spectru
 
 If in doubt, when fine-tuning RPM filters with tri-blades, we recommend enabling all 3 RPM RPM filters, and start by making all three RPM filters narrower, by stepwise increasing the Q from the default of 500 up to a max of 1000, and checking the noise at each step. After this we can use this feature to reduce the weight of the 2nd and 3rd harmonic individually, and assess the impact on overall noise.
 
+For more information, see [PR 12838](https://github.com/betaflight/betaflight/pull/12838).
+
 Thanks to: karatebrot, mikeNomatter, SupaflyFPV, bw1129
 
 ## 12. Customisable initial Dynamic Idle percentage
@@ -214,7 +220,9 @@ This value can now be customised in the CLI, instead of being always 5%.  Use th
 
 A higher value can be useful if the motors need a higher idle value to spin properly on arming when Dynamic Idle is active, and conversely if large motors spin well at low idle percentage, it can be reduced.
 
-Thanks to: : tbolin
+For more information, see [PR 12432](https://github.com/betaflight/betaflight/pull/12432).
+
+Thanks to: tbolin
 
 ## 13. EzLanding
 
@@ -233,7 +241,7 @@ Maximum anti-bounce effect occurs when sticks are centred and throttle is at zer
 
 When trying to 'perch'
 
-For more information and to provide feedback, go to [PR 12094](https://github.com/betaflight/betaflight/pull/12094).
+For more information, see [PR 12094](https://github.com/betaflight/betaflight/pull/12094).
 Debug: `set debug_mode = EZLANDING`
 
 Thanks to: : tbolin
@@ -250,11 +258,25 @@ Hence, by default, there will be only a minimal effect on arming, and no effect 
 
 If the user wants TPA reduction to be active at low throttle during the flight, use `set tpa_breakpoint_lower_fade = OFF`.  TPA will now attenuate whenever throttle is low.
 
-For more information see [PR 13006](https://github.com/betaflight/betaflight/pull/13006)
+For more information, see [PR 13006](https://github.com/betaflight/betaflight/pull/13006).
 
-Thanks to: : pichim, 
+Thanks to: pichim
 
-## 15. Custom build options
+## 15. CRSF binding via CLI for TBS Receivers
+
+Allows the user to initiate binding on their TBS receiver by entering `bind_rx` in the CLI, rather than pulling the quad apart to get to the bind button.  If successful, the CLI outputs `binding...` and the Rx starts blinking a green LED, indicating that has entered binding mode
+
+For more information see [PR 13119](https://github.com/betaflight/betaflight/pull/13119).
+
+Thanks to: nerdcopter
+
+## 16. Keep i-term at zero for fixed wings at zero throttle
+
+Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
+
+Thanks to: Limonspb
+
+## 17. Custom build options
 
 These are additional code blocks that will only be available if they are built into the firmware that is flashed onto the FC. They are optional because either they are still in development, or cater for the requirements of a small group of users.  At some point, if they become popular, we may merge them into the master code; for now, they are custom build options.
 
@@ -266,7 +288,7 @@ When making a build in a Terminal on your local computer, the build option must 
 
 The following build options were added in 4.5: 
 
-### 15.1 RPM Limiter build option
+### 17.1 RPM Limiter build option
 
 This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.  
 
@@ -294,7 +316,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 Thanks to: Tdogb, Limonspb, karatebrot
 
-### 15.2 Quick OSD Menu build option
+### 17.2 Quick OSD Menu build option
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
@@ -304,7 +326,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 Thanks to: limonspb
 
-### 16.3 RC Stats OSD build option
+### 17.3 RC Stats OSD build option
  
 This is a custom build option which adds flight throttle statistics, such as time on 100% throttle and average throttle, to the post-flight stats pages.
 
@@ -314,7 +336,7 @@ For more information, see [PR 12978](https://github.com/betaflight/betaflight/pu
 
 Thanks to: limonspb
 
-### 15.3 Pre-arm Spec Race settings OSD build option
+### 17.4 Pre-arm Spec Race settings OSD build option
  
 This is a custom build option which adds a special "prearm" OSD screen for racers, particularly spec class racers, where both pilot and race organisers can verify the settings. 
 
@@ -333,7 +355,7 @@ For more information, see [PR 13210](https://github.com/betaflight/betaflight/pu
 
 Thanks to: limonspb
 
-### 15.4 GPS Lap Timer
+### 17.5 GPS Lap Timer
 
 This is a custom build option that allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).
 
@@ -347,13 +369,7 @@ For more information see [PR 11856](https://github.com/betaflight/betaflight/pul
 
 Thanks to: SpencerGraffunder
 
-## 16. Keep i-term at zero for fixed wings at zero throttle
-
-Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
-
-Thanks to: Limonspb
-
-## 17. Blackbox and logging updates
+## 18. Blackbox and logging updates
 
 Un-filtered gyro and RPM data are now logged by default.  Enabling the `gyro_scaled` debug isn't needed any more for basic spectral analysis of pre- and post- filter noise in Blackbox Log Explorer.  The latest version of PID Toolbox can read this un-filtered gyro directly, but if you're using software that expects `gyro_scaled` as usual.
 
@@ -367,7 +383,7 @@ Blackbox GPS Map display, and GPX export to enable external GPS mapping.
 
 Thanks to: bw1129, ctzsnooze, karatebrot, McGiverGim, bonchan
 
-## 18. Hardware support
+## 19. Hardware support
 
 As a result of our improving engagement with manufacturers, we were able to respond to user feedback and improve the target configs for many boards.  We are actively encouraging good design principles and working to ensure that new configurations will work reliably.
 
@@ -380,15 +396,15 @@ Support for the following hardware has been added:
 
 A number of H7 improvements and fixes were implemented.
 
-Thanks to: : SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, belrik, bkleiner
+Thanks to: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, belrik, bkleiner
 
-## 19. Other Changes and fixes
+## 20. Other Changes and fixes
 
 - configurator: haslinghuis (our Configurator guru), nerdCopter, HThuren,  VitroidFPV, McGiverGim, chmelevskij, ASDosjani, stoneman, flaviopinzarrone, lipskij, blckmn, limonspb, asizon, atomgomba, andygfpv, Benky, shanggl, benlumley, rumpelst1lzk1n
 - liaison with manufacturers: sugark, unit
 - discord: unit, rabbitAmbulance, vitroid, limonspb
 - user support: Vitroid, nerdCopter, BrandonBakedBeans, V-22, HRoll, hypOdermic, TechNinja, Darkmann, ctzsnooze, Sek101, ZogBarr, Steve Fisher, PIDToolBoxGuy, ASDojani, haslinghuis
-- documentation: ctzsnooze, Vitroid, haslinghuis, belrik
+- documentation: ctzsnooze, Vitroid, SupaflyFPV, haslinghuis, belrik
 - extra testing: rabbitAmbulance, xxXyz, sek101
 - all the really tough stuff: SteveCEvans, ledvinap, karatebrot
 - Launch Control now a standard option
@@ -429,6 +445,6 @@ Thanks to: : SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis,
 - RPM Limiter fixes
 - many other bugfixes, target updates, driver updates and fixes: valeriyvan
 
-This is the [full list](https://github.com/betaflight/betaflight/pulls?q=is%3Apr+milestone%3A4.5) of every firmware PR consdiered for 4.5.
+This is the [full list](https://github.com/betaflight/betaflight/pulls?q=is%3Apr+milestone%3A4.5) of every firmware PR considered during the development of 4.5.
 
 Wow!  A huge THANK YOU to all our developers, testers and support people!
