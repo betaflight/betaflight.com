@@ -175,7 +175,7 @@ The change prevents a potentially dangerous arming conditions which could arise 
 
 Additionally, on restoration of signal, the `failsafe_recovery_delay` period is now 500ms, recovering twice as fast as before after signal is restored.
 
-Finally, the `BADRX` OSD message now says `NOT_DISARMED`.  This occurs when the Rx signal has recovered, or has just been detected, wbut the arming switch has been left in the Armed position.  The new message provides a better explanation to the user that they must Disarm before attempting to re-arm after signal loss.
+Finally, the `BADRX` OSD message now says `NOT_DISARMED`.  This occurs when the Rx signal has recovered, or has just been detected, but the arming switch has been left in the Armed position.  The new message provides a better explanation to the user that they must Disarm before attempting to re-arm after signal loss.
 
 For more information, see [PR 13033](https://github.com/betaflight/betaflight/pull/13033).
 
