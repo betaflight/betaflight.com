@@ -9,7 +9,7 @@ This is a very handy feature and allows easy to find variable names that can the
 
 ## dump
 
-\***\*align_gyro** = DEFAULT\*\*
+**align_gyro** = DEFAULT
 Allowed values: DEFAULT, CW0, CW90, CW180, CW270, CW0FLIP, CW90FLIP, CW180FLIP, CW270FLIP
 Used to orient the gyro chip in the direction of flight. (less CPU load than Board orientation)
 

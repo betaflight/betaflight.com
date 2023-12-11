@@ -154,10 +154,10 @@ Available types of outlines.
 
 Values:
 - `OUTLINE_TYPE_NONE` = 0
-- `OUTLINE_TYPE_TOP` = 1 << 0
-- `OUTLINE_TYPE_RIGHT` = 1 << 1
-- `OUTLINE_TYPE_BOTTOM` = 1 << 2
-- `OUTLINE_TYPE_LEFT` = 1 << 3
+- `OUTLINE_TYPE_TOP` = 1 \<\< 0
+- `OUTLINE_TYPE_RIGHT` = 1 \<\< 1
+- `OUTLINE_TYPE_BOTTOM` = 1 \<\< 2
+- `OUTLINE_TYPE_LEFT` = 1 \<\< 3
 
 ### uvarint_t
 Unsigned integer encoded using variable length. The value is encoded in
@@ -206,10 +206,10 @@ static inline int osd_cmd_decode_uvarint(uint32_t *val, const uint8_t *ptr, size
                 // uint32_t overflow
                 return -2;
             }
-            *val |= ((uint32_t)b) << s;
+            *val |= ((uint32_t)b) \<\< s;
             return ii + 1;
         }
-        *val |= ((uint32_t)(b & 0x7f)) << s;
+        *val |= ((uint32_t)(b & 0x7f)) \<\< s;
         s += 7;
     }
     // no value could be decoded and we have no data left

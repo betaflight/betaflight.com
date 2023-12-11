@@ -118,7 +118,7 @@ char *match_strdup(substring_t *s);
 Use one space around (on each side of) most binary and ternary operators, such as any of these:
 
 ```
-=  +  -  <  >  *  /  %  |  &  ^  <=  >=  ==  !=  ?  :
+=  +  -  <  >  *  /  %  |  &  ^  \<=  >=  ==  !=  ?  :
 ```
 
 but no space after unary operators:

@@ -146,7 +146,7 @@ FF_INTERPOLATED (4.0):
 
 ## ESC and MOTORS
 
-DSHOT_RPM_TELEMETRY: RPM in Configurator 10.8, eRPM for <10.8 (where RPM = eRPM \* motor_magnet_count)
+DSHOT_RPM_TELEMETRY: RPM in Configurator 10.8, eRPM for \<10.8 (where RPM = eRPM \* motor_magnet_count)
 
 - [0] = motor #1 RPM
 - [1] = motor #2 RPM
@@ -167,7 +167,7 @@ DYN_IDLE (4.3):
 - [2] = Dyn Idle D [roll]
 - [3] = min RPM (lowest current motor rpm)
 
-DYN_IDLE (<4.3):
+DYN_IDLE (\<4.3):
 
 - [0] = motorRangeMinIncrease \* 1000
 - [1] = targetRpsChangeRate (simple RPM error \* idle_adjustment_speed)

@@ -66,7 +66,7 @@ The STM32 VCP driver can be downloaded here --> http://www.st.com/web/en/catalog
 
 **NOTE:** Once you download and run the installation it has not installed the driver, merely unpacked the choice of drivers. Locate the installation directory and then run the EXE file pertaining to your system.
 
-e.g. C:\Program Files (x86)\STMicroelectronics\Software\Virtual comport driver\Win8\ <- will have two files present. One for 64 bit systems (dpinst_amd64.exe) and one for 32 bit systems (dpinst_x86.exe).
+e.g. C:\Program Files (x86)\STMicroelectronics\Software\Virtual comport driver\Win8\ \<- will have two files present. One for 64 bit systems (dpinst_amd64.exe) and one for 32 bit systems (dpinst_x86.exe).
 
 ### Windows 10
 
@@ -80,22 +80,23 @@ Linux does not know the concept of product specific 'device drivers', so no driv
 Linux requires udev rules to allow write access to USB devices for users. If you are not familiar with udev rules don’t worry, we will walk you through the process in the proceeding steps using the command line interface (CLI).
 
 Note: you might need to install libatomic:
-
-    $ sudo apt install libatomic1
-
+```
+$ sudo apt install libatomic1
+```
 #### Step 0:
 
 Without next command the configurator will not launch on at least ubuntu 20.04 and higher
-
-    $ sudo usermod -a -G plugdev $USER
-
+```
+$ sudo usermod -a -G plugdev $USER
+```
 #### Step 1:
 
 Since we will be using the CLI, simply copy and paste this command into your terminal, it will create the required file for you:
-
-    (echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
-     echo 'ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"'
-     echo 'ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
+```
+(echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
+	echo 'ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"'
+	echo 'ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
+```
 
 The file created is `/etc/udev/rules.d/45-stdfu-permissions.rules`, which is used when your flight controller is in DFU mode.
 
@@ -130,17 +131,17 @@ If you are still not added to the _dialout_ group (you can check that using the 
 #### Troubleshooting installation problems:
 
 If you see your ttyUSB device disappear right after the board is connected, chances are that the ModemManager service (that handles network connectivity for you) thinks it is a GSM modem. If this happens, you can issue the following command to disable the service:
-
-    sudo systemctl stop ModemManager.service
-
+```
+sudo systemctl stop ModemManager.service
+```
 If your system lacks the systemctl command, use any equivalent command that works on your system to disable services. You can likely add your device ID to a blacklist configuration file to stop ModemManager from touching the device, if you need it for cellural networking, but that is beyond the scope of cleanflight documentation.
 
 If you see the ttyUSB device appear and immediately disappear from the list in Cleanflight Configurator when you plug in your flight controller via USB, chances are that NetworkManager thinks your board is a GSM modem and hands it off to the ModemManager daemon as the flight controllers are not known to the blacklisted
 
 Sometimes, after other programs (configuration scripts, ESC firmware uploaders) have used the port that your flight controller is recognised as, and (i.e. `/dev/ttyUSB0` or `/dev/ttyACM0`), and change modes on the port without resetting them. This leaves the configurator unable to connect to the flight controller, even after unplugging / replugging the USB cable. In this situation, the following command will reset the port settings to defaults:
-
-    stty sane -F /dev/<your port>
-
+```
+stty sane -F /dev/\<your port>
+```
 ## Diagnosing if your CPU is dead, or just missing firmware (Blue LED of Death)
 
 The symptoms between a fried CPU, and a CPU that is missing firmware is almost identical, with the exception that it is impossible to flash firmware to a dead CPU. CPUs may arrive from the manufacture dead, die when it first powers on do to a manufacturing defect, or die when if you wire up your board incorrectly (e.g. connect the 5v rail or battery power to a UART port). When a CPU dies, you may or may not see magic smoke.

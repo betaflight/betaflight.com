@@ -146,7 +146,10 @@ save
 
 #### 3" 1105 5500KV 3S on Gemfan 3016-3 (Diatone GTB-339) [F411 on DShot300]
 
-<details><summary>CLI Copy/Paste</summary>
+<details>
+<summary>
+CLI Copy/Paste
+</summary>
 
 ```python
 
@@ -249,7 +252,6 @@ set dyn_idle_min_rpm = 16
 
 save
 ```
-
 </details>
 
 ---
@@ -258,7 +260,10 @@ save
 
 Build Link: [https://rotorbuilds.com/build/18675]
 
-<details><summary>CLI Copy/Paste</summary>
+<details>
+<summary>
+CLI Copy/Paste
+</summary>
 
 ```python
 
@@ -361,7 +366,6 @@ set dyn_idle_min_rpm = 16
 
 save
 ```
-
 </details>
 
 ---
@@ -372,7 +376,10 @@ Build Link: [https://rotorbuilds.com/build/18676]
 
 Build Link: [https://rotorbuilds.com/build/21176]
 
-<details><summary>CLI Copy/Paste</summary>
+<details>
+<summary>
+CLI Copy/Paste
+</summary>
 
 ```python
 
@@ -505,7 +512,6 @@ profile 0
 
 save
 ```
-
 </details>
 
 ---
@@ -516,7 +522,10 @@ Build Link: [https://rotorbuilds.com/build/21178]
 
 Build Link: [https://rotorbuilds.com/build/10199]
 
-<details><summary>CLI Copy/Paste</summary>
+<details>
+<summary>
+CLI Copy/Paste
+</summary>
 
 ```python
 
@@ -588,7 +597,10 @@ save
 
 ## Pilot: Furadi
 
-<details><summary>Furadi 5" NBD Infinity CLI Settings - Copy/Paste</summary>
+<details>
+<summary>
+Furadi 5" NBD Infinity CLI Settings - Copy/Paste
+</summary>
 
 Quad - (not affiliate links)
 
@@ -653,7 +665,10 @@ save
 
 </details>
 
-<details><summary>Furadi 7" FR-7 NBD Infinity CLI Settings - Copy/Paste</summary>
+<details>
+<summary>
+Furadi 7" FR-7 NBD Infinity CLI Settings - Copy/Paste
+</summary>
 
 FR7 -
 
@@ -733,7 +748,10 @@ About: 'Responsive but Smooth' feel, set up for 5" normal freestyle(cinematic, j
 
 Caution: You should activate 'Bidirectional Dshot' for rpm filter and adjust 'idle_min_rpm' about 70% of dshot_idle_rpm or start with '21'.
 
-<details><summary>JJang's PIDs: 5" 4S Normal Freestyle CLI Settings - Copy/Paste</summary>
+<details>
+<summary>
+JJang's PIDs: 5" 4S Normal Freestyle CLI Settings - Copy/Paste
+</summary>
 
 ```python
 set gyro_lowpass2_hz = 300
@@ -832,7 +850,10 @@ Running higher Yaw P gains is entirely possible, although sliders do not allow t
 
 This will take your setup back to BF 4.0.x defaults
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Filter Settings
@@ -909,7 +930,10 @@ A clean build is when a spectrograph of the RAW gyro noise trace (Debug_Mode=Gyr
 
 #### Brushless Whoop Class (based on Mobula 7 w/ 2s)
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Filter Settings
@@ -974,7 +998,10 @@ save
 
 `(in coordination with George Hartmann)`
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Filter Settings
@@ -1025,7 +1052,10 @@ save
 
 `(in coordination with George Hartmann)`
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Filter Settings
@@ -1076,7 +1106,10 @@ For: 650g to 725g AUW Kwads | 1000 to 1100 deg/sec rates.
 
 Kwads with Noise between 50hz and 200hz
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Filter Settings
@@ -1148,7 +1181,10 @@ Kwads with NO Noise between 50hz and 200hz
 
 **Requires a quad with NO noise issues from 50hz to 200hz! So, if you are not sure, use the above first and if that goes well try these settings next.**
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Filter Settings
@@ -1214,7 +1250,10 @@ save
 
 #### 6"/7" Quads
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Filter Settings
@@ -1262,7 +1301,10 @@ save
 
 #### X-Class [IN PROGRESS!!!]
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Filter Settings
@@ -1302,7 +1344,10 @@ save
 
 #### PID Tuning Preset
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Filter Settings
@@ -1351,7 +1396,10 @@ save
 
 #### 5" Quad (5s-6s)
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Filter Settings
@@ -1399,7 +1447,10 @@ set d_min_pitch = 0
 
 ##### [Build Details](https://rotorbuilds.com/build/18676)
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 # Filter Settings
@@ -1459,7 +1510,10 @@ These are presets to apply to BF 4.0.x to get the defaults of an older versions 
 
 #### Revert to BF 3.5.X
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Features to be off by Default
@@ -1524,7 +1578,10 @@ save
 
 #### Revert to BF 3.4.X
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Features to be off by Default
@@ -1596,7 +1653,10 @@ save
 
 #### Revert to BF 3.2.x & 3.3.X (they were the same)
 
-<details><summary>CLI Copy\Paste</summary>
+<details>
+<summary>
+CLI Copy\Paste
+</summary>
 
 ```python
 #Features to be off by Default

@@ -41,26 +41,26 @@ Frsky announcement: [here][9]
 4. Configure your flight controller. Enable 'serial RX' for the port the receiver is connected to, choose 'Serial Rx' as receiver type, and 'FPort' as protocol. For F3 / F4 with a 'uninverted SmartPort' hacked receiver / F7, set `serialrx_halfduplex = on` in CLI. If **not** using a receiver with 'uninverted SmartPort' hack, set `serialrx_inverted = on`. After all is done, the relevant bits of a `dump` should look like this (assuming we're using UART3):
 
 F3 / F7:
-
-    serial 2 64 115200 57600 0 115200
-    set serialrx_provider = FPORT
-    set serialrx_halfduplex = ON
-    set serialrx_inverted = ON
-
+```
+serial 2 64 115200 57600 0 115200
+set serialrx_provider = FPORT
+set serialrx_halfduplex = ON
+set serialrx_inverted = ON
+```
 F4 with non-hacked receiver (needs bi-directional inverter on the flight controller):
-
-    serial 2 64 115200 57600 0 115200
-    set serialrx_provider = FPORT
-    set serialrx_halfduplex = OFF
-    set serialrx_inverted = ON
-
+```
+serial 2 64 115200 57600 0 115200
+set serialrx_provider = FPORT
+set serialrx_halfduplex = OFF
+set serialrx_inverted = ON
+```
 F4 with 'uninverted SmartPort' hacked receiver:
-
-    serial 2 64 115200 57600 0 115200
-    set serialrx_provider = FPORT
-    set serialrx_halfduplex = ON
-    set serialrx_inverted = OFF
-
+```
+serial 2 64 115200 57600 0 115200
+set serialrx_provider = FPORT
+set serialrx_halfduplex = ON
+set serialrx_inverted = OFF
+```
 5. Bind your receiver to your transmitter;
 6. Test RC control: With the transmitter on and the flight controller connected to the configurator, make sure the bars in the 'Receiver' tab move when you move the sticks on the transmitter;
 7. Test telemetry: (In OpenTx, a rescan of the sensors is required, since the sensor ids are different between SmartPort and FPort.) Check that the telemetry screen shows the values from your flight controller. (caveat: With FPort it is possible that RC commands work, but telemetry doesn't. If this happens, it means that the serial connection that you are using is not bidirectional, and the receiver => flight controller data flow works, but flight controller => receiver doesn't. Id this happens, check your port settings, and (for F4) make sure that the port you are using can support inverted bidirectional.)

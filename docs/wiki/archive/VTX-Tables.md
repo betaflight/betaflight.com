@@ -61,8 +61,8 @@ See https://betaflight.com/docs/development/VTX#vtx-table
 
 While the VTX button is held the STATUS 2 LED will flash N times per second indicating the action that will be taken when the button is released. The flashing starts as soon as the button is held. e.g. You press the button, count flashes and then release as appropriate.
 
-    | Duration      | Function                  | Flashes   |
-    |---------------|---------------------------|-----------|
+| Duration      | Function                  | Flashes   |
+|---------------|---------------------------|-----------|
 
 Example to cycle VTX power
 

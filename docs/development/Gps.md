@@ -166,7 +166,7 @@ This enables sanity checks for a maximum altitude of 50,000m, maximum vertical o
 
 Betaflight on auto-config will use `Stationary` before arming and `Airborne <4g` after arming.
 
-It is recommended to use Airborne <1g, but consult the u-blox documentation for sanity checks.
+It is recommended to use Airborne \<1g, but consult the u-blox documentation for sanity checks.
 
 From the [u-blox protocol specification](https://www.u-blox.com/en/product-resources?query=protocol&legacy=Current):
 
