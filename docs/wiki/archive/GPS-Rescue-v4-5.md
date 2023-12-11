@@ -188,9 +188,13 @@ If the radio or FPV link never recover, let it fly home and it will land itself.
 - set the GPS Rescue Hover Throttle value to the same hover value
 - the hover value to use can be determined by enabling the `Land` mode of Failsafe Stage 2, as described above, at different `Throttle value used while landing` values.
 - enable a Mode switch to activate failsafe, for testing purposes
-  :::CAUTION
-  DO NOT use share Failsafe Mode switch with any other mode!
+- 
+  :::caution
+
+  DO NOT use or share Failsafe Mode switch with any other mode!
+
   :::
+  
 - test your failsafe switch by setting Failsafe Mode to `Land` mode and the failsafe mode to enter Stage 2 directly. The `Throttle value used while landing` should be set to lose altitude slowly. There is no auto-disarm on landing; we just check that the failsafe switch initiates landing mode. Then set Failsafe to initially go through Stage 1, after configuring Stage 1 settings as above. Now when you hit the switch, you'll get 1.5s (by default) of Stage 1, which should put the quad into level mode, and hover for that time, then go to Stage 2. This is a simple close-range way to validate your Stage 1 failsafe settings and to confirm that your failsafe switch works.
 - now, finally, in the Failsafe tab, set failsafe mode to `GPS rescue`
 - the default GPS Rescue settings work for most quads. Read about them further down in this document in case you need to change them.
