@@ -1,7 +1,5 @@
 # GPS
 
-GPS features in Cleanflight are experimental. Please share your findings with the developers.
-
 GPS works best if the GPS receiver is mounted above and away from other sources of interference.
 
 The compass/mag sensor should be well away from sources of magnetic interference, e.g. keep it away from power wires, motors, ESCs.
@@ -13,13 +11,17 @@ Two GPS protocols are supported. NMEA text and UBLOX binary.
 Enable the GPS from the CLI as follows:
 
 1. [configure a serial port to use for GPS.](Serial.md)
-1. set your GPS baud rate
+1. set your GPS baud rate (leave it on AUTO if you are not sure)
 1. enable the `feature GPS`
 1. set the `gps_provider`
 1. connect your GPS to the serial port configured for GPS.
 1. save and reboot.
 
-Note: GPS packet loss has been observed at 115200. Try using 57600 if you experience this.
+:::note
+
+GPS packet loss has been observed at 115200. Try using 57600 if you experience this.
+
+:::
 
 For the connections step check the Board documentation for pins and port numbers.
 
@@ -37,6 +39,12 @@ Set the `gps_provider` appropriately, for example `set gps_provider=UBLOX`
 When using UBLOX it is a good idea to use GPS auto configuration so your FC gets the GPS messages it needs.
 
 Enable GPS auto configuration as follows `set gps_auto_config=ON`.
+
+:::info
+
+In Betaflight 4.5, Auto Config has been rewritten and it is recommended to use. It will work for most pilots.
+
+:::
 
 If you are not using GPS auto configuration then ensure your GPS receiver sends out the correct messages at the right frequency. See below for manual UBlox settings.
 
@@ -142,6 +150,13 @@ Click `Send`.
 This will cause the GPS receive to send the require messages out 10 times a second (10Hz). If your GPS receiver cannot be set to use `100`ms try `200`ms (5Hz) - this is less precise.
 
 #### Dynamic Platform Model
+
+:::info
+
+After Betaflight 4.5 if Auto Config is enabled Dynamic Platform Models can be selected with
+`set gps_ublox_acquire_model` and `set gps_ublox_flight_model` commands.
+
+:::
 
 Next change the mode, click `NAV5 (Navigation 5)` in the Configuration View.
 
