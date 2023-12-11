@@ -436,9 +436,9 @@ Let me try to explain this in a clear way:
 
 As boris say, you have three things:
 
-    Motor Stop (nobody should use that in 2016, so forget it)
-    Air mode (everyone should use that )
-    Pid_at_zero_throttle
+Motor Stop (nobody should use that in 2016, so forget it)
+Air mode (everyone should use that )
+Pid_at_zero_throttle
 
 !! BORIS - CORRECT ME IF I AM WRONG !!
 
@@ -493,17 +493,17 @@ Center frequency should be the mean frequency of your motors, most likely somewh
 When setting the cutoff value you should avoid getting the filter's range below 100Hz. Keep in mind that the attenuation at this frequency is already -3dB.
 
 My very noisy copter with mean motor frequency at 250Hz runs very well with these settings:
+```
+gyro_notch_hz = 250
+gyro_notch_cutoff = 130
 
-    gyro_notch_hz = 250
-    gyro_notch_cutoff = 130
+dterm_notch_hz = 250
+dterm_notch_cutoff = 130
 
-    dterm_notch_hz = 250
-    dterm_notch_cutoff = 130
-
-    gyro_lowpass = 110
-    dterm_lowpass = 0
-    yaw_lowpass = 0
-
+gyro_lowpass = 110
+dterm_lowpass = 0
+yaw_lowpass = 0
+```
 This means that the notch filter will remove noise from gyro before the lowpass filter will improve the signal further.
 Because there is still some noise left in dTerm, another filter is needed. The notch filter alone is enough to remove the remaining noise in my case. It causes less latency than a lowpass filter and keeps the dTerm more in phase with pTerm.
 No filtering is required for yaw for my copter with filtered gyro.

@@ -172,31 +172,31 @@ There is a new task scheduler present in firmware versions greater than 2.2.0 If
 On newer versions on the ßF Configurator the CPU loading is displayed in the Status bar and MUST be less then 100%, preferably less than 50%. If at 100% then decrease the LOOP Rates (Gyro and/or PID), click Save and Reboot and recheck CPU loading.
 
 In the CLI type the _tasks_ command and check the results:
-
-    # tasks
-    Task list:
-    0 - SYSTEM, max = 10 us, avg = 0 us, total = 2 ms
-    1 - GYRO/PID, max = 934 us, avg = 667 us, total = 26004 ms
-    2 - ACCEL, max = 153 us, avg = 122 us, total = 974 ms
-    3 - SERIAL, max = 67 us, avg = 2 us, total = 12 ms
-    4 - BEEPER, max = 8 us, avg = 0 us, total = 3 ms
-    5 - BATTERY, max = 40173 us, avg = 1 us, total = 47 ms
-    6 - RX, max = 180 us, avg = 130 us, total = 483 ms
-    7 - COMPASS, max = 156 us, avg = 125 us, total = 41 ms
-    8 - BARO, max = 137 us, avg = 106 us, total = 273 ms
-    10 - ALTITUDE, max = 264 us, avg = 152 us, total = 165 ms
-    11 - DISPLAY, max = 130302 us, avg = 26263 us, total = 5115 ms
-
+```
+# tasks
+Task list:
+0 - SYSTEM, max = 10 us, avg = 0 us, total = 2 ms
+1 - GYRO/PID, max = 934 us, avg = 667 us, total = 26004 ms
+2 - ACCEL, max = 153 us, avg = 122 us, total = 974 ms
+3 - SERIAL, max = 67 us, avg = 2 us, total = 12 ms
+4 - BEEPER, max = 8 us, avg = 0 us, total = 3 ms
+5 - BATTERY, max = 40173 us, avg = 1 us, total = 47 ms
+6 - RX, max = 180 us, avg = 130 us, total = 483 ms
+7 - COMPASS, max = 156 us, avg = 125 us, total = 41 ms
+8 - BARO, max = 137 us, avg = 106 us, total = 273 ms
+10 - ALTITUDE, max = 264 us, avg = 152 us, total = 165 ms
+11 - DISPLAY, max = 130302 us, avg = 26263 us, total = 5115 ms
+```
 This shows that the copter has Display, Magnetometer, Barometer & Accelerometer systems enabled.
 Try disabling **each one in turn** until the CPU loading is under 100%.
 
 The list of CLI commands to achieve this are (this can be done in the newer Configurator):
-
-    feature -DISPLAY
-    set mag_hardware = NONE
-    set baro_hardware = NONE
-    set acc_hardware = NONE
-
+```
+feature -DISPLAY
+set mag_hardware = NONE
+set baro_hardware = NONE
+set acc_hardware = NONE
+```
 Disabling the Accelerometer will force the copter into Acro mode (no self-leveling in Level and Horizon modes).
 
 **Important:** Remember to save the CLI settings and exit the CLI (otherwise the board will not arm!)
@@ -215,12 +215,12 @@ Make sure your throttle stick's minimum value is lower than min_check! If in the
 Is the Accelerometer Calibrated? Needs to be done once to allow arming.
 
 To determine if the ACC or other sensor enabled is causing problems use the "status" command in the CLI. The "System load" must be less than 100%. If greater than 100% then the processor has too many things to do.
-
-      # status
-      System Uptime: 40 seconds, Voltage: 0 * 0.1V (3S battery - OK), CPU:8%
-      CPU Clock=72MHz, GYRO=MPU6050, ACC=MPU6050.n, BARO=BMP280
-      Cycle Time: 491, I2C Errors: 0, config size: 1308
-
+```
+	# status
+	System Uptime: 40 seconds, Voltage: 0 * 0.1V (3S battery - OK), CPU:8%
+	CPU Clock=72MHz, GYRO=MPU6050, ACC=MPU6050.n, BARO=BMP280
+	Cycle Time: 491, I2C Errors: 0, config size: 1308
+```
 ## Why is the Gyro light turned off and the 3D Model not moving ?
 
 This is a side effect of the accelerometer being disabled. When connected to the Flight Controller via USB, the 3D model in Cleanflight Configurator depends on the accelerometer to rotate properly when the multirotor is moved around. The gyro light being off is just a glitch in the Configurator. Neither of these are anything to worry about, it is perfectly normal.
@@ -449,16 +449,16 @@ Just an example to show you. You don't have to understand the code to understand
 
 Luxfloat P
 Code:
-
-        // -----calculate P component
-        PTerm = RateError * P * TPA;
-
+```
+	// -----calculate P component
+	PTerm = RateError * P * TPA;
+```
 rewrite P
 Code:
-
-        // -----calculate P component
-        PTerm = (RateError * P * TPA) / 128;
-
+```
+	// -----calculate P component
+	PTerm = (RateError * P * TPA) / 128;
+```
 The difference above is that P gain number on rewrite is higher, but is being divided by 128 in the PTerm calculation, while luxfloat uses directly the number you entered from cli. Note that RateError number is using degrees/sec in luxfloat and in rewrite its abstraction from the original gyro output, but both can produce same PTerm when right P is selected.
 
 So if you can find P component what can produce the same PTerm result you will get same behaviour.
@@ -752,9 +752,9 @@ Answer: Yes, this is really effects of aliasing what you are seeing there. Acc h
 If you use Level/Horizon modes then just stick with 1khz or get some very fast F3 target....one that will do full sampled acc even on faster rates.
 
 ## How do I get vbat_pid_compensation system working ?
-
-    set vbat_pid_compensation = ON
-
+```
+set vbat_pid_compensation = ON
+```
 Tune your quad with a full lipo....your PIDs will then be scaled to that reference voltage.
 Voltage scaling from full lipo to empty is limited to 25%. Should be enough as we fly to 3.3v usually.
 

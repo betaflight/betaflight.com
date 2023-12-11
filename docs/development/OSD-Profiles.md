@@ -48,17 +48,17 @@ The steps below are only required if using The Configurator 10.4.0 or earlier.
 ###### OSD PROFILE CONFIG VALUES
 
 The OSD Profile config is stored in the higher order bits, bits 11, 12 & 13 of an OSD element, eg. osd_vbat_pos. This means the initial value, after being configured in the OSD tab needs to be adjusted to add the OSD Profile configuration of the element. To calculate the new value, take the current (initially configured value) of the OSD element and convert it to HEX. Determine which OSD Profiles this element should be visible on and select the corresponding HEX value from the table below. Perform an OR operation between the initial OSD element value (in HEX) and the HEX value from the table. Convert the result to decimal and set the OSD element to this value using the `set` command in the CLI.
-
-    Binary Value    HEX Value    Profile Configuration   Description
-    13 12 11
-     0  0  1        0x0800   -   1                       Visible in OSD Profile 1
-     0  1  0        0x1000   -   2                       Visible in OSD Profile 2
-     0  1  1        0x1800   -   1 and 2                 Visible in OSD Profile 1 and 2 only
-     1  0  0        0x2000   -   3                       Visible in OSD Profile 3 only
-     1  0  1        0x2800   -   1 and 3                 Visible in OSD Profile 1 and 3 only
-     1  1  0        0x3000   -   2 and 3                 Visible in OSD Profile 2 and 3 only
-     1  1  1        0x3800   -   1, 2 and 3              Visible in all OSD Profiles
-
+```
+Binary Value    HEX Value    Profile Configuration   Description
+13 12 11
+	0  0  1        0x0800   -   1                       Visible in OSD Profile 1
+	0  1  0        0x1000   -   2                       Visible in OSD Profile 2
+	0  1  1        0x1800   -   1 and 2                 Visible in OSD Profile 1 and 2 only
+	1  0  0        0x2000   -   3                       Visible in OSD Profile 3 only
+	1  0  1        0x2800   -   1 and 3                 Visible in OSD Profile 1 and 3 only
+	1  1  0        0x3000   -   2 and 3                 Visible in OSD Profile 2 and 3 only
+	1  1  1        0x3800   -   1, 2 and 3              Visible in all OSD Profiles
+```
 Example:
 
 1. osd_vbat_pos = 6560

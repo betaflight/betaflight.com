@@ -17,7 +17,7 @@ The features of the FC are detailed below:
 - MPU6050
 - Brushed motor support for 4 motors (all populated with fets)
 - M5 and M6 broken out (used when converting into a HEX)
-- 8A N Channel fets (10A <5secs)
+- 8A N Channel fets (10A \<5secs)
 - Flight battery voltage monitoring
 - Spektrum Satellite\* (3.3V) or PPM (VBATT) RX input
 - Spektrum bind button (hold on boot to bind)
@@ -32,10 +32,10 @@ The features of the FC are detailed below:
 - Connectors all around edge and on both sides with labels
 
 (\*) Spektrum Compatible DSM2 satellites are supported out of the box. DSMX sat will work with DSM2 protocol with default settings (DSM2, 11bit, 11ms is preset). This is chosen for maximum compatibility. For optimal connection it is recommended to adjust settings to match the capabilities of your transmitter and satellite receiver. If possible it is recommended to use the DSMX protocol since it is known as more reliable. Also to make use of additional channels you should adjust the following two parameters with the BetaFlight Configurator.
-
-    set serialrx_provider = 1   (0 for 1024bit, 1 for 2048bit)
-    set spektrum_sat_bind = 5
-
+```
+set serialrx_provider = 1   (0 for 1024bit, 1 for 2048bit)
+set spektrum_sat_bind = 5
+```
 For more detail of the different bind modes please refer the CleanFlight Spektrum Bind document.
 
 Deltang receivers in serial mode will work like any other Spektrum satellite receiver (10bit, 22ms) only the bind process will be different.

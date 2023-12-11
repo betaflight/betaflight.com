@@ -153,7 +153,7 @@ Betaflight may not be able to support all Targets ( or specific boards) due to t
 - HGLRC AIO F3 v3 (SPRACINGF3)
 - IMPULSERCF3
 - KISSFC
-  Note from sskaug: KISS FCs use a resistor to drive the throttle signal high (pull-up). So it is quite sensitive to capacitance on the ESC signal.
+Note from sskaug: KISS FCs use a resistor to drive the throttle signal high (pull-up). So it is quite sensitive to capacitance on the ESC signal.
 - LUX_RACE
 - LUXV2_RACE
 - MRM Mantis F3 (SPRACINGF3) - Dshot300
@@ -205,7 +205,7 @@ Enter the following commands into the CLI window to re-map output:
 `resource motor 2 A08 `
 `save  `
 
-    See: [AlienFlightNG Support](https://www.alienflightng.com/support/)
+See: [AlienFlightNG Support](https://www.alienflightng.com/support/)
 
 ##### MOTOLAB - (MotoF3, Cyclone & Tempest)
 
@@ -221,7 +221,7 @@ See the [MOTOLAB ](Board---MOTOLAB) Wiki page for other Remapping info.
 
 To allow the use of the LED pin Re-map motor 4 to motor 5 signal out a01, which must also be soldered as such.
 
-    Note: RX must use SBUS since PPM pin is now reassigned to motor 1.
+Note: RX must use SBUS since PPM pin is now reassigned to motor 1.
 
 Link to modification details: https://www.rcgroups.com/forums/showpost.php?p=36608148&postcount=43149
 Follow above and to re-map output type in CLI:
@@ -254,7 +254,7 @@ Follow above and to re-map output type in CLI:
 `resource motor 4 B04 `
 `save  `
 
-    Limitation: BlackBox on the internal SDCard works with MultiShot but not with DShot.
+Limitation: BlackBox on the internal SDCard works with MultiShot but not with DShot.
 
 ##### KOMBINI V1 - Move motor #1 from Output #1 header pin to the PPM input header pin.
 
@@ -283,7 +283,7 @@ LED_STRIP needs disabled and then motor 4 gets remapped to that pad.
 `resource motor 4 A08`
 `save`
 
-    Daryoon got Dshot outputs & the LED Strip to both work:
+Daryoon got Dshot outputs & the LED Strip to both work:
 
 Connect motor 4 to PPM pad and enter following in the CLI.
 `resource ppm none  `
@@ -321,23 +321,23 @@ https://www.rcgroups.com/forums/showthread.php?2864611-BLHeli_32-Power-to-perfor
 https://www.rcgroups.com/forums/showthread.php?2555162-KISS-ESC-24A-Race-Edition-Flyduino-32bit-ESC
 
 - 150, 300, 600, 900, 1200 See the Dshot thread (link above) for ESC code.
-  KISS24 ESC Beep Codes:
+KISS24 ESC Beep Codes:
 - 1beep/second = too many dshot errors (more then 10% are bad) but it doesn't disarm it just tells
 - 2beep/second = no valid signal for at last 1/3 second, it disarmed and stopped the motor (ESC failsave)
 - 3beep/second = it couldn't start the motor or the motor stopped because it was blocked
 
 - NOTE: There Seems to be an Issue with the KISS24 Firmware when running faster Loop Rates.
-  Rossbow reports: We have been doing some testing of the Kiss 24a esc's on BF and it appears the they will not run safely at 4 or 8 khz with Dshot.
-  If you want to test it take the props off and arm the quad in air mode and just let it run at idle on the bench.
-  At 8khz we are seeing between 1 and 6 mins before the esc's start shutting down, it seems they may be getting too many crc errors at 8khz.
-  At 1 and 2 khz we can get 15mins or more, So be warned as you most likely will get dead ducks at 8khz.
-  I have tested 1.08a, 1.08f and 110b RC7 all with the same issue. Oneshot 42 and 125 are fine.
-  BTW its not Betaflight related, it seems the reason the Kiss FC works with the 24a esc's is because it only runs on 1khz with Kiss fw and up to 4 khz on Betaflight. The higher you go in khz the shorter the time before the esc's start to shutdown.
-  So the Kiss FC on BF fw may not show the issue because in the cold weather the flight times are short and at 4khz you may get a full 2 to 2.5min flight with no issue.
-  My advice for using these 24a esc's on BF is either run oneshot42 or run no more than 2khz on Dshot. This is not a guarantee but the best solution until a permanent fix can be found. The Kiss hardware is more than capable of running 8 + khz so I would say its just an esc fw issue.
-  juuuut: No haste I'm on it. I talked with Boris and i have a 8k setup here where I can reproduce it. seems to be some watchdog misbehavior in some throttle situations. but I think i will have a new version soon that fixes it!
-  regards, Felix
-  Alpha fix: https://www.rcgroups.com/forums/showpost.php?p=37048819&postcount=3510
+Rossbow reports: We have been doing some testing of the Kiss 24a esc's on BF and it appears the they will not run safely at 4 or 8 khz with Dshot.
+If you want to test it take the props off and arm the quad in air mode and just let it run at idle on the bench.
+At 8khz we are seeing between 1 and 6 mins before the esc's start shutting down, it seems they may be getting too many crc errors at 8khz.
+At 1 and 2 khz we can get 15mins or more, So be warned as you most likely will get dead ducks at 8khz.
+I have tested 1.08a, 1.08f and 110b RC7 all with the same issue. Oneshot 42 and 125 are fine.
+BTW its not Betaflight related, it seems the reason the Kiss FC works with the 24a esc's is because it only runs on 1khz with Kiss fw and up to 4 khz on Betaflight. The higher you go in khz the shorter the time before the esc's start to shutdown.
+So the Kiss FC on BF fw may not show the issue because in the cold weather the flight times are short and at 4khz you may get a full 2 to 2.5min flight with no issue.
+My advice for using these 24a esc's on BF is either run oneshot42 or run no more than 2khz on Dshot. This is not a guarantee but the best solution until a permanent fix can be found. The Kiss hardware is more than capable of running 8 + khz so I would say its just an esc fw issue.
+juuuut: No haste I'm on it. I talked with Boris and i have a 8k setup here where I can reproduce it. seems to be some watchdog misbehavior in some throttle situations. but I think i will have a new version soon that fixes it!
+regards, Felix
+Alpha fix: https://www.rcgroups.com/forums/showpost.php?p=37048819&postcount=3510
 
 #### BLheli-S:
 
@@ -402,96 +402,96 @@ If you don't and you have problems, then guess what?
 It is good to check the pictures in the Cap removal links and compare to the ESC you have in your hand.**
 
 - Aikon 20A/Spedix 20A
-  Cap removal for both: https://www.rcgroups.com/forums/showpost.php?p=36182572&postcount=1319
+Cap removal for both: https://www.rcgroups.com/forums/showpost.php?p=36182572&postcount=1319
 - Aikon SEFM v2 30A - (C-H-25)
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36214609&postcount=1614
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36214609&postcount=1614
 - Aikon SEFM v1 30A - (C-H-15)
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36213821&postcount=1611
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36214609&postcount=1614
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36213821&postcount=1611
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36214609&postcount=1614
 - AIKON SEFM 20A - with cap removed
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36214609&postcount=1614
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36214609&postcount=1614
 - Armattan 20A and 30A - 2v1 need cap removal, v2 (now shipping from Armattan) work without modification
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36416316&postcount=2432
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36416316&postcount=2432
 - BeeRotor BLS20A - with cap removed
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36217144&postcount=1654
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36217144&postcount=1654
 - BumpBee_S - with cap removed
-  Cap removal: https://nathan.vertile.com/blog/2016/11/14/flash-blheli_s-with-dshot/#flashing
+Cap removal: https://nathan.vertile.com/blog/2016/11/14/flash-blheli_s-with-dshot/#flashing
 - Cicada BB2 10A -
 - Cicada v1 20A -
 - Cicada v2 20A -
 - Cicada v1 30A -
 - Cicada v2 30A - with cap removed
-  Cap removal: https://www.electricwingman.com/guides/building-fpv-racing-quadcopter.aspx
+Cap removal: https://www.electricwingman.com/guides/building-fpv-racing-quadcopter.aspx
 - Cicada 4n1 20a V2 - with caps removed
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36286446&postcount=2036
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36286446&postcount=2036
 - Cicada 35Ax4 35A - with caps removed
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36384215&postcount=2337
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36384215&postcount=2337
 - Cobra CP30A ESC 30A BLheli_S -
 - DALRC BS25A 16.5 - with cap removed
-  Cap removal: https://www.rcgroups.com/forums/showthread.php?t=2777858#post36223562
-  https://www.rcgroups.com/forums/showthread.php?t=2777858
+Cap removal: https://www.rcgroups.com/forums/showthread.php?t=2777858#post36223562
+https://www.rcgroups.com/forums/showthread.php?t=2777858
 - DYS XS20 v1.x
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36297135&postcount=2068
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36297135&postcount=2068
 - DYS XS20A v2 or XSC20A
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36253268&postcount=1878
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36253268&postcount=1878
 - DYS XS30A - with cap removed
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36133930&postcount=836
-  https://www.rcgroups.com/forums/showpost.php?p=36245544&postcount=1848
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36133930&postcount=836
+https://www.rcgroups.com/forums/showpost.php?p=36245544&postcount=1848
 - DYS XSD20A | XSD30A - New product announcement:
-  https://www.rcgroups.com/forums/showthread.php?t=2784634#post36278564
+https://www.rcgroups.com/forums/showthread.php?t=2784634#post36278564
 - Emax Lightning S 35A -
 - Flycolor Raptor BLS-02 -
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=37070719&postcount=10
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=37070719&postcount=10
 - FVT Littlebee 20A-S
 - FVT LittleBee-Spring 20Ax4 - Claims Dshot but Unknown
-  Thread: https://www.rcgroups.com/forums/showthread.php?2800280-Favourite-FVT-LittleBee-Spring-20Ax4-4-in-1-Blheli_S-ESC-w-built-in-5V-12V-BEC
+Thread: https://www.rcgroups.com/forums/showthread.php?2800280-Favourite-FVT-LittleBee-Spring-20Ax4-4-in-1-Blheli_S-ESC-w-built-in-5V-12V-BEC
 - LB30a 4 in 1 spring edition - works with dshot600 out of the box.
 - LittleBee_S 20A (A-H-15)-
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36181966&postcount=40934
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36181966&postcount=40934
 - Littlebee_S 30A
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36230015&postcount=1745
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36230015&postcount=1745
 - Lumenier 30A
 - Maverick 24A - New product announcement:
-  https://www.rcgroups.com/forums/showthread.php?2795245-Fully-compatible-with-Dshot-New-upgraded-32-bit-Maverick-24A-ESC#post36408093
+https://www.rcgroups.com/forums/showthread.php?2795245-Fully-compatible-with-Dshot-New-upgraded-32-bit-Maverick-24A-ESC#post36408093
 - MRM ZEUS-S 20A - with CAP removed (see FVT littlebee-s 20a cap removal)
 - Multistar BLHeli_S 20A - shipped without the signal filter cap
 - Multistar BLHeli_S 30A -
 - Racerstar v2 6a -
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36268041&postcount=1961
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36268041&postcount=1961
 - Racerstar v1 20A -
 - Racerstar v1 30A -
 - Racerstar v2 30a -
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36209787&postcount=1569
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36209787&postcount=1569
 - Racerstar v2 12A -
 - Racerstar v2 20A -
 - Racerstar 25a -
 - Racerstar v2 35A -
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36654973&postcount=3006
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36654973&postcount=3006
 - Racerstar MS15A -
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36426101&postcount=336
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36426101&postcount=336
 - Racerstar MS25A - (A_H_20) - need signal cap removed, same cap as Racerstar MS35A
 - Racerstar MS35A -
-  Cap removal with before and after O'scope traces: https://www.rcgroups.com/forums/showpost.php?p=36588994&postcount=2834
+Cap removal with before and after O'scope traces: https://www.rcgroups.com/forums/showpost.php?p=36588994&postcount=2834
 - Racerstar 4in1 20A V1 - need the signal cap(s) removed.
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36550495&postcount=178
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36550495&postcount=178
 - Racerstar RS20Ax4 V2 Blheli_S 20A 2-4S 4 in 1 ESC -
-  Link: https://www.rcgroups.com/forums/showthread.php?t=2782732#post36254434
-  Cap removal:https://www.rcgroups.com/forums/showpost.php?p=36654973&postcount=3006
+Link: https://www.rcgroups.com/forums/showthread.php?t=2782732#post36254434
+Cap removal:https://www.rcgroups.com/forums/showpost.php?p=36654973&postcount=3006
 - Racerstar RS20A v2 - with cap removed
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36503849&postcount=2672
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36503849&postcount=2672
 - Racerstar RS30A LiteS - with cap removed.
-  Cap removal: https://www.rcgroups.com/forums/showthread.php?2690769-Racerstar-Blheli_S-ESCs-%28v2-just-released%29-10-for-20a-12-for-30a-30-4in1-20a/page38
+Cap removal: https://www.rcgroups.com/forums/showthread.php?2690769-Racerstar-Blheli_S-ESCs-%28v2-just-released%29-10-for-20a-12-for-30a-30-4in1-20a/page38
 - Racerstar RS30Ax4 v2 (4in1) -
-  More info: https://www.rcgroups.com/forums/showthread.php?2790572-Dshot-bench-test-super-smooth-motor-spining-at-1011-REVO-and-Racerstar-BLHeli_S
+More info: https://www.rcgroups.com/forums/showthread.php?2790572-Dshot-bench-test-super-smooth-motor-spining-at-1011-REVO-and-Racerstar-BLHeli_S
 - Schubkraft 35A 4in1 (SCHUBKRAFT X4 BB21, 45A Burst) V2 - works out of the box
 - Spedix ES 20 lite - with cap removed
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36203466&postcount=1509
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36203466&postcount=1509
 - Spedix 25a - with signal cap removed
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36324412&postcount=2157
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36324412&postcount=2157
 - Spedix ES30 HV 16.43 - with signal cap removed
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36205800&postcount=1527
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36205800&postcount=1527
 - TBS 25 - with cap removed
-  Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36209076&postcount=1548
+Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36209076&postcount=1548
 - Xrotor mini 30A BL_S - need signal cap removed
 - XRotor Micro BLHeli-S 30A - need signal cap removed
 - ZTW polaris 30A (A_H_20 16.42) -

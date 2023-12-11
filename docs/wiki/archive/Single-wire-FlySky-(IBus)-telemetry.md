@@ -48,7 +48,7 @@ sensors to test with
 
      _______
     /       \                                             /---------\
-    | STM32 |--UART TX-->[Bi-directional @ 115200 baud]<--| IBUS RX |
+    | STM32 |--UART TX-->[Bi-directional @ 115200 baud]\<--| IBUS RX |
     |  uC   |--UART RX--x[not connected]                  \---------/
     \_______/
 

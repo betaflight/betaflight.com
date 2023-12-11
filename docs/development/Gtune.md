@@ -48,17 +48,17 @@ Some other notes and instructions can be found here:
 > http://www.rcgroups.com/forums/showpost.php?p=31321635&postcount=6160 > http://www.rcgroups.com/forums/showpost.php?p=31525114&postcount=7150
 
 ## Parameters and their function:
-
-    gtune_loP_rll        = 10  [0..200] Lower limit of ROLL P during G-Tune.  Note "10" means "1.0" in the GUI.
-    gtune_loP_ptch       = 10  [0..200] Lower limit of PITCH P during G-Tune. Note "10" means "1.0" in the GUI.
-    gtune_loP_yw         = 10  [0..200] Lower limit of YAW P during G-Tune.   Note "10" means "1.0" in the GUI.
-    gtune_hiP_rll        = 100 [0..200] Higher limit of ROLL P during G-Tune. 0 Disables tuning for that axis.  Note "100" means "10.0" in the GUI.
-    gtune_hiP_ptch       = 100 [0..200] Higher limit of PITCH P during G-Tune. 0 Disables tuning for that axis. Note "100" means "10.0" in the GUI.
-    gtune_hiP_yw         = 100 [0..200] Higher limit of YAW P during G-Tune. 0 Disables tuning for that axis.   Note "100" means "10.0" in the GUI.
-    gtune_pwr            = 0   [0..10] Strength of adjustment
-    gtune_settle_time    = 450 [200..1000] Settle time in ms
-    gtune_average_cycles = 16  [8..128] Number of looptime cycles used for gyro average calcullation
-
+```
+gtune_loP_rll        = 10  [0..200] Lower limit of ROLL P during G-Tune.  Note "10" means "1.0" in the GUI.
+gtune_loP_ptch       = 10  [0..200] Lower limit of PITCH P during G-Tune. Note "10" means "1.0" in the GUI.
+gtune_loP_yw         = 10  [0..200] Lower limit of YAW P during G-Tune.   Note "10" means "1.0" in the GUI.
+gtune_hiP_rll        = 100 [0..200] Higher limit of ROLL P during G-Tune. 0 Disables tuning for that axis.  Note "100" means "10.0" in the GUI.
+gtune_hiP_ptch       = 100 [0..200] Higher limit of PITCH P during G-Tune. 0 Disables tuning for that axis. Note "100" means "10.0" in the GUI.
+gtune_hiP_yw         = 100 [0..200] Higher limit of YAW P during G-Tune. 0 Disables tuning for that axis.   Note "100" means "10.0" in the GUI.
+gtune_pwr            = 0   [0..10] Strength of adjustment
+gtune_settle_time    = 450 [200..1000] Settle time in ms
+gtune_average_cycles = 16  [8..128] Number of looptime cycles used for gyro average calcullation
+```
 So you have lower and higher limits for each P for every axis. The preset range (GUI: 1.0 - 10.0) is quiet broad to represent most setups.
 
 If you want tighter or more loose ranges change them here. gtune_loP_XXX can be configured lower than "10" that means a P of "1.0" in the GUI. So you can have "Zero P" but you may get sluggish initial control.

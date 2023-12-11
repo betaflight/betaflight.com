@@ -141,9 +141,9 @@ These boards are called differently depending on the distributor.
 
 ## Other Resources
 
-RCgroups thread for the F4 AIO at <https://www.rcgroups.com/forums/showthread.php?2754926-Omnibus-F4-AIO>
+RCgroups thread for the F4 AIO at https://www.rcgroups.com/forums/showthread.php?2754926-Omnibus-F4-AIO
 
-RCgroups thread for the F4 Pro at <https://www.rcgroups.com/forums/showthread.php?2801694-Omnibus-f4-pro>
+RCgroups thread for the F4 Pro at https://www.rcgroups.com/forums/showthread.php?2801694-Omnibus-f4-pro
 
 Layouts for F4 Pro [Top](https://www.rcgroups.com/forums/showatt.php?attachmentid=9631520&d=1482680395) [Bottom](https://www.rcgroups.com/forums/showatt.php?attachmentid=9631521&d=1482680397)
 

@@ -106,7 +106,7 @@ board). SoftSerial ports can be used for the Blackbox. However, because they are
 rate will need to be severely reduced to compensate. Therefore the use of SoftSerial is not recommended.
 
 When using a hardware serial port, Blackbox should be set to at least 115200 baud on that port. When using fast
-looptimes (<2500), a baud rate of 250000 should be used instead in order to reduce dropped frames.
+looptimes (\<2500), a baud rate of 250000 should be used instead in order to reduce dropped frames.
 
 The serial port used for Blackbox cannot be shared with any other function (e.g. GPS, telemetry) except the MSP
 protocol. If MSP is used on the same port as Blackbox, then MSP will be active when the board is disarmed, and Blackbox

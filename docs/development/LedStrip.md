@@ -309,13 +309,13 @@ The color is selected according to the following table:
 
 | Frequency range | Default color | Color index |
 | --------------- | ------------- | ----------- |
-| <= 5672         | White         | 1           |
-| > 5672 <= 5711  | Red           | 2           |
-| > 5711 <= 5750  | Orange        | 3           |
-| > 5750 <= 5789  | Yellow        | 4           |
-| > 5789 <= 5829  | Green         | 6           |
-| > 5829 <= 5867  | Blue          | 10          |
-| > 5867 <= 5906  | Dark violet   | 11          |
+| \<= 5672        | White         | 1           |
+| > 5672 \<= 5711  | Red           | 2           |
+| > 5711 \<= 5750  | Orange        | 3           |
+| > 5750 \<= 5789  | Yellow        | 4           |
+| > 5789 \<= 5829  | Green         | 6           |
+| > 5829 \<= 5867  | Blue          | 10          |
+| > 5867 \<= 5906  | Dark violet   | 11          |
 | > 5906          | Deep pink     | 13          |
 
 The default color can be changed by double-clicking the color and moving the Hue slider or by using the color command in the CLI.
@@ -705,15 +705,16 @@ Also check that the feature `LED_STRIP` was correctly enabled and that it does n
 If your board does not have a physical LED_STRIP pin you still can use this feature but configuration is dependend on target resources.
 
 An example for a Foxeer F745V3_AIO board using SERIAL_RX 1 as LED_STRIP:
-
-    resource SERIAL_RX 1 A10
-    resource SERIAL_RX 1 NONE
-    resource LED_STRIP 1 A10
-    timer show # show current timer list
-    timer A10 list # check available timers for next commmand
-    timer A10 AF1
-    dma show # show current dma list
-    dma pin A10 list # check available dma pins for next command
-    dma pin A10 0
-    feature LED_STRIP
-    save
+```
+resource SERIAL_RX 1 A10
+resource SERIAL_RX 1 NONE
+resource LED_STRIP 1 A10
+timer show # show current timer list
+timer A10 list # check available timers for next commmand
+timer A10 AF1
+dma show # show current dma list
+dma pin A10 list # check available dma pins for next command
+dma pin A10 0
+feature LED_STRIP
+save
+```

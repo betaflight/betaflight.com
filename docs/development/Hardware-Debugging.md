@@ -89,15 +89,16 @@ Run the Launch the J-Link GDB Server program and configure using UI.
 ##### Windows
 
 STM32F103 targets
-
-    "C:\Program Files (x86)\UTILS\openocd-0.8.0\bin-x64\openocd-x64-0.8.0.exe" -f interface/stlink-v2.cfg -f target/stm32f1x_stlink.cfg
-
+```
+"C:\Program Files (x86)\UTILS\openocd-0.8.0\bin-x64\openocd-x64-0.8.0.exe" -f interface/stlink-v2.cfg -f target/stm32f1x_stlink.cfg
+```
 STM32F30x targets
-
-    "C:\Program Files (x86)\UTILS\openocd-0.8.0\bin-x64\openocd-x64-0.8.0.exe" -f scripts\board\stm32f3discovery.cfg
-
+```
+"C:\Program Files (x86)\UTILS\openocd-0.8.0\bin-x64\openocd-x64-0.8.0.exe" -f scripts\board\stm32f3discovery.cfg
+```
 ##### OSX/Linux
 
 STM32F30x targets
-
-      openocd -f /usr/share/openocd/scripts/board/stm32vldiscovery.cfg
+```
+	openocd -f /usr/share/openocd/scripts/board/stm32vldiscovery.cfg
+```
