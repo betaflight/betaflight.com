@@ -7,17 +7,17 @@ The Spektrum bind code is enabled for most targets, some boards may not work due
 ## Configure the bind code
 
 The following parameters can be used to enable and configure this in the related target.h file:
-
-    SPEKTRUM_BIND          Enables the Spektrum bind code
-    BIND_PORT  GPIOA       Defines the port for the bind pin
-    BIND_PIN   Pin_3       Defines the bind pin (the satellite receiver is connected to)
-
+```
+SPEKTRUM_BIND          Enables the Spektrum bind code
+BIND_PORT  GPIOA       Defines the port for the bind pin
+BIND_PIN   Pin_3       Defines the bind pin (the satellite receiver is connected to)
+```
 This is to activate the hardware bind plug feature
-
-    HARDWARE_BIND_PLUG     Enables the hardware bind plug feature
-    BINDPLUG_PORT  GPIOB   Defines the port for the hardware bind plug
-    BINDPLUG_PIN   Pin_5   Defines the hardware bind plug pin
-
+```
+HARDWARE_BIND_PLUG     Enables the hardware bind plug feature
+BINDPLUG_PORT  GPIOB   Defines the port for the hardware bind plug
+BINDPLUG_PIN   Pin_5   Defines the hardware bind plug pin
+```
 ## Hardware
 
 The hardware bind plug will be enabled via defining HARDWARE_BIND_PLUG during building of the firmware. BINDPLUG_PORT and BINDPLUG_PIN also need to be defined (please see above). This is done automatically if the AlienFlight firmware is built. The hardware bind plug is expected between the defined bind pin and ground.

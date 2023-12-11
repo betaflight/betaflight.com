@@ -328,7 +328,7 @@ If you have use Dynamic Filter on, then (UAV Tech suggests) turn off Gyro Notch 
 - High (2KHz sampling)
   - 166Hz to 900Hz
   - lower min = 133Hz | Ctr min = 166Hz
-  - smaller <3" Quads | High KV | 5 on 6S
+  - smaller \<3" Quads | High KV | 5 on 6S
 
 ### Always check motors temperature after changing any filter
 
@@ -958,7 +958,7 @@ _Priority Direct_ seems to get imported to Europe legally and then re-shipped fr
 
 _European Direct_ is the same as Priority Direct, it ships with a parcel company instead of regular mail, I have personally had some trouble getting these packages.
 
-_Default Shipping_ everything that's non taxable (shipments <E21 over here) and I can wait for, I do with the default free shipping.
+_Default Shipping_ everything that's non taxable (shipments \<E21 over here) and I can wait for, I do with the default free shipping.
 _Air Parcel Register_ Chinese airmail, will not always taxed.
 
 _EMS_ will get taxed but the service charge for the tax handling should be included in the shipping price.

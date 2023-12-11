@@ -154,9 +154,9 @@ These two parameters should not need adjusting in most cases. To confirm that th
 
 The Dynamic Idle debug returns:
 
-    0 : motorRangeMinIncrease * 1000
-    1 : targetRpsChangeRate (simple RPM error * idle_adjustment_speed)
-    2 : error (amount of error to fix)
-    3 : minRps (lowest current motor rpm, in revolutions per second * 10)
+0 : motorRangeMinIncrease * 1000
+1 : targetRpsChangeRate (simple RPM error * idle_adjustment_speed)
+2 : error (amount of error to fix)
+3 : minRps (lowest current motor rpm, in revolutions per second * 10)
 
 So, for example, a minRps value of 500 corresponds to 50.0 \* 60 = 3000rpm

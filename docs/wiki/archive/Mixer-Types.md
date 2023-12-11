@@ -6,19 +6,19 @@ Added in this PR: https://github.com/betaflight/betaflight/pull/10370
 
 ### **Mixer type: LEGACY (Current mixer)**
 
-**set mixer_type = LEGACY** <--- enabled by default
+**set mixer_type = LEGACY** \<--- enabled by default
 
 ![image](https://user-images.githubusercontent.com/10757508/100614257-294ad800-3316-11eb-9ccf-d260d03e541e.png)
 
 ### **Mixer type: LINEAR**
 
-**set mixer_type = LINEAR** <--- to enable
+**set mixer_type = LINEAR** \<--- to enable
 
 ![image](https://user-images.githubusercontent.com/10757508/100615013-49c76200-3317-11eb-877d-f0f181dcb204.png)
 
 ### **Mixer type DYNAMIC:**
 
-**set mixer_type = DYNAMIC** <--- to enable
+**set mixer_type = DYNAMIC** \<--- to enable
 
 ![image](https://user-images.githubusercontent.com/10757508/100614211-120bea80-3316-11eb-8510-8d58d0c69c38.png)
 

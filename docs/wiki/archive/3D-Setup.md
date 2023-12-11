@@ -46,42 +46,42 @@ Consult your ESC manual for how to enable bi-directional mode on your ESC.
 
 - **BL Heli ESC:**
 
-  (norm/reverse/birectional slider in BLHeli GUI) and set max pwm in the ESC GUI to the maximum your transmitter outputs on the throttle channel (normally 2000us) and min pwm to the minimum (normally 1000us) and the midpoint to halfway between (normally 1500us). The ESC will not ouput to the motors if its input is at the midpoint +/- a small deadband.
+(norm/reverse/birectional slider in BLHeli GUI) and set max pwm in the ESC GUI to the maximum your transmitter outputs on the throttle channel (normally 2000us) and min pwm to the minimum (normally 1000us) and the midpoint to halfway between (normally 1500us). The ESC will not ouput to the motors if its input is at the midpoint +/- a small deadband.
 
 - **Kiss 24A ESC:**
 
-      To teach the transmitter path (throttle path) the ESC / controller must be connected to a receiver
+To teach the transmitter path (throttle path) the ESC / controller must be connected to a receiver
 
-  or FC, set the throttle signal at full throttle (peak throttle).Connect the LiPo to the ESC / controller.
-  A beep indicates the confirmation that the programming mode is activated. Now reduce the throttle
-  signal to minimum (normally 1000μs,), and wait for the restart of the speed controller (audible
-  signal high-low-high). The throttle pas is now programmed and the ESC/controller is ready for use.
-  Caution: The loads, that arise for the ESC in the 3D mode, are up to 3 times higher!
+or FC, set the throttle signal at full throttle (peak throttle).Connect the LiPo to the ESC / controller.
+A beep indicates the confirmation that the programming mode is activated. Now reduce the throttle
+signal to minimum (normally 1000μs,), and wait for the restart of the speed controller (audible
+signal high-low-high). The throttle pas is now programmed and the ESC/controller is ready for use.
+Caution: The loads, that arise for the ESC in the 3D mode, are up to 3 times higher!
 
-      3D mode: After the throttle travel has been programmed as described, the 3D mode can be activated
+3D mode: After the throttle travel has been programmed as described, the 3D mode can be activated
 
-  as follows: Disconnect the power supply, put the transmitter signal at full throttle, connect power
-  again, wait for beep. Adjusting the throttle to the middle position (half throttle path) and wait for
-  restart of the ECS/ speed controller (signal: high-low-high). The 3D mode is now active. Important!
-  speed controller now s tarts only at the throttle center position. Deactivation: Teach new master
-  travel.
+as follows: Disconnect the power supply, put the transmitter signal at full throttle, connect power
+again, wait for beep. Adjusting the throttle to the middle position (half throttle path) and wait for
+restart of the ECS/ speed controller (signal: high-low-high). The 3D mode is now active. Important!
+speed controller now s tarts only at the throttle center position. Deactivation: Teach new master
+travel.
 
 - **Simon K ESC:**
-  Unlike BLHeli, SimonK firmware must be compiled specifically to support 3D mode.
+Unlike BLHeli, SimonK firmware must be compiled specifically to support 3D mode.
 
-      To program a SimonK ESC to support 3D mode, one must edit the appropriate firmware configuration file to enable the following feature :
+To program a SimonK ESC to support 3D mode, one must edit the appropriate firmware configuration file to enable the following feature :
 
-  RC_PULS_REVERSE = 1
+RC_PULS_REVERSE = 1
 
-      It is also recommended to disable stick calibration, as there is no way to reconfigure the mid_point at runtime.
+It is also recommended to disable stick calibration, as there is no way to reconfigure the mid_point at runtime.
 
-  RC_CALIBRATION = 0
+RC_CALIBRATION = 0
 
-      By default, SimonK sets the neutral throttle point (MID_RC_PULS) to halfway between minimum (STOP_RC_PULS, set to 1060), and maximum, (FULL_RC_PULSE, set to 1860) - so a value of 1460.  You can change these values as you desire, but these defaults work well.
+By default, SimonK sets the neutral throttle point (MID_RC_PULS) to halfway between minimum (STOP_RC_PULS, set to 1060), and maximum, (FULL_RC_PULSE, set to 1860) - so a value of 1460.  You can change these values as you desire, but these defaults work well.
 
-  MID_RC_PULS = = (STOP_RC_PULS + FULL_RC_PULS) / 2
+MID_RC_PULS = = (STOP_RC_PULS + FULL_RC_PULS) / 2
 
-      The most common way to configure, compile, and flash SimonK esc's is using the KKFlash tool or the Chrome App "RapidFlash".  Both remove the complexity of building a compile environment for the Atmel MCU on the ESC.  The RapidFlash tool is a bit easier to use than the KKFLash tool.
+The most common way to configure, compile, and flash SimonK esc's is using the KKFlash tool or the Chrome App "RapidFlash".  Both remove the complexity of building a compile environment for the Atmel MCU on the ESC.  The RapidFlash tool is a bit easier to use than the KKFLash tool.
 
 **Setup the following parameters in the CLI:**
 

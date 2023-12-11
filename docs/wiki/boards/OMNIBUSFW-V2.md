@@ -43,25 +43,25 @@ Omnibus Fireworks supports 3-6s LIPO direct input, contains a built-in hall effe
 
 ### Fireworks V1
 
-    Changes since V1:
-    * Footprints for (approx 8.9mm(L) x 4.2mm(W)) ESC output capacitors. Airbot recommends a TMJE106K050RCQXC.
-    * Solder pads for SmartAudio (UART2/GPIO PA2) and Camera Control (GPIO PB9)
-    * IMU reoriented
-    * Ribbon cable fully contained within IMU cage
-    * 8V@1A (buck) switching regulator and LC filter added for camera and VTX
-    * Smartport uses software serial on GPIO PA9. Airbot claims this increases the quantity of UARTs to 5.
+Changes since V1:
+* Footprints for (approx 8.9mm(L) x 4.2mm(W)) ESC output capacitors. Airbot recommends a TMJE106K050RCQXC.
+* Solder pads for SmartAudio (UART2/GPIO PA2) and Camera Control (GPIO PB9)
+* IMU reoriented
+* Ribbon cable fully contained within IMU cage
+* 8V@1A (buck) switching regulator and LC filter added for camera and VTX
+* Smartport uses software serial on GPIO PA9. Airbot claims this increases the quantity of UARTs to 5.
 
 (More information will need to be provided on Betaflight's support of software serial on PA9)
 
 ### Omnibus F4 V6
 
-    Features:
-    * STM32 F405 MCU
-    * SBUS/PPM input (Pinheaders)
-    * 6PWM output (1-4Pinheaders and Sh1.0 Plug, 5-6 as Pinheaders)
-    * INCL. BARO BMP280
-    * SPI Sensor MPU6000
-    * Flash
+Features:
+* STM32 F405 MCU
+* SBUS/PPM input (Pinheaders)
+* 6PWM output (1-4Pinheaders and Sh1.0 Plug, 5-6 as Pinheaders)
+* INCL. BARO BMP280
+* SPI Sensor MPU6000
+* Flash
 
 ## FAQ & Known Issues
 
