@@ -208,7 +208,7 @@ const utils = {
     ) {
       return object._highlightResult.hierarchy_camel[property].value;
     }
-    if (object._highlightResult && object._highlightResult[property] && object._highlightResult[property].value) {
+    if (object._highlightResult && object._highlightResult && object._highlightResult[property] && object._highlightResult[property].value) {
       return object._highlightResult[property].value;
     }
     return object[property];
