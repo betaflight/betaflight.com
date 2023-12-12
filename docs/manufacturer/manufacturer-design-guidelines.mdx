@@ -393,93 +393,109 @@ As reference please choose the defines for your target from this list as applica
 
 Define at least one gyro and one accelerometer.
 
-    #define USE_GYRO_SPI_MPU6000
-    #define USE_ACC_SPI_MPU6000
-    #define USE_GYRO_SPI_MPU6500
-    #define USE_ACC_SPI_MPU6500
-    #define USE_GYRO_SPI_MPU9250
-    #define USE_ACC_SPI_MPU9250
-    #define USE_GYRO_SPI_ICM20602
-    #define USE_ACC_SPI_ICM20602
-    #define USE_GYRO_SPI_ICM20689
-    #define USE_ACC_SPI_ICM20689
-    #define USE_ACCGYRO_BMI270
-    #define USE_GYRO_SPI_ICM42605
-    #define USE_ACC_SPI_ICM42605
-    #define USE_GYRO_SPI_ICM42688P
-    #define USE_ACC_SPI_ICM42688P
-    #define USE_ACCGYRO_LSM6DSO
-    #define USE_ACCGYRO_LSM6DSV16X
+```
+#define USE_GYRO_SPI_MPU6000
+#define USE_ACC_SPI_MPU6000
+#define USE_GYRO_SPI_MPU6500
+#define USE_ACC_SPI_MPU6500
+#define USE_GYRO_SPI_MPU9250
+#define USE_ACC_SPI_MPU9250
+#define USE_GYRO_SPI_ICM20602
+#define USE_ACC_SPI_ICM20602
+#define USE_GYRO_SPI_ICM20689
+#define USE_ACC_SPI_ICM20689
+#define USE_ACCGYRO_BMI270
+#define USE_GYRO_SPI_ICM42605
+#define USE_ACC_SPI_ICM42605
+#define USE_GYRO_SPI_ICM42688P
+#define USE_ACC_SPI_ICM42688P
+#define USE_ACCGYRO_LSM6DSO
+#define USE_ACCGYRO_LSM6DSV16X
+```
 
 ### 4.2.2 Defines for FLASH
 
 Define correct flash driver(s) only if physical present on the board.
 
-    #define USE_FLASH_M25P16           // 16MB Micron M25P16 and others (https://github.com/betaflight/betaflight/blob/master/src/main/drivers/flash_m25p16.c#L68)
-    #define USE_FLASH_W25N01G          // 1Gb NAND flash support - PLEASE AVOID USING this chip (slow, OSD issues)
-    #define USE_FLASH_W25M             // 16, 32, 64 or 128MB Winbond stacked die support
-    #define USE_FLASH_W25M512          // 512Kb (256Kb x 2 stacked) NOR flash support
-    #define USE_FLASH_W25M02G          // 2Gb (1Gb x 2 stacked) NAND flash support
-    #define USE_FLASH_W25Q128FV        // 16MB Winbond 25Q128 and the 8MB Winbond W25Q8 types
+```
+#define USE_FLASH_M25P16           // 16MB Micron M25P16 and others (https://github.com/betaflight/betaflight/blob/master/src/main/drivers/flash_m25p16.c#L68)
+#define USE_FLASH_W25N01G          // 1Gb NAND flash support - PLEASE AVOID USING this chip (slow, OSD issues)
+#define USE_FLASH_W25M             // 16, 32, 64 or 128MB Winbond stacked die support
+#define USE_FLASH_W25M512          // 512Kb (256Kb x 2 stacked) NOR flash support
+#define USE_FLASH_W25M02G          // 2Gb (1Gb x 2 stacked) NAND flash support
+#define USE_FLASH_W25Q128FV        // 16MB Winbond 25Q128 and the 8MB Winbond W25Q8 types
+```
 
 ### 4.2.3 Defines for BARO
 
 Define a barometer only if physical present on the board.
 
-    #define USE_BARO_MS5611
-    #define USE_BARO_SPI_MS5611
-    #define USE_BARO_BMP280
-    #define USE_BARO_SPI_BMP280
-    #define USE_BARO_BMP388
-    #define USE_BARO_SPI_BMP388
-    #define USE_BARO_LPS
-    #define USE_BARO_SPI_LPS
-    #define USE_BARO_QMP6988
-    #define USE_BARO_SPI_QMP6988
-    #define USE_BARO_DPS310
-    #define USE_BARO_SPI_DPS310
-    #define USE_BARO_2SMBP_02B
-    #define USE_BARO_SPI_2SMBP_02B
-    #define USE_BARO_LPS22DF
-    #define USE_BARO_SPI_LPS22DF
+```
+#define USE_BARO_MS5611
+#define USE_BARO_SPI_MS5611
+#define USE_BARO_BMP280
+#define USE_BARO_SPI_BMP280
+#define USE_BARO_BMP388
+#define USE_BARO_SPI_BMP388
+#define USE_BARO_LPS
+#define USE_BARO_SPI_LPS
+#define USE_BARO_QMP6988
+#define USE_BARO_SPI_QMP6988
+#define USE_BARO_DPS310
+#define USE_BARO_SPI_DPS310
+#define USE_BARO_2SMBP_02B
+#define USE_BARO_SPI_2SMBP_02B
+#define USE_BARO_LPS22DF
+#define USE_BARO_SPI_LPS22DF
+```
 
 ### 4.2.4 Defines for MAG
 
 Define a magnetometer only if physical present on the board.
 
-    #define USE_MAG_DATA_READY_SIGNAL
-    #define USE_MAG_HMC5883
-    #define USE_MAG_SPI_HMC5883
-    #define USE_MAG_QMC5883
-    #define USE_MAG_LIS3MDL
-    #define USE_MAG_AK8963
-    #define USE_MAG_MPU925X_AK8963
-    #define USE_MAG_SPI_AK8963
-    #define USE_MAG_AK8975
-    #define USE_MAG_IST8310
+```
+#define USE_MAG_DATA_READY_SIGNAL
+#define USE_MAG_HMC5883
+#define USE_MAG_SPI_HMC5883
+#define USE_MAG_QMC5883
+#define USE_MAG_LIS3MDL
+#define USE_MAG_AK8963
+#define USE_MAG_MPU925X_AK8963
+#define USE_MAG_SPI_AK8963
+#define USE_MAG_AK8975
+#define USE_MAG_IST8310
+```
 
 ### 4.2.5 Defines for SX1280
 
 For SPI based SX1280 target designs add the following defines:
 
-    #define USE_RX_EXPRESSLRS
-    #define USE_RX_EXPRESSLRS_TELEMETRY
-    #define USE_RX_SX1280
-    #define RX_CHANNELS_AETR
+```
+#define USE_RX_EXPRESSLRS
+#define USE_RX_EXPRESSLRS_TELEMETRY
+#define USE_RX_SX1280
+#define RX_CHANNELS_AETR
+```
 
 ### 4.2.6 Defines for OSD
 
-    #define USE_MAX7456
+```
+#define USE_MAX7456
+```
 
 ### 4.2.7 Defines for SDCARD
 
-    #define USE_SDCARD
+```
+#define USE_SDCARD
+```
 
 ### 4.2.8 Defines for CC2500
 
 For SPI based CC2500 target designs add the following define:
 
-    #define USE_RX_CC2500
+```
+#define USE_RX_CC2500
+```
 
 ## 4.3 Usage of the Cloud Build API
 
