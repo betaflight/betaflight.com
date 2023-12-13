@@ -39,6 +39,7 @@ export const themeLight = {
   legends: {
     text: {
       fill: '#181818',
+      fontSize: 12,
     },
   },
 };
