@@ -129,7 +129,7 @@ Important: note that after initiating a calibration, the frame of the quad must 
 
 The `MAG_CALIB` and `MAG_TASK_RATE` debugs have been added to investigate calibration and scheduling issues.
 
-Please read the [wiki note](https://betaflight.com/docs/support/archive/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
+Please read the [note](https://betaflight.com/docs/wiki/archive/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
 
 Thanks to: pichim, ctzsnooze, SteveCEvans, ledvinap
 
