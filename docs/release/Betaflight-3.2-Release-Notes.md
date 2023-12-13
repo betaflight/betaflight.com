@@ -270,7 +270,7 @@ I configure my sticks so that equal yaw and roll stick deflections result in a p
 
 ### FPV Camera control via OSD
 
-Consult wiki and RCG thread to see if your camera requires special handling.
+Consult support and RCG thread to see if your camera requires special handling.
 See: [Camera Control](FPV-Camera-Control-Joystick-Emulation)
 
 ### Experimental Slew filter- Removed in RC5

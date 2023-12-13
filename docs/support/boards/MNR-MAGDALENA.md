@@ -1,6 +1,6 @@
 ![BetaFlight](https://betaflight.com/assets/img/betaflight/bf_logo.png)
 
-# Welcome to the BetaFlight Wiki!
+# Welcome to zBetaFlight Wiki!
 
 **New to Betaflight and just want to get started? See the [installation](Installing-Betaflight) section.**
 

@@ -31,7 +31,7 @@ When the FC boots, our UBLox code cycles through all available baud rates on the
 
 If the FC is connected to Configurator at boot time, we request the full satellite information list, so that we can populate the detailed satellite information list on the left side of Configurator's GPS tab.  Otherwise this information is not requested, because we do not require it while in flight, and it adds a lot of serial port traffic when enabled.
 
-The CPU cost and task timing for GPS data has been extensively reviewed and optimised.  Even so, GPS Rescue puts a huge load on a CPU.  For reliability it is best to use a 4k PID loop on most processors, especially at 57600 baud.  More information about CPU load vs Baud Rate is available in the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/archive/GPS-Rescue-v4-5).  The CLI `tasks` command may be used to check CPU usage and task over-runs when evaluating the impact of baud rate in relation to PID loop frequency.
+The CPU cost and task timing for GPS data has been extensively reviewed and optimised.  Even so, GPS Rescue puts a huge load on a CPU.  For reliability it is best to use a 4k PID loop on most processors, especially at 57600 baud.  More information about CPU load vs Baud Rate is available in the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/support/archive/GPS-Rescue-v4-5).  The CLI `tasks` command may be used to check CPU usage and task over-runs when evaluating the impact of baud rate in relation to PID loop frequency.
 
 The UBlox module 'class', and the baud rate it is actually connected at, may be checked with the CLI `status` command.
 
@@ -69,7 +69,7 @@ The GPS tab in Configurator has been updated to include a more useful satellite 
 
 An edge case issue where the motors could spin up if the Rx link initiated at a vulnerable time, and when GPS Rescue was set to ignore home point, was fixed.
 
-Please carefully read the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/archive/GPS-Rescue-v4-5) for more information.
+Please carefully read the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/support/archive/GPS-Rescue-v4-5) for more information.
 
 Thanks to: ctzsnooze, ledvinap, SteveCEvans, Zzyzx, haslinghuis
 
@@ -85,7 +85,7 @@ The biggest improvement is in our calibration process.  This now works much bett
 
 We can now use `set mag_declination` in the CLI to enter our local Magnetic Declination value and better correct Magnetic to True North.
 
-A [detailed wiki note](https://betaflight.com/docs/wiki/archive/Magnetometer) now explains how magnetometers work, how to orient the mag and check that the orientation is correct, how to calibrate the mag and how to check the calibration, how to set the correct declination value in the CLI etc.
+A [detailed note](https://betaflight.com/docs/support/archive/Magnetometer) now explains how magnetometers work, how to orient the mag and check that the orientation is correct, how to calibrate the mag and how to check the calibration, how to set the correct declination value in the CLI etc.
 
 Users can now set up a Mag and be sure that it works.
 
@@ -96,7 +96,7 @@ Important: note that after initiating a calibration, the frame of the quad must 
 
 The `MAG_CALIB` and `MAG_TASK_RATE` debugs have been added to investigate calibration and scheduling issues.
 
-Please read the [wiki note](https://betaflight.com/docs/wiki/archive/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
+Please read the [note](https://betaflight.com/docs/support/archive/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
 
 Thanks to: pichim, ctzsnooze, SteveCEvans, ledvinap
 

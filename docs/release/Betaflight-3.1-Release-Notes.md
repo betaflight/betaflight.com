@@ -200,7 +200,7 @@ Betaflight firmware has undergone some major changes under the hood. Hardware dr
 
 - Added F7 support with already few supported targets - @sambas
 - Dynamic IO / pin allocation - @blckmn
-- [DSHOT Support](DSHOT ESC Protocol) for F3 and F4. DSHOT150, 300, 600, and 1200 supported (read wiki about board supported hardware) - @blckmn
+- [DSHOT Support](DSHOT ESC Protocol) for F3 and F4. DSHOT150, 300, 600, and 1200 supported (see board section in support for supported hardware) - @blckmn
 - Full Floating Point Logic for flight behavior - @borisbstyle
 - Many new dynamic configurations (filters, setpoint weights etc.) - @borisbstyle
 - Many code optimizations (faster pid speeds possible on F3 and F4) - @martinbudden and @borisbstyle
@@ -224,7 +224,7 @@ Betaflight firmware has undergone some major changes under the hood. Hardware dr
 - Added new level sensitivity and level limit parameters in degrees. level_limit is the maximum allowed angle. Level_sensitivity is the max deflection on full stick @borisbstyle
 - Added IRC Tramp VTX support. Changable channel, band, power and pitmode @jflyper
 - and many more: https://github.com/betaflight/betaflight/commits/master
-- Only one PIDC the 2DOF or Betaflight now (see the 3.0.x wiki page for details)
+- Only one PIDC the 2DOF or Betaflight now (see the 3.0.x release notes for details)
 
 NOTE- For the features in this release you will need to use the following Versions or Higher:
 - Configurator 1.9.0
@@ -268,7 +268,7 @@ We decided to add a lot of new stuff available from cli for testing purposes and
 ### Questions and Answers about 3.1 from Boris' BetaFlight thread.
 #### question by Woody_99:
 I've been flying a Naze32 on BF (3.01) for a while, and seems to be working fine for me.
-With all the code optimizations (noted in the WIKI), is the Naze still a viable option to continue with, or should I swap it out for a newer FC?
+With all the code optimizations, is the Naze still a viable option to continue with, or should I swap it out for a newer FC?
 Answer from Boris:
 No NAZE32 and other F1s actually got slower in 3.1. 3.1 is the first version where everything is floating point math. F1 lacks of floating point processor unit so it gets a lot of more to work.
 Besides that it only has 128k flash what prevents a lot of new optimizing we applied.
@@ -280,7 +280,7 @@ I see that Softserial does fit again since latest cleanups (RC9?). There is only
 If i run 8k/1k, will the PID loop be calculated from an average of the 8 gyro samples, or will it only use 1 sample out of 8?
 Answer from Boris:
 There is no averaging. There is IIR filtering, what works faster than averaging. Every sample it's information is taken to the next sample a bit. Btw you can enable simple averaging with chosing FIR filter style. Averaging gives a lot of delay typically.
-It seems that a lot of guys really missed the early betaflights where all this was discussed a lot. All i can say is to read about the way how filtering works and look up about aliasing. (Filtering is explained in this Wiki)
+It seems that a lot of guys really missed the early betaflights where all this was discussed a lot. All i can say is to read about the way how filtering works and look up about aliasing. (Filtering is explained here)
 
 #### Question by spikerspike97:
 But why do my throttle and yaw rccommands have so much steps and the pitch and roll are super smooth as seen in the BB log?
@@ -317,8 +317,8 @@ Comment from QuadMcFly:
 Also worth noting your set-point will likely shift depending on your specific setup, so you can't assume it will be the same on every quad. Heavy, slow transitioning props will need a lower set-point than light fast changing props. For instance I had to run quite low on 5x4.5x3HBN props, but on the Lumenier ButterCutter I'm running almost all the way to the right. Basically I just turn it down till I stop getting bounce-back or "slaps" on hard flips and rolls.
 
 #### More on SetPoint Posted by joshuabardwell
-For setpoint transition, the wiki has a good explanation:
- [Reference PIDC and Setpoint discussion on 3.0.x Wiki page](BetaFlight-3.0.x)
+For setpoint transition, this has a good explanation:
+ [Reference PIDC and Setpoint discussion on 3.0.x](BetaFlight-3.0.x)
 So:
 Delta from error (high D term setpoint weight) has very sharp, immediate stick response. But may have problems with bounceback at the end of flips and rolls, and may provide less smooth flight (especially bad for some freestyle flyers). With high D term setpoint weight, the quad feels very connected and immediate, but also every. tiny. little. finger. motion. is translated instantly to quadcopter motion, which is not necessarily what every pilot wants.
 Delta from measurement (low D term setpoint weight) has smoother and slower stick response. Quad feels less connected and immediate, but is smoother. Also, measurement is best at stopping bounceback/oscillation at the end of flips and rolls.
@@ -352,7 +352,7 @@ I think after I "fixed it" with transition setpoint, I could even back off with 
 ### New CLI commands for 3.1:
 
 Note: See the [3.0.x page](BetaFlight-3.0.x) for CLI commands plus other features that were new in 3.0.x
-See the [V2.x CLI Commands](Betaflight-specific-CLI-commands) page for a history of CLI command changes. This WIKI has only documented Changes from being Forked from CleanFlight. Do see the CF docs.
+See the [V2.x CLI Commands](Betaflight-specific-CLI-commands) page for a history of CLI command changes. This site has only documented Changes from being Forked from CleanFlight. Do see the CF docs.
 
 #### Resource Remapping
 From betaflight v3.1 there is a new command to map resources. No more custom motor mixes just to move a motor pin.
@@ -540,7 +540,7 @@ I think the default value is pretty good from what I have seen from many setups 
 
 #### fpv_mix_degrees = 0
 Allowed range: 0 - 50
-Note: Same command as "set roll_yaw_cam_mix_degrees" in V2.x. See the 2.x CLI coommand Wiki page for more ino and video links.
+Note: Same command as "set roll_yaw_cam_mix_degrees" in V2.x. See the 2.x CLI coommand page for more ino and video links.
 
 Note that in newer BF versions, you need to enable a flight mode for 'FPV ANGLE MIX' on the modes tab to make the mixing work. You can either define a switch to switch FPV cam angle mixing on and off OR you can set the full range of any switch to keep it permanently on.
 

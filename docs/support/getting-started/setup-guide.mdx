@@ -46,7 +46,7 @@ Now that you've connected to your flight controller, you will need to follow som
 in the Air. We'll go through setting up each part of a drone, and by the end you should be ready to fly with Betaflight
 and hopefully a deeper understanding of how it all works.
 
-Once you have connected to your flight controller, you will land on the [Setup Tab](/docs/wiki/configurator/setup-tab).
+Once you have connected to your flight controller, you will land on the [Setup Tab](/docs/support/configurator/setup-tab).
 When you move the flight controller, you should see the 3d model move in the configurator. That is a basic good sign
 that the flight controller is alive and working. While you are there, you can calibrate the gyroscope and accelerometer
 with the buttons and following the instructions. You can also calibrate the magnetometer, but that is not necessary for
@@ -55,7 +55,7 @@ flight, and you may not even have one.
 ### Backup Your config
 
 Before making any changes, it's important to back up your current configuration. This will protect you in case of any
-mistakes, and let you return to the original settings if needed. To do this, go to the [CLI Tab](/docs/wiki/configurator/cli-tab) tab and send either the
+mistakes, and let you return to the original settings if needed. To do this, go to the [CLI Tab](/docs/support/configurator/cli-tab) tab and send either the
 `diff all` or `dump` command. Then copy the output or save it to a file for later use.
 
 ## Receiver Settings
@@ -64,7 +64,7 @@ The first setup step is to set up your receiver. If you are using a pre-built dr
 receiver is connected to the flight controller. If you are building your own drone, you hopefully already know where
 it is. A receiver with its signal wires connected to a (for example) RX1/TX1 pair of pads on the flight controller is
 going to be on UART1. RX2/TX2 is UART2, etc. You need this info for setting up the receiver in the
-[Ports Tab](/docs/wiki/configurator/ports-tab). Enable `Serial RX` on the UART that your receiver is connected to.
+[Ports Tab](/docs/support/configurator/ports-tab). Enable `Serial RX` on the UART that your receiver is connected to.
 
 :::caution
 
@@ -77,12 +77,12 @@ when conflicting options are set
 :::info
 
 If your flight controller has a built-in SPI receiver, you don't need to set up a UART for it. You can just set it up  
-in the [Receiver Tab](/docs/wiki/configurator/receiver-tab), we'll go over that right now
+in the [Receiver Tab](/docs/support/configurator/receiver-tab), we'll go over that right now
 
 :::
 
 Now that you have the `Serial RX` option enabled, you will need to set your receiver-specific settings in the
-[Receiver Tab](/docs/wiki/configurator/receiver-tab). Whether you are using a pre-built drone or building your own,
+[Receiver Tab](/docs/support/configurator/receiver-tab). Whether you are using a pre-built drone or building your own,
 you hopefully know what receiver you are using. From there, you can follow the instructions below for your receiver:
 
 ### UART-based Receivers
@@ -109,7 +109,7 @@ based on your receiver, similar to the UART-based receivers. Here are the common
 
 Once configured properly, you should see the channel values change and the 3D model move in response to stick
 movements. If your channels are not properly aligned, adjust the
-[Channel Map](/docs/wiki/configurator/receiver-tab#channel-map) option accordingly.
+[Channel Map](/docs/support/configurator/receiver-tab#channel-map) option accordingly.
 
 ## VTX Settings
 
@@ -121,10 +121,10 @@ settings.
 
 Analog is more or less the most common video system, even though it's as old as it is. It's a simple system that tends
 to "just work" without any configuration. However, if you want to change the channel, power, or other settings, you
-will need to set up SmartAudio or Tramp in the [Ports Tab](/docs/wiki/configurator/ports-tab).
+will need to set up SmartAudio or Tramp in the [Ports Tab](/docs/support/configurator/ports-tab).
 
 Enable `SmartAudio` or `Tramp` as a peripheral on the UART that your VTX is connected to, which you should hopefully
-know. Then you can set up the VTX in the [VTX Tab](/docs/wiki/configurator/vtx-tab). It may seem overwhelming, but if
+know. Then you can set up the VTX in the [VTX Tab](/docs/support/configurator/vtx-tab). It may seem overwhelming, but if
 you're using a decently common VTX, you should be able to find a VTX Table for it somewhere on the internet, or even
 find a preset for it in the configurator.
 
@@ -201,10 +201,10 @@ button on the VTX for a few seconds on power up.
 Digital VTXs are a newer form of video system that is becoming more and more common. It's a bit more complicated than
 analog, and needs setup to get OSD and VTX control working.
 
-Start in the [Ports Tab](/docs/wiki/configurator/ports-tab) by enabling `VTX (MSP + Displayport)` as a peripheral on
+Start in the [Ports Tab](/docs/support/configurator/ports-tab) by enabling `VTX (MSP + Displayport)` as a peripheral on
 the UART that your VTX is connected to. It should automatically enable `MSP` as well. If you're on a version older than 4.4, you will only need to enable MSP and then follow further.
 
-Then in the [Preset Tab](/docs/wiki/configurator/presets-tab), there are a few system-specific presets that you can use to make the setup easier:
+Then in the [Preset Tab](/docs/support/configurator/presets-tab), there are a few system-specific presets that you can use to make the setup easier:
 
 - HDZero for 4.2/4.3 and 4.4
 - Avatar 4.2/4.3
@@ -215,7 +215,7 @@ For further information on the newest firmware (4.4), please read the [Release N
 
 ## Motor Settings
 
-Compared to the other settings, motor settings are pretty simple. In the [Motors Tab](/docs/wiki/configurator/motors-tab),
+Compared to the other settings, motor settings are pretty simple. In the [Motors Tab](/docs/support/configurator/motors-tab),
 start by setting the `ESC/Motor Output` dropdown to the correct protocol. This is usually `DShot300` or `DShot600` for
 most ESCs available nowadays.
 
@@ -246,7 +246,7 @@ do not match up with the motor numbers, you will have to remap them
 ## Mode Settings
 
 Modes serve as a way to change the behavior or action of your quadcopter in flight by using AUX channels as inputs.
-In the [Modes Tab](/docs/wiki/configurator/modes-tab), you will see a list of all the modes that are available.
+In the [Modes Tab](/docs/support/configurator/modes-tab), you will see a list of all the modes that are available.
 
 Let's start with the only one you theoretically need:
 ![ARM Mode](/img/betaflight_configurator_modes_arm.png)
@@ -288,7 +288,7 @@ Once you have the range set, then repeat the process for the other modes. You wi
 
 ## OSD Settings
 
-The OSD allows you to display information in the video feed from your quadcopter. In the [OSD Tab](/docs/wiki/configurator/osd-tab),
+The OSD allows you to display information in the video feed from your quadcopter. In the [OSD Tab](/docs/support/configurator/osd-tab),
 you can set up the different elements that will be displayed.
 
 You have a list of all the elements on the left, and three columns of checkboxes next to it. Each culumn is for one
@@ -313,5 +313,5 @@ With all the settings done, you should be ready to fly! Do a final check to make
 be, and do a quick hover test to make sure that everything is working as it should.
 
 If something is not working, go through this page, some of the more common mistakes should've been listed.
-If not here, you can read the [troubleshooting](/docs/wiki/troubleshooting) page to see if you can find a solution. If
+If not here, you can read the [troubleshooting](/docs/support/troubleshooting) page to see if you can find a solution. If
 you can't find one, ask in the [Discord server](https://discord.betaflight.com/invite)
