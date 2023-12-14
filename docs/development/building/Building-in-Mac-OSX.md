@@ -19,7 +19,7 @@ make: *** No targets specified and no makefile found.  Stop.
 If it isn't installed yet, you might get a popup like this. If so, click the "install" button to install the commandline
 developer tools:
 
-![Prompt to install developer tools](assets/mac-prompt-tools-install.png)
+![Prompt to install developer tools](../assets/mac-prompt-tools-install.png)
 
 If you just get an error like this instead of a helpful popup prompt:
 
@@ -55,8 +55,8 @@ To install the needed compiler you just need to enter the betaflight directory a
 ## Build the code
 
 Enter the betaflight directory and run `make configs` to retrieve board targets then `make TARGET=MATEKH743` to
- build firmware for the BETAFLIGHTF4. When the build completes, the .hex firmware should be available as 
- `obj/betaflight_4.4.2_MATEKH743.hex` for you to flash using the Betaflight Configurator.
+build firmware for the BETAFLIGHTF4. When the build completes, the .hex firmware should be available as
+`obj/betaflight_4.4.2_MATEKH743.hex` for you to flash using the Betaflight Configurator.
 
 ## Updating to the latest source
 
