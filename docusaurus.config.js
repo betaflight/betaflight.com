@@ -171,14 +171,10 @@ const config = {
             position: 'left',
           },
           {
-            to: '/partner',
-            label: 'Partner',
+            type: 'docSidebar',
+            sidebarId: 'relations',
             position: 'left',
-          },
-          {
-            to: '/sponsors',
-            label: 'Sponsors',
-            position: 'left',
+            label: 'Relations',
           },
           { to: '/blog', label: 'Blog', position: 'left' },
           {
