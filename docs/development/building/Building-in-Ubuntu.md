@@ -4,6 +4,7 @@ Building for Ubuntu platform is remarkably easy.
 This document is tested and based on the latest Ubuntu 22.04 LTS release and can also be used for WSL.
 
 ### Clone Betaflight Repository and Install Toolchain
+
 ```
 $ sudo apt update && sudo apt upgrade
 $ sudo apt install build-essential libblocksruntime-dev libtool git curl clang-12
@@ -12,13 +13,16 @@ $ cd betaflight
 $ make arm_sdk_install
 $ make configs
 ```
+
 ### Updating and Rebuilding Firmware
 
 Navigate to your local betaflight repository and use the following steps to pull the latest changes and rebuild your version of betaflight:
+
 ```
 $ git pull
 $ make MATEKF405 [EXTRA_FLAGS="-DUSE_RANGEFINDER"] [DEBUG=DBG]
 ```
+
 Using the optional EXTRA_FLAGS parameters you can specify options like USE_RANGEFINDER.
 Using the optional DEBUG parameter you can specify the debugger.
 
@@ -27,6 +31,7 @@ You can use the Betaflight-Configurator to flash the `obj/betaflight_MATEKF405.h
 Make sure to remove `obj/` and `make clean`, before building again.
 
 ### Building Betaflight Configurator
+
 ```
 $ sudo apt update && sudo apt upgrade
 $ sudo apt install libatomic1 npm
@@ -35,6 +40,7 @@ $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bas
 $ source ~/.bashrc
 $ nvm install 16 (for exact version please check link below)
 ```
+
 See [Betaflight Configurator Development](https://github.com/betaflight/betaflight-configurator#development) for how to build the Betaflight Configurator.
 
 ### Flashing a Target with Betaflight Configurator

@@ -1,4 +1,5 @@
 # Building in Fedora 35
+
 ```
 $ sudo dnf check-update
 $ sudo dnf install git clang libblocksruntime-devel
@@ -9,7 +10,9 @@ $ make arm_sdk_install
 $ make configs
 $ make TARGET=MATEKF411
 ```
+
 ### Building Configurator in Fedora 35
+
 ```
 $ sudo dnf check-update
 $ sudo dnf install libatomic rpm-build dpkg
@@ -19,6 +22,7 @@ $ sudo npm install -g gulp-cli yarn
 $ yarn install
 $ yarn gulp debug
 ```
+
 Note: Please check this link for the required Node version: https://github.com/betaflight/betaflight-configurator#development
 
 ### Serial permissions
@@ -29,9 +33,10 @@ Add yourself to the dialout group:
 ```
 $ sudo dnf remove ModemManager
 $ sudo usermod -aG dialout $(whoami)
-``````
+```
 
 Save and reboot after adding the following contents:
+
 ```
 $ sudo nano /etc/udev/rules.d/45-stdfu-permissions.rules
 
