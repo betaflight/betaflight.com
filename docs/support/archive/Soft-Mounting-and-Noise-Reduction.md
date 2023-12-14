@@ -5,7 +5,7 @@ Please check often as this page gets built.
 
 See [FAQ #56 ](Frequently-Asked-Questions) for Discussion on Yaw Twitches and Mid-throttle Oscillations. This covers Gyros and other possible causes.
 
-Also be sure to read the other Wiki pages:
+Also be sure to read:
 [Gyro & Filters](Gyro-&-Dterm-filtering-recommendations)
 [BB logging & Filters](Black-Box-logging-and-usage)
 

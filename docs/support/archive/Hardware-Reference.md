@@ -14,7 +14,7 @@ If you are adding a new flight controller then:
 
 1. Make any PRs against the `master`.
 2. Don't change the `travis.yml` or `fake_travis_build.sh` files - these are just for a subset off all builds to check PRs
-3. Add page to wiki describing the flight controller and giving a link to at least one supplier.
+3. Add page to board section in support describing the flight controller and giving a link to at least one supplier.
 
 ## Hardware
 

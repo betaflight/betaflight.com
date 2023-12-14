@@ -6,7 +6,7 @@ Full range receiver and Satellite behave diffently from brand to brand, read the
 
 What is a failsafe?
 
-Failsafe is a safety feature, it can be triggered by a switch, the loss of radio link or an unexpected RCcommand pulse. The flight controller will behave as set in the failsafe tab of the configurator. (Betaflight's default = Drop). Once configured, specific Failsafe behavior can be changed before flight. See the Betaflight Wiki GPS Rescue Mode page.
+Failsafe is a safety feature, it can be triggered by a switch, the loss of radio link or an unexpected RCcommand pulse. The flight controller will behave as set in the failsafe tab of the configurator. (Betaflight's default = Drop). Once configured, specific Failsafe behavior can be changed before flight. See the Betaflight GPS Rescue Mode page.
 
 ---
 

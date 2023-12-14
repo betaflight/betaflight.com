@@ -169,4 +169,4 @@ How to flash Betaflight on CC3D video guide:
 http://www.rcgroups.com/forums/showpost.php?p=34196999&postcount=21477
 
 There is a topic on this FAQ page called "Which HEX target do I download and flash to my Flight Controller" that will help when it comes to deciding which file to use on your Flight Controller board.
-Also check the Boards (Wiki menu at the right) from more info on the FC board you have. Most have information (Note: these wiki pages are to be maintained by the FC Designed/Seller or by dedicated Users) but some are blank.
+Also check the Boards section for more info on the FC board you have. Most have information (Note: these pages are to be maintained by the FC Designed/Seller or by dedicated Users) but some are blank.

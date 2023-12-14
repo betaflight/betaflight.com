@@ -2,7 +2,7 @@
 
 The following FAQs are common questions that were asked in Boris' ßF or other RCG threads.
 Many of these do cover Basics but be Aware that some cover specific Versions of ßF Firmware and may be Obsolete for the later Versions of the firmware.
-Therefore be sure to Read the Release Note Wiki pages to know what commands or features are currently supported.
+Therefore be sure to Read the Release Notes to know what commands or features are currently supported.
 
 ## Contents
 
@@ -94,7 +94,7 @@ See the next FAQ topic ("How do I install Betaflight") when you are ready.
 
 ## How do I install Betaflight ?
 
-Read the [Installing BetaFlight ](Installing-Betaflight) Wiki page.
+Read the [Installing BetaFlight ](Installing-Betaflight) support page.
 
 ## What's the history of Betaflight and it's relationship to Cleanflight ?
 
@@ -338,7 +338,7 @@ Hence Acro Plus can be considered a form of exponential rate multiplier, outside
 
 ## What is 2kHz mode ?
 
-See the "Gyro based loop implementation" description on the Wiki Home page.
+See the "Gyro based loop implementation" description on the support page.
 2kHz mode is simply a faster Gyro based loop that runs at an update rate of 2000 times a second or every 500usec.
 
 Here is a great analogy:
@@ -388,14 +388,14 @@ Note that there is a restriction on the number of available AUX channels in 2kHz
 
 4 AUX channels are available
 
-For Betaflight 2.4.1 onwards the number of Aux channels is selectable with the set max_aux_channels (see the CLI commands section of wiki).
+For Betaflight 2.4.1 onwards the number of Aux channels is selectable with the set max_aux_channels (see the CLI commands section).
 
 **Note:**
 Some ESCs will not calibrate at 2kHz and faster Loop Rates, KISS ESCs have been reported to have this issue. The fix is to simply set Loop rate to 1kHz (1000usec looptime) then calibrate the ESCs and change back to the desired looptime.
 
 ## What Flight Controllers are recommended to get the best out of BetaFlight ?
 
-### NOTE: This list is old since there are just too many new FC's now on the market. Check the Boards in the Wiki menu on the Right and the Released hex files.
+### NOTE: This list is old since there are just too many new FC's now on the market. Check the Boards in the support menu and the Released hex files.
 
 Here is a list of FCs compiled around the end of January 2016. The opinions regarding Pros and Cons are also shown.
 
@@ -514,7 +514,7 @@ Good tuning just makes that feel tighter and helps removing unnecessary oscillat
 
 d. Battery Factor: "A while ago someone took over my pids to his quad with same setup and he said it didn't feel good. So I flew his setup and it indeed felt like PIDs were twice as low as they should be! It appeared he was using almost 2 years old (Turnigy) Nanotechs completely lost their power. Even I feel huge difference between different batteries I have." - Boris comment
 
-Also Read the [PID Tuning Guide](PID-Tuning-Guide) the [Black Box logging and usage](Black-Box-logging-and-usage) Wiki pages.
+Also Read the [PID Tuning Guide](PID-Tuning-Guide) the [Black Box logging and usage](Black-Box-logging-and-usage) support pages.
 
 ## Why does my copter behave erratic after a crash ?
 
@@ -1281,7 +1281,7 @@ You can achieve more or less the same curve with both expo and s.rates, it just 
 - Modern ESCs (active Braking) and modern high power motors can put a lot of noise into the electrical system. Adding a high value (1000uF seems common), low ESR capacitor helps to prevent this noise from getting into the Gyro chip on the FC (also helps with cleaner video and preventing damaging other electronics from high Voltage spikes).
 - There is NO one cure for any copter. Each copter build is different and requires trying the various solutions. Some only need a large cap added, other only soft mounting the FC while some require both.
 
-- There is a NEW [Soft Mounting and Noise Reduction](Soft-Mounting-and-Noise-Reduction) Wiki page. Details on Soft Mounting will be moved to this new page so check back.
+- There is a NEW [Soft Mounting and Noise Reduction](Soft-Mounting-and-Noise-Reduction) support page. Details on Soft Mounting will be moved to this new page so check back.
 
 The following are extracted from posts about this issues with Observations, Theories, Discussions and suggested solutions. Read through all the discussion and follow the links to learn almost all there is about the issue and solutions.
 
@@ -1738,7 +1738,7 @@ It took all that and removing gyro notch filters / PT1 fix to get the F60 Pro qu
 
 ### Can Filter tuning help?
 
-The newer filters in 3.0 & 3.1 have pretty aggressive defaults. A number of fliers have reduced oscillation issue be reducing the use of the filters. See the [Gyro & Filters ](Gyro-&-Dterm-filtering-recommendations) Wiki page for details and discussions.
+The newer filters in 3.0 & 3.1 have pretty aggressive defaults. A number of fliers have reduced oscillation issue be reducing the use of the filters. See the [Gyro & Filters ](Gyro-&-Dterm-filtering-recommendations) support page for details and discussions.
 
 ## Is there a way to download blackbox logs through a terminal client ?
 
@@ -1779,7 +1779,7 @@ Not twitches, but glitches in general, you bet! I used to run a mobile DJ busine
 
 Since Betaflight 3.1, MSP on UART is no longer enabled by default. To enable it, you need to build a custom version of Betaflight and flash it to your flight controller. ([Related issue](https://github.com/betaflight/betaflight/issues/2566))
 
-Follow the instructions under "development" on this wiki, but add `OPTIONS=USE_MSP_UART` to your make command. For example: `make CC3D OPTIONS=USE_MSP_UART`. Instead of `CC3D`, you can use [any target that Betaflight supports](#which-hex-target-do-i-download-and-flash-to-my-flight-controller-).
+Follow the instructions under "development", but add `OPTIONS=USE_MSP_UART` to your make command. For example: `make CC3D OPTIONS=USE_MSP_UART`. Instead of `CC3D`, you can use [any target that Betaflight supports](#which-hex-target-do-i-download-and-flash-to-my-flight-controller-).
 
 ## Is it possible that we can flash the Frsky receivers thru the flight controller like we now flash the ESC?
 

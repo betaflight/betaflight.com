@@ -50,7 +50,7 @@ As a part of the filtering overhaul, the names of the debug modes available to l
 
 e.g `set debug_mode = gyro_scaled` or `set debug_mode = gyro_filtered`
 
-#### Changes were made in BetaFlight 3.0 & 3.1 along with a newer BB Viewer (see debug_mode on the 3.1.x wiki page).
+#### Changes were made in BetaFlight 3.0 & 3.1 along with a newer BB Viewer (see debug_mode on the 3.1.x release notes).
 
 1. CLI DEBUG_MODE now can be GYRO or NOTCH. This will log all three axis but only for Pre-LPF or Pre-Notch Filter.
 2. Still Add a Custom Graph then select the debug Pre-filter.

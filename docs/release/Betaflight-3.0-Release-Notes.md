@@ -92,7 +92,7 @@ The PID from 2.x versions can transfer to 3.0 as the scaling is the same, but yo
 ### New CLI commands
 
 Note that most are better to set using the new BetaFlight Config GUI.
-If a CLI command is not listed here then it is most likely not changed so look in the Wiki 'CLI command' page.
+If a CLI command is not listed here then it is most likely not changed so look in the 'CLI command' page.
 If in error, missing, etc then post a note about what is wrong in Boris' thread.
 Be sure you type 'help' in the CLI to see all commands.
 
@@ -454,7 +454,7 @@ Clear as mud?
 
 ### Notch Filters
 
-See: [Black-Box logging and usage](/betaflight/wiki/Black-Box-logging-and-usage)
+See: [Black-Box logging and usage](/support/archive/Black-Box-logging-and-usage)
 
 notch filter explanations
 

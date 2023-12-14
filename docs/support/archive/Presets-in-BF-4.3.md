@@ -1,6 +1,6 @@
 # Presets 4.3
 
-Welcome to the Betaflight firmware-presets wiki!
+Welcome to Betaflight firmware-presets support!
 
 Please find the full description here:
 https://github.com/betaflight/firmware-presets#firmware-presets
