@@ -144,12 +144,6 @@ const config = {
           },
           {
             type: 'docSidebar',
-            sidebarId: 'manufacturer',
-            position: 'left',
-            label: 'Manufacturer',
-          },
-          {
-            type: 'docSidebar',
             sidebarId: 'release',
             position: 'left',
             label: 'Release',
