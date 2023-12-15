@@ -186,7 +186,7 @@ With the change of the configuration parameter `tlm_inversion` to the parameter 
 - `tlm_inverted` applies to **all** telemetry protocols;
 - `tlm_inverted = on` means that telemetry is expected to be inverted **compared to what it is for the selected protocol** (i.e. when using SmartPort, `tlm_inverted = off` means that the flight controller expects the telemetry signal to be inverted serial, since this is the default for SmartPort).
 
-_This means that for all protocols, if unmodified hardware is used `tlm_inverted = off` is most likely the correct setting._
+This means that for all protocols, if unmodified hardware is used `tlm_inverted = off` is most likely the correct setting.
 
 (Also, note that this only works for F3 / F7 based boards, or for F4 boards on ports with switchable external inverters.)
 

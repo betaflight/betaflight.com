@@ -143,7 +143,7 @@ Update to patches keeps your settings btw. You don't have to erase it.
 ## Betaflight 3.1.2 - Maintenance Release
 Link to Release: https://github.com/betaflight/betaflight/releases/tag/v3.1.2
 
-- Fixed scaling issue where min_throttle would affect rcCommand Throttle
+- Fixed scaling issue where `min_throttle` would affect rcCommand Throttle
 - Replaced old multiwii throttle expo by new floating point version
 - Simplified few CLI commands (see list below for CLI name changes)
 - Lowered strength for some default settings like the new anti_gravity_gain

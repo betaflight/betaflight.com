@@ -154,7 +154,7 @@ AntiGravity has been tweaked, resulting in greater stablility during rapid throt
 
 iTermWindup is an 'old' way to prevent iTerm growth when the quad cannot achieve the requested target rate.
 In 4.4 we are making iTermWindup active by default, at a value of 85.
-Whenever the motorMix percentage exceeds the `iterm_windup` limit value of 85%, iTerm growth will be reduced to the extent that motor_mix exceeds the `iterm_windup` value. There will be zero iTerm growth only when motorMix differential is 100%. The iTerm inhibiotion will apply on all axes, including yaw.
+Whenever the motorMix percentage exceeds the `iterm_windup` limit value of 85%, iTerm growth will be reduced to the extent that `motor_mix` exceeds the `iterm_windup` value. There will be zero iTerm growth only when motorMix differential is 100%. The iTerm inhibiotion will apply on all axes, including yaw.
 The default value is appropriate for nearly all quads. Heavy or very low authority quads with significant iTerm windup problems (slow oscillations on larger moves) may benefit from lower iterm_windup values.
 iTermWindup complements iTermRelax, and is especially useful to prevent iterm windup in low authority quads where the machine is not able to meet the target rate for some time after the sticks have stopped moving. iTermRelax is most effective, and operates more smoothly, when the sticks are moving fast. iTermWindup also constrains iTerm growth in a variety of impact or failure states.
 For more information see [PR#11806](https://github.com/betaflight/betaflight/pull/11806) - thanks @ctzsnooze.
