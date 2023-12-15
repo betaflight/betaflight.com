@@ -1,25 +1,56 @@
 # Betaflight 4.5 Release Notes
 
-Betaflight 4.5 is an incremental release, focusing mostly on bugfixes, optimisations, GPS Rescue improvement, Magnetometer support, and many small, useful improvements and options.
-
-The basic flight parameters have not changed from 4.4 to 4.5.  Previous filters, PID settings, and other tuning values should not need to change.
+Betaflight 4.5 is an incremental release. The basic flight parameters have not changed from 4.4 to 4.5, although iTerm is slightly better suppressed.  Previous filters, PID settings, and other tuning values should not need to change.
 
 :::note
-IMPORTANT: use Configurator 10.10!  The most recent release version is available [here](https://github.com/betaflight/betaflight-configurator/tags), or you could use the [latest nightly build](https://github.com/betaflight/betaflight-configurator-nightlies).
+IMPORTANT: use Configurator 10.10!  The most recent release version is available [here](https://github.com/betaflight/betaflight-configurator/tags), or use the [latest nightly build](https://github.com/betaflight/betaflight-configurator-nightlies).
 :::
 
-As usual, Full Chip Erase is mandatory, and re-configuring from scratch safer than importing a CLI dump or a saved Preset.  Users of GPS Rescue, Angle and Horizon modes shold NOT use their old values.  Otherwise, most flight, Rx, Mode, OSD, and GPS parameters have not changed since 4.4, and new / re-named parameters will get default values, so importing a 4.4 save file (Presets>Save) is in most cases, OK.
+As usual, Full Chip Erase is mandatory when flashing. Re-configuring from scratch is safer than importing a CLI dump or a saved Preset.  Users of GPS Rescue, Angle and Horizon modes shold NOT use their old values.  Otherwise, most flight, Rx, Mode, OSD, and GPS parameters have not changed since 4.4.  Any new or re-named parameters will get default values, so importing a 4.4 save file (Presets>Save) is in most cases, OK.
 
 :::warning
 Angle, Horizon and GPS Rescue users should NOT use previous values in 4.5.  Start out with the new 4.5 defaults!
-Always test new firmware carefully and in a controlled environment.
+Do not use 4.3 or earlier dumps or Presets in 4.5!
+Always test new firmware carefully and in a controlled environment!
 :::
  
-Do not use 4.3 or earlier dumps or Presets in 4.5.
+## Contents
+
+- [Cloud build](#1-cloud-build) is simpler, more reliable, and more polished.
+- [GPS Hardware connections](#2-gps) are far better, with rock solid M10 support.
+- [GPS Return to Home](#3-gps-return-to-home-improvements) has been made more reliable, smoother, can be initiated earlier, is more tolerant of user error, and uses Mag data more effectively.
+- [Magnetometers](#4-magnetometer-update) now work much better than before, with improved information in the wiki, better calibration methods, declination support, and improved display in Configurator.  It now contributes effectively during climb, rotate and descent phases of a GPS Rescue.
+- [GPS Mapping in Blackbox](http://#5-mapping-of-gps-flights-within-blackbox-explorer-and-with-export-gpx) Map your GPS flights directly within the BlackBox application, or by exporting the flight data into a GPX file for use in online mapping software.
+- [Colour font support for HD VTx](http://localhost:3000/docs/release/Betaflight-4.5-Release-Notes#6-colour-fonts-in-supported-hd-vx) This applies to Walksnail HD Vtx only at present
+- [LEDStrip improvements](#7-ledstrip-improvements) including automatic colour selection based on the VTx channel, more Rainbow options, and more efficient use of CPU time for complex LED options.
+- [Angle and Horizon updates](http://#8-angle-and-horizon-mode-update) Really big changes here.  Angle mode is now much more responsive. The new 'Earth referencing' option keeps automatically adds just the right amount of 'co-ordinated' roll to keep the image stable while yawing. Horizon mode is a lot more fun to fly, and is an excellent introduction to Acro.
+- [Failsafe changes](#9-failsafe-changes) Minor changes only, mostly to improve safety in edge cases, with a minor change to the `RX_LOSS` message and with `NOT_DISARMED` replacing `BADRX` when the radio link becomes active while the arm switch is enabled.
+- [Dimmable RPM harmonics](#10-dimmable-rpm-harmonics) Allows attenuation of individual RPM harmonics if one of the three RPM filters isn't needed as much as the other two.  This can slightly reduce overall filter lag, especially in triblade setups.
+- [Adjustable initial dynamic idle value](#11-customisable-initial-dynamic-idle-percentage) This allows the user to modify the initial motor drive percentage when dynamic idle is enabled but you haven't yet taken off, in case the default of 5% is too low or too high.
+- [ExLanding](#12-ezlanding) Weakens throttle response and iTerm when throttle is close to zero and sticks are centered, calming aggressive reactions when landing.
+- [Low throttle TPA](#13-low-throttle-tpa) Allows TPA mediated inhibition at the very low end of the throttle range, for quads that are really excitable while waiting on the ground.  Optionally can be applied throughout the flight.
+- [CLI binding for TBS Rx](http://#14-crsf-binding-via-cli-for-tbs-receivers) - Useful when you can't get to the Bind button easily.
+- [Improved landings for wings](#15-keep-i-term-at-zero-for-fixed-wings-at-zero-throttle) iTerm is now kept active for wings while gliding into land, at zero throttle.
+- [Custom Build Options](#16-custom-build-options):
+    - [RPM Limiter](#161-rpm-limiter-build-option) Limits the maximum average RPM, for Spec racing.
+    - [Quick OSD](#162-quick-osd-menu-build-option) Adds an OSD page that allows the user to make most race-related changes in one place.
+    - [RC Stats](#163-rc-stats-osd-build-option) Modified Stats screen including throttle summary data. 
+    - [Pre-Arm page](164-pre-arm-spec-race-settings-osd-build-option) Pre-arm screen that displays values of relevance to spec racing
+    - [GPS Lap Timer](#165-gps-lap-timer) Ever wanted to fly laps at a park and time yourself, without complicated extra hardware?  Add a GPS module and you can do exactly that.
 
 ## 1. Cloud Build
 
-The cloud build system [introduced in 4.4](https://betaflight.com/docs/release/Betaflight-4.4-Release-Notes#1-cloud-build) retains the same user interface.  Updated board configurations should result in correct default hardware assignment.
+The cloud build system [introduced in 4.4](https://betaflight.com/docs/release/Betaflight-4.4-Release-Notes#1-cloud-build) retains the same user interface, but with lots of improvements.  Updates to board configurations should result in more reliable functionality after flashing.
+
+Most basic build options are included in the default group in the `Other Options box`, including AcroTrainer and both HD and SD OSD setups.
+
+The default Radio protocol is CSRF, which automatically includes includes RF telementry (even though the Telemetry drop-down says 'none').
+
+Typically a user would de-select the SD OSD option if they used only HD, and vice versa.
+
+Most users will not require AcroTrainer or PinIO, so these can be de-selected.
+
+To add other build options, such as other radio protocols, LEDStrip, Magnetometers, etc, click somewhere in the `Other Options` box and choose from the drop-down.
 
 Thanks to: blckmn, unit, haslinghuis, many others
 
@@ -77,13 +108,15 @@ Thanks to: ctzsnooze, ledvinap, SteveCEvans, Zzyzx, haslinghuis
 
 This code was extensively revised, with a lot of improvement in compass task scheduling and driver support.
 
-Previously, the compass task ran at 10Hz, and its state engine could mean that new data points arrived at half or a third of that rate.
+Previously, the compass task ran at 10Hz, but its state engine meant that new mag data arrived at half or a third of that rate.
 
 In 4.5 we receive compass data values at the highest rate supported by the chip.  In the case of the QMC5883L, this is 200Hz, and for the older HMC5883L, it is 80Hz.  This greatly improves the accuracy of the calibration process, and reduces data lag issues.
 
-The biggest improvement is in our calibration process.  This now works much better, giving consistent results, when the previous code was almost a random number generator.
+The biggest improvement is in our calibration process.  It now works much better, giving consistent results, when the previous code was almost a random number generator.
 
 We can now use `set mag_declination` in the CLI to enter our local Magnetic Declination value and better correct Magnetic to True North.
+
+The Configurator now displays Mag Heading in the GPS Rescue tab, and rotates the icon in the map to reflect the Mag Heading (note that the map only appears after we get a 3D fix).
 
 A [detailed note](https://betaflight.com/docs/support/archive/Magnetometer) now explains how magnetometers work, how to orient the mag and check that the orientation is correct, how to calibrate the mag and how to check the calibration, how to set the correct declination value in the CLI etc.
 
@@ -96,7 +129,7 @@ Important: note that after initiating a calibration, the frame of the quad must 
 
 The `MAG_CALIB` and `MAG_TASK_RATE` debugs have been added to investigate calibration and scheduling issues.
 
-Please read the [note](https://betaflight.com/docs/support/archive/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
+Please read the [wiki note](https://betaflight.com/docs/support/archive/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
 
 Thanks to: pichim, ctzsnooze, SteveCEvans, ledvinap
 
@@ -117,7 +150,7 @@ For more information see [PR 613](https://github.com/betaflight/blackbox-log-vie
 
 Thanks for both to: bonchan
 
-## 6. Support for colour fonts if supported by the HD VTX
+## 6. Colour fonts in supported HD Vx
 
 White, green, orange or red colours can now be used for text and symbols are now supported for compatible HD Vtx modules, eg Walksnail.
 
@@ -125,25 +158,41 @@ See: [PR 13005](https://github.com/betaflight/betaflight/pull/13005)
 
 Thanks to: SteveCEvans
 
-## 7. Automatic LEDstrip colour based on VTx channel
+## 7. LEDstrip improvements
 
-Ledstrip colour can now be automatically set according to VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
+## 7.1 Set RACE mode LEDstrip colour automatically, based on VTx channel
+
+The RACE LEDstrip mode is a simple way to set all LEDs to a set colour.
+
+In 4.5 the LEDstrip colour can now be automatically set according to the user's VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
+
+The LED control page settings are ignored when the RACE `ledstrip_profile` is active.  Normal functionality is returned with `set ledstrip_profile = STATUS`.
 
 For more information see [PR 13096](https://github.com/betaflight/betaflight/pull/13096)
 
 Thanks to: cruwaller
 
-## 8. Rainbow colour effect for LEDstrip
+## 7.2. LEDstrip rainbow colour effect updates
 
-:::warning
-Very CPU intensive; may cause glitching, use with caution.
-:::
+Additional settings for colour range and frequency were enabled for the Rainbow LEDStrip effect.  It can be used now at the same time as the Larsson effect
 
 See: [PR 12323](https://github.com/betaflight/betaflight/pull/12323/files)
 
 Thanks to: ASDosjani
 
-## 9. Angle and Horizon Mode update
+## 7.3. Reduced CPU impact when using complex LEDstrip effects
+
+Complex effects like Rainbow and Larsson scanner effects can require a lot of CPU time, especially when may LEDs are involved.  Mr. Steve C Evans has again helped out by limiting the task time per CPU cycle to a max of approximately 20uS.  Previously, the Rainbow effect could cost more than 100uS, causing issues at 8k8k and some 8k4k builds.
+
+Always check your `Tasks` command in the CLI before, and after, enabling complex LED modes, to confirm that they do not require too much CPU or cause task over-runs.
+
+Simple LEDstrip functions like RACE or BEACON modes require only 5-6uS.
+
+See: [PR 13218](https://github.com/betaflight/betaflight/pull/13218)
+
+Thanks to: ASDosjani
+
+## 8. Angle and Horizon Mode update
 
 Angle and Horizon modes are completely different from 4.4.
 
@@ -165,7 +214,7 @@ For more information, and sample configuration snippets, see [PR 12231](https://
 
 Thanks to: ChrisRosser, ctzsnooze, ledvinap
 
-## 10. Failsafe changes
+## 9. Failsafe changes
 
 Failsafe indicators at the time on Rx loss are slightly different, and some safety related issues have been fixed.
 
@@ -181,7 +230,7 @@ For more information, see [PR 13033](https://github.com/betaflight/betaflight/pu
 
 Thanks to: ctzsnooze
 
-## 11. Dimmable RPM Harmonics
+## 10. Dimmable RPM Harmonics
 
 With this feature, the user can adjust the 'strength' or 'weight' of each of the three RPM filters, individually.  A weight of 100 applies the filter at full strength, while 0 means 'completely off'.  The Q factor of the RPM filter still sets the 'width' of each filter.
 
@@ -212,11 +261,9 @@ For more information, see [PR 12838](https://github.com/betaflight/betaflight/pu
 
 Thanks to: karatebrot, mikeNomatter, SupaflyFPV, bw1129
 
-## 12. Customisable initial Dynamic Idle percentage
+## 11. Customisable initial Dynamic Idle percentage
 
-After arming, but before airmode activates, the motors receive a fixed idle value.
-
-This value can now be customised in the CLI, instead of being always 5%.  Use the `dyn_idle_start_increase` value, which defaults to 50, meaning 5%.
+After arming, but before airmode activates, dynamic idle is active but the maximum allowed throttle increase is limited.  Previously that limit was 5%.  In 4.5 we still default to the original 5%, but the limit can now be customised in the CLI, to a higher or lower value, using the `dyn_idle_start_increase` parameter.  A value of 50 means 5%.
 
 A higher value can be useful if the motors need a higher idle value to spin properly on arming when Dynamic Idle is active, and conversely if large motors spin well at low idle percentage, it can be reduced.
 
@@ -224,7 +271,7 @@ For more information, see [PR 12432](https://github.com/betaflight/betaflight/pu
 
 Thanks to: tbolin
 
-## 13. EzLanding
+## 12. EzLanding
 
 This is a newly developed feature, CLI only, that makes landings less bouncy, even when airmode is on.  This is achieved by restricting the amount to which airmode can increase throttle, and by attenuating iTerm, when throttle is low and sticks are centred.
 
@@ -234,19 +281,17 @@ EzLanding is disabled by default.
 - To return to normal behaviour, go `set mixer_type = LEGACY` in CLI.
 
 There are two tuning parameters:
-- `ez_landing_limit`: Default: 5, Range: 0-75.  Allowed maximum percentage throttle increase via airmode, even with maximum anti-bounce activity. Higher values provide a bit more stability when perching or in flat drops. Lower values make landings less bouncy.
-- `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which full throttle authority is returned, with linear throttle authority attention towards center.
+- `ez_landing_limit`: Default: 5, Range: 0-75.  Allowed maximum percentage throttle increase via airmode, with sticks centered and throttle at zero. Higher values provide a bit more stability when perching or in flat drops. Lower values make landings less bouncy.
+- `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which full authority is returned, with linear attenuation towards center.
 
 Maximum anti-bounce effect occurs when sticks are centred and throttle is at zero.  Under these conditions there will be a small reduction in PID stabilisation. To retain a bit more stability, eg when trying to 'perch' on an object, or during flat or inverted zero throttle drops, retain a tiny bit of throttle during the move.
-
-When trying to 'perch'
 
 For more information, see [PR 12094](https://github.com/betaflight/betaflight/pull/12094).
 Debug: `set debug_mode = EZLANDING`
 
 Thanks to: : tbolin
 
-## 14. Low throttle TPA
+## 13. Low throttle TPA
 
 Allows the user to apply TPA attenuation in the low end of the throttle range.  In highly tuned quads, this may help avoid excessive D shaking at low throttle values.
 
@@ -262,7 +307,7 @@ For more information, see [PR 13006](https://github.com/betaflight/betaflight/pu
 
 Thanks to: pichim
 
-## 15. CRSF binding via CLI for TBS Receivers
+## 14. CRSF binding via CLI for TBS Receivers
 
 Allows the user to initiate binding on their TBS receiver by entering `bind_rx` in the CLI, rather than pulling the quad apart to get to the bind button.  If successful, the CLI outputs `binding...` and the Rx starts blinking a green LED, indicating that has entered binding mode
 
@@ -270,13 +315,13 @@ For more information see [PR 13119](https://github.com/betaflight/betaflight/pul
 
 Thanks to: nerdcopter
 
-## 16. Keep i-term at zero for fixed wings at zero throttle
+## 15. Keep i-term at zero for fixed wings at zero throttle
 
 Improves handling of fixed wings when throttle is zero, by maintaining iTerm even if throttle is at zero, for example while gliding in to land.
 
 Thanks to: Limonspb
 
-## 17. Custom build options
+## 16. Custom build options
 
 These are additional code blocks that will only be available if they are built into the firmware that is flashed onto the FC. They are optional because either they are still in development, or cater for the requirements of a small group of users.  At some point, if they become popular, we may merge them into the master code; for now, they are custom build options.
 
@@ -288,7 +333,7 @@ When making a build in a Terminal on your local computer, the build option must 
 
 The following build options were added in 4.5: 
 
-### 17.1 RPM Limiter build option
+### 16.1 RPM Limiter build option
 
 This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.  
 
@@ -316,7 +361,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 Thanks to: Tdogb, Limonspb, karatebrot
 
-### 17.2 Quick OSD Menu build option
+### 16.2 Quick OSD Menu build option
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
@@ -326,7 +371,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 Thanks to: limonspb
 
-### 17.3 RC Stats OSD build option
+### 16.3 RC Stats OSD build option
  
 This is a custom build option which adds flight throttle statistics, such as time on 100% throttle and average throttle, to the post-flight stats pages.
 
@@ -336,7 +381,7 @@ For more information, see [PR 12978](https://github.com/betaflight/betaflight/pu
 
 Thanks to: limonspb
 
-### 17.4 Pre-arm Spec Race settings OSD build option
+### 16.4 Pre-arm Spec Race settings OSD build option
  
 This is a custom build option which adds a special "prearm" OSD screen for racers, particularly spec class racers, where both pilot and race organisers can verify the settings. 
 
@@ -355,7 +400,7 @@ For more information, see [PR 13210](https://github.com/betaflight/betaflight/pu
 
 Thanks to: limonspb
 
-### 17.5 GPS Lap Timer
+### 16.5 GPS Lap Timer
 
 This is a custom build option that allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).
 
@@ -369,41 +414,43 @@ For more information see [PR 11856](https://github.com/betaflight/betaflight/pul
 
 Thanks to: SpencerGraffunder
 
-## 18. Blackbox and logging updates
+## 17. Blackbox and logging updates
 
 Un-filtered gyro and RPM data are now logged by default.  Enabling the `gyro_scaled` debug isn't needed any more for basic spectral analysis of pre- and post- filter noise in Blackbox Log Explorer.  The latest version of PID Toolbox can read this un-filtered gyro directly, but if you're using software that expects `gyro_scaled` as usual.
 
 Blackbox now supports 8 channels of data per debug.  Not all debugs have been updated to take advantage of this, but it is extremely helpful when developing.
 
-All eight values can be seen in Sensors
+All eight Debug values also can be shown graphically, and named correctly, in Configurator's Sensors Tab.
 
 A number of new debugs have been added, and their display in Blackbox should be correct.
 
 Blackbox GPS Map display, and GPX export to enable external GPS mapping.
 
-Thanks to: bw1129, ctzsnooze, karatebrot, McGiverGim, bonchan
+Thanks to: Zoggbarr (tbolin), bw1129, ctzsnooze, karatebrot, McGiverGim, bonchan
 
-## 19. Hardware support
+## 18. Hardware support
 
 As a result of our improving engagement with manufacturers, we were able to respond to user feedback and improve the target configs for many boards.  We are actively encouraging good design principles and working to ensure that new configurations will work reliably.
 
 Support for the following hardware has been added:
 - AT32 CPU : note only one ADC pin can be defined at present, other minor bugs may exist
-- ICM4268x IMU
+- ICM-42688-P IMU
 - LSM6DSV16X IMU
 - LPS22DF Baro
-- H725 CPU (test carefully)
+- H725 CPU (test with caution)
+
+ICM-42688-P and ICM-42605 were added to the list of gyros with overflow detection.
 
 A number of H7 improvements and fixes were implemented.
 
 Thanks to: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, belrik, bkleiner
 
-## 20. Other Changes and fixes
+## 19. Other Changes and fixes
 
 - configurator: haslinghuis (our Configurator guru), nerdCopter, HThuren,  VitroidFPV, McGiverGim, chmelevskij, ASDosjani, stoneman, flaviopinzarrone, lipskij, blckmn, limonspb, asizon, atomgomba, andygfpv, Benky, shanggl, benlumley, rumpelst1lzk1n
 - liaison with manufacturers: sugark, unit
 - discord: unit, rabbitAmbulance, vitroid, limonspb
-- user support: Vitroid, nerdCopter, BrandonBakedBeans, V-22, HRoll, hypOdermic, TechNinja, Darkmann, ctzsnooze, Sek101, ZogBarr, Steve Fisher, PIDToolBoxGuy, ASDojani, haslinghuis
+- user support: Vitroid, nerdCopter, BrandonBakedBeans, V-22, HRoll, hypOdermic, TechNinja, Darkmann, ctzsnooze, Sek101, Zoggbarr (tbolin), Steve Fisher, PIDToolBoxGuy, ASDojani, haslinghuis
 - documentation: ctzsnooze, Vitroid, SupaflyFPV, haslinghuis, belrik
 - extra testing: rabbitAmbulance, xxXyz, sek101
 - all the really tough stuff: SteveCEvans, ledvinap, karatebrot
