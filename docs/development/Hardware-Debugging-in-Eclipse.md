@@ -15,23 +15,23 @@ Create a new debug configuration in eclipse :
 ![use workspace default](http://i.imgur.com/LTtioaF.png)
 
 you can control openocd with a telnet connection:
-
-     telnet localhost 4444
-
+```
+telnet localhost 4444
+```
 stop the board, flash the firmware, restart:
-
-     reset halt
-     wait_halt
-     sleep 100
-     poll
-     flash probe 0
-     flash write_image erase /home/user/git/cleanflight/obj/cleanflight_NAZE.hex 0x08000000
-     sleep 200
-     soft_reset_halt
-     wait_halt
-     poll
-     reset halt
-
+```
+	reset halt
+	wait_halt
+	sleep 100
+	poll
+	flash probe 0
+	flash write_image erase /home/user/git/cleanflight/obj/cleanflight_NAZE.hex 0x08000000
+	sleep 200
+	soft_reset_halt
+	wait_halt
+	poll
+	reset halt
+```
 A this point you can launch the debug in Eclispe.
 ![](http://i.imgur.com/u7wDgxv.png)
 

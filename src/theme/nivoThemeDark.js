@@ -39,6 +39,7 @@ export const themeDark = {
   legends: {
     text: {
       fill: '#ffffff',
+      fontSize: 12,
     },
   },
 };

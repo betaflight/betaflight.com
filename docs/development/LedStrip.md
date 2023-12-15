@@ -67,7 +67,7 @@ The BEACON profile is used to find a lost quad, it flashes all LEDs white once p
 3. Type `set ledstrip_race_color=x` where x is the required color.
 4. Type `save` followed by enter to save the race color to be used.
 
-###### BRIGHTNESS: The brightness can be configured using the CLI:
+###### BRIGHTNESS: The brightness can be configured using the slider on the LED Strip tab or using the CLI:
 
 1. Open the CLI.
 2. Type `get ledstrip_brightness` followed by enter to display the current brightness.
@@ -294,7 +294,12 @@ This overlay dims all of the LEDs it is assigned to and brightens certain ones a
 
 #### Rainbow Effect
 
-This mode is cycling through HSV colors periodically. Animation frequency can be changed with `set ledstrip_rainbow_freq = X` and HSV color difference between adjacent LEDs with `set ledstrip_rainbow_delta = Y`.
+This mode is cycling through HSV colors periodically. Animation frequency and delta can be changed from the LED Strip tab with sliders.
+
+Alternatively you can use CLI:
+
+1. `set ledstrip_rainbow_freq = x` where x is the frequency in Hz between 1 and 2000.
+2. `set ledstrip_rainbow_delta = y` where y is the HSV color difference between adjacent LEDs (from 0 to 359).
 
 :::info
 
@@ -309,13 +314,13 @@ The color is selected according to the following table:
 
 | Frequency range | Default color | Color index |
 | --------------- | ------------- | ----------- |
-| <= 5672         | White         | 1           |
-| > 5672 <= 5711  | Red           | 2           |
-| > 5711 <= 5750  | Orange        | 3           |
-| > 5750 <= 5789  | Yellow        | 4           |
-| > 5789 <= 5829  | Green         | 6           |
-| > 5829 <= 5867  | Blue          | 10          |
-| > 5867 <= 5906  | Dark violet   | 11          |
+| \<= 5672        | White         | 1           |
+| > 5672 \<= 5711 | Red           | 2           |
+| > 5711 \<= 5750 | Orange        | 3           |
+| > 5750 \<= 5789 | Yellow        | 4           |
+| > 5789 \<= 5829 | Green         | 6           |
+| > 5829 \<= 5867 | Blue          | 10          |
+| > 5867 \<= 5906 | Dark violet   | 11          |
 | > 5906          | Deep pink     | 13          |
 
 The default color can be changed by double-clicking the color and moving the Hue slider or by using the color command in the CLI.
@@ -706,14 +711,16 @@ If your board does not have a physical LED_STRIP pin you still can use this feat
 
 An example for a Foxeer F745V3_AIO board using SERIAL_RX 1 as LED_STRIP:
 
-    resource SERIAL_RX 1 A10
-    resource SERIAL_RX 1 NONE
-    resource LED_STRIP 1 A10
-    timer show # show current timer list
-    timer A10 list # check available timers for next commmand
-    timer A10 AF1
-    dma show # show current dma list
-    dma pin A10 list # check available dma pins for next command
-    dma pin A10 0
-    feature LED_STRIP
-    save
+```
+resource SERIAL_RX 1 A10
+resource SERIAL_RX 1 NONE
+resource LED_STRIP 1 A10
+timer show # show current timer list
+timer A10 list # check available timers for next commmand
+timer A10 AF1
+dma show # show current dma list
+dma pin A10 list # check available dma pins for next command
+dma pin A10 0
+feature LED_STRIP
+save
+```

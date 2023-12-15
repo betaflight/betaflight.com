@@ -172,8 +172,13 @@ nav.menu.thin-scrollbar {
 }
 
 /* table of contents */
-.theme-doc-toc-desktop {
-  @apply overflow-y-visible -mt-8 pt-6 pb-12 px-4 sticky;
+
+.sidebar_node_modules-\@docusaurus-theme-classic-lib-theme-DocSidebar-Desktop-styles-module, .sidebar_njMd {
+	@apply overflow-y-visible pt-0 max-h-[90vh] #{!important};
+}
+
+.menu_node_modules-\@docusaurus-theme-classic-lib-theme-DocSidebar-Desktop-Content-styles-module, .menu_SIkG {
+  @apply pt-0 pb-4 px-4 sticky;
 }
 
 .table-of-contents {
