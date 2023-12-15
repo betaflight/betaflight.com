@@ -1,9 +1,9 @@
 ---
 sidebar_position: 0
-sidebar_label: Support
+sidebar_label: Welcome!
 ---
 
-# Welcome to Support
+# Welcome to the Wiki
 
 ## Find everything betaflight related
 
