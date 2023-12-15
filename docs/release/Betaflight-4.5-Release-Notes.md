@@ -263,9 +263,7 @@ Thanks to: karatebrot, mikeNomatter, SupaflyFPV, bw1129
 
 ## 11. Customisable initial Dynamic Idle percentage
 
-After arming, but before airmode activates, the motors receive a fixed idle value.
-
-This value can now be customised in the CLI, instead of being always 5%.  Use the `dyn_idle_start_increase` value, which defaults to 50, meaning 5%.
+After arming, but before airmode activates, dynamic idle is active but the maximum allowed throttle increase is limited.  Previously that limit was 5%.  In 4.5 we still default to the original 5%, but the limit can now be customised in the CLI, to a higher or lower value, using the `dyn_idle_start_increase` parameter.  A value of 50 means 5%.
 
 A higher value can be useful if the motors need a higher idle value to spin properly on arming when Dynamic Idle is active, and conversely if large motors spin well at low idle percentage, it can be reduced.
 
@@ -283,12 +281,10 @@ EzLanding is disabled by default.
 - To return to normal behaviour, go `set mixer_type = LEGACY` in CLI.
 
 There are two tuning parameters:
-- `ez_landing_limit`: Default: 5, Range: 0-75.  Allowed maximum percentage throttle increase via airmode, even with maximum anti-bounce activity. Higher values provide a bit more stability when perching or in flat drops. Lower values make landings less bouncy.
-- `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which full throttle authority is returned, with linear throttle authority attention towards center.
+- `ez_landing_limit`: Default: 5, Range: 0-75.  Allowed maximum percentage throttle increase via airmode, with sticks centered and throttle at zero. Higher values provide a bit more stability when perching or in flat drops. Lower values make landings less bouncy.
+- `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which full authority is returned, with linear attenuation towards center.
 
 Maximum anti-bounce effect occurs when sticks are centred and throttle is at zero.  Under these conditions there will be a small reduction in PID stabilisation. To retain a bit more stability, eg when trying to 'perch' on an object, or during flat or inverted zero throttle drops, retain a tiny bit of throttle during the move.
-
-When trying to 'perch'
 
 For more information, see [PR 12094](https://github.com/betaflight/betaflight/pull/12094).
 Debug: `set debug_mode = EZLANDING`
@@ -424,13 +420,13 @@ Un-filtered gyro and RPM data are now logged by default.  Enabling the `gyro_sca
 
 Blackbox now supports 8 channels of data per debug.  Not all debugs have been updated to take advantage of this, but it is extremely helpful when developing.
 
-All eight values can be seen in Sensors
+All eight Debug values also can be shown graphically, and named correctly, in Configurator's Sensors Tab.
 
 A number of new debugs have been added, and their display in Blackbox should be correct.
 
 Blackbox GPS Map display, and GPX export to enable external GPS mapping.
 
-Thanks to: bw1129, ctzsnooze, karatebrot, McGiverGim, bonchan
+Thanks to: Zoggbarr (tbolin), bw1129, ctzsnooze, karatebrot, McGiverGim, bonchan
 
 ## 18. Hardware support
 
@@ -438,10 +434,12 @@ As a result of our improving engagement with manufacturers, we were able to resp
 
 Support for the following hardware has been added:
 - AT32 CPU : note only one ADC pin can be defined at present, other minor bugs may exist
-- ICM4268x IMU
+- ICM-42688-P IMU
 - LSM6DSV16X IMU
 - LPS22DF Baro
-- H725 CPU (test carefully)
+- H725 CPU (test with caution)
+
+ICM-42688-P and ICM-42605 were added to the list of gyros with overflow detection.
 
 A number of H7 improvements and fixes were implemented.
 
@@ -452,7 +450,7 @@ Thanks to: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, t
 - configurator: haslinghuis (our Configurator guru), nerdCopter, HThuren,  VitroidFPV, McGiverGim, chmelevskij, ASDosjani, stoneman, flaviopinzarrone, lipskij, blckmn, limonspb, asizon, atomgomba, andygfpv, Benky, shanggl, benlumley, rumpelst1lzk1n
 - liaison with manufacturers: sugark, unit
 - discord: unit, rabbitAmbulance, vitroid, limonspb
-- user support: Vitroid, nerdCopter, BrandonBakedBeans, V-22, HRoll, hypOdermic, TechNinja, Darkmann, ctzsnooze, Sek101, ZogBarr, Steve Fisher, PIDToolBoxGuy, ASDojani, haslinghuis
+- user support: Vitroid, nerdCopter, BrandonBakedBeans, V-22, HRoll, hypOdermic, TechNinja, Darkmann, ctzsnooze, Sek101, Zoggbarr (tbolin), Steve Fisher, PIDToolBoxGuy, ASDojani, haslinghuis
 - documentation: ctzsnooze, Vitroid, SupaflyFPV, haslinghuis, belrik
 - extra testing: rabbitAmbulance, xxXyz, sek101
 - all the really tough stuff: SteveCEvans, ledvinap, karatebrot
