@@ -132,9 +132,9 @@ const config = {
           //   },
           {
             type: 'docSidebar',
-            sidebarId: 'support',
+            sidebarId: 'wiki',
             position: 'left',
-            label: 'Support',
+            label: 'Wiki',
           },
           {
             type: 'docSidebar',
