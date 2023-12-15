@@ -281,10 +281,10 @@ EzLanding is disabled by default.
 - To return to normal behaviour, go `set mixer_type = LEGACY` in CLI.
 
 There are two tuning parameters:
-- `ez_landing_limit`: Default: 5, Range: 0-75.  Allowed maximum percentage throttle increase via airmode, with sticks centered and throttle at zero. Higher values provide a bit more stability when perching or in flat drops. Lower values make landings less bouncy.
-- `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which full authority is returned, with linear attenuation towards center.
+- `ez_landing_limit`: Default: 5, Range: 0-75. Allowed maximum percentage throttle increase via airmode, with sticks centered and throttle at zero. Higher values provide a bit more stability when perching or in flat drops. Lower values make landings less bouncy.
+- `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which airmode is given full authority to adjust the throttle, with linear attenuation towards the center
 
-Maximum anti-bounce effect occurs when sticks are centred and throttle is at zero.  Under these conditions there will be a small reduction in PID stabilisation. To retain a bit more stability, eg when trying to 'perch' on an object, or during flat or inverted zero throttle drops, retain a tiny bit of throttle during the move.
+The EzLanding effect is strongest when the sticks are centred and throttle is at zero.  Under these conditions there will be a small reduction in PID stabilisation. To retain a bit more stability, eg when trying to 'perch' on an object, or during flat or inverted zero throttle drops, retain a tiny bit of throttle during the move.
 
 For more information, see [PR 12094](https://github.com/betaflight/betaflight/pull/12094).
 Debug: `set debug_mode = EZLANDING`
