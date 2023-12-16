@@ -52,7 +52,7 @@ When failsafe is initiated by a failsafe switch that has been configured to to e
 
 **The default Stage 1 duration** is one second, with a minimum of 200ms. The timer for initiation of stage 1 is activated when 100ms has elapsed since the last good packet, or 300ms after any persistently bad flight channel, but it starts timing down to failsafe from the time of the last good packet. The Stage 1 duration may be customised via the "Guard time for stage 2 activation" parameter in Configurator (`failsafe_delay` in the CLI). It starts at the time of the last good packet. The units are tenths of a second.
 
-**During Stage 1 failsafe**, all stick positions are set to the fixed 'fallback' values as specified in the 'Channel fallback settings' panel in Configurator, after the 300ms 'hold last good values' period expires. When initiated by a switch, the aux channels remain active, and there is no hold period - the effect is immediate Default behaviour is to center the sticks, set throttle stick to zero (causing the motors to idle), and hold the existing switch positions. These values may be be customised in Configurator or with the CLI command `rxfail` (see [rxfail](Rx.md#rx-loss-configuration) section in rx documentation) or v.
+**During Stage 1 failsafe**, all stick positions are set to the fixed 'fallback' values as specified in the 'Channel fallback settings' panel in Configurator, after the 300ms 'hold last good values' period expires. When initiated by a switch, the aux channels remain active, and there is no hold period - the effect is immediate Default behaviour is to center the sticks, set throttle stick to zero (causing the motors to idle), and hold the existing switch positions. These values may be be customised in Configurator or with the CLI command `rxfail` (see [rxfail](/docs/development/Rx#rx-loss-configuration) section in rx documentation) or v.
 
 The pilot may choose to active Level mode, using an Aux channel, so that it becomes active soon as Stage 1 commences.
 
@@ -207,7 +207,7 @@ Configure the RC switched failsafe action. It can be one of:
 
 Time throttle level must have been below 'min*throttle' to \_only disarm* instead of _full failsafe procedure_.
 
-Use standard RX μs values. See [Rx documentation](Rx.md).
+Use standard RX μs values. See [Rx documentation](/docs/development/Rx).
 
 ### `failsafe_procedure`
 
