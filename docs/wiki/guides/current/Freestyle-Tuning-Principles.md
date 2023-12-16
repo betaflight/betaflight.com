@@ -63,7 +63,7 @@ quad behaving in a predictive and consistent manner
 ### VBat Sag Compensation
 
 This feature aims to provide motor response consistency across the
-entire flight ([BF doc ref](/docs/tuning/4.2-Tuning-Notes.md#dynamic-battery-sag-compensation)).
+entire flight ([BF doc ref](/docs/wiki/tuning/4.2-Tuning-Notes.md#dynamic-battery-sag-compensation)).
 By enabling VBat Sag Compensation the craft will fly more consistently
 and predictively.
 
