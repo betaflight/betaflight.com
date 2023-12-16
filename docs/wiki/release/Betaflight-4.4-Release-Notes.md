@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Betaflight 4.4 Release Notes
 
 ## 1. Cloud Build

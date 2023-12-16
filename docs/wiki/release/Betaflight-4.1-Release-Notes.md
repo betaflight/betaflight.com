@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Betaflight 4.1 Release Notes
 
 **We're already late, so let's keep this short!**

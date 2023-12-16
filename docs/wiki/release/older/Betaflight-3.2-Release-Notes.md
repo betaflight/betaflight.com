@@ -1,3 +1,7 @@
+---
+sidebar_position: 11
+---
+
 # Betaflight 3.2 Release Notes
 
 IMPORTANT ANNOUNCEMENT

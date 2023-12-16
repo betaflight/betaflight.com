@@ -1,3 +1,7 @@
+---
+sidebar_position: 10
+---
+
 # Betaflight 3.4 Release Notes
 
 **Version 3.4.0: The best Betaflight ever!**

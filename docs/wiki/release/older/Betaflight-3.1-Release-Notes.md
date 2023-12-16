@@ -1,3 +1,6 @@
+---
+sidebar_position: 12
+---
 
 # BetaFlight 3.1 Release Notes
 

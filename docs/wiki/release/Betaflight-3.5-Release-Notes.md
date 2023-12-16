@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # Betaflight 3.5 Release Notes
 
 **Wait, there is one more thing we can do to make it better!**

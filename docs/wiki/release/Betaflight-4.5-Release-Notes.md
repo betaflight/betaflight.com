@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Betaflight 4.5 Release Notes
 
 Betaflight 4.5 is an incremental release. The basic flight parameters have not changed from 4.4 to 4.5, although iTerm is slightly better suppressed.  Previous filters, PID settings, and other tuning values should not need to change.

@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Betaflight 4.0 Release Notes
   
 **It took us a long time, but now it’s here, and it’s got so many new things!**

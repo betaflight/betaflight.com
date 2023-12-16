@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Betaflight 4.2 Release Notes
 
 **Just in time for summer...**
