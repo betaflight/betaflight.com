@@ -43,7 +43,7 @@ Notes:
 
 ### Sparky
 
-See the [Sparky board chapter](/docs/support/boards/SPARKY.md).
+See the [Sparky board chapter](/docs/wiki/boards/SPARKY.md).
 
 ## Configuration
 

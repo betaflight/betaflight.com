@@ -132,33 +132,15 @@ const config = {
           //   },
           {
             type: 'docSidebar',
-            sidebarId: 'support',
+            sidebarId: 'wiki',
             position: 'left',
-            label: 'Support',
+            label: 'Wiki',
           },
           {
             type: 'docSidebar',
             sidebarId: 'development',
             position: 'left',
             label: 'Development',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'manufacturer',
-            position: 'left',
-            label: 'Manufacturer',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'release',
-            position: 'left',
-            label: 'Release',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'tuning',
-            position: 'left',
-            label: 'Tuning',
           },
           {
             to: '/download',
@@ -171,14 +153,10 @@ const config = {
             position: 'left',
           },
           {
-            to: '/partner',
-            label: 'Partner',
+            type: 'docSidebar',
+            sidebarId: 'relations',
             position: 'left',
-          },
-          {
-            to: '/sponsors',
-            label: 'Sponsors',
-            position: 'left',
+            label: 'Relations',
           },
           { to: '/blog', label: 'Blog', position: 'left' },
           {
