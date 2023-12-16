@@ -142,18 +142,6 @@ const config = {
             position: 'left',
             label: 'Development',
           },
-          //   {
-          //     type: 'docSidebar',
-          //     sidebarId: 'release',
-          //     position: 'left',
-          //     label: 'Release',
-          //   },
-          //   {
-          //     type: 'docSidebar',
-          //     sidebarId: 'tuning',
-          //     position: 'left',
-          //     label: 'Tuning',
-          //   },
           {
             to: '/download',
             label: 'Download',
