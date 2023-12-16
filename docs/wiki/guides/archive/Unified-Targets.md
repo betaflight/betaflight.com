@@ -1,8 +1,10 @@
-# Unified Targets for users
+# Unified Targets for 4.2
 
-- Determine the target to use.
+## instructions
 
-![Image that shows where to find the target name](https://betaflight.com/assets/img/identify_target.png)
+### 1. Determine the target to use.
+
+![Image that shows where to find the target name](/img/identify_target.png)
 
 The CLI is another method to get the target name.
 
@@ -16,7 +18,7 @@ The CLI is another method to get the target name.
 The MCU target is `STM32F411` and unified target config is `MATEKF411` as the board_name describes the board type config.
 The manufacturer is required to maintain a unified target configuration file.
 
-- Choose your target
+### 2. Choose your target
 
 ```
 MATEKF411 <-- Unified target
@@ -41,10 +43,11 @@ What do these four letters mean? They refer to the manufacturer of the board. Th
 Tip: remember to save a backup of your config, like as a `diff`, _before_ you flash a new version of betaflight.
 **Please note** it is only save to import certain settings back. If unsure please start with a fresh configuration.
 
-- `Load Firmware [Online]` then `Flash Firmware`
+### 3. `Load Firmware [Online]` then `Flash Firmware`
 
-- Connect to configurator, click on `Apply Custom Defaults` when prompted:
-  ![Picture of a notice that asks the user to apply custom defaults](https://betaflight.com/assets/img/apply_custom_defaults_prompt.png)
+### 4. Connect to configurator, click on `Apply Custom Defaults` when prompted:
+
+![Picture of a notice that asks the user to apply custom defaults](https://betaflight.com/assets/img/apply_custom_defaults_prompt.png)
 
 If you are having an issue with the unified target, try the legacy target for now, and file an issue on the [Issue Tracker](https://github.com/betaflight/betaflight/issues) if the unified target is missing anything that it should have.
 

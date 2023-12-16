@@ -1,4 +1,12 @@
-# Failsafe
+# Failsafe notes (Old)
+
+:::warning
+**This document is deprecated, and is not being updated**
+
+It is kept for historical reasons only.
+
+Do not rely on any information presented here.
+:::
 
 **Test failsafe without propellers.**
 Arm the Quadcopter and shut the radio off.

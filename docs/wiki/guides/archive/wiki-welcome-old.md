@@ -1,6 +1,14 @@
-![BetaFlight](https://betaflight.com/assets/img/betaflight/bf_logo.png)
+# Wiki welcome (Old)
 
-## Welcome to BetaFlight Wiki!
+:::warning
+**This document is deprecated, and is not being updated**
+
+It is kept for historical reasons only.
+
+Do not rely on any information presented here.
+:::
+
+![BetaFlight](/img/bf_logo.png)
 
 **New to Betaflight and just want to get started? See the [installation](Installing-Betaflight) section.**
 
