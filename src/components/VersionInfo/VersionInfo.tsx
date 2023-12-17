@@ -24,7 +24,7 @@ export default function VersionInfo() {
 
   fetch('https://api.github.com/repos/betaflight/betaflight/releases/latest', {
     headers: {
-      Authorization: 'Bearer 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',
+      Authorization: 'TODO',
     },
   })
     .then((response) => response.json())
