@@ -4,6 +4,7 @@
 const lightCodeTheme = require('prism-react-renderer').themes.github
 const darkCodeTheme = require('prism-react-renderer').themes.dracula
 const math = require('remark-math')
+const mentions = require('remark-mentions')
 const katex = require('rehype-katex')
 
 require('dotenv').config()
@@ -83,7 +84,15 @@ const config = {
           // Remove this to remove the "edit this page" links.
           /*editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',*/
-          remarkPlugins: [math],
+          remarkPlugins: [
+            math,
+            [
+              mentions,
+              {
+                usernameLink: (username) => `https://github.com/${username}`,
+              },
+            ],
+          ],
           rehypePlugins: [katex],
           async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
             const sidebarItems = await defaultSidebarItemsGenerator(args)
