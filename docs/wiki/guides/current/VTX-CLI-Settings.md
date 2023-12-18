@@ -7,7 +7,7 @@ and
 IRC-[Tramp](IRC-Tramp)[)](IRC-Tramp)
 that are connected to the flight controller.\
  \
- At startup the settings are applied to the transmitter.  If the video
+ At startup the settings are applied to the transmitter. If the video
 configuration is modified via the [CMS OSD
 menu](Unify-Smartaudio#smartaudio-cms-guide)
 or via MSP (Taranis/OpenTX smartport
@@ -16,13 +16,13 @@ settings are updated.\
  \
  One nice thing the settings can provide is a way to configure a
 frequency (via USB / CLI) while the video transmitter is not powered
-up.  After a save and power cycle, the system will startup at the new
+up. After a save and power cycle, the system will startup at the new
 frequency.\
  \
- There is a 'vtx_freq' setting that operates as follows:  If
+ There is a 'vtx_freq' setting that operates as follows: If
 vtx_band=0 and vtx_freq!=0 then the 'vtx_freq' value (in MHz) will be
-configured on the transmitter at startup.  If both are zero then the
-settings will be ignored.  If vtx_band!=0 and a video transmitter is
+configured on the transmitter at startup. If both are zero then the
+settings will be ignored. If vtx_band!=0 and a video transmitter is
 connected then 'vtx_freq' will be set to the current frequency value
 (in MHz) at startup.\
 
@@ -39,9 +39,9 @@ Values for settings like vtx_band, vtx_channel, vtx_power are relevant for Betaf
  \
 **vtx_power = \#**\
  Allowed range: 0 - 5\
- for SmartAudio:  0=25mW, 1=25mW, 2=200mW, 3=500mW, 4=800mW\
- for TBS Unify Nano:  0=25mW, 1=25mW, 2=50mW\
- for IRC-Tramp:  0=25mW, 1=25mW, 2=100mW, 3=200mW, 4=400mW, 5=600mW\
+ for SmartAudio: 0=25mW, 1=25mW, 2=200mW, 3=500mW, 4=800mW\
+ for TBS Unify Nano: 0=25mW, 1=25mW, 2=50mW\
+ for IRC-Tramp: 0=25mW, 1=25mW, 2=100mW, 3=200mW, 4=400mW, 5=600mW\
  \
 **vtx_low_power_disarm = ON|OFF**\
 If ON and the flight controller is disarmed, the video transmitter output power will be set to its lowest value (vtx_power=1). Otherwise, the video transmitter output power will be set to the configured 'vtx_power' value. (Note one exception: If a receiver failsafe has occurred then the output power will not be lowered.)\
@@ -62,19 +62,19 @@ MHz), enter the CLI and input:\
  save\
  \
  The VTX configuration will not be changed until after the 'save' and
-restart.  If it is successful then entering 'get vtx_freq' will show
+restart. If it is successful then entering 'get vtx_freq' will show
 the current frequency value in MHz.\
  \
  **Frequency table**:\
-                                            Channel\
-                  1       2       3       4       5       6      7       8\
- Band 1:  5865 5845 5825 5805 5785 5765 5745 5725  (A: Boscam A / TBS /
+ Channel\
+ 1 2 3 4 5 6 7 8\
+ Band 1: 5865 5845 5825 5805 5785 5765 5745 5725 (A: Boscam A / TBS /
 RC305)\
- Band 2:  5733 5752 5771 5790 5809 5828 5847 5866  (B: Boscam B)\
- Band 3:  5705 5685 5665 5645 5885 5905 5925 5945  (E: Boscam E / DJI)\
- Band 4:  5740 5760 5780 5800 5820 5840 5860 5880  (F: IRC NexWave /
+ Band 2: 5733 5752 5771 5790 5809 5828 5847 5866 (B: Boscam B)\
+ Band 3: 5705 5685 5665 5645 5885 5905 5925 5945 (E: Boscam E / DJI)\
+ Band 4: 5740 5760 5780 5800 5820 5840 5860 5880 (F: IRC NexWave /
 Fatshark)\
- Band 5:  5658 5695 5732 5769 5806 5843 5880 5917  (R: Raceband)\
+ Band 5: 5658 5695 5732 5769 5806 5843 5880 5917 (R: Raceband)\
  \
  See [here for a 5.8GHz FPV "Visual" Frequency
 Chart](http://www.etheli.com/freq/FPV_5.8GHz_Freqs.jpg)
