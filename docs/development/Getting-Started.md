@@ -82,7 +82,7 @@ It's important that you have configured CF properly, so that your aircraft does 
 
 - First read the [safety](Safety.md) section.
 - Next, learn how to arm your FC, and about other [controls](Controls.md).
-- Next up, setup [Failsafe](docs/wiki/guides/archive/failsafe_old.md). Take your time, do it properly.
+- Next up, setup [Failsafe](docs/wiki/guides/current/Failsafe.md). Take your time, do it properly.
 - Now, on the bench, without props, test that failsafe works properly, according to the above doc.
 - Additionally, test the effect of AIL/ELE input of your Tx. Is the aircraft responding properly? Do the same for RUD input.
 - Test the direction of AIL/ELE auto correction. Raise throttle at 30% (no blades!); when you tilt the aircraft, do the motors try to compensate momentarily? This should simulate random wind forces that the FC should counteract
