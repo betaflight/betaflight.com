@@ -56,7 +56,7 @@ Most users will not require AcroTrainer or PinIO, so these can be de-selected.
 
 To add other build options, such as other radio protocols, LEDStrip, Magnetometers, etc, click somewhere in the `Other Options` box and choose from the drop-down.
 
-Thanks to: blckmn, unit, haslinghuis, many others
+Thanks to: @blckmn, unit, haslinghuis, many others
 
 ## 2. GPS
 
