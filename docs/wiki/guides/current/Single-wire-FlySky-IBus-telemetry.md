@@ -1,4 +1,4 @@
-# Single Wire FlySky IBUS
+# Single Wire FlySky IBUS Telemetry
 
 It's now possible to combine the serial rx and ibus telemetry on the same fc uart on a single pin.
 

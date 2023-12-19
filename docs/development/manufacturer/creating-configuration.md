@@ -68,6 +68,7 @@ Configure the timer in CLI:
 
 Example using a STM32F722:
 
+```
     #timer
     timer A00 AF2
     # pin A00: TIM5 CH1 (AF2)
@@ -87,18 +88,22 @@ Example using a STM32F722:
     # pin C08: TIM8 CH3 (AF3)
     timer C09 AF3
     # pin C09: TIM8 CH4 (AF3)
+```
 
 Also set the DMA options, so the command `timer map` outputs the right values, else they will be `-1` for `dmaopt` (which is unused).
 
 e.g.
 
+```
     dma pin A01 0
     # pin A01: DMA1 Stream 4 Channel 6
     dma pin A00 0
     # pin A00: DMA1 Stream 2 Channel 6
+```
 
 The below is an example of the output after running timer map in CLI:
 
+```
     #timer map
 
     Timer Mapping:
@@ -111,6 +116,7 @@ The below is an example of the output after running timer map in CLI:
      TIMER_PIN_MAP(6, PC7, 2, -1)
      TIMER_PIN_MAP(7, PC8, 2, -1)
      TIMER_PIN_MAP(8, PC9, 2, -1)
+```
 
 To enable the `timer map` command you need to add the define `USE_TIMER_MAP_PRINT` so use either:
 

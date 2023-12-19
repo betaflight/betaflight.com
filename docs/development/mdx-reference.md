@@ -1,25 +1,31 @@
 ---
 sidebar_position: 4
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # MDX Reference
 
 # Header 1
+
 ## Header 2
+
 ### Header 3
+
 #### Header 4
+
 ##### Header 5
+
 ###### Header 6
 
-Normal text 
+Normal text
 
-*italic text*
+_italic text_
 
 **bold text**
 
-***bold italic text***
+**_bold italic text_**
 
 ~~strikethrough text~~
 
@@ -29,37 +35,48 @@ Normal text
 
 - list item 1
 - list item 2
+  - list item 2a
+  - list item 2b
 - list item 3
 
 1. numbered list item 1
-2. numbered list item 2
-3. numbered list item 3
+1. numbered list item 2
+   1. numbered list item 2a
+   1. numbered list item 2a
+1. numbered list item 3
 
-## Code Blocks
+<br/>
 
-`const foo = 'bar';`
+Inline code: `const foo = 'bar';`
 
-```ts
-const foo: string = 'bar';
+Code block:
+
+```
+const foo: string = 'bar'
 ```
 
-```md
+````
 # MDX Reference
 
 # Header 1
+
 ## Header 2
+
 ### Header 3
+
 #### Header 4
+
 ##### Header 5
+
 ###### Header 6
 
-Normal text 
+Normal text
 
-*italic text*
+_italic text_
 
 **bold text**
 
-***bold italic text***
+**_bold italic text_**
 
 ~~strikethrough text~~
 
@@ -69,22 +86,27 @@ Normal text
 
 - list item 1
 - list item 2
+    - list item 2a
+    - list item 2b
 - list item 3
 
+
 1. numbered list item 1
-2. numbered list item 2
-3. numbered list item 3
+1. numbered list item 2
+    1. numbered list item 2a
+    1. numbered list item 2a
+1. numbered list item 3
 
-\```js
-const foo = 'bar';
+<br/>
+
+`const foo = 'bar';`
+
 \```
-
-\```ts
 const foo: string = 'bar';
 \```
 
-\{/* wow so meta */}
-```
+\{/_ wow so meta _/}
+````
 
 ## Tabs
 
@@ -102,15 +124,9 @@ const foo: string = 'bar';
 
 ```html
 <Tabs>
-	<TabItem value="tab1" label="Tab 1" default>
-		This is tab 1
-	</TabItem>
-	<TabItem value="tab2" label="Tab 2">
-		This is tab 2
-	</TabItem>
-	<TabItem value="tab3" label="Tab 3">
-		This is tab 3
-	</TabItem>
+  <TabItem value="tab1" label="Tab 1" default> This is tab 1 </TabItem>
+  <TabItem value="tab2" label="Tab 2"> This is tab 2 </TabItem>
+  <TabItem value="tab3" label="Tab 3"> This is tab 3 </TabItem>
 </Tabs>
 <!-- even more meta -->
 ```
@@ -163,6 +179,7 @@ $F(x)=\int_\{a}^\{x} f(t)\,dt$. Then $F$ is continuous, and at all $x$ such that
 $f$ is continuous at $x$, $F$ is differentiable at $x$ with $F'(x)=f(x)$.
 
 This is a block of aligned $\LaTeX$ equations:
+
 $$
 \begin\{align}
     \nabla \cdot \vec\{\bf\{E}} &= \frac\{\rho}\{\epsilon_0} \\
@@ -171,3 +188,17 @@ $$
     \nabla \times \vec\{\bf\{B}} &= \mu_0 \left( \vec\{\bf\{J}} + \epsilon_0 \frac\{\partial \vec\{\bf\{E}}}\{\partial \mathrm\{t}} \right)
 \end\{align}
 $$
+
+## Images
+
+<div align="center">
+ ![Betaflight Configurator](/img/MagOrientationDiagram.png)
+**Fig. 1** - centered image.
+</div>
+ 
+ ```
+<div align="center">
+[Betaflight Configurator](/img/MagOrientationDiagram.png)
+**Fig. 1** - centered image.
+</div>
+ ```
