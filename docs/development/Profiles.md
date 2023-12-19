@@ -32,7 +32,7 @@ To save configuration changes:
 save
 ```
 
-# Rate Profiles
+## Rate Profiles
 
 A Rate Profile is a set of Rate related settings. These profiles store the settings for Rate Type, RC Rate, Super Rate, Expo for Pitch, Roll, & Yaw. Along with Throttle Expo and TPA settings.
 
@@ -40,7 +40,7 @@ Pre-BetaFlight 3.2 Profiles and Rate Profiles are coupled together. Each Profile
 Betaflight 3.2 broke this link, giving us independent Profiles and Rate Profiles. Selecting Rate Profiles are independent of Profiles now. Allowing only 3 Rate Profiles.
 BetaFlight 3.3 > the number of Rate Profiles increased from 3 to 6 Rate Profiles.
 
-## Changing Rate Profiles
+### Changing Rate Profiles
 
 Rate Profiles can be selected using a GUI, CLI, OSD, or AUX channel. Once selected (just like Profiles), changes to settings can be made and saved to the active Rate Profile. Also, when changing our Rate Profile that profile will remain the active Profile even over power cycles, except when using the AUX channel option. When BetaFlight boots the active profile is selected by the position of the AUX channel.
 
@@ -65,11 +65,11 @@ To save configuration changes:
 save
 ```
 
-# Backing up Profiles and Rate Profiles
+## Backing up Profiles and Rate Profiles
 
 Currently creating a backup from the GUI only backs up the active Profile and Rate Profile. So the best way to see and backup all Profiles is to use CLI.
 
-## Using Diff and Dump to output only Profiles
+### Using Diff and Dump to output only Profiles
 
 Use these commands to view and back up the complete active profiles (including default settings): `dump profile`, & `dump rates`
 In order to see all Profiles configured add the `all` variable: `dump all`, & `diff all`

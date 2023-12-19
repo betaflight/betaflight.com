@@ -1,9 +1,11 @@
 # Signal Flow Diagram
 
-```jsx
-<a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/mrRobot62/betaflight_processing/master/bf-4.2_processing-workflow.svg">
-  <img src="https://github.com/mrRobot62/betaflight_processing/raw/master/bf-4.2_processing-workflow.svg" alt="BF 4.2 latest graph version" style="max-width:100%;" />
-</a>
-```
+Betaflight 4.2 flow diagram
 
-Source: [https://github.com/mrRobot62/betaflight_processing]
+Source: [mrRobert62](https://github.com/mrRobot62/betaflight_processing)
+
+<div align="center">
+
+![image](https://raw.githubusercontent.com/mrRobot62/betaflight_processing/master/bf-4.2_processing-workflow.svg)
+
+</div>

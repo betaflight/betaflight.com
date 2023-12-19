@@ -4,19 +4,19 @@
 
 GPS Rescue Mode is intended to bring your quad back autonomously in case of an emergency such as loss of video or radio link. **The only purpose is to bring the quad back into range so you can retake control as soon as possible.** It is not meant to be a reliable Return to Home mode. Keep this in mind, and (other than for initial testing) only activate it to avoid losing your quad. In order to increase the probability of GPS Rescue's successful operation, please read this document and configure your system as best as possible for your particular environment and flying style.
 
-# **WHAT THIS IS NOT:**
+**WHAT THIS IS NOT:**
 
 GPS Rescue is not a full "Return To Home" (RTH) function. It is not meant to be a tool to autonomously fly your quad home and you should not try and use it this way. It has no ability to auto-land and will intentionally "soft-crash" when it approaches the home point. Its entire purpose is to return the quad closer to home **so the pilot can resume control** in the event of signal loss. The pilot should resume control as soon as possible and not rely on GPS Rescue to fly home.
 
-# **REQUIREMENTS**
+**REQUIREMENTS**
 
 - GPS is required. The recommended models are Ublox m8n variants. This has been tested with 18x18mm m8n units, the Beitian BN 880 and other similar models.
-- **Accelerometer must be enabled and properly calibrated**, Rescue Mode needs it to keep the quad leveled.
+- **Accelerometer must be enabled and properly calibrated**, Rescue Mode needs it to keep the quad leveled. Set up `ANGLE` mode, test fly, and confirm the hover is level and stable. GPS Rescue uses angle mode. If this is not working properly GPS Rescue will be unable to recover, and your quad may fly in the wrong direction.
 - Barometer is optional but recommended. We have tested with both on-board and external (i2c) units.
 - **This mode does not require a compass but will use one if available.**
 - **3D mode is not supported.** If you have the 3D feature enabled GPS Rescue will be disabled.
 
-# **DISCLAIMER**:
+**DISCLAIMER**:
 
 - This is an experimental feature.
 - Use with extreme caution.
@@ -24,13 +24,9 @@ GPS Rescue is not a full "Return To Home" (RTH) function. It is not meant to be 
 - Unless stated otherwise, this documentation refers to the last stable release (currently BF4.0)
 - If you plan on using this as a failsafe method you should ABSOLUTELY enable sanity checks!
 
-# PREREQUISITE:
+## Setting up GPS Rescue
 
-Before configuring or testing GPS Rescue, you must calibrate the accelerometer and ensure that angle mode works properly. Set up the "ANGLE" flight mode and test in flight to ensure that the craft self-levels and behaves normally. If the craft does not properly level then recalibrate the accelerometer and test again. GPS Rescue uses angle mode so if this is not working properly GPS Rescue will be unable to recover the craft and may cause it to fly in the wrong direction.
-
-# Setting up GPS Rescue
-
-In order to set up GPS Rescue on your quad, it is highly recommended that you follow the complete setup procedure from scratch. This procedure is meant for practicing in a controlled environment and fully understanding the behaviour and limitations of GPS Rescue. Using GPS Rescue out of the box (copying someone else's configuration) will diminish the chances of success.
+In order to set up GPS Rescue on your quad, it is highly recommended that you follow the complete setup procedure from scratch. This procedure is meant for practicing in a controlled environment and fully understanding the behavior and limitations of GPS Rescue. Using GPS Rescue out of the box (copying someone else's configuration) will diminish the chances of success.
 
 ### Go to the Betaflight Modes tab and add a switch for GPS Rescue Mode. Verify that the mode actually gets activated (of course no props).
 
