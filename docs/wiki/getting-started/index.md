@@ -1,15 +1,13 @@
 ---
 sidebar_position: 0
+id: Getting started
+title: About Betaflight
 ---
 
-# Introduction to Betaflight
+Betaflight is flight controller software (firmware) for multi-rotor and fixed wing craft.
 
-## What is Betaflight?
+If you're flying an FPV quadcopter, you're probably running Betaflight on the flight controller. A flight controller is basically a computer that reads the sensors (gyro, accelerometer, GPS, etc...), computes the desired actions to take, sends the commands to the ESC to control the motors, generate thrust, and keep the quadcopter in the air. It can also control other peripherals (VTX control, radio link telemetry, LEDs).
 
-Betaflight is flight controller software (firmware) used to fly multi-rotor craft and fixed wing craft
-
-If you're flying an FPV quadcopter, you're probably running Betaflight on the flight controller. A flight controller is basically a computer that reads the sensors
-(gyro, accelerometer, GPS, etc...), computes the desired actions to take, and sends the commands to the ESC to control the motors, generate thrust, and keep the quadcopter in the air. It can also control other peripherals (VTX control, radio link telemetry, LEDs).
 Betaflight is the software that runs on the flight controller to do all of this
 
 ```mermaid
@@ -67,7 +65,7 @@ style hdvtx stroke-dasharray: 3 3
 
 ```
 
-## What's different from other FC software?
+## A bit about Betaflight's history...
 
 ```mermaid
 flowchart LR
