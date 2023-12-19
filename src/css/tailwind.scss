@@ -33,6 +33,18 @@
   h6 {
     @apply text-xl font-bold text-rose-500;
   }
+
+  pre {
+    @apply text-xs;
+    @apply p-1 m-1;
+  }
+  
+  code
+ {
+    @apply text-xs;
+    @apply p-1 m-0;
+  }
+
 // drop shadow around img
 // shadow x offset, y offset, blur effect, spread, rgba(r,g,b,transparency)
   img:not(.no-effect) {
