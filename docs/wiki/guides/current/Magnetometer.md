@@ -66,13 +66,11 @@ The orientation of the magnetometer on the quad is very important. In Betaflight
 Always use the Sensors tab to confirm that the sensor orientation is correct. If the Mag is an IST8310, its non-compliant Y axis orientation must be corrected with a custom configuration that rotates the Y axis by 180 degrees.
 :::
 
-<figure className="align-center">
-  <img src={MagOrientation} alt="Figure of magnetometer axes and orientation" className="no-effect " />
-  <figcaption>
-    <b>Fig. 1</b> - Magnetometer axes and orientation in relation to the drone as expected by Betaflight
-  </figcaption>
-  <br />
-</figure>
+<div align="center">
+![Betaflight Configurator](/img/MagOrientationDiagram.png)
+**Fig. 1** - Magnetometer axes and orientation in relation to the drone as expected by Betaflight.
+<br></br>
+</div>
 
 In most standalone modules, such as the GY-271 board, the sensor is soldered on the top of the board, and typically the Z axis points upwards. In most GPS modules, the sensor is mounted upside-down, and the Z axis points downwards. The sensor can be soldered with it's X axis faces forward, or 180 degrees backwards, or left, or right. Hence the orientation of the axes varies greatly from module to module.
 
