@@ -1,10 +1,14 @@
 .docusaurus-mermaid-container {
   .node {
-    rect {
-      @apply stroke-2 stroke-primary-500 #{!important};
+    rect, circle {
+      @apply stroke-2 stroke-primary-500 fill-neutral-500/10 #{!important};
     }
   }
   .edgeLabel {
     @apply bg-[var(--ifm-background-color)] text-primary-500 #{!important};
+  }
+
+  .cluster rect {
+	@apply stroke-neutral-500/30 #{!important};
   }
 }
