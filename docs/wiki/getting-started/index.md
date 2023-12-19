@@ -59,10 +59,10 @@ end
 esc-g -- Current --> fc-g
 fc-g <-- "DShot x4 (x8)" --> esc-g
 
-style fc-g fill:transparent,stroke-width:4px
-style sens fill:transparent,stroke-width:4px
-style periph fill:transparent,stroke-width:4px
-style esc-g fill:transparent,stroke-width:4px
+style fc-g fill:transparent,stroke-width:2px,stroke:#c90
+style sens fill:transparent,stroke-width:2px,stroke:#c90
+style periph fill:transparent,stroke-width:2px,stroke:#c90
+style esc-g fill:transparent,stroke-width:2px,stroke:#c90
 style hdvtx stroke-dasharray: 3 3
 
 ```
