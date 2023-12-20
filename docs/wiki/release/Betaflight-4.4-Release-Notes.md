@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # Betaflight 4.4 Release Notes
 
+**Cloud building, HD OSD, GPS Rescue, Presets and more...**
+
 ## 1. Cloud Build
 
 This is predominantly brought to you for convenience, and to ensure we can keep the 512kb flash targets (STM32F411 and STM32F722) alive and well for years to come. The cloud build system will allow you, the flyer, to select the features you want, and a **custom firmware** will be created for you.

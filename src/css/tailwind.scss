@@ -11,27 +11,33 @@
 
   h1,
   header h1 {
-    @apply text-4xl font-bold text-primary-600;
+    @apply text-3xl font-bold text-primary-600;
+    @apply m-0 mt-3;
   }
 
   h2 {
-    @apply text-3xl font-bold text-primary-600;
+    @apply text-2xl font-bold text-primary-600;
+    @apply mt-0 mb-3;
   }
 
   h3 {
-    @apply text-2xl font-bold text-primary-600;
+    @apply text-xl font-bold text-primary-600;
+    @apply mt-4 mb-3;
   }
 
   h4 {
-    @apply text-xl font-bold text-primary-600;
+    @apply text-lg font-bold text-primary-600;
+    @apply mt-4 mb-3;
   }
 
   h5 {
-    @apply text-xl font-bold text-lime-600;
+    @apply  font-bold text-primary-600;
+    @apply mt-4 mb-3;
   }
 
   h6 {
-    @apply text-xl font-bold text-rose-600;
+    @apply text-primary-600;
+    @apply mt-4 mb-3;
   }
 // drop shadow around img
 // shadow x offset, y offset, blur effect, spread, rgba(r,g,b,transparency)
