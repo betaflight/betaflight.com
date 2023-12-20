@@ -19,7 +19,10 @@ import TabItem from '@theme/TabItem';
 
 ###### Header 6
 
-Normal text
+Normal text.
+
+Normal text after empty line.
+Normal text on next line.
 
 _italic text_
 
@@ -39,13 +42,15 @@ _italic text_
   - list item 2b
 - list item 3
 
+some text
+
 1. numbered list item 1
 1. numbered list item 2
    1. numbered list item 2a
    1. numbered list item 2a
 1. numbered list item 3
-
-<br/>
+   <br/>
+   A coded break is to separate text from ordered lists
 
 Inline code: `const foo = 'bar';`
 
@@ -70,7 +75,10 @@ const foo: string = 'bar'
 
 ###### Header 6
 
-Normal text
+Normal text.
+
+Normal text after empty line.
+Normal text on next line.
 
 _italic text_
 
@@ -90,14 +98,15 @@ _italic text_
     - list item 2b
 - list item 3
 
+some text
 
 1. numbered list item 1
 1. numbered list item 2
     1. numbered list item 2a
     1. numbered list item 2a
 1. numbered list item 3
-
 <br/>
+A coded break is to separate text from ordered lists
 
 `const foo = 'bar';`
 
