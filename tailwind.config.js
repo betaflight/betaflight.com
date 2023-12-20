@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // https://hslpicker.com/ to review colours easily
         primary: {
           200: '#FFDA66', // pale orange, Hue 45, Luminance 70  #fd7 is Hue 45, Luminance 73
           300: '#FFD044', // orange, Hue 45, Luminance 63  #fc3 is Hue 45, Luminance 60
@@ -16,8 +17,8 @@ module.exports = {
           800: '#CC7E00', // darker orange, Hue 37, Luminance 40 #c90 is Hue 45, Luminance 40
         },
         neutral: {
-          150: 'rgb(240, 240, 240)', // pale grey, Hue 0, Luminance 94
-          750: 'rgb(44 44 44)', // dark grey, Hue 0, Luminance 71
+          150: '#F0F0F0', // pale grey, Hue 0, Luminance 94; rgb(240, 240, 240)  #eee = Luminance 93
+          750: '#2C2C2C', // dark grey, Hue 0, Luminance 17, rgb(44, 44, 44) #222 + Luminance 13, #333 = luminance 20
         },
       },
       backgroundSize: {
