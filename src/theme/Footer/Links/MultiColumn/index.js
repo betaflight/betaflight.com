@@ -19,7 +19,7 @@ function ColumnLinkItem({ item }) {
 function Column({ column }) {
   return (
     <div>
-      <div className="font-bold text-primary-500 mb-1">{column.title}</div>
+      <div className="font-bold text-primary-600 mb-1">{column.title}</div>
       <ul className="flex flex-col items-center">
         {column.items.map((item, i) => (
           <ColumnLinkItem key={i} item={item} />

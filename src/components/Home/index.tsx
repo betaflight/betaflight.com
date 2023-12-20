@@ -27,14 +27,14 @@ function Logo({ sponsor }: LogoProps) {
   useLayoutEffect(() => {
     const initialTheme = document.documentElement.getAttribute('data-theme');
     setTheme(initialTheme);
-  }, [])
+  }, []);
 
   useEffect(() => {
     const themeColorMode = themeData.colorMode;
     if (themeColorMode !== theme) {
       setTheme(themeData.colorMode);
     }
-  }, [themeData.colorMode])
+  }, [themeData.colorMode]);
 
   return <img src={sponsor ? sponsorLogoSrc : logoSrc} alt="Betaflight" className={sponsor ? 'max-h-[200px] w-auto' : 'p-6 h-fit w-fit xl:ml-12'} />;
 }
@@ -77,7 +77,7 @@ export default function Home({ recentPosts }: BlogProps) {
         <div className="p-4 xl:p-16 flex w-full flex-col xl:flex-row space-y-4 xl:space-y-0 space-x-0 xl:space-x-16">
           <div className="backdrop-blur-md shadow-xl w-full xl:w-1/2 flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
             <p className="text-center text-lg">
-              <h2 className="text-primary-500 font-bold text-4xl mb-4">Pushing the Limits of UAV Performance</h2>
+              <h2 className="text-primary-600 font-bold text-4xl mb-4">Pushing the Limits of UAV Performance</h2>
               Betaflight is the name of a flight control software, used for flying multi-rotor radio controlled aircraft.<br></br>
               Originating from the Baseflight and Cleanflight open source projects, the project was branched off as a high performance 'beta' testbed.<br></br>
               Evidenced by years of lead development, Betaflight has matured and grown into the largest flight firmware in the FPV drone racing and freestyle community due to its cutting edge
@@ -85,7 +85,7 @@ export default function Home({ recentPosts }: BlogProps) {
             </p>
           </div>
           <div className="flex-grow w-full xl:w-1/2">
-            <AboutCard blur title="Recent Posts" className="text-primary-500" Icon={DocumentTextIcon}>
+            <AboutCard blur title="Recent Posts" className="text-primary-600" Icon={DocumentTextIcon}>
               <div className="flex flex-col space-y-4">
                 {recentPosts &&
                   recentPosts.length > 0 &&
@@ -109,7 +109,7 @@ export default function Home({ recentPosts }: BlogProps) {
       <div className="p-4 xl:p-16 flex flex-col space-y-4">
         <HomepageFeature title="About" compact={true}>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
-            <FancyAboutCard title="Hardware" className="text-primary-500 text-justify" Icon={CpuChipIcon}>
+            <FancyAboutCard title="Hardware" className="text-primary-600 text-justify" Icon={CpuChipIcon}>
               <p>
                 Betaflight supports a wide range of flight controllers from a variety of manufacturers. The{' '}
                 <a className="fancy-link no-underline" href="/partner">
@@ -119,7 +119,7 @@ export default function Home({ recentPosts }: BlogProps) {
               </p>
             </FancyAboutCard>
 
-            <FancyAboutCard title="Community" className="text-primary-500 text-justify" Icon={UsersIcon}>
+            <FancyAboutCard title="Community" className="text-primary-600 text-justify" Icon={UsersIcon}>
               <p>
                 The user community is active and helpful, with a Facebook group of over 30,000 members and a growing{' '}
                 <a className="fancy-link no-underline" href="https://discord.betaflight.com/invite">
@@ -129,7 +129,7 @@ export default function Home({ recentPosts }: BlogProps) {
               </p>
             </FancyAboutCard>
 
-            <FancyAboutCard title="Open Source" className="text-primary-500 text-center" Icon={CodeBracketIcon}>
+            <FancyAboutCard title="Open Source" className="text-primary-600 text-center" Icon={CodeBracketIcon}>
               <p>
                 Betaflight is 'Open Source', so you can look at the source code and contribute to the project on{' '}
                 <a className="fancy-link no-underline" href="https://github.com/betaflight/betaflight">
@@ -138,16 +138,16 @@ export default function Home({ recentPosts }: BlogProps) {
                 . The team has a robust review system in order to maintain clean code, and we are always looking for talented contributors.
               </p>
             </FancyAboutCard>
-            <FancyAboutCard className="text-primary-500" title="OSD" Icon={CameraIcon}>
+            <FancyAboutCard className="text-primary-600" title="OSD" Icon={CameraIcon}>
               <p>
                 With the Betaflight On Screen Display you can use drag-and-drop to set up key flight metrics into your FPV video feed. This allows data such as battery metrics, speed, altitude and
                 home direction.
               </p>
             </FancyAboutCard>
-            <FancyAboutCard className="text-primary-500" title="Safety Features" Icon={ShieldCheckIcon}>
+            <FancyAboutCard className="text-primary-600" title="Safety Features" Icon={ShieldCheckIcon}>
               <p>Alerts for and arming blocks for improper setup, and disarm mechanisms are built in to avoid accidents. A comprehensive failsafe mechanism is featured to assist in flight issues.</p>
             </FancyAboutCard>
-            <FancyAboutCard className="text-primary-500" title="Flight Dynamics" Icon={JetIcon}>
+            <FancyAboutCard className="text-primary-600" title="Flight Dynamics" Icon={JetIcon}>
               <p>
                 Betaflight was created for cutting edge flight performance. This has been achieved by optimizing the reaction time to disturbances, the accuracy of stick tracking, and the processing
                 of digital signals.

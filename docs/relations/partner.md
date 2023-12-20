@@ -15,7 +15,7 @@ import PartnerText from './../../docs/development/manufacturer/approved-partner-
 
 <p className="flex flex-col items-center">
 
-<b className="text-xl text-primary-500 text-center mb-3">The 'Betaflight partner' manufacturers for release 4.4 are</b>
+<b className="text-xl text-primary-600 text-center mb-3">The 'Betaflight partner' manufacturers for release 4.4 are</b>
 
 **Aikon Electronics**
 
