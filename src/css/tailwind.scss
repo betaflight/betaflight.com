@@ -3,35 +3,41 @@
 @tailwind utilities;
 
 .theme-doc-markdown a:not(.no-effect), .fancy-link {
-    @apply no-underline bg-gradient-to-r from-primary-400 to-primary-400 bg-no-repeat bg-left-bottom 
-		bg-0w hover:bg-100w hover:text-primary-400 duration-300 w-fit dark:text-primary-200 text-primary-500 transition-all font-medium;
+    @apply no-underline bg-gradient-to-r from-primary-600 to-primary-600 bg-no-repeat bg-left-bottom 
+    bg-0w hover:bg-100w hover:text-primary-600 duration-300 w-fit dark:text-primary-600 text-primary-600 transition-all font-medium;
 }
 
 .theme-doc-markdown {
 
   h1,
   header h1 {
-    @apply text-4xl font-bold text-primary-500;
+    @apply text-3xl font-bold text-primary-600;
+    @apply m-0 mt-3;
   }
 
   h2 {
-    @apply text-3xl font-bold text-primary-500;
+    @apply text-2xl font-bold text-primary-600;
+    @apply mt-0 mb-3;
   }
 
   h3 {
-    @apply text-2xl font-bold text-primary-500;
+    @apply text-xl font-bold text-primary-600;
+    @apply mt-4 mb-3;
   }
 
   h4 {
-    @apply text-xl font-bold text-primary-500;
+    @apply text-lg font-bold text-primary-600;
+    @apply mt-4 mb-3;
   }
 
   h5 {
-    @apply text-xl font-bold text-lime-500;
+    @apply  font-bold text-primary-600;
+    @apply mt-4 mb-3;
   }
 
   h6 {
-    @apply text-xl font-bold text-rose-500;
+    @apply text-primary-600;
+    @apply mt-4 mb-3;
   }
 
   pre {
@@ -57,11 +63,11 @@
   }
 
   ul {
-	@apply list-disc ml-8;
+    @apply list-disc ml-8;
   }
 
   ol {
-	@apply list-decimal ml-8;
+    @apply list-decimal ml-8;
   }
 }
 
@@ -102,11 +108,11 @@
 
   &__item--active {
     .breadcrumbs__link {
-      @apply bg-primary-500/20 font-semibold text-primary-500;
+      @apply bg-primary-500/20 font-semibold text-primary-600;
     }
 
     .breadcrumbs__link:hover {
-      @apply bg-primary-500/20;
+      @apply bg-primary-600/20;
     }
   }
 }
@@ -136,7 +142,7 @@ nav.menu.thin-scrollbar {
     }
 
     &--active {
-      @apply bg-primary-500/30 dark:text-primary-500 text-primary-600 #{!important};
+      @apply bg-primary-500/30 dark:text-primary-600 text-primary-600 #{!important};
     }
 
     &--sublist {

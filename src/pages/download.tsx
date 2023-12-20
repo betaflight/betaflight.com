@@ -21,9 +21,9 @@ type IconElementFeatureProps = {
 function IconElementFeature({ Icon, title, description, link, children }: IconElementFeatureProps): JSX.Element {
   return (
     <div className="flex">
-      <Icon className="h-[2rem] w-[2rem] min-w-[2rem] min-h-[2rem] text-primary-500"></Icon>
+      <Icon className="h-[2rem] w-[2rem] min-w-[2rem] min-h-[2rem] text-primary-600"></Icon>
       <div className="ml-2">
-        <div className="text-lg font-bold mb-2 text-primary-500">{title}</div>
+        <div className="text-lg font-bold mb-2 text-primary-600">{title}</div>
         {description && <div className="mb-2">{description}</div>}
         {link && (
           <a className="fancy-link no-underline flex items-center" href={link.href}>
@@ -59,7 +59,7 @@ export default function Media() {
       <div className="relative w-full mt-4 xl:mt-32">
         <div className="w-full h-fit flex flex-col justify-start">
           <div className="flex flex-col p-6 h-fit w-fit xl:ml-12">
-            <h1 className="md:text-[6rem] text-6xl border-primary-500 font-bold mb-4">Download</h1>
+            <h1 className="md:text-[6rem] text-6xl border-primary-600 font-bold mb-4">Download</h1>
             <h2 className="font-semibold md:text-3xl text-xl">Downloads & Videos</h2>
           </div>
         </div>

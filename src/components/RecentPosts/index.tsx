@@ -21,7 +21,7 @@ export default function RecentPosts({ recentPosts }: BlogProps) {
 
   return (
     <div className="flex flex-col mb-4">
-      <div className="text-primary-500 font-bold text-3xl uppercase mb-4 mt-8">
+      <div className="text-primary-600 font-bold text-3xl uppercase mb-4 mt-8">
         <NewspaperIcon className="h-8 w-8 inline-block mr-4"></NewspaperIcon>
         Recent Posts
       </div>

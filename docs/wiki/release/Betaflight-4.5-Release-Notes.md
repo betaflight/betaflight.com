@@ -164,7 +164,7 @@ Thanks to: SteveCEvans
 
 ## 7. LEDstrip improvements
 
-## 7.1 Set RACE mode LEDstrip colour automatically, based on VTx channel
+### 7.1 Set RACE mode LEDstrip colour automatically, based on VTx channel
 
 The RACE LEDstrip mode is a simple way to set all LEDs to a set colour.
 
@@ -176,7 +176,7 @@ For more information see [PR 13096](https://github.com/betaflight/betaflight/pul
 
 Thanks to: cruwaller
 
-## 7.2. LEDstrip rainbow colour effect updates
+### 7.2. LEDstrip rainbow colour effect updates
 
 Additional settings for colour range and frequency were enabled for the Rainbow LEDStrip effect.  It can be used now at the same time as the Larsson effect
 
@@ -184,7 +184,7 @@ See: [PR 12323](https://github.com/betaflight/betaflight/pull/12323/files)
 
 Thanks to: ASDosjani
 
-## 7.3. Reduced CPU impact when using complex LEDstrip effects
+### 7.3. Reduced CPU impact when using complex LEDstrip effects
 
 Complex effects like Rainbow and Larsson scanner effects can require a lot of CPU time, especially when may LEDs are involved.  Mr. Steve C Evans has again helped out by limiting the task time per CPU cycle to a max of approximately 20uS.  Previously, the Rainbow effect could cost more than 100uS, causing issues at 8k8k and some 8k4k builds.
 

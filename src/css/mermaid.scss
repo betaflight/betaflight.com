@@ -5,7 +5,7 @@
     }
   }
   .edgeLabel {
-    @apply bg-[var(--ifm-background-color)] text-primary-500 #{!important};
+    @apply bg-[var(--ifm-background-color)] text-primary-600 #{!important};
   }
 
   .cluster rect {
