@@ -199,6 +199,18 @@ nav.menu.thin-scrollbar {
   }
 }
 
+.cardContainer_src-theme-DocCard-styles-module {
+	@apply border-0 border-l-4 border-transparent p-3 duration-300 #{!important};
+}
+
+.cardContainer_src-theme-DocCard-styles-module:hover {
+	@apply border-primary-500 bg-primary-500/20 #{!important};
+}
+
+.cardTitle_src-theme-DocCard-styles-module {
+	@apply mb-2 text-base font-bold #{!important};
+}
+
 .text-shadow {
   text-shadow: 3px 3px 10px #000000;
 }
