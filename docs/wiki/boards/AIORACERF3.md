@@ -36,7 +36,7 @@
 - WS2811 LED-strip supported.
 - Optimized solder pads for optional ARPDB.
 - Dimension: 35x35x7.4mm / fixing hole spacing 30mm.
-- Supports DShot (see [this page](DSHOT%20ESC%20Protocol) for setup instructions).
+- Supports DShot.
 - ARPDB designed for ARF3 FC.
 - Two types, Type-A with XT60 mounting holes and suitable for X-frame, Type-B is classic version.
 - 3 oz copper for high current.

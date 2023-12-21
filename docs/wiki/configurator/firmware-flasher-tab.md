@@ -54,16 +54,16 @@ We have defines for <b>ACC</b>, <b>BARO</b>, <b>FLASH</b>, <b>GYRO</b>, <b>MAX74
 
 If your board pheriperals are not recognized please help us add the required configuration details.
 
-<br />
+<br/>
 Reach out to us on our [Discord server](https://discord.betaflight.com/invite) or create an issue in the Betaflight unified targets repo.
-<br />
+<br/>
 To get the required information follow this procedure:
-<br />
-<br />
+<br/>
+<br/>
 1. Flash your board with the <b>Core Only</b> switch enabled
-<br />
+<br/>
 2. Go to the CLI tab and click the <b>Submit Support Data</b> button.
-<br />
+<br/>
 3. With this generated support <b>ID</b> we have all required information to update board configuration files.
 
 :::
