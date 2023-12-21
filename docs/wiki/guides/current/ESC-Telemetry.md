@@ -1,20 +1,48 @@
 # ESC Telemetry
 
-**As of Version 3.1.0 RC1 the ability to read ESC telemetry from KISS 24A ESCs exists in Betaflight.**
+There are two ways to get ESC data to the flight controller:
 
-This page is intended to be a quick guide on how to set up ESC telemetry and will require a basic understanding of terms and equipment which can be found elsewhere within the wiki or through researching each term separately. This version of the guide won't cover how to get telemetry set up from the flight controller to the RC receiver and back to the RC Transmitter, that is part of the prerequisites and is currently listed as optional.
+- DShot Telemetry, which means sending data back from the ESC over the same single DShot signal wire that is being used to control the motors
+- Serial ESC Telemetry, where one or more ESCs are connected to the flight controller by a serial port.
+
+:::note
+This document explains the process of getting RPM and related data from the ESC to the Flight Controller. It does not discuss how to get that data from the Flight Controller back to the radio receiver.
+:::
+
+## DShot Telemetry
+
+### DShot RPM Telemetry
+
+JoeLucid, in March 2019, developed the bidirectional DShot code to send RPM data back to the Flight Controller via the singe DShot communication wire. RPM telemetry over DShot was a significant improvement over serial ESC telemetry because it updated the data much faster, and required no additional wiring. It is now supported by nearly all DShot ESC firmware.
+
+DShot RPM Telemetry provided the following user benefits:
+
+- [RPM filtering](/docs/wiki/guides/current/DSHOT-RPM-Filtering.md), where dynamic notch filters tracked each motor's center frequency - 12 dynamic RPM filters for a quadcopter - greatly improving RPM based noise rejection
+- [Dynamic Idle](/docs/wiki/guides/current/Dynamic-Idle.md), where the drive to the motors can be rapidly changed, under PID control, so that a motor's RPM does not fall below a defined minimum RPM value. Compared to a simple minimum idle throttle value, this reduces the likelihood of a desync and allows the PIDs to use the full range of motor drive values.
+- [RPM Limiting](/docs/wiki/release/betaflight-4.5-release-notes#161-rpm-limiter-build-option), which allows the user to limit maximum average RPM, for spec class racing.
+- RPM logging for testing and debugging. Since Debug values can be shown in the OSD, we can display 'live' RPM values in the OSD.
+
+### Extended DShot Telemetry
+
+This sends additional parameters such as ESC Temperature, Voltage, Current and others to the FC. It is not yet supported on all ESC firmwares, with Daniel Mosquera's [Bluejay](https://github.com/bird-sanctuary/bluejay) being most up-to-date.
+
+We don't have a wiki article about EDT, but it is described in these [Betaflight Github EDT PR's](https://github.com/betaflight/betaflight/pulls?q=is%3Apr+EDT) and on this [bird-sanctuary's GitHub page](https://github.com/bird-sanctuary/extended-dshot-telemetry).
+
+## Serial ESC Telemetry
+
+The following information is quite old and may not be accurate.
 
 ### Requirements:
 
 - Supported flight controller with Betaflight version 3.1.0 RC1 or later.
 - Betaflight configurator version 1.8.5 or later.
-- Kiss 24A ESCs with Dshot capable firmware.
-- One spare hardware UART on the flight controller.
+- ESC with Serial Telemetry enabled (usually requires AM32 or BLHeli32)
+- A spare hardware UART on the flight controller.
 - (Optional) Telemetry from flight controller to RC receiver.
 
 ### Procedure:
 
-**Install the ESCs** to the quad and run a wire from all four telemetry pads on the ESCs to the RX pin of the spare hardware UART on the flight controller. It may be easier to make a loom to split a single wire from the RX pin of the UART into four wires (one for each ESC).
+**Install the ESCs** to the quad and connect the ESC's Tx pin, and ground, to the RX pin of the spare hardware UART on the flight controller. With individual ESCs, a loom to split the single wire from the RX pin of the UART into four wires (one for each ESC) will be required.
 
 **Open the Betaflight configurator (V 1.8.5 or later) and go to the Ports tab.**
 

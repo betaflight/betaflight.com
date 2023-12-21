@@ -31,11 +31,11 @@ Full details on the Matek Sys F405-CTR can be found on the Matek Website: [matek
 
 ## Status LEDs
 
-|           LED | Color | Color Codes                                                                                                                                                                                                                |
-| ------------: | ----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     FC Status | Blue  | **Unlit:** USB disconnected and disarmed, <br /> **Lit:** USB disconnected and armed, <br /> **Flashing:** USB connected and disarmed, <br /> **5x Rapid Flash then Flashing:** USB connected and arming command prevented |
-| Accelerometer | Red   | Accelerometer status (Lit: active, Unlit: inactive)                                                                                                                                                                        |
-|    3v3 Status | Red   | Red: active, Unlit: inactive                                                                                                                                                                                               |
+|           LED | Color | Color Codes                                                                                                                                                                                                             |
+| ------------: | ----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     FC Status | Blue  | **Unlit:** USB disconnected and disarmed, <br/> **Lit:** USB disconnected and armed, <br/> **Flashing:** USB connected and disarmed, <br/> **5x Rapid Flash then Flashing:** USB connected and arming command prevented |
+| Accelerometer | Red   | Accelerometer status (Lit: active, Unlit: inactive)                                                                                                                                                                     |
+|    3v3 Status | Red   | Red: active, Unlit: inactive                                                                                                                                                                                            |
 
 ## Pinout
 

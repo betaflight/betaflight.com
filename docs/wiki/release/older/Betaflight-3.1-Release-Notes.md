@@ -209,7 +209,7 @@ Betaflight firmware has undergone some major changes under the hood. Hardware dr
 - Many code optimizations (faster pid speeds possible on F3 and F4) - @martinbudden and @borisbstyle
 - Support for KISS ESC telemetry (only with DSHOT) - @basdelfos
 - Added temperature and RPM to KISS ESC telemetry - @mikeller
-- Added [Serial ESC Pass-through](Betaflight-ESC-pass-through) for KISS24 and CASTLE esc's - @sambas
+- Added [Serial ESC Pass-through](/docs/wiki/archive/esc-pass-through-3-1) for KISS24 and CASTLE esc's - @sambas
 - New target support (now 72 targets on 4 MCU types)
 - Added CMS display support - @jflyper
 - Added CRSF support for TBS receivers and associated telemetry - @martinbudden and @blckmn
@@ -355,7 +355,7 @@ I think after I "fixed it" with transition setpoint, I could even back off with 
 ### New CLI commands for 3.1:
 
 Note: See the [3.0.x page](BetaFlight-3.0.x) for CLI commands plus other features that were new in 3.0.x
-See the [V2.x CLI Commands](Betaflight-specific-CLI-commands) page for a history of CLI command changes. This site has only documented Changes from being Forked from CleanFlight. Do see the CF docs.
+See the [V2.x CLI Commands](docs/wiki/archive/Betaflight-2-x-CLI-commands) page for a history of CLI command changes. This site has only documented Changes from being Forked from CleanFlight. Do see the CF docs.
 
 #### Resource Remapping
 From betaflight v3.1 there is a new command to map resources. No more custom motor mixes just to move a motor pin.
