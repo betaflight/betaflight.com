@@ -1,5 +1,8 @@
 # Dshot & BetaFlight 3.1
 
+:::note
+This is an out of data note describing the early introduction of DShot in 3.1.
+
 Dshot is new and currently code is being developed and tested. Since there are many dependencies and not all current hardware works this is to help keep track.
 
 The Official Thread for Dshot is: https://www.rcgroups.com/forums/showthread.php?t=2756129
@@ -179,8 +182,12 @@ I had many requests for MOTOLAB (and other FCs) but that one doesn't have DMA av
 
 1- All FCs that require using the FC's PPM input pin as a motor output therefore can NOT use a PPM RX. Any of the Serial RXs that use a UART do work. Set-up Serial RX normally as needed for the FC board.
 2- Check pins for the FC board below on which STM32 pins need to be re-mapped. It is a Good Idea to first type in the CLI:
-`resource  `
-`resource list  `
+
+```
+resource
+resource list
+```
+
 and copy/paste these into a Text file and save for reference of the Default pin Mappings.
 3- In the config tab select OneShot(42 or 125). Click Save. Leave this select until pins are re-mapped.
 4- In the CLI type (x = motor #, yyy = STM32 pin #):
@@ -198,12 +205,14 @@ See: [CLI resource command](Betaflight-resource-remapping)
 ##### ALIENFLIGHTF4
 
 Move the motor 2 wire to the PPM pad at the bottom of the board. You can also directly connect the motor 2 signal pad with the PPM pad. There are updated board designs available with an added DSHOT solder jumper at the bottom which is making this connection. In this case, you can leave the motor 2 soldered output #2. Note: a PPM receiver can not be used in this configuration.
-If your controller has an SDCard slot (V2.0) you also need to use the following command in addition to get motor 4 working with DSHOT:
-`set sdcard_dma=off `
+If your controller has an SDCard slot (V2.0) you also need to use the following command in addition to get motor 4 working with DSHOT: `set sdcard_dma=off `.
 Enter the following commands into the CLI window to re-map output:
-`resource ppm none  `
-`resource motor 2 A08 `
-`save  `
+
+```
+resource ppm none
+resource motor 2 A08
+save
+```
 
 See: [AlienFlightNG Support](https://www.alienflightng.com/wiki/)
 
@@ -212,9 +221,13 @@ See: [AlienFlightNG Support](https://www.alienflightng.com/wiki/)
 Move motor 1 from Output #1 header pin to the PPM input header pin.
 [See MOTOLAB board for wiring detail ](Board---MOTOLAB)
 Follow above and to re-map output type in CLI:
-`resource ppm none  `
-`resource motor 1 A07 `
-`save  `
+
+```
+resource ppm none
+resource motor 1 A07
+save
+```
+
 See the [MOTOLAB ](Board---MOTOLAB) Wiki page for other Remapping info.
 
 ##### PIKOBLX - Re-map motor 1 to the PPM pin (same as MotoLab). Solder motor 1 signal to the PPM pad leaving the SBUS jumper 'shorted'.
@@ -225,63 +238,90 @@ Note: RX must use SBUS since PPM pin is now reassigned to motor 1.
 
 Link to modification details: https://www.rcgroups.com/forums/showpost.php?p=36608148&postcount=43149
 Follow above and to re-map output type in CLI:
-`resource ppm none  `
-`resource motor 1 A07 `
-`save  `
+
+```
+resource ppm none
+resource motor 1 A07
+save
+```
 
 Starting with BetaFlight 3.3 no hardware mode or remap is needed anymore.
 
 ##### SPRACINGF3EVO - Must move MOTOR 4 to new pin assignment (CLI = resource MOTOR 4 A06). Then solder ESC for motor #4 to motor output #5, fixes DMA conflict with motor outputs 2 and 4.
 
 Follow above and to re-map output type in CLI:
-`resource motor 5 none  `
-`resource motor 4 A06 `
-`save  `
+
+```
+resource ppm none
+resource motor 1 A06
+save
+```
+
 There also seems to be a DMA conflict with BB logging. [see Github issue #2162](https://github.com/betaflight/betaflight/issues/2162) the fix seems to be disable BB logging DMA in the CLI:
 `set sdcard_dma = OFF  `
 Note: SD card DMA is set to OFF on 3.1.6+ by default
 
 Since Betaflight 3.3.x with enabled DMA burst on F3 chips we have one more DMA conflict with the ledstrip if dshot are enabled.
 Move ledstrip to motor #8 output then enter following in the CLI to re-map ledstrip output:
-`resource motor 8 none  `
-`resource LED_STRIP 1 B01 `
-`save  `
+
+```
+resource ppm none
+resource motor 1 B01
+save
+```
 
 ##### SPRACINGF3MINI - Move motor #4 to the PPM pin. Then use resource command to disable PPM and map motor 4 output to B04.
 
 Follow above and to re-map output type in CLI:
-`resource ppm none  `
-`resource motor 4 B04 `
-`save  `
+
+```
+resource ppm none
+resource motor 1 B04
+save
+```
 
 Limitation: BlackBox on the internal SDCard works with MultiShot but not with DShot.
 
 ##### KOMBINI V1 - Move motor #1 from Output #1 header pin to the PPM input header pin.
 
 Follow above and to re-map output type in CLI:
-`resource ppm none  `
-`resource motor 1 A07 `
-`save  `
+
+```
+resource ppm none
+resource motor 1 A07
+save
+```
 
 Limitation: no LED functionality with DShot is allowed.
 Video on getting this FC working: https://www.rcgroups.com/forums/showpost.php?p=36269451&postcount=1966
 
 Starting with BetaFlight 3.3 no hardware mode or remap is needed anymore. LED stripe will also work.
 
-##### AIORACERF3 - Must move MOTOR 2 to new pin assignment since it has a DMA conflict with MOTOR 1:
+##### AIORACERF3
+
+Move MOTOR 2 to new pin assignment since it has a DMA conflict with MOTOR 1:
 
 Connect ESC for motor 2 to 'LED' pin on the board.
 Then re-map motor 2 output: type in CLI:
-`resource motor 2 A08`
-`save`
+
+```
+resource motor 1 A08
+save
+```
+
 The new mapping for motor 2 conflicts wit `LED_STRIP` and `TRANSPONDER`, so make sure these two features are disabled in the configurator.
 
-##### EMAX FEMTO F3 - Motor 4 needs to be moved to the LED pad on the underside of the fc.
+##### EMAX FEMTO F3
 
-LED_STRIP needs disabled and then motor 4 gets remapped to that pad.
-`resource LED_STRIP none`
-`resource motor 4 A08`
-`save`
+Motor 4 needs to be moved to the LED pad on the underside of the fc.
+
+`LED_STRIP` needs disabled and then motor 4 gets remapped to that pad.
+
+```
+resource LED_STRIP none
+resource motor 4 A08
+save
+```
 
 Daryoon got Dshot outputs & the LED Strip to both work:
 
@@ -294,7 +334,7 @@ See Github Issue #2282 [Emax Femto (SPRACING F3EVO) - DSHOT 600 Motor 4 not spin
 
 ##### BeeRotor F4 - (for use with a Hexacopter) Motor 6 needs to be moved to the LED pin on the 'SC' connector.
 
-LED_STRIP needs to be disabled, and then motor 6 gets remapped to this pin:
+`LED_STRIP` needs to be disabled, and then motor 6 gets remapped to this pin:
 `feature -LED_STRIP`
 `resource motor 6 B08`
 `save`

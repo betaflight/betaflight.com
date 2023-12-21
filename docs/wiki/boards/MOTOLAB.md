@@ -104,7 +104,7 @@ Differences:
 
 - The Cyclone and Tempest boards can have the PPM pin wired to the motor #1 output pin.
 
-See the [DSHOT & Betaflight](/docs/wiki/guides/current/DSHOT-ESC-Protocol.md) page.
+See the [DSHOT & Betaflight](/docs/wiki/guides/archive/DSHOT-ESC-Protocol-3-1.md) page.
 
 For Cyclone & Tempest -
 A wire can be soldered from the PPM pin to the motor 1 header pin or just connect ESC#1 directly to the PPM pin.

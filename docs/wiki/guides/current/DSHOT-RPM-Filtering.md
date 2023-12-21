@@ -1,9 +1,8 @@
-# Bidirectional DShot
+# DShot RPM Filtering
 
 ### Recent Announcements
 
 - [Bluejay](https://github.com/mathiasvr/bluejay) is a new, free, well-supported BlHeli-S firmware that supports DShot telemetry, with a range of options. It is most easily flashed using the [https://esc-configurator.com](https://esc-configurator.com) online ESC configurato, which can flash both BlHeli-S and Bluejay to BLHeli-S ESCs, and AM32 to BlHeli-32 ESCs.
-- JazzMaverick is another free BlHeli-S firmware option. **WARNING!** Some JazzMaverick BLHeli_S firmware versions do not work well. The 16.73 version is OK, and properly supports RPM filtering. Versions 16.74 though 16.8 may be problematic and are best avoided. 16.9 appears to be OK.
 - [JESC](https://jflight.net) was the first ESC firmware to support RPM filtering on BLHeli_S escs. It was written by the JoeLucid, who wrote the DShot telemetry code that underpins all bidirectional DShot functionality, such as Dynamic Idle and RPM Filtering. JESC is free on L ESCs, but payment is required for H ESCs. 48khz and 96khz PWM versions are available.
 - [BlHeli-32](https://github.com/bitdump/BLHeli/tree/master/BLHeli_32%20ARM) fully supports Bidirectional DShot in versions 32.7.0 and higher
 - [AM32](https://github.com/AlkaMotors/AM32-MultiRotor-ESC-firmware) can also be flashed (but not readily un-flashed) to BlHeli-32 type ESCs, and also fully supports Bidirectional DShot.

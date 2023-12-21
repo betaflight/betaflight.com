@@ -43,17 +43,17 @@ High quality by name and by nature - these props are a favorite of the developme
 
 ## Radiomaster
 
-Radiomaster supply some of the best radio control transmitters in the business. Their AGC gimbals are simply amazing. Partnering with ELRS they provide a fantastic radio link for pilots of all ability levels.
+Makers of the popular TX16s and now the Boxer - Radiomaster have become the favorite of the development team over the last years. Integration of the Express LRS radio protocol in Radiomaster products takes this to another level, another open source project close to Betaflight.
 
 <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mb-4 items-center justify-center h-full">
-  <a href="https://https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener" className="xl:col-span-1 col-span-2 no-effect">
-    <img src="/img/betaflight/sponsors/radiomaster-logo.jpg" alt="Radiomaster" className="no-effect rounded-2xl w-full" />
+  <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener" className="xl:col-span-1 col-span-2 no-effect">
+    <img src="/img/betaflight/sponsors/radiomaster.svg" alt="Radiomaster" className="invert no-effect rounded-2xl w-full" />
   </a>
-  <a href="https://https://www.radiomasterrc.com/collections/tx16s-mkii" target="_blank" rel="noreferrer noopener" className="no-effect">
-    <img src="/img/betaflight/sponsors/radiomaster_tx16s.png" alt="Radiomaster TX16S" className="no-effect rounded-2xl" />
+  <a href="https://www.radiomasterrc.com/products/tx16s-mark-ii-radio-controller" target="_blank" rel="noreferrer noopener" className="no-effect">
+    <img src="/img/betaflight/sponsors/radiomaster_tx16s.png" alt="Radiomaster TX16s" className="no-effect rounded-2xl" />
   </a>
-  <a href="https://www.radiomasterrc.com/collections/boxer-1" target="_blank" rel="noreferrer noopener" className="no-effect">
-    <img src="/img/betaflight/sponsors/radiomaster-boxer.jpg" alt="Radiomaster Boxer" className="no-effect rounded-2xl" />
+  <a href="https://www.radiomasterrc.com/products/tx16s-mark-ii-radio-controller" target="_blank" rel="noreferrer noopener" className="no-effect">
+    <img src="/img/betaflight/sponsors/radiomaster_tx16s_limon.jpg" alt="Radiomaster TX16s" className="no-effect rounded-2xl" />
   </a>
 </div>
 

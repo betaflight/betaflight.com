@@ -10,9 +10,9 @@ We recognise that most of our users just want to two things with new firmware: I
 
 We've also put a lot of effort into optimising the performance of the firmware, especially for boards with an F7 MCU. Now you can go and buy that shiny new F7 board, while your friends still struggle with their boards with F3 and F4. :wink:
 
-For pilots who are into long range flying, we have added the brand new ['GPS Rescue' mode](/docs/wiki/guides/GPS-Rescue-Mode). It is a simplified version of the 'return to home' mode that exists in other, more navigation oriented firmware, and the great news is that all it needs to work is a GPS, no fiddling to make a compass work required!
+For pilots who are into long range flying, we have added the brand new ['GPS Rescue' mode](/docs/wiki/guides/archive/GPS-Rescue-Mode). It is a simplified version of the 'return to home' mode that exists in other, more navigation oriented firmware, and the great news is that all it needs to work is a GPS, no fiddling to make a compass work required!
 
-Last but not least, we've also added a bunch of new features to improve the convenience of using Betaflight: You can now copy / paste your logs from an SD card or the on board flash chip by [mounting the flight controller as a storage device](/docs/wiki/guides/Mass-Storage-Device-(MSC)-Support), and you can use your flight controller / TX to [emulate a joystick](/docs/wiki/guides/HID-Joystick-Support) with no extra hardware needed, in order to fly on a simulator.
+Last but not least, we've also added a bunch of new features to improve the convenience of using Betaflight: You can now copy / paste your logs from an SD card or the on board flash chip by [mounting the flight controller as a storage device](/docs/wiki/guides/current/Mass-Storage-Device-Support), and you can use your flight controller / TX to [emulate a joystick](/docs/wiki/guides/current/HID-Joystick-Support) with no extra hardware needed, in order to fly on a simulator.
 
 If you are upgrading from an earlier version of Betaflight, please read the following section containing a list of things that you might have to change in your configuration.
 
@@ -55,7 +55,7 @@ Happy Props!
 - Added throttle boost mode ([#5508](https://github.com/betaflight/betaflight/pull/5508));
 - Added support for throttle limiting ([#5608](https://github.com/betaflight/betaflight/pull/5608));
 - Added PID loop improvements ([#5968](https://github.com/betaflight/betaflight/pull/5968), [#5963](https://github.com/betaflight/betaflight/pull/5963), [#5962](https://github.com/betaflight/betaflight/pull/5962));
-- Added support for accelerated [yaw spin recovery](/docs/wiki/guides/Yaw-Spin-Recovery-and-Gyro-Overflow-Detect) ([#5706](https://github.com/betaflight/betaflight/pull/5706));
+- Added support for accelerated [yaw spin recovery](/docs/wiki/guides/current/Yaw-Spin-Recovery-and-Gyro-Overflow-Detect) ([#5706](https://github.com/betaflight/betaflight/pull/5706));
 - Added support for direct adjustment of PID values through an RC channel ([#5584](https://github.com/betaflight/betaflight/pull/5584));
 - Added support for multiple overclocking speeds ([#5193](https://github.com/betaflight/betaflight/pull/5193));
 - Added MCU temperature monitoring ([#5322](https://github.com/betaflight/betaflight/pull/5322));
