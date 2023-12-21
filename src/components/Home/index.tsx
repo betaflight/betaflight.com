@@ -69,44 +69,50 @@ export default function Home({ recentPosts }: BlogProps) {
 
   return (
     <BetaflightLayout>
-      <div className="mt-4 xl:mt-32">
+      <div className="m-0 xs:mt-0 sm:mt-2 xl:mt-20">
         <div className="flex flex-col">
           {/* <img src="/img/betaflight/logo_dark.svg" alt="Betaflight" className="p-6 h-fit w-fit xl:ml-12"></img> */}
           <Logo />
         </div>
-        <div className="p-4 xl:p-16 flex w-full flex-col xl:flex-row space-y-4 xl:space-y-0 space-x-0 xl:space-x-16">
-          <div className="backdrop-blur-md shadow-xl w-full xl:w-1/2 flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
-            <p className="text-center text-lg">
-              <h2 className="text-primary-600 font-bold text-4xl mb-4">Pushing the Limits of UAV Performance</h2>
-              Betaflight is the name of a flight control software, used for flying multi-rotor radio controlled aircraft.<br></br>
-              Originating from the Baseflight and Cleanflight open source projects, the project was branched off as a high performance 'beta' testbed.<br></br>
-              Evidenced by years of lead development, Betaflight has matured and grown into the largest flight firmware in the FPV drone racing and freestyle community due to its cutting edge
-              performance, features, reliability and wide range of hardware support.
+        <div className="m-4 flex-col space-y-4">
+          <div className="backdrop-blur-md shadow-xl w-full flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
+            <p className="text-center text-md">
+              <h2 className="text-primary-600 font-bold text-3xl mb-4">Pushing the Limits of UAV Performance</h2>
+              <p className="xs:text-sm sm:text-lg xl:text-xl">
+                Betaflight is the world's leading multi-rotor flight control software.<br></br>
+                The global FPV drone racing and freestyle community choose Betaflight for its performance, precision, cutting edge features, reliability and hardware support.<br></br>
+              </p>
             </p>
-          </div>
-          <div className="flex-grow w-full xl:w-1/2">
-            <AboutCard blur title="Recent Posts" className="text-primary-600" Icon={DocumentTextIcon}>
-              <div className="flex flex-col space-y-4">
-                {recentPosts &&
-                  recentPosts.length > 0 &&
-                  recentPosts.map(({ content: BlogPostContent }) => (
-                    <div key={BlogPostContent.metadata.source}>
-                      <a className="text-2xl font-bold" href={BlogPostContent.metadata.permalink}>
-                        {BlogPostContent.metadata.title}
-                      </a>
-                      <div className="text-sm">
-                        {formatDate(BlogPostContent.metadata.date)} - {clampAndFormatMinutes(BlogPostContent.metadata.readingTime)}
-                      </div>
-                      <div className="text-lg">{BlogPostContent.metadata.description}</div>
-                    </div>
-                  ))}
-                {!recentPosts || (recentPosts.length === 0 && <div className="text-lg text-center">Nothing posted yet</div>)}
-              </div>
-            </AboutCard>
           </div>
         </div>
       </div>
-      <div className="p-4 xl:p-16 flex flex-col space-y-4">
+      <div className="m-4 flex flex-col space-y-4">
+        <HomepageFeature title="Sponsors">
+          <div className="m-0 p-0">
+            <div className="flex flex-cols-4 gap-2 sm:gap-5 xs:gap-0 ">
+              <div className="rounded-sm w-3/5 p-0 lg:w-1/4 pr-5">
+                <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener">
+                  <img src="/img/betaflight/sponsors/hqprop.svg" alt="HQProp" />
+                </a>
+              </div>
+              <div className="rounded-sm pt-1 w-4/5 p-0 lg:w-2/5">
+                <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener">
+                  <img src="/img/betaflight/sponsors/radiomaster.svg" alt="RadioMaster" />
+                </a>
+              </div>
+              <div className="rounded-sm pt-2 w-3/5 p-0 lg:w-2/5">
+                <a href="https://www.axisflying.com/" target="_blank" rel="noreferrer noopener">
+                  <img src="/img/betaflight/sponsors/Axisflying_dark.svg" alt="Axis Flying" />
+                </a>
+              </div>
+              <div className="rounded-sm pt-2 w-4/5 xs:w-1 lg:w-2/5">
+                <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener">
+                  <img src="/img/betaflight/sponsors/dogcom.svg" alt="DogCom" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </HomepageFeature>
         <HomepageFeature title="About" compact={true}>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
             <FancyAboutCard title="Hardware" className="text-primary-600 text-justify" Icon={CpuChipIcon}>
@@ -157,32 +163,6 @@ export default function Home({ recentPosts }: BlogProps) {
         </HomepageFeature>
         <HomepageFeature title="Team">
           <TeamFeature></TeamFeature>
-        </HomepageFeature>
-        <HomepageFeature title="Team Sponsors">
-          <div>
-            <div className="flex flex-row flex-wrap gap-20 justify-center items-center">
-              <div className="relative rounded-xl overflow-hidden">
-                <a href="/partner">
-                  <Logo sponsor />
-                </a>
-              </div>
-              <div className="rounded-xl overflow-hidden">
-                <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/dogcom.svg" alt="DogCom" className="max-h-[80px] w-auto mt-1" />
-                </a>
-              </div>
-              <div className="rounded-xl overflow-hidden">
-                <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/hqprop.svg" alt="HQProp" className="dark:invert max-h-[120px] w-auto" />
-                </a>
-              </div>
-              <div className="rounded-xl overflow-hidden">
-                <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/radiomaster.svg" alt="RadioMaster" className="dark:invert max-h-[90px] w-auto mb-12" />
-                </a>
-              </div>
-            </div>
-          </div>
         </HomepageFeature>
         <HomepageFeature title="Donations">
           <div className="flex flex-col xl:flex-row space-x-4 justify-center items-center gap-4">
