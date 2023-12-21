@@ -4,12 +4,26 @@ sidebar_position: 0
 
 # Betaflight Sponsors
 
-Betaflight is an open source project with over half a million users. It is the biggest UAV firmware in the sector and as such requires constant development to keep pushing forwards with new features, and significant maintenance and management to remain compatible with third party hardware.
-The development team are passionate advocates of the sector, and have developed working relationships with the best companies in the business.
+<div className="grid xs:grid-cols-4 md:grid-cols-4 gap-4 mb-4 items-center justify-center h-full">
+  <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener" className="xl:col-span-1 col-span-2 no-effect">
+    <img src="/img/betaflight/sponsors/hqprop.svg" alt="HQProp" className="invert no-effect rounded-2xl w-4/5" />
+  </a>
+  <a href="https://https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener" className="xl:col-span-1 col-span-2 no-effect">
+    <img src="/img/betaflight/sponsors/radiomaster-logo.jpg" alt="Radiomaster" className="no-effect rounded-2xl w-full" />
+  </a>
+  <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener" className="xl:col-span-1 col-span-2 no-effect">
+    <img src="/img/betaflight/sponsors/dogcom.svg" alt="Radiomaster" className="no-effect rounded-2xl w-full" />
+  </a>
+  <a href="https://www.axisflying.com/" target="_blank" rel="noreferrer noopener" className="xl:col-span-1 col-span-2 no-effect">
+    <img src="/img/betaflight/sponsors/Axisflying_dark.svg" alt="AxisLogo" className="no-effect rounded-2xl w-full" />
+  </a>
+</div>
 
-We have chosen a selection of these companies that we use to support the development team through sponsorship. We are proud to work together with the following brands:
+Betaflight is an open source project with over half a million users. It is the biggest UAV firmware in the sector.
 
 ![Betaflight Sponsors](/img/betaflight/sponsors/sponsor_header.jpg)
+
+We have chosen three leading brands to support the development team through sponsorship:
 
 ## HQProp
 
@@ -61,8 +75,9 @@ Thanks to Dogcom, the development team now have a full set of fresh lipo to aid 
 </div>
 
 ## Axis Flying
+
 We are delighted to have Axis Flying as the motor sponsor for the Betaflight Team. They supply high quality motors, electronics and ready built drones.
-Thanks to Axisflying the developer team now have a selection of some of the best motors for their test flights and enjoyment. 
+Thanks to Axisflying the developer team now have a selection of some of the best motors for their test flights and enjoyment.
 One of the team - SupaflyFPV even joined forces with Axis for a collaborative motor.
 
 <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mb-4 items-center justify-center h-full">
