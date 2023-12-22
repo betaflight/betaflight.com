@@ -1,5 +1,3 @@
-//window.location.replace('/docs/wiki/getting-started/');
-
 import React from 'react';
 import Layout from '@theme/Layout';
 
