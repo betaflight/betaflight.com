@@ -6,7 +6,7 @@ sidebar_position: 10
 
 **Version 3.4.0: The best Betaflight ever!**
 
-We recognise that most of our users just want to two things with new firmware: Install it, and then go fly it. That's why we have spent a lot of time on working out default settings that fly great on most quads. Just install it and try for yourself! To make your craft fly even better, we've added a brand-new, experimental mode to improve the response to stick input by filtering it instead of interpolating. For more info on setting up 3.4 to optimise flight performance, read [these notes](/docs/tuning/Tuning-Tips-for-Betaflight-3.4).
+We recognise that most of our users just want to two things with new firmware: Install it, and then go fly it. That's why we have spent a lot of time on working out default settings that fly great on most quads. Just install it and try for yourself! To make your craft fly even better, we've added a brand-new, experimental mode to improve the response to stick input by filtering it instead of interpolating. For more info on setting up 3.4 to optimise flight performance, read [these notes](/docs/wiki/tuning/Tuning-Tips-for-Betaflight-3.4).
 
 We've also put a lot of effort into optimising the performance of the firmware, especially for boards with an F7 MCU. Now you can go and buy that shiny new F7 board, while your friends still struggle with their boards with F3 and F4. :wink:
 
