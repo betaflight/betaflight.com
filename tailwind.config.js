@@ -17,7 +17,7 @@ module.exports = {
           500: '#FFBB00', // mid orange,    Hue 44, Luminance 50
           600: '#EEA600', // orange,        Hue 42, Luminance 47 ** coloured text **
           700: '#DD9100', // orange,        Hue 39, Luminance 43
-          800: '#CC7E00', // browm,         Hue 37, Luminance 40
+          800: '#CC7E00', // brown,         Hue 37, Luminance 40
         },
         neutral: {
           150: '#F0F0F0', // rgb(240, 240, 240); pale grey, Hue 0, Luminance 94
