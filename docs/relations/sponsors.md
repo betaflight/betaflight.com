@@ -23,7 +23,7 @@ Betaflight is an open source project with over half a million users. It is the b
 
 ![Betaflight Sponsors](/img/betaflight/sponsors/sponsor_header.jpg)
 
-We have chosen three leading brands to support the development team through sponsorship:
+We chose four leading brands to support the development team through sponsorship:
 
 ## HQProp
 
