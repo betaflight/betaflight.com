@@ -1,0 +1,188 @@
+---
+title: Flight Controller Documentation Template
+---
+
+{/* The metadata at the top of the file is used to modify the page title only on this template page. REMOVE THEM AFTER COPYING THIS FILE */}
+{/* If title metadata is not present, the first-level header at the beginning of the file is used as the title. This is the recommended approach */}
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+{/* IMPORTS NECESSARY FOR TAB FUNCTIONALITY, DO NOT REMOVE */}
+
+{/* Fill out documentation content below. Document everything that applies to the board */}
+{/* Instructions, examples and mandatory values are commented out */}
+
+# Flight Controller Name
+
+<Tabs>
+
+<TabItem value="specifications" label="Specifications" default>
+
+## Main Features
+
+{/* MANDATORY */}
+
+- Target:
+- MCU: {/* (specify full part name - STM32F405RGT6, etc...) */}
+- IMU: {/* (specify full part name - ICM42688-P, etc...) */}
+
+{/* NOT MANDATORY, DOCUMENT EVERYTHING ELSE THAT IS AVAILABLE */}
+{/* Example: */}
+{/\*
+
+- Analog OSD: MAX7456
+- Barometer: BMP280
+- Flash Storage: 16MB
+- ...
+
+\*/}
+
+## Input/Output
+
+{/* MANDATORY */}
+
+- USB Connector: {/* (specify type - USB Micro B, USB Type-C) */}
+
+{/* BECs: (list all available, specify current rating) */}
+{/* Example: */}
+{/\*
+
+- 3.3V 300mA BEC
+- 5V 3A BEC
+- 10V 2A BEC
+
+\*/}
+
+- `n`x UARTs {/* (specify count) */}
+
+{/* NOT MANDATORY, LIST WHAT ELSE IS AVAILABLE */}
+{/* Example: */}
+{/\*
+
+- `n`x ESC Outputs {/\* (specify count)
+- I2C
+- SPI
+- SWD
+- ...
+
+\*/}
+
+## Pads
+
+{/* MANDATORY */}
+
+### UARTs
+
+{/* Fill markdown tables, add any necessary notes */}
+
+| Name | Label | Notes |
+| ---- | ----- | ----- |
+
+{/* Example: */}
+{/\*
+
+| Name   | Label   | Notes         |
+| ------ | ------- | ------------- |
+| UART 1 | TX1/RX1 |               |
+| UART 2 | RX2     | SBUS          |
+| UART 3 | RX3     | ESC Telemetry |
+| UART 4 | TX4/RX4 |               |
+
+\*/}
+
+### Power
+
+| Name | Label | Count | Notes |
+| ---- | ----- | ----- | ----- |
+
+{/* Example: */}
+{/\*
+
+| Name            | Label | Count | Notes         |
+| --------------- | ----- | ----- | ------------- |
+| 3.3V            |       | 1x    | In SWD pinout |
+| 5V              | 5V    | 4x    |               |
+| 10V             | 10V   | 2x    |               |
+| Battery Voltage | VBAT  | 1x    |               |
+
+\*/}
+
+{/* NOT MANDATORY, DOCUMENT EVERYTHING ELSE THAT IS AVAILABLE */}
+{/* Example: */}
+{/\*
+
+### ESC Signal
+
+| Name     | Label | Notes |
+| -------- | ----- | ----- |
+| Current  | CURR  |       |
+| Signal 1 | M1    |       |
+| Signal 2 | M2    |       |
+| Signal 3 | M3    |       |
+| Signal 4 | M4    |       |
+| Signal 5 | M5    |       |
+| Signal 6 | M6    |       |
+| Signal 7 | M7    |       |
+| Signal 8 | M8    |       |
+
+\*/}
+
+{/* ... */}
+
+## Connectors
+
+{/* HIGHLY VARIED, NOT MANDATORY, BUT EXAMPLES ARE PROVIDED */}
+
+{/\*
+
+### ESC 1-4
+
+| Pin | Name            | Label |
+| --- | --------------- | ----- |
+| 1   | Ground          | GND   |
+| 2   | Battery Voltage | VBAT  |
+| 3   | Current         | CURR  |
+| 4   | Telemetry       | RX2   |
+| 5   | Signal 1        | M1    |
+| 6   | Signal 2        | M2    |
+| 7   | Signal 3        | M3    |
+| 8   | Signal 4        | M4    |
+
+\*/}
+
+{/\*
+
+### Camera
+
+| Pin | Name     | Label |
+| --- | -------- | ----- |
+| 1   | Ground   | GND   |
+| 2   | 5V       | 5V    |
+| 3   | Video In | CAM   |
+
+\*/}
+
+{/* ... */}
+
+</TabItem>
+
+<TabItem value="wiring" label="Wiring Diagrams">
+
+{/* TODO: FILL WITH EXAMPLES WHEN FUTURE FILE STRUCTURE IS AGREED ON */}
+
+</TabItem>
+
+<TabItem value="photos" label="Photos">
+
+{/* TODO: FILL WITH EXAMPLES WHEN FUTURE FILE STRUCTURE IS AGREED ON */}
+
+</TabItem>
+
+<TabItem value="notes" label="Notes">
+
+{/* Add any relevant information, important notes for the hardware and software requrements, etc... */}
+
+</TabItem>
+	
+</Tabs>
