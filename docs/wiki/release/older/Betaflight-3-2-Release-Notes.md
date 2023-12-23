@@ -275,7 +275,7 @@ I configure my sticks so that equal yaw and roll stick deflections result in a p
 ### FPV Camera control via OSD
 
 Consult support and RCG thread to see if your camera requires special handling.
-See: [Camera Control](FPV-Camera-Control-Joystick-Emulation)
+See: [Camera Control](docs/wiki/guides/current/FPV-Camera-Control-Joystick-Emulation)
 
 ### Experimental Slew filter- Removed in RC5
 https://github.com/betaflight/betaflight/pull/3983
@@ -288,7 +288,7 @@ https://github.com/betaflight/betaflight/issues/3893
 ### Arming Flags
 Are now in the CLI STATUS. Example: `Arming disable flags: RX LOSS CLI`
 On F4/F7 STM32's the Arming status will print out names whereas on F1/F3 STM32's this is a simple Bit Field.
-See [Arming Sequence and Safety](Arming-Sequence-&-Safety) for details.
+See [Arming Sequence and Safety](docs/wiki/guides/current/Arming-Sequence-And-Safety) for details.
 
 ### Rate Profile and Profiles
 From Woody_99's experience:

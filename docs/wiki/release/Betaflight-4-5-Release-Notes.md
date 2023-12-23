@@ -24,27 +24,27 @@ Always test new firmware carefully and in a controlled environment!
 - [GPS Hardware connections](#2-gps) are far better, with rock solid M10 support.
 - [GPS Return to Home](#3-gps-return-to-home-improvements) has been made more reliable, smoother, can be initiated earlier, is more tolerant of user error, and uses Mag data more effectively.
 - [Magnetometers](#4-magnetometer-update) now work much better than before, with improved information in the wiki, better calibration methods, declination support, and improved display in Configurator.  It now contributes effectively during climb, rotate and descent phases of a GPS Rescue.
-- [GPS Mapping in Blackbox](http://#5-mapping-of-gps-flights-within-blackbox-explorer-and-with-export-gpx) Map your GPS flights directly within the BlackBox application, or by exporting the flight data into a GPX file for use in online mapping software.
-- [Colour font support for HD VTx](docs/wikirelease/Betaflight-4.5-Release-Notes#6-colour-fonts-in-supported-hd-vx) This applies to Walksnail HD Vtx only at present
+- [GPS Mapping in Blackbox](#5-mapping-of-gps-flights-within-blackbox-explorer-and-with-export-gpx) Map your GPS flights directly within the BlackBox application, or by exporting the flight data into a GPX file for use in online mapping software.
+- [Colour font support for HD VTx](#6-colour-fonts-in-supported-hd-vx) This applies to Walksnail HD Vtx only at present
 - [LEDStrip improvements](#7-ledstrip-improvements) including automatic colour selection based on the VTx channel, more Rainbow options, and more efficient use of CPU time for complex LED options.
-- [Angle and Horizon updates](http://#8-angle-and-horizon-mode-update) Really big changes here.  Angle mode is now much more responsive. The new 'Earth referencing' option keeps automatically adds just the right amount of 'co-ordinated' roll to keep the image stable while yawing. Horizon mode is a lot more fun to fly, and is an excellent introduction to Acro.
+- [Angle and Horizon updates](#8-angle-and-horizon-mode-update) Really big changes here.  Angle mode is now much more responsive. The new 'Earth referencing' option keeps automatically adds just the right amount of 'co-ordinated' roll to keep the image stable while yawing. Horizon mode is a lot more fun to fly, and is an excellent introduction to Acro.
 - [Failsafe changes](#9-failsafe-changes) Minor changes only, mostly to improve safety in edge cases, with a minor change to the `RX_LOSS` message and with `NOT_DISARMED` replacing `BADRX` when the radio link becomes active while the arm switch is enabled.
 - [Dimmable RPM harmonics](#10-dimmable-rpm-harmonics) Allows attenuation of individual RPM harmonics if one of the three RPM filters isn't needed as much as the other two.  This can slightly reduce overall filter lag, especially in triblade setups.
 - [Adjustable initial dynamic idle value](#11-customisable-initial-dynamic-idle-percentage) This allows the user to modify the initial motor drive percentage when dynamic idle is enabled but you haven't yet taken off, in case the default of 5% is too low or too high.
 - [ExLanding](#12-ezlanding) Weakens throttle response and iTerm when throttle is close to zero and sticks are centered, calming aggressive reactions when landing.
 - [Low throttle TPA](#13-low-throttle-tpa) Allows TPA mediated inhibition at the very low end of the throttle range, for quads that are really excitable while waiting on the ground.  Optionally can be applied throughout the flight.
-- [CLI binding for TBS Rx](http://#14-crsf-binding-via-cli-for-tbs-receivers) - Useful when you can't get to the Bind button easily.
+- [CLI binding for TBS Rx](#14-crsf-binding-via-cli-for-tbs-receivers) - Useful when you can't get to the Bind button easily.
 - [Improved landings for wings](#15-keep-i-term-at-zero-for-fixed-wings-at-zero-throttle) iTerm is now kept active for wings while gliding into land, at zero throttle.
 - [Custom Build Options](#16-custom-build-options):
     - [RPM Limiter](#161-rpm-limiter-build-option) Limits the maximum average RPM, for Spec racing.
     - [Quick OSD](#162-quick-osd-menu-build-option) Adds an OSD page that allows the user to make most race-related changes in one place.
     - [RC Stats](#163-rc-stats-osd-build-option) Modified Stats screen including throttle summary data. 
-    - [Pre-Arm page](164-pre-arm-spec-race-settings-osd-build-option) Pre-arm screen that displays values of relevance to spec racing
+    - [Pre-Arm page](#164-pre-arm-spec-race-settings-osd-build-option) Pre-arm screen that displays values of relevance to spec racing
     - [GPS Lap Timer](#165-gps-lap-timer) Ever wanted to fly laps at a park and time yourself, without complicated extra hardware?  Add a GPS module and you can do exactly that.
 
 ## 1. Cloud Build
 
-The cloud build system [introduced in 4.4](/docs/wiki/release/Betaflight-4.4-Release-Notes#1-cloud-build) retains the same user interface, but with lots of improvements.  Updates to board configurations should result in more reliable functionality after flashing.
+The cloud build system [introduced in 4.4](docs/wiki/release/Betaflight-4-4-Release-Notes#1-cloud-build) retains the same user interface, but with lots of improvements.  Updates to board configurations should result in more reliable functionality after flashing.
 
 Most basic build options are included in the default group in the `Other Options box`, including AcroTrainer and both HD and SD OSD setups.
 
@@ -66,7 +66,7 @@ When the FC boots, our UBLox code cycles through all available baud rates on the
 
 If the FC is connected to Configurator at boot time, we request the full satellite information list, so that we can populate the detailed satellite information list on the left side of Configurator's GPS tab.  Otherwise this information is not requested, because we do not require it while in flight, and it adds a lot of serial port traffic when enabled.
 
-The CPU cost and task timing for GPS data has been extensively reviewed and optimised.  Even so, GPS Rescue puts a huge load on a CPU.  For reliability it is best to use a 4k PID loop on most processors, especially at 57600 baud.  More information about CPU load vs Baud Rate is available in the [GPS Rescue 4.5 documentation](/docs/wiki/guides/current/GPS-Rescue-v4-5).  The CLI `tasks` command may be used to check CPU usage and task over-runs when evaluating the impact of baud rate in relation to PID loop frequency.
+The CPU cost and task timing for GPS data has been extensively reviewed and optimised.  Even so, GPS Rescue puts a huge load on a CPU.  For reliability it is best to use a 4k PID loop on most processors, especially at 57600 baud.  More information about CPU load vs Baud Rate is available in the [GPS Rescue 4.5 documentation](docs/wiki/guides/current//GPS-Rescue-v4-5).  The CLI `tasks` command may be used to check CPU usage and task over-runs when evaluating the impact of baud rate in relation to PID loop frequency.
 
 The UBlox module 'class', and the baud rate it is actually connected at, may be checked with the CLI `status` command.
 

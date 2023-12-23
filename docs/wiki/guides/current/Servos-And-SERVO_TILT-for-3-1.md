@@ -2,7 +2,7 @@
 
 ### Introduction
 
-## Starting with v3.1, default servo output assignments are deleted from the firmware. Instead, servo outputs must be explicitly assigned by`resource` CLI command. (For details of the `resource` command, please refer to [Betaflight resource remapping](Betaflight-resource-remapping).
+## Starting with v3.1, default servo output assignments are deleted from the firmware. Instead, servo outputs must be explicitly assigned by`resource` CLI command. (For details of the `resource` command, please refer to [Betaflight resource remapping](docs/wiki/guides/current/Resource-remapping).
 
 Background
 Internal on STM32 processors are Timers that are used for timing the output pulse to motor, servos, etc. Each FC board can have different STM32 pins connected to input & outputs on the FC. This is one of the main reasons for different Target hex files. The pins and internal resource are Defined in the "target'c' source files found [here.](https://github.com/betaflight/betaflight/tree/master/src/main/target)
@@ -59,7 +59,7 @@ Servos you assign here as 1 and 2 corresponds to servos 0 and 1 in the Servos ta
 
 ### Examples
 
-Here are some examples of assignments. If you can't find a one that fit your needs, then you have to go read the hard boiled story: [Working on your own](_new#working-on-your-own) in the later half of this page.
+Here are some examples of assignments. If you can't find a one that fit your needs, then you have to go read the hard boiled story: [Working on your own](#working-on-your-own) in the later half of this page.
 
 **Target/board maintainers, please add example entries that reflect mappings based on the v3.0.1 `pwm_mapping.c`; it can cover all the mappings, not only for servo tilts**
 
@@ -261,7 +261,7 @@ Positive, black negative are going to a pdb 5v output.
 
 The yellow or white wire, signal wire can be connected to motor pin 5, motor pin 6, 7 or 8, will work.
 
-IF you want to disable the tail servo when it`s not armed, go to the CLI.
+IF you want to disable the tail servo when it's not armed, go to the CLI.
 
 Type:
 

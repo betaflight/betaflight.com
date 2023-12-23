@@ -2,14 +2,14 @@
 
 As of Betaflight version 3.3.0, the CLI settings below can be used to
 configure addressable video transmitters (such as
-TBS-[SmartAudio](Unify-Smartaudio)
+TBS-[SmartAudio](docs/wiki/guides/current/Smart-Audio)
 and
 IRC-[Tramp](IRC-Tramp)[)](IRC-Tramp)
 that are connected to the flight controller.\
  \
  At startup the settings are applied to the transmitter. If the video
 configuration is modified via the [CMS OSD
-menu](Unify-Smartaudio#smartaudio-cms-guide)
+menu](docs/wiki/guides/current/Smart-Audio)
 or via MSP (Taranis/OpenTX smartport
 '[lua](https://github.com/betaflight/betaflight-tx-lua-scripts)'), the
 settings are updated.\

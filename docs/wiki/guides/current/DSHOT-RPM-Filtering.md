@@ -36,7 +36,7 @@ https://youtu.be/jwFYaGHp91c, https://youtu.be/SoG245vmaLo
 
 ### Arming Prevention Check
 
-If the RPM Filter is enabled but one or more of the ESC's are not supplying valid telemetry data, arming will be prevented, and the `RPMFILTER` message will be shown on the OSD (see [Arming Sequence & Safety](Arming-Sequence-&-Safety)). This prevents arming with incomplete or non-working configurations that may result in flyaways or hot motors. See below to ensure the ESC's are properly configured to support this feature.
+If the RPM Filter is enabled but one or more of the ESC's are not supplying valid telemetry data, arming will be prevented, and the `RPMFILTER` message will be shown on the OSD (see [Arming Sequence & Safety](Arming-Sequence-And-Safety)). This prevents arming with incomplete or non-working configurations that may result in flyaways or hot motors. See below to ensure the ESC's are properly configured to support this feature.
 
 ## ESC Configuration
 
@@ -396,8 +396,6 @@ This snippet will set a 4.0x build to the 4.1 default of 65% D only TPA starting
 set tpa_rate = 65
 set tpa_breakpoint = 1250
 ```
-
-#### Note: The RC Smoothing fix for FrSky section has been moved to the [4.0 Tuning Notes](4.0-Tuning-Notes#bonus-section-rc-smoothing-fix-for-frsky-transmitters) page.
 
 ### References
 

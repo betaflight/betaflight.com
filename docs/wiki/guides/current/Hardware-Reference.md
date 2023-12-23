@@ -41,4 +41,4 @@ Excerpts from the data sheets / reference manuals that cover possible pin / time
 
 #### IBus
 
-[IBus telemetry specification](Ibus-telemetry)
+[IBus telemetry specification](docs/wiki/guides/current/IBus-telemetry)

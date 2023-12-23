@@ -1,7 +1,3 @@
----
-sidebar_position: 15
----
-
 # Betaflight 3.4 Tuning Notes
 
 ## Notes about some new 3.4 features and defaults
@@ -37,9 +33,9 @@ This removes spikes and sharp edges that otherwise arise during rapid stick inpu
 
 If you enable item_relax, throttle_boost, or use D setpoint weight above zero, you definitely should activate RC smoothing on the relevant axes, as above.
 
-_IMPORTANT_: SBus or FPort users [should stop using OpenTX when using 16 channels](SBus-FPort-and-RC-Smoothing-when-using-OpenTX).
+_IMPORTANT_: SBus or FPort users [should stop using OpenTX when using 16 channels](docs/wiki/guides/current//SBus-FPort-and-RC-Smoothing-when-using-OpenTX).
 
-_IMPORTANT_: Spektrum users with certain transmitters (DX6i, DXe, DX6e) should read [this document](Spektrum-and-RC-Smoothing-Filter) for setting up RC Smoothing Filter correctly.
+_IMPORTANT_: Spektrum users with certain transmitters (DX6i, DXe, DX6e) should read [this document](docs/wiki/guides/archive/Spektrum-and-RC-Smoothing-Filter) for setting up RC Smoothing Filter correctly.
 
 Note that with RC smoothing, the sharp spikes from D weight or throttle inputs will be smoothed out. While this improves efficiency, motor temperature, and smoothness of motor control signals, losing those spikes reduces the effectiveness of D weight, P, and throttle boost, during very rapid stick inputs, a tiny bit. **After enabling RC smoothing, if you notice a small reduction in response to rapid stick inputs, consider increasing D weight, throttle boost and, perhaps, P by up to about 20%**. Usually this is not required.
 

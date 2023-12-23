@@ -109,7 +109,7 @@ Set the SD to the bottom, the camera switches among the three modes: video, phot
 Caddx also implemented support for the RunCam Device protocol via their last firmware update.
 Please note however that only the turtle v2 correctly supports UART controls as the v1 had some incompatible connections on the board despite having UART pads.
 
-For the v1 you can still use [FPV Camera Control](FPV-Camera-Control-%28Joystick-Emulation%29/) to enter the OSD and control the camera via your transmitter.
+For the v1 you can still use [FPV Camera Control](docs/wiki/guides/current/FPV-Camera-Control-Joystick-Emulation) to enter the OSD and control the camera via your transmitter.
 
 Beware that OSD control is disabled during recording.
 

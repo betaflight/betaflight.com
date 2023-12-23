@@ -18,7 +18,7 @@ https://www.rcgroups.com/forums/showpost.php?p=36200950&postcount=1468
 For KISS FC's and ESCs see the KISS Dshot thread:
 https://www.rcgroups.com/forums/showthread.php?t=2780055
 
-[BetaFlight V3.1 released](BetaFlight-V3.1.x)
+[BetaFlight V3.1 released](docs/wiki/release/older/Betaflight-3-1-Release-Notes)
 Just remember that this is still Experimental code and may have serious limitations.
 Read here to Learn exactly what firmware issues and features are being worked on:
 https://github.com/betaflight/betaflight/issues?q=is%3Aissue+is%3Aclosed+sort%3Aupdated-desc
@@ -200,7 +200,7 @@ save
 
 5- Now select the DSHOT protocol of your choice.
 
-See: [CLI resource command](Betaflight-resource-remapping)
+See: [CLI resource command](docs/wiki/guides/current/Resource-remapping)
 
 ##### ALIENFLIGHTF4
 
@@ -219,7 +219,7 @@ See: [AlienFlightNG Support](https://www.alienflightng.com/wiki/)
 ##### MOTOLAB - (MotoF3, Cyclone & Tempest)
 
 Move motor 1 from Output #1 header pin to the PPM input header pin.
-[See MOTOLAB board for wiring detail ](Board---MOTOLAB)
+[See MOTOLAB board for wiring detail ](docs/wiki/boards/MOTOLAB)
 Follow above and to re-map output type in CLI:
 
 ```
@@ -228,7 +228,7 @@ resource motor 1 A07
 save
 ```
 
-See the [MOTOLAB ](Board---MOTOLAB) Wiki page for other Remapping info.
+See the [MOTOLAB](docs/wiki/boards/MOTOLAB) Wiki page for other Remapping info.
 
 ##### PIKOBLX - Re-map motor 1 to the PPM pin (same as MotoLab). Solder motor 1 signal to the PPM pad leaving the SBUS jumper 'shorted'.
 
@@ -339,7 +339,7 @@ See Github Issue #2282 [Emax Femto (SPRACING F3EVO) - DSHOT 600 Motor 4 not spin
 `resource motor 6 B08`
 `save`
 
-##### AIR32 - [instructions](Board---AIR32#faq--known-issues)
+##### AIR32 - [instructions](docs/wiki/boards/AIR32#faq-and-known-issues)
 
 #### FC Target reported NOT working
 

@@ -4,16 +4,16 @@ sidebar_position: 14
 
 # Betaflight 3.5 Tuning Notes
 
-- [A new Feed Forward PID system](3.5-tuning-notes#goodbye-d-setpoint-weight-hello-feed-forward)
-- [Anti Gravity improvements](3.5-tuning-notes#smoother-anti_gravity)
-- [Dynamic Notch filter optimisation options](3.5-tuning-notes#tuning-the-dynamic-filter---for-clean-quads)
+- [A new Feed Forward PID system](#goodbye-d-setpoint-weight-hello-feed-forward)
+- [Anti Gravity improvements](#smoother-anti_gravity)
+- [Dynamic Notch filter optimisation options](#tuning-the-dynamic-filter---for-clean-quads)
 - bug fixes and optimisations
 
 In practical terms these changes should:
 
-- [significantly improve yaw performance](3.5-tuning-notes#feed-forward-on-yaw) and make tuning easier
-- [improve nose up/down wobble when changing throttle quickly](3.5-tuning-notes#smoother-anti_gravity)
-- [allow more focused noise reception, and/or less delay](3.5-tuning-notes#dynamic-notch-filter-tuning) especially on clean quads.
+- [significantly improve yaw performance](#feed-forward-on-yaw) and make tuning easier
+- [improve nose up/down wobble when changing throttle quickly](#smoother-anti_gravity)
+- [allow more focused noise reception, and/or less delay](#dynamic-notch-filter-tuning) especially on clean quads.
 
 **3.5 RC1 is experimental.** Please confirm all PID changes in the CLI before flying. Full configurator, Lua, Blackbox and OSD support will happen but won't be there yet.
 
@@ -23,7 +23,7 @@ Configurator 10.4 and Log Viewer 3.2 or higher will be available soon for use wi
 
 Yes, especially if moving from defaults... but:
 
-- If you are updating from pre-3.4, please read the [Betaflight 3.4 Tuning Notes](/docs/wiki/tuning/older/Tuning-Tips-for-Betaflight-3.4) because they apply to 3.5 also.
+- If you are updating from pre-3.4, please read the [Betaflight 3.4 Tuning Notes](older/3-4-tuning-notes) because they apply to 3.5 also.
 
 - If you had customised D weight and transition, your sensitivity to quick stick inputs may be different. You may need to modify the new Feed Forward and Feed Forward Transition values to reflect your old settings.
 

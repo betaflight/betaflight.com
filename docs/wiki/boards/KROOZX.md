@@ -34,7 +34,7 @@ The KroozX combo is a combination of flight controller and 4in1 Blheli_S(BB2) ES
 - 2 channel video switch
 - Up to 6S input
 - Dimension: 85x28x20mm / fixing hole spacing 32x18mm.
-- Supports DShot (see [this page](DSHOT%20ESC%20Protocol) for setup instructions).
+- Supports DShot.
 
 ## Manufacturers and Distributors
 

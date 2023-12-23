@@ -524,7 +524,7 @@ Good tuning just makes that feel tighter and helps removing unnecessary oscillat
 
 d. Battery Factor: "A while ago someone took over my pids to his quad with same setup and he said it didn't feel good. So I flew his setup and it indeed felt like PIDs were twice as low as they should be! It appeared he was using almost 2 years old (Turnigy) Nanotechs completely lost their power. Even I feel huge difference between different batteries I have." - Boris comment
 
-Also Read the [PID Tuning Guide](PID-Tuning-Guide) the [Black Box logging and usage](Black-Box-logging-and-usage) support pages.
+Also Read the [PID Tuning Guide](PID-Tuning-Guide) the [Black Box logging and usage](docs/wiki/guides/current/Black-Box-logging-and-usage) support pages.
 
 ## Why does my copter behave erratic after a crash ?
 
@@ -563,7 +563,7 @@ Take a look at this overview as it describes how this should be done: http://www
 
 Some additional information can be found from 6:20 onwards in this video: http://www.youtube.com/watch?v=htkw7d97bOo
 
-NOTE: Failsafe configuration has changed in Betaflight 2.4.0 onwards and CF Configurator 1.2.0. The relevant documentation can be found [here](/docs/wiki/guides/current/Failsafe.md).
+NOTE: Failsafe configuration has changed in Betaflight 2.4.0 onwards and CF Configurator 1.2.0. The relevant documentation can be found [here](docs/wiki/guides/current//Failsafe.md).
 
 A good method for RX's that do NOT have a FailSafe output (no Pulses):
 [Setting Up Failsafe on FrSky BeeBrain](http://fpvobsession.com/setting-up-failsafe-on-frsky-beebrain/)
@@ -1750,7 +1750,7 @@ It took all that and removing gyro notch filters / PT1 fix to get the F60 Pro qu
 
 ### Can Filter tuning help?
 
-The newer filters in 3.0 & 3.1 have pretty aggressive defaults. A number of fliers have reduced oscillation issue be reducing the use of the filters. See the [Gyro & Filters ](Gyro-&-Dterm-filtering-recommendations) support page for details and discussions.
+The newer filters in 3.0 & 3.1 have pretty aggressive defaults. A number of fliers have reduced oscillation issue be reducing the use of the filters. See the [Gyro & Filters 3.1](docs/wiki/guides/archive/Gyro-And-Dterm-Filtering-Recommendations-3-1) support page for details and discussions.
 
 ## Is there a way to download blackbox logs through a terminal client ?
 

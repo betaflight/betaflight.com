@@ -1,6 +1,5 @@
 ---
 sidebar_position: 0
-id: Getting started
 title: About Betaflight
 ---
 

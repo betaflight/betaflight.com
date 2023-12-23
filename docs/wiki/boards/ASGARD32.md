@@ -15,7 +15,7 @@
    (The BUZ- pad is switched to ground by the status LED signal.)
    If a buzzer is connected the BUZ-, then beeper beeps on events that normal beeper doesn't beep (like attitude on ground).
    Workaround is described below
-   ([Adding a (real) beeper function](Board---Asgard32#adding-a-real-beeper-function)).
+   ([Adding a (real) beeper function](#adding-a-real-beeper-function).
 
 ### Pad/Pin function map for Asgard32 F4
 

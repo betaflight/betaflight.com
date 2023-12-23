@@ -45,7 +45,7 @@ Flyinglemon - https://flyinglemon.eu
 
 Differences:
 
-## FAQ & Known Issues
+## FAQ and Known Issues
 
 **Wiring:**
 Use wiring only from PDF file https://flyinglemon.eu/index.php?controller=attachment&id_attachment=5

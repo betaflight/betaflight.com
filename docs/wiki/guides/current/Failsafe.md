@@ -69,7 +69,7 @@ When a failsafe switch is enabled, and Failsafe is set to use Stage 1, the fligh
 
 **The default Stage 1 duration**, or 'guard time' is 1.5 seconds in 4.5 (1.0s in 4.4), with a minimum of 200ms. The countdown to Stage 2 starts from the time of the last good packet. The Stage 1 duration may be customised via the "Guard time for stage 2 activation" parameter in Configurator (`failsafe_delay` in the CLI).
 
-**During Stage 1 failsafe from signal loss**, by default, all stick positions are set to the 'fallback' values (centered, throttle zero), and the current switch positions are held. These settings can be customised in Configurator's 'Channel fallback settings' panel in the failsafe tab, or with the CLI command `rxfail` (see the [rxfail](/docs/development/Rx#rx-loss-configuration) section in the Rx documentation). For example, the pilot may choose a hover throttle value, or to activate Level mode, in Stage 1, by configuring the relevant fallback switch or aux channel values.
+**During Stage 1 failsafe from signal loss**, by default, all stick positions are set to the 'fallback' values (centered, throttle zero), and the current switch positions are held. These settings can be customised in Configurator's 'Channel fallback settings' panel in the failsafe tab, or with the CLI command `rxfail` (see the [rxfail](docs/development/Rx#rx-loss-configuration) section in the Rx documentation). For example, the pilot may choose a hover throttle value, or to activate Level mode, in Stage 1, by configuring the relevant fallback switch or aux channel values.
 
 The PID system remains active in Stage 1.
 
@@ -233,7 +233,7 @@ Configure the RC switched failsafe action. It can be one of:
 
 Time throttle level must have been below `min_throttle` to prevent false failsafe initiation when the link is established after powering up the quad.
 
-See [Rx documentation](/docs/development/Rx).
+See [Rx documentation](docs/development/Rx).
 
 #### `failsafe_procedure`
 
@@ -335,7 +335,7 @@ See the GPS Rescue Wiki page for your firmware:
 - [GPS Rescue 4.5](GPS-Rescue-v4-5.md)
 - [GPS Rescue 4.4](GPS-Rescue-v4-4.md)
 - [GPS Rescue 4.1-4.3](GPS-Rescue-Mode-v4-1-to-v4-3.md)
-- [GPS Rescue before 4.1](/docs/wiki/guides/archive/GPS-Rescue-Mode.md)
+- [GPS Rescue before 4.1](docs/wiki/guides/archive/GPS-Rescue-Mode.md)
 
 ## Firmware code change history
 

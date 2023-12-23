@@ -498,7 +498,7 @@ For SPI based CC2500 target designs add the following define:
 
 ## 4.3 Usage of the Cloud Build API
 
-See reference to [cloud build API](/docs/development/API/Cloud-Build-API)
+See reference to [cloud build API](docs/development/API/Cloud-Build-API)
 
 # 5 Information for Marketing Purposes
 

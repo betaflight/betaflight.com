@@ -6,23 +6,23 @@ sidebar_position: 11
 
 [Betaflight 4.2](https://github.com/betaflight/betaflight/releases) brings:
 
-- [More accurate loop times](4.2-Tuning-Notes#more-accurate-loop-times) - improved RPM filter performance
-- [Improved feed forward](4.2-Tuning-Notes#improved-feed-forward) - smoother flight, with snippets to optimise averaging and smoothing settings for [race to cinematic purposes](4.2-Tuning-Notes#quick-settings)
-- [Dynamic D filter expo curve](4.2-Tuning-Notes#dynamic-d-filtering-expo) - improved propwash by raising D filter cutoffs faster as you throttle up
-- [Dynamic battery sag compensation](4.2-Tuning-Notes#dynamic-battery-sag-compensation) - consistent responsive throttle and PID 'feel' through the entire flight
-- [New rates modes](4.2-Tuning-Notes#new-rates-modes) - more intuitive adjustment of the parameters that matter, and ultra low expo possibilities for race and cinematic use
-- [Improved dynamic notch filter](4.2-Tuning-Notes#improved-dynamic-notch-filter) - better noise rejection, simplified min/max configuration.
-- [Automatic anti-yaw spin configuration](4.2-Tuning-Notes#automatic-anti-yaw-spin-configuration) - stops yaw spins more quickly
-- [Antigravity gain independent of I values](4.2-Tuning-Notes#antigravity-gain-independent-of-i-values) - if you change I, the strength of the anti-gravity effect will not change
-- [Simpler and better RC smoothing](4.2-Tuning-Notes#rc-smoothing-improvements) - careful optimisation of the default auto smoothing method means that manual smoothing should almost never be required
-- [Iterm Relax works properly in setpoint mode](4.2-Tuning-Notes#iterm-relax-works-properly-in-setpoint-mode) - fixes a bug in 4.0 and 4.1 where lowering the cutoff in setpoint mode achieved very little. Now that setpoint mode works properly (at last), users who moved to gyro mode should go back to setpoint mode. Default iterm_relax_cutoff reduced to 15 to give better bounce back suppression on lower authority quads.
-- [NFE Race Mode](4.2-Tuning-Notes#nfe-race-mode) - an interesting flight mode with acro on pitch, self-levelling on roll
-- [Configurator 10.7](4.2-Tuning-Notes#configurator-improvements) - many improvements, notably displaying the graphics of the different rates types properly
-- [OSD Improvements](4.2-Tuning-Notes#osd-improvements) - the logo can now be shown briefly every time you arm, CRSF displays both mode and strength; camera frame, distance from home, and efficiency added.
+- [More accurate loop times](#more-accurate-loop-times) - improved RPM filter performance
+- [Improved feed forward](#improved-feed-forward) - smoother flight, with snippets to optimise averaging and smoothing settings for [race to cinematic purposes](#quick-settings)
+- [Dynamic D filter expo curve](#dynamic-d-filtering-expo) - improved propwash by raising D filter cutoffs faster as you throttle up
+- [Dynamic battery sag compensation](#dynamic-battery-sag-compensation) - consistent responsive throttle and PID 'feel' through the entire flight
+- [New rates modes](#new-rates-modes) - more intuitive adjustment of the parameters that matter, and ultra low expo possibilities for race and cinematic use
+- [Improved dynamic notch filter](#improved-dynamic-notch-filter) - better noise rejection, simplified min/max configuration.
+- [Automatic anti-yaw spin configuration](#automatic-anti-yaw-spin-configuration) - stops yaw spins more quickly
+- [Antigravity gain independent of I values](#antigravity-gain-independent-of-i-values) - if you change I, the strength of the anti-gravity effect will not change
+- [Simpler and better RC smoothing](#rc-smoothing-improvements) - careful optimisation of the default auto smoothing method means that manual smoothing should almost never be required
+- [Iterm Relax works properly in setpoint mode](#iterm-relax-works-properly-in-setpoint-mode) - fixes a bug in 4.0 and 4.1 where lowering the cutoff in setpoint mode achieved very little. Now that setpoint mode works properly (at last), users who moved to gyro mode should go back to setpoint mode. Default iterm_relax_cutoff reduced to 15 to give better bounce back suppression on lower authority quads.
+- [NFE Race Mode](#nfe-race-mode) - an interesting flight mode with acro on pitch, self-levelling on roll
+- [Configurator 10.7](#configurator-improvements) - many improvements, notably displaying the graphics of the different rates types properly
+- [OSD Improvements](#osd-improvements) - the logo can now be shown briefly every time you arm, CRSF displays both mode and strength; camera frame, distance from home, and efficiency added.
 
 **4.2 should fly really well on defaults, with no modifications, with most quads.** If you know your quad requires special or unusual PIDs, please re-tune, because with the new 4.2 features, you may get you an even better result with different PIDs. For instance, if you wanted to be able to add more D but were limited by noise, it may be possible now.
 
-**Some low authority quads (under-powered whoops, ducted HD whoops, 7" and larger quads, endurance quads, etc) may require [specific settings to minimise bounce-back](4.2-Tuning-Notes#settings-to-minimise-bounceback).**
+**Some low authority quads (under-powered whoops, ducted HD whoops, 7" and larger quads, endurance quads, etc) may require [specific settings to minimise bounce-back](#settings-to-minimise-bounceback).**
 
 If you're new to 4.2, please read the 4.0 and 4.1 tuning notes.
 
@@ -30,13 +30,13 @@ If you're new to 4.2, please read the 4.0 and 4.1 tuning notes.
 
 **NOTE 1**: DO NOT paste a diff or dump from any prior build into the 4.2 CLI. See if you can use the sliders to approximate your old PIDs and filter settings, to make it easier, in future, to use sliders for tuning.
 
-**NOTE 2**: If you previously set `dyn_notch_range` to `LOW`, change `dyn_notch_max_hz` to 350, and for `HIGH` to 700. Default of 500 for most quads is fine otherwise. Read more about setting the range [here](4.2-Tuning-Notes#improved-dynamic-notch-filter).
+**NOTE 2**: If you previously set `dyn_notch_range` to `LOW`, change `dyn_notch_max_hz` to 350, and for `HIGH` to 700. Default of 500 for most quads is fine otherwise. Read more about setting the range [here](#improved-dynamic-notch-filter).
 
-**NOTE 3**:If your previous PID `I` values were changed from default, the anti-gravity gain values in 4.2 may need changing a little to get the same outcome. We recommend flying the default antigravity value and re-tuning it to the optimal value. Details [here](4.2-Tuning-Notes#antigravity-gain-independent-of-I-values).
+**NOTE 3**:If your previous PID `I` values were changed from default, the anti-gravity gain values in 4.2 may need changing a little to get the same outcome. We recommend flying the default antigravity value and re-tuning it to the optimal value. Details [here](#antigravity-gain-independent-of-I-values).
 
 **NOTE 4**: If using the Accelerometer, arming will fail unless it has been calibrated.
 
-**NOTE 5**: We recommend using eRPM based filtering. Read about [enabling and configuring rpm filtering here.](/docs/wiki/guides/current/DSHOT-RPM-Filtering)
+**NOTE 5**: We recommend using eRPM based filtering. Read about [enabling and configuring rpm filtering here.](docs/wiki/guides/current//DSHOT-RPM-Filtering)
 
 ## Quick settings
 
@@ -312,7 +312,7 @@ Values above default will provide a smoother FF signal, but may cause so much de
 
 ### Boost: ff_boost
 
-This hasn't changed since 4.1; please read the [4.1 tuning notes](4.1-Tuning-Notes#Feed-Forward-Boost)
+This hasn't changed since 4.1; please read the [4.1 tuning notes](4-1-Tuning-Notes#Feed-Forward-Boost)
 
 To summarise, boost responds to stick acceleration, and helps overcome motor lag with quick stick inputs. It also generates RC jitter and glitch artefact better than anything else. The default settings in 4.2 attempt to strike a good balance.
 
@@ -328,7 +328,7 @@ The biggest normal single FF step change that a pilot ever generates is when the
 
 ### Overshoot limiting: ff_max_rate_limit
 
-`ff_max_rate_limit` also hasn't changed since 4.1, please read the [4.1 tuning notes ](4.1-Tuning-Notes#feed-forward-limiting).
+`ff_max_rate_limit` also hasn't changed since 4.1, please read the [4.1 tuning notes ](4-1-Tuning-Notes#feed-forward-limiting).
 
 Leave this at 100.
 

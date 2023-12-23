@@ -158,7 +158,8 @@ Allowed range: 1 - 50
 
 **rc_smoothing_type = FILTER**
 Allowed values: INTERPOLATION, FILTER
-Tuning-Tips-for-Betaflight-3.4#i-just-want-to-fly-not-read-all-this-stuff
+[see 3.4 tuning notes](docs/wiki/tuning/older/3-4-tuning-notes)
+
 **rc_smoothing_input_hz = 0**
 Allowed range: 0 - 255
 Spektrum-and-RC-Smoothing-Filter
@@ -256,7 +257,7 @@ Allowed range: 0 - 2000
 
 **dshot_burst = OFF**
 Allowed values: OFF, ON
-[details](docs/wiki/current/dshot-rpm-filtering#dma)
+[details](docs/wiki/guides/current/DSHOT-RPM-Filtering#dma)
 
 **use_unsynced_pwm = OFF**
 Allowed values: OFF, ON
@@ -273,7 +274,7 @@ Allowed values: OFF, ON
 **motor_poles = 14**
 Allowed range: 4 - 255
 The escs report erpm which needs to be converted to rpm using the number of poles (magnets) of the motors. Regular 5" motors have 14 poles and that's the default setting. Smaller motors have less poles, often 12. Count them or look up the motor specs
-[details](docs/wiki/current/dshot-rpm-filtering)
+[details](docs/wiki/guides/current/DSHOT-RPM-Filtering)
 
 **thr_corr_value = 0**
 Allowed range: 0 - 150
@@ -722,7 +723,7 @@ Allowed range: 0 - 7
 **camera_control_mode = HARDWARE_PWM**
 Allowed values: HARDWARE_PWM, SOFTWARE_PWM, DAC
 mode of operation, software_pwm is the least restrictive in terms of available PIN selection, but it requires both a resistor and a capacitor to work properly; hardware_pwm is almost guaranteed to work with just a resistor given you can spare a timer for it; dac (not yet implemented) is supported on the very few FCs that have a DAC pin broken out and unoccupied by other functions, it works by direct connection to the camera.
-[Camera Control](docs/wiki/guides/current/FPV-Camera-Control-Joystick-Emulation.md)
+[Camera Control](docs/wiki/guides/current/FPV-Camera-Control-Joystick-Emulation)
 
 **camera_control_ref_voltage = 330**
 Allowed range: 200 - 400

@@ -10,4 +10,4 @@
 
 ## RSSI
 
-- [Howto use RSSI with Spektrum SPM4649T and other satellites](Howto-use-RSSI-with-Spektrum-SPM4649T-and-other-satellites)
+- [Howto use RSSI with Spektrum SPM4649T and other satellites](RSSI-with-Spektrum-SPM4649T-and-other-satellites)

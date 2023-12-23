@@ -31,4 +31,4 @@ Inversion control will be handled correctly by each protocol handler for V1 and 
 
 ### For other related information, please refer to OMNIBUS F4 board wiki
 
-Board---OMNIBUSF4
+[OMNIBUSF4](OMNIBUSF4)

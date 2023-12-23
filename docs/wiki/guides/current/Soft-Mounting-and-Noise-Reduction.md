@@ -3,11 +3,11 @@
 FAQ #56 has been where all the info has been put. We will be editing FAQ #56 to put information on this page.
 Please check often as this page gets built.
 
-See [FAQ #56 ](Frequently-Asked-Questions) for Discussion on Yaw Twitches and Mid-throttle Oscillations. This covers Gyros and other possible causes.
+See [FAQ #56 ](docs/wiki/guides/current/FAQ) for Discussion on Yaw Twitches and Mid-throttle Oscillations. This covers Gyros and other possible causes.
 
 Also be sure to read:
-[Gyro & Filters](Gyro-&-Dterm-filtering-recommendations)
-[BB logging & Filters](Black-Box-logging-and-usage)
+[Gyro & Filters](docs/wiki/guides/archive/Gyro-And-Dterm-Filtering-Recommendations-3-1)
+[BB logging & Filters](docs/wiki/guides/current/Black-Box-logging-and-usage)
 
 ### Damping Theory by ctzsnooze:
 

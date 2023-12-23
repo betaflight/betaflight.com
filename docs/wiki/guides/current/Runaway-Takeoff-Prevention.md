@@ -21,7 +21,7 @@ The Runaway Takeoff Prevention feature is enabled by default beginning with Beta
 
 **Takeoff:**
 
-After the first arm after powering up, the feature looks for excessive PID responses that indicate the craft is not responding properly and escalating towards an out-of-control runaway event. If detected the flight controller will automatically disarm. A [beep pattern](Arming-Sequence-&-Safety#beeper) - one long, one short - will indicate that a runaway takeoff event occurred and "RUNAWAY" will be displayed as the arming disabled reason in both the OSD and CLI.
+After the first arm after powering up, the feature looks for excessive PID responses that indicate the craft is not responding properly and escalating towards an out-of-control runaway event. If detected the flight controller will automatically disarm. A [beep pattern](Arming-Sequence-And-Safety#beeper) - one long, one short - will indicate that a runaway takeoff event occurred and "RUNAWAY" will be displayed as the arming disabled reason in both the OSD and CLI.
 
 **Successful Flight:**
 

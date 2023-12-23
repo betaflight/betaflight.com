@@ -45,7 +45,7 @@ MPU-6000 F4 flight controller with stackable PDB. Integrated 12V and 5V regulato
 
 V2 improved upon the Kiwi F4 by adding an SD Card slot, moving the IMU closer to the center of the board, and changing the through hole solder points to pads.
 
-[Plum F4](Board---PLUMF4)
+[Plum F4](PLUMF4)
 
 A cheaper variant of the Kiwi F4 V2 that removes the PDB socket, the OSD, and the video line filters.
 
@@ -107,7 +107,7 @@ voltage 57, current 444 offset 11.
 
 ### Enable Camera Control:
 
-1. See [this page](FPV-Camera-Control-Joystick-Emulation) for setting up your camera.
+1. See [this page](docs/wiki/guides/current/FPV-Camera-Control-Joystick-Emulation) for setting up your camera.
 2. After configuring your hardware (RC Filter) solder your OSD control wire to the VTX.CLK pad (PIN B06).
 3. Enter the following commands:
 

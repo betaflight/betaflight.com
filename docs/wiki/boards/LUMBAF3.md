@@ -40,7 +40,7 @@ LUMBAF3 is a Flight Controller designed with basic necessity of a good flight co
 
 ## Manufacturers and Distributors
 
-[EMCEE TECHNOLOGIES](www.emceetech.com/lumbaf3)
+[EMCEE TECHNOLOGIES](http://www.emceetech.com)
 
 ## Designers
 

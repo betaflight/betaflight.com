@@ -14,7 +14,7 @@ Some have asked if BetaFlight can control a Fixed wing aircraft.
 
 #### Do Remember that YOU are the TESTER.
 
-Reference the [Betaflight resource remapping](Betaflight-resource-remapping).
+Reference the [Betaflight resource remapping](docs/wiki/guides/current/Resource-remapping).
 Note: Pin re-mapping requires BetaFlight 3.1 an higher.
 
 #### AresFPV asked this in Boris' ßF Thread and then did research on how to do this. His findings are:

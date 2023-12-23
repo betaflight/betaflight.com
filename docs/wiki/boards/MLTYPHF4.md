@@ -95,7 +95,7 @@ _(add your name here if you help test or contribute code for this board)_
 
 ## Similar Targets
 
-[MotoLab Tempest F4](Board-MLTEMPF4)
+[MotoLab Tempest F4](MLTEMPF4)
 
 ## FAQ & Known Issues
 
@@ -105,7 +105,7 @@ There are two reason the board might not appear as the correct device:
 
 1. The firmware is corrupted or wrong file loaded. The red led should flash at startup, and then flash if the board is rotated from level if the firmware is running. If not, force DFU mode with the boot pins and reflash with "No reboot sequence" enabled.
 
-2. The wrong drivers are installed. Zadig should be used to install only the DFU mode driver. Connect in DFU mode with the boot pins, and then install the driver listed in post #1. Additional instructions are [here](Installing-Betaflight#dfu-flashing-under-windows---usb-dfu). The default Windows drivers should work for VCP mode.
+2. The wrong drivers are installed. Zadig should be used to install only the DFU mode driver. Connect in DFU mode with the boot pins, and then install the driver listed in post #1. The default Windows drivers should work for VCP mode.
 
 #### how do I configure the vtx like change channels?
 
