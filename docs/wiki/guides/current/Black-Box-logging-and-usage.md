@@ -92,7 +92,7 @@ Remember the spectrum is a _relative_ comparator of the frequencies in the noise
 - _most important_ the duration of the data to be analyzed is fixed. ie 30s. use the i and o keys to select a 30s realm for example.
 
 The most important thing is to scroll through and look at the motors traces for how big that noise is. The spectrum is useful for analyzing what you see there, but the motor trace and how it looks is what matters.
-See [Gyro and Filters](docs/wiki/guides/archive/Gyro-And-Dterm-Filtering-Recommendations-3-1) for more info.
+See [Gyro and Filters](/docs/wiki/guides/archive/Gyro-And-Dterm-Filtering-Recommendations-3-1) for more info.
 
 ### The Spectral data is accumulative which means the longer the time frame of a log the higher the noise in the spectra;l display will be. This makes it impossible to compare the noise from two logs if they are different lengths of time. Therefore, you must compare spectras of same length - say 30 sec on each log, else it has zero meaning. To do it use "I" and "O" keys to mark start and end for analysis.
 

@@ -8,7 +8,7 @@ https://github.com/cleanflight/cleanflight/blob/master/docs/Cli.md
 <h4>Note: This Wiki Page covers the CLI Command changes for BetaFlight Version 2.x. </h4>  
 New [Docs](https://github.com/martinbudden/betaflight/tree/master/docs) for BetaFlight 2.x.
 
-Follow these links for the new CLI commands for [BetaFlight 3.0.x](docs/wiki/release/older/Betaflight-3-0-Release-Notes) and [BetaFlight 3.1.x](docs/wiki/release/older/Betaflight-3-1-Release-Notes).
+Follow these links for the new CLI commands for [BetaFlight 3.0.x](/docs/wiki/release/older/Betaflight-3-0-Release-Notes) and [BetaFlight 3.1.x](/docs/wiki/release/older/Betaflight-3-1-Release-Notes).
 
 The setting shown are the Defaults + possible values.
 

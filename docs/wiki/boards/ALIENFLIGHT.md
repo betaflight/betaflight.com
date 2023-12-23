@@ -34,7 +34,7 @@ set serialrx_provider = 1   (0 for 1024bit, 1 for 2048bit)
 set spektrum_sat_bind = 5
 ```
 
-For more detail of the different bind modes please refer the [Spektrum Bind](docs/development/Spektrum-bind) document
+For more detail of the different bind modes please refer the [Spektrum Bind](/docs/development/Spektrum-bind) document
 
 Deltang receivers in serial mode will work like any other Spektrum satellite receiver (10bit, 22ms) only the bind process will be different.
 

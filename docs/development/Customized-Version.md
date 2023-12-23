@@ -10,7 +10,7 @@ Keep in mind that when you create your own firmware you're using a piece of soft
 
 ## Build the firmware
 
-This document is aimed to people who has some knowledge about programming skills and can build its own firmware. You can find information about this process in the [`building`](docs/category/building) pages.
+This document is aimed to people who has some knowledge about programming skills and can build its own firmware. You can find information about this process in the [`building`](/docs/category/building) pages.
 
 Once you are able to compile your own firmware, you can continue to the next section of this document.
 

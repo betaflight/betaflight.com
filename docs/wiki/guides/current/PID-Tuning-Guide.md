@@ -907,7 +907,7 @@ Another thing to take into account is the tuning of your transmitter antenna and
 
 # VTX TABLES
 
-See [VTX Tables](docs/wiki/guides/current/VTX-Tables).
+See [VTX Tables](/docs/wiki/guides/current/VTX-Tables).
 
 ### TBS UNIFY PRO 5G8 HV
 

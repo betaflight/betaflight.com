@@ -8,7 +8,7 @@ It requires an ESC that supports Bidirectional DShot telemetry - ie, a DShot ESC
 
 Using this RPM data, the flight controller can dynamically alter motor drive to prevent any motor falling below a set minimum RPM. This improves handling and reduces the risk of desyncs. It also allows lower fixed idle settings, which improves straight line braking and hang time. Additionally, dynamic idle improves PID controller performance at zero throttle by permitting stronger braking of motors that are in positive airflow conditions.
 
-NOTE 1: Dynamic Idle requires [fully functional BiDirectional DShot telemetry](docs/wiki/guides/current/DSHOT-RPM-Filtering).
+NOTE 1: Dynamic Idle requires [fully functional BiDirectional DShot telemetry](/docs/wiki/guides/current/DSHOT-RPM-Filtering).
 
 NOTE 2: **Dynamic Idle is off by default**. To enable it, enable DShot Telemetry, and set `dyn_idle_min_rpm` to a suitable value in the CLI. For typical 5" quadcopters 30-40 (3000-4000 RPM) is a suitable starting point. Please read the tuning section, below.
 

@@ -36,7 +36,7 @@ If you're new to 4.2, please read the 4.0 and 4.1 tuning notes.
 
 **NOTE 4**: If using the Accelerometer, arming will fail unless it has been calibrated.
 
-**NOTE 5**: We recommend using eRPM based filtering. Read about [enabling and configuring rpm filtering here.](docs/wiki/guides/current/DSHOT-RPM-Filtering)
+**NOTE 5**: We recommend using eRPM based filtering. Read about [enabling and configuring rpm filtering here.](/docs/wiki/guides/current/DSHOT-RPM-Filtering)
 
 ## Quick settings
 

@@ -10,7 +10,7 @@ sidebar_position: 12
 - [Feed forward interpolation](#feed-forward-interpolation), to reduce the spiky nature of the feed forward signal
 - [Feed forward boost](#feed-forward-boost) to improve transient stick response and reduce overshoot
 - [Feed forward limiting](#feed-forward-limiting), to stop overshoot with max rate outgoing moves
-- [Dynamic Idle](docs/wiki/guides/current/Dynamic-Idle), to improve handling at low rpm
+- [Dynamic Idle](/docs/wiki/guides/current/Dynamic-Idle), to improve handling at low rpm
 - [Optimised PID and TPA defaults, with adjustment sliders in a new Configurator](#optimised-pid-and-tpa-defaults)
 
 Betaflight 4.1 significantly improves default filters and PIDs and has better feed-forward capabilities, all of which help make your quad fly better than ever, out of the box.
@@ -33,13 +33,13 @@ We strongly recommend enabling RPM based filtering. This is now easier than ever
 
 In most cases 4.1 should be a flash and fly upgrade, the defaults are seriously good in all respects.
 
-For a VTX to be controlled by betaflight, [a suitable VTX table must be configured by the user](docs/development/VTX.md#vtx-table) in a way that complies with local regulations.
+For a VTX to be controlled by betaflight, [a suitable VTX table must be configured by the user](/docs/development/VTX.md#vtx-table) in a way that complies with local regulations.
 
-Bitbanged Dshot is very new; please report bugs during the RC phase to GitHub. If you have an issue with your ESC, try `set dshot_bitbang = OFF` rather than AUTO. For more information see the [rpm telemetry page](docs/wiki/guides/current/DSHOT-RPM-Filtering)
+Bitbanged Dshot is very new; please report bugs during the RC phase to GitHub. If you have an issue with your ESC, try `set dshot_bitbang = OFF` rather than AUTO. For more information see the [rpm telemetry page](/docs/wiki/guides/current/DSHOT-RPM-Filtering)
 
 ## Simpler RPM Filter Configuration
 
-Enabling [rpm based filtering](docs/wiki/guides/current/DSHOT-RPM-Filtering) is now easier than before. With the default `dshot_bitbang = AUTO`, there is no need for custom timer and DMA changes on F4 and F7 boards. RPM telemetry will be automatically activated when `dshot_bidir` is enabled, and this can be done in the 10.6 Configurator. The older method is active when `dshot_bitbang = OFF`. For more information check the updated rpm_telemetry page.
+Enabling [rpm based filtering](/docs/wiki/guides/current/DSHOT-RPM-Filtering) is now easier than before. With the default `dshot_bitbang = AUTO`, there is no need for custom timer and DMA changes on F4 and F7 boards. RPM telemetry will be automatically activated when `dshot_bidir` is enabled, and this can be done in the 10.6 Configurator. The older method is active when `dshot_bitbang = OFF`. For more information check the updated rpm_telemetry page.
 
 We still recommend keeping the dynamic notch filter active after enabling the rpm filtering. See the next section for how to adjust filters after activating the rpm filter.
 
@@ -142,7 +142,7 @@ set rc_smoothing_input_type = BIQUAD
 set rc_smoothing_derivative_type = BIQUAD
 ```
 
-These changes were originally described in the [Feedforward 2.0 documentation](docs/wiki/guides/current/Feed-Forward-2-0). There we explained the basics of what feed-forward and ff_boost are.
+These changes were originally described in the [Feedforward 2.0 documentation](/docs/wiki/guides/current/Feed-Forward-2-0). There we explained the basics of what feed-forward and ff_boost are.
 
 ### Feed forward interpolation averaging
 

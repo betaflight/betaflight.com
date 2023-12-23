@@ -34,7 +34,7 @@ The MotoF3 also provides built-in power distribution for four ESCs, an on-board 
 
 MotoLab boards all use the built-in USB interface on the STM32F3 microcontroller. New versions of Cleanflight can be installed using Cleanflight Configurator through the USB interface. Installation of new firmware is described here:
 
-[USB Flashing](docs/development/USB-Flashing)
+[USB Flashing](/docs/development/USB-Flashing)
 
 Firmware installation using Windows operating system is complicated because the default device driver for the STM32 USB interface in DFU programming mode is not compatible with the Configurator flash tool. The required DFU mode driver must be manually installed. The default driver for the USB port in normal (VCP) mode is also required for connection to Configurator. Additional details on the drivers and their installion is provided here:
 
@@ -104,7 +104,7 @@ Differences:
 
 - The Cyclone and Tempest boards can have the PPM pin wired to the motor #1 output pin.
 
-See the [DSHOT & Betaflight](docs/wiki/guides/archive/DSHOT-ESC-Protocol-3-1) page.
+See the [DSHOT & Betaflight](/docs/wiki/guides/archive/DSHOT-ESC-Protocol-3-1) page.
 
 For Cyclone & Tempest -
 A wire can be soldered from the PPM pin to the motor 1 header pin or just connect ESC#1 directly to the PPM pin.

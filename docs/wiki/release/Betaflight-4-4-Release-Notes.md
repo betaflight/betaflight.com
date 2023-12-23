@@ -98,7 +98,7 @@ Favorite presets are being remembered by it's path+name in the repo. So a favori
 
 **GPS "Rescue" has been extensively revised and greatly improved.** The quad should reliably return at the set speed, descend at an angle, land within a few metres of the home point, and disarm automatically on touch-down. There are separate PID control elements for altitude and return velocity t home; the defaults work very well for 'typical' quads. The system should initially be tested with a switch at reasonably close range and low altitude. Setting up and testing GPS Rescue to provide a reliable return on the event of an RxLoss failsafe is a non-trivial task, but well worth the trouble.
 
-**We strongly recommend reading the [instructions](docs/wiki/guides/current/GPS-Rescue-v4-4).**
+**We strongly recommend reading the [instructions](/docs/wiki/guides/current/GPS-Rescue-v4-4).**
 
 Remember that in any true failsafe the quad will always enter Failsafe Stage 1 phase for 1s (user-configurable) before initiating the Rescue. You MUST set the Stage 1 behaviour NOT to DROP, or it will disarm and drop in Stage 1 and never enter GPS Rescue. The safest option for Stage 1 is to configure Angle Mode on an aux switch, and set Stage 1 Failsafe to enable Angle Mode at a fixed hover / light climb throttle value with all other sticks forced to center. When you get signal loss of more than 300ms, you'll enter Angle Mode, and the will start to level out. That will give you a clear advance warning that you are getting signal breakup. Alternatively, you can set Failsafe Stage 1 to hold all current values; the quad will then continue on the same path until Stage 1 Failsafe expires and the Rescue starts.
 

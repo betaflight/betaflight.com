@@ -107,7 +107,7 @@ voltage 57, current 444 offset 11.
 
 ### Enable Camera Control:
 
-1. See [this page](docs/wiki/guides/current/FPV-Camera-Control-Joystick-Emulation) for setting up your camera.
+1. See [this page](/docs/wiki/guides/current/FPV-Camera-Control-Joystick-Emulation) for setting up your camera.
 2. After configuring your hardware (RC Filter) solder your OSD control wire to the VTX.CLK pad (PIN B06).
 3. Enter the following commands:
 

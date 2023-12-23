@@ -17,9 +17,9 @@ JoeLucid, in March 2019, developed the bidirectional DShot code to send RPM data
 
 DShot RPM Telemetry provided the following user benefits:
 
-- [RPM filtering](docs/wiki/guides/current/DSHOT-RPM-Filtering), where dynamic notch filters tracked each motor's center frequency - 12 dynamic RPM filters for a quadcopter - greatly improving RPM based noise rejection
-- [Dynamic Idle](docs/wiki/guides/current/Dynamic-Idle), where the drive to the motors can be rapidly changed, under PID control, so that a motor's RPM does not fall below a defined minimum RPM value. Compared to a simple minimum idle throttle value, this reduces the likelihood of a desync and allows the PIDs to use the full range of motor drive values.
-- [RPM Limiting](docs/wiki/release/betaflight-4-5-release-notes#161-rpm-limiter-build-option), which allows the user to limit maximum average RPM, for spec class racing.
+- [RPM filtering](/docs/wiki/guides/current/DSHOT-RPM-Filtering), where dynamic notch filters tracked each motor's center frequency - 12 dynamic RPM filters for a quadcopter - greatly improving RPM based noise rejection
+- [Dynamic Idle](/docs/wiki/guides/current/Dynamic-Idle), where the drive to the motors can be rapidly changed, under PID control, so that a motor's RPM does not fall below a defined minimum RPM value. Compared to a simple minimum idle throttle value, this reduces the likelihood of a desync and allows the PIDs to use the full range of motor drive values.
+- [RPM Limiting](/docs/wiki/release/betaflight-4-5-release-notes#161-rpm-limiter-build-option), which allows the user to limit maximum average RPM, for spec class racing.
 - RPM logging for testing and debugging. Since Debug values can be shown in the OSD, we can display 'live' RPM values in the OSD.
 
 ### Extended DShot Telemetry

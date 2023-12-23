@@ -20,7 +20,7 @@ Welcome to a comprehensive guide to the Betaflight 4.3 update.
 
 1.  **Check all your settings carefully** before arming for the first time. Check PIDs, Filters, Rates, motor configuration and motor rotation. For the first flights, arm in a safe place, fly gently, and look out for any setup or build issues.
 
-1.  **We recommend using RPM based filtering** for best performance. Read about [enabling and configuring rpm filtering here.](docs/wiki/guides/current/DSHOT-RPM-Filtering)
+1.  **We recommend using RPM based filtering** for best performance. Read about [enabling and configuring rpm filtering here.](/docs/wiki/guides/current/DSHOT-RPM-Filtering)
 
 1.  **250hz or 500hz radio link users MUST choose a suitable Preset**. 500hz radio links must have `feedforward_smoothing` set to 65-70 with 2 point averaging. 250hz radio links need `feedforward_smoothing` set to 35-40 with 2 point averaging.
 

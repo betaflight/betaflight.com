@@ -2,7 +2,7 @@
 
 ### Introduction
 
-## Starting with v3.1, default servo output assignments are deleted from the firmware. Instead, servo outputs must be explicitly assigned by`resource` CLI command. (For details of the `resource` command, please refer to [Betaflight resource remapping](docs/wiki/guides/current/Resource-remapping).
+## Starting with v3.1, default servo output assignments are deleted from the firmware. Instead, servo outputs must be explicitly assigned by`resource` CLI command. (For details of the `resource` command, please refer to [Betaflight resource remapping](/docs/wiki/guides/current/Resource-remapping).
 
 Background
 Internal on STM32 processors are Timers that are used for timing the output pulse to motor, servos, etc. Each FC board can have different STM32 pins connected to input & outputs on the FC. This is one of the main reasons for different Target hex files. The pins and internal resource are Defined in the "target'c' source files found [here.](https://github.com/betaflight/betaflight/tree/master/src/main/target)

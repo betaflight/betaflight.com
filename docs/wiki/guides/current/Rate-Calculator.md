@@ -28,7 +28,7 @@ To compare Actual with Betaflight rates, there are charting solutions by:
 
 For more information about Actual rates, see:
 
-- [4.2 Tuning notes](docs/wiki/tuning/4-2-Tuning-Notes#new-rates-modes)
+- [4.2 Tuning notes](/docs/wiki/tuning/4-2-Tuning-Notes#new-rates-modes)
 - [Github PR 9495](https://github.com/betaflight/betaflight/pull/9495)
 - [Github PR 9506](https://github.com/betaflight/betaflight/pull/9506)
 

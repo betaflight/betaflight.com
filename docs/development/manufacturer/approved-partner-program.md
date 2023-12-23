@@ -18,7 +18,7 @@ produce better hardware and more successful designs.
 
 For version 4.3 a team of Betaflight developers started a 'Hardware Specification' program
 discussing a recommended direction for current and future hardware design and development.
-The document 'Manufacturer Design Guidelines' is available [here](docs/development/manufacturer/manufacturer-design-guidelines), and represents the first time that recommendations are officially made directly from
+The document 'Manufacturer Design Guidelines' is available [here](/docs/development/manufacturer/manufacturer-design-guidelines), and represents the first time that recommendations are officially made directly from
 the Betaflight developers to manufacturers. We encourage manufacturers to read this document
 and offer feedback.
 
