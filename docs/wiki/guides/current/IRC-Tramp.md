@@ -65,11 +65,11 @@ https://github.com/betaflight/betaflight-tx-lua-scripts/releases
 
 Any VTX that is configurable from CMS and CLI can also be controlled using a Spektrum TX with VTX Setup menues, introduced in betaflight 3.3.0.
 
-![Spektrum VTX Setup menu](https://betaflight.com/assets/img/Spektrum_VTX_Control_menu.jpg)
+![Spektrum VTX Setup menu](/img/Spektrum_VTX_Control_menu.jpg)
 
 If you are using telemetry and a SPM4649T receiver, you can also see the current VTX status on the same VTX Setup screen. This can be very useful if VTX settings are changed in some other way than from the Transmitter VTX Setup menu.
 
-![Spektrum VTX Status and Setup menu](https://betaflight.com/assets/img/Spektrum_VTX_Control_status_menu_1.21exp.jpg)
+![Spektrum VTX Status and Setup menu](/img/Spektrum_VTX_Control_status_menu_1.21exp.jpg)
 
 ## Modify VTX Configuration (TBS Unify / TrampHV) using CLI Settings
 

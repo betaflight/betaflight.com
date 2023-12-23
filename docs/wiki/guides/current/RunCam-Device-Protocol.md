@@ -54,7 +54,7 @@ RunCam Split cameras (1,2,mini and mini 2 etc.) also work however may require a 
 
 Entering the osd menu to change settings should work with the same stick commands as [FPV Camera Control](FPV-Camera-Control-Joystick-Emulation)
 
-![Camera Control Stick Commands](https://betaflight.com/assets/img/camera-control-stick-commands.png)
+![Camera Control Stick Commands](/img/camera-control-stick-commands.png)
 
 ##### Camera Button Simulation (Record/Photo/Wifi/Power Button)
 
@@ -123,7 +123,7 @@ Turtle V2 has two different versions of hardware. Flashing the firmware may caus
 
 Entering the osd menu to change settings should work with the same stick commands as [FPV Camera Control](FPV-Camera-Control-Joystick-Emulation)
 
-![Camera Control Stick Commands](https://betaflight.com/assets/img/camera-control-stick-commands.png)
+![Camera Control Stick Commands](/img/camera-control-stick-commands.png)
 
 ##### Camera Button Simulation (Recording)
 

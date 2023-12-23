@@ -52,13 +52,13 @@ Note: When using CMS in this way, it will be given highest possible priority on 
 
 ## Telemetry sample screen shots.
 
-![Spektrum Telemetry Overview](https://betaflight.com/assets/img/Spektrum_TM_Overview.jpg)
-![Spektrum Telemetry Overview](https://betaflight.com/assets/img/Spektrum_TM_Flightlog.jpg)
-![Spektrum Telemetry Overview](https://betaflight.com/assets/img/Spektrum_TM_Voltage_MinMax.jpg)
-![Spektrum Telemetry Overview](https://betaflight.com/assets/img/Spektrum_TM_Voltage.jpg)
-![Spektrum Telemetry Overview](https://betaflight.com/assets/img/Spektrum_TM_FlightPackCapacity.jpg)
-![Spektrum Telemetry Overview](https://betaflight.com/assets/img/Spektrum_TM_Text_CMS.jpg)
-![Spektrum Telemetry Overview](https://betaflight.com/assets/img/Spektrum_VTX_Status.jpg)
+![Spektrum Telemetry Overview](/img/Spektrum_TM_Overview.jpg)
+![Spektrum Telemetry Overview](/img/Spektrum_TM_Flightlog.jpg)
+![Spektrum Telemetry Overview](/img/Spektrum_TM_Voltage_MinMax.jpg)
+![Spektrum Telemetry Overview](/img/Spektrum_TM_Voltage.jpg)
+![Spektrum Telemetry Overview](/img/Spektrum_TM_FlightPackCapacity.jpg)
+![Spektrum Telemetry Overview](/img/Spektrum_TM_Text_CMS.jpg)
+![Spektrum Telemetry Overview](/img/Spektrum_VTX_Status.jpg)
 
 ### New items in BF4.0:
 

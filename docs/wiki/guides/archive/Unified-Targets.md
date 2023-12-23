@@ -47,7 +47,7 @@ Tip: remember to save a backup of your config, like as a `diff`, _before_ you fl
 
 ### 4. Connect to configurator, click on `Apply Custom Defaults` when prompted:
 
-![Picture of a notice that asks the user to apply custom defaults](https://betaflight.com/assets/img/apply_custom_defaults_prompt.png)
+![Picture of a notice that asks the user to apply custom defaults](/img/apply_custom_defaults_prompt.png)
 
 If you are having an issue with the unified target, try the legacy target for now, and file an issue on the [Issue Tracker](https://github.com/betaflight/betaflight/issues) if the unified target is missing anything that it should have.
 

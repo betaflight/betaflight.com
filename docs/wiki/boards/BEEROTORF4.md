@@ -1,8 +1,8 @@
 # BeeRotor F4
 
-![BeeRotor F4 front](https://betaflight.com/assets/img/boards/beerotorf4/beerotorf4_front.jpg)
+![BeeRotor F4 front](/img/boards/beerotorf4/beerotorf4_front.jpg)
 
-![BeeRotor F4 back](https://betaflight.com/assets/img/boards/beerotorf4/beerotorf4_back.jpg)
+![BeeRotor F4 back](/img/boards/beerotorf4/beerotorf4_back.jpg)
 
 ## Description
 

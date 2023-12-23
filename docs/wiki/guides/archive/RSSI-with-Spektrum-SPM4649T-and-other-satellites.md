@@ -16,6 +16,6 @@ Done.
 
 The Betaflight and Spektrum RSSI % values are not the same. Currently not user adjustable in Betaflight. In your Tx you should however be able to select three different units. "%", "dBm" or "%R". None of those scales in the same way as BetaFlight. Spektrum "%" and "dBm" drops too fast close up and "%R" to fast at range end. The scaling in BetaFflight is a compromise between the two, the green line below.
 
-![RSSI vs Distancel menu](https://betaflight.com/assets/img/ideal_rssi_to_range.jpg)
+![RSSI vs Distancel menu](/img/ideal_rssi_to_range.jpg)
 
 The Betaflight fake RSSI values are not scaling too well to distance either, looks more like the red "%R" curve above. This is because it is based on fades and frame losses. And fades start to occur close to range limit. Currently the fake RSSI scaling is not configurable, 40 lost frames/s are regarded as 0% RSSI, and 0 lost frames/s is 100% .
