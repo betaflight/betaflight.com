@@ -169,7 +169,7 @@ Example of a pull request with test firmware attached:
 
 ### IDEs and .gitignore
 
-The projects [.gitignore](/.gitignore) already ignores certain artifacts from some IDEs, but if you'd like to use something else, you can set up git to ignore the necessary files at a global level (all git projects on the computer)
+The project' `.gitignore` file already ignores certain artifacts from some IDEs, but if you'd like to use something else, you can set up git to ignore the necessary files at a global level (all git projects on the computer)
 
 It is always good to check that you haven't done this already: `git config --global --get core.excludesfile`
 

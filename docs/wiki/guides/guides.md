@@ -5,7 +5,9 @@ sidebar_label: Guides
 
 # Information for Betaflight pilots
 
-Our **[Current guides](docs/wiki/guides/current/)** are documents that apply to recent versions of Betaflight. Some need updating, but most should be relevant and helpful.
+Our **Current guides** apply to recent versions of Betaflight. Some need updating, but most should be relevant and helpful.
+
+http://localhost:3000/docs/wiki/guides/current/3D-Setup
 
 4.5 users may want to check out:
 
@@ -14,7 +16,7 @@ Our **[Current guides](docs/wiki/guides/current/)** are documents that apply to 
 - [Updated Failsafe notes](docs/wiki/guides/current//Failsafe.md)
 - [Magnetometer information](docs/wiki/guides/current//Magnetometer.md)
 
-The **[Archive](docs/category/archive)** contains deprecated documents that are being kept purely for historical reasons. They are either:
+The **Archive** contains deprecated documents that are being kept purely for historical reasons. They are either:
 
 - so old as to be irrelevant,
 - inaccurate,
