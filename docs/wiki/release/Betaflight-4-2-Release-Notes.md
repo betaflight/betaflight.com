@@ -21,7 +21,7 @@ For an extended list of new features see below.
 
 To make sure you get the latest version of your target installed, head over to [this page](https://github.com/betaflight/betaflight-configurator/releases) and make sure you have got the latest version of Betaflight configurator installed **before updating your firmware**.
 
-To get the best out of the flight performance improvements, please read the [Tuning Notes](docs/wiki/tuning/4-2-Tuning-Notes.md).
+To get the best out of the flight performance improvements, please read the [Tuning Notes](docs/wiki/tuning/4-2-Tuning-Notes).
 
 If you are upgrading from an earlier version of Betaflight, please read the following section containing a list of things that you might have to change in your configuration.
 

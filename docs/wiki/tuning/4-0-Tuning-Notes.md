@@ -6,7 +6,7 @@ sidebar_position: 13
 
 - [RPM controlled multiple dynamic notch filtering over bi-directional DShot](docs/wiki/guides/current/DSHOT-RPM-Filtering), to markedly improve motor noise suppression, reducing filter delay time
 - [Launch Control](docs/wiki/guides/current/Launch-Control), allows a pilot to hold a specified angle precisely and accurately for the perfect race launch
-- [D_min](docs/wiki/guides/current/DMIN.md), which dynamically adjusts the PID D parameter according to stick movement
+- [D_min](docs/wiki/guides/current/DMIN), which dynamically adjusts the PID D parameter according to stick movement
 - [Dynamic lowpass filtering](#dynamic-lowpass-filtering), to improve noise control at low rpm and reduce filter delay time at high rpm
 - [Improved dynamic notch code](#improved-dynamic-notch-code), with better tracking and better noise rejection with less delay,
 - [D-only TPA](#d-only-tpa), to selectively reduce D related noise at high throttle and maintain normal P responsiveness

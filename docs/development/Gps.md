@@ -10,7 +10,7 @@ Two GPS protocols are supported. NMEA text and UBLOX binary.
 
 Enable the GPS from the CLI as follows:
 
-1. [configure a serial port to use for GPS.](Serial.md)
+1. [configure a serial port to use for GPS.](Serial)
 1. set your GPS baud rate (leave it on AUTO if you are not sure)
 1. enable the `feature GPS`
 1. set the `gps_provider`

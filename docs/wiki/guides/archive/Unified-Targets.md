@@ -38,7 +38,7 @@ Date: 2020-01-15T19:44:32Z
 
 **FAQ**:
 What is Manufacturer ID: `MTKS`
-What do these four letters mean? They refer to the manufacturer of the board. The list is available in [Manufacterers.md](https://github.com/betaflight/unified-targets/blob/master/Manufacturers.md)
+What do these four letters mean? They refer to the manufacturer of the board. The list is available in [Manufacterers.md](https://github.com/betaflight/unified-targets/blob/master/Manufacturers)
 
 Tip: remember to save a backup of your config, like as a `diff`, _before_ you flash a new version of betaflight.
 **Please note** it is only save to import certain settings back. If unsure please start with a fresh configuration.

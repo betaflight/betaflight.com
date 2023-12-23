@@ -1,6 +1,6 @@
 # Battery Monitoring
 
-Betaflight has a battery monitoring feature. The voltage of the main battery can be measured by the system and used to trigger a low-battery warning [buzzer](Buzzer.md), on-board status LED flashing and LED strip patterns.
+Betaflight has a battery monitoring feature. The voltage of the main battery can be measured by the system and used to trigger a low-battery warning [buzzer](Buzzer), on-board status LED flashing and LED strip patterns.
 
 Low battery warnings can:
 
@@ -43,7 +43,7 @@ Notes:
 
 ### Sparky
 
-See the [Sparky board chapter](docs/wiki/boards/SPARKY.md).
+See the [Sparky board chapter](docs/wiki/boards/SPARKY).
 
 ## Configuration
 

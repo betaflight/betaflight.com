@@ -563,7 +563,7 @@ Take a look at this overview as it describes how this should be done: http://www
 
 Some additional information can be found from 6:20 onwards in this video: http://www.youtube.com/watch?v=htkw7d97bOo
 
-NOTE: Failsafe configuration has changed in Betaflight 2.4.0 onwards and CF Configurator 1.2.0. The relevant documentation can be found [here](docs/wiki/guides/current/Failsafe.md).
+NOTE: Failsafe configuration has changed in Betaflight 2.4.0 onwards and CF Configurator 1.2.0. The relevant documentation can be found [here](docs/wiki/guides/current/Failsafe).
 
 A good method for RX's that do NOT have a FailSafe output (no Pulses):
 [Setting Up Failsafe on FrSky BeeBrain](http://fpvobsession.com/setting-up-failsafe-on-frsky-beebrain/)

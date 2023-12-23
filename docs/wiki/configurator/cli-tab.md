@@ -12,4 +12,4 @@ BetaFlight has a command line interface (CLI) that can be used to:
 - check the hardware status
 - and do a lot more, including bad things that can burn out the motor break functionality.
 
-For more information see our [CLI reference document](docs/development/Cli.md)
+For more information see our [CLI reference document](docs/development/Cli)

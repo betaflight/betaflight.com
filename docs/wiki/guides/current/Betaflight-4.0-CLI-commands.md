@@ -593,7 +593,7 @@ When set to on, and the LEDLOW mode is active (i.e. LED strip off), blink the LE
 
 **ledstrip_grb_rgb = GRB**
 Allowed values: GRB, RGB
-https://betaflight.com/docs/development/LedStrip#ws2811-vs-ws2812
+For more info see the [ledstrip development page](docs/development/LedStrip#ws2811-vs-ws2812)
 
 **sdcard_detect_inverted = OFF**
 Allowed values: OFF, ON

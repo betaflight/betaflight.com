@@ -30,4 +30,4 @@ See the README file that comes with the configurator for installation instructio
 
 Cleanflight can also be configured by a command line interface.
 
-See the [CLI section](Cli.md) of the documentation for more details.
+See the [CLI section](Cli) of the documentation for more details.

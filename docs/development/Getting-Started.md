@@ -4,37 +4,37 @@ This is a step-by-step guide that can help a person that has never used Cleanfli
 
 DISCLAIMER: This documents is a work in progress. We cannot guarantee the safety or success of your project. At this point the document is only meant to be a helping guide, not an authoritative checklist of everything you should do to be safe and successful. Always exercise common sense, critical thinking and caution.
 
-Read the [Introduction](Introduction.md) chapter for an overview of Cleanflight and how the community works.
+Read the [Introduction](Introduction) chapter for an overview of Cleanflight and how the community works.
 
 ## Hardware
 
 NOTE: Flight Controllers are typically equipped with accelerometers. These devices are sensitive to shocks. When the device is not yet installed to an aircraft, it has very little mass by itself. If you drop or bump the controller, a big force will be applied on its accelerometers, which could potentially damage them. Bottom line: Handle the board very carefully until it's installed on an aircraft!
 
-For an overview of the hardware Cleanflight (hereby CF) can run on, see [Boards.md](Boards.md). For information about specific boards, see the board specific documentation.
+For an overview of the hardware Cleanflight (hereby CF) can run on, see [Boards.md](Boards). For information about specific boards, see the board specific documentation.
 
 - Assuming that you have a flight controller board (hereby FC) in hand, you should first read through the manual that it came with. You can skip the details about software setup, as we'll cover that here.
 
-- Decide how you'll connect your receiver by reading the [receiver](Rx.md) chapter, and how many pins you need on the outputs (to connect ESCs and servos) by reading about [Mixers](Mixer.md).
+- Decide how you'll connect your receiver by reading the [receiver](Rx) chapter, and how many pins you need on the outputs (to connect ESCs and servos) by reading about [Mixers](Mixer).
 
-- If you're interested in monitoring your flight battery with CF, see [Battery Monitoring](Battery.md).
+- If you're interested in monitoring your flight battery with CF, see [Battery Monitoring](Battery).
 
-- You may want audible feedback from your copter so skim through [Buzzer](Buzzer.md) and mark the pins that will be used.
+- You may want audible feedback from your copter so skim through [Buzzer](Buzzer) and mark the pins that will be used.
 
-- Do you want your RC Receiver's RSSI to be sent to the board? [The RSSI chapter](Rssi.md) explains how. You may or may not need to make an additional connection from your Receiver to the FC.
+- Do you want your RC Receiver's RSSI to be sent to the board? [The RSSI chapter](Rssi) explains how. You may or may not need to make an additional connection from your Receiver to the FC.
 
-- Would you like to try using a GPS unit to get your aircraft to Loiter or Return-To-Launch? Take a look at the [GPS](Gps.md).
+- Would you like to try using a GPS unit to get your aircraft to Loiter or Return-To-Launch? Take a look at the [GPS](Gps).
 
-- You may also want to read the [Serial](Serial.md) chapter to determine what extra devices (such as Blackbox, OSD, Telemetry) you may want to use, and how they should be connected.
+- You may also want to read the [Serial](Serial) chapter to determine what extra devices (such as Blackbox, OSD, Telemetry) you may want to use, and how they should be connected.
 
 - Now that you know what features you are going to use, and which pins you need, you can go ahead and solder them to your board, if they are not soldered already. Soldering only the pins required for the application may save weight and contribute to a neater looking setup, but if you need to use a new feature later you may have to unmount the board from the craft and solder missing pins, so plan accordingly. Before soldering your FC please review a how-to-solder tutorial to avoid expensive mistakes, practice soldering on some scrap before soldering your FC.
 
-- If you are going to use [Oneshot125](Oneshot.md), you may need to enable that on your ESCs using a jumper or flashing them with the latest stable firmware and enable Damped Light in their settings, if it's supported. Refer to the ESCs' documentation or online discussions to determine this.
+- If you are going to use [Oneshot125](Oneshot), you may need to enable that on your ESCs using a jumper or flashing them with the latest stable firmware and enable Damped Light in their settings, if it's supported. Refer to the ESCs' documentation or online discussions to determine this.
 
 ## Software setup
 
 Now that your board has pins on it, you are ready to connect it to your PC and flash it with CF. Install the Chromium browser or Google Chrome to your PC, if you don't have it already, add the [Cleanflight Configurator](https://chrome.google.com/webstore/detail/cleanflight-configurator/enacoimjcgeinfnnnpajinjgmkahmfgb) to it, and start it.
 
-Then follow these instructions for [Installation](Installation.md) of the firmware to the FC.
+Then follow these instructions for [Installation](Installation) of the firmware to the FC.
 
 ## Cleanflight Configuration
 
@@ -42,7 +42,7 @@ Your FC should now be running CF, and you should be able to connect to it using 
 
 <!--- This next paragraph should probably contain less info, as this info already exists in Configuration.md -->
 
-Now, there are two ways to [configure CF](Configuration.md); via the Configurator's tabs (in a "graphical" way, clicking through and selecting/changing values and tickboxes) and using the [Command Line Interface (CLI)](Cli.md). Some settings may only be configurable using the CLI and some settings are best configured using the GUI (particularly the ports settings, which aren't documented for the CLI as they're not human friendly).
+Now, there are two ways to [configure CF](Configuration); via the Configurator's tabs (in a "graphical" way, clicking through and selecting/changing values and tickboxes) and using the [Command Line Interface (CLI)](Cli). Some settings may only be configurable using the CLI and some settings are best configured using the GUI (particularly the ports settings, which aren't documented for the CLI as they're not human friendly).
 
 - It is now a good time to setup your RC Receiver and Transmitter. Set the Tx so that it outputs at least 4 channels (Aileron, Elevator, Throttle, Rudder) but preferably more. E.g. you can set channels 5 and 6 to be controlled by 3-position switches, to be used later. Maybe set up EXPO on AIL/ELE/RUD, but you should know that it can also be done in CF's software later. If using RSSI over PPM or PWM, it's now time to configure your Rx to output it on a spare channel.
 
@@ -69,10 +69,10 @@ Now, there are two ways to [configure CF](Configuration.md); via the Configurato
 - Receiver tab:
   - Check that the channel inputs move according to your Tx inputs.
   - Check that the Channel map is correct along with the RSSI Channel, if you use that.
-  - Verify the range of each channel goes from ~1000 to ~2000. See also [controls](Controls.md). and `rx_min_usec` and `rx_max_usec`.
+  - Verify the range of each channel goes from ~1000 to ~2000. See also [controls](Controls). and `rx_min_usec` and `rx_max_usec`.
   - You can also set EXPO here instead of your Tx.
   - Click Save!
-- Modes tab: Setup the desired modes. See the [modes](Modes.md) chapter for what each mode does, but for the beginning you mainly need HORIZON, if any.
+- Modes tab: Setup the desired modes. See the [modes](Modes) chapter for what each mode does, but for the beginning you mainly need HORIZON, if any.
 
 - Before finishing this section, you should calibrate the ESCs, install the FC to the frame, and connect the RSSI cable, buzzer and battery if you have chosen to use those.
 
@@ -80,9 +80,9 @@ Now, there are two ways to [configure CF](Configuration.md); via the Configurato
 
 It's important that you have configured CF properly, so that your aircraft does not fly away, or even worse fly into property and people! This is an important step that you should NOT postpone until after your maiden flight. Please do this now, before you head off to the flying field.
 
-- First read the [safety](Safety.md) section.
-- Next, learn how to arm your FC, and about other [controls](Controls.md).
-- Next up, setup [Failsafe](docs/wiki/guides/current/Failsafe.md). Take your time, do it properly.
+- First read the [safety](Safety) section.
+- Next, learn how to arm your FC, and about other [controls](Controls).
+- Next up, setup [Failsafe](docs/wiki/guides/current/Failsafe). Take your time, do it properly.
 - Now, on the bench, without props, test that failsafe works properly, according to the above doc.
 - Additionally, test the effect of AIL/ELE input of your Tx. Is the aircraft responding properly? Do the same for RUD input.
 - Test the direction of AIL/ELE auto correction. Raise throttle at 30% (no blades!); when you tilt the aircraft, do the motors try to compensate momentarily? This should simulate random wind forces that the FC should counteract
@@ -93,18 +93,18 @@ If one of these tests fail, do not attempt to fly, but go back to the configurat
 ## Using it (AKA: Flying)
 
 Go to the field, turn Tx on, place aircraft on the ground, connect flight battery and wait. Arm and fly. Good luck!
-If the aircraft won't arm, count the red Warning LED flashes and find out the reason in [Controls](Controls.md).
+If the aircraft won't arm, count the red Warning LED flashes and find out the reason in [Controls](Controls).
 
 ## Advanced Matters
 
 Some advanced configurations and features are documented in the following pages, but have not been touched-upon earlier:
 
-- [Profiles](Profiles.md)
-- [PID tuning](PID-tuning.md)
-- [In-flight Adjustments](Inflight-Adjustments.md)
-- [Blackbox logging](Blackbox.md)
-- [Using a Sonar](Sonar.md)
-- [Spektrum Bind](Spektrum-bind.md)
-- [Telemetry](Telemetry.md)
-- [Using a Display](Display.md)
-- [Using a LED strip](LedStrip.md)
+- [Profiles](Profiles)
+- [PID tuning](PID-tuning)
+- [In-flight Adjustments](Inflight-Adjustments)
+- [Blackbox logging](Blackbox)
+- [Using a Sonar](Sonar)
+- [Spektrum Bind](Spektrum-bind)
+- [Telemetry](Telemetry)
+- [Using a Display](Display)
+- [Using a LED strip](LedStrip)

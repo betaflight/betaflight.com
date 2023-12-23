@@ -8,4 +8,4 @@ sidebar_position: 20
 Sorry; this Wiki page has not yet been written.
 :::
 
-For more information about Blackbox, see the [Wiki document](docs/wiki/guides/current/Failsafe.md).
+For more information about Blackbox, see the [Wiki document](docs/wiki/guides/current/Failsafe).
