@@ -12,9 +12,9 @@ http://localhost:3000/docs/wiki/guides/current/3D-Setup
 4.5 users may want to check out:
 
 - [Betaflight 4.5 release notes](docs/wiki/release/Betaflight-4-5-Release-Notes.md)
-- [Betaflight 4.5 GPS Rescue notes](docs/wiki/guides/current//GPS-Rescue-v4-5.md)
-- [Updated Failsafe notes](docs/wiki/guides/current//Failsafe.md)
-- [Magnetometer information](docs/wiki/guides/current//Magnetometer.md)
+- [Betaflight 4.5 GPS Rescue notes](docs/wiki/guides/current/GPS-Rescue-v4-5.md)
+- [Updated Failsafe notes](docs/wiki/guides/current/Failsafe.md)
+- [Magnetometer information](docs/wiki/guides/current/Magnetometer.md)
 
 The **Archive** contains deprecated documents that are being kept purely for historical reasons. They are either:
 

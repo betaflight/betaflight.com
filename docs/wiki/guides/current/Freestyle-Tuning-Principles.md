@@ -248,11 +248,11 @@ Thrust Linear helps to boost the PID gains low throttle helping to offset reduce
 
 ### Suggested setting: values for a 5"
 
-|                               | **Value**                                                                                                      |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| **Motor Idle Throttle Value** | 3% - 4%                                                                                                        |
-| **Dynamic Idle**              | Needs to be computed according to [doc](docs/wiki/guides/current//Dynamic-Idle#setup---enabling-dynamic-idle). |
-| **Thrust Linear**             | 20-25                                                                                                          |
+|                               | **Value**                                                                                                     |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Motor Idle Throttle Value** | 3% - 4%                                                                                                       |
+| **Dynamic Idle**              | Needs to be computed according to [doc](docs/wiki/guides/current/Dynamic-Idle#setup---enabling-dynamic-idle). |
+| **Thrust Linear**             | 20-25                                                                                                         |
 
 ## RC smoothing
 

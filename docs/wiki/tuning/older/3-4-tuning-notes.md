@@ -33,7 +33,7 @@ This removes spikes and sharp edges that otherwise arise during rapid stick inpu
 
 If you enable item_relax, throttle_boost, or use D setpoint weight above zero, you definitely should activate RC smoothing on the relevant axes, as above.
 
-_IMPORTANT_: SBus or FPort users [should stop using OpenTX when using 16 channels](docs/wiki/guides/current//SBus-FPort-and-RC-Smoothing-when-using-OpenTX).
+_IMPORTANT_: SBus or FPort users [should stop using OpenTX when using 16 channels](docs/wiki/guides/current/SBus-FPort-and-RC-Smoothing-when-using-OpenTX).
 
 _IMPORTANT_: Spektrum users with certain transmitters (DX6i, DXe, DX6e) should read [this document](docs/wiki/guides/archive/Spektrum-and-RC-Smoothing-Filter) for setting up RC Smoothing Filter correctly.
 

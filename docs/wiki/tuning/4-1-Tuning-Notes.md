@@ -35,11 +35,11 @@ In most cases 4.1 should be a flash and fly upgrade, the defaults are seriously 
 
 For a VTX to be controlled by betaflight, [a suitable VTX table must be configured by the user](docs/development/VTX.md#vtx-table) in a way that complies with local regulations.
 
-Bitbanged Dshot is very new; please report bugs during the RC phase to GitHub. If you have an issue with your ESC, try `set dshot_bitbang = OFF` rather than AUTO. For more information see the [rpm telemetry page](docs/wiki/guides/current//DSHOT-RPM-Filtering)
+Bitbanged Dshot is very new; please report bugs during the RC phase to GitHub. If you have an issue with your ESC, try `set dshot_bitbang = OFF` rather than AUTO. For more information see the [rpm telemetry page](docs/wiki/guides/current/DSHOT-RPM-Filtering)
 
 ## Simpler RPM Filter Configuration
 
-Enabling [rpm based filtering](docs/wiki/guides/current//DSHOT-RPM-Filtering) is now easier than before. With the default `dshot_bitbang = AUTO`, there is no need for custom timer and DMA changes on F4 and F7 boards. RPM telemetry will be automatically activated when `dshot_bidir` is enabled, and this can be done in the 10.6 Configurator. The older method is active when `dshot_bitbang = OFF`. For more information check the updated rpm_telemetry page.
+Enabling [rpm based filtering](docs/wiki/guides/current/DSHOT-RPM-Filtering) is now easier than before. With the default `dshot_bitbang = AUTO`, there is no need for custom timer and DMA changes on F4 and F7 boards. RPM telemetry will be automatically activated when `dshot_bidir` is enabled, and this can be done in the 10.6 Configurator. The older method is active when `dshot_bitbang = OFF`. For more information check the updated rpm_telemetry page.
 
 We still recommend keeping the dynamic notch filter active after enabling the rpm filtering. See the next section for how to adjust filters after activating the rpm filter.
 
