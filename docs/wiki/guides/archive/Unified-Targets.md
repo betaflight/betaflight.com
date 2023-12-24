@@ -38,7 +38,7 @@ Date: 2020-01-15T19:44:32Z
 
 **FAQ**:
 What is Manufacturer ID: `MTKS`
-What do these four letters mean? They refer to the manufacturer of the board. The list is available in [Manufacterers.md](https://github.com/betaflight/unified-targets/blob/master/Manufacturers.md)
+What do these four letters mean? They refer to the manufacturer of the board. The list is available in [Manufacterers.md](https://github.com/betaflight/unified-targets/blob/master/Manufacturers)
 
 Tip: remember to save a backup of your config, like as a `diff`, _before_ you flash a new version of betaflight.
 **Please note** it is only save to import certain settings back. If unsure please start with a fresh configuration.
@@ -47,7 +47,7 @@ Tip: remember to save a backup of your config, like as a `diff`, _before_ you fl
 
 ### 4. Connect to configurator, click on `Apply Custom Defaults` when prompted:
 
-![Picture of a notice that asks the user to apply custom defaults](https://betaflight.com/assets/img/apply_custom_defaults_prompt.png)
+![Picture of a notice that asks the user to apply custom defaults](/img/apply_custom_defaults_prompt.png)
 
 If you are having an issue with the unified target, try the legacy target for now, and file an issue on the [Issue Tracker](https://github.com/betaflight/betaflight/issues) if the unified target is missing anything that it should have.
 

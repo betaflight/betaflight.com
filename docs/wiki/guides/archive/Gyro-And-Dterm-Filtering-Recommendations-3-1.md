@@ -53,7 +53,7 @@ Note that if you change P or D upwards or change props you may have to modify th
 
 On my setups 70 for gyro and 90 for dterm keep motors cool even with the most beat up props, flexy frames and oldest motors.
 
-See [BB logging page](Black-Box-logging-and-usage) for measuring noise and filter.
+See [BB logging page](/docs/wiki/guides/current/Black-Box-logging-and-usage) for measuring noise and filter.
 
 The sequence in disabling notch filters isn't certain.
 

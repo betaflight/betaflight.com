@@ -4,7 +4,7 @@
 
 Avoiding EOL on 512K targets we have introduced a cloud build API saving around 25% of firmware flash usage.
 
-Unified targets define hardware drivers to be included in the firmware as described in the [Hardware specification](/docs/manufacturer/manufacturer-design-guidelines#42-definitions-for-unified-targets)
+Unified targets define hardware drivers to be included in the firmware as described in the [Hardware specification](/docs/development/manufacturer/manufacturer-design-guidelines#42-definitions-for-unified-targets)
 
 The build log has information about the build in case of failure.
 

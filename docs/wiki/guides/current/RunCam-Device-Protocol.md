@@ -54,7 +54,7 @@ RunCam Split cameras (1,2,mini and mini 2 etc.) also work however may require a 
 
 Entering the osd menu to change settings should work with the same stick commands as [FPV Camera Control](FPV-Camera-Control-Joystick-Emulation)
 
-![Camera Control Stick Commands](https://betaflight.com/assets/img/camera-control-stick-commands.png)
+![Camera Control Stick Commands](/img/camera-control-stick-commands.png)
 
 ##### Camera Button Simulation (Record/Photo/Wifi/Power Button)
 
@@ -109,7 +109,7 @@ Set the SD to the bottom, the camera switches among the three modes: video, phot
 Caddx also implemented support for the RunCam Device protocol via their last firmware update.
 Please note however that only the turtle v2 correctly supports UART controls as the v1 had some incompatible connections on the board despite having UART pads.
 
-For the v1 you can still use [FPV Camera Control](FPV-Camera-Control-%28Joystick-Emulation%29/) to enter the OSD and control the camera via your transmitter.
+For the v1 you can still use [FPV Camera Control](/docs/wiki/guides/current/FPV-Camera-Control-Joystick-Emulation) to enter the OSD and control the camera via your transmitter.
 
 Beware that OSD control is disabled during recording.
 
@@ -123,7 +123,7 @@ Turtle V2 has two different versions of hardware. Flashing the firmware may caus
 
 Entering the osd menu to change settings should work with the same stick commands as [FPV Camera Control](FPV-Camera-Control-Joystick-Emulation)
 
-![Camera Control Stick Commands](https://betaflight.com/assets/img/camera-control-stick-commands.png)
+![Camera Control Stick Commands](/img/camera-control-stick-commands.png)
 
 ##### Camera Button Simulation (Recording)
 

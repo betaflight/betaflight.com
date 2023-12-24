@@ -2,7 +2,7 @@
 
 Contributing to Betaflight involves preparing your development environment and making a fork of the repository and working with Git. This document gives some instructions how to handle Git.
 
-Look in [development/building](https://betaflight.com/docs/category/building) for installation notes for your environment.
+Look in [development/building](/docs/category/building) for installation notes for your environment.
 
 Please contribute to this article to help others make git easier to use.
 

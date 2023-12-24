@@ -1,8 +1,8 @@
 # TinyBee F3
 
-![TinyBee F3 Front](https://betaflight.com/assets/img/boards/tinybeef3/tinybeef3_front.jpg)
+![TinyBee F3 Front](/img/boards/tinybeef3/tinybeef3_front.jpg)
 
-![TinyBee F3 Back](https://betaflight.com/assets/img/boards/tinybeef3/tinybeef3_back.jpg)
+![TinyBee F3 Back](/img/boards/tinybeef3/tinybeef3_back.jpg)
 
 ## Description
 

@@ -76,7 +76,7 @@ In most standalone modules, such as the GY-271 board, the sensor is soldered on 
 
 The orientation of the axis also varies according to the orientation of the module when it is attached to the quadcopter.
 
-If the magnetometer cannot be physically positioned so that its axes are aligned as per the diagram above, the `Mag alignment` setting in Configurator (`align_mag` in the [CLI](../configurator/cli-tab)) may be used to correct for other mag orientations. Standard corrections (e.g. `CW90` to rotate the axes 90 degrees clockwise) are provided for common alignment problems. If the module is tilted backwards, or at an unusual angle, a `custom` orientation correction will be required.
+If the magnetometer cannot be physically positioned so that its axes are aligned as per the diagram above, the `Mag alignment` setting in Configurator (`align_mag` in the [CLI](/docs/wiki/configurator/cli-tab) may be used to correct for other mag orientations. Standard corrections (e.g. `CW90` to rotate the axes 90 degrees clockwise) are provided for common alignment problems. If the module is tilted backwards, or at an unusual angle, a `custom` orientation correction will be required.
 
 The correct orientation of a given axis should be confirmed by checking the Magnetometer data in the Sensors tab.
 

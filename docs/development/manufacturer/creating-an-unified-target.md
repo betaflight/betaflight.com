@@ -97,7 +97,7 @@ For more information see reference at the [Hardware specification](manufacturer-
 
 ### 2.7 Add the Board and Manufacturer Information
 
-- edit the file from the previous step, and verify that `board_name` is set to the target name, and `manufacturer_id` is set to the manufacturer's id as listed in [this document](https://github.com/betaflight/unified-targets/tree/master/Manufacturers.md);
+- edit the file from the previous step, and verify that `board_name` is set to the target name, and `manufacturer_id` is set to the manufacturer's id as listed in [this document](https://github.com/betaflight/unified-targets/tree/master/Manufacturers);
 - if the manufacturer is not listed, open an [issue](https://github.com/betaflight/betaflight/issues) and ask for a new id to be assigned. This issue needs to contain the following: name of the company selling the board and supporting customers of it; a website URL for this company. In a future release of the Betaflight configurator, the listing for every board will include this company name, and users will be able to open the company's website from within Betaflight configurator. Allow for a day or two for the Betaflight team to respond to your issue and assign a manufacturer it;
 - for boards that are homebrew and / or not planned for commercial availability, use `CUST` as the `manufacturer_id`.
 

@@ -10,8 +10,8 @@ Cleanflight currently supports 3 tranponder protocol providers (as of 2.10).
 
 ### Links:
 
-[Web](http://www.rclapcounter.com/)
-[Contact](cs@rclapcounter.com)
+Website: http://www.rclapcounter.com/
+Contact: cs@rclapcounter.com
 
 ### Description:
 
@@ -28,7 +28,7 @@ Codes are theoretical unique. Codes are obtained for iLap or come with some flig
 ### Links:
 
 [Web](http://www.arcitimer.com)
-[Contact](info@arcitimer.com)
+contact: info@arcitimer.com
 
 ### Description:
 

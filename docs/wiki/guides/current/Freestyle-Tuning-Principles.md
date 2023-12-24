@@ -63,7 +63,7 @@ quad behaving in a predictive and consistent manner
 ### VBat Sag Compensation
 
 This feature aims to provide motor response consistency across the
-entire flight ([BF doc ref](https://betaflight.com/docs/wiki/tuning/4.2-Tuning-Notes#dynamic-battery-sag-compensation).
+entire flight ([BF doc ref](/docs/wiki/tuning/4-2-Tuning-Notes#dynamic-battery-sag-compensation).
 By enabling VBat Sag Compensation the craft will fly more consistently
 and predictively.
 
@@ -248,11 +248,11 @@ Thrust Linear helps to boost the PID gains low throttle helping to offset reduce
 
 ### Suggested setting: values for a 5"
 
-|                               | **Value**                                                                                               |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------- |
-| **Motor Idle Throttle Value** | 3% - 4%                                                                                                 |
-| **Dynamic Idle**              | Needs to be computed according to [doc](/docs/wiki/current/dynamic-idle#setup---enabling-dynamic-idle). |
-| **Thrust Linear**             | 20-25                                                                                                   |
+|                               | **Value**                                                                                                      |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Motor Idle Throttle Value** | 3% - 4%                                                                                                        |
+| **Dynamic Idle**              | Needs to be computed according to [doc](/docs/wiki/guides/current/Dynamic-Idle#setup---enabling-dynamic-idle). |
+| **Thrust Linear**             | 20-25                                                                                                          |
 
 ## RC smoothing
 

@@ -281,7 +281,7 @@ This mode binds the LED color to remaining battery capacity.
 | Deep pink  | 0%       |
 
 When Warning or Critical voltage is reached, LEDs will blink slowly or fast.
-Note: this mode requires a current sensor. If you don't have the actual device you can set up a virtual current sensor (see [Battery](Battery.md)).
+Note: this mode requires a current sensor. If you don't have the actual device you can set up a virtual current sensor (see [Battery](Battery)).
 
 #### Blink
 

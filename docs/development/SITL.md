@@ -59,7 +59,7 @@ To let Betaflight SITL work with RealFlight, you need Windows 10 or Windows 11 w
 Ubuntu 20.04 in WSL2 on Windows 11 x64 is tested.
 [RealFlightBridge](https://github.com/xuhao1/RealFlightBridge) is also required.
 
-On WSL2, you need to configure the Betaflight following [document here](/docs/development/Building-in-Windows).
+On WSL2, you need to configure the Betaflight following [document here](/docs/development/building/Building-in-Windows).
 
 Build Betaflight with
 
@@ -148,4 +148,4 @@ To running SITL, you may need to:
 
 ## Customize
 
-If you want to create your own model and extend the SITL, please refer to this [guide](http://www.knifeedge.com/KEmax/) and this [document](https://github.com/xuhao1/RealFlightBridge/blob/main/docs/realflight_protocol.md).
+If you want to create your own model and extend the SITL, please refer to this [guide](http://www.knifeedge.com/KEmax/) and this [document](https://github.com/xuhao1/RealFlightBridge/blob/main/docs/realflight_protocol).

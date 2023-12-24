@@ -129,7 +129,7 @@ If the preset options don't work, you can try changing the channel map manually.
 
 - The VTX may be in Pit Mode. Pit Mode is a feature that makes the VTX transmit at very low power, or even to not transmit at all. If you're using a VTX that supports Pit Mode, make sure that it's not enabled when you're flying
 
-- The VTX may be running at low power. Most VTXs have adjustable power outputs, but they may need to be changed to output at full power. Similar to Pit Mode, you need to change it in the [Video Transmitter Tab](/docs/wiki/configurator/video-transmitter-tab)
+- The VTX may be running at low power. Most VTXs have adjustable power outputs, but they may need to be changed to output at full power. Similar to Pit Mode, you need to change it in the [Video Transmitter Tab](/docs/wiki/configurator/vtx-tab)
 
 ### Cannot Change Font
 
@@ -185,4 +185,4 @@ The "shut-off" part is an intended behavior, meant to protect against the drone 
 
 ### Random Twitches During Flight
 
-Usually caused by something mechanically loose in the drone, or even something directly touching the gyro. Clear the space around the gyro of any obstruction, and make sure that everything is tightened down and nothing is loose. If you're still experiencing bad flight performance, go through the [Tuning Notes](/docs/wiki/tuning/4.3-Tuning-Notes) to get a proper PID tune. There are also great presets and tutorials on youtube as well
+Usually caused by something mechanically loose in the drone, or even something directly touching the gyro. Clear the space around the gyro of any obstruction, and make sure that everything is tightened down and nothing is loose. If you're still experiencing bad flight performance, go through the [Tuning Notes](/docs/wiki/tuning/4-3-Tuning-Notes) to get a proper PID tune. There are also great presets and tutorials on youtube as well

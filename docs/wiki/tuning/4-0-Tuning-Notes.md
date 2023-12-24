@@ -6,15 +6,15 @@ sidebar_position: 13
 
 - [RPM controlled multiple dynamic notch filtering over bi-directional DShot](/docs/wiki/guides/current/DSHOT-RPM-Filtering), to markedly improve motor noise suppression, reducing filter delay time
 - [Launch Control](/docs/wiki/guides/current/Launch-Control), allows a pilot to hold a specified angle precisely and accurately for the perfect race launch
-- [D_min](/docs/wiki/guides/current/DMIN.md), which dynamically adjusts the PID D parameter according to stick movement
-- [Dynamic lowpass filtering](4.0-Tuning-Notes#dynamic-lowpass-filtering), to improve noise control at low rpm and reduce filter delay time at high rpm
-- [Improved dynamic notch code](4.0-Tuning-Notes#improved-dynamic-notch-code), with better tracking and better noise rejection with less delay,
-- [D-only TPA](4.0-Tuning-Notes#d-only-tpa), to selectively reduce D related noise at high throttle and maintain normal P responsiveness
+- [D_min](/docs/wiki/guides/current/DMIN), which dynamically adjusts the PID D parameter according to stick movement
+- [Dynamic lowpass filtering](#dynamic-lowpass-filtering), to improve noise control at low rpm and reduce filter delay time at high rpm
+- [Improved dynamic notch code](#improved-dynamic-notch-code), with better tracking and better noise rejection with less delay,
+- [D-only TPA](#d-only-tpa), to selectively reduce D related noise at high throttle and maintain normal P responsiveness
 - [Integrated yaw](/docs/wiki/guides/current/Integrated-Yaw), an experimental option which mathematically integrates the yaw PID values, potentially simplifying yaw tuning
-- [Improved setpoint mode iterm_relax](4.0-Tuning-Notes#improved-setpoint-mode-iterm_relax), intended to improve turn accuracy during spirals and slaloms - for racers
-- [Transient throttle limit](4.0-Tuning-Notes#transient-throttle-limit), which improves noise behaviour at low and high throttle by preventing refected noise from doubling up and becoming distorted
-- [Improved yaw PIDs](4.0-Tuning-Notes#improved-yaw-pids), with a better understanding of how to tune yaw
-- [Improved dynamic notch code](4.0-Tuning-Notes#improved-dynamic-notch-code) has been improved to better track and suppress motor noise with less delay, using two closely spaced, narrower notches
+- [Improved setpoint mode iterm_relax](#improved-setpoint-mode-iterm_relax), intended to improve turn accuracy during spirals and slaloms - for racers
+- [Transient throttle limit](#transient-throttle-limit), which improves noise behaviour at low and high throttle by preventing refected noise from doubling up and becoming distorted
+- [Improved yaw PIDs](#improved-yaw-pids), with a better understanding of how to tune yaw
+- [Improved dynamic notch code](#improved-dynamic-notch-code) has been improved to better track and suppress motor noise with less delay, using two closely spaced, narrower notches
 
 Other flight-related changes include:
 

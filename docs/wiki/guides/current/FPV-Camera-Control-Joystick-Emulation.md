@@ -105,7 +105,7 @@ resource CAMERA_CONTROL 1 A01
 
 Requires a 150-600 Ω resistor and a 1-10 µF capacitor, forming an RC-filter. Resistor goes from `PIN` to `OSD`, while the capacitor should be connected between `OSD` and `GND`.
 
-![Resistor and capacitor schematic](https://betaflight.com/assets/img/camera-control-software-pwm.svg)
+![Resistor and capacitor schematic](/img/camera-control-software-pwm.svg)
 
 ### DAC
 
@@ -121,7 +121,7 @@ Will require no additional components, wire your `PIN` to `OSD`, preferably with
 
 ## Stick Commands
 
-![Camera Control Stick Commands](https://betaflight.com/assets/img/camera-control-stick-commands.png)
+![Camera Control Stick Commands](/img/camera-control-stick-commands.png)
 
 Some cameras have a secondary OSD menu (for example the RunCam Eagle Pro 2) that allows setting things like voltage monitor, timers, display name, etc. This menu can be accessed as well, but you'll need to determine the appropriate stick commands based on the manual provided with the camera. The stick position will be equivalent to whatever button sequence the camera requires. So for example if the camera requires holding "down" button to enter the menu, this would correspond to holding the pitch stick "down" while entering camera control with the normal left stick throttle centered and yaw right. The point is that the roll/pitch stick corresponds to the up/down/left/right buttons and the throttle centered/yaw right corresponds to the "enter" button on the camera's control keypad or joystick.
 
@@ -181,7 +181,7 @@ save
 These cameras have insufficient to no capacitance on OSD pin, as a result you'll have to add at least 0.1 µF to get Hardware PWM working. Foxeer may release a new revision which will address this problem.
 
 1206 capacitors work perfectly while soldering directly to JST connector backside, here's an illustration of a 100 nF 1206 capacitor soldered onto an Arrow Micro v2, but it also works for Arrow Mini as they share PCB design:
-![Foxeer Arrow Micro v2 modified for camera control](https://betaflight.com/assets/img/camera-control-foxeer-arrow-micro-mod.png)
+![Foxeer Arrow Micro v2 modified for camera control](/img/camera-control-foxeer-arrow-micro-mod.png)
 
 A similar trick works for Foxeer Monster.
 @todo add a photo

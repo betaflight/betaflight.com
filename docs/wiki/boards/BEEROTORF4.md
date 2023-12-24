@@ -1,8 +1,8 @@
 # BeeRotor F4
 
-![BeeRotor F4 front](https://betaflight.com/assets/img/boards/beerotorf4/beerotorf4_front.jpg)
+![BeeRotor F4 front](/img/boards/beerotorf4/beerotorf4_front.jpg)
 
-![BeeRotor F4 back](https://betaflight.com/assets/img/boards/beerotorf4/beerotorf4_back.jpg)
+![BeeRotor F4 back](/img/boards/beerotorf4/beerotorf4_back.jpg)
 
 ## Description
 
@@ -52,6 +52,6 @@ RCTimer: http://rctimer.com/
 
 ## FAQ & Known Issues
 
-- Enabling DShot for motor 6: [Instructions](/docs/wiki/guides/archive/DSHOT-ESC-Protocol-3-1.md)
+- Enabling DShot for motor 6: [Instructions](/docs/wiki/guides/archive/DSHOT-ESC-Protocol-3-1)
 - The _SI_ pin on the _PDB_ connector does not have a voltage divider. **If the _PDB_ connector is used as input for the battery voltag measurement, the PDB has to have a voltage divider, or the MCU on the board will be immediately and permanently destroyed by the battery voltage!**
   (The _SI_ pad on the board does have a voltage divider. Use this if your PDB does not have a voltage divider.)

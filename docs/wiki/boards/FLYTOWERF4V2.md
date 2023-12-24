@@ -61,7 +61,7 @@ Francisco Perea (fncisco)
 
 ## Similar Targets
 
-Board---FishDroneF4
+[FishDroneF4](FISHDRONEF4)
 
 ## Variants
 

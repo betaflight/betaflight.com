@@ -42,7 +42,7 @@ If you want to contribute financially on an ongoing basis, you should consider b
 This document is primarily for developers.
 
 Contribution of bugfixes and new features is encouraged. Please be aware that we have a thorough review process for pull requests, and be prepared to explain what you want to achieve with your pull request.
-Before starting to write code, please read this document and the [coding style definition](development/CodingStyle.md).
+Before starting to write code, please read this document and the [coding style definition](development/CodingStyle).
 
 GitHub actions are used to run automatic builds
 
@@ -169,7 +169,7 @@ Example of a pull request with test firmware attached:
 
 ### IDEs and .gitignore
 
-The projects [.gitignore](/.gitignore) already ignores certain artifacts from some IDEs, but if you'd like to use something else, you can set up git to ignore the necessary files at a global level (all git projects on the computer)
+The project' `.gitignore` file already ignores certain artifacts from some IDEs, but if you'd like to use something else, you can set up git to ignore the necessary files at a global level (all git projects on the computer)
 
 It is always good to check that you haven't done this already: `git config --global --get core.excludesfile`
 

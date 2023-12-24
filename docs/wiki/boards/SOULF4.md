@@ -27,7 +27,7 @@ Derived from REVO, has inverters for SBUS and SPORT, only one full-fledged UART3
 
 SmartPort telemetry inversion. This board uses the following schematic to perform SmartPort inversion and split the signal into Rx and Tx components:
 
-![S.Port inverter](https://betaflight.com/assets/img/boards/soulf4/smartport-inverter-schematic.png)
+![S.Port inverter](/img/boards/soulf4/smartport-inverter-schematic.png)
 
 To set SmartPort up correctly, connect corresponding wire from your receiver to the pad labeled `S.Port` on the FC, then head into CLI and type:
 
@@ -58,10 +58,10 @@ REVO F4
 ## FAQ & Known Issues
 
 - PB2/BOOT1 pin is not grounded on this board (with gratitude to [Dominic Clifton aka hydra](https://github.com/hydra) for pointing this out!), therefore it may refuse to go into DFU mode even with the boot pads shorted. You can solve this issue by running a small jumper wire from PB2 to GND like shown in the image below.
-  ![Ground BOOT1](https://betaflight.com/assets/img/boards/soulf4/soulf4-dfu-boot1-fix.png)
+  ![Ground BOOT1](/img/boards/soulf4/soulf4-dfu-boot1-fix.png)
 - SWD connector pinout: GND SWCLK SWD NRST VDD
 
 ## Image
 
 ![Front Face](http://demonrc.eu/wp-content/uploads/2017/01/Demon-Soul-F4-Flight-Controller-Connection-Diagram.jpg)
-![Back Face](https://betaflight.com/assets/img/boards/soulf4/soulf4-back-face.png)
+![Back Face](/img/boards/soulf4/soulf4-back-face.png)

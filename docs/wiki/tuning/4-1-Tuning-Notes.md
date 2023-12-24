@@ -4,14 +4,14 @@ sidebar_position: 12
 
 # Betaflight 4.1 Tuning Notes
 
-- [Simpler RPM filter configuration](4.1-Tuning-Notes#simpler-rpm-filter-configuration)
-- [Improved default lowpass filter settings](4.1-Tuning-Notes#new-filter-settings)
-- [Changes to the dynamic notch filter](4.1-Tuning-Notes#changes-to-the-dynamic-notch-filter)
-- [Feed forward interpolation](4.1-Tuning-Notes#feed-forward-interpolation), to reduce the spiky nature of the feed forward signal
-- [Feed forward boost](4.1-Tuning-Notes#feed-forward-boost) to improve transient stick response and reduce overshoot
-- [Feed forward limiting](4.1-Tuning-Notes#feed-forward-limiting), to stop overshoot with max rate outgoing moves
-- [Dynamic Idle](/docs/wiki/guides/current/dynamic-idle), to improve handling at low rpm
-- [Optimised PID and TPA defaults, with adjustment sliders in a new Configurator](4.1-Tuning-Notes#optimised-pid-and-tpa-defaults)
+- [Simpler RPM filter configuration](#simpler-rpm-filter-configuration)
+- [Improved default lowpass filter settings](#new-filter-settings)
+- [Changes to the dynamic notch filter](#changes-to-the-dynamic-notch-filter)
+- [Feed forward interpolation](#feed-forward-interpolation), to reduce the spiky nature of the feed forward signal
+- [Feed forward boost](#feed-forward-boost) to improve transient stick response and reduce overshoot
+- [Feed forward limiting](#feed-forward-limiting), to stop overshoot with max rate outgoing moves
+- [Dynamic Idle](/docs/wiki/guides/current/Dynamic-Idle), to improve handling at low rpm
+- [Optimised PID and TPA defaults, with adjustment sliders in a new Configurator](#optimised-pid-and-tpa-defaults)
 
 Betaflight 4.1 significantly improves default filters and PIDs and has better feed-forward capabilities, all of which help make your quad fly better than ever, out of the box.
 
@@ -142,7 +142,7 @@ set rc_smoothing_input_type = BIQUAD
 set rc_smoothing_derivative_type = BIQUAD
 ```
 
-These changes were originally described in the [ff_2.0 documentation](/docs/wiki/guides/current/Feed-Forward-2.0). There we explained the basics of what feed-forward and ff_boost are.
+These changes were originally described in the [Feedforward 2.0 documentation](/docs/wiki/guides/current/Feed-Forward-2-0). There we explained the basics of what feed-forward and ff_boost are.
 
 ### Feed forward interpolation averaging
 

@@ -211,7 +211,7 @@ Then in the [Preset Tab](/docs/wiki/configurator/presets-tab), there are a few s
 - FPV.WTF MSP OSD 4.2/4.3
 - FPV.WTF + O3 + Avatar for 4.4
 
-For further information on the newest firmware (4.4), please read the [Release Notes](/docs/wiki/release/Betaflight%204.4%20Release%20Notes#2-hd-osd)
+For further information on the newest firmware (4.4), please read the [Release Notes](/docs/wiki/release/Betaflight-4-4-Release-Notes#2-hd-osd)
 
 ## Motor Settings
 

@@ -10,7 +10,7 @@ Do not rely on any information presented here.
 
 ![BetaFlight](/img/bf_logo.png)
 
-**New to Betaflight and just want to get started? See the [installation](Installing-Betaflight) section.**
+**New to Betaflight and just want to get started? See the [installation](/docs/wiki/guides/current/Installing-Betaflight) section.**
 
 This Wiki is available in other languages: [简体中文](https://pitronic.gitbook.io/betaflight/)
 
@@ -107,7 +107,7 @@ https://github.com/betaflight/blackbox-log-viewer/releases
 
 The Latest Viewer source is here:
 https://github.com/betaflight/blackbox-log-viewer
-See [BB Logging and Usage](Black-Box-logging-and-usage) Wiki page on using the BB logger.
+See [BB Logging and Usage](/docs/wiki/guides/current/Black-Box-logging-and-usage) Wiki page on using the BB logger.
 
 ## BetaFlight Logos
 

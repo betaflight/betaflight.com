@@ -1,8 +1,8 @@
 # AIORACERF3
 
-![AIORACERF3 Front](https://betaflight.com/assets/img/boards/aioracerf3/aioracerf3_front.jpg)
+![AIORACERF3 Front](/img/boards/aioracerf3/aioracerf3_front.jpg)
 
-![AIORACERF3 Back](https://betaflight.com/assets/img/boards/aioracerf3/aioracerf3_back.jpg)
+![AIORACERF3 Back](/img/boards/aioracerf3/aioracerf3_back.jpg)
 
 ## Hardware
 
