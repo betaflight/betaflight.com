@@ -26,7 +26,7 @@ Always test new firmware carefully and in a controlled environment!
 - [Magnetometers](#4-magnetometer-update) now work much better than before, with improved information in the wiki, better calibration methods, declination support, and improved display in Configurator.  It now contributes effectively during climb, rotate and descent phases of a GPS Rescue.
 - [GPS Mapping in Blackbox](#5-mapping-of-gps-flights-within-blackbox-explorer-and-with-export-gpx) Map your GPS flights directly within the BlackBox application, or by exporting the flight data into a GPX file for use in online mapping software.
 - [Colour font support for HD VTx](#6-colour-fonts-in-supported-hd-vx) This applies to Walksnail HD Vtx only at present
-- [LEDStrip improvements](#7-ledstrip-improvements) including automatic colour selection based on the VTx channel, more Rainbow options, and more efficient use of CPU time for complex LED options.
+- [LED Strip improvements](#7-ledstrip-improvements) including automatic colour selection based on the VTx channel, more Rainbow options, and more efficient use of CPU time for complex LED options.
 - [Angle and Horizon updates](#8-angle-and-horizon-mode-update) Really big changes here.  Angle mode is now much more responsive. The new 'Earth referencing' option keeps automatically adds just the right amount of 'co-ordinated' roll to keep the image stable while yawing. Horizon mode is a lot more fun to fly, and is an excellent introduction to Acro.
 - [Failsafe changes](#9-failsafe-changes) Minor changes only, mostly to improve safety in edge cases, with a minor change to the `RX_LOSS` message and with `NOT_DISARMED` replacing `BADRX` when the radio link becomes active while the arm switch is enabled.
 - [Dimmable RPM harmonics](#10-dimmable-rpm-harmonics) Allows attenuation of individual RPM harmonics if one of the three RPM filters isn't needed as much as the other two.  This can slightly reduce overall filter lag, especially in triblade setups.
@@ -48,13 +48,13 @@ The cloud build system [introduced in 4.4](/docs/wiki/release/Betaflight-4-4-Rel
 
 Most basic build options are included in the default group in the `Other Options box`, including AcroTrainer and both HD and SD OSD setups.
 
-The default Radio protocol is CSRF, which automatically includes includes RF telementry (even though the Telemetry drop-down says 'none').
+The default Radio Protocol is CRSF, which automatically includes includes RF telementry (even though the Telemetry drop-down says 'none').
 
 Typically a user would de-select the SD OSD option if they used only HD, and vice versa.
 
-Most users will not require AcroTrainer or PinIO, so these can be de-selected.
+Most users will not require Acro Trainer or Pin IO, so these can be de-selected.
 
-To add other build options, such as other radio protocols, LEDStrip, Magnetometers, etc, click somewhere in the `Other Options` box and choose from the drop-down.
+To add other build options, such as other radio protocols, LED Strip, Magnetometers, etc, click somewhere in the `Other Options` box and choose from the drop-down.
 
 Thanks to: @blckmn, unit, haslinghuis, many others
 
@@ -162,13 +162,13 @@ See: [PR 13005](https://github.com/betaflight/betaflight/pull/13005)
 
 Thanks to: SteveCEvans
 
-## 7. LEDstrip improvements
+## 7. LED Strip improvements
 
-### 7.1 Set RACE mode LEDstrip colour automatically, based on VTx channel
+### 7.1 Set RACE mode LED Strip colour automatically, based on VTx channel
 
-The RACE LEDstrip mode is a simple way to set all LEDs to a set colour.
+The RACE LED Strip mode is a simple way to set all LEDs to a set colour.
 
-In 4.5 the LEDstrip colour can now be automatically set according to the user's VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
+In 4.5 the LED Strip colour can now be automatically set according to the user's VTx channel. Enter `set ledstrip_profile = RACE` and `set ledstrip_race_color = BLACK` (disabled) to activate.  The VTx should use RaceBand frequencies.  Resulting colours should be Whilte, Red, Orange, Yellow, Green, Blue, Violet, Pink for R1-R8 respectively.
 
 The LED control page settings are ignored when the RACE `ledstrip_profile` is active.  Normal functionality is returned with `set ledstrip_profile = STATUS`.
 
@@ -176,25 +176,26 @@ For more information see [PR 13096](https://github.com/betaflight/betaflight/pul
 
 Thanks to: cruwaller
 
-### 7.2. LEDstrip rainbow colour effect updates
+### 7.2. LED Strip rainbow colour effect updates
 
-Additional settings for colour range and frequency were enabled for the Rainbow LEDStrip effect.  It can be used now at the same time as the Larsson effect
+Configurator support were added for Rainbow LED Strip effect. It can be used now at the same time with the Larson/Blink effect.
+Brightness of the strip, colour delta and frequency of the Rainbow effect can be changed with sliders now.
 
-See: [PR 12323](https://github.com/betaflight/betaflight/pull/12323/files)
+See: [PR 12323](https://github.com/betaflight/betaflight/pull/12323), [PR 12995](https://github.com/betaflight/betaflight/pull/12995)
 
 Thanks to: ASDosjani
 
-### 7.3. Reduced CPU impact when using complex LEDstrip effects
+### 7.3. Reduced CPU impact when using complex LED Strip effects
 
-Complex effects like Rainbow and Larsson scanner effects can require a lot of CPU time, especially when may LEDs are involved.  Mr. Steve C Evans has again helped out by limiting the task time per CPU cycle to a max of approximately 20uS.  Previously, the Rainbow effect could cost more than 100uS, causing issues at 8k8k and some 8k4k builds.
+Complex effects like Rainbow and Larson scanner effects can require a lot of CPU time, especially when may LEDs are involved.  Mr. Steve C Evans has again helped out by limiting the task time per CPU cycle to a max of approximately 20uS.  Previously, the Rainbow effect could cost more than 100uS, causing issues at 8k8k and some 8k4k builds.
 
 Always check your `Tasks` command in the CLI before, and after, enabling complex LED modes, to confirm that they do not require too much CPU or cause task over-runs.
 
-Simple LEDstrip functions like RACE or BEACON modes require only 5-6uS.
+Simple LED Strip functions like RACE or BEACON modes require only 5-6uS.
 
 See: [PR 13218](https://github.com/betaflight/betaflight/pull/13218)
 
-Thanks to: ASDosjani
+Thanks to: Mr. Steve
 
 ## 8. Angle and Horizon Mode update
 
