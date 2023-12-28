@@ -1,4 +1,4 @@
-#Templet
+#Template
 
 ## Description
 

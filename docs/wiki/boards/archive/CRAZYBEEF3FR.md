@@ -1,7 +1,7 @@
 # CrazyBee F3 FR
 
-![CrazyBee F3 FR front](./images/CrazyBeeF3FRtop.jpg)
-![CrazyBee F3 FR back](./images/CrazyBeeF3FRbottom.jpg)
+![CrazyBee F3 FR front](/img/boards/crazybeef3/CrazyBeeF3FRtop.png)
+![CrazyBee F3 FR back](/img/boards/crazybeef3/crazyBeeF3FRbottom.jpg)
 
 ## Description
 
