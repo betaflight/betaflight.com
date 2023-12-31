@@ -57,6 +57,8 @@ export default function Media() {
   return (
     <BetaflightLayout>
       <div className="m-auto p-6 mt-0 xl:mt-16">
+        {/* Start Downloads block */}
+
         <HomepageFeature blur title="Downloads">
           <div className="grid max-w-fit grid-cols-1 md:grid-cols-2 gap-x-4">
             <div className="flex flex-col space-y-4">
@@ -81,6 +83,7 @@ export default function Media() {
                     <span>
                       For Betaflight 4.4 and higher, Configurator builds a custom firmware file 'in the cloud' and flashes it to your flight controller. For 4.3 and earlier, download the correct{' '}
                       <a href="https://github.com/betaflight/betaflight/releases" className="fancy-link no-underline">
+                        {' '}
                         'hex' file for your flight controller
                       </a>{' '}
                       and flash it manually.
@@ -95,7 +98,8 @@ export default function Media() {
                     <span>
                       Adjust Betaflight's settings with your radio transmitter with Betaflight's{' '}
                       <a href="https://github.com/betaflight/betaflight-tx-lua-scripts/releases/latest" className="fancy-link no-underline">
-                        Lua Tx scripts
+                        {' '}
+                        Lua Tx scripts.
                       </a>
                       .
                     </span>
@@ -109,6 +113,7 @@ export default function Media() {
                     <span>
                       Review flight data logs, map the flight and check debug values with{' '}
                       <a href="https://github.com/betaflight/blackbox-log-viewer/releases" className="fancy-link no-underline">
+                        {' '}
                         Betaflight Blackbox Log Viewer
                       </a>
                       .
@@ -117,14 +122,18 @@ export default function Media() {
                 </div>
               </IconElementFeature>
             </div>
+
+            {/* End left column, start right column */}
+
             <div className="flex flex-col space-y-4">
               <IconElementFeature
                 title="Beta testing (WARNING)"
                 Icon={ExclamationCircleIcon}
-                description="Test the latest code and contribute to Betaflight's development by flying the latest code builds:"
+                description="Test the latest upcoming features and contribute to Betaflight's development by using the nightly builds:"
               >
                 <div className="flex flex-col">
                   <a href="https://github.com/betaflight/betaflight-configurator-nightlies/releases" className="fancy-link no-underline">
+                    {' '}
                     Betaflight Configurator Nightly builds
                   </a>
                   <a href="https://github.com/betaflight/betaflight-tx-lua-scripts-nightlies/releases" className="fancy-link no-underline">
@@ -140,7 +149,7 @@ export default function Media() {
                 <div className="flex flex-col">
                   <div className="flex flex-row space-x-1 mt-0">
                     <span>
-                      Review and download our source code on the{' '}
+                      Review and download the source code on the{' '}
                       <a href="https://github.com/betaflight/" className="fancy-link no-underline">
                         Betaflight GitHub Repository
                       </a>
@@ -154,7 +163,7 @@ export default function Media() {
                 <div className="flex flex-col">
                   <div className="flex flex-row space-x-1 mt-0">
                     <span>
-                      Our Wiki and Development documents may be found in the{' '}
+                      Wiki, Development and other documentation may be found in the{' '}
                       <a href="https://github.com/betaflight/betaflight.com" className="fancy-link no-underline">
                         betaflight.com docs directory
                       </a>
@@ -166,6 +175,9 @@ export default function Media() {
             </div>
           </div>
         </HomepageFeature>
+
+        {/* Start Videos block */}
+
         <HomepageFeature className="" title="Videos" compact={true}>
           <div className="flex flex-wrap flex-col md:flex-row flex-start space-y-4 md:space-y-0 md:space-x-4">
             <div>
@@ -175,8 +187,9 @@ export default function Media() {
                 </div>
               </AboutCard>
             </div>
+
             <div>
-              <AboutCard title="Betaflight 4.3 for beginners" className=" text-primary-600" Icon={PlayIcon}>
+              <AboutCard title="Betaflight 4.3 for beginners" className="text-primary-600" Icon={PlayIcon}>
                 <div>
                   <YouTube videoId="UTFeh-SjH9A" opts={videoSize} />
                 </div>
@@ -184,6 +197,8 @@ export default function Media() {
             </div>
           </div>
         </HomepageFeature>
+
+        {/* End Videos block */}
       </div>
     </BetaflightLayout>
   );
