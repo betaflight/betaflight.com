@@ -210,12 +210,12 @@ If your FC supports it you can use our timer based bidirectional Dshot implement
 
 Don't be discouraged if your target isn't listed. Many targets will work. Use this [Default Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT.cf), try it out and report back.
 
-Starting from 4.1 RC1 you need to disable the default Dshot bitbang implementation using the command `set Dshot_bitbang=off`. Don't forget to set this back to `auto` if you want to switch back to Dshot bitbang.
+Starting from 4.1 RC1 you need to disable the default Dshot bitbang implementation using the command `set dshot_bitbang=off`. Don't forget to set this back to `auto` if you want to switch back to Dshot bitbang.
 
 ### Snippets for supported targets
 
 | Target          | Install Snippet                                                                          | Notes                                                              | Supported Motors                     |
-| --------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------ | ----------------------- |
+| --------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------ |
 | AG3XF4          | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1 - M4 (tested Mister_M)            |
 | AIKONF4         | [Snippet](https://github.com/betaflight/bidircfg/blob/master/AIKONF4-upgrade.cf)         |                                                                    | M1 - M4 (tested fujin)               |
 | AIRBOTF7        | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 (tested by Asizon)             |
@@ -226,8 +226,8 @@ Starting from 4.1 RC1 you need to disable the default Dshot bitbang implementati
 | BETAFLIGHTF4    | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1 - M4 ok (tested Balint)           |
 | CLRACINGF4      | [Snippet](https://github.com/betaflight/bidircfg/blob/master/CLRACINGF4-upgrade.cf)      |                                                                    | M1-M4 ok                             |
 | CLRACINGF7      | [Snippet](https://github.com/betaflight/bidircfg/blob/master/CLRACINGF7-upgrade.cf)      | Motor 4 doesn't work. Use the LED pad instead                      | M1 M2 M3 M5                          |
-| CRAZYBEEF4DX    | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 ok (tested Noctaro)            |                         |
-| CRAZYBEEF4FR    | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 ok (tested joelucid)           |                         |
+| CRAZYBEEF4DX    | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 ok (tested Noctaro)            |
+| CRAZYBEEF4FR    | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 ok (tested joelucid)           |
 | DALRCF4         | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DALRCF4-upgrade.cf)         |                                                                    | M1-M6 (tested QuadMcFly)             |
 | DALRCF722DUAL   | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DALRCF722DUAL-upgrade.cf)   |                                                                    | M1-M6. But either M5 or M6           |
 | DYSF4PRO        | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 (tested BRadFPV)               |
@@ -240,9 +240,9 @@ Starting from 4.1 RC1 you need to disable the default Dshot bitbang implementati
 | FURYF4          | [Snippet](https://github.com/betaflight/bidircfg/blob/master/FURYF4SD-upgrade.cf)        |                                                                    | M1-M4, No LED support, Tested RawFPV |
 | FURYF7          | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4                                |
 | HAKRCF722       | [Snippet](https://github.com/betaflight/bidircfg/blob/master/HAKRCF722-upgrade.cf)       |                                                                    | M1-M6                                |
-| KAKUTEF4V2      | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    |                                      | M1-M4 tested            |
+| KAKUTEF4V2      | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 tested                         |
 | KISSFCV2F7      | [Snippet](https://github.com/betaflight/bidircfg/blob/master/KISSFCV2F7-upgrade.cf)      |                                                                    | M1-M6                                |
-| LUXF4OSD        | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    |                                      | M1-M4 tested (Mister_M) |
+| LUXF4OSD        | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 tested (Mister_M)              |
 | MAMBAF411       | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | DMA & timer reviewed by joelucid     |
 | MAMBAF722       | [Snippet](https://github.com/betaflight/bidircfg/blob/master/MAMBAF722-upgrade.cf)       |                                                                    | M1-M4 tested (kc10kevin)             |
 | MATEKF405       | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 tested (Wudz_17)               |
@@ -294,7 +294,7 @@ You may need to switch off any extended startup melody, since that may interfere
 
 The current implementation requires normal DMA to be used, not burst DMA. Turning burst DMA off may, of itself, not work with a given FC. You can try it out in advance:
 
-`set Dshot_burst = OFF`
+`set dshot_burst = OFF`
 
 And test whether your quad still flies. If so proceed to the next step:
 
@@ -306,7 +306,7 @@ Since the RPM filter works with very narrow notch filters, it's imperative that 
 
 ### Enabling Bidirectional Dshot
 
-`set Dshot_bidir = ON`
+`set dshot_bidir = ON`
 
 See if your motors still spin up. If so try detach the USB cable, connect a battery and reconnect USB. Now go to the CLI and type `status`. You should see Dshot telemetry being reported. The reported RPM should be zero for each motor and there should be few errors.
 
