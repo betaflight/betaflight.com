@@ -38,7 +38,7 @@ function IconElementFeature({ Icon, title, description, link, children }: IconEl
 }
 
 export default function Media() {
-  const isXl = useMediaQuery({ query: '(min-width: 1280px)' });
+  const isXl = useMediaQuery({ query: '(min-width: 1024px)' });
 
   const videoSize = useMemo(() => {
     if (isXl) {
@@ -56,75 +56,84 @@ export default function Media() {
 
   return (
     <BetaflightLayout>
-      <div className="relative w-full mt-4 xl:mt-32">
-        <div className="w-full h-fit flex flex-col justify-start">
-          <div className="flex flex-col p-6 h-fit w-fit xl:ml-12">
-            <h1 className="md:text-[6rem] text-6xl border-primary-600 font-bold mb-4">Download</h1>
-            <h2 className="font-semibold md:text-3xl text-xl">Downloads & Videos</h2>
-          </div>
-        </div>
-      </div>
-      <div className="xl:max-w-[1920px] m-auto p-4 xl:p-16">
+      <div className="m-auto p-6 mt-0 xl:mt-16">
+        {/* Start Downloads block */}
+
         <HomepageFeature blur title="Downloads">
           <div className="grid max-w-fit grid-cols-1 md:grid-cols-2 gap-x-4">
             <div className="flex flex-col space-y-4">
-              <IconElementFeature title="Installation & Documentation" link={{ text: 'See the Betaflight Wiki', href: '/docs/wiki' }} Icon={DocumentTextIcon}></IconElementFeature>
-              <IconElementFeature
-                title="Configuration Tool"
-                link={{
-                  text: 'Latest configurator releases',
-                  href: 'https://github.com/betaflight/betaflight-configurator/releases/latest',
-                }}
-                description="To configure Betaflight you should use the Betaflight-configurator GUI tool (Windows/OSX/Linux) which can be found here:"
-                Icon={Cog6ToothIcon}
-              ></IconElementFeature>
-              <IconElementFeature
-                title="TX Lua Scripts"
-                Icon={Cog8ToothIcon}
-                description="Configure Betaflight from your radio with the Betaflight TX Lua Scripts:"
-                link={{
-                  text: 'Latest lua scripts releases',
-                  href: 'https://github.com/betaflight/betaflight-tx-lua-scripts/releases/latest',
-                }}
-              ></IconElementFeature>
-              <IconElementFeature title="BlackBox Viewer" Icon={PresentationChartLineIcon}>
+              <IconElementFeature title="Betaflight Configurator" Icon={Cog6ToothIcon}>
                 <div className="flex flex-col">
-                  <div className="flex flex-row space-x-1 mt-2">
-                    <span>Viewer Releases are:</span>
-                    <a href="https://github.com/betaflight/blackbox-log-viewer/releases" className="fancy-link no-underline">
-                      Latest viewer releases
-                    </a>
+                  <div className="flex flex-row space-x-1 mt-0">
+                    <span>
+                      Betaflight Configurator is a Windows/OSX/Linux application for building, flashing and configuring Betaflight. Download the{' '}
+                      <a href="https://github.com/betaflight/betaflight-configurator/releases/latest" className="fancy-link no-underline">
+                        {' '}
+                        latest release
+                      </a>
+                      .
+                    </span>
                   </div>
-                  <div className="flex flex-row space-x-1 mt-2">
-                    <span>The Latest Viewer source is:</span>
-                    <a href="https://github.com/betaflight/blackbox-log-viewer" className="fancy-link no-underline">
-                      Latest viewer source
-                    </a>
+                </div>
+              </IconElementFeature>
+
+              <IconElementFeature title="Betaflight Firmware" Icon={Cog6ToothIcon}>
+                <div className="flex flex-col">
+                  <div className="flex flex-row space-x-1 mt-0">
+                    <span>
+                      For Betaflight 4.4 and higher, Configurator builds a custom firmware file 'in the cloud' and flashes it to your flight controller. For 4.3 and earlier, download the correct{' '}
+                      <a href="https://github.com/betaflight/betaflight/releases" className="fancy-link no-underline">
+                        {' '}
+                        'hex' file for your flight controller
+                      </a>{' '}
+                      and flash it manually.
+                    </span>
                   </div>
-                  <div className="flex flex-col mt-2">See BB Logging and Usage Wiki page on using the BlackBox logger.</div>
+                </div>
+              </IconElementFeature>
+
+              <IconElementFeature title="Lua Tx Scripts" Icon={Cog6ToothIcon}>
+                <div className="flex flex-col">
+                  <div className="flex flex-row space-x-1 mt-0">
+                    <span>
+                      Adjust Betaflight's settings with your radio transmitter with Betaflight's{' '}
+                      <a href="https://github.com/betaflight/betaflight-tx-lua-scripts/releases/latest" className="fancy-link no-underline">
+                        {' '}
+                        Lua Tx scripts.
+                      </a>
+                      .
+                    </span>
+                  </div>
+                </div>
+              </IconElementFeature>
+
+              <IconElementFeature title="BlackBox Log Viewer" Icon={PresentationChartLineIcon}>
+                <div className="flex flex-col">
+                  <div className="flex flex-row space-x-1 mt-0">
+                    <span>
+                      Review flight data logs, map the flight and check debug values with{' '}
+                      <a href="https://github.com/betaflight/blackbox-log-viewer/releases" className="fancy-link no-underline">
+                        {' '}
+                        Betaflight Blackbox Log Viewer
+                      </a>
+                      .
+                    </span>
+                  </div>
                 </div>
               </IconElementFeature>
             </div>
+
+            {/* End left column, start right column */}
+
             <div className="flex flex-col space-y-4">
               <IconElementFeature
-                title="Betaflight Releases"
-                link={{
-                  text: 'Releases',
-                  href: 'https://github.com/betaflight/betaflight/releases',
-                }}
-                description="Releases can be found by following the link below or downloaded from within the firmware section within the Betaflight Configurator. Also check the Upgrading List to the Right for Release Notes and other Details on the various Versions."
-                Icon={FolderIcon}
-              ></IconElementFeature>
-              <IconElementFeature
-                title="BETA TESTING (WARNING)"
+                title="Beta testing (WARNING)"
                 Icon={ExclamationCircleIcon}
-                description="If you want to contribute to better development you can download the latest beta build directly from:"
+                description="Test the latest upcoming features and contribute to Betaflight's development by using the nightly builds:"
               >
                 <div className="flex flex-col">
-                  <a href="https://ci.betaflight.tech/job/Betaflight/lastBuild/artifact/obj/" className="fancy-link no-underline">
-                    Nightly builds
-                  </a>
                   <a href="https://github.com/betaflight/betaflight-configurator-nightlies/releases" className="fancy-link no-underline">
+                    {' '}
                     Betaflight Configurator Nightly builds
                   </a>
                   <a href="https://github.com/betaflight/betaflight-tx-lua-scripts-nightlies/releases" className="fancy-link no-underline">
@@ -133,28 +142,54 @@ export default function Media() {
                   <a href="https://github.com/betaflight/blackbox-log-viewer-nightlies/releases" className="fancy-link no-underline">
                     Blackbox Viewer Nightly builds
                   </a>
-                  <div className="text-gray-400 flex flex-col mt-2">
-                    You can find release planning here:
-                    <a href="https://github.com/betaflight/betaflight/milestones" className="fancy-link no-underline">
-                      Release planning
-                    </a>
+                </div>
+              </IconElementFeature>
+
+              <IconElementFeature title="Source code" Icon={DocumentTextIcon}>
+                <div className="flex flex-col">
+                  <div className="flex flex-row space-x-1 mt-0">
+                    <span>
+                      Review and download the source code on the{' '}
+                      <a href="https://github.com/betaflight/" className="fancy-link no-underline">
+                        Betaflight GitHub Repository
+                      </a>
+                      .
+                    </span>
+                  </div>
+                </div>
+              </IconElementFeature>
+
+              <IconElementFeature title="Documentation" Icon={DocumentTextIcon}>
+                <div className="flex flex-col">
+                  <div className="flex flex-row space-x-1 mt-0">
+                    <span>
+                      Wiki, Development and other documentation may be found in the{' '}
+                      <a href="https://github.com/betaflight/betaflight.com" className="fancy-link no-underline">
+                        betaflight.com docs directory
+                      </a>
+                      .
+                    </span>
                   </div>
                 </div>
               </IconElementFeature>
             </div>
           </div>
         </HomepageFeature>
+
+        {/* Start Videos block */}
+
         <HomepageFeature className="" title="Videos" compact={true}>
           <div className="flex flex-wrap flex-col md:flex-row flex-start space-y-4 md:space-y-0 md:space-x-4">
             <div>
-              <AboutCard title="Betaflight 4.3 walkthrough" className="text-red-500 inline-block" Icon={PlayIcon}>
+              <AboutCard title="Betaflight 4.3 walkthrough" className="text-primary-600" Icon={PlayIcon}>
                 <div>
                   <YouTube videoId="LkBWRiEGKTI" opts={videoSize} />
                 </div>
               </AboutCard>
             </div>
+
             <div>
-              <AboutCard title="Betaflight 4.3 for beginners" className="text-red-500" Icon={PlayIcon}>
+              <AboutCard title="Betaflight 4.3 for beginners" className="text-primary-600" Icon={PlayIcon}>
                 <div>
                   <YouTube videoId="UTFeh-SjH9A" opts={videoSize} />
                 </div>
@@ -162,6 +197,8 @@ export default function Media() {
             </div>
           </div>
         </HomepageFeature>
+
+        {/* End Videos block */}
       </div>
     </BetaflightLayout>
   );

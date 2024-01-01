@@ -274,16 +274,8 @@ const MinorChartWrapper = ({ type }) => {
 export default function Stats() {
   return (
     <BetaflightLayout>
-      <div className="relative w-full mt-4 xl:mt-32">
-        <div className="w-full h-fit flex flex-col justify-start">
-          <div className="flex flex-col p-6 h-fit w-fit xl:ml-12">
-            <h1 className="md:text-[6rem] text-6xl border-primary-500 font-bold mb-4">Stats</h1>
-            <h2 className="text-white font-semibold md:text-3xl text-xl">Cloud Build Statistics</h2>
-          </div>
-        </div>
-      </div>
-      <div className="xl:max-w-[1920px] w-full m-auto p-4 xl:p-16">
-        <HomepageFeature title="Stats">
+      <div className="xl:max-w-[1920px] w-full p-6 mt-0 xl:mt-16">
+        <HomepageFeature blur title="Cloud Build Statistics">
           <div className="flex flex-col w-full h-full">
             <h2 className="text-primary-600 text-3xl font-bold">Total Builds</h2>
             <MajorChartWrapper />
