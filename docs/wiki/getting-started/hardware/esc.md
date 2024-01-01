@@ -4,15 +4,15 @@ An ESC is the Electronic Speed Controller which supplies power to the craft's mo
 
 - ESCs can support brushed or brushless motors, although brushed motors tend to only be seen in older, very lightweight quadcopters.
 - The ESC takes motor commands from the Flight Controller and outputs pulses of power to accelerate or decelerate each motor.
-- Dshot is the preferred protocol for the FC to control ESCs. Dshot variants are named by update speed - dshot150, dshot300 and dshot600.
-- Older ESCs may use alternative protocols like PWM, oneshot, and proshot. Only Dshot supports the telemetry needed for RPM filtering.
-- Betaflight is enhanced by the ability of modern ESCs to supply in-band telemetry back to the Flight Controller via the dshot protocol.
+- Dshot is the preferred protocol for the FC to control ESCs. Dshot variants are named by update speed - Dshot150, Dshot300 and Dshot600.
+- Older ESCs may use alternative protocols like PWM, multishot, oneshot, and proshot. Only Dshot supports the telemetry needed for RPM filtering.
+- Betaflight is enhanced by the ability of modern ESCs to supply in-band telemetry back to the Flight Controller via the Dshot protocol.
 - Using telemetry from ESC to FC in addition to the normal motor commands from FC to ESC is referred to as Bidirectional Dshot.
 - Bidirectional Dshot is different from the bidirectional motors settings. Bidirectional motor setting is used to enable the propellers to spin backwards and is used in the 3D Flight Mode, it is a separate feature and not required for Dshot Telemetry.
 
-## Bidirectional DShot Firmware
+## Bidirectional Dshot Firmware
 
-The Bidirectional DShot protocol can be enabled in the [Configurator Motors Tab](/docs/wiki/configurator/motors-tab#escmotor-features). Modern Bidirectional Dshot is different (and more robust) in BetaFlight 4.5 than BetaFlight 4.0. The ESC firmware must be correct to ensure support for Dshot Telemetry and provide the best Betaflight performance. We strongly recommend the use of dshot in conjunection with RPM filtering for the benefits in handling and smooth flight.
+The Bidirectional Dshot protocol can be enabled in the [Configurator Motors Tab](/docs/wiki/configurator/motors-tab#escmotor-features). Modern Bidirectional Dshot is different (and more robust) in BetaFlight 4.5 than BetaFlight 4.0. The ESC firmware must be correct to ensure support for Dshot Telemetry and provide the best Betaflight performance. We strongly recommend the use of Dshot in conjunection with RPM filtering for the benefits in handling and smooth flight.
 
 **For 32bit ESCs**, various options exist
 
@@ -31,7 +31,7 @@ Developers note - prior to 2.00 the AM32 project used a repo for each family of 
 | 2.00    | `N`         | Cleanup of target structure, unify projects                                                                                                                             |
 | 2.01    | `N`         | Increase 10khztimer to 20khz, increase max duty cycle change.                                                                                                           |
 | 2.02    | `N`         | Increase startup power for inverted output targets.                                                                                                                     |
-| 2.03    | `N`         | Move chime from dshot direction change commands to save command.                                                                                                        |
+| 2.03    | `N`         | Move chime from Dshot direction change commands to save command.                                                                                                        |
 | 2.04    | `Y`         | Fix current protection, max duty cycle not increasing. Fix double startup chime. Change current averaging method for more precision. Fix startup ramp speed adjustment. |
 | 2.05    | `Y`         | Fix ramp tied to input frequency                                                                                                                                        |
 
@@ -41,13 +41,13 @@ Developers note - prior to 2.00 the AM32 project used a repo for each family of 
 Stuck motors, hot motors and unexpected behaviour have been observed in BLHeli_32 releases after 32.7. Betaflight recommends avoiding newer releases until a well-tested BLHeli_32 release is available.
 :::
 
-BLHeli_32 is only available pre-installed on ESCs, the cost of BLHeli_32 licenses are included in the hardware cost of each ESC. BLHeli_32 was a continuation of the original BLHeli project which introduced support for 32bit ESCs. Bidirectional DShot is now a fully supported feature in version 32.7.0. Just upgrade using blheli32 configurator.
+BLHeli_32 is only available pre-installed on ESCs, the cost of BLHeli_32 licenses are included in the hardware cost of each ESC. BLHeli_32 was a continuation of the original BLHeli project which introduced support for 32bit ESCs. Bidirectional Dshot is now a fully supported feature in version 32.7.0. Just upgrade using blheli32 configurator.
 
 | Version | Recommended | Comment                                                                                                                      |
 | ------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | 32.7    | `Y`         | RPM filtering available, recommended stable version for fixed-PWM output                                                     |
-| 32.8    | `N`         | Reports of dshot communication errors, stuck/hot motors. Introduced variable PWM, 32.8.3 added ByRPM support similar to AM32 |
-| 32.9    | `N`         | Reports of dshot communication errors, stuck/hot motors. EDT telemetry added                                                 |
+| 32.8    | `N`         | Reports of Dshot communication errors, stuck/hot motors. Introduced variable PWM, 32.8.3 added ByRPM support similar to AM32 |
+| 32.9    | `N`         | Reports of Dshot communication errors, stuck/hot motors. EDT telemetry added                                                 |
 | 32.10   | `N`         | Potential fix for stuck motor issues, initial reports indicate 32.10 still has errors                                        |
 
 **For 8bit BLHeli-S ESCs**, various options exist for the BusyBee family of MCUs including BB1 (L), BB21 (H) and BB51 (X)
@@ -60,7 +60,7 @@ BLHeli_32 is only available pre-installed on ESCs, the cost of BLHeli_32 license
 
 ### BlueJay
 
-BlueJay fully supports RPM filtering and EDT telementry and is the recommended ESC firmware for 8bit ESCs. Orginally developed by Mathias, a Betaflight developer, more recently BlueJay has been transferred to the BirdSanctuary team and is maintained by Damosvil and Stylesuxx in close partnership with the esc-configurator project. BlueJay is easily flashed with an elegant online flashing tool [ESC Configurator](https://esc-configurator.com/). Custom offline configurator (https://github.com/mathiasvr/bluejay-configurator/releases) is available but not recommended for current releases. The firmware supports both L and H type ESCs as well as newer Z type, with a range of options, and has been tested on various ESC models. [Extended Dshot Telementry (EDT)](https://github.com/bird-sanctuary/extended-dshot-telemetry) was created by the BlueJay team and allows ESCs without a separate telemetry UART to send additional telemetry alongside RPM data. EDT enables BlueJay ESCs to report voltage, current and temperature as well as signalling error events.
+BlueJay fully supports RPM filtering and EDT telementry and is the recommended ESC firmware for 8bit ESCs. Orginally developed by Mathias, a Betaflight developer, more recently BlueJay has been transferred to the BirdSanctuary team and is maintained by Damosvil and Stylesuxx in close partnership with the esc-configurator project. BlueJay is easily flashed with an elegant online flashing tool [ESC Configurator](https://esc-configurator.com/). Custom offline configurator (https://github.com/mathiasvr/bluejay-configurator/releases) is available but not recommended for current releases. The firmware supports both L and H type ESCs as well as newer Z type, with a range of options, and has been tested on various ESC models. [Extended Dshot Telementry (EDT)](https://github.com/bird-sanctuary/extended-Dshot-telemetry) was created by the BlueJay team and allows ESCs without a separate telemetry UART to send additional telemetry alongside RPM data. EDT enables BlueJay ESCs to report voltage, current and temperature as well as signalling error events.
 
 | Version    | Recommended | Comment                                                                                                |
 | ---------- | ----------- | ------------------------------------------------------------------------------------------------------ |
@@ -72,7 +72,7 @@ _\*Recommended if you fly 3D as this fixes 3D mode transitions. Please read [Con
 
 ### JFlight
 
-This is the original BlHeli-S RPM firmware, from the developer of the underlying RPM filtering and DShot telemetry code. JFlight requires a license purchased for each ESC you wish to enable RPM telemetry on. Go to [jflight.net](https://jflight.net), check that your ESC and FC are supported, purchase enough licences, and follow the install instructions - download the custom JESC BLHeli-S configurator, select your ESC, select the correct hex, click the blue 'flash all' button, then then flash the telemetry code over that by clicking 'flash all telemetry'. Use the flash version at the top of the list. JESC requires Betaflight 4.1+.
+This is the original BlHeli-S RPM firmware, from the developer of the underlying RPM filtering and Dshot telemetry code. JFlight requires a license purchased for each ESC you wish to enable RPM telemetry on. Go to [jflight.net](https://jflight.net), check that your ESC and FC are supported, purchase enough licences, and follow the install instructions - download the custom JESC BLHeli-S configurator, select your ESC, select the correct hex, click the blue 'flash all' button, then then flash the telemetry code over that by clicking 'flash all telemetry'. Use the flash version at the top of the list. JESC requires Betaflight 4.1+.
 Only supports L and H MCUs, not recommended for new installs.
 
 ### JazzMaverick
