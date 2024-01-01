@@ -377,5 +377,3 @@ set tpa_breakpoint = 1250
 [Bidirectional Dshot PR](https://github.com/betaflight/betaflight/pull/7264)
 
 [Rpm Filter PR](https://github.com/betaflight/betaflight/pull/7271)
-
-A test version of blheli32 with erpm telemetry on signal line support is now [available](https://github.com/bitdump/BLHeli/tree/master/BLHeli_32%20ARM). Download your ESC firmware for your target from `BLHeli_32 Test code Rev32.6.X hex files` folder where `X` is the current test revision.
