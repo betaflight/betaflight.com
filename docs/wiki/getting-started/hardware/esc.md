@@ -5,7 +5,7 @@ An ESC is the Electronic Speed Controller which supplies power to the craft's mo
 - ESCs can support brushed or brushless motors, although brushed motors tend to only be seen in older, very lightweight quadcopters.
 - The ESC takes motor commands from the Flight Controller and outputs pulses of power to accelerate or decelerate each motor.
 - Dshot is the preferred protocol for the FC to control ESCs. Dshot variants are named by update speed - Dshot150, Dshot300 and Dshot600.
-- Older ESCs may use alternative protocols like PWM, multishot, oneshot, and proshot. Only Dshot supports the telemetry needed for RPM filtering.
+- Older ESCs may use alternative protocols like PWM, Multishot, Oneshot, and Proshot. Only Dshot supports the telemetry needed for RPM filtering.
 - Betaflight is enhanced by the ability of modern ESCs to supply in-band telemetry back to the Flight Controller via the Dshot protocol.
 - Using telemetry from ESC to FC in addition to the normal motor commands from FC to ESC is referred to as Bidirectional Dshot.
 - Bidirectional Dshot is different from the bidirectional motors settings. Bidirectional motor setting is used to enable the propellers to spin backwards and is used in the 3D Flight Mode, it is a separate feature and not required for Dshot Telemetry.
@@ -14,7 +14,9 @@ An ESC is the Electronic Speed Controller which supplies power to the craft's mo
 
 The Bidirectional Dshot protocol can be enabled in the [Configurator Motors Tab](/docs/wiki/configurator/motors-tab#escmotor-features). Modern Bidirectional Dshot is different (and more robust) in BetaFlight 4.5 than BetaFlight 4.0. The ESC firmware must be correct to ensure support for Dshot Telemetry and provide the best Betaflight performance. We strongly recommend the use of Dshot in conjunection with RPM filtering for the benefits in handling and smooth flight.
 
-**For 32bit ESCs**, various options exist
+## 32bit ESC firmwares
+
+**For 32bit ESCs**, options include the following
 
 | Option    | Model       | Link                                                                                      |
 | --------- | ----------- | ----------------------------------------------------------------------------------------- |
@@ -50,7 +52,9 @@ BLHeli_32 is only available pre-installed on ESCs, the cost of BLHeli_32 license
 | 32.9    | `N`         | Reports of Dshot communication errors, stuck/hot motors. EDT telemetry added                                                 |
 | 32.10   | `N`         | Potential fix for stuck motor issues, initial reports indicate 32.10 still has errors                                        |
 
-**For 8bit BLHeli-S ESCs**, various options exist for the BusyBee family of MCUs including BB1 (L), BB21 (H) and BB51 (X)
+## 8bit ESC firmwares
+
+**For 8bit BLHeli-S ESCs**, options for the BusyBee family of MCUs BB1 (L), BB21 (H) and BB51 (X) include:
 
 | Option       | Model | Link                                                                               |
 | ------------ | ----- | ---------------------------------------------------------------------------------- |
