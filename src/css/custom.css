@@ -39,3 +39,13 @@
 html {
   scroll-behavior: smooth;
 }
+
+[data-theme='light'] .themeInvert {
+  -webkit-filter: invert(0);
+  filter: invert(0);
+}
+
+[data-theme='dark'] .themeInvert {
+  -webkit-filter: invert(1);
+  filter: invert(1);
+}

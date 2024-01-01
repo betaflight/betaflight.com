@@ -1,5 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { useColorMode } from '@docusaurus/theme-common';
+import React from 'react';
 import { CameraIcon, CodeBracketIcon, CpuChipIcon, DocumentTextIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid';
 import JetIcon from '@site/src/icons/jet.icon.svg';
 import { BlogProps } from '@site/src/types';
@@ -11,33 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPatreon, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Button from '../Button';
 import TeamFeature from '../Team';
-
-type LogoProps = {
-  sponsor?: boolean
-}
-
-function Logo({ sponsor }: LogoProps) {
-  const [theme, setTheme] = useState('light');
-  const themeData = useColorMode();
-  const isDarkTheme = theme === 'dark';
-
-  const logoSrc = `/img/betaflight/logo_${isDarkTheme ? 'dark' : 'light'}.svg`;
-  const sponsorLogoSrc = `/img/betaflight/sponsors/bf_partner_${isDarkTheme ? 'dark' : 'light'}.svg`;
-
-  useLayoutEffect(() => {
-    const initialTheme = document.documentElement.getAttribute('data-theme');
-    setTheme(initialTheme);
-  }, []);
-
-  useEffect(() => {
-    const themeColorMode = themeData.colorMode;
-    if (themeColorMode !== theme) {
-      setTheme(themeData.colorMode);
-    }
-  }, [themeData.colorMode]);
-
-  return <img src={sponsor ? sponsorLogoSrc : logoSrc} alt="Betaflight" className={sponsor ? 'max-h-[200px] w-auto' : 'p-6 h-fit w-fit xl:ml-12'} />;
-}
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 export default function Home({ recentPosts }: BlogProps) {
   function clampAndFormatMinutes(minutes: number) {
@@ -69,13 +43,19 @@ export default function Home({ recentPosts }: BlogProps) {
 
   return (
     <BetaflightLayout>
-      <div className="m-0 xs:mt-0 sm:mt-2 xl:mt-20">
+      <div className="flex flex-col items-center m-0 xs:mt-0 sm:mt-2 xl:mt-20">
         <div className="flex flex-col">
-          {/* <img src="/img/betaflight/logo_dark.svg" alt="Betaflight" className="p-6 h-fit w-fit xl:ml-12"></img> */}
-          <Logo />
+          <ThemedImage 
+            alt="Betaflight"
+            className="p-6 h-fit w-fit xl:mr-12"
+            sources={{
+                light: useBaseUrl('/img/betaflight/logo_light.svg'),
+                dark: useBaseUrl('/img/betaflight/logo_dark.svg')
+            }}
+          />
         </div>
-        <div className="m-4 flex-col space-y-4">
-          <div className="backdrop-blur-md shadow-xl w-full flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
+        <div className="flex flex-col xl:w-4/5 m-4 space-y-4">
+          <div className="backdrop-blur-md shadow-xl flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
             <p className="text-center text-md">
               <h2 className="text-primary-600 font-bold text-3xl mb-4">Pushing the Limits of UAV Performance</h2>
               <p className="xs:text-sm sm:text-lg xl:text-xl">
@@ -87,27 +67,44 @@ export default function Home({ recentPosts }: BlogProps) {
         </div>
       </div>
       <div className="m-4 flex flex-col space-y-4">
-        <HomepageFeature title="Sponsors">
+        <HomepageFeature title="Sponsors" blur={true}>
           <div className="m-0 p-0">
             <div className="flex flex-cols-4 gap-2 sm:gap-5 xs:gap-0 ">
-              <div className="rounded-sm w-3/5 p-0 lg:w-1/4 pr-5">
+              <div className="w-3/5 p-0 lg:w-1/4 pr-5">
                 <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/hqprop.svg" alt="HQProp" />
+                  <img
+                    alt="HQProp"
+                    className="themeInvert"
+                    src="/img/betaflight/sponsors/hqprop.svg"
+                  />
                 </a>
               </div>
-              <div className="rounded-sm pt-1 w-4/5 p-0 lg:w-2/5">
+              <div className="pt-1 w-4/5 p-0 lg:w-2/5">
                 <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/radiomaster.svg" alt="RadioMaster" />
+                  <img
+                    alt="RadioMaster"
+                    className="themeInvert"
+                    src="/img/betaflight/sponsors/radiomaster.svg"
+                  />
                 </a>
               </div>
-              <div className="rounded-sm pt-2 w-3/5 p-0 lg:w-2/5">
+              <div className="pt-2 w-3/5 p-0 lg:w-2/5">
                 <a href="https://www.axisflying.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/Axisflying_dark.svg" alt="Axis Flying" />
+                  <ThemedImage 
+                    alt="Axisflying"
+                    sources={{
+                      light: useBaseUrl('/img/betaflight/sponsors/axisflying_light.svg'),
+                      dark: useBaseUrl('/img/betaflight/sponsors/axisflying_dark.svg')
+                    }}
+                  />
                 </a>
               </div>
-              <div className="rounded-sm pt-2 w-4/5 xs:w-1 lg:w-2/5">
+              <div className="pt-3 w-4/5 xs:w-1 lg:w-2/5">
                 <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/betaflight/sponsors/dogcom.svg" alt="DogCom" />
+                  <img
+                    alt="DogCom"
+                    src="/img/betaflight/sponsors/dogcom.svg"
+                  />
                 </a>
               </div>
             </div>

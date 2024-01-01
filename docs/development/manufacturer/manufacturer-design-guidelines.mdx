@@ -1,7 +1,17 @@
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Betaflight Flight Controller Manufacturer Design Guidelines
 
 <p className="flex flex-col">
-  <img src="/img/betaflight/logo_dark.svg" className="no-effect h-40 mt-4"></img>
+  <ThemedImage 
+    alt="Betaflight"
+    className="no-effect h-40 mt-4"
+    sources={{
+      light: useBaseUrl('/img/betaflight/logo_light.svg'),
+      dark: useBaseUrl('/img/betaflight/logo_dark.svg')
+    }}
+  />
 </p>
 
 ## Version Change Register
