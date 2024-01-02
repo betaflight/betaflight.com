@@ -2,7 +2,7 @@
 
 Video Transmitters are commonly referred to as VTX units. These are typically analogue or digital systems transmitting on the 5.8GHz band, although other frequency bands are sometimes used for specialist long-range craft.
 
-## Video Systems
+## Analog FPV Video
 
 Analogue video systems transmit a CVBS signal in either PAL or NTSC using channels in the 5.8GHz band.
 
@@ -13,6 +13,11 @@ Analogue video systems transmit a CVBS signal in either PAL or NTSC using channe
   - [SmartAudio from TBS](/docs/wiki/guides/current/Smart-Audio) and [Tramp from ImmersionRC](/docs/wiki/guides/current/IRC-Tramp) - allow users to change their video channel, band and power output from the FC. Pilots must supply a list of valid channnels, bands and power levels to the FC called a [VTX Table](/docs/wiki/guides/current/VTX-Tables)
   - [OpenVTX](https://github.com/OpenVTx/OpenVTx) introduced MSP VTX control. MSP VTXs can annouce available channel, band and power information so VTX Tables are not required.
   - [ExpressLRS backpack](https://github.com/ExpressLRS/Backpack/wiki) combines the ability to control any SmartAudio, Tramp or MSP VTX whilst simultaneously setting the same channel on the goggles.
+
+Originally the OSD for these systems was a separate add-in board such as Minim OSD, these have been replaced by OSD chips onboard the FC. This AT7456 is used on many FCs for this purpose and combines a black/white text-based OSD onto a video feed from the camera before sending the video signal to the VTX for transmission.
+
+## Digital FPV Video
+
 - [HDzero](https://www.hd-zero.com/) is a unidirectional digital video system seen as the continuation of prior analogue video techniques
   - Uses the same frequency bands and analogue Raceband inter-operates with pilots flying analogue video without disruption to other channels.
   - Allows MSP VTX control of band and channel from the FC
@@ -33,9 +38,12 @@ Analogue video systems transmit a CVBS signal in either PAL or NTSC using channe
   - Onboard 4K DVR is available comparable to the DJI Action 2, and compatible with free [GyroFlow stabilisation](https://gyroflow.xyz/).
   - MSP Displayport is partially implemented but some characters are not drawn correctly and bugs exist.
 - [Caddx WalkSnail Avatar](https://caddxfpv.com/collections/walksnail-avatar-system) launched in 2022 as a new digital VTX.
+
   - Variety of goggles, standalone VRX, VTX and cameras are available.
   - Goggles initially based on FatShark partnership, new models produced by Caddx.
   - Similar performance to DJI v1 but smaller VTXs
   - Onboard DVR at 1080p to internal flash - 8GB or 32GB
   - v2 and newer cameras feature onboard gyros and can record data for use in free [GyroFlow stabilisation](https://gyroflow.xyz/).
   - MSP displayport is fully implemented and supports coloured fonts with Betaflight 4.5.
+
+  Digital video systems typically render the OSD in the FPV goggles instead of prior to transmitting. This is due to a number of factors, including the processing cost of overlaying OSD onto high resolution digital video in the low-power VTX and also the tendency of digital video compression algorithms to deal poorly with sharp text characters. Rendering the OSD on the goggles is a compromise that provides low latency video with clear OSD text. OSD data is sent via a UART from the FC to the VTX using the [MSP Displayport protocol](/docs/development/api/DisplayPort) and sent a separate OSD data feed is sent alongside the video stream to the goggles.

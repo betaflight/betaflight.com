@@ -50,11 +50,11 @@ When running 8k8k, choose Dshot600. The ESCs report eRPM. This must be converted
 
 ### Dshot150, Dshot300 or Dshot600?
 
-For 4k PID loops, eg 8k4k or 4k4k, use Dshot 300 for greatest reliability; Dshot 600 may be used but is not recommended.
+For 4k PID loops, eg 8k4k or 4k4k, or 3.2k PID loops, use Dshot 300 for greatest reliability; Dshot 600 may be used but provides no advantage and is more susceptible to external noise.
 
 For 8k8k setups, you should use Dshot600. With 8k PID loops, Dshot300 will only update the motors every second PID loop.
 
-On L ESCs (efm8bb1) Dshot150 and a loop time of 2k2k is strongly recommended as the MCU speed is too slow to reliably deal with faster rates.
+With the older L ESCs (efm8bb1), Dshot150 and a 2k PID loop time (8k2k) are strongly recommended as the MCU speed is too slow to reliably accept data at faster rates.
 
 ### Config Snippet
 

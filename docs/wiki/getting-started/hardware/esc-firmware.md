@@ -1,14 +1,14 @@
-# ESC
+# ESC firmware
 
 An ESC is the Electronic Speed Controller which supplies power to the craft's motors.
 
 - ESCs can support brushed or brushless motors, although brushed motors tend to only be seen in older, very lightweight quadcopters.
 - The ESC takes motor commands from the Flight Controller and outputs pulses of power to accelerate or decelerate each motor.
-- Dshot is the preferred protocol for the FC to control ESCs. Dshot variants are named by update speed - Dshot150, Dshot300 and Dshot600.
-- Older ESCs may use alternative protocols like PWM, Multishot, Oneshot, and Proshot. Only Dshot supports the telemetry needed for RPM filtering.
+- Dshot is the preferred, one-wire, two-way, fully digital protocol for communication between a flight controller and the ESCs connected to it. Dshot requires no calibration. Dshot is the only way to get RPM and other extended telemetry data back from the ESC to the FC.
+- Older ESCs support analog protocols like PWM, Oneshot, and Multishot, or hybrid protocols like Proshot. Analog protocols require two-point calibration, are susceptible to noise, and can only provide telemetry over an additional serial connection. This is not suitable for RPM filtering.
 - Betaflight is enhanced by the ability of modern ESCs to supply in-band telemetry back to the Flight Controller via the Dshot protocol.
 - Using telemetry from ESC to FC in addition to the normal motor commands from FC to ESC is referred to as Bidirectional Dshot.
-- Bidirectional Dshot is different from the bidirectional motors settings. Bidirectional motor setting is used to enable the propellers to spin backwards and is used in the 3D Flight Mode, it is a separate feature and not required for Dshot Telemetry.
+- Bidirectional Dshot is different from bidirectional motor control. Bidirectional motor control allows the ESC to actively rotate the motors forward and backwards, with the 'off' position at centre stick, as in 3D Flight Mode. Bidirectional motor control is not required for Bidirectional Dshot telemetry.
 
 ## Bidirectional Dshot Firmware
 
