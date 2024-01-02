@@ -45,12 +45,12 @@ export default function Home({ recentPosts }: BlogProps) {
     <BetaflightLayout>
       <div className="flex flex-col items-center m-0 xs:mt-0 sm:mt-2 xl:mt-20">
         <div className="flex flex-col">
-          <ThemedImage 
+          <ThemedImage
             alt="Betaflight"
             className="p-6 h-fit w-fit xl:mr-12"
             sources={{
-                light: useBaseUrl('/img/betaflight/logo_light.svg'),
-                dark: useBaseUrl('/img/betaflight/logo_dark.svg')
+              light: useBaseUrl('/img/betaflight/logo_light.svg'),
+              dark: useBaseUrl('/img/betaflight/logo_dark.svg'),
             }}
           />
         </div>
@@ -69,8 +69,8 @@ export default function Home({ recentPosts }: BlogProps) {
       <div className="m-4 flex flex-col space-y-4">
         <HomepageFeature title="Sponsors" blur={true}>
           <div className="m-0 p-0">
-            <div className="flex flex-cols-4 gap-2 sm:gap-5 xs:gap-0 ">
-              <div className="w-3/5 p-0 lg:w-1/4 pr-5">
+            <div className="flex flex-cols-4 items-center gap-2 sm:gap-5 xs:gap-0">
+              <div className="p-0 ml-2 mr-2 w-3/5 lg:w-1/4">
                 <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener">
                   <img
                     alt="HQProp"
@@ -79,7 +79,7 @@ export default function Home({ recentPosts }: BlogProps) {
                   />
                 </a>
               </div>
-              <div className="pt-1 w-4/5 p-0 lg:w-2/5">
+              <div className="lg:pb-8 sm:pb-4 ml-2 mr-2 w-4/5 lg:w-2/5">
                 <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener">
                   <img
                     alt="RadioMaster"
@@ -88,18 +88,18 @@ export default function Home({ recentPosts }: BlogProps) {
                   />
                 </a>
               </div>
-              <div className="pt-2 w-3/5 p-0 lg:w-2/5">
+              <div className="p-0 ml-2 mr-2 w-3/5 lg:w-[25%]">
                 <a href="https://www.axisflying.com/" target="_blank" rel="noreferrer noopener">
-                  <ThemedImage 
+                  <ThemedImage
                     alt="Axisflying"
                     sources={{
                       light: useBaseUrl('/img/betaflight/sponsors/axisflying_light.svg'),
-                      dark: useBaseUrl('/img/betaflight/sponsors/axisflying_dark.svg')
+                      dark: useBaseUrl('/img/betaflight/sponsors/axisflying_dark.svg'),
                     }}
                   />
                 </a>
               </div>
-              <div className="pt-3 w-4/5 xs:w-1 lg:w-2/5">
+              <div className="p-0 ml-2 mr-2 w-4/5 xs:w-1 lg:w-2/5">
                 <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener">
                   <img
                     alt="DogCom"
