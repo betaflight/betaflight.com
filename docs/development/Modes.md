@@ -44,6 +44,11 @@ There are various modes that can be toggled on or off. Modes can be enabled/disa
 | 47  | ACRO TRAINER             | Enable 'acro trainer' angle limiting in acro mode                                    |
 | 48  | DISABLE VTX CONTROL      | Disable the control of VTX settings through the OSD                                  |
 | 49  | LAUNCH CONTROL           | Race start assistance system                                                         |
+| 50  | MSP OVERRIDE             | Enable MSP Override mode                                                             |
+| 51  | STICK COMMANDS DISABLE   | Disable/enable stick command                                                         |
+| 52  | BEEPER MUTE              | Disable/enable beeper including warning, status and BEEPER mode                      |
+| 53  | READY                    | Show 'READY' in the OSD using a switch                                               |
+| 54  | LAP TIMER RESET          | Reset lap timer                                                                      |
 
 ## Auto-leveled flight
 

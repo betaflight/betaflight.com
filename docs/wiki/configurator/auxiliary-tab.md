@@ -7,11 +7,13 @@ sidebar_position: 9
 Modes are used to enable or disable features and trigger FC actions using AUX channels switches. Modes are enabled
 when Ranges or Links are active.
 
-- **Ranges** - activate when the receiver channel matches the specified input values.
+- **Ranges** - activate when the receiver channel matches the specified input values. A receiver channel that gives a reading between a range min/max will activate the mode.
 
 - **Links** - activate when another linked Mode is active.
 
 Multiple Ranges, Links can be matched, combined using boolean AND or OR operators to combine activation conditions for a Mode.
+
+The Category arrange modes in groups, at Cloud build only groups defined in builded firmware are enabled. At local build all groups are enabled.
 
 ### Mode Types
 
@@ -92,3 +94,13 @@ Multiple Ranges, Links can be matched, combined using boolean AND or OR operator
 - **DISABLE VTX CONTROL** disable control of the VTX settings through the OSD
 
 - **LAUNCH CONTROL** race assistance start system. Spins motors and tilts craft forward to the desired angle without taking off
+
+- **MSP OVERRIDE** enable MSP Override mode
+
+- **STICK COMMANDS DISABLE** disable/enable stick command
+
+- **BEEPER MUTE** disable/enable beeper including warning, status and BEEPER mode
+
+- **READY** show 'READY' in the OSD using a switch
+
+- **LAP TIMER RESET** reset lap timer
