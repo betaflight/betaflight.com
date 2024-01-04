@@ -15,65 +15,90 @@ Choices below are further described in the [wiki/Firmware Flasher page](/docs/wi
 
 ### Radio Protocols
 
-    CRSF
-    EXPRESSLRS
-    FPORT
-    GHOST
-    IBUS
-    JETIEXBUS
-    PPM
-    SBUS
-    SPECTRUM
-    SRXL2
-    SUMD
-    SUMH
-    XBUS
+```
+CRSF
+EXPRESSLRS
+FPORT
+GHOST
+IBUS
+JETIEXBUS
+PPM
+SBUS
+SPECTRUM
+SRXL2
+SUMD
+SUMH
+XBUS
+```
 
 ### Telemetry Protocols
 
-    FRSKY_HUB
-    GHOST
-    HOTT
-    IBUS_EXTENDED
-    JETIEXBUS
-    LTM
-    MAVLINK
-    SMARTPORT
-    SRXL
+```
+FRSKY_HUB
+GHOST
+HOTT
+IBUS_EXTENDED
+JETIEXBUS
+LTM
+MAVLINK
+SMARTPORT
+SRXL
+```
 
 Note: telemetry for CRSF, ELRS, FPORT and GHST are included during the build.
 
 ### Other Options
 
-    AKK (SA FIX)
-    FLASH
-    GPS
-    LED
-    LED64
-    MAG
-    OSD
-    OSD (HD)
-    PINIO
-    VTX
+```
+AKK (SA FIX)
+FLASH
+GPS
+LED
+LED64
+MAG
+OSD
+OSD (HD)
+PINIO
+VTX
+```
 
 ### Motor Protocols
 
-    BRUSHED
-    DSHOT
-    MULTISHOT
-    ONESHOT
-    PROSHOT
-    PWM
+```
+BRUSHED
+DSHOT
+MULTISHOT
+ONESHOT
+PROSHOT
+PWM
+```
 
 ### Custom Defines
 
-    ACRO_TRAINER
-    BATTERY_CONTINUE
-    DASHBOARD
-    EMFAT_AUTORUN
-    EMFAT_ICON
-    ESCSERIAL_SIMONK
-    GPS
-    GPS_PLUS_CODES
-    LED_STRIP
-    SERIAL_4WAY_SK_BOOTLOADER
+```
+ACRO_TRAINER
+BATTERY_CONTINUE
+DASHBOARD
+EMFAT_AUTORUN
+EMFAT_ICON
+ESCSERIAL_SIMONK
+GPS
+GPS_PLUS_CODES
+LED_STRIP
+QUICK_OSD_MENU
+RC_STATS
+RPM_LIMIT
+SERIAL_4WAY_SK_BOOTLOADER
+SPEC_PREARM_SCREEN
+```
+
+### RACE_PRO Define
+
+There is a special RACE_PRO define which combines the following defines as one feature pack:
+
+```
+QUICK_OSD_MENU
+RC_STATS
+RPM_LIMIT
+SPEC_PREARM_SCREEN
+```
