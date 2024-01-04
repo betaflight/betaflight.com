@@ -295,7 +295,7 @@ Calibration itself **DOES NOT** check that the orientation of the sensor is corr
 The quad must be disarmed. There are two ways to initiate the calibration process:
 
 - clicking the `Calibrate Magnetometer` button in Configurator, keeping connected with a long USB cable.
-- using stick commands on the radio (be absolutely sure that the quad is disarmed!):
+- using stick commands on a mode 2 radio (be absolutely sure that the quad is disarmed!):
   - right stick straight down (pitch low with roll centered)
   - left stick in the top right corner (throttle high and yaw fully right)
 - you then have 15s in which to 'tap the frame' hard, which starts the calibration process itself
