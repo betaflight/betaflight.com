@@ -4,13 +4,22 @@ sidebar_label: Approved Partner Program
 ---
 
 import PartnerText from './../../docs/development/manufacturer/approved-partner-program.md'
+import ThemedImage from '@theme/ThemedImage'
+import useBaseUrl from '@docusaurus/useBaseUrl'
 
 # Approved Partner Program
 
 <PartnerText />
 
 <p className="flex flex-col items-center">
-  <img src="/img/betaflight/sponsors/bf_partner_dark.svg" className="no-effect md:w-1/4 mt-6 mb-2"></img>
+  <ThemedImage
+    alt="Betaflight Partner"
+    className="no-effect md:w-1/4 mt-6 mb-2"
+    sources={{
+      light: useBaseUrl('/img/betaflight/sponsors/bf_partner_light.svg'),
+      dark: useBaseUrl('/img/betaflight/sponsors/bf_partner_dark.svg'),
+    }}
+  />
 </p>
 
 <p className="flex flex-col items-center">
