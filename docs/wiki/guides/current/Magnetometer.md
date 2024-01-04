@@ -24,7 +24,7 @@ The purpose of a magnetometer is to return the 'heading' of the quad, meaning th
 
 Mag information is essential for position hold, which we intend to support, and improves behaviour in GPS Rescue.
 
-GPS Rescue will have improved eading control if reliable, accurate Mag information is available, especially during ascents and descents on windy days.
+GPS Rescue will have improved heading control if reliable, accurate Mag information is available, especially during ascents and descents on windy days.
 
 ## Summary
 
@@ -296,7 +296,7 @@ The quad must be disarmed. There are two ways to initiate the calibration proces
 
 - clicking the `Calibrate Magnetometer` button in Configurator, keeping connected with a long USB cable.
 - using stick commands on the radio (be absolutely sure that the quad is disarmed!):
-  - right stick straight dowm (pitch low with roll centred)
+  - right stick straight down (pitch low with roll centered)
   - left stick in the top right corner (throttle high and yaw fully right)
 - you then have 15s in which to 'tap the frame' hard, which starts the calibration process itself
 
