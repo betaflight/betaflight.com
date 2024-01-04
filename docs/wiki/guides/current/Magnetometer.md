@@ -54,7 +54,7 @@ For most Mag modules, if the magnetometer has arrows indicating the direction of
 - upwards, if the Y axis is 90° to the left of X axis, or
 - downwards, if the Y axis is 90° to the right of the X axis
 
-When one of the Mag sensor's three axes points directly parallel to a magnetic field line, that axis returns its most positive value, and the other two axes return zero. Conversely, when pointing into the opposite direction, the axis returns its most negative value, and the other two axes return zero. This is how the user can determine the orietnation of the axes in their module.
+When one of the Mag sensor's three axes points directly parallel to a magnetic field line, that axis returns its most positive value, and the other two axes return zero. Conversely, when pointing into the opposite direction, the axis returns its most negative value, and the other two axes return zero. This is how the user can determine the orientation of the axes in their module.
 
 :::caution
 The orientation of the magnetometer on the quad is very important. In Betaflight, the data from the magnetometer must be returned as follows:
