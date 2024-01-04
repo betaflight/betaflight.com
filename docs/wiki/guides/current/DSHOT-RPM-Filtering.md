@@ -361,7 +361,7 @@ In this case we have the Gyro/PID configured in 8k/8k and this line show us that
 
 ### Debug modes
 
-There are two blackbox debug modes to verify the RPM filter: RPM_FILTER logs the frequency of each motor as reported by the ESC. Dshot_RPM_TELEMETRY logs the unconverted eRPM.
+There are two blackbox debug modes to verify the RPM filter: RPM_FILTER logs the frequency of each motor as reported by the ESC. DSHOT_RPM_TELEMETRY logs the unconverted eRPM.
 
 ## TPA
 
