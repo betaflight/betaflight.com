@@ -13,8 +13,6 @@ when Ranges or Links are active.
 
 Multiple Ranges, Links can be matched, combined using boolean AND or OR operators to combine activation conditions for a Mode.
 
-The Category arrange modes in groups, at Cloud build only groups defined in builded firmware are enabled. At local build all groups are enabled.
-
 ### Mode Types
 
 - **ARM** enables motor output and allows the craft to fly
