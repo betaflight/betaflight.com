@@ -11,7 +11,7 @@ Uses unified targets defined hardware drivers to be included in the firmware as 
 
 ### Firmware 4.5
 
-Uses config repo for targets using defines only. For more information see [How to Create a Flight Controller Configuration File for Betaflight 4.5](http://betaflight.com/docs/development/manufacturer/creating-configuration)
+Uses config repo for targets using defines only. For more information see [How to Create a Flight Controller Configuration File for Betaflight 4.5](/docs/development/manufacturer/creating-configuration)
 
 ## Usage
 
