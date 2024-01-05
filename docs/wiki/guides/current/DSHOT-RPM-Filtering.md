@@ -1,15 +1,15 @@
-# DShot RPM Filtering
+# Dshot RPM Filtering
 
 ### Recent Announcements
 
-- [Bluejay](https://github.com/mathiasvr/bluejay) is a new, free, well-supported BlHeli-S firmware that supports DShot telemetry, with a range of options. It is most easily flashed using the [https://esc-configurator.com](https://esc-configurator.com) online ESC configurato, which can flash both BlHeli-S and Bluejay to BLHeli-S ESCs, and AM32 to BlHeli-32 ESCs.
-- [JESC](https://jflight.net) was the first ESC firmware to support RPM filtering on BLHeli_S escs. It was written by the JoeLucid, who wrote the DShot telemetry code that underpins all bidirectional DShot functionality, such as Dynamic Idle and RPM Filtering. JESC is free on L ESCs, but payment is required for H ESCs. 48khz and 96khz PWM versions are available.
-- [BlHeli-32](https://github.com/bitdump/BLHeli/tree/master/BLHeli_32%20ARM) fully supports Bidirectional DShot in versions 32.7.0 and higher
-- [AM32](https://github.com/AlkaMotors/AM32-MultiRotor-ESC-firmware) can also be flashed (but not readily un-flashed) to BlHeli-32 type ESCs, and also fully supports Bidirectional DShot.
+- [Bluejay](https://github.com/mathiasvr/bluejay) is a new, free, well-supported BlHeli-S firmware that supports Dshot telemetry, with a range of options. It is most easily flashed using the [https://esc-configurator.com](https://esc-configurator.com) online ESC configurato, which can flash both BlHeli-S and Bluejay to BLHeli-S ESCs, and AM32 to BlHeli-32 ESCs.
+- [JESC](https://jflight.net) was the first ESC firmware to support RPM filtering on BLHeli_S escs. It was written by the JoeLucid, who wrote the Dshot telemetry code that underpins all bidirectional Dshot functionality, such as Dynamic Idle and RPM Filtering. JESC is free on L ESCs, but payment is required for H ESCs. 48khz and 96khz PWM versions are available.
+- [BlHeli-32](https://github.com/bitdump/BLHeli/tree/master/BLHeli_32%20ARM) fully supports Bidirectional Dshot in versions 32.7.0 and higher
+- [AM32](https://github.com/AlkaMotors/AM32-MultiRotor-ESC-firmware) can also be flashed (but not readily un-flashed) to BlHeli-32 type ESCs, and also fully supports Bidirectional Dshot.
 
 ## Introduction
 
-Bidirectional DShot Telemetry allows the ESC to report RPM data back to the flight controller over the same single wire that we use to control the ESC.
+Bidirectional Dshot Telemetry allows the ESC to report RPM data back to the flight controller over the same single wire that we use to control the ESC.
 
 When the Flight Controller knows the RPM of each motor, it can set notch filters at exactly the right frequency to remove that noise. We can also use that RPM information to dynamically control idle RPM, and prevent it dropping too low. This is the Dynamic Idle feature, which gives better protection against ESC desync than conventional idle.
 
@@ -21,13 +21,13 @@ On clean quads, lowpass filter delay can usually be improved by moving cutoff fr
 
 ## Underlying technology:
 
-[**Bidirectional DSHOT**](https://github.com/betaflight/betaflight/pull/7264), a new feature in Betaflight 4.x which lets the flight controller receive accurate RPM telemetry over each motor's ESC signal line. No additional wiring or additional telemetry back-channel is needed. Each DSHOT frame from the FC gets acknowledged by a frame from the ESC containing the current eRPM. The FC uses the motor pole count to convert ERPM to RPM.
+[**Bidirectional Dshot**](https://github.com/betaflight/betaflight/pull/7264), a new feature in Betaflight 4.x which lets the flight controller receive accurate RPM telemetry over each motor's ESC signal line. No additional wiring or additional telemetry back-channel is needed. Each Dshot frame from the FC gets acknowledged by a frame from the ESC containing the current eRPM. The FC uses the motor pole count to convert ERPM to RPM.
 
 [**RPM filtering**](https://github.com/betaflight/betaflight/pull/7271) is a bank of 36 notch filters on gyro and (optionally) on Dterm which use the RPM telemetry data to remove motor noise with surgical precision. By default it runs 12 notch filters each on pitch, roll, and yaw, covering the first 3 harmonics of each motor's noise signature.
 
-[**Extended DSHOT telemetry**](https://github.com/bird-sanctuary/extended-dshot-telemetry) standardises the format used for RPM telemetry into an extensible telemetry protocol which can be used for ESC voltage, temperature and other sensors where a dedicated ESC UART connection is not available. The RPM telemetry is typically sent most frequently, with other fields sent at less frequent intervals.
+[**Extended Dshot telemetry**](https://github.com/bird-sanctuary/extended-Dshot-telemetry) standardises the format used for RPM telemetry into an extensible telemetry protocol which can be used for ESC voltage, temperature and other sensors where a dedicated ESC UART connection is not available. The RPM telemetry is typically sent most frequently, with other fields sent at less frequent intervals. EDT v1.0 adds voltage, current and temperature telemetry to the basic RPM data. EDT v2.0 adds status data to signal demag, desync and stall events as well as a max demag metric.
 
-For RPM Filtering to work, the ESC must support the Bidirectional DShot protocol and Bidirectional DShot must be enabled in the CLI.
+For RPM Filtering to work, the ESC must support the Bidirectional Dshot protocol and Bidirectional Dshot must be enabled in the CLI.
 
 These two features are supported by BetaFlight 4.1 and higher on all flight controllers, and most modern BLHeli_32 and BLHeli-S ESCs. Betaflight 4.0 is no longer supported.
 
@@ -40,79 +40,7 @@ If the RPM Filter is enabled but one or more of the ESC's are not supplying vali
 
 ## ESC Configuration
 
-### Bidirectional DShot Firmware
-
-The Bidirectional DShot protocol is different (and more robust) in BetaFlight 4.1 than BetaFlight 4.0. The ESC code must be correct for the version of Betaflight you are running.
-
-**For 32bit ESCs**, various options exist
-
-| Option       | Model        | Link                                                                                      |
-| ------------ | ------------ | ----------------------------------------------------------------------------------------- |
-| BLHeli_32    | Paid/Closed  | https://github.com/bitdump/BLHeli/blob/master/BLHeli_32%20ARM/README.md                   |
-| AM32         | Free/Open    | https://github.com/AlkaMotors/AM32_MULTI_MCU compatible with https://esc-configurator.com |
-
-#### BLHeli_32
-
-:::warning
-Stuck motors, hot motors and unexpected behaviour have been observed in BLHeli_32 releases after 32.7. Betaflight recommends avoiding newer releases until a well-tested BLHeli_32 release is available. 
-:::
-
-BLHeli_32 introduced support for 32bit ESCs. Bidirectional DShot is now a fully supported feature in version 32.7.0. Just upgrade using blheli32 configurator. 
-
-| Version | Recommended | Comment                                                                                                                      |
-| ------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| 32.7    | `Y`         | RPM filtering available, recommended stable version for fixed-PWM output                                                     |
-| 32.8    | `N`         | Reports of dshot communication errors, stuck/hot motors. Introduced variable PWM, 32.8.3 added ByRPM support similar to AM32 |
-| 32.9    | `N`         | Reports of dshot communication errors, stuck/hot motors. EDT telemetry added                                                 |
-| 32.10   | `N`         | Potential fix for stuck motor issues, initial reports indicate 32.10 still has errors                                        |
-
-#### AM32
-
-AM32 fully supports RPM filtering. AM32 is a fully Open Source 32bit ESC firmware under active development. AM32 is compatible with all major 32bit MCUs including SMT32F051, STM32G071, STM32L432, GDE230, AT32F421, AT32F415 and AT32F4A. The last few years have seen new features appear in AM32 and then some make their way into BLHeli_32. For these reasons BetaFlight recommends AM32 on your 32bit ESCs.
-Developers note - prior to 2.00 the AM32 project used a repo for each family of MCUs. 2.00 unified these repos under https://github.com/AlkaMotors/AM32_MULTI_MCU. 
-
-| Version | Recommended | Comment                                                                                         |
-| ------- | ----------- | ----------------------------------------------------------------------------------------------- |
-| 2.00    | `N`         | Cleanup of target structure, unify projects                                                     |
-| 2.01    | `N`         | Increase 10khztimer to 20khz, increase max duty cycle change.                                   |
-| 2.02    | `N`         | Increase startup power for inverted output targets.                                             |
-| 2.03    | `N`         | Move chime from dshot direction change commands to save command.                                |
-| 2.04    | `Y`         | Fix current protection, max duty cycle not increasing. Fix double startup chime. Change current averaging method for more precision. Fix startup ramp speed adjustment. |
-| 2.05    | `Y`         | Fix ramp tied to input frequency
-
-
-**For 8bit BLHeli-S ESCs**, various options exist for the BusyBee family of MCUs including BB1 (L), BB21 (H) and BB51 (X)
-
-| Option       | Model | Link                                                                               |
-| ------------ | ----- | ---------------------------------------------------------------------------------- |
-| JFlight      | Paid  | https://jflight.net/                                                               |
-| JazzMaverick | Free  | https://github.com/JazzMaverick/BLHeli/tree/JazzMaverick-patch-1/BLHeli_S%20SiLabs |
-| BlueJay      | Free  | https://github.com/bird-sanctuary/bluejay using https://esc-configurator.com       |
-
-#### JFlight
-
-This is the original BlHeli-S RPM firmware, from the developer of the underlying RPM filtering and DShot telemetry code. Install Betaflight 4.1, go to [jflight.net](https://jflight.net), check that your ESC and FC are supported, purchase enough licences, and follow the install instructions - download the custom JESC BLHeli-S configurator, select your ESC, select the correct hex, click the blue 'flash all' button, then then flash the telemetry code over that by clicking 'flash all telemetry'. Use the flash version at the top of the list. JESC requires Betaflight 4.1.
-Only supports L and H MCUs, not recommended for new installs.
-
-#### JazzMaverick
-
-::: warning
-JazzMaverick firmware should be avoided. For reliable flight performance you should replace JazzMaverick with BlueJay. JazzMaverick was poorly documented and has not been maintained for years.
-:::
-
-The current build is 16.9, often referred to as [BlHeli-M](https://www.rcgroups.com/forums/showthread.php?3621257-BLHeli_M-Maverick-version). The easiest way to flash 16.9 is with Asizon's Configurator.
-For earlier versions, go to [JazzMaverick](https://github.com/JazzMaverick/BLHeli/tree/JazzMaverick-patch-1/BLHeli_S%20SiLabs)'s code on github. Flash as usual with the conventional [BlHeli-S Configurator](https://github.com/blheli-configurator/blheli-configurator/releases). Take a look wich version you have to flash correctly. Use either version 16.73 or 16.9.
-Betaflight strongly recommends that users avoid JazzMaverick due to the lack of maintenance and the author's experimental approach. This ESC firmware included versions with non-linear throttle response and other features that surprised or confused users.
-
-#### BlueJay
-
-BlueJay is a more recent RPM-aware BlHeli-S firmware. Orginally developed by Mathias, a Betaflight developer, more recently BlueJay has been transferred to the BirdSanctuary team and is maintained by Damosvil and Stylesuxx in close partnership with the esc-configurator project. BlueJay is easily flashed with an elegant [online flashing tool](https://esc-configurator.com).  Custom offline configurator (https://github.com/mathiasvr/bluejay-configurator/releases) is available but not recommended for current releases. The firmware supports both L and H type ESCs as well as newer Z type, with a range of options, and has been tested on various ESC models. [Extended Dshot Telementry (EDT)](https://github.com/bird-sanctuary/extended-dshot-telemetry) was created by the BlueJay team and allows ESCs without a separate telemetry UART to send additional telemetry alongside RPM data. EDT enables BlueJay ESCs to report voltage, current and temperature as well as signalling error events.
-
-| Version    | Recommended | Comment                                                                                                    |
-| ---------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
-| 0.19.2     | `Y`         | Current stable version, supports RPM filtering and EDT. Upgrade to this version unless you fly 3D mode     |
-| 0.20       | `N`         | Old testing version, withdrawn from release due to problems.                                               |
-| 0.20.1-RC2 | `N`*        | Latest test code. Includes EDT support. *Recommended if you fly 3D as this fixes 3D mode                   |
+Your ESC must support Dshot, and be running [a suitable firmware](/docs/wiki/getting-started/hardware/esc) to support RPM filtering. At the minimum RPM telemetry is required, so the ESC must support bidirectional Dshot. As EDT extends bidirectional Dshot any ESC supporting EDT also support RPM telemetry.
 
 ## Betaflight Configuration
 
@@ -120,21 +48,21 @@ BlueJay is a more recent RPM-aware BlHeli-S firmware. Orginally developed by Mat
 
 When running 8k8k, choose Dshot600. The ESCs report eRPM. This must be converted to RPM using the number of magnets of the motors. The magnets to count are those on the bell of the motor. Do not count the stators where the windings are located. Typical 5" motors have 14 magnets, so that is the default setting. Smaller motors have fewer magnets, often 12. Count them or look up the motor specs. If you don't have 14 magnets, change the number of magnets using Betaflight Configurator on the Configuration tab.
 
-### DShot150, DShot300 or DShot600?
+### Dshot150, Dshot300 or Dshot600?
 
-For 4k PID loops, eg 8k4k or 4k4k, use Dshot 300 for greatest reliability; Dshot 600 may be used but is not recommended.
+For 4k PID loops, eg 8k4k or 4k4k, or 3.2k PID loops, use Dshot 300 for greatest reliability; Dshot 600 may be used but provides no advantage and is more susceptible to external noise.
 
-For 8k8k setups, you should use DShot600. With 8k PID loops, Dshot300 will only update the motors every second PID loop.
+For 8k8k setups, you should use Dshot600. With 8k PID loops, Dshot300 will only update the motors every second PID loop.
 
-On L ESCs (efm8bb1) DShot150 and a loop time of 2k2k is strongly recommended as the MCU speed is too slow to reliably deal with faster rates.
+With the older L ESCs (efm8bb1), Dshot150 and a 2k PID loop time (8k2k) are strongly recommended as the MCU speed is too slow to reliably accept data at faster rates.
 
 ### Config Snippet
 
-With 4.1 and above it's no longer necessary to install a snippet. Instead just use Betaflight Configurator and enable bidirectional dshot on the Configuration tab.
+With 4.1 and above it's no longer necessary to install a snippet. Instead just use Betaflight Configurator and enable bidirectional Dshot on the Configuration tab.
 
 ### Config Verification
 
-Your FC is now set up for bidirectional dshot - let's verify that it works. To do so power cycle FC and ESC. Connect the lipo first to the ESC, then the USB cable. Now open the Motors tab in Betaflight Configurator. There should be no red line indicating significant errors on any motor. When you spin the motors you should see the reported rpm. The reported error percentage should not exceed 1%. All motors should report an RPM of 0 unless spun.
+Your FC is now set up for bidirectional Dshot - let's verify that it works. To do so power cycle FC and ESC. Connect the lipo first to the ESC, then the USB cable. Now open the Motors tab in Betaflight Configurator. There should be no red line indicating significant errors on any motor. When you spin the motors you should see the reported rpm. The reported error percentage should not exceed 1%. All motors should report an RPM of 0 unless spun.
 
 **Important:**
 If you connect your FC via USB cable without connecting your LIPO battery, then at the Motors tab in Betaflight Configurator you will notice an invalid indication "Error 100%" (E: 100%). Connect the LIPO and wait ESC to initialize, the indication will drop down to 0% (E: 0%). Disconnecting the battery will keep showing 0% errors afterwards.
@@ -278,16 +206,16 @@ It is possible to turn the dynamic notch filter off altogether on stiff resonanc
 
 ### Timer Based Bidirectional Dshot
 
-If your FC supports it you can use our timer based bidirectional dshot implementation to lower the cpu load of bidirectional dshot a bit. Prior to 4.1 RC1 this was the only available implementation. Its downside is that it requires remapping of timers and DMA channels on some boards and does not work everywhere.
+If your FC supports it you can use our timer based bidirectional Dshot implementation to lower the cpu load of bidirectional Dshot a bit. Prior to 4.1 RC1 this was the only available implementation. Its downside is that it requires remapping of timers and DMA channels on some boards and does not work everywhere.
 
 Don't be discouraged if your target isn't listed. Many targets will work. Use this [Default Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT.cf), try it out and report back.
 
-Starting from 4.1 RC1 you need to disable the default dshot bitbang implementation using the command `set dshot_bitbang=off`. Don't forget to set this back to `auto` if you want to switch back to dshot bitbang.
+Starting from 4.1 RC1 you need to disable the default Dshot bitbang implementation using the command `set dshot_bitbang=off`. Don't forget to set this back to `auto` if you want to switch back to Dshot bitbang.
 
 ### Snippets for supported targets
 
 | Target          | Install Snippet                                                                          | Notes                                                              | Supported Motors                     |
-| --------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------ | ----------------------- |
+| --------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------ |
 | AG3XF4          | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1 - M4 (tested Mister_M)            |
 | AIKONF4         | [Snippet](https://github.com/betaflight/bidircfg/blob/master/AIKONF4-upgrade.cf)         |                                                                    | M1 - M4 (tested fujin)               |
 | AIRBOTF7        | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 (tested by Asizon)             |
@@ -298,8 +226,8 @@ Starting from 4.1 RC1 you need to disable the default dshot bitbang implementati
 | BETAFLIGHTF4    | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1 - M4 ok (tested Balint)           |
 | CLRACINGF4      | [Snippet](https://github.com/betaflight/bidircfg/blob/master/CLRACINGF4-upgrade.cf)      |                                                                    | M1-M4 ok                             |
 | CLRACINGF7      | [Snippet](https://github.com/betaflight/bidircfg/blob/master/CLRACINGF7-upgrade.cf)      | Motor 4 doesn't work. Use the LED pad instead                      | M1 M2 M3 M5                          |
-| CRAZYBEEF4DX    | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 ok (tested Noctaro)            |                         |
-| CRAZYBEEF4FR    | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 ok (tested joelucid)           |                         |
+| CRAZYBEEF4DX    | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 ok (tested Noctaro)            |
+| CRAZYBEEF4FR    | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 ok (tested joelucid)           |
 | DALRCF4         | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DALRCF4-upgrade.cf)         |                                                                    | M1-M6 (tested QuadMcFly)             |
 | DALRCF722DUAL   | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DALRCF722DUAL-upgrade.cf)   |                                                                    | M1-M6. But either M5 or M6           |
 | DYSF4PRO        | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 (tested BRadFPV)               |
@@ -312,9 +240,9 @@ Starting from 4.1 RC1 you need to disable the default dshot bitbang implementati
 | FURYF4          | [Snippet](https://github.com/betaflight/bidircfg/blob/master/FURYF4SD-upgrade.cf)        |                                                                    | M1-M4, No LED support, Tested RawFPV |
 | FURYF7          | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4                                |
 | HAKRCF722       | [Snippet](https://github.com/betaflight/bidircfg/blob/master/HAKRCF722-upgrade.cf)       |                                                                    | M1-M6                                |
-| KAKUTEF4V2      | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    |                                      | M1-M4 tested            |
+| KAKUTEF4V2      | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 tested                         |
 | KISSFCV2F7      | [Snippet](https://github.com/betaflight/bidircfg/blob/master/KISSFCV2F7-upgrade.cf)      |                                                                    | M1-M6                                |
-| LUXF4OSD        | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    |                                      | M1-M4 tested (Mister_M) |
+| LUXF4OSD        | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 tested (Mister_M)              |
 | MAMBAF411       | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | DMA & timer reviewed by joelucid     |
 | MAMBAF722       | [Snippet](https://github.com/betaflight/bidircfg/blob/master/MAMBAF722-upgrade.cf)       |                                                                    | M1-M4 tested (kc10kevin)             |
 | MATEKF405       | [Snippet](https://github.com/betaflight/bidircfg/blob/master/DEFAULT-upgrade.cf)         |                                                                    | M1-M4 tested (Wudz_17)               |
@@ -348,19 +276,19 @@ Please add additional verified configurations here.
 
 Below is a description of the settings in the config snippets.
 
-### Loop times and DSHOT protocol
+### Loop times and Dshot protocol
 
-Bidirectional DSHOT works with DSHOT 300, 600 and 1200, and also with Proshot 1000. For practical purposes, DShot 600 works well at all PID loop rates.
+Bidirectional Dshot works with Dshot 300, 600 and 1200, and also with Proshot 1000. For practical purposes, Dshot 600 works well at all PID loop rates.
 
-Remember that for each frame sent there will now be a frame coming back, and between input and output frames there is a period of 30us to switch the line, DMA, and timers. The loop time selection needs to be low enough that given the DSHOT protocol rate both frames + 50 us fit into one gyro loop iteration.
+Remember that for each frame sent there will now be a frame coming back, and between input and output frames there is a period of 30us to switch the line, DMA, and timers. The loop time selection needs to be low enough that given the Dshot protocol rate both frames + 50 us fit into one gyro loop iteration.
 
-Both bidirectional DSHOT and the RPM filter are fairly CPU intensive and it is very important for the loop rates to be exactly on spot so that the filters get tuned to the right frequencies. It is recommended to run at 4k/4k with DShot 600 for your initial test flight. All DSHOT speeds should work at that loop rate.
+Both bidirectional Dshot and the RPM filter are fairly CPU intensive and it is very important for the loop rates to be exactly on spot so that the filters get tuned to the right frequencies. It is recommended to run at 4k/4k with Dshot 600 for your initial test flight. All Dshot speeds should work at that loop rate.
 
 On F4, RPM telemetry costs about 3-4uS per motor per line direction change. Something around 24-32uS is required for the line direction switching both directions together. The RPM filter has 36 notch filters that get dynamically tuned at 1000Hz update frequency.
 
 8k4k is good on most F405's; 8k8k is possible, but often needs overclocking. F411's will require over-clocking to run at 8k4k. F7's run 8k8k without problems.
 
-You may need to switch off any extended startup melody, since that may interfere with bidirectional DSHOT. The standard startup tones are fine.
+You may need to switch off any extended startup melody, since that may interfere with bidirectional Dshot. The standard startup tones are fine.
 
 ### DMA
 
@@ -372,7 +300,7 @@ And test whether your quad still flies. If so proceed to the next step:
 
 ### Enabling new scheduler policy
 
-Since the RPM filter works with very narrow notch filters, it's imperative that the gyro loop time does not vary and is exactly as specified. This used to require low loop rates and overclocking. A scheduler change has now been added, which allows consistent gyro rates even at higher loop rates. Bidirectional DSHOT requires enabling this feature:
+Since the RPM filter works with very narrow notch filters, it's imperative that the gyro loop time does not vary and is exactly as specified. This used to require low loop rates and overclocking. A scheduler change has now been added, which allows consistent gyro rates even at higher loop rates. Bidirectional Dshot requires enabling this feature:
 
 `set scheduler_optimize_rate = ON`
 
@@ -380,7 +308,7 @@ Since the RPM filter works with very narrow notch filters, it's imperative that 
 
 `set dshot_bidir = ON`
 
-See if your motors still spin up. If so try detach the USB cable, connect a battery and reconnect USB. Now go to the CLI and type `status`. You should see DSHOT telemetry being reported. The reported RPM should be zero for each motor and there should be few errors.
+See if your motors still spin up. If so try detach the USB cable, connect a battery and reconnect USB. Now go to the CLI and type `status`. You should see Dshot telemetry being reported. The reported RPM should be zero for each motor and there should be few errors.
 
 ### Motor Poles
 
@@ -449,5 +377,3 @@ set tpa_breakpoint = 1250
 [Bidirectional Dshot PR](https://github.com/betaflight/betaflight/pull/7264)
 
 [Rpm Filter PR](https://github.com/betaflight/betaflight/pull/7271)
-
-A test version of blheli32 with erpm telemetry on signal line support is now [available](https://github.com/bitdump/BLHeli/tree/master/BLHeli_32%20ARM). Download your ESC firmware for your target from `BLHeli_32 Test code Rev32.6.X hex files` folder where `X` is the current test revision.
