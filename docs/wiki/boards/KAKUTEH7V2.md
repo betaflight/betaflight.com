@@ -48,7 +48,7 @@ Top View
 ![](/img/boards/kakuteh7v2/kakuteh7v2_pinout.jpg?raw=true)
 
 Pin
-![](https://https://docs.holybro.com/fpv-flight-controller/kakute-h7-v2/pinout?raw=true)
+![](https://docs.holybro.com/fpv-flight-controller/kakute-h7-v2/pinout?raw=true)
 
 ## Target Code
 
