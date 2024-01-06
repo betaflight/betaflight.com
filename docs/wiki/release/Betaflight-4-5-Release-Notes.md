@@ -370,7 +370,7 @@ Thanks to: Tdogb, Limonspb, karatebrot
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
-To use: include `QUICK_MENU` in Custom Defines when building, and enter `set osd_use_quick_menu = ON` in the CLI
+To use: include `OSD_QUICK_MENU` in Custom Defines when building, and enter `set osd_use_quick_menu = ON` in the CLI
 
 For more information see [PR 12977](https://github.com/betaflight/betaflight/pull/12977)
 
