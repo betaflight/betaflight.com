@@ -31,7 +31,7 @@ Always test new firmware carefully and in a controlled environment!
 - [Failsafe changes](#9-failsafe-changes) Minor changes only, mostly to improve safety in edge cases, with a minor change to the `RX_LOSS` message and with `NOT_DISARMED` replacing `BADRX` when the radio link becomes active while the arm switch is enabled.
 - [Dimmable RPM harmonics](#10-dimmable-rpm-harmonics) Allows attenuation of individual RPM harmonics if one of the three RPM filters isn't needed as much as the other two.  This can slightly reduce overall filter lag, especially in triblade setups.
 - [Adjustable initial dynamic idle value](#11-customisable-initial-dynamic-idle-percentage) This allows the user to modify the initial motor drive percentage when dynamic idle is enabled but you haven't yet taken off, in case the default of 5% is too low or too high.
-- [ExLanding](#12-ezlanding) Weakens throttle response and iTerm when throttle is close to zero and sticks are centered, calming aggressive reactions when landing.
+- [EzLanding](#12-ezlanding) Limit PID response when throttle is low and sticks are centered, calming aggressive reactions when landing.
 - [Low throttle TPA](#13-low-throttle-tpa) Allows TPA mediated inhibition at the very low end of the throttle range, for quads that are really excitable while waiting on the ground.  Optionally can be applied throughout the flight.
 - [CLI binding for TBS Rx](#14-crsf-binding-via-cli-for-tbs-receivers) - Useful when you can't get to the Bind button easily.
 - [Improved landings for wings](#15-keep-i-term-at-zero-for-fixed-wings-at-zero-throttle) iTerm is now kept active for wings while gliding into land, at zero throttle.
