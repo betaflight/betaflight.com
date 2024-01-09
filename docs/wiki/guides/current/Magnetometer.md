@@ -104,12 +104,14 @@ In Betaflight 4.5, the CLI variable `mag_declination` was introduced, to correct
 
 ## Hardware and Connection
 
-Betaflight's build system must include `Magnetometers`, from the dropdown in the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware. Additionally, GPS firmware should be included in the build, because we display the Mag heading on Configurator's GPS tab, and use GPS debugs to display the Mag heading information.
+Betaflight's build system must include `Magnetometers`, from the dropdown in the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware. There is no need to explicitly request the inclusion of any specific driver for a specific mag, because all supported Mag drivers will be included in the build.
+
+Additionally, GPS firmware should be included in the build, because we display the Mag heading on Configurator's GPS tab, and becayse GPS debugs are used to display Mag heading information.
 
 Betaflight provides drivers for the following magnetometers, but not all have been validated to work with Betaflight 4.5 at the time of writing:
 
-- [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)[^8]. The QMC5883L is provided on the common, and cheap, GY-217 module, and many GPS units. It provides a 200Hz data update rate, 8x sample averaging and 3000 LSB/Gauss sensitivity. Standard axis orientation. We recommend using this mag if it is an option for your build, because it's performance has been validated during testing - we know it works well.
-- [IST8310](https://intofpv.com/attachment.php?aid=8104)[^9] Note that this gyro has a highly unusual axis orientation, with Y to the _right_ when X is forward and Z is up, and will _always_ require a custom axis orientation in the CLI. Data update rate is 160Hz with 16x sample averaging and 330 LSB/Gauss sensitivity.
+- [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)[^8]. The QMC5883L is provided on the common, and cheap, GY-217 module, and many GPS units. It provides a 200Hz data update rate, 8x sample averaging and 3000 LSB/Gauss sensitivity. Standard axis orientation. Default i2c address 13. We recommend using this mag if it is an option for your build, because it's performance has been validated during testing - we know it works well.
+- [IST8310](https://isentek.com/userfiles/files/IST8310Datasheet_3DMagneticSensors.pdf)[^9] Note that this Mag has a highly unusual axis orientation. Y is to the _right_ when X is forward and Z is up. This Mag will _always_ require a custom axis orientation in the CLI. Data update rate is 160Hz with 16x sample averaging and 330 LSB/Gauss sensitivity. Also note that the IST8310 can have any of four i2c addresses, depending on how the manufacturer of the FC wires it up. Betaflight's driver will connect automatically if the address is configured to be 12, the manufacturer's recommended default. If it does not connect automatically, try set `mag_i2c_device` to either 13, 14 or 15, one of those values should work.
 - [STM's LIS3MDL](https://www.st.com/resource/en/datasheet/lis3mdl.pdf)[^10] This mag is integral to a combined Gyro, Acc and Mag '9 axis' chip from STM. Standard axis orientation.
 - [HMC5883L](https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf)[^7] ODR is 75Hz with 1090 LSB/Gauss sensitivity; discontinued and replaced by the QMC6883L. Standard axis orientation. Validated.
 - Deprecated: [AK8963](https://www.alldatasheet.com/datasheet-pdf/pdf/535561/AKM/AK8963.html)[^5] and [AK8975](https://www.alldatasheet.com/datasheet-pdf/pdf/535562/AKM/AK8975.html)[^6], (both discontinued; some versions have Z up, others down, all return standard axis orientation when mounted with X forward).
@@ -125,13 +127,18 @@ Magnetometer detection takes place on power up. Make sure that the Mag powers up
 
 :::
 
-The magnetometer is usually connected via i2C. Wire up the SCL and SDA pins on the module to the pins of the same name on the FC, and power the module with either 5V or 3.3V depending its requirements.
+The magnetometer is usually connected via i2C. All supported magnetometers are specified only up to 400Hz 'fast' mode. Wire up the SCL and SDA pins on the module to the pins of the same name on the FC, and power the module with either 5V or 3.3V depending its requirements.
 
-When connected by i2C, the following CLI settings are needed:
+When connected by i2C, the following CLI settings usually work:
 
 - `set mag_bustype = I2C`
 - `set mag_i2c_address = 0` (automatically determine from the connected Mag)
-- `set mag_i2c_device = 1` (always 1, not sure why)
+- `set mag_i2c_device = 1` (depending on which i2c bus the FC has pinned out; this is usually set automatically for you if the board config is correct)
+
+If the mag is not detected:
+
+- it could be that the FC is using i2c device 2, not device 1, for external i2c mag or baro chips. Check the data sheet for the FC. You can try using `set mag_i2c_device = 2` to see if it will connect.
+- the IST8310 may be not connect on its default address of 12. If it is not detected with `set mag_i2c_address = 0`, try `mag_i2c_address` values of 13, 14 or 15..
 
 When the firmware is built with Mag support, the Accelerometer enabled, and a supported Magnetometer is wired up properly, Mag can be enabled in the Configurator's System Configuration tab, and saved. From that point:
 
