@@ -57,7 +57,7 @@ export default function Home({ recentPosts }: BlogProps) {
         <div className="flex flex-col xl:w-4/5 m-4 space-y-4">
           <div className="backdrop-blur-md shadow-xl flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
             <p className="text-center text-md">
-              <h2 className="text-primary-600 font-bold text-3xl mb-4">Pushing the Limits of UAV Performance</h2>
+              <h2 className="text-primary-600 font-bold text-2xl md:text-3xl mb-4">Pushing the Limits of UAV Performance</h2>
               <p className="xs:text-sm sm:text-lg xl:text-xl">
                 Betaflight is the world's leading multi-rotor flight control software.<br></br>
                 The global FPV drone racing and freestyle community choose Betaflight for its performance, precision, cutting edge features, reliability and hardware support.<br></br>

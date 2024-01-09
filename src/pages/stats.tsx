@@ -277,15 +277,15 @@ export default function Stats() {
       <div className="xl:max-w-[1920px] w-full p-6 mt-0 xl:mt-16">
         <HomepageFeature blur title="Cloud Build Statistics">
           <div className="flex flex-col w-full h-full">
-            <h2 className="text-primary-600 text-3xl font-bold">Total Builds</h2>
+            <h2 className="text-primary-600 text-xl md:text-2xl font-bold">Total Builds</h2>
             <MajorChartWrapper />
             <div className="flex xl:flex-row flex-col mt-12">
               <div className="xl:w-1/2 w-full">
-                <h2 className="text-primary-600 text-3xl font-bold">Top 5 Targets</h2>
+                <h2 className="text-primary-600 text-xl md:text-2xl font-bold">Top 5 Targets</h2>
                 <MinorChartWrapper type="targets" />
               </div>
               <div className="xl:w-1/2 w-full xl:mt-0 mt-12">
-                <h2 className="text-primary-600 text-3xl font-bold">Top 3 Releases</h2>
+                <h2 className="text-primary-600 text-xl md:text-2xl font-bold">Top 3 Releases</h2>
                 <MinorChartWrapper type="releases" />
               </div>
             </div>
