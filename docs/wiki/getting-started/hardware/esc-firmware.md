@@ -24,7 +24,7 @@ Bidirectional Dshot has evolved from simple RPM telemetry using the ESC signal w
 | EDTv1         | Adds voltage, current, temperature to RPM data returned over the ESC signal wires.                                                             |
 | EDTv2         | Adds ESC status events (stress level, stall, desync). ESC detects the demag/no-cross/cross sequence and reports when sequence is not followed. |
 
-Note - Current telemetry is not usually available via EDT on 4in1 ESCs because there is usually only a single current sensors, not a sensor connected to each ESC.
+Note - Current telemetry is not usually available via EDT on 4in1 ESCs because there is usually only a single current sensor, not a sensor connected to each ESC.
 
 ## 32bit ESC firmwares
 
