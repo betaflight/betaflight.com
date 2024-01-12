@@ -16,7 +16,7 @@ The Bidirectional Dshot protocol can be enabled in the [Configurator Motors Tab]
 
 ### Bidirectional Dshot Versions
 
-Bidirectional Dshot has evolved from simple RPM telemetry to use the ESC signal wire to return data from MCUs without requiring a UART dedicated to ESC_SENSOR. EDT expands the remit of Bidirectional Dshot to enable MCUs without a dedicated telemetry wire to report voltageand temperature.
+Bidirectional Dshot has evolved from simple RPM telemetry using the ESC signal wire to return data from MCUs without requiring a UART dedicated to ESC_SENSOR. EDT expands the remit of Bidirectional Dshot to enable MCUs without a dedicated telemetry wire to report voltage and temperature.
 
 | Version       | Features                                                                                                                                       |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
