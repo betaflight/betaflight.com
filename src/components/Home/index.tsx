@@ -101,9 +101,12 @@ export default function Home({ recentPosts }: BlogProps) {
               </div>
               <div className="p-0 ml-2 mr-2 w-4/5 xs:w-1 lg:w-2/5">
                 <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener">
-                  <img
-                    alt="DogCom"
-                    src="/img/betaflight/sponsors/dogcom.svg"
+                  <ThemedImage
+                    alt="Dogcom"
+                    sources={{
+                      light: useBaseUrl('/img/betaflight/sponsors/dogcom_light.svg'),
+                      dark: useBaseUrl('/img/betaflight/sponsors/dogcom_dark.svg'),
+                    }}
                   />
                 </a>
               </div>
