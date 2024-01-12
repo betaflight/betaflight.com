@@ -14,6 +14,18 @@ An ESC is the Electronic Speed Controller which supplies power to the craft's mo
 
 The Bidirectional Dshot protocol can be enabled in the [Configurator Motors Tab](/docs/wiki/configurator/motors-tab#escmotor-features). Modern Bidirectional Dshot is different (and more robust) in BetaFlight 4.5 than BetaFlight 4.0. The ESC firmware must be correct to ensure support for Dshot Telemetry and provide the best Betaflight performance. We strongly recommend the use of Dshot in conjunection with RPM filtering for the benefits in handling and smooth flight.
 
+### Bidirectional Dshot Versions
+
+Bidirectional Dshot has evolved from simple RPM telemetry using the ESC signal wire to return data from MCUs without requiring a UART dedicated to ESC_SENSOR. EDT expands the remit of Bidirectional Dshot to enable MCUs without a dedicated telemetry wire to report voltage and temperature.
+
+| Version       | Features                                                                                                                                       |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| RPM telemetry | Sends RPM data from ESC to FC using ESC signal wires.                                                                                          |
+| EDTv1         | Adds voltage, current, temperature to RPM data returned over the ESC signal wires.                                                             |
+| EDTv2         | Adds ESC status events (stress level, stall, desync). ESC detects the demag/no-cross/cross sequence and reports when sequence is not followed. |
+
+Note - Current telemetry is not usually available via EDT on 4in1 ESCs because there is usually only a single current sensor, not a sensor connected to each ESC.
+
 ## 32bit ESC firmwares
 
 **For 32bit ESCs**, options include the following
@@ -72,9 +84,11 @@ BlueJay is easily flashed with an elegant online flashing tool [ESC Configurator
 
 | Version    | Recommended | Comment                                                                                                |
 | ---------- | ----------- | ------------------------------------------------------------------------------------------------------ |
-| 0.19.2     | `Y`         | Current stable version, supports RPM filtering and EDT. Upgrade to this version unless you fly 3D mode |
+| 0.17       | `N`         | EDTv1, 3D mode broken.                                                                                 |
+| 0.18       | `N`         | EDTv1, 3D mode broken.                                                                                 |
+| 0.19.2     | `Y`         | Current stable version, supports RPM filtering & EDTv2. Upgrade to this version unless you fly 3D mode |
 | 0.20       | `N`         | Old testing version, withdrawn from release due to problems.                                           |
-| 0.20.1-RC2 | `N`\*       | Latest test code. Includes EDT v2 support.                                                             |
+| 0.20.1-RC2 | `N`\*       | Latest test code. Includes EDT v2 support. 3D mode working                                             |
 
 _\*Recommended if you fly 3D as this fixes 3D mode transitions. Please read [Configurator Guide notes on 3D Mode](/docs/wiki/configurator/motors-tab#3d-escmotor-features) before enabling._
 
