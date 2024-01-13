@@ -34,18 +34,24 @@ git commit --amend --reset-author
 
 # Windows:
 
-    git config --global core.autocrlf true
+```
+git config --global core.autocrlf true
+```
 
 # Linux/OSX:
 
-    git config --global core.autocrlf input
+```
+git config --global core.autocrlf input
+```
 
 # Cross-platform:
 
-    git config --global core.safecrlf warn
-    git config --global core.whitespace cr-at-eol
-    git config --global core.filemode false
-    git config --global help.autocorrect true
+```
+git config --global core.safecrlf warn
+git config --global core.whitespace cr-at-eol
+git config --global core.filemode false
+git config --global help.autocorrect true
+```
 
 ## Setup remotes
 
