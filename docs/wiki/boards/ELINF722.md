@@ -1,3 +1,6 @@
+---
+id: ELINF722
+---
 # Elin F722
 
 ## Hardware Features

@@ -1,6 +1,6 @@
-# Seriously Pro SP Racing H7 NANO
+# SP Racing H7 NANO
 
-The SPRacingH7NANO flight controller features a 400Mhz H7 CPU that runs twice as fast as the previous generation F7 boards.
+The Seriously Pro SPRacingH7NANO flight controller features a 400Mhz H7 CPU that runs twice as fast as the previous generation F7 boards.
 A fast control-loop is what you need for perfect flight performance, the H7 at 400Mhz gives you all the processing power you need.
 
 The SPRacingH7NANO is features a 20x20 mounting pattern, has integrated 5V BEC and 128MB BlackBox logging and has support for

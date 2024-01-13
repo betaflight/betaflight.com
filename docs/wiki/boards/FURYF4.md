@@ -1,4 +1,4 @@
-# **Overview**
+# FuryF4
 
 The FuryF4 is the next iteration in the Fury line of flight controllers. Designed around the STM32F4 MCU, it features a simple layout that makes connecting components convenient and easy to accomplish. The FuryF4 utilizes an SPI gyro (MPU-6000 or ICM-20689) for super fast communication with the MCU. Flight logging can be easily done by writing to the onboard data flash or SDCard slot.
 

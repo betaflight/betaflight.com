@@ -1,4 +1,8 @@
-# IFlightF4_TWIN_G
+---
+id: IFLIGHT_F405_TWING
+---
+
+# IFlightF4 Twin Gyro
 
 > **IFlightF4_TWIN_G : Real Twin Gyroscopes.**
 >

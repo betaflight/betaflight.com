@@ -1,4 +1,4 @@
-# Board - HAKRCF722D
+# HAKRCF722D
 
 ### Hardware and Features
 
