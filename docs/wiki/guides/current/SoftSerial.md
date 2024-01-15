@@ -1,6 +1,6 @@
 # SoftSerial
 
-Softserial provides a means to add another 'virtual' UART on MPU's with a limited number of pinned-out true UART ports.
+Softserial provides a means to add another 'virtual' UART on MCU's with a limited number of pinned-out true UART ports, eg F411's.
 
 When using Softserial, keep in mind that:
 
@@ -10,7 +10,7 @@ When using Softserial, keep in mind that:
 - The baud rate on all Softserial ports must be the same
 - It is always better to use a hardware UART if one is available
 
-Softserial is effective for providing a single extra Tx pin on the MPU for single-wire data streams, eg :
+Softserial is effective for providing a single extra Tx pin on the FC for single-wire data streams, eg :
 
 - Analog VTx control (SmartAudio, Tramp etc)
 - S.Port Telemetry (FrSky), a bi-directional single-wire interface.
@@ -22,25 +22,25 @@ Softserial can also be used to assign one of hardware UART's pins to a separate 
 Softserial must not be used for:
 
 - serial RC control receivers
-- MSP-based Configuration tools such as bluetooth dongles etc.
+- MSP connections such as bluetooth dongles, MSP HD OSD connections; these are not permitted in 4.5.
 
-Softserial typically requires a 4k PID loop even on high performance MPU's.
+Softserial typically requires a 4k PID loop even on high performance MCU's.
 
 :::
 
 This table summarises possible usage situations:
 
-| Purpose                                                   | Notes                                                                                 |
-| --------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Serial RC Receiver                                        | Do not use Softserial, use a real UART                                                |
-| MSP Configuration using Bluetooth                         | Do not use Softserial, use a real UART                                                |
-| GPS Rescue or GPS for position hold                       | Do not use Softserial, use a real UART                                                |
-| Blackbox over serial port                                 | Do not use Softserial, use a real UART                                                |
-| Analog Vtx Control                                        | Assign a Softserial Tx pin; one-way data from MPU to VTx                              |
-| HD Vtx Control/OSD over MSP                               | Assign a Softserial Tx pin, keep the OSD simple, use 4k PID loop                      |
-| Single-wire communication protocols like S.Port telemetry | Assign a Softserial Tx pin, should be OK provided that the data rate is not excessive |
-| GPS for position data at 1Hz                              | See notes below                                                                       |
-| Camera control                                            | Assign a Softserial Tx pin; may require hardware resistor to work                     |
+| Purpose                                                   | Notes                                                                                  |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Serial RC Receiver                                        | Do not use Softserial, use a real UART                                                 |
+| MSP Configuration using Bluetooth                         | Do not use Softserial, use a real UART; not permitted in 4.5                           |
+| GPS Rescue or GPS for position hold                       | Do not use Softserial, use a real UART                                                 |
+| Blackbox over serial port                                 | Do not use Softserial, use a real UART                                                 |
+| Analog Vtx Control                                        | Assign a Softserial Tx pin; one-way data from FC to VTx                                |
+| HD Vtx Control/OSD over MSP                               | Assign a Softserial Tx pin, keep the OSD simple, use 4k PID loop; not permitted in 4.5 |
+| Single-wire communication protocols like S.Port telemetry | Assign a Softserial Tx pin, should be OK provided that the data rate is not excessive  |
+| GPS for position data at 1Hz                              | See notes below                                                                        |
+| Camera control                                            | Assign a Softserial Tx pin; may require hardware resistor to work                      |
 
 ### Softserial with GPS
 
@@ -57,27 +57,38 @@ When the GPS is intended for GPS Rescue purposes, Betaflight requires bi-directi
 
 ### Softserial with HD OSD (displayport) over MSP
 
-This is not recommended, though it _may_ work. Both a SoftserialTx and an Softserial Rx pin must be defined. The data rate with anything but the simplest OSD would likely overwhelm the connection. Note that softserial is limited to 19200 baud so don't use rates above that.
+This is possible, but not recommended, before 4.5, though it _may_ work. Both a SoftserialTx and an Softserial Rx pin must be defined. The data rate with anything but the simplest OSD would likely overwhelm the connection. Note that softserial is limited to 19200 baud so don't use rates above that. In 4.5, the user of softserial for MSP connections is not permitted.
 
 ### Enabling Softserial
 
-Softserial requires custom CLI commands. A unused pin with an associated timer must be found, where the original purpose no longer is needed. The most common are PPM pins or LED_STRIP pins. Not all such pins will work on all boards, and you may need to do some reseach about using softserial on your board before you can make it work.
+:::note
+
+The new command for assigning a pin to Softserial 1 in Betaflight 4.5 and higher is:
+`RESOURCE SOFTSERIAL_TX 1 <pin>`
+
+For Betaflight 4.4 and earlier the equivalent command would be:
+`RESOURCE SERIALTX 11 <pin>`
+
+:::
+
+Softserial requires custom CLI commands. An unused pin with an associated timer must be found, where the original purpose no longer is needed. The most common are PPM or LED_STRIP pins. Not all such pins will work on all boards, and you may need to do some reseach about using softserial on your board before you can make it work.
 
 First go to the CLI and type `resource`, to get a list of the currently assigned pin numbers for each of the currently available pads on the device.
 
-If, for instance, a `LED_STRIP 1` pin is defined to `A15`, and there is a LedStrip pad on the board, and you are not using a led strip, you could de-assign that pin from `LED_STRIP 1` with the CLI command:
+If, for instance, a `LED_STRIP 1` pin is assigned to `A15`, and there is a LedStrip pad on the board, and you are not using it, you could de-assign that pin from `LED_STRIP 1` with the CLI command:
 
 `resource led_strip 1 none`
 
-Then the pin can be assigned to the Softserial Port 1 Tx pin with:
+Then the pin can be assigned to the Softserial Port 1 Tx pin. The commands have changed:
 
-`resource serialTx 11 A15`
+- in Betaflight 4.5 and higher: `RESOURCE SOFTSERIAL_TX 1 A15`
+- in Betaflight 4.4 and lower: `RESOURCE SERIALTX 11 A15`
 
-If the resource reassignment is successful, a `diff` command in CLI will show:
+If the resource reassignment is successful, a `diff` command in CLI for 4.5 will show:
 
 ```
 resource LED_STRIP 1 NONE
-resource SERIAL_TX 11 A15
+resource SOFTSERIAL_TX 1 A15
 ```
 
 Note:
@@ -103,7 +114,7 @@ For more information, see the 'Serial' page in the Development section.
 
 ### Historical notes:
 
-The following notes are quite old, and may not be relevant to current versions of Betaflight
+The following notes are quite old, and may not be relevant to current versions of Betaflight. They illustrate commands for versions 4.4 and earlier.
 
 CLI commands to assign softserial ports 1 and 2:
 
