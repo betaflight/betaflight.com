@@ -358,7 +358,7 @@ Using the sensors tab to check max and min values for each axis can also validat
 
 Heading information is provided to the quad by the GPS unit (course over ground), the IMU (gyro information while turning quickly), and the Mag unit. The IMU code uses 'sensor fusion' methods to integrate the available data to a final 'attitude' or 'heading' value for the quad.
 
-The current Heading is shown shown on the main front screen of Configurator, at the top left of the quad icon area. If Mag is enabled, the heading shown reflects Mag data, and will return a value indicating the angle of the nose of the quad relative to North. Without a mag, the heading value always starts at 0 or 359 degrees, and only changes because integral of the gyro data can be used to indicate a relative change in yaw since arming.
+The current Heading is shown on the main front screen of Configurator, at the top left of the quad icon area. If Mag is enabled, the heading shown reflects Mag data, and will return a value indicating the angle of the nose of the quad relative to North. Without a mag, the heading value always starts at 0 or 359 degrees, and only changes because integral of the gyro data can be used to indicate a relative change in yaw since arming.
 
 If the code is built with GPS support, both the current Mag heading and the GPS course over ground heading are shown in Configurator's GPS tab.
 
