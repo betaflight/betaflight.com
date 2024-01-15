@@ -10,7 +10,7 @@ Plug & play connectivity with most popular 4in1 ESCs.
 ### Hardware
 
 - MCU: STM32F722
-- IMU: MPU-6000
+- IMU: BMI270, ICM-42688-P, MPU-6000, or MPU-6500.
 - 6 DSHOT motors outputs
 - BMP280 SPI
 - 5 hardware UARTs
