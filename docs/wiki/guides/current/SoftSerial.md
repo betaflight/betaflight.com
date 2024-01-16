@@ -53,11 +53,15 @@ GPS modules can be used for two quite different purposes:
 
 For simple position data, if the GPS module has been pre-configured, in uCenter or pyGpsClient, to power up at a low baud rate, eg 19200 baud, or 9600 baud, and to send position data values alone at 1Hz, then Betaflight only needs a single Rx pin to receive that data. This can be a softserial pin. In the GPS tab, auto-configuration _must_ be disabled. The baud rate for the softserial port must be set to match the GPS's power up baud rate. Test first with a real Rx pin and be absolutely certain you are not sending unwanted data, eg satellite position information. You should not expect to see a satellite list in Configurator, only Latitude, Longitude, Altitude, etc. If this works on a real Rx pin, then test it on on a Softserial pin.
 
-When the GPS is intended for GPS Rescue purposes, Betaflight requires bi-directional communication with the GPS module during the initialisation phase, so that we can configure the data rate, request only the data we need, and block any other junk that we don't need. To configure the GPS requires both Rx and Tx lines. Auto-configuration requires moving through all the available baud rates that the GPS may connect on. For most modern GPS modules, the defdault baud rate is 57600, which is too high for a two-wire Softserial setup to work with. As a result the GPS is likely to not get configured properly, and auto-configuration will fail. Even with a manually-configured GPS, with a single Rx pin on the FC for softserial set to 19200 baud and 2Hz, and with GPS auto-configuration disabled, the best you could hope for would be a very jerky GPS Rescue that may fail at any time.. Hence we strongly discourage the use of SoftSerial for GPS Rescue.
+We strongly discourage the use of SoftSerial for GPS Rescue purposes.
+
+When the GPS is for GPS Rescue purposes, Betaflight requires bi-directional communication with the GPS module during the auto-configuration phase, so that we can set the module's baud rate, data rate, and request only the data we need. To auto-configure the GPS requires both Rx and Tx lines. For most modern GPS modules, the defdault baud rate is 57600, which is too high for a two-wire Softserial setup to work with. As a result, auto-configuration is likely to fail. With auto-configuration disabled, a manually-configured GPS, connected to a single Softserial Rx pin on the FC at 19200 baud and 2Hz may work, but the rescues would very jerky and unreliable. Don't take chances, use a real UART.
 
 ### Softserial with HD OSD (displayport) over MSP
 
-This is possible, but not recommended, before 4.5, though it _may_ work. Both a SoftserialTx and an Softserial Rx pin must be defined. The data rate with anything but the simplest OSD would likely overwhelm the connection. Note that softserial is limited to 19200 baud so don't use rates above that. In 4.5, the user of softserial for MSP connections is not permitted.
+In 4.5, the user of softserial for MSP connections is not permitted.
+
+It is possible, but not recommended, to use softserial for MSP ports in 4.4 and earlier. Both a SoftserialTx and an Softserial Rx pin must be defined. The data rate with anything but the simplest OSD would likely overwhelm the connection. Note that softserial is limited to 19200 baud so don't use rates above that.
 
 ### Enabling Softserial
 
