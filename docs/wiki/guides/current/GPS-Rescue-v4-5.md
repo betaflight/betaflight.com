@@ -159,7 +159,7 @@ The defaults should be good for initial tests, but there are some important thin
 
 | Data Rate | Baud Rate       | CPU cost | Comments                                                          |
 | --------- | --------------- | -------- | ----------------------------------------------------------------- |
-| 20hz      | 11500           | Highest  | M10 only; test carefully!                                         |
+| 20hz      | 115200          | Highest  | M10 only; test carefully!                                         |
 | 10hz      | 38400 or higher | Medium   | 57600 and 10hz is recommended for GPS Rescue                      |
 | 5hz       | 19200 or higher | Medium   | For GPS Rescue or general use                                     |
 | 1-2Hz     | 9600 or higher  | Leasts   | Too slow for smooth GPS rescue, OK for simple position/speed info |
