@@ -101,6 +101,8 @@ Note: for Identifier see serialPortIdentifier_e in the source; for Function bitm
 - ID's 40-49 reserved for LPUART 1-10
 - Other devices can be added starting from id 50.
 
+:::
+
 In firmware 4.5 for SOFTSERIAL or LPUART we use the following resources:
 
 ```
