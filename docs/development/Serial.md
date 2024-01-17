@@ -11,7 +11,7 @@ Not all functions can be used on all ports due to hardware pin mapping, conflict
   a dedicated USB to UART adapter. VCP does not 'use' a physical UART port.
 - UART - A pair of dedicated hardware transmit and receive pins with signal detection and generation done in hardware.
 - SoftSerial - A pair of hardware transmit and receive pins with signal detection and generation done in software.
-- LPUART - A "Low Power" UART format available on G4 and other MCU's. By default LPUARTs are limited to 9600 Baud, but Betaflight reconfigures them to work just like a normal UART. Typically there is only one LPUART, LPUART1. It's pin assignment is normally shown as `SERIAL_TX 11` and `SERIAL_RX 11` with the `RESURCES` command.
+- LPUART - A "Low Power" UART format available on G4 and other MCU's. By default LPUARTs are limited to 9600 Baud, but Betaflight reconfigures them to work just like a normal UART. Typically there is only one LPUART, LPUART1. It's pin assignment is normally shown as `SERIAL_TX 11` and `SERIAL_RX 11` with the `RESOURCE` command.
 
 A "real" UART is the most efficient in terms of CPU usage.
 SoftSerial is the least efficient and slowest. SoftSerial should only be used for low-bandwidth, low-priority applications, such as sending or receiving telemetry data.
