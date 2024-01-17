@@ -101,16 +101,16 @@ Note: for Identifier see serialPortIdentifier_e in the source; for Function bitm
 - ID's 40-49 reserved for LPUART 1-10
 - Other devices can be added starting from id 50.
 
-:::
+In firmware 4.5 for SOFTSERIAL or LPUART we use the following resources:
 
-:::info
-
-In firmware 4.5 for SOFTSERIAL or LPUART we now for example have the following resources:
-
+```
 resource SOFTSERIAL_TX 1 <PIN>
+resource SOFTSERIAL_RX 1 <PIN>
+resource SOFTSERIAL_TX 2 <PIN>
+resource SOFTSERIAL_RX 2 <PIN>
 resource LPUART_TX 1 <PIN>
-
-:::
+resource LPUART_RX 1 <PIN>
+```
 
 ### 2. Serial Port Function
 
