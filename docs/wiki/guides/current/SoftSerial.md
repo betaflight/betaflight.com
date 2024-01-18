@@ -73,7 +73,7 @@ If auto-configuration is disabled, the GPS must be manually configured to boot u
 
 ### Softserial with HD OSD (displayport) over MSP
 
-In 4.5, the user of softserial for MSP connections, including for HD OSD's is not permitted.
+In 4.5, the use of softserial for MSP connections, including for HD OSD's is not permitted.
 
 It is possible, but not recommended, to use softserial for MSP ports in 4.4 and earlier. Both a Tx and an Rx pin must be defined. The data rate with anything but the simplest OSD would likely overwhelm the connection. Note that softserial is limited to 19200 baud so don't use rates above that.
 
