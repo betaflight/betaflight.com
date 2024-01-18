@@ -42,6 +42,14 @@ const config = {
 
   themes: ['@docusaurus/theme-mermaid'],
 
+  scripts: [
+    {
+      src: 'https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js',
+      'data-app-id': 'CDC108A1-CA11-4111-B086-0474C07C3D0F',
+      async: false,
+    },
+  ],
+
   plugins: [
     [
       './plugins/blog-plugin',
