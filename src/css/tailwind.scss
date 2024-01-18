@@ -12,27 +12,27 @@
   h1,
   header h1 {
     @apply text-3xl font-bold text-primary-600;
-    @apply m-0 mt-3;
+    @apply mt-4 mb-4;
   }
 
   h2 {
     @apply text-2xl font-bold text-primary-600;
-    @apply mt-0 mb-3;
+    @apply mt-8 mb-4;
   }
 
   h3 {
     @apply text-xl font-bold text-primary-600;
-    @apply mt-4 mb-3;
+    @apply mt-6 mb-4;
   }
 
   h4 {
     @apply text-lg font-bold text-primary-600;
-    @apply mt-4 mb-3;
+    @apply mt-5 mb-4;
   }
 
   h5 {
     @apply  font-bold text-primary-600;
-    @apply mt-4 mb-3;
+    @apply mt-4 mb-4;
   }
 
   h6 {
@@ -45,8 +45,7 @@
     @apply p-1 m-1;
   }
   
-  code
- {
+  code {
     @apply text-xs;
     @apply p-1 m-0;
   }
