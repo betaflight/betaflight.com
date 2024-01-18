@@ -35,6 +35,7 @@ Always test new firmware carefully and in a controlled environment!
 - [Low throttle TPA](#13-low-throttle-tpa) Allows TPA mediated inhibition at the very low end of the throttle range, for quads that are really excitable while waiting on the ground.  Optionally can be applied throughout the flight.
 - [CLI binding for TBS Rx](#14-crsf-binding-via-cli-for-tbs-receivers) - Useful when you can't get to the Bind button easily.
 - [Improved landings for wings](#15-keep-i-term-at-zero-for-fixed-wings-at-zero-throttle) iTerm is now kept active for wings while gliding into land, at zero throttle.
+- [Changed Soft Serial pin assignment command](#16-changed-soft-serial-pin-assignment-cli-command) Use `RESOURCE SOFTSERIALTX 1 <pin>` instead of `RESOURCE SERIALTX11 <pin>`.
 - [Custom Build Options](#16-custom-build-options):
     - [RPM Limiter](#161-rpm-limiter-build-option) Limits the maximum average RPM, for Spec racing.
     - [Quick OSD](#162-quick-osd-menu-build-option) Adds an OSD page that allows the user to make most race-related changes in one place.
@@ -104,7 +105,7 @@ The GPS tab in Configurator has been updated to include a more useful satellite 
 
 An edge case issue where the motors could spin up if the Rx link initiated at a vulnerable time, and when GPS Rescue was set to ignore home point, was fixed.
 
-Please carefully read the [GPS Rescue 4.5 documentation](https://betaflight.com/docs/wiki/guides/current/GPS-Rescue-v4-5) for more information.
+Please carefully read the [GPS Rescue 4.5 documentation](/docs/wiki/guides/current/GPS-Rescue-v4-5) for more information.
 
 Thanks to: ctzsnooze, ledvinap, SteveCEvans, Zzyzx, haslinghuis
 
@@ -133,7 +134,7 @@ Important: note that after initiating a calibration, the frame of the quad must 
 
 The `MAG_CALIB` and `MAG_TASK_RATE` debugs have been added to investigate calibration and scheduling issues.
 
-Please read the [note](https://betaflight.com/docs/wiki/guides/current/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
+Please read the [note](/docs/wiki/guides/current/Magnetometer) carefully, and test it thoroughly, before using the Mag in a GPS Rescue.  Note that the current default for GPS Rescue is to use the Mag.  If you are not 100% sure that your Mag is working, don't use it.
 
 Thanks to: pichim, ctzsnooze, SteveCEvans, ledvinap
 
@@ -326,7 +327,28 @@ Improves handling of fixed wings when throttle is zero, by maintaining iTerm eve
 
 Thanks to: Limonspb
 
-## 16. Custom build options
+## 16. Changed Soft Serial Pin assignment CLI command
+
+For Betaflight 4.5 and higher, Soft Serial pin assignment must be made using CLI commands in the form `RESOURCE SOFTSERIALTX 1 <pin>`
+
+| New Command | Old Command |
+| ------- | -------- |
+| `RESOURCE SOFTSERIALRX 1 <pin>` | `RESOURCE SERIALRX11 <pin>` |
+| `RESOURCE SOFTSERIALTX 1 <pin>` | `RESOURCE SERIALTX11 <pin>` |
+| `RESOURCE SOFTSERIALRX 2 <pin>` | `RESOURCE SERIALRX12 <pin>` |
+| `RESOURCE SOFTSERIALTX 2 <pin>` | `RESOURCE SERIALTX12 <pin>` |
+
+A maximum of two Soft Serial ports can be enabled. For more information, see the [SoftSerial guide](/docs/wiki/guides/current/softserial).
+
+:::note
+
+Copying a diff file from 4.4 or earlier into 4.5, with defined Soft Serial pins, will generate an error.  You'll need to re-define those pins in the CLI with the new commands.
+
+:::
+
+Thanks to: DieHertz
+
+## 17. Custom build options
 
 These are additional code blocks that will only be available if they are built into the firmware that is flashed onto the FC. They are optional because either they are still in development, or cater for the requirements of a small group of users.  At some point, if they become popular, we may merge them into the master code; for now, they are custom build options.
 
@@ -338,7 +360,7 @@ When making a build in a Terminal on your local computer, the build option must 
 
 The following build options were added in 4.5: 
 
-### 16.1 RPM Limiter build option
+### 17.1 RPM Limiter build option
 
 This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.  
 
@@ -366,7 +388,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 Thanks to: Tdogb, Limonspb, karatebrot
 
-### 16.2 Quick OSD Menu build option
+### 17.2 Quick OSD Menu build option
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
@@ -376,7 +398,7 @@ For more information see [PR 12977](https://github.com/betaflight/betaflight/pul
 
 Thanks to: limonspb
 
-### 16.3 RC Stats OSD build option
+### 17.3 RC Stats OSD build option
  
 This is a custom build option which adds flight throttle statistics, such as time on 100% throttle and average throttle, to the post-flight stats pages.
 
@@ -386,7 +408,7 @@ For more information, see [PR 12978](https://github.com/betaflight/betaflight/pu
 
 Thanks to: limonspb
 
-### 16.4 Pre-arm Spec Race settings OSD build option
+### 17.4 Pre-arm Spec Race settings OSD build option
  
 This is a custom build option which adds a special "prearm" OSD screen for racers, particularly spec class racers, where both pilot and race organisers can verify the settings. 
 
@@ -405,7 +427,7 @@ For more information, see [PR 13210](https://github.com/betaflight/betaflight/pu
 
 Thanks to: limonspb
 
-### 16.5 GPS Lap Timer
+### 17.5 GPS Lap Timer
 
 This is a custom build option that allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).
 
@@ -419,7 +441,7 @@ For more information see [PR 11856](https://github.com/betaflight/betaflight/pul
 
 Thanks to: SpencerGraffunder
 
-## 17. Blackbox and logging updates
+## 18. Blackbox and logging updates
 
 Un-filtered gyro and RPM data are now logged by default.  Enabling the `gyro_scaled` debug isn't needed any more for basic spectral analysis of pre- and post- filter noise in Blackbox Log Explorer.  The latest version of PID Toolbox can read this un-filtered gyro directly, but if you're using software that expects `gyro_scaled` as usual.
 
@@ -433,7 +455,7 @@ Blackbox GPS Map display, and GPX export to enable external GPS mapping.
 
 Thanks to: Zoggbarr (tbolin), bw1129, ctzsnooze, karatebrot, McGiverGim, bonchan
 
-## 18. Hardware support
+## 19. Hardware support
 
 As a result of our improving engagement with manufacturers, we were able to respond to user feedback and improve the target configs for many boards.  We are actively encouraging good design principles and working to ensure that new configurations will work reliably.
 
@@ -450,7 +472,7 @@ A number of H7 improvements and fixes were implemented.
 
 Thanks to: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, tbolin, belrik, bkleiner
 
-## 19. Other Changes and fixes
+## 20. Other Changes and fixes
 
 - configurator: haslinghuis (our Configurator guru), nerdCopter, HThuren,  VitroidFPV, McGiverGim, chmelevskij, ASDosjani, stoneman, flaviopinzarrone, lipskij, blckmn, limonspb, asizon, atomgomba, andygfpv, Benky, shanggl, benlumley, rumpelst1lzk1n
 - liaison with manufacturers: sugark, unit

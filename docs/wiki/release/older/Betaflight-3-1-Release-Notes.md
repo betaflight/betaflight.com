@@ -214,7 +214,7 @@ Betaflight firmware has undergone some major changes under the hood. Hardware dr
 - Added CMS display support - @jflyper
 - Added CRSF support for TBS receivers and associated telemetry - @martinbudden and @blckmn
 - Added additional OSD parameters like pids and power - @martinbudden and @rafl
-- Added [Unify SmartAudio](/docs/wiki/guides/current/Smart-Audio) support - @jflyper
+- Added [Unify SmartAudio](/docs/wiki/guides/current/SmartAudio) support - @jflyper
 - Added MSP over Smartport - @raphaelcoeffic
 - Auto Video Format support for OSD
 - Configurator enhancements - @mikeller

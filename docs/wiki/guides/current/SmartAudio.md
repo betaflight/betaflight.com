@@ -1,10 +1,27 @@
-# TBS Unify Smartaudio
+---
+id: SmartAudio
+---
+
+# SmartAudio
+
+SmartAudio is a single-wire solution for VTx control, originally developed by TBS on their Unify range of Analog Vtx devices.
+
+A single wire from a UART Tx pin can be connected to a supported VTx, and then channels, power settings, etc, can be changed via Lua, Configurator etc.
+
+Basic requirements are to:
+
+- connect the Tx pad for the selected port to the SmartAudio input pin on the VTx
+- in Configurator's Ports Tab, set the matching UART's Peripheral column to `VTX (TBS SmartAudio)`
+- load or create a VTx table (4.1 or higher) so that the firmware knows how to talk to your VTx. For more information, see the VTX pages in the Wiki. Presets exist for common VTx devices.
+
+Most of this document is of historical relevance and applies to earlier versions of Betaflight.
 
 ## What's new
 
 - 2017-02-12 Note on compatibility of SmartAudio V1 devices (Compatibility section)
 - 2018-07-19 Note on operational mode switching
 - 2020-07-25 Updated targets, removed broken link. Added link to latest revision of TBS SmartAudio documentation
+- 2024-01-12 Introductory paragraph, filename change to improve sorting behaviour
 
 #### TBS SmartAudio
 

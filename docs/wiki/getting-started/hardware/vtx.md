@@ -10,7 +10,7 @@ Analogue video systems transmit a CVBS signal in either PAL or NTSC using channe
   - Early boards required manual channel selection using physical switches on the transmitter which was inconvenient for pilots
   - Pilots could easily power on and interrupt video for pilots already flying.
 - Cameras improved over time and VTX hardware has become more tightly integrated into the overall FPV experience.
-  - [SmartAudio from TBS](/docs/wiki/guides/current/Smart-Audio) and [Tramp from ImmersionRC](/docs/wiki/guides/current/IRC-Tramp) - allow users to change their video channel, band and power output from the FC. Pilots must supply a list of valid channnels, bands and power levels to the FC called a [VTX Table](/docs/wiki/guides/current/VTX-Tables)
+  - [SmartAudio from TBS](/docs/wiki/guides/current/SmartAudio) and [Tramp from ImmersionRC](/docs/wiki/guides/current/IRC-Tramp) - allow users to change their video channel, band and power output from the FC. Pilots must supply a list of valid channnels, bands and power levels to the FC called a [VTX Table](/docs/wiki/guides/current/VTX-Tables)
   - [OpenVTX](https://github.com/OpenVTx/OpenVTx) introduced MSP VTX control. MSP VTXs can annouce available channel, band and power information so VTX Tables are not required.
   - [ExpressLRS backpack](https://github.com/ExpressLRS/Backpack/wiki) combines the ability to control any SmartAudio, Tramp or MSP VTX whilst simultaneously setting the same channel on the goggles.
 

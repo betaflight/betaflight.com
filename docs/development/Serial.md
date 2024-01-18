@@ -2,9 +2,8 @@
 
 Betaflight has enhanced serial port flexibility but configuration is slightly more complex as a result.
 
-Betaflight has the concept of a function (MSP, GPS, Serial RX, etc) and a port (VCP, UARTx, SoftSerial x).
-Not all functions can be used on all ports due to hardware pin mapping, conflicting features, hardware, and software
-constraints.
+Betaflight has the concept of a function (MSP, GPS, Serial RX, etc) and a port (VCP, UARTx, SoftSerial x, LPUART1).
+Not all functions can be used on all ports due to hardware pin mapping, conflicting features, hardware, and software constraints.
 
 ## Serial Port Types
 
@@ -12,22 +11,25 @@ constraints.
   a dedicated USB to UART adapter. VCP does not 'use' a physical UART port.
 - UART - A pair of dedicated hardware transmit and receive pins with signal detection and generation done in hardware.
 - SoftSerial - A pair of hardware transmit and receive pins with signal detection and generation done in software.
+- LPUART - A "Low Power" UART format available on G4 and other MCU's is supported by Betaflight 4.5 and higher. By default, LPUARTs are limited to 9600 Baud, but Betaflight reconfigures them to work just like a normal UART. Typically there is only one LPUART, LPUART1. It's pin assignment can be configured using `RESOURCE SERIAL_TX 11 <pin>` and `RESOURCE SERIAL_TX 11 <pin>` in the CLI.
 
-UART is the most efficient in terms of CPU usage.
-SoftSerial is the least efficient and slowest, SoftSerial should only be used for low-bandwidth usages, such as telemetry transmission.
+A "real" UART is the most efficient in terms of CPU usage.
+SoftSerial is the least efficient and slowest. SoftSerial should only be used for low-bandwidth, low-priority applications, such as sending or receiving telemetry data.
 
-UART ports are sometimes exposed via on-board USB to UART converters, such as the CP2102 as found on the Naze and Flip32 boards.
-If the flight controller does not have an on-board USB to UART converter and doesn't support VCP then an external USB to UART board is required.
-These are sometimes referred to as FTDI boards. FTDI is just a common manufacturer of a chip (the FT232RL) used on USB to UART boards.
+If the flight controller does not have an on-board USB to UART converter and doesn't support VCP, connecting a computer to the board will not be possible unless a UART is set to MSP. A USB to UART adapter may then be used with that UART to connect to Configurator.
 
-When selecting a USB to UART converter choose one that has DTR exposed as well as a selector for 3.3v and 5v since they are more useful.
+USB to serial adapter boards are sometimes referred to as FTDI boards. FTDI is just a common manufacturer of a chip (the FT232RL) used on many USB to UART boards.
+
+When selecting a USB to UART adapter, choose one that has DTR exposed as well as a selector for 3.3v and 5v since they are more useful.
+
+Drivers will usually need to be installed to suit the adapter's chipset.
 
 Examples:
 
 - [FT232RL FTDI USB To TTL Serial Converter Adapter](http://www.banggood.com/FT232RL-FTDI-USB-To-TTL-Serial-Converter-Adapter-Module-For-Arduino-p-917226.html)
 - [USB To TTL / COM Converter Module buildin-in CP2102](http://www.banggood.com/Wholesale-USB-To-TTL-Or-COM-Converter-Module-Buildin-in-CP2102-New-p-27989.html)
 
-Both SoftSerial and UART ports can be connected to your computer via USB to UART converter boards.
+Both SoftSerial and UART ports can be connected to your computer via USB to UART converter boards. In general, SoftSerial ports should not be used for this purpose, and Betaflight 4.5 and higher will not allow SoftSerial ports to be used for MSP connections.
 
 ## Serial Configuration
 
@@ -77,21 +79,21 @@ Note: for Identifier see serialPortIdentifier_e in the source; for Function bitm
 
 | Identifier              | Value |
 | ----------------------- | ----: |
-| SERIAL_PORT_NONE        | -1    |
-| SERIAL_PORT_USART1      | 0     |
-| SERIAL_PORT_USART2      | 1     |
-| SERIAL_PORT_USART3      | 2     |
-| SERIAL_PORT_UART4       | 3     |
-| SERIAL_PORT_UART5       | 4     |
-| SERIAL_PORT_USART6      | 5     |
-| SERIAL_PORT_USART7      | 6     |
-| SERIAL_PORT_USART8      | 7     |
-| SERIAL_PORT_UART9       | 8     |
-| SERIAL_PORT_USART10     | 9     |
-| SERIAL_PORT_USB_VCP     | 20    |
-| SERIAL_PORT_SOFTSERIAL1 | 30    |
-| SERIAL_PORT_SOFTSERIAL2 | 31    |
-| SERIAL_PORT_LPUART1     | 40    |
+| SERIAL_PORT_NONE        |    -1 |
+| SERIAL_PORT_USART1      |     0 |
+| SERIAL_PORT_USART2      |     1 |
+| SERIAL_PORT_USART3      |     2 |
+| SERIAL_PORT_UART4       |     3 |
+| SERIAL_PORT_UART5       |     4 |
+| SERIAL_PORT_USART6      |     5 |
+| SERIAL_PORT_USART7      |     6 |
+| SERIAL_PORT_USART8      |     7 |
+| SERIAL_PORT_UART9       |     8 |
+| SERIAL_PORT_USART10     |     9 |
+| SERIAL_PORT_USB_VCP     |    20 |
+| SERIAL_PORT_SOFTSERIAL1 |    30 |
+| SERIAL_PORT_SOFTSERIAL2 |    31 |
+| SERIAL_PORT_LPUART1     |    40 |
 
 ID's 0-19 reserved for UARTS 1-20
 ID's 20-29 reserved for USB 1-10
@@ -101,26 +103,26 @@ Other devices can be added starting from id 50.
 
 ### 2. Serial Port Function
 
-| Function                     | Value  | Bit     |
-| ---------------------------- | -----: | ------: |
-| FUNCTION_NONE                | 0      | 0       |
-| FUNCTION_MSP                 | 1      | 1 \<\< 0  |
-| FUNCTION_GPS                 | 2      | 1 \<\< 1  |
-| FUNCTION_TELEMETRY_FRSKY_HUB | 4      | 1 \<\< 2  |
-| FUNCTION_TELEMETRY_HOTT      | 8      | 1 \<\< 3  |
-| FUNCTION_TELEMETRY_LTM       | 16     | 1 \<\< 4  |
-| FUNCTION_TELEMETRY_SMARTPORT | 32     | 1 \<\< 5  |
-| FUNCTION_RX_SERIAL           | 64     | 1 \<\< 6  |
-| FUNCTION_BLACKBOX            | 128    | 1 \<\< 7  |
-| NOT USED                     | 256    | 1 \<\< 8  |
-| FUNCTION_TELEMETRY_MAVLINK   | 512    | 1 \<\< 9  |
-| FUNCTION_ESC_SENSOR          | 1024   | 1 \<\< 10 |
-| FUNCTION_VTX_SMARTAUDIO      | 2048   | 1 \<\< 11 |
-| FUNCTION_TELEMETRY_IBUS      | 4096   | 1 \<\< 12 |
-| FUNCTION_VTX_TRAMP           | 8192   | 1 \<\< 13 |
-| FUNCTION_RCDEVICE            | 16384  | 1 \<\< 14 |
-| FUNCTION_LIDAR_TF            | 32768  | 1 \<\< 15 |
-| FUNCTION_FRSKY_OSD           | 65536  | 1 \<\< 16 |
+| Function                     |  Value |       Bit |
+| ---------------------------- | -----: | --------: |
+| FUNCTION_NONE                |      0 |         0 |
+| FUNCTION_MSP                 |      1 |  1 \<\< 0 |
+| FUNCTION_GPS                 |      2 |  1 \<\< 1 |
+| FUNCTION_TELEMETRY_FRSKY_HUB |      4 |  1 \<\< 2 |
+| FUNCTION_TELEMETRY_HOTT      |      8 |  1 \<\< 3 |
+| FUNCTION_TELEMETRY_LTM       |     16 |  1 \<\< 4 |
+| FUNCTION_TELEMETRY_SMARTPORT |     32 |  1 \<\< 5 |
+| FUNCTION_RX_SERIAL           |     64 |  1 \<\< 6 |
+| FUNCTION_BLACKBOX            |    128 |  1 \<\< 7 |
+| NOT USED                     |    256 |  1 \<\< 8 |
+| FUNCTION_TELEMETRY_MAVLINK   |    512 |  1 \<\< 9 |
+| FUNCTION_ESC_SENSOR          |   1024 | 1 \<\< 10 |
+| FUNCTION_VTX_SMARTAUDIO      |   2048 | 1 \<\< 11 |
+| FUNCTION_TELEMETRY_IBUS      |   4096 | 1 \<\< 12 |
+| FUNCTION_VTX_TRAMP           |   8192 | 1 \<\< 13 |
+| FUNCTION_RCDEVICE            |  16384 | 1 \<\< 14 |
+| FUNCTION_LIDAR_TF            |  32768 | 1 \<\< 15 |
+| FUNCTION_FRSKY_OSD           |  65536 | 1 \<\< 16 |
 | FUNCTION_VTX_MSP             | 131072 | 1 \<\< 17 |
 
 Notes:
@@ -133,25 +135,25 @@ To configure `MSP_DISPLAYPORT` use the combination `FUNCTION_VTX_MSP | FUNCTION_
 
 | Baudrate |
 | -------: |
-| 9600     |
-| 19200    |
-| 38400    |
-| 57600    |
-| 115200   |
-| 230400   |
-| 250000   |
-| 500000   |
-| 1000000  |
+|     9600 |
+|    19200 |
+|    38400 |
+|    57600 |
+|   115200 |
+|   230400 |
+|   250000 |
+|   500000 |
+|  1000000 |
 
 ### 4 GPS Baudrates
 
 | Baudrate |
 | -------: |
-| 9600     |
-| 19200    |
-| 38400    |
-| 57600    |
-| 115200   |
+|     9600 |
+|    19200 |
+|    38400 |
+|    57600 |
+|   115200 |
 
 Note: Also has a boolean AUTOBAUD. It is recommended to use a fixed baudrate. Configure GPS baudrate according to device documentation.
 
@@ -159,31 +161,31 @@ Note: Also has a boolean AUTOBAUD. It is recommended to use a fixed baudrate. Co
 
 | Baudrate |
 | -------: |
-| AUTO     |
-| 9600     |
-| 19200    |
-| 38400    |
-| 57600    |
-| 115200   |
+|     AUTO |
+|     9600 |
+|    19200 |
+|    38400 |
+|    57600 |
+|   115200 |
 
 ### 6. Blackbox Baudrates
 
 | Baudrate |
 | -------: |
-| 19200    |
-| 38400    |
-| 57600    |
-| 115200   |
-| 230400   |
-| 250000   |
-| 400000   |
-| 460800   |
-| 500000   |
-| 921600   |
-| 1000000  |
-| 1500000  |
-| 2000000  |
-| 2470000  |
+|    19200 |
+|    38400 |
+|    57600 |
+|   115200 |
+|   230400 |
+|   250000 |
+|   400000 |
+|   460800 |
+|   500000 |
+|   921600 |
+|  1000000 |
+|  1500000 |
+|  2000000 |
+|  2470000 |
 
 ### Serial Port Baud Rates
 
@@ -191,22 +193,22 @@ The Serial Port baudrates are defined as follows:
 
 | ID  | Baudrate |
 | --- | -------: |
-| 0   | Auto     |
-| 1   | 9600     |
-| 2   | 19200    |
-| 3   | 38400    |
-| 4   | 57600    |
-| 5   | 115200   |
-| 6   | 230400   |
-| 7   | 250000   |
-| 8   | 400000   |
-| 9   | 460800   |
-| 10  | 500000   |
-| 11  | 921600   |
-| 12  | 1000000  |
-| 13  | 1500000  |
-| 14  | 2000000  |
-| 15  | 2470000  |
+| 0   |     Auto |
+| 1   |     9600 |
+| 2   |    19200 |
+| 3   |    38400 |
+| 4   |    57600 |
+| 5   |   115200 |
+| 6   |   230400 |
+| 7   |   250000 |
+| 8   |   400000 |
+| 9   |   460800 |
+| 10  |   500000 |
+| 11  |   921600 |
+| 12  |  1000000 |
+| 13  |  1500000 |
+| 14  |  2000000 |
+| 15  |  2470000 |
 
 ### Passthrough
 
@@ -221,9 +223,11 @@ To initiate passthrough mode, use the CLI command `serialpassthrough` This comma
 If port2 config(the last three arguments) is not specified, the passthrough will run between port1 and VCP. The last three arguments are used for `Passthrough between UARTs`, see that section to get detail.
 
 For example. If you have your MWOSD connected to UART 2, you could enable communicaton to this device using the following command. This command does not specify the baud rate or mode, using the one configured for the port (see above).
+
 ```
 serialpassthrough 1
 ```
+
 If a baud rate is not specified, or is set to 0, then `serialpassthrough` supports changing of the baud rate over USB. This allows tools such as the MWOSD GUI to dynamically set the baud rate to, for example 57600 for reflashing the MWOSD firmware and then 115200 for adjusting settings without having to powercycle your flight control board between the two.
 
 _To use a tool such as the MWOSD GUI, it is necessary to disconnect or exit Betaflight configurator._
