@@ -17,11 +17,7 @@ function checkFileName(fileName) {
   let pattern = /[\s~`!@#$%^&*()+=[\]\\';,/{}|\\":<>?]/;
 
   // Check if the file name matches the pattern
-  if (pattern.test(fileName)) {
-    return true;
-  } else {
-    return false;
-  }
+  return pattern.test(fileName);
 }
 
 /**
@@ -37,12 +33,11 @@ function processDir(dir, depth = 1) {
       if (skipDirs.some(skipDir => `${dir}/${file.name}`.includes(skipDir))) {
         return false;
       }
-      log(chalk.white.bgBlackBright(`${'\t'.repeat(depth)}${dir}/${file.name}:`));
       return processDir(`${dir}/${file.name}`, depth + 1);
     }
 
     if (checkFileName(file.name)) {
-      log(`${chalk.red(`${'\t'.repeat(depth)}${file.name}`)}: contains invalid characters`);
+      log(`${chalk.red(`${dir}/${file.name}`)}: contains invalid characters`);
       hasError = true;
     }
   });
@@ -53,8 +48,7 @@ function runFull() {
   const rootDir = fs.readdirSync('./docs', { withFileTypes: true });
 
   return rootDir.map(file => {
-    log(chalk.white.bgBlackBright(`./docs:`));
-    return processDir(`./docs/${ file.name }`);
+    return processDir(`./docs/${file.name}`);
   });
 }
 
@@ -65,7 +59,9 @@ function runFull() {
 function runSingle(fileName) {
   if (checkFileName(fileName) && !skipDirs.some(skipDir => fileName.includes(skipDir))) {
     log(`${chalk.red(`${fileName}`)}: contains invalid characters`);
+    return true;
   }
+  return false;
 }
 
 function run() {
@@ -81,4 +77,7 @@ function run() {
 
 const exitCode = run();
 
-process.exit(exitCode);
+// Exit with a non-zero code if there are errors
+if (exitCode !== 0) {
+  process.exit(exitCode);
+}
