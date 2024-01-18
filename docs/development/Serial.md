@@ -11,23 +11,25 @@ Not all functions can be used on all ports due to hardware pin mapping, conflict
   a dedicated USB to UART adapter. VCP does not 'use' a physical UART port.
 - UART - A pair of dedicated hardware transmit and receive pins with signal detection and generation done in hardware.
 - SoftSerial - A pair of hardware transmit and receive pins with signal detection and generation done in software.
-- LPUART - A "Low Power" UART format available on G4 and other MCU's. By default LPUARTs are limited to 9600 Baud, but Betaflight reconfigures them to work just like a normal UART. Typically there is only one LPUART, LPUART1. It's pin assignment is normally shown as `SERIAL_TX 11` and `SERIAL_RX 11` with the `RESOURCE` command.
+- LPUART - A "Low Power" UART format available on G4 and other MCU's is supported by Betaflight 4.5 and higher. By default, LPUARTs are limited to 9600 Baud, but Betaflight reconfigures them to work just like a normal UART. Typically there is only one LPUART, LPUART1. It's pin assignment can be configured using `RESOURCE SERIAL_TX 11 <pin>` and `RESOURCE SERIAL_TX 11 <pin>` in the CLI.
 
 A "real" UART is the most efficient in terms of CPU usage.
 SoftSerial is the least efficient and slowest. SoftSerial should only be used for low-bandwidth, low-priority applications, such as sending or receiving telemetry data.
 
-UART ports are sometimes exposed via on-board USB to UART converters, such as the CP2102 as found on the Naze and Flip32 boards.
-If the flight controller does not have an on-board USB to UART converter and doesn't support VCP then an external USB to UART board is required.
-These are sometimes referred to as FTDI boards. FTDI is just a common manufacturer of a chip (the FT232RL) used on USB to UART boards.
+If the flight controller does not have an on-board USB to UART converter and doesn't support VCP, connecting a computer to the board will not be possible unless a UART is set to MSP. A USB to UART adapter may then be used with that UART to connect to Configurator.
 
-When selecting a USB to UART converter choose one that has DTR exposed as well as a selector for 3.3v and 5v since they are more useful.
+USB to serial adapter boards are sometimes referred to as FTDI boards. FTDI is just a common manufacturer of a chip (the FT232RL) used on many USB to UART boards.
+
+When selecting a USB to UART adapter, choose one that has DTR exposed as well as a selector for 3.3v and 5v since they are more useful.
+
+Drivers will usually need to be installed to suit the adapter's chipset.
 
 Examples:
 
 - [FT232RL FTDI USB To TTL Serial Converter Adapter](http://www.banggood.com/FT232RL-FTDI-USB-To-TTL-Serial-Converter-Adapter-Module-For-Arduino-p-917226.html)
 - [USB To TTL / COM Converter Module buildin-in CP2102](http://www.banggood.com/Wholesale-USB-To-TTL-Or-COM-Converter-Module-Buildin-in-CP2102-New-p-27989.html)
 
-Both SoftSerial and UART ports can be connected to your computer via USB to UART converter boards.
+Both SoftSerial and UART ports can be connected to your computer via USB to UART converter boards. In general, SoftSerial ports should not be used for this purpose, and Betaflight 4.5 and higher will not allow SoftSerial ports to be used for MSP connections.
 
 ## Serial Configuration
 
