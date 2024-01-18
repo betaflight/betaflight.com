@@ -1,5 +1,6 @@
 import fs from 'fs';
 import chalk from 'chalk';
+import path from 'path';
 
 const skipDirs = [
   'docs/development',
@@ -14,10 +15,10 @@ const log = console.log;
  */
 function checkFileName(fileName) {
   // Regular expression to match whitespaces and special characters
-  let pattern = /[\s~`!@#$%^&*()+=[\]\\';,/{}|\\":<>?]/;
+  let pattern = /[\s~`!@#$%^&*()+=[\]\\';,/{}|\\":<>?]/g;
 
   // Check if the file name matches the pattern
-  return pattern.test(fileName);
+  return fileName.match(pattern);
 }
 
 /**
@@ -36,8 +37,9 @@ function processDir(dir, depth = 1) {
       return processDir(`${dir}/${file.name}`, depth + 1);
     }
 
-    if (checkFileName(file.name)) {
-      log(`${chalk.red(`${dir}/${file.name}`)}: contains invalid characters`);
+    const badChars = checkFileName(path.basename(file.name));
+    if (badChars) {
+      log(`${chalk.red(`${dir}/${file.name}`)}: contains invalid characters ${badChars.join(', ')}`);
       hasError = true;
     }
   });
@@ -57,8 +59,9 @@ function runFull() {
  * @param {string} fileName 
  */
 function runSingle(fileName) {
-  if (checkFileName(fileName) && !skipDirs.some(skipDir => fileName.includes(skipDir))) {
-    log(`${chalk.red(`${fileName}`)}: contains invalid characters`);
+  const badChars = checkFileName(path.basename(fileName));
+  if (badChars && !skipDirs.some(skipDir => fileName.includes(skipDir))) {
+    log(`${chalk.red(`${fileName}`)}: contains invalid characters ${badChars.join(', ')}`);
     return true;
   }
   return false;
