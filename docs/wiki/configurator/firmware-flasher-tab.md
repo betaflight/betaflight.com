@@ -107,26 +107,26 @@ When needed additional protocols like <b>PWM</b> or <b>SERVOS</b> please add the
 
 ### Other Options
 
-| Option                    | Description                                                         |
-| :------------------------ | :------------------------------------------------------------------ |
-| AKK (SA Fix)              | Smartaudio patch for AKK hardware                                   |
-| Acro Trainer              | Enable Acro Trainer support                                         |
-| Batt. Continue            | See [#11084](https://github.com/betaflight/betaflight/pull/11084)   |
-| Cam. Control              | Enable Camera Control                                               |
-| Dashboard                 | Enable Post-flight overview screen                                  |
-| EMFAT (AutoRun, Icon)     | Enable FAT emulation and icon for onboard flash or MSC              |
-| ESC Serial (SK) Inc. 4way | Enable SimonK and ESC Serial support for flasing via 4way interface |
-| Flash Storage             | Enable blackbox Flash Tools                                         |
-| FrSky OSD                 | Enable FrSky OSD support                                            |
-| GPS                       | Enable GPS and GPS_PLUS_CODES                                       |
-| LED Strip                 | Enable 32 LEDs                                                      |
-| LED Strip 64              | Enable 64 LEDs                                                      |
-| Magnetometers             | Enable magnetometer                                                 |
-| OSD (SD)                  | Enable SD OSD (onboard MAX7456 required)                            |
-| OSD (HD)                  | Enable HD OSD                                                       |
-| PIN IO                    | Enable PINIO                                                        |
-| Servos                    | Enable Servo support                                                |
-| VTX                       | Enable VTX                                                          |
+| Option                    | Description                                                          |
+| :------------------------ | :------------------------------------------------------------------- |
+| AKK (SA Fix)              | Smartaudio patch for AKK hardware                                    |
+| Acro Trainer              | Enable Acro Trainer support                                          |
+| Batt. Continue            | See [#11084](https://github.com/betaflight/betaflight/pull/11084)    |
+| Cam. Control              | Enable Camera Control                                                |
+| Dashboard                 | Enable Post-flight overview screen                                   |
+| EMFAT (AutoRun, Icon)     | Enable FAT emulation and icon for onboard flash or MSC               |
+| ESC Serial (SK) Inc. 4way | Enable SimonK and ESC Serial support for flashing via 4way interface |
+| Flash Storage             | Enable blackbox Flash Tools                                          |
+| FrSky OSD                 | Enable FrSky OSD support                                             |
+| GPS                       | Enable GPS and GPS_PLUS_CODES                                        |
+| LED Strip                 | Enable 32 LEDs                                                       |
+| LED Strip 64              | Enable 64 LEDs                                                       |
+| Magnetometers             | Enable magnetometer                                                  |
+| OSD (SD)                  | Enable SD OSD (onboard MAX7456 required)                             |
+| OSD (HD)                  | Enable HD OSD                                                        |
+| PIN IO                    | Enable PINIO                                                         |
+| Servos                    | Enable Servo support                                                 |
+| VTX                       | Enable VTX                                                           |
 
 ## Troubeshooting
 
