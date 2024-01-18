@@ -1,6 +1,6 @@
 # VTX
 
-Cleanflight supports control of VTX modules.
+Betaflight supports control of VTX modules.
 
 ## VTX Systems
 
