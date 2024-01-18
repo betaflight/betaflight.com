@@ -1,4 +1,4 @@
-# OMNIBUS F4 AIO, F4 V2/V3/V4, F4 Pro "(v2)"/V3 and ASGARD
+# OMNIBUS F4 AIO, F4 V2/V3/V4, F4 Pro v2/V3 and ASGARD
 
 ### Board identification
 

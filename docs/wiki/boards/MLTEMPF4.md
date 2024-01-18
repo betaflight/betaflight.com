@@ -1,4 +1,4 @@
-# MotoLab Tempest F4 Flight Controller
+# MotoLab Tempest F4
 
 ![](https://static.rcgroups.net/forums/attachments/4/5/2/0/2/8/a10242740-88-Angle.jpg)
 

@@ -1,6 +1,6 @@
-# YuPiF4 by Copperyu
+# YuPiF4
 
-An high quality flight controller for the most demanding pilotes.
+An high quality flight controller for the most demanding pilots by Copperyu.
 
 ## Description
 

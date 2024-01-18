@@ -1,4 +1,4 @@
-# Podium
+# Podium F4
 
 ![](https://github.com/ThrustUAV/betaflight/blob/master/images/Podium%20Whited%20Top_25%25.png)
 

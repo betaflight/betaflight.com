@@ -1,3 +1,6 @@
+---
+id: AIRBOTF4
+---
 # AirBotF4 and FLIP32F4
 
 Flip32F4 and AirBotF4 are essentially the same. Both are based on the OP Revolution design, with some changes and addons.

@@ -1,4 +1,4 @@
-# CL_RACING AIO F4 Flight controller
+# CL_RACING AIO F4
 
 ## Description
 

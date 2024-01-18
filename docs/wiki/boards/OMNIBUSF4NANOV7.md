@@ -1,4 +1,4 @@
-# Board Omnibus F4 Nano V7
+# Omnibus F4 Nano V7
 
 This is the new Nano FC from Airbot! With added features in comparison to the predecessor.
 

@@ -1,4 +1,4 @@
-# Boards - STM32Discovery
+# STM32 Discovery
 
 STM32Discovery boards are relatively cheap boards featuring STM32 MCUs manufactured and distributed by [STMicroelectronics](https://www.st.com/). They are known as "tinkerer boards", not specifically as flight controllers, as they can be used for a variety of things. They are bigger and heavier than standard flight controllers, feature plug pins for ease of use and quick changes, no soldering required.
 

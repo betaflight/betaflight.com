@@ -1,10 +1,10 @@
 ---
-id: FF_RACEPIT
+id: FF_RACEPIT_MINI
 ---
 
-# FuriousFPV RacePIT
+# FuriousFPV RacePIT Mini
 
-Applies to RacePIT (v1.x)
+Applies to RacePIT mini (V2.x)
 
 ## Features
 
@@ -37,6 +37,6 @@ Applies to RacePIT (v1.x)
 - Current sensor support
 - 4 ESCs signal
 
-## BoardLayout RacePIT
+## BoardLayout RacePIT mini
 
-![RacePIT](images/FF_RacePIT.jpg)
+![RacePIT](images/FF_RacePIT_mini.jpg)

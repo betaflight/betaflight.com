@@ -1,4 +1,4 @@
-# Nucleo H743 - RAM based image
+# Nucleo H743 - RAM based
 
 This target for the Nucleo H743 is loaded entirely into the MCU RAM, thus facilitating quick turnaround development testing, without subjecting the flash storage to wear.
 

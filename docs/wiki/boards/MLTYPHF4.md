@@ -1,4 +1,4 @@
-# MotoLab Typhoon F4 Flight Controller and VTX
+# MotoLab Typhoon F4
 
 ![](http://gdurl.com/GGSY)
 ![](http://gdurl.com/9Idm)

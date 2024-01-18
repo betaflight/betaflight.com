@@ -1,3 +1,5 @@
+# SPRacingF7DUAL
+
 The SPRacingF7DUAL is the first Betaflight/Cleanflight FC to support SIMULTANEOUS DUAL GYRO and PID AUDIO features.
 
 It features an F7 (STM32F722) CPU, two 32Khz capable GYROS, AUDIO-OUTPUT, FC/PDB, OSD, SD-Card, Transponder, LED Strip, 8 Motor Outputs, 5 Serial Ports (no inverters needed, F7 does it), Camera OSD Control, Current Sensor, 4in1 ESC pads, BMP280 Barometer, 5V BEC, PWM/Analog RSSI, Edge-press boot buttons and is soft-mountable with supplied grommets if required.
