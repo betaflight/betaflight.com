@@ -111,7 +111,7 @@ Oscarliang provides a good summary of [how to set up softserial](https://oscarli
 
 When Softserial is active, the `serial` CLI command will show all configured serial ports. A line starting with 30 refers to Softserial port 1, and one starting with 31 refers to Softserial port 2.
 
-For example, if Softserial is configured for smartAudio on Softserial port 1 Tx pin, a line like this should appear when the `serial` command is sent:
+For example, if Softserial is configured for SmartAudio on Softserial port 1 Tx pin, a line like this should appear when the `serial` command is sent:
 
 ```
 serial 30 2048 115200 57600 0 115200
