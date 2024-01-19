@@ -21,7 +21,7 @@ Doing so can cover over the port by which they measure air pressure, causing inc
 
 :::
 
-### Confirming that your Barometer is working
+### Confirming that your Barometer is working properly
 
 First ensure that Barometer is enabled in the Configurator's Configuration page.
 
@@ -33,7 +33,7 @@ If the Barometer lights up, go to the Sensors tab, and choose Barometer at the t
 
 If the Barometer does not light up, read on...
 
-### Barometer firmware support
+### Barometer Firmware Support
 
 In Betaflight 4.5 and higher, the Config file for the board automatically includes the base `BARO` code, and the drivers for whatever Baro chips the manufacturer uses on that board, the type of interface, pins used for the interface, etc.
 
@@ -45,7 +45,7 @@ This is achieved, for say a DPS310 baro, by entering `BARO BARO_DPS310` in the `
 
 In 4.4 and earlier, all Baro code and all drivers were included in all firmware builds.
 
-### Barometer bus connections
+### Barometer Bus Connections
 
 Barometers are nearly always connected with an i2c interface, though some use SPI. The board's config file should define the interface/bus details for Baro, and the pins used for the interface.
 
@@ -53,7 +53,7 @@ A flight controller may have one or two i2c buses, or 'devices'. The config file
 
 Boards that have no defined `baro_i2c_device` will have that value set to 0. When an external Baro is manually connected on an i2c interface, the user must configure the `baro_i2c_device` setting, manually, to either bus 1 or 2, depending which bus the Baro is connected to.
 
-### Barometer hardware support
+### Barometer Hardware Support
 
 As mentioned above, in Betaflight 4.5 or higher, the drivers for the barometer chips used on the board are defined in the config file. Drivers for additional or different barometer chips must be manually added using the `Custom Defines` part of Configurator's Firmware Flasher tab, as above.
 
@@ -83,7 +83,7 @@ Betaflight's Github lists [all supported barometers](https://github.com/betaflig
 
 Note that nearly all barometer chips have the same i2c address. If it's not 118, the most common alternative option is (rarely) 119.
 
-### Barometer not identified
+### Barometer Not Identified
 
 If, with the default `baro_i2c_address = 0` setting, or automatic barometer detection, a supported Baro is not identified, the possible problems and solutions include:
 
@@ -97,7 +97,7 @@ If, with the default `baro_i2c_address = 0` setting, or automatic barometer dete
 | multiple barometer chip hardware drivers exist on the same i2c address and the wrong one is detected | if you know for sure which barometer is on your board, set `baro_hardware` to that barometer      |
 | the barometer chip is broken, or wired up incorrectly                                                | check the wiring / replace the chip                                                               |
 
-### CLI command summary
+### CLI Command Summary
 
 - Barometer related CLI variables
 
@@ -115,6 +115,6 @@ If, with the default `baro_i2c_address = 0` setting, or automatic barometer dete
 | ------------- | ---------------------------------------------------------------------------- |
 | `BARO_CS`     | Specifies CS (Chip Select) pin to enable the SPI connected barometer device. |
 
-### Previous documentation
+### Previous Documentation
 
 See [/docs/wiki/guides/archive/barometer-configuration](/docs/wiki/guides/archive/barometer-configuration) for older documentation about the initial Baro code developments, which took place around 3.2.
