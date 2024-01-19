@@ -15,7 +15,7 @@ Applies to RacePIT mini (V2.x)
 - Built-in ESC connector - Clean and Easy to Connect 4-in-1 ESC
 - Use MPU6000 accelerometers and gyroscopes
 - Ultra Simplified OSD Interface w/ No PC Necessary
-- UARTS Connection Options for TBS Smart Audio or Immersion RC Tramp
+- UARTS Connection Options for TBS SmartAudio or Immersion RC Tramp
 - Integrated Soft Mount Silicone Damping for Maximum FC Functionality
 - Inrush Voltage Protection Input & Output via Transient Voltage Suppressor
 - High Quality 5V 1.5A BEC w/ 2S - 6S Voltage Input Range

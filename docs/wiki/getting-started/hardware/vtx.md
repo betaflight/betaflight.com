@@ -18,7 +18,7 @@ Originally the OSD for these systems was a separate add-in board such as Minim O
 
 ## Digital FPV Video
 
-- [HDzero](https://www.hd-zero.com/) is a unidirectional digital video system seen as the continuation of prior analogue video techniques
+- [HDZero](https://www.hd-zero.com/) is a unidirectional digital video system seen as the continuation of prior analogue video techniques
   - Uses the same frequency bands and analogue Raceband inter-operates with pilots flying analogue video without disruption to other channels.
   - Allows MSP VTX control of band and channel from the FC
   - Integrates with eLRS backpacks for seamless VTX and Goggles integration

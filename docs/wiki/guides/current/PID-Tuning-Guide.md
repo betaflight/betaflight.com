@@ -743,7 +743,7 @@ CF Nano RX:
 - Ch2 - TX
 - Ch4 - LQ (for RSSI)
 
-# Smart Audio
+# SmartAudio
 
 SmartAudio uses a UART
 

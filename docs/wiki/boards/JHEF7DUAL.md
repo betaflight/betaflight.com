@@ -26,9 +26,9 @@
 | Value | Identifier |  RX  |  TX  |             Notes              |
 | :---: | :--------: | :--: | :--: | :----------------------------: |
 |   1   |   USART1   | PA10 | PA9  | FOR SBUS IN(inverter build in) |
-|   2   |   USART2   | PA3  | PA2  |   USE FOR TRAMP/smart audio    |
+|   2   |   USART2   | PA3  | PA2  |    USE FOR TRAMP/SmartAudio    |
 |   3   |   USART3   | PB11 | PB10 |          USE FOR GPS           |
-|   4   |   USART4   | PA1  | PA0  | PAD USE FOR TRAMP/smart audio  |
+|   4   |   USART4   | PA1  | PA0  |  PAD USE FOR TRAMP/SmartAudio  |
 |   5   |   USART5   | PD2  | PC12 |         PAD ESC sensor         |
 |   6   |   USART6   | PC7  | PC6  |              PAD               |
 

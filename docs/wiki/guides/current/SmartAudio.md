@@ -55,7 +55,7 @@ Latest manual: https://www.team-blacksheep.com/tbs_smartaudio_rev09.pdf
 
 #### From AILERON8's post in Boris' thread:
 
-There is a little info on smartaudio setup in here, but you may need to do a bit of troubleshooting to make it work for your particular setup. Good luck! I look forward to setting up SmartAudio on my next BFF3 quad myself.
+There is a little info on SmartAudio setup in here, but you may need to do a bit of troubleshooting to make it work for your particular setup. Good luck! I look forward to setting up SmartAudio on my next BFF3 quad myself.
 
 https://github.com/betaflight/betaflight/issues/1029
 
@@ -273,7 +273,7 @@ The digital signal can be connected either directly or using a Resistor.
 
 If it comes from a microcontroller with 3.3V, best solution is to use a voltage divider to ~0.9V for a proper audio level (4k7 and 1k8 resistor values in our case).
 
-The analog signal needs to be ac coupled using a series capacitor from audio source to the smart audio signal. Ideal capacitance is around 100nF.
+The analog signal needs to be ac coupled using a series capacitor from audio source to the SmartAudio signal. Ideal capacitance is around 100nF.
 
 (The click sound in your audio will disappear after arming)
 

@@ -15,7 +15,7 @@
 - USB VCP and boot select button on board(for DFU)
 - Serial LED interface(LED_STRIP)
 - VBAT/CURR/RSSI sensors input
-- Suppose IRC Tramp/smart audio/FPV Camera Control/FPORT/telemetry
+- Suppose IRC Tramp/SmartAudio/FPV Camera Control/FPORT/telemetry
 - Supports SBus, Spektrum1024/2048, PPM. No external inverters required (built-in).
 - Supports I2C device extend(baro/compass/OLED etc)(socket)
 - Supports GPS (socket)
