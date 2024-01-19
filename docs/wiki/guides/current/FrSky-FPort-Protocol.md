@@ -12,7 +12,7 @@ A driver for FPort has been added to Betaflight. It is available since Betafligh
 
 The detailed specification for FPort is available here: [F.Port.protocol.betaFlight.V2.1.2017.11.21.pdf][1]
 
-Frsky announcement: [here][9]
+FrSky announcement: [here][9]
 
 # Compatibility
 

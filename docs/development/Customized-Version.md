@@ -38,7 +38,7 @@ The first interesting part is where it specifies the features activated for all 
 #define USE_SERIALRX
 #define USE_SERIALRX_CRSF       // Team Black Sheep Crossfire protocol
 #define USE_SERIALRX_IBUS       // FlySky and Turnigy receivers
-#define USE_SERIALRX_SBUS       // Frsky and Futaba receivers
+#define USE_SERIALRX_SBUS       // FrSky and Futaba receivers
 #define USE_SERIALRX_SPEKTRUM   // SRXL, DSM2 and DSMX protocol
 #define USE_SERIALRX_SUMD       // Graupner Hott protocol
 #define USE_SERIALRX_SUMH       // Graupner legacy protocol
@@ -114,7 +114,7 @@ For example, in a NAZE32, if we're using Serial RX, with a FlySky receiver (that
 #undef USE_RX_PPM
 #undef USE_RX_PWM
 #undef USE_SERIALRX_CRSF       // Team Black Sheep Crossfire protocol
-#undef USE_SERIALRX_SBUS       // Frsky and Futaba receivers
+#undef USE_SERIALRX_SBUS       // FrSky and Futaba receivers
 #undef USE_SERIALRX_SPEKTRUM   // SRXL, DSM2 and DSMX protocol
 #undef USE_SERIALRX_SUMD       // Graupner Hott protocol
 #undef USE_SERIALRX_SUMH       // Graupner legacy protocol

@@ -18,7 +18,7 @@ CrazyBee F4 FR Pro flight controller is a Highly integrated board(Receiver/4in1 
 - Power supply: 1-2S battery input (DC 3.5-8.7V)
 - Built-in 5V 1A Buck / Boost with LC filter
 - Integrated Current sensor：Max 28A,Current meter scale set to 1175
-- Built-in SPI Frsky receiver with telemetry(D8/D16 switchable)
+- Built-in SPI FrSky receiver with telemetry(D8/D16 switchable)
 - Integrated inverter for sbus(when use external rx) in UART1 RX
 - Integrated 4x Blheli_s ESC: Max 5A per ESC(EMF8BB21F16G)
 - ESC Connector: 3-pin, PicoBlade 1.25mm pitch

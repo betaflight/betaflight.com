@@ -386,7 +386,7 @@ When active with Betaflight firmware, the `ADC filter` causes:
 
 This is why, whenever an OpenTx or EdgeTx user is using Betaflight, the OpenTx/EdgeTx `ADC Filter` **MUST** be disabled, for accurate smooth flight control.
 
-The user only has to find the `ADC Filter` checkbox in the Hardware tab of the Global Settings for their radio, and ensure it is un-checked. For example, with the Frsky Taranis X9D+ pre 2019 model:
+The user only has to find the `ADC Filter` checkbox in the Hardware tab of the Global Settings for their radio, and ensure it is un-checked. For example, with the FrSky Taranis X9D+ pre 2019 model:
 
 - Turn on your radio.
 - Hold Menu to access Global Settings.

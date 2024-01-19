@@ -63,7 +63,7 @@ Rev2 (Full Size)
 
 ![Wiring Diagram - rev3](/img/boards/bluejayf4/bluejayf4-rev3-wiring.jpg)
 
-### Frsky Smartport
+### FrSky Smartport
 
 Frysky smartport (or s-port) is inverted, and half duplex. You can modify your X4R or XSR by following the procedure here [https://blck.mn/2016/06/smartport-the-frsky-x4rs-and-betaflight/](https://blck.mn/2016/06/smartport-the-frsky-x4rs-and-betaflight/) and here (for a cleaner modification thats easily switchable between inverted and non-inverted) [https://blck.mn/2016/12/smartport-frsky-x4rs-and-betaflight-part-2/](https://blck.mn/2016/12/smartport-frsky-x4rs-and-betaflight-part-2/)
 

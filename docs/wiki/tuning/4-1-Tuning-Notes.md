@@ -126,7 +126,7 @@ set rc_smoothing_input_type = PT1
 set rc_smoothing_derivative_type = PT1
 ```
 
-When using with TBS Crossfire or Frsky R9 on OpenTx radios these settings will dampen aliasing artifacts that currently happen with those systems (and probably any external module on OpenTx radios).
+When using with TBS Crossfire or FrSky R9 on OpenTx radios these settings will dampen aliasing artifacts that currently happen with those systems (and probably any external module on OpenTx radios).
 
 ```
 set rc_smoothing_derivative_hz = 20

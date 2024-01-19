@@ -1,7 +1,7 @@
 ## FRSKYF4 Board
 
-The Frsky F4 flight controller integrated Frsky's X8R Receiver,OSD and SD Card in one board. This board use MPU6050.This board has no problem running fast loop times and ESC protocols. There is an On Screen Display (OSD) chip directly connected to the main processor (MCU). And the FC connect to the Receiver with SBUS and S.Port inner. You no longer need to mount another Reciver,and you can transimit FC's messages to Remote by Betaflight.
-For maximum ease of use, some FrskyF4's board has an onboard PDB up to 6s with a battery XT60 JACK.Just plug your battery straight into the flight controller and you're ready to go!
+The FrSky F4 flight controller integrated FrSky's X8R Receiver,OSD and SD Card in one board. This board use MPU6050.This board has no problem running fast loop times and ESC protocols. There is an On Screen Display (OSD) chip directly connected to the main processor (MCU). And the FC connect to the Receiver with SBUS and S.Port inner. You no longer need to mount another Reciver,and you can transimit FC's messages to Remote by Betaflight.
+For maximum ease of use, some FrSkyF4's board has an onboard PDB up to 6s with a battery XT60 JACK.Just plug your battery straight into the flight controller and you're ready to go!
 
 ## MCU, Sensors and Features
 
@@ -26,18 +26,18 @@ For maximum ease of use, some FrskyF4's board has an onboard PDB up to 6s with a
 - WS2811 Led Strip: Yes
 - Transponder: Yes
 - Beeper: Inverted
-- Receiver: Frsky X8R
+- Receiver: FrSky X8R
 - RSSI: SBUS CHANNEL 8
 
 ## Manufacturers and Distributors
 
-Frsky(Manufacturers)
+FrSky(Manufacturers)
 
 Available here soon:http://www.frsky-rc.com
 
 ## Designers
 
-Frsky Co.Lt
+FrSky Co.Lt
 
 ## Maintainers
 
