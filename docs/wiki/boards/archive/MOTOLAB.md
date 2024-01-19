@@ -119,7 +119,7 @@ Follow above and to re-map output type in CLI:
 - Photo of wire added to a Cyclone.
   https://www.rcgroups.com/forums/showpost.php?p=36589146&postcount=2787
 
-- Photo and post on modifying the MotorF3 (Warp Quad) board to use Dshot. Note this is an alternet method that wires the PPM to Motor #7 output since the #7 output is very close to the PPM pin.
+- Photo and post on modifying the MotorF3 (Warp Quad) board to use DShot. Note this is an alternet method that wires the PPM to Motor #7 output since the #7 output is very close to the PPM pin.
 
 The CLI re-mapping is:
 `resource motor 7 none `
@@ -152,9 +152,9 @@ On Config Tab Enable 'Servo_tilt' and click "SAVE and REBOOT".
 On Servo Tab check CH1 (Roll) for Servo 0 (servo 0 here is Servo 1 in CLI) and check CH2 (Pitch) for Servo 1.
 Click Save. Outputs 7 & 8 should now be 1000 to 2000usec servo pulses. Use the Motors Tab to check or an O'scope on the output pins. Adjust the MIN & MAX to get the movement desired.
 
-### Tri-copter with Dshot ESCs on BF3.1:
+### Tri-copter with DShot ESCs on BF3.1:
 
-Must add wire from PPM to output1 for Dshot.
+Must add wire from PPM to output1 for DShot.
 Servo must be on output 5 or 6 (Timer restriction: see SERVO_TILT wiki page). Do NOT enable SERVO_TILT, selecting TRICOPTER directs Yaw stick to Servo 1.
 Re-map motor 5 to Servo 1 with the following CLI commands (servo on output 5):
 
@@ -162,7 +162,7 @@ Re-map motor 5 to Servo 1 with the following CLI commands (servo on output 5):
 `resource servo 1 A01  `
 `save  `
 
-### Hex-copter with Dshot ESCs on BF3.1:
+### Hex-copter with DShot ESCs on BF3.1:
 
 This did not seem to work. No DSHOT output on motor 1 (No DMA assignment) and bad output on motor 6.
 

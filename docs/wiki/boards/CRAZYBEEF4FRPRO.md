@@ -72,7 +72,7 @@ CrazyBee F4 FR Pro flight controller is a Highly integrated board(Receiver/4in1 
 FRSKY Version:
 
 - To bind to your Taranis, you need to be running the non-eu OpenTX version, which allows you to use the required D8 setting to bind to the RX. The factory default BF receiver mode is FRSKY_X, so remember to configure this if needed.
-- FrSky X (8 / 16 channels) and FrSky D (8 channels) work both reliably, including in combination with crash flip / Dshot beacon, as long as the TELEMETRY feature is disabled;
+- FrSky X (8 / 16 channels) and FrSky D (8 channels) work both reliably, including in combination with crash flip / DShot beacon, as long as the TELEMETRY feature is disabled;
   Basic telemetry information like RSSI and battery voltage will be sent even when the TELEMETRY feature is disabled;
 - On FrSky D, the TELEMETRY feature causes occasional dropouts, depending on how many sensors (BARO, GPS, ...) are enabled, probably due to a timing overrun;
 - On FrSky X, the TELEMETRY feature causes hard lockups due to a bug in the telemetry generation code.

@@ -35,7 +35,7 @@ In most cases 4.1 should be a flash and fly upgrade, the defaults are seriously 
 
 For a VTX to be controlled by betaflight, [a suitable VTX table must be configured by the user](/docs/development/VTX.md#vtx-table) in a way that complies with local regulations.
 
-Bitbanged Dshot is very new; please report bugs during the RC phase to GitHub. If you have an issue with your ESC, try `set dshot_bitbang = OFF` rather than AUTO. For more information see the [rpm telemetry page](/docs/wiki/guides/current/DSHOT-RPM-Filtering)
+Bitbanged DShot is very new; please report bugs during the RC phase to GitHub. If you have an issue with your ESC, try `set dshot_bitbang = OFF` rather than AUTO. For more information see the [rpm telemetry page](/docs/wiki/guides/current/DSHOT-RPM-Filtering)
 
 ## Simpler RPM Filter Configuration
 
@@ -226,6 +226,6 @@ DO NOT move them all the way to the right to see if it flies great, you'll likel
 
 Credits:
 myriad improvements, fixes, advice, and all the underlying code - mikeller, eTracer, and multiple contributors
-dynamic idle, rpm telemetry, bit banged Dshot, feed forward limiting - JoeLucid
+dynamic idle, rpm telemetry, bit banged DShot, feed forward limiting - JoeLucid
 configurator sliders - IvoFPV
 feed forward boost, filter and PID changes - ctzsnooze

@@ -9,7 +9,7 @@
   - _OSD:_ BetaFlight OSD (AT7456E connected via SPI2)
 - _Blackbox:_ FLASH M25P16 (connected via SPI3)
 - 6 UARTs (1,2,3,4,5,6)
-- 8 Dshot outputs
+- 8 DShot outputs
 - 2 PINIO (VTX power switcher/user1 and 2 camera switcher/user2)
 - USB VCP and boot select button on board (for DFU)
 - Serial LED interface(LED_STRIP)

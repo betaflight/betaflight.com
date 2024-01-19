@@ -67,7 +67,7 @@ Multiple Ranges, Links can be matched, combined using boolean AND or OR operator
 
 - **CAMERA CONTROL 3** custom action to configure a Runcam compatible camera device. Used to control some Runcam/Caddx HD recorders
 
-- **FLIP OVER AFTER CRASH** activates Turtle Mode where the quad will spin props on one side only in reverse to flip over if crashed upside down. Dshot required
+- **FLIP OVER AFTER CRASH** activates Turtle Mode where the quad will spin props on one side only in reverse to flip over if crashed upside down. DShot required
 
 - **BOXPREARM** if enabled provides a 2-stage arming method. PREARM switch must be activated before ARM can be used for additional safety
 

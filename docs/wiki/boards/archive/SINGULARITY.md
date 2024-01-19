@@ -26,4 +26,4 @@ I wasn't sure if the PWM's needed to be remapped but I had to free them to remap
 Posted by mixblast:
 I can also confirm that this fixed motors not spinning on 3.1.6 on my Singularity. Apparently it will be fixed in the next betaflight revision https://github.com/betaflight/betaflight/pull/2530
 
-I have also submitted a pull request which lets us use Dshot on this target (not for motors 5-6 though). So hopefully that will also be included in 3.2.0 https://github.com/betaflight/betaflight/pull/2657
+I have also submitted a pull request which lets us use DShot on this target (not for motors 5-6 though). So hopefully that will also be included in 3.2.0 https://github.com/betaflight/betaflight/pull/2657

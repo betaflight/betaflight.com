@@ -18,7 +18,7 @@ id: IFLIGHT_F405_TWING
   - _OSD:_ BetaFlight OSD (AT7456E connected via SPI2)
   - Blackbox: FLASH M25Q256 (connected via SPI3)
 
-- 4 Dshot outputs
+- 4 DShot outputs
 
 - USB VCP and boot select button on board (for DFU)
 

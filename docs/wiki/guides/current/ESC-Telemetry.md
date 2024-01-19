@@ -50,7 +50,7 @@ Find the UART that the ESC telemetry is connected to and in the column marked "S
 
 **Still in Betaflight configurator, switch to the Configuration tab.**
 
-_**Make sure you are using the Dshot protocol for ESC communication!**_
+_**Make sure you are using the DShot protocol for ESC communication!**_
 
 Under "Other Features", make sure that "ESC_SENSOR" is enabled.
 

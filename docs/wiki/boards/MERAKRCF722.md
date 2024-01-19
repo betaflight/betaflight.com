@@ -11,7 +11,7 @@ MERAKRCF405 flight control is carefully optimized layout, so that users can be m
   - _OSD:_ BetaFlight OSD (AT7456E)
   - Blackbox: FLASH W25Q128 (16MB)
 
-- 6 Dshot outputs
+- 6 DShot outputs
 
 - 5 UARTs (UART5 support SerialRC)
 

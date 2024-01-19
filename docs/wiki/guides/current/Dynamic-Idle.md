@@ -59,12 +59,12 @@ In Betaflight 4.3, that's all you need to do.
 In 4.2, the Dynamic Idle control code was not so effective, and the following (complicated) setup procedure was recommended:
 
 - Take props off !!
-- Set your normal Dshot Idle value in the configuration page of the configurator
+- Set your normal DShot Idle value in the configuration page of the configurator
 - Go to the motors tab
 - Re-check that you really did take props off !! :-)
 - Connect a Lipo at around 3.8 - 3.9V
 - Enable the motors
-- Use the master slider to adjust motor drive; for example, if your Dshot Idle value is 5%, set the motor drive to 1050
+- Use the master slider to adjust motor drive; for example, if your DShot Idle value is 5%, set the motor drive to 1050
 - read the RPM you get at this idle.
 - set your dynamic idle minimum RPM value to something a bit below the idle RPM. Note that 20 means 2000 RPM.
 

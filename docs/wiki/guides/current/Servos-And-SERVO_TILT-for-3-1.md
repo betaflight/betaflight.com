@@ -31,7 +31,7 @@ or
 
 (2) Output 1~4: Motors and Output 7 and 8: Servos
 
-Then there is another point of consideration if you are using Dshot; DMA channel conflict.
+Then there is another point of consideration if you are using DShot; DMA channel conflict.
 
 ---
 

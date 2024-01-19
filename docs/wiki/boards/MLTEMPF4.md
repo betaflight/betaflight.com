@@ -14,7 +14,7 @@ An F4 flight controller with integrated PDB, OSD, MicroSD, and current sensor
 - Betaflight OSD
 - Micro SD slot with DMA support
 - Up to 5 serial ports plus USB
-- Up to 6 Dshot motor outputs
+- Up to 6 DShot motor outputs
 - Serial inverters for SBUS and S.PORT
 - Compatible with TBS Smartaudio and IRC Tramp serial protocols
 - 1.5A 5V short-protected regulator with LC filtered 5V for OSD and camera

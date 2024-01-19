@@ -749,7 +749,7 @@ save
 
 About: 'Responsive but Smooth' feel, set up for 5" normal freestyle(cinematic, juicy and more) with Gopro 6/7/8, 4S battery. There is no propwash at all.
 
-Caution: You should activate 'Bidirectional Dshot' for rpm filter and adjust 'idle_min_rpm' about 70% of dshot_idle_rpm or start with '21'.
+Caution: You should activate 'Bidirectional DShot' for rpm filter and adjust 'idle_min_rpm' about 70% of dshot_idle_rpm or start with '21'.
 
 <details>
 <summary>
