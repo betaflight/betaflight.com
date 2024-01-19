@@ -38,13 +38,29 @@ Flight controller failsafe will work if the wires connecting the FC to the Recei
 
 **Signal Validation** is a short (100ms) period in which the absence of incoming data is noted, the last received values are 'held'.
 
-If signal validation fails, the flight controller holds the last known good values for a further 300ms, and then activates failsafe stage 1. An arming block is initiated for one second, and RXLOSS is shown in the OSD while that block is active.
+If signal validation fails:
 
-**Failsafe Stage 1**, or the 'Guard' period, applies the Stage 1 **Channel Fallback Settings** for the `failsafe_delay` period (1.5s by default in 4.5, 1.0s in 4.4), counted from the time of the last valid packet. If any valid data arrives while in Stage 1, the flight controller will respond to it immediately, and the failsafe process stops. The pilot may notice jerky or intermittent stick responsiveness if the signal comes and goes.
+- the flight controller holds the last known good values for a further 300ms, and then activates failsafe stage 1 values, and
+- an arming block is initiated, and
+- `RXLOSS` is shown in the OSD while that block is active.
 
-**Failsafe Stage 2** is entered if the **Failsafe Stage 1** or "Guard" period is exceeded. The user decides what will happen in Stage 2. By default, the craft immediately disarms and drops. Alternatively, you can request it to enter `Landing Mode` or `GPS Rescue`. When signal returns, it must be continuously good for the `failsafe_recovery_delay` period, before control is returned to the pilot. In Betaflight 4.5 this period is 500ms, but if built with the `RACE_PRO` option, it is only 100ms. In earlier firmware, it took longer.
+**Failsafe Stage 1**, or the 'Guard' period, applies the Stage 1 **Channel Fallback Settings** for up to the `failsafe_delay` period (1.5s by default in 4.5, 1.0s in 4.4), counted from the time of the last valid packet. If any valid data arrives while in Stage 1, the flight controller will respond to it immediately, and the failsafe process stops. During stage 1, he pilot may notice jerky or intermittent stick responsiveness if the signal comes and goes.
 
-A transmitter switch may be configured to immediately activate Flight Controller failsafe. This is useful for field testing the failsafe system and as a **_`PANIC`_** switch when you lose orientation.
+**Failsafe Stage 2** is entered if the **Failsafe Stage 1** or "Guard" period is exceeded. The user decides what will happen in Stage 2. By default, the craft immediately disarms and drops. Alternatively, it can enter `Landing Mode` or `GPS Rescue`.
+
+When signal returns, after Stage 2 has started, it must be continuously good for at least the `failsafe_recovery_delay` period before the signal can be considered 'fully recovered'. Only then will the `RXLOSS` message be cleared, and control inputs considered 'real'. In Betaflight 4.5 the `failsafe_recovery_delay` period is 500ms, but if built with the `RACE_PRO` option, it is only 100ms; in 4.4 it was 1.0s.
+
+:::note
+
+When signal fully recovers after a Stage 2 failsafe:
+
+- `RXLOSS` will go away,
+- if Stage 2 was a GPS Rescue, the quad will start checking the inputs for stick movements that are needed to return control to the pilot; when they are detected, and only then, will full control will be returned to the pilot, as if nothing had happened.
+- in other Stage 2 modes, if the quad has disarmed, the pilot **must disarm before they can re-arm**, and the`NOT_DISARMED` warning will be shown in the OSD until the arm switch is put in the disarmed position.
+
+:::
+
+A transmitter switch may be configured to immediately activate Flight Controller failsafe. This is useful for field testing the failsafe system and as a **_`PANIC`_** switch when you lose orientation. Reversing that switch immediately returns full control to the pilot.
 
 ### Signal Validation
 
@@ -53,13 +69,13 @@ A transmitter switch may be configured to immediately activate Flight Controller
 - **no incoming data packets**, or that the receiver is sending **failsafe mode** or **frame dropped** packets, for more than 100ms, or
 - **_invalid pulse length_** data on any flight channel for more than 300ms (PPM receivers only)
 
-`RXLOSS` should be displayed in the warnings field of the OSD when signal loss is detected. This is an 'early warning' of significant packet loss - an indicator that the link is in a bad way. The `RXLOSS` message will be held for one second, even if the signal loss is brief. During this time, the quad will not respond to arming commands, for safety reasons.
+`RXLOSS` should be displayed in the warnings field of the OSD when signal loss is detected. This is an 'early warning' of significant packet loss - an indicator that the link is in a bad way. The `RXLOSS` message will be held for half a second (100ms in `RACE_PRO` builds, one second in 4.4), even if the signal loss is brief. During this time, the quad will not respond to arming commands, for safety reasons.
 
 When the FC decides that signal loss has occurred, the values on the bad channels, or on all channels for total packet loss, will be held at their last received value for 300ms from the last known good data.
 
-After 300ms with no valid data, the previously held values are replaced with Stage 1 failsafe values, and we enter Stage 1 Failsafe.
-
 If valid incoming data is detected during the signal validation period, the signal is considered 'normal' again, the signal loss detection timers are reset.
+
+After 300ms with no valid data, the previously held values are replaced with Stage 1 failsafe values, and we enter Stage 1 Failsafe.
 
 When a failsafe switch is enabled, and Failsafe is set to use Stage 1, the flight channels (Roll, Pitch, Yaw and Throttle), but not the auxiliary channels, are immediately set to Stage 1 values, without any delay.
 
@@ -141,7 +157,7 @@ Drop mode is typically used by racers and park fliers. Racers often reduce the `
 
 In Drop mode, the `failsafe_delay`, or guard time, should be long enough that a brief Rx loss will be tolerated without leading to a disarm. Shorter guard times will stop the motors more quickly when signal is lost. In practice the minimum safe guard time is 200ms. Any shorter and you are vulnerable to false failsafes from brief signal loss.
 
-The `failsafe_recovery_delay` is how long the signal must be 'good' for before you're allowed to re-arm after being disarmed by the Drop. By default this is 1.5 seconds in 4.5, but is 1.0s in 4.4. For many setups this time can be a lot shorter. However, some radio links can be erratic when they recover, so don't make it too short without first checking that the quad doesn't go bezerk when the signal recovers.
+The `failsafe_recovery_delay` is how long the signal must be 'good' for before you're allowed to re-arm after being disarmed by the Drop procedure. By default this is 0.5 seconds in 4.5, 0.1 seconds in 4.5 if built with the `RACE_PRO` option, and is 1.0s in 4.4. The reason is that some radio links can be erratic when they recover, so don't make the duration too short without first checking that the quad doesn't go bezerk when the signal recovers. Remember that to recover from Stage 2, the pilot must toggle disarm - re-arm. The OSD message `NOT_DISARMED` will be shown (`BAD_RX` before 4.5) if the arm switch is in the armed position and signal has recovered. If you see this, you can re-arm by disarming, then re-arming.
 
 ### Landing mode
 
@@ -243,7 +259,9 @@ See [Rx documentation](/docs/development/Rx).
 
 #### `failsafe_recovery_delay`
 
-Time for a recovered signal to be considered valid. While in Stage 2, the signal must be 'good' for at least this time for control to be returned to the pilot. In GPS Return mode, this time is required before the stick inputs will be assessed for the restoration of control.
+Time for a recovered signal to be considered valid while in Stage 2 failsafe. The signal must be 'good' for at least this time before control is returned to the pilot; the pilot cannot re-arm during this period. In GPS Return mode, this is the time required before the pilot's stick inputs will be assessed for the restoration of control. In Betaflight 4.5, this period is 0.5s by default, unless the `RACE_PRO` option was built into the firmware, when it is 0.1s by default. In Betaflight 4.4, this period is 1.0s. `RXLOSS` will still be shown in the OSD during the `failsafe_recovery_delay` period, since technically the signal is not yet considered OK.
+
+Note that during the `failsafe_recovery_delay` period, the quad cannot be re-armed. To be re-armed, the quad must first be disarmed. If the arm stick is in the armed position when the `failsafe_recovery_delay` expires, the warning `NOT_DISARMED` will be shown. It means that you need to toggle the arm switch back to the disarm psoition, and then you can re-arm.
 
 #### `failsafe_stick_threshold`
 
