@@ -7,6 +7,16 @@ import TabItem from '@theme/TabItem';
 
 # MDX Reference
 
+### Capitalisation
+
+Capitalisation of the top level Heading and Filename of an .mdx file is mandatory, or the commit will fail. The required capitalisation will be indicated in the commit failure message.
+
+Capitalisation should be otherwise be consistent throughout the document, and ideally across the whole site.
+
+Capitalisation should be applied to proper names or defined or technical terms, but not otherwise. For example, "Tasks", when capitalised, may be appropriate when referring to the Configurator "Tasks" tab, or a "Tasks" function, whereas "tasks", uncapitalised, would be more appropriate in the sense that "when controlling a drone, the pilot undertakes many tasks".
+
+Some technical terms have standard capitalisation, eg SmartAudio, DShot, HDZero, ExpressLRS, and we should be consistent with these.
+
 # Header 1
 
 ## Header 2
