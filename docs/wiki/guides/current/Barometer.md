@@ -2,6 +2,8 @@
 
 Barometers measure air pressure to determine altitude. They are highly sensitive, responding to a breath of air, and are very temperature sensitive. Typically they incorporate accurate temperature sensors to provide compensation.
 
+Betaflight uses Barometer data to help determine the altitude of the craft, relative to the take-off point, assist with altitude control in GPS Rescue.
+
 In most cases, Betaflight should detect the barometer automatically.
 
 Barometers are much more useful for relative altitude changes than for absolute altitude measurement. A modern barometer chip like the Infineon DPS368 can detect very small altitude changes (less than 10cm), with good noise suppression, and update those values at 40Hz.
@@ -29,9 +31,57 @@ The Barometer icon at the top should then light up. This means that the firmware
 
 Most barometers are powered up via USB, but some require LiPo power; if the icon does not light up, take props off and check to see what happens if you connect a battery or equivalent to the LiPo connector.
 
-If the Barometer lights up, go to the Sensors tab, and choose Barometer at the top. You should then see baro altitude readings. Lifting the quad or flight controller above the controller point should show an increase in altitude, and vice versa. There will be some noise, but it should not be excessive. Good to go!
+If the Barometer lights up, go to the Sensors tab, and choose Barometer at the top. You should then see baro altitude readings. Lifting the quad or flight controller about 1m up and down should show a change in the altitude reading of about 1m also. There will be some noise, and lag, that's normal.
 
-If the Barometer does not light up, read on...
+### Advanced checking
+
+The debug mode `Baro` returns:
+
+| Debug | Data                                       |
+| ----- | ------------------------------------------ |
+| 0     | State (during initialisation)              |
+| 1     | pressure in hPa absolute                   |
+| 2     | temperature reported by baro, deg C \* 100 |
+| 3     | altitude estimate from Baro alone in cm    |
+
+These values can be logged, or displayed in the graphs in Configurator's Sensors Tab. Check that the temperature reads accurately; a value of 2145 means 21.45 deg C. If it is very wrong, the chip is probably a clone of the DPS310, and temperature compensation may be poor.
+
+### Barometer vs GPS for Altitude estimation
+
+Both the barometer and the GPS module report altitude data.
+
+Barometers respond more quickly than GPS modules, but can be noisier. On the other hand, unless a GPS has a good hDOP indicator, the GPS altitude estimate can vary by several meters over a flight. Modern barometer chips, eg the DPS368, are typically faster and more accurate than most GPS modules.
+
+The `altitude_source` `DEFAULT` method 'mixes' the two sources together, or, if there is only one source, uses whatever is available. The user can alternatively force `BARO_ONLY` or `GPS_ONLY`. With these the user can decide which provides better altitude control in a GPS Rescue.
+
+:::tip
+
+If a GPS Rescue is initiated with a return altitude of say 10m over a flat field, and the return flight observed Line of Sight, the stability of the altitude control, and the smoothness of the descent, are easily visualised. Test with Baro only vs GPS only. If both seem OK, alone, test the `DEFAULT` method. Usually `DEFAULT` delivers the best result.
+
+:::
+
+When `altitude_source = DEFAULT`, the user can adjust the relative influence of Baro vs GPS on the final altitude reading.
+
+When a GPS module is available, Betaflights gets the Horizontal Dilution of Precision (hDOP) value from the GPS. This estimates the precision of the GPS altitude estimate. We use hDOP to assign an internal `gpsTrust` value. The default value is 0.3, meaning that if Baro is available, GPS accounts for only 30% of the altitude, reading, but when the dDOP value indicates accurate GPS readings, the `gpsTrust` value can reach a maximum of 0.9.
+
+The `altitude_prefer_baro` CLI setting further modifies the `gpsTrust` value when there is a large difference between the two readings. When `altitude_prefer_baro = 100`, the default, our trust in the GPS is unaffected if the difference between the two sensors is less than 1m, reduced by half if the difference is 2m, and reduced to 1/5th of normal when the difference is 5m. When set to 50, we need a difference of 4m before our trust in the GPS is reduced by half. When set to zero, our GPS trust estimate is not affected by the difference between the readings.
+
+Hence, if e have both GPS and Baro, and if `altitude_source` is set to `DEFAULT`, the relative balance between Baro and GPS depends on the GPS's hDOP estimate of the accuracy of its altitude measurement, the magnitude of the difference between the two readings, and the user's `altitude_prefer_baro` setting. When `altitude_prefer_baro` is set to the default of 100, Baro readings will predominate, unless the error is low and the GPS hDOP suggests that GPS is accurate. At lower values of `altitude_prefer_baro`, GPS will have a greater relative influence.
+
+Basically, if you've got a good Baro, especially a real Infineon DPS310 or DPS360, and probably a BMP280, you should probably accept the default `altitude_prefer_baro` value of 100, and use the `DEFAULT` mixing method.
+
+:::tip
+
+Use the Altitude debug for a detailed evaluation of GPS vs Baro readings
+
+| Debug | Data                              |
+| ----- | --------------------------------- |
+| 0     | gpsTrust value                    |
+| 1     | baroAltitude, cm                  |
+| 2     | gpsAltitude, cm, zeroed on arming |
+| 3     | Vario                             |
+
+:::
 
 ### Barometer Firmware Support
 
