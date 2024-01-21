@@ -18,7 +18,7 @@ A complete FC, PDB, VTX, OSD and MicroSD system with F4 CPU on two boards with m
 - 100+A PDB with 200A motor current sensor
 - MPU6000 gyro/acc on SPI bus
 - Up to 4 serial ports plus USB
-- Up to 6 Dshot motor outputs
+- Up to 6 DShot motor outputs
 - Serial inverters for SBUS and S.PORT
 - 1.5A 5V regulator with LC filtered 5V for VTX and camera
 - Plug-in connection to VTX board

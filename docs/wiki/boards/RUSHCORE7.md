@@ -13,7 +13,7 @@ This board use the STM32F722RET6 microcontroller and have the following features
 - BEC 5v/2A on board
 - Serial LED (LED_STRIP)
 - VBAT/CURR/RSSI sensors input
-- Suppose IRC Tramp/smart audio/FPV Camera Control/FPORT/telemetry
+- Suppose IRC Tramp/SmartAudio/FPV Camera Control/FPORT/telemetry
 - Supports SBus, Spektrum1024/2048, PPM etc
 - Supports I2C device extend(baro/compass/OLED etc)
 - Supports GPS
@@ -27,7 +27,7 @@ This board use the STM32F722RET6 microcontroller and have the following features
 | 2     | USART2     | PA3  | PA2  | FOR SBUS IN(inverter build in)/PPM |
 | 3     | USART3     | PC11 | PC10 |                                    |
 | 4     | USART4     | PA1  | PA0  | PA0 FOR RSSI/FPORT/TEL etc         |
-| 5     | USART5     | PD2  | PC12 | PC12 TRAMP/smart audio             |
+| 5     | USART5     | PD2  | PC12 | PC12 TRAMP/SmartAudio              |
 
 ### I2C
 

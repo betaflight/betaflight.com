@@ -8,7 +8,7 @@ Current support includes
 
 1. RTC6705 directly connected to the CPU (maybe via a PCB board interconnect, e.g. SPRACINGF3NEO)
 2. IRC Tramp
-3. TBS Smart Audio
+3. TBS SmartAudio
 
 ## VTX Button
 

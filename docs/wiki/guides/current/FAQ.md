@@ -67,7 +67,7 @@ Therefore be sure to Read the Release Notes to know what commands or features ar
 1. [Why do LED strips not work ?](#why-do-led-strips-not-work-)
 1. [Recently with the temps dropping, my quad has started to develop a random twitch. Anyone else experience random issues when it's 20'ish degree's F outside ?](#recently-with-the-temps-dropping,-my-quad-has-started-to-develop-a-random-twitch.-Anyone-else-experience-random-issues-when-it's-20'ish-degree's-F-outside-)
 1. [Why can't I connect to my flight controller using MSP over UART1?](#why-cant-i-connect-to-my-flight-controller-using-msp-over-uart1)
-1. [Is it possible that we can flash the Frsky receivers thru the flight controller like we now flash the ESC?](#is-it-possible-that-we-can-flash-the-frsky-receivers-thru-the-flight-controller-like-we-now-flash-the-esc)
+1. [Is it possible that we can flash the FrSky receivers thru the flight controller like we now flash the ESC?](#is-it-possible-that-we-can-flash-the-frsky-receivers-thru-the-flight-controller-like-we-now-flash-the-esc)
 1. [Is there a way to dismiss the OSD post flight statistics screen?](#is-there-a-way-to-dismiss-the-osd-post-flight-statistics-screen)
 
 **If your question is not listed above then please check the following pages:**
@@ -1707,7 +1707,7 @@ I see the comments about notch filters helping with the noise issues, and the co
 Boris:
 You can of course make the filtering more agressive, but readings from ICM20xxx gyros can be too messy on hardmounted solutions so softmounting to make them less sensitive seems like the only solution on those, where on mpu60x0 you would mostly get away on standard mounting.
 
-##### Post on testing Dshot before and after adding Large, low ESR caps to power system:
+##### Post on testing DShot before and after adding Large, low ESR caps to power system:
 
 https://www.rcgroups.com/forums/showpost.php?p=36713066&postcount=3133
 https://www.rcgroups.com/forums/showpost.php?p=36718584&postcount=3144
@@ -1793,7 +1793,7 @@ Since Betaflight 3.1, MSP on UART is no longer enabled by default. To enable it,
 
 Follow the instructions under "development", but add `OPTIONS=USE_MSP_UART` to your make command. For example: `make CC3D OPTIONS=USE_MSP_UART`. Instead of `CC3D`, you can use [any target that Betaflight supports](#which-hex-target-do-i-download-and-flash-to-my-flight-controller-).
 
-## Is it possible that we can flash the Frsky receivers thru the flight controller like we now flash the ESC?
+## Is it possible that we can flash the FrSky receivers thru the flight controller like we now flash the ESC?
 
 That's done by Fishpepper;
 [OpenSky / tinyFISH](http://fishpepper.de/2017/02/24/opensky-tinyfish-how-to-update-the-opensky-receiver-firmware-through-betaflight/)

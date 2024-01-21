@@ -7,7 +7,7 @@ This board use the STM32F411CEU6 microcontroller and have the following features
 - Stable voltage regulation,9V/1.5A DCDC BEC for VTX/camera etc.And could select 5v/9v with pad
 - Serial LED interface(LED_STRIP)
 - VBAT/CURR/RSSI sensors input
-- Suppose IRC Tramp/smart audio/FPV Camera Control/FPORT/telemetry
+- Suppose IRC Tramp/SmartAudio/FPV Camera Control/FPORT/telemetry
 - Supports SBus, Spektrum1024/2048, PPM. No external inverters required (built-in).
 - Supports I2C device extend(baro/compass/OLED etc)
 - Supports GPS

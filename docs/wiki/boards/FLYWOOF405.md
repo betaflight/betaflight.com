@@ -9,7 +9,7 @@ This board use the STM32F405RGT6 microcontroller and have the following features
 - Stable voltage regulation,9V/1.5A DCDC BEC for VTX/camera etc.And could select 5v/9v with pad
 - Serial LED interface(LED_STRIP)
 - VBAT/CURR/RSSI sensors input
-- Suppose IRC Tramp/smart audio/FPV Camera Control/FPORT/telemetry
+- Suppose IRC Tramp/SmartAudio/FPV Camera Control/FPORT/telemetry
 - Supports SBus, Spektrum1024/2048, PPM. No external inverters required (built-in).
 - Supports I2C device extend(baro/compass/OLED etc)
 - Supports GPS
@@ -20,7 +20,7 @@ This board use the STM32F405RGT6 microcontroller and have the following features
 | ----- | ---------- | ---- | ---- | ------------------------------ |
 | 1     | USART1     | PA10 | PB6  | USE smartport/FPORT/TEL etc    |
 | 2     | USART3     | PB11 | PB10 | FOR SBUS IN(inverter build in) |
-| 3     | USART4     | PA1  | PA0  | PAD USE FOR TRAMP/smart audio  |
+| 3     | USART4     | PA1  | PA0  | PAD USE FOR TRAMP/SmartAudio   |
 | 4     | USART5     | PD2  | /    | PAD ESC sensor                 |
 | 5     | USART6     | PC7  | PC6  | PAD USE FOR GPS/BLE etc        |
 

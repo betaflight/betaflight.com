@@ -109,7 +109,7 @@ When needed additional protocols like <b>PWM</b> or <b>SERVOS</b> please add the
 
 | Option                    | Description                                                          |
 | :------------------------ | :------------------------------------------------------------------- |
-| AKK (SA Fix)              | Smartaudio patch for AKK hardware                                    |
+| AKK (SA Fix)              | SmartAudio patch for AKK hardware                                    |
 | Acro Trainer              | Enable Acro Trainer support                                          |
 | Batt. Continue            | See [#11084](https://github.com/betaflight/betaflight/pull/11084)    |
 | Cam. Control              | Enable Camera Control                                                |

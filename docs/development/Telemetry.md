@@ -193,7 +193,7 @@ The following sensors are transmitted :
 > set report_cell_voltage = OFF
 > ```
 >
-> Note: cell voltage values are an assumed reputation of the cell voltage based on the packs voltage. Actual cell voltage may differ. It is recommeded that you chain the flight controllers telemetry with a real Frsky FLVSS s.port sensor.
+> Note: cell voltage values are an assumed reputation of the cell voltage based on the packs voltage. Actual cell voltage may differ. It is recommeded that you chain the flight controllers telemetry with a real FrSky FLVSS s.port sensor.
 >
 > To view individual cells or more importantly to get lowest cell (all cells are the sum of vbat, so each cell is the same in this case):
 > See [OpenTX 2.1 & FrSky FLVSS Individual Cell Voltages](http://openrcforums.com/forum/viewtopic.php?t=7266).

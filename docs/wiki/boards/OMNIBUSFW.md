@@ -128,7 +128,7 @@ set ibata_scale = 367      # Ditto. Calibration required.
 set ibata_offset = 0       # Ditto
 ```
 
-#### Use these CLI instructions for Frsky Omnibus versions with Rxsr-Fc connected via FPC:
+#### Use these CLI instructions for FrSky Omnibus versions with Rxsr-Fc connected via FPC:
 
 ```
 resource SERIAL_TX 11 C08

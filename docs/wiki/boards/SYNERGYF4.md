@@ -9,7 +9,7 @@
 - Connectors: 8 pin JST-SH main connector. 2x 3 pin JST-SH Addressable LED connectors (mirrored output)
 - Telemetry: Current Sensor and ESC Telemetry Input
 - Blackbox: 128Mbit flash (16Megabytes)
-- Motor: 4 pwm motor outputs with D-Shot and Multishot support
+- Motor: 4 pwm motor outputs with DShot and Multishot support
 - Mounting: M3 30.5x30.5mm holes with soft mounting
 - Dimensions: 37x37mm
 - Weight: 7.5g

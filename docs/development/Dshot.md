@@ -20,7 +20,7 @@ DShot bucks the trend, the higher number is faster than the lower numbers. The o
 
 For DSHOT600 the timing output is as follows:
 
-### Dshot-sequence
+### DShot-sequence
 
 Bit length (total timing period) is 1.67 microseconds (T0H + T0L or T1H + T1L).
 For a bit to be 0, the pulse width is 625 nanoseconds (T0H – time the pulse is high for a bit value of ZERO)
@@ -29,13 +29,13 @@ The reason for the difference in pulse length for bit 0 and bit 1 values is that
 
 As with any protocol there needs to be a communication stream of bits, that will be interpreted for some outcome to occur. For the case of DShot the signal for a motor update consists of 16 bits (a frame). The first 11 bits are the actual throttle value. The next bit is to signal the ESC to provide a telemetry update (using a separate return channel), and the remaining 4 bits are a checksum.
 
-### Dshot-output
+### DShot-output
 
 The throttle value with 11 bits gives a resolution of 2048. It has been suggested the first values be reserved (possibly for startup tones or commands), so 0 means disarmed. So if 1 to 47 are reserved, and then 48-2047 is the throttle position – giving 2000 steps of resolution.
 
 In the throttle value portion of the frame the most significant bits are first, so the first bit having a value of 1 means the throttle is at least half way, i.e. 1024, the second bit represents 512, the third 256 and so on until bit 11 represents the value of 1. So the bit sequence 11111111111 represents full throttle, and 10000000000 represents half throttle. The following image is a capture of DSHOT600 in action on a BluejayF4:
 
-### Dshot-capture
+### DShot-capture
 
 There is normally a pause between frames of at least 2 microseconds to indicate a frame reset. A reset simply indicates the end of one frame and thus any future bits are the start of a new frame. With DShot occurring at the end of a PID loop this pause is actually considerably longer. If DShot were to be made to continuously output a signal then this delay would be required.
 
@@ -59,7 +59,7 @@ Another benefit is of course, no calibration required. In the digital world a ze
 
 So really now it is just a case of rest in peace PWM, for we have a new friend, and that friend goes by the name of DSHOT!
 
-### Joe Lucid took it further and introduced bidirectional Dshot
+### Joe Lucid took it further and introduced bidirectional DShot
 
 DShot bidir uses inverted signal levels (idle is 1). FC to ESC uses dshot frames but the lowest 4 bits hold the complement of the other nibbles xor'd together (normal dshot does not complement the xor sum). The ESC detects based on the inversion that telemetry packets have to be sent.
 

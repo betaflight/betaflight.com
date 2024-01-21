@@ -14,7 +14,7 @@
 - USB VCP and boot select button on board(for DFU)
 - Serial LED interface(LED_STRIP)
 - VBAT/CURR/RSSI sensors input
-- Suppose IRC Tramp/smart audio/FPV Camera Control/FPORT/telemetry.
+- Suppose IRC Tramp/SmartAudio/FPV Camera Control/FPORT/telemetry.
 
 ### Photos
 

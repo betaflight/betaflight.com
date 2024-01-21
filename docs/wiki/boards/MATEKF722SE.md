@@ -17,7 +17,7 @@ Full details on the MATEKSYS F722-SE can be found on the Matek Website: [mateksy
   - _OSD:_ BetaFlight OSD (AT7456E connected via SPI2)
 - _Blackbox:_ MicroSD card slot (connected via SPI3)
 - 5 UARTs (1,2,3,4,6)
-- 8 Dshot outputs
+- 8 DShot outputs
 - 2 PINIO (VTX power switcher/user1 and 2 camera switcher/user2)
 
 ### Integrated PDB Specs

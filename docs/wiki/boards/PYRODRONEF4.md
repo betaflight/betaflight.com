@@ -3,7 +3,7 @@
 The PYRODRONEF4 target is new board developed by http://pirofliprc.com/
 
 - flat bottom.(No component on the bottom)
-- 6 uarts with 4 motor outputs(D-shot supported)
+- 6 uarts with 4 motor outputs(DShot supported)
 - uart 1 inverted for sbus(selectable) , uart 3 with inverter for frsky telemetry
 - onboard 5V bec.
 - direct solder pad layout for 4 IN 1 ESC or use 4 in 1 ESC Plug
@@ -27,7 +27,7 @@ TX1, RX1 -> UART1 sbus pad (RX1 Use for Sbus has inverter build in)
 TX2, RX2 -> UART2 Esc Telemetry (use for esc telemetery)
 TX3, RX3 -> UART3 TEL PAD (use for frsky temeletery has inverter build in)
 TX4, RX4 -> UART4 (Free uart)
-TX5, RX5 -> UART5 TX5 (TX5 use for smart audio, No RX5 pinout )
+TX5, RX5 -> UART5 TX5 (TX5 use for SmartAudio, No RX5 pinout )
 TX6, RX6 -> UART5 (design to use crossfire rx)
 
 ## board label

@@ -1,21 +1,21 @@
-# Dshot & BetaFlight 3.1
+# DShot & BetaFlight 3.1
 
 :::note
 This is an out of data note describing the early introduction of DShot in 3.1.
 
-Dshot is new and currently code is being developed and tested. Since there are many dependencies and not all current hardware works this is to help keep track.
+DShot is new and currently code is being developed and tested. Since there are many dependencies and not all current hardware works this is to help keep track.
 
-The Official Thread for Dshot is: https://www.rcgroups.com/forums/showthread.php?t=2756129
-Please Read this thread for details of how it works and up to date info. The First Post of this thread has all the needed Links to code and other info. A good article on Dshot and ESC protocols is here:
+The Official Thread for DShot is: https://www.rcgroups.com/forums/showthread.php?t=2756129
+Please Read this thread for details of how it works and up to date info. The First Post of this thread has all the needed Links to code and other info. A good article on DShot and ESC protocols is here:
 https://blck.mn/2016/11/dshot-the-new-kid-on-the-block/
 
 ESC Protocol videos by Joshua Bardwell:
 https://www.rcgroups.com/forums/showpost.php?p=36552970&postcount=2765
 
-In the Dshot thread is this post on how to re-Flash ESCs & FC:
+In the DShot thread is this post on how to re-Flash ESCs & FC:
 https://www.rcgroups.com/forums/showpost.php?p=36200950&postcount=1468
 
-For KISS FC's and ESCs see the KISS Dshot thread:
+For KISS FC's and ESCs see the KISS DShot thread:
 https://www.rcgroups.com/forums/showthread.php?t=2780055
 
 [BetaFlight V3.1 released](/docs/wiki/release/older/Betaflight-3-1-Release-Notes)
@@ -32,22 +32,22 @@ The Latest Development version of the Configurator is recommended.
 - All STM32F1 Target do not support DSHOT
 - Some ESCs that have a signal filter cap may not work until the cap is removed.
 - Some targets have a DMA conflict between a motor and the LEDs. Some have work-arounds but some do not. If no work-around is listed then disable LEDs and contact the FC designer/support.
-- No reports of Dshot working for HEX copter.
+- No reports of DShot working for HEX copter.
 
-### A quick way to determine IF the Firmware flashed into the FC supports Dshot:
+### A quick way to determine IF the Firmware flashed into the FC supports DShot:
 
 Go to the CLI and type "get pwm". All settings with 'pwm' in the name will be shown with all options.
-If DSHOT150, DSHOT300, DSHOT600 is NOT in the list for the "motor_pwm_protocol" then this firmware does NOT support Dshot.
-Example for NAZE that does Not support Dshot:
+If DSHOT150, DSHOT300, DSHOT600 is NOT in the list for the "motor_pwm_protocol" then this firmware does NOT support DShot.
+Example for NAZE that does Not support DShot:
 
 motor_pwm_protocol = ONESHOT42
 Allowed values: OFF, ONESHOT125, ONESHOT42, MULTISHOT, BRUSHED
 
 ### Setting Minimum Throttle
 
-Note: In Firmware 3.1.1 and earlier min_check and min_throttle are affecting the Dshot idle value so adjusting the motor idle speed is not straight forward. If running these earlier versions of firmware try defaults and then adjust 'digital_idle_percent' until the motors ilde at the desired speed.
-This got fixed in 3.1.2 and up so now digital_idle_percent Only sets the Dshot idle speed.
-Be aware that Dshot ESCs can run motors at much slower speeds but if idle speed is too low the motor may Stall in flight during hard maneuvers and you get a 'death roll'. If this happens increase the value of digital_idle_percent.
+Note: In Firmware 3.1.1 and earlier min_check and min_throttle are affecting the DShot idle value so adjusting the motor idle speed is not straight forward. If running these earlier versions of firmware try defaults and then adjust 'digital_idle_percent' until the motors ilde at the desired speed.
+This got fixed in 3.1.2 and up so now digital_idle_percent Only sets the DShot idle speed.
+Be aware that DShot ESCs can run motors at much slower speeds but if idle speed is too low the motor may Stall in flight during hard maneuvers and you get a 'death roll'. If this happens increase the value of digital_idle_percent.
 
 ##### Post by Cheredanine on setting up IDLE in ßF 3.1.2 and up:
 
@@ -84,9 +84,9 @@ Hit return and done
 
 ### ESC Cal and min/max throttle
 
-ßF firmware with Dshot does Not use the min_throttle or max_throttle setting, these are ignored.
+ßF firmware with DShot does Not use the min_throttle or max_throttle setting, these are ignored.
 Just ensure that in the ESCs (BLHeli Suite) that PPM_MIN_THROTTLE is set to 1000 and PPM_MAX_THROTTLE is set to 2000.
-Note: This is not needed in BLHeli_S 16.43 and up since the PPM_MIN & MAX values are not used for Dshot.
+Note: This is not needed in BLHeli_S 16.43 and up since the PPM_MIN & MAX values are not used for DShot.
 
 **This means that when DSHOT is use NO ESC Calibration is required. Just Select DSHOT.**
 
@@ -105,7 +105,7 @@ Theoretical speeds are a lot higher. The speed is limited in firmware to give mo
 
 Note: When DSHOT is enabled Unsyced PWM is disabled. DSHOT always runs at the PID loop rate.
 
-#### Dshot digital Values:
+#### DShot digital Values:
 
 0 = disarmed.
 1 to 47 = Reserved for special commands.
@@ -113,19 +113,19 @@ Note: When DSHOT is enabled Unsyced PWM is disabled. DSHOT always runs at the PI
 
 ### Originally Posted by airmaxx23
 
-I recently finished building a new quad with the BFF3 controller and Armattan 20a ESCs with d-shot 300 enabled. The first thing I've noticed is that the ESCs tones are out of sync when I plug a battery in and I'm having a flip/roll of death once in a while. What should I check first?
+I recently finished building a new quad with the BFF3 controller and Armattan 20a ESCs with DShot 300 enabled. The first thing I've noticed is that the ESCs tones are out of sync when I plug a battery in and I'm having a flip/roll of death once in a while. What should I check first?
 
 #### Answer from AILERON8
 
 I've been reloading the BLHeli configurator and reflashing the ESCs, then setting the ESCs to MS, syncing my FC/ESC loop, and calibrating. Then I've been going back to DShot and setting things up normally. Don't ask me why or how it works, but I've had to do this on more than one occasion now or I get a distant ESC song or two playing out of sequence in the background like you have now. This worked each time, but not saying it will work for you with certainty.
 
-### Does Dshot work on other models besides the Quad-X, like hex and tri-copters?
+### Does DShot work on other models besides the Quad-X, like hex and tri-copters?
 
 They should surely work if the FC was designed for them.
 You will need to re-map a motor to a Servo for a Tri-copter. See the SERVO_TILT wiki page for help.
 There is also info for Tri-copter setup on the MOTOLAB page.
 
-### It all start with the Dshot thread (link above):
+### It all start with the DShot thread (link above):
 
 The information posted herein is all provided on an AS-IS basis.
 It has been derived from posts on this forum (RCGroups/Boris' Betaflight, FC, DSHOT and ESC threads), and direct correspondences with users.
@@ -136,7 +136,7 @@ BETAFLIGHT AND DSHOT -
 
 Betaflight may not be able to support all Targets ( or specific boards) due to the design of each one differing on the DMA pinout. Look below to find what may or may not be working.
 
-### Flight Controllers Tested to Support Dshot on Betaflight 3.1 without Mods or remapping:
+### Flight Controllers Tested to Support DShot on Betaflight 3.1 without Mods or remapping:
 
 - AIORACERF3
 - Airbot F3 (SPRACINGF3)
@@ -159,7 +159,7 @@ Betaflight may not be able to support all Targets ( or specific boards) due to t
   Note from sskaug: KISS FCs use a resistor to drive the throttle signal high (pull-up). So it is quite sensitive to capacitance on the ESC signal.
 - LUX_RACE
 - LUXV2_RACE
-- MRM Mantis F3 (SPRACINGF3) - Dshot300
+- MRM Mantis F3 (SPRACINGF3) - DShot300
 - OMNIBUS (What about Omnibus F4? Are F3 & F4 the same thing with different processor?)
 - OMNIBUSPRO (Blheli Configurator Hangs on read in 3.1, failed flash in 3.01)
 - RACEBASE FC
@@ -173,7 +173,7 @@ Betaflight may not be able to support all Targets ( or specific boards) due to t
 - X-Racer V2.1 (SPRACINGF3)
 - X-Racer F303 (X_RACERSPI) -
 
-### FC Targets that work with Dshot but require hardware mods and re-mapping pins with the Resource command:
+### FC Targets that work with DShot but require hardware mods and re-mapping pins with the Resource command:
 
 Boris' comment:
 I had many requests for MOTOLAB (and other FCs) but that one doesn't have DMA available on all motors. It may be that we will assign one of the motors to PPM pin so you can resolder it. Not great, but better than nothing I guess?
@@ -323,7 +323,7 @@ resource motor 4 A08
 save
 ```
 
-Daryoon got Dshot outputs & the LED Strip to both work:
+Daryoon got DShot outputs & the LED Strip to both work:
 
 Connect motor 4 to PPM pad and enter following in the CLI.
 `resource ppm none  `
@@ -349,7 +349,7 @@ See Github Issue #2282 [Emax Femto (SPRACING F3EVO) - DSHOT 600 Motor 4 not spin
 
 - All other targets not listed above.
 
-### ESCs supporting Dshot:
+### ESCs supporting DShot:
 
 #### BLHeli_32
 
@@ -360,21 +360,21 @@ https://www.rcgroups.com/forums/showthread.php?2864611-BLHeli_32-Power-to-perfor
 
 https://www.rcgroups.com/forums/showthread.php?2555162-KISS-ESC-24A-Race-Edition-Flyduino-32bit-ESC
 
-- 150, 300, 600, 900, 1200 See the Dshot thread (link above) for ESC code.
+- 150, 300, 600, 900, 1200 See the DShot thread (link above) for ESC code.
   KISS24 ESC Beep Codes:
 - 1beep/second = too many dshot errors (more then 10% are bad) but it doesn't disarm it just tells
 - 2beep/second = no valid signal for at last 1/3 second, it disarmed and stopped the motor (ESC failsave)
 - 3beep/second = it couldn't start the motor or the motor stopped because it was blocked
 
 - NOTE: There Seems to be an Issue with the KISS24 Firmware when running faster Loop Rates.
-  Rossbow reports: We have been doing some testing of the Kiss 24a esc's on BF and it appears the they will not run safely at 4 or 8 khz with Dshot.
+  Rossbow reports: We have been doing some testing of the Kiss 24a esc's on BF and it appears the they will not run safely at 4 or 8 khz with DShot.
   If you want to test it take the props off and arm the quad in air mode and just let it run at idle on the bench.
   At 8khz we are seeing between 1 and 6 mins before the esc's start shutting down, it seems they may be getting too many crc errors at 8khz.
   At 1 and 2 khz we can get 15mins or more, So be warned as you most likely will get dead ducks at 8khz.
   I have tested 1.08a, 1.08f and 110b RC7 all with the same issue. Oneshot 42 and 125 are fine.
   BTW its not Betaflight related, it seems the reason the Kiss FC works with the 24a esc's is because it only runs on 1khz with Kiss fw and up to 4 khz on Betaflight. The higher you go in khz the shorter the time before the esc's start to shutdown.
   So the Kiss FC on BF fw may not show the issue because in the cold weather the flight times are short and at 4khz you may get a full 2 to 2.5min flight with no issue.
-  My advice for using these 24a esc's on BF is either run oneshot42 or run no more than 2khz on Dshot. This is not a guarantee but the best solution until a permanent fix can be found. The Kiss hardware is more than capable of running 8 + khz so I would say its just an esc fw issue.
+  My advice for using these 24a esc's on BF is either run oneshot42 or run no more than 2khz on DShot. This is not a guarantee but the best solution until a permanent fix can be found. The Kiss hardware is more than capable of running 8 + khz so I would say its just an esc fw issue.
   juuuut: No haste I'm on it. I talked with Boris and i have a 8k setup here where I can reproduce it. seems to be some watchdog misbehavior in some throttle situations. but I think i will have a new version soon that fixes it!
   regards, Felix
   Alpha fix: https://www.rcgroups.com/forums/showpost.php?p=37048819&postcount=3510
@@ -382,7 +382,7 @@ https://www.rcgroups.com/forums/showthread.php?2555162-KISS-ESC-24A-Race-Edition
 #### BLheli-S:
 
 DSHOT on BLHELI_S ESCs is supported starting with v16.43 and Offically supported in v16.5 and Up.
-Older ESCs with BB1 processor will likely only support Dshot150 & 300.
+Older ESCs with BB1 processor will likely only support DShot150 & 300.
 Here is why: https://www.rcgroups.com/forums/showpost.php?p=36025232&postcount=376
 Now found that all BLHeli_S ESCs will run on DSHOT150, 300 & 600 if using a BB2 processor and any input signal filtering is Removed. See list below for details on removing filter cap.
 [DSHOT O'scope captures](https://www.rcgroups.com/forums/showpost.php?p=36490579&postcount=2631) before and after the typical RC filter.
@@ -392,10 +392,10 @@ BLHeli_S Rev16.6 posted on github (10Jan2017).
 
 See [BLHeli_S Knowledge Base](https://github.com/blheli-configurator/blheli-configurator/wiki/BLHeli_S-Firmware-Knowledge-Base) for Which HEX to use.
 
-Note: Many of these ESC have an RC filter on the control input signal line. The cap of this RC filter must be removed to use Dshot as per the list below. It is recommended to remove the cap from any ESC even if Dshot seems to work. All other protocols will still work without this filter cap.
+Note: Many of these ESC have an RC filter on the control input signal line. The cap of this RC filter must be removed to use DShot as per the list below. It is recommended to remove the cap from any ESC even if DShot seems to work. All other protocols will still work without this filter cap.
 Many ESCs are now being built and shipped without the signal filter Cap but it is best to check yourself to ensure the cap is not installed.
 
-Post on testing Dshot before and after adding Large, low ESR caps to power system:
+Post on testing DShot before and after adding Large, low ESR caps to power system:
 https://www.rcgroups.com/forums/showpost.php?p=36713066&postcount=3133
 https://www.rcgroups.com/forums/showpost.php?p=36718584&postcount=3144
 https://www.rcgroups.com/forums/showpost.php?p=36720323&postcount=3157
@@ -414,7 +414,7 @@ And the most important -
 
 ##### Caps on or off and the wiki
 
-Caps on the signal line smooth the signal, removing jitter. Dshot is a rapid change of signal, it looks like jitter, the faster the signal, the more chance the caps will smooth it out, obliterating the signal. Because dshot is 16bits, some signal,values look more like jitter than others. The signal is also effected by other factors than just the caps
+Caps on the signal line smooth the signal, removing jitter. DShot is a rapid change of signal, it looks like jitter, the faster the signal, the more chance the caps will smooth it out, obliterating the signal. Because dshot is 16bits, some signal,values look more like jitter than others. The signal is also effected by other factors than just the caps
 
 So removing caps makes dshot more likely to work BUT the records in the wiki are not black and white, they are a record of what people have claimed to work, your quad with the same escs may not react the same. (I have 2 quads with exactly the same escs, one works fine up to dshot300 with caps on, the other needs caps off for dshot at all)
 
@@ -431,7 +431,7 @@ So dshot is fine, when you use your sticks the radio, the reciever, the wiring t
 
 ##### Will dshot work with these escs ......
 
-Dshot will work on blheli_s escs (and of course kiss but there is now a seperate thread for kiss) if the escs are flashed with a version of blheli_s that supports it and the caps don't interfere with the signal. Bb1 processors will not do faster speeds, but bb2 will do up to dshot600. Just because the esc doesn't overtly say it on the literature - dshot came out after many blheli_s escs - or because it is 4 in 1 or 2 in 1 or 0.5 in 1 , well perhaps not the last, but if it is blheli_s bb2 make sure the caps are removed from the signal line and it will run dshot
+DShot will work on blheli_s escs (and of course kiss but there is now a seperate thread for kiss) if the escs are flashed with a version of blheli_s that supports it and the caps don't interfere with the signal. Bb1 processors will not do faster speeds, but bb2 will do up to dshot600. Just because the esc doesn't overtly say it on the literature - dshot came out after many blheli_s escs - or because it is 4 in 1 or 2 in 1 or 0.5 in 1 , well perhaps not the last, but if it is blheli_s bb2 make sure the caps are removed from the signal line and it will run dshot
 
 So if you want to run dshot - TAKE THE CAPS OFF (manufacturers are starting to ship with out the caps on)
 If you don't and you have problems, then guess what?
@@ -483,7 +483,7 @@ It is good to check the pictures in the Cap removal links and compare to the ESC
 - Flycolor Raptor BLS-02 -
   Cap removal: https://www.rcgroups.com/forums/showpost.php?p=37070719&postcount=10
 - FVT Littlebee 20A-S
-- FVT LittleBee-Spring 20Ax4 - Claims Dshot but Unknown
+- FVT LittleBee-Spring 20Ax4 - Claims DShot but Unknown
   Thread: https://www.rcgroups.com/forums/showthread.php?2800280-Favourite-FVT-LittleBee-Spring-20Ax4-4-in-1-Blheli_S-ESC-w-built-in-5V-12V-BEC
 - LB30a 4 in 1 spring edition - works with dshot600 out of the box.
 - LittleBee_S 20A (A-H-15)-
@@ -492,7 +492,7 @@ It is good to check the pictures in the Cap removal links and compare to the ESC
   Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36230015&postcount=1745
 - Lumenier 30A
 - Maverick 24A - New product announcement:
-  https://www.rcgroups.com/forums/showthread.php?2795245-Fully-compatible-with-Dshot-New-upgraded-32-bit-Maverick-24A-ESC#post36408093
+  https://www.rcgroups.com/forums/showthread.php?2795245-Fully-compatible-with-DShot-New-upgraded-32-bit-Maverick-24A-ESC#post36408093
 - MRM ZEUS-S 20A - with CAP removed (see FVT littlebee-s 20a cap removal)
 - Multistar BLHeli_S 20A - shipped without the signal filter cap
 - Multistar BLHeli_S 30A -
@@ -522,7 +522,7 @@ It is good to check the pictures in the Cap removal links and compare to the ESC
 - Racerstar RS30A LiteS - with cap removed.
   Cap removal: https://www.rcgroups.com/forums/showthread.php?2690769-Racerstar-Blheli_S-ESCs-%28v2-just-released%29-10-for-20a-12-for-30a-30-4in1-20a/page38
 - Racerstar RS30Ax4 v2 (4in1) -
-  More info: https://www.rcgroups.com/forums/showthread.php?2790572-Dshot-bench-test-super-smooth-motor-spining-at-1011-REVO-and-Racerstar-BLHeli_S
+  More info: https://www.rcgroups.com/forums/showthread.php?2790572-DShot-bench-test-super-smooth-motor-spining-at-1011-REVO-and-Racerstar-BLHeli_S
 - Schubkraft 35A 4in1 (SCHUBKRAFT X4 BB21, 45A Burst) V2 - works out of the box
 - Spedix ES 20 lite - with cap removed
   Cap removal: https://www.rcgroups.com/forums/showpost.php?p=36203466&postcount=1509

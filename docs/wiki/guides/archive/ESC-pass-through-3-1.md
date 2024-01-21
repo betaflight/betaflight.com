@@ -18,7 +18,7 @@ The FLASH LOADER is a Chrome App and must be 'installed' in Extensions with 'Dev
 
 For now you have to enable passthrough in the cli and than flash through flash loader app. Later it might be done from the app directly.
 
-KISSESC_flashloader also attached to [First Post of Dshot Thread](https://www.rcgroups.com/forums/showthread.php?2756129-Dshot-testing-a-new-digital-parallel-ESC-throttle-signal) in the "Files" section.
+KISSESC_flashloader also attached to [First Post of DShot Thread](https://www.rcgroups.com/forums/showthread.php?2756129-DShot-testing-a-new-digital-parallel-ESC-throttle-signal) in the "Files" section.
 
 [Flydiuno Down Loads](http://kiss.flyduino.net/downloads/)
 

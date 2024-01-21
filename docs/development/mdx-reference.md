@@ -188,7 +188,7 @@ This is a tip. It tips things.
 graph LR;
 	Quad <-- CRSF --> id1[ELRS Receiver] <-- 900MHz/2.4GHz ELRS --> id2[ELRS Transmitter];
 	Quad -- Analog Signal --> VTX -- 5.8GHz Analog --> id3[Goggle Video Receiver];
-	Quad -- Smart Audio --> VTX;
+	Quad -- SmartAudio --> VTX;
 ```
 
 ## $\LaTeX$ Equations

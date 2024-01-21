@@ -296,7 +296,7 @@ G4 and H7 have very flexible DMA controls, therefore we have no specific require
 
 F7X2 MCUs provide greater flexibility and do not require inverters in order to support protocols such as SBUS, SmartPort, or F.Port. They also do not exhibit the SPI 1 DMA limitations of F4 processors.
 
-Bitbang Dshot communcation protocol will always use Timer 1 and Timer 8 - Do NOT use these timers for any other functions
+Bitbang DShot communcation protocol will always use Timer 1 and Timer 8 - Do NOT use these timers for any other functions
 
 #### 3.2.1.3 F4 Resource Selection
 
@@ -306,7 +306,7 @@ For Betaflight 4.4 and later versions, the expected default configuration will t
 
 If using Bitbang DShot, when SPI Bus #1 is to be used for the gyro, care must be taken to ensure that motor pins are assigned to appropriate timers. This is because Bitbang DSHOT uses DMA2 to write to GPIO ports. If this is enabled, it is not possible to enable DMA on an SPI bus using DMA2.
 Practically speaking this means that we can’t support DMA on SPI bus 1 (which uses DMA2) on F405 and F411 processors. It is better to put multiple devices on other SPI busses that use SPI bus 1, which is typically used for the gyro.
-Bitbang Dshot communcation protocol will always use Timer 1 and Timer 8 - do NOT use these pins for any other functions.
+Bitbang DShot communcation protocol will always use Timer 1 and Timer 8 - do NOT use these pins for any other functions.
 
 Further reading: Section 2.1.10 of the errata at
 https://www.st.com/resource/en/errata_sheet/dm00037591-stm32f405407xx-and-stm32f415417xx-device-limitations-stmicroelectronics.pdf

@@ -2,7 +2,7 @@
 
 ## Description
 
-All in one created by Exuav (https://www.facebook.com/EXUAV/), includes: FC (F4), VTX (25mw - 400mW), OSD (Betaflight), PDB, Dshot ESC (40A), BlackBox (SD).
+All in one created by Exuav (https://www.facebook.com/EXUAV/), includes: FC (F4), VTX (25mw - 400mW), OSD (Betaflight), PDB, DShot ESC (40A), BlackBox (SD).
 
 ## MCU, Sensors and Features
 
@@ -81,7 +81,7 @@ https://www.dropbox.com/s/0jjxp2tivvswze1/Fly%20FishTower%20F4%20Instructions%20
 
 Rcgroups Thread:
 
-https://www.rcgroups.com/forums/showthread.php?2813391-Flytower-F4-Flight-Controller-25-200-400mW-Switchable-FPV-VTX-OSD-Dshot-40A-4in1-ESC
+https://www.rcgroups.com/forums/showthread.php?2813391-Flytower-F4-Flight-Controller-25-200-400mW-Switchable-FPV-VTX-OSD-DShot-40A-4in1-ESC
 
 ## Image
 

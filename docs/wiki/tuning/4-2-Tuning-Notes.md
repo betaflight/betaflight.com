@@ -264,12 +264,12 @@ With a 2k PID loop, don't disable gyro lowpass 2.
 
 ## DShot settings:
 
-With rpm enabled, use DShot300 with 4k PID loops and Dshot600 with 8k PIDloops.
+With rpm enabled, use DShot300 with 4k PID loops and DShot600 with 8k PIDloops.
 
 With bidirectional / rpm filtering enabled:
 
 - dshot150 -> 2k max pidloop
-- dshot300 -> 4k max pidloop (at 8k, Dshot 300 data only gets sent every second PID loop)
+- dshot300 -> 4k max pidloop (at 8k, DShot 300 data only gets sent every second PID loop)
 - dshot600 -> 8k max pidloop
 
 Without bidirectional enabled:

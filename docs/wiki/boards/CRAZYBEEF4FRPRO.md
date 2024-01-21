@@ -18,7 +18,7 @@ CrazyBee F4 FR Pro flight controller is a Highly integrated board(Receiver/4in1 
 - Power supply: 1-2S battery input (DC 3.5-8.7V)
 - Built-in 5V 1A Buck / Boost with LC filter
 - Integrated Current sensor：Max 28A,Current meter scale set to 1175
-- Built-in SPI Frsky receiver with telemetry(D8/D16 switchable)
+- Built-in SPI FrSky receiver with telemetry(D8/D16 switchable)
 - Integrated inverter for sbus(when use external rx) in UART1 RX
 - Integrated 4x Blheli_s ESC: Max 5A per ESC(EMF8BB21F16G)
 - ESC Connector: 3-pin, PicoBlade 1.25mm pitch
@@ -72,7 +72,7 @@ CrazyBee F4 FR Pro flight controller is a Highly integrated board(Receiver/4in1 
 FRSKY Version:
 
 - To bind to your Taranis, you need to be running the non-eu OpenTX version, which allows you to use the required D8 setting to bind to the RX. The factory default BF receiver mode is FRSKY_X, so remember to configure this if needed.
-- FrSky X (8 / 16 channels) and FrSky D (8 channels) work both reliably, including in combination with crash flip / Dshot beacon, as long as the TELEMETRY feature is disabled;
+- FrSky X (8 / 16 channels) and FrSky D (8 channels) work both reliably, including in combination with crash flip / DShot beacon, as long as the TELEMETRY feature is disabled;
   Basic telemetry information like RSSI and battery voltage will be sent even when the TELEMETRY feature is disabled;
 - On FrSky D, the TELEMETRY feature causes occasional dropouts, depending on how many sensors (BARO, GPS, ...) are enabled, probably due to a timing overrun;
 - On FrSky X, the TELEMETRY feature causes hard lockups due to a bug in the telemetry generation code.

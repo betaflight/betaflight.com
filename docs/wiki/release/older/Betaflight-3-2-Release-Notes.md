@@ -46,11 +46,11 @@ This release contains bugfixes and target changes only. For a full list of new f
 - When a battery is connected, the ESCs are initialised twice in a row (#4322);
 - Camera control menu is overlaid with the OSD statistics page if camera control is invoked from the statistics page (#4293);
 - VTX band colours for LED_STRIP are wrong (#4362);
-- Dshot beacon sounds when beeper is turning off (#4360);
-- Dshot ESC info is inconsistent in CLI (#4308);
-- Dshot1200 timing is wrong for F4 and F7 (#4367);
+- DShot beacon sounds when beeper is turning off (#4360);
+- DShot ESC info is inconsistent in CLI (#4308);
+- DShot1200 timing is wrong for F4 and F7 (#4367);
 - Stick commands for camera control do not repeat when holding stick (#4368);
-- Dshot on F7 does not work (#4165);
+- DShot on F7 does not work (#4165);
 - Toggling WiFi on a RunCam Split will turn it off in flight (#4369);
 - Arming flag names are not used in CLI in some cases, even if compiled in (#4370).
 

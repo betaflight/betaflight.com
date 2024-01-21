@@ -22,7 +22,7 @@ F405+ICM20602, w/ Betaflight OSD & SD Card Slot
 - PPM/UART Shared: UART2-RX
 - SoftSerial on TX2, S5 or S6 optional
 - Camera control on S6 or DAC optional
-- Smartaudio & Tramp VTX protocol supported
+- SmartAudio & Tramp VTX protocol supported
 - Battery Voltage Sensor: 1:10
 - Current Sensor: No (FCHUB-6S, FCHUB-VTX, FCHUB-W option)
 - BEC 5V: No (FCHUB-6S, FCHUB-VTX, FCHUB-W option)

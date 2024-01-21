@@ -2,7 +2,7 @@
 
 ### Descriptions:
 
-The Holybro Kakute F4 flight controller supports important features of Betaflight/Cleanflight, such as OSD and Dshot. The faster F4 processor gives room for future feature development: run all features at the fast 8 kHz PID loop rate, at single-digit CPU utilization! Because of issues with serial inversion, other F4 boards struggle to support protocols such as FrSky SBUS and SmartPort at the same time. The Kakute F4 is designed to support all serial protocols at once.
+The Holybro Kakute F4 flight controller supports important features of Betaflight/Cleanflight, such as OSD and DShot. The faster F4 processor gives room for future feature development: run all features at the fast 8 kHz PID loop rate, at single-digit CPU utilization! Because of issues with serial inversion, other F4 boards struggle to support protocols such as FrSky SBUS and SmartPort at the same time. The Kakute F4 is designed to support all serial protocols at once.
 
 ### New V2 Features
 

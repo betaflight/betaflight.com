@@ -20,7 +20,7 @@ It might be the world first Tiny whoop size brushless flight controller which in
 - Battery Voltage Sensor: yes
 - Integrated Voltage Regulator: yes, booster, 5V/800mA
 - Integrated Current sensor：Max 14A, could be modified to 28A by replace resistor
-- Integrated Frsky compatible receiver: Frsky_D(D8) and Frsky_X(D16) switchable mode
+- Integrated FrSky compatible receiver: FrSky_D(D8) and FrSky_X(D16) switchable mode
 - Buttons: 1 (Receiver bind button)
 - Integrated 4x Blheli_s ESC: Max 5A per ESC
 - ESC Connector: 3-pin, PicoBlade 1.25mm pitch
@@ -59,7 +59,7 @@ It might be the world first Tiny whoop size brushless flight controller which in
 
 ## Manufacturers and Distributors
 
-https://www.banggood.com/Racerstar-Crazybee-F3-Flight-Controller-4-IN-1-5A-1S-Blheli_S-ESC-Compatible-Frsky-D8-Receiver-p-1262972.html
+https://www.banggood.com/Racerstar-Crazybee-F3-Flight-Controller-4-IN-1-5A-1S-Blheli_S-ESC-Compatible-FrSky-D8-Receiver-p-1262972.html
 
 ## Designers
 
@@ -67,7 +67,7 @@ https://www.banggood.com/Racerstar-Crazybee-F3-Flight-Controller-4-IN-1-5A-1S-Bl
 
 ## FAQ & Known Issues
 
-- The board specifications claim DSHOT600-ready, but due to the use of a type L (BB1 24MHz) ESC, only DSHOT300 is reliably supported, although DSHOT600 seems to be working for quite a few people. But just how clean that ESC control signal is when using DSHOT600, is untested. For a discussion on this, see https://www.rcgroups.com/forums/showthread.php?3036325-Racerstar-Crazybee-F3-Ultimate-Micro-AIO-FC%21-1S-5A-BlheliS-Frsky-Flysky-OSD/page3 .
+- The board specifications claim DSHOT600-ready, but due to the use of a type L (BB1 24MHz) ESC, only DSHOT300 is reliably supported, although DSHOT600 seems to be working for quite a few people. But just how clean that ESC control signal is when using DSHOT600, is untested. For a discussion on this, see https://www.rcgroups.com/forums/showthread.php?3036325-Racerstar-Crazybee-F3-Ultimate-Micro-AIO-FC%21-1S-5A-BlheliS-FrSky-Flysky-OSD/page3 .
 - The factory default GYRO / PID config is 8KHz / 2KHz . There are reports that this may lead to possible instability and 4KHz / 4KHz is recommended.
 
 Specific information for the factory supplied Betaflight 3.3.0 version:
@@ -78,7 +78,7 @@ Specific information for the factory supplied Betaflight 3.3.0 version:
 FRSKY Version:
 
 - To bind to your Taranis, you need to be running the non-eu OpenTX version, which allows you to use the required D8 setting to bind to the RX. The factory default BF receiver mode is FRSKY_X, so remember to configure this if needed.
-- FrSky X (8 / 16 channels) and FrSky D (8 channels) work both reliably, including in combination with crash flip / Dshot beacon, as long as the TELEMETRY feature is disabled;
+- FrSky X (8 / 16 channels) and FrSky D (8 channels) work both reliably, including in combination with crash flip / DShot beacon, as long as the TELEMETRY feature is disabled;
   Basic telemetry information like RSSI and battery voltage will be sent even when the TELEMETRY feature is disabled;
 - On FrSky D, the TELEMETRY feature causes occasional dropouts, depending on how many sensors (BARO, GPS, ...) are enabled, probably due to a timing overrun;
 - On FrSky X, the TELEMETRY feature causes hard lockups due to a bug in the telemetry generation code.

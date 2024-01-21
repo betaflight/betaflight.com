@@ -83,7 +83,7 @@ Fixes:
 - Fixed activation for HEADFREE mode
 - Fixed Led strip orientation for indicators
 - Fix artificial Horizon for rolling wrong way
-- Fix for 3D Dshot conversion in configurator
+- Fix for 3D DShot conversion in configurator
 - Fix led strip for KAKUTEF4
 - Fix targeted looptime
 - Fix inverted polarity DSHOT timers on F4
@@ -342,12 +342,12 @@ By increasing transition setpoint from 0.35 to 0.50 it became very solid and rel
 I think after I "fixed it" with transition setpoint, I could even back off with the P's a bit again.
 
 #### To check for DMA conflicts do the following (thanks teralift):
-(1) Disable Dshot, enable LED_STRIP, save & reboot.
+(1) Disable DShot, enable LED_STRIP, save & reboot.
 (2) Goto CLI.
 (3) Type "resource list".
 (4) At the end of the list, there is DMA section. Record which DMA resource the LED_STRIP is using.
 (5) Type "exit".
-(6) Enable Dshot, disable LED_STRIP, save & reboot.
+(6) Enable DShot, disable LED_STRIP, save & reboot.
 (7) Goto CLI.
 (8) Type "resource list".
 (9) Check if any of DMA resource assigned to motors is same as the one LED_STRIP is using.
@@ -366,7 +366,7 @@ From betaflight v3.1 there is a new command to map resources. No more custom mot
 #### set digital_idle_percent = 3.000
 *[0..20]*
 Only used when a DSHOT ESC protocol is selected.
-See [Setting Min Throttle with Dshot](DSHOT ESC Protocol)
+See [Setting Min Throttle with DShot](DSHOT ESC Protocol)
 
 #### set anti_gravity_threshold = 350   - per Profile
 *[20..1000]*
