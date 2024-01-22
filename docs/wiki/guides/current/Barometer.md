@@ -68,7 +68,7 @@ The `altitude_prefer_baro` CLI setting further modifies the `gpsTrust` value whe
 
 Hence, if e have both GPS and Baro, and if `altitude_source` is set to `DEFAULT`, the relative balance between Baro and GPS depends on the GPS's hDOP estimate of the accuracy of its altitude measurement, the magnitude of the difference between the two readings, and the user's `altitude_prefer_baro` setting. When `altitude_prefer_baro` is set to the default of 100, Baro readings will predominate, unless the error is low and the GPS hDOP suggests that GPS is accurate. At lower values of `altitude_prefer_baro`, GPS will have a greater relative influence.
 
-Basically, if you've got a good Baro, especially a real Infineon DPS310 or DPS360, and probably a BMP280, you should probably accept the default `altitude_prefer_baro` value of 100, and use the `DEFAULT` mixing method.
+Basically, if you've got a good Baro, especially a real Infineon DPS310 or DPS368, and probably a BMP280, you should probably accept the default `altitude_prefer_baro` value of 100, and use the `DEFAULT` mixing method.
 
 :::tip
 
