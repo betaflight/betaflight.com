@@ -56,7 +56,7 @@ The `altitude_source` `DEFAULT` method 'mixes' the two sources together, or, if 
 
 :::tip
 
-If a GPS Rescue is initiated with a return altitude of say 10m over a flat field, and the return flight observed Line of Sight, the stability of the altitude control, and the smoothness of the descent, are easily visualised. Test with Baro only vs GPS only. If both seem OK, alone, test the `DEFAULT` method. Usually `DEFAULT` delivers the best result.
+If a GPS Rescue is initiated with a return altitude of say 10m over a flat field, and the return flight observed Line of Sight, the stability of the altitude control, and the smoothness of the descent, are easily visualized. Test with Baro only vs GPS only. If both seem OK, alone, test the `DEFAULT` method. Usually `DEFAULT` delivers the best result.
 
 :::
 
