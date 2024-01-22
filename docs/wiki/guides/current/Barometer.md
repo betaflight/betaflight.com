@@ -39,7 +39,7 @@ The debug mode `Baro` returns:
 
 | Debug | Data                                       |
 | ----- | ------------------------------------------ |
-| 0     | State (during initialisation)              |
+| 0     | State (during initialization)              |
 | 1     | pressure in hPa absolute                   |
 | 2     | temperature reported by baro, deg C \* 100 |
 | 3     | altitude estimate from Baro alone in cm    |
