@@ -62,7 +62,7 @@ If a GPS Rescue is initiated with a return altitude of say 10m over a flat field
 
 When `altitude_source = DEFAULT`, the user can adjust the relative influence of Baro vs GPS on the final altitude reading.
 
-When a GPS module is available, Betaflights gets the Horizontal Dilution of Precision (hDOP) value from the GPS. This estimates the precision of the GPS altitude estimate. We use hDOP to assign an internal `gpsTrust` value. The default value is 0.3, meaning that if Baro is available, GPS accounts for only 30% of the altitude, reading, but when the dDOP value indicates accurate GPS readings, the `gpsTrust` value can reach a maximum of 0.9.
+When a GPS module is available, Betaflight gets the Horizontal Dilution of Precision (hDOP) value from the GPS. This estimates the precision of the GPS altitude estimate. We use hDOP to assign an internal `gpsTrust` value. The default value is 0.3, meaning that if Baro is available, GPS accounts for only 30% of the altitude, reading, but when the dDOP value indicates accurate GPS readings, the `gpsTrust` value can reach a maximum of 0.9.
 
 The `altitude_prefer_baro` CLI setting further modifies the `gpsTrust` value when there is a large difference between the two readings. When `altitude_prefer_baro = 100`, the default, our trust in the GPS is unaffected if the difference between the two sensors is less than 1m, reduced by half if the difference is 2m, and reduced to 1/5th of normal when the difference is 5m. When set to 50, we need a difference of 4m before our trust in the GPS is reduced by half. When set to zero, our GPS trust estimate is not affected by the difference between the readings.
 
