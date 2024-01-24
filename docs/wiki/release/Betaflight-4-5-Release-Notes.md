@@ -12,7 +12,7 @@ IMPORTANT: use Configurator 10.10!  The most recent release version is available
 
 As usual, Full Chip Erase is mandatory when flashing. Re-configuring from scratch is safer than importing a CLI dump or a saved Preset.  Users of GPS Rescue, Angle and Horizon modes shold NOT use their old values.  Otherwise, most flight, Rx, Mode, OSD, and GPS parameters have not changed since 4.4.  Any new or re-named parameters will get default values, so importing a 4.4 save file (Presets>Save) is, in most cases, OK.
 
-If the `HD_OSD` option is included in the build, after a clean flash, all relevant OSD setups values will suit HD video.  Analog users should visit Configurator's OSD tab and change the Video Format to either Auto, NTSC or PAL, and save.  If only `SD_OSD` is included in the build, a clean flash will default to Analog OSD settings.
+If the `OSD_HD` option is included in the build, after a clean flash, all relevant OSD setups values will suit HD video.  Analog users should visit Configurator's OSD tab and change the Video Format to either Auto, NTSC or PAL, and save.  If only `OSD_SD` is included in the build, a clean flash will default to Analog OSD settings.
 
 :::warning
 Angle, Horizon and GPS Rescue users should NOT use previous values in 4.5.  Start out with the new 4.5 defaults!
