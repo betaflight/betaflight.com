@@ -118,7 +118,7 @@ export default function Home({ recentPosts }: BlogProps) {
             <FancyAboutCard title="Hardware" className="text-primary-600 text-justify" Icon={CpuChipIcon}>
               <p>
                 Betaflight supports a wide range of flight controllers from a variety of manufacturers. The{' '}
-                <a className="fancy-link no-underline" href="/partner">
+                <a className="fancy-link no-underline" href="/docs/relations/partner">
                   Betaflight Partner
                 </a>{' '}
                 program provides hardware manufacturer recommendations from the development team.
