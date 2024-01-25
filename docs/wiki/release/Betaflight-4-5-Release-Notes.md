@@ -10,7 +10,9 @@ Betaflight 4.5 is an incremental release. The basic flight parameters have not c
 IMPORTANT: use Configurator 10.10!  The most recent release version is available [here](https://github.com/betaflight/betaflight-configurator/tags), or use the [latest nightly build](https://github.com/betaflight/betaflight-configurator-nightlies).
 :::
 
-As usual, Full Chip Erase is mandatory when flashing. Re-configuring from scratch is safer than importing a CLI dump or a saved Preset.  Users of GPS Rescue, Angle and Horizon modes shold NOT use their old values.  Otherwise, most flight, Rx, Mode, OSD, and GPS parameters have not changed since 4.4.  Any new or re-named parameters will get default values, so importing a 4.4 save file (Presets>Save) is in most cases, OK.
+As usual, Full Chip Erase is mandatory when flashing. Re-configuring from scratch is safer than importing a CLI dump or a saved Preset.  Users of GPS Rescue, Angle and Horizon modes shold NOT use their old values.  Otherwise, most flight, Rx, Mode, OSD, and GPS parameters have not changed since 4.4.  Any new or re-named parameters will get default values, so importing a 4.4 save file (Presets>Save) is, in most cases, OK.
+
+If the `OSD_HD` option is included in the build, after a clean flash, all relevant OSD setups values will suit HD video.  Analog users should visit Configurator's OSD tab and change the Video Format to either Auto, NTSC or PAL, and save.  If only `OSD_SD` is included in the build, a clean flash will default to Analog OSD settings.
 
 :::warning
 Angle, Horizon and GPS Rescue users should NOT use previous values in 4.5.  Start out with the new 4.5 defaults!
@@ -42,6 +44,8 @@ Always test new firmware carefully and in a controlled environment!
     - [RC Stats](#163-rc-stats-osd-build-option) Modified Stats screen including throttle summary data. 
     - [Pre-Arm page](#164-pre-arm-spec-race-settings-osd-build-option) Pre-arm screen that displays values of relevance to spec racing
     - [GPS Lap Timer](#165-gps-lap-timer) Ever wanted to fly laps at a park and time yourself, without complicated extra hardware?  Add a GPS module and you can do exactly that.
+- [Blackbox Updates](#18-blackbox-and-logging-updates) RPM and pre-filter gyro included by default, 8 channels of debug data, awesome GPS mapping options.
+- [Other changes](#20-other-changes-and-fixes) RSSI now shows `dBm:channel` in diversity setups, Launch Control included always, DShot Telemetry independent of RPM filtering, Extended DShot Telementry, kaaak, many other small changes and fixes.
 
 ## 1. Cloud Build
 
@@ -445,7 +449,7 @@ All eight Debug values also can be shown graphically, and named correctly, in Co
 
 A number of new debugs have been added, and their display in Blackbox should be correct.
 
-Blackbox GPS Map display, and GPX export to enable external GPS mapping.
+Blackbox GPS Map display, and GPX export to enable external GPS mapping, provide awesome mapping options.
 
 Thanks to: Zoggbarr (tbolin), bw1129, ctzsnooze, karatebrot, McGiverGim, bonchan
 
@@ -475,9 +479,13 @@ Thanks to: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, t
 - documentation: ctzsnooze, Vitroid, SupaflyFPV, haslinghuis, belrik
 - extra testing: rabbitAmbulance, xxXyz, sek101
 - all the really tough stuff: SteveCEvans, ledvinap, karatebrot
-- Launch Control now a standard option
-- an issue where a sensor that was not enabled on power was incorrectly saved as not being enabled by the user
-- DShot Telemetry now independent of RPM Filtering, fixing minor related issues including dynamic idle: ctzsnooze, 
+
+- RSSI for diversity setups now appears as `<dBm>:<channel>`.  eg -33:2 means -33dBm signal strength on diversity channel 2.
+- User can now configure HD OSD reliably from Configurator
+- if `OSD_HD` is defined in the build, the OSD configuration will default to HD
+- Launch Control is now a standard option.
+- fixed an issue where a sensor that was not enabled on power was incorrectly saved as not being enabled by the user
+- DShot Telemetry is now independent of RPM Filtering, fixing minor related issues including dynamic idle: ctzsnooze, 
 - Extended DShot telemetry: danielMosquera, belrik, haslinghuis
 - ICM42605 added to list of gyros with overflow protection: tbolin
 - DShot code stability improvements and fixes: many people
