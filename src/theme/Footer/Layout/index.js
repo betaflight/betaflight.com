@@ -10,6 +10,9 @@ export default function FooterLayout({ style, links, logo, copyright }) {
           <Logo className="w-36 h-36 mr-12 mt-4 inline-block opacity-10"></Logo>
           {copyright}
           <div className="mt-1 text-sm text-neutral-500/60">Built with Docusaurus</div>
+          <a className="mt-1 text-sm text-neutral-500/60 font-bold hover:text-teal-500 no-underline duration-300" href="https://www.netlify.com">
+            This site is powered by Netlify
+          </a>
           <div className="mt-1 text-sm text-neutral-500/60">
             made with <span className="text-red-500">❤️</span> by{' '}
             <a className="font-bold hover:text-emerald-500 no-underline duration-300" href="https://github.com/vitroidfpv">
