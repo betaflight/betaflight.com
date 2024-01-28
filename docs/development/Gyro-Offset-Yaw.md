@@ -1,4 +1,4 @@
-# Gyro_offset_yaw
+# Gyro Offset Yaw
 
 ## Introduction
 
