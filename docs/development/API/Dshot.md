@@ -2,7 +2,7 @@
 
 Dshot - Digital shot, is a very popular protocol for flight-controller to ESC communication. In the quadcopter hobby it is nowadays pretty much the standard. The protocol is used to send the target throttle value from the flight-controller to the ESC which in turn interprets it and drives the motor accordingly.
 
-This is a compilation of Dshot and bidirectional Dshot implementation details. When I first started looking into ESC firmware, I had a hard time finding all the needed Dshot related information - at least not in one place, that is why I decided to create this article. I hope this can be useful for other developers too. My sources are quoted on the bottom, if something is not clear from my writing, they might help you out. If you have any feedback or you found a mistake, please feel free to leave a comment.
+This is a compilation of Dshot and bidirectional Dshot implementation details created by one of the authors of the BlueJay ESC firmware. The original article and further sources are linked at the bottom of this page.
 
 ## History
 
@@ -435,3 +435,13 @@ value = 011001100110011001100
 ```
 
 _reproduced with permission from the original article at https://brushlesswhoop.com/dshot-and-bidirectional-dshot/ by https://github.com/stylesuxx_
+
+#### Sources
+
+[Dshot release announcement](https://blck.mn/2016/11/dshot-the-new-kid-on-the-block/)
+[Dshot protocol PR](https://github.com/betaflight/betaflight/pull/1282)
+[Dshot bidirectional protocol PR](https://github.com/betaflight/betaflight/pull/7264)
+[Dshot special commands list](https://github.com/betaflight/betaflight/files/2704888/Digital_Cmd_Spec.txt)
+[Dshot bidirectional RPM telemetry PR](https://github.com/betaflight/betaflight/pull/8554#issuecomment-512507625)
+[EDT PR](https://github.com/betaflight/betaflight/pull/11694)
+[EDT specification](https://github.com/bird-sanctuary/extended-dshot-telemetry)
