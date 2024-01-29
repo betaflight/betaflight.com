@@ -41,6 +41,7 @@ SSSSSSSSSSSTCCCC
 
 The interesting part is, that 1 and 0 in the Dshot frame are distinguished by their high time. This means that every bit has a certain (constant) length, and the length of the high part of the bit dictates if a 1 or 0 is being received.
 
+<img src="dshot_bit.webp" alt="Dshot high times" width="400"/>
 ![Dshot high times](./dshot_bit.webp)
 
 This has two benefits:
@@ -438,10 +439,10 @@ _reproduced with permission from the original article at https://brushlesswhoop.
 
 #### Sources
 
-[Dshot release announcement](https://blck.mn/2016/11/dshot-the-new-kid-on-the-block/)
-[Dshot protocol PR](https://github.com/betaflight/betaflight/pull/1282)
-[Dshot bidirectional protocol PR](https://github.com/betaflight/betaflight/pull/7264)
-[Dshot special commands list](https://github.com/betaflight/betaflight/files/2704888/Digital_Cmd_Spec.txt)
-[Dshot bidirectional RPM telemetry PR](https://github.com/betaflight/betaflight/pull/8554#issuecomment-512507625)
-[EDT PR](https://github.com/betaflight/betaflight/pull/11694)
-[EDT specification](https://github.com/bird-sanctuary/extended-dshot-telemetry)
+- [Dshot release announcement](https://blck.mn/2016/11/dshot-the-new-kid-on-the-block/)
+- [Dshot protocol PR](https://github.com/betaflight/betaflight/pull/1282)
+- [Dshot bidirectional protocol PR](https://github.com/betaflight/betaflight/pull/7264)
+- [Dshot special commands list](https://github.com/betaflight/betaflight/files/2704888/Digital_Cmd_Spec.txt)
+- [Dshot bidirectional RPM telemetry PR](https://github.com/betaflight/betaflight/pull/8554#issuecomment-512507625)
+- [EDT PR](https://github.com/betaflight/betaflight/pull/11694)
+- [EDT specification](https://github.com/bird-sanctuary/extended-dshot-telemetry)
