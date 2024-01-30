@@ -369,7 +369,7 @@ Which of those types are actually transmitted depends on the firmware and the ES
 
 Debug values can be anything the developers want it to be and allow for easy run time debugging.
 
-> The EDT frame is encoded and transmitted as any other eRPM frame. The frequency in which the telemetry frames are sent is basically up to the implementation. It is just important to note that they should not be sent too often as to not interfere with the RPM filtering.  
+> The EDT frame is encoded and transmitted as any other eRPM frame. The frequency in which the telemetry frames are sent is basically up to the implementation. It is just important to note that they should not be sent too often as to not interfere with the RPM filtering.
 
 ### eRPM Transmission
 
