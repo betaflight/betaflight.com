@@ -19,7 +19,7 @@ But, everything has two sides, and so do digital protocols. The downsides are, t
 
 > MultiShot has a maximum frame duration of 25µs at full throttle and is still more than twice as fast as DShot 300 with a constant frame duration of 53.28µs.  
 
-\
+  
   
 
 ## Supported Hardware
@@ -193,7 +193,7 @@ But this is actually not the whole truth, since the flight controller spaces out
 
 > Should you for example run a 32kHz loop, the flight controller will send DShot frames every 31.25µs - meaning you have to run at least DShot600 in order to keep up.  
 
-\
+  
   
 
 ## What is ESC Telemetry?
@@ -204,7 +204,7 @@ Telemetry information can be different things, for example the temperature of th
 
 > **CAUTION**: Keep in mind that ESC telemetry is not [bidirectional DShot](#bidirectional-dshot) and the communication is way too slow for RPM filtering to work properly.  
 
-\
+  
   
 
 ### Hardware compatibility
@@ -229,7 +229,7 @@ All telemetry data is transmitted in this frame. Detailed specifications can be 
 
 > This way of querying is pretty much outdated and too slow to do anything meaningful - except if you are interested in the current draw directly at the ESC.  
 
-\
+  
   
 
 ## Bidirectional DShot
@@ -240,7 +240,7 @@ Bidirectional DShot is also known as **inverted DShot**, because the signal leve
 
 > Bidirectional DShot only works with DShot 300 and up.  
 
-\
+  
   
 
 ### Calculating the Checksum
@@ -307,7 +307,7 @@ Extended DShot telemetry or EDT is a relatively late addition to the DShot “st
 
 > This needs to be supported by both sides, ESC and FC. Bluejay, BLHeli_32, AM32 all support this feature in their latest version.  
 
-\
+  
   
 
 This is done by a special means of encoding: The eRPM telemetry is a bit redundant, if we just look at the data, ignoring the CRC:
@@ -399,7 +399,7 @@ We map the GCR to a 21 bit value, this new value starts with a 0 and the rest of
 1. If the current bit in GCR data is a 1: The current new bit is the inversion of the last new bit
 2. If the current bit in GCR data is a 0: The current new bit is the same as the last new bit
 
-\
+  
   
 
 This is best explained with a short example. Let's assume we have the GCR value of 01100010:
