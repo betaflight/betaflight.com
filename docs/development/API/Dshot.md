@@ -48,7 +48,7 @@ The interesting part is, that 1 and 0 in the DShot frame are distinguished by th
 This has two benefits:
 
 1. Every frame has exactly the same, easy to calculate duration: **16 x (bit period time)**
-2. The measurement of a bit can always be triggered on a rising flank and stopped on a falling flank (or the other way around in case of the inverted signal with [bidirectional DShot](#bidirectional-dshot))
+2. The measurement of a bit can always be triggered on a rising flank and stopped on a falling flank (or the other way around in case of the inverted signal with [bidirectional DShot](#bidirectional-dshot)).  
   
 <br/><br/>
 
@@ -204,7 +204,7 @@ Telemetry information can be different things, for example the temperature of th
 
 > **CAUTION**: Keep in mind that ESC telemetry is not [bidirectional DShot](#bidirectional-dshot) and the communication is way too slow for RPM filtering to work properly.  
   
-<br/><br/>
+<br/>
 
 ### Hardware compatibility
 
@@ -238,7 +238,7 @@ Bidirectional DShot is also known as **inverted DShot**, because the signal leve
 
 > Bidirectional DShot only works with DShot 300 and up.  
   
-<br/><br/>
+<br/>
 
 ### Calculating the Checksum
 
