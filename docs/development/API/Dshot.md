@@ -18,7 +18,7 @@ A digital protocol has a couple of huge benefits in comparison to the analog pro
 But, everything has two sides, and so do digital protocols. The downsides are, that the digital protocols are not the fastest since they carry an overhead like - in the case of DShot - the CRC, which adds reliability but also increases the duration of a frame and thus data needed to be transmitted. Also frames are always of a fixed length, no matter if you are going full throttle or no throttle - whereas the length of a pulse is shorter with analog when the throttle value is smaller.
 
 > MultiShot has a maximum frame duration of 25µs at full throttle and is still more than twice as fast as DShot 300 with a constant frame duration of 53.28µs.  
-\
+
 \
 \
 ## Supported Hardware
@@ -191,7 +191,7 @@ From this example **we can conclude that with a PID loop frequency of 8kHz we ca
 But this is actually not the whole truth, since the flight controller spaces out the frames and locks it to the PID loop frequency. DShot frame generation thus always runs at PID loop rate - this on the other hand means, that if you are running really high PID loop frequencies, you also need to run a high DShot version.
 
 > Should you for example run a 32kHz loop, the flight controller will send DShot frames every 31.25µs - meaning you have to run at least DShot600 in order to keep up.  
-\
+
 \
 \
 ## What is ESC Telemetry?
@@ -201,7 +201,7 @@ In the section about Frames I mentioned a telemetry bit. The flight controller u
 Telemetry information can be different things, for example the temperature of the ESC, or the eRPM with which the motor is spinning, current draw and voltage.
 
 > **CAUTION**: Keep in mind that ESC telemetry is not [bidirectional DShot](#bidirectional-dshot) and the communication is way too slow for RPM filtering to work properly.  
-\
+
 \
 \
 ### Hardware compatibility
@@ -225,7 +225,7 @@ When the telemetry bit is set, the requested information is sent via a dedicated
 All telemetry data is transmitted in this frame. Detailed specifications can be found in an [RC Groups thread](http://www.rcgroups.com/forums/showatt.php?attachmentid=8524039&d=1450424877).
 
 > This way of querying is pretty much outdated and too slow to do anything meaningful - except if you are interested in the current draw directly at the ESC.  
-\
+
 \
 \
 ## Bidirectional DShot
@@ -235,7 +235,7 @@ Bidirectional DShot is available in BLHELI_32 and on BLHELI_S when using BlueJay
 Bidirectional DShot is also known as **inverted DShot**, because the signal level is inverted, so 1 is low and a 0 is high. This is done in order to let the ESC know that we are operating in bidirectional mode and that it should be sending back eRPM telemetry packets.
 
 > Bidirectional DShot only works with DShot 300 and up.  
-\
+
 \
 \
 ### Calculating the Checksum
@@ -301,7 +301,7 @@ The CRC is calculated exactly as it is with uninverted DShot, it is also sent ba
 Extended DShot telemetry or EDT is a relatively late addition to the DShot “standard”. It allows transmission of additional telemetry within the eRPM frame, meaning no additional wire is needed to transmit additional telemetry from the ESC to the FC. The EDT specification is continually evolving and is maintained in full at the [EDT Github Repo](https://github.com/bird-sanctuary/extended-dshot-telemetry).
 
 > This needs to be supported by both sides, ESC and FC. Bluejay, BLHeli_32, AM32 all support this feature in their latest version.
-\
+
 \
 \
 This is done by a special means of encoding: The eRPM telemetry is a bit redundant, if we just look at the data, ignoring the CRC:
@@ -392,7 +392,7 @@ We map the GCR to a 21 bit value, this new value starts with a 0 and the rest of
 
 1. If the current bit in GCR data is a 1: The current new bit is the inversion of the last new bit
 2. If the current bit in GCR data is a 0: The current new bit is the same as the last new bit
-\
+
 \
 
 This is best explained with a short example. Let's assume we have the GCR value of 01100010:
