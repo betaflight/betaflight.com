@@ -41,7 +41,7 @@ SSSSSSSSSSSTCCCC
 
 The interesting part is, that 1 and 0 in the DShot frame are distinguished by their high time. This means that every bit has a certain (constant) length, and the length of the high part of the bit dictates if a 1 or 0 is being received.
 
-![DShot high times](./dshot_bit.webp){ style="margin-left: 25%; margin-right: 25%;" }
+![DShot high times](./dshot_bit.webp)
 
 This has two benefits:
 
