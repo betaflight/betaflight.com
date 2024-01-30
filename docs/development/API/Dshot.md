@@ -188,13 +188,15 @@ This is then only limited by the loop speed of the flight-controller. Or the oth
 
 > Let’s have a look at DShot 300: A frame length of 106.72µs allows us to theoretically send 18768 full frames per second. Which results in a maximum frequency of around 18 kHz.
 
+<br/>
+
 From this example **we can conclude that with a PID loop frequency of 8kHz we can’t exhaust DShot 300**, so there is no real reason to run DShot600 - at least if your PID loop frequency is 8kHz or less.
 
 But this is actually not the whole truth, since the flight controller spaces out the frames and locks it to the PID loop frequency. DShot frame generation thus always runs at PID loop rate - this on the other hand means, that if you are running really high PID loop frequencies, you also need to run a high DShot version.
 
 > Should you for example run a 32kHz loop, the flight controller will send DShot frames every 31.25µs - meaning you have to run at least DShot600 in order to keep up.  
   
-
+<br/>
 
 ## What is ESC Telemetry?
 
