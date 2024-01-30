@@ -217,7 +217,7 @@ When the telemetry bit is set, the requested information is sent via a dedicated
 
 **The frame size is a whopping 10 byte - 80 bit and is transmitted with a baudrate of 115200.**
 
-All telemetry data is transmitted in this frame. I do not want to go into further detail about ESC telemetry since it is not really part of Dshot. Detailed specifications can be found in an [rcGroups thread](http://www.rcgroups.com/forums/showatt.php?attachmentid=8524039&d=1450424877).
+All telemetry data is transmitted in this frame. Detailed specifications can be found in an [rcGroups thread](http://www.rcgroups.com/forums/showatt.php?attachmentid=8524039&d=1450424877).
 
 > This way of querying is pretty much outdated and too slow to do anything meaningful - except if you are interested in the current draw directly at the ESC.
 
