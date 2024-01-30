@@ -324,7 +324,7 @@ Allows the user to initiate binding on their TBS receiver by entering `bind_rx` 
 
 For more information see [PR 13119](https://github.com/betaflight/betaflight/pull/13119).
 
-Thanks to: nerdcopter
+Thanks to: @Auster
 
 ## 15. Changed Soft Serial Pin assignment CLI command
 
