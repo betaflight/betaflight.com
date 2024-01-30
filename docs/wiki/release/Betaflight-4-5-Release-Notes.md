@@ -39,11 +39,12 @@ Always test new firmware carefully and in a controlled environment!
 - [Improved landings for wings](#15-keep-i-term-at-zero-for-fixed-wings-at-zero-throttle) iTerm is now kept active for wings while gliding into land, at zero throttle.
 - [Changed Soft Serial pin assignment command](#16-changed-soft-serial-pin-assignment-cli-command) Use `RESOURCE SOFTSERIALTX 1 <pin>` instead of `RESOURCE SERIALTX11 <pin>`.
 - [Custom Build Options](#16-custom-build-options):
-    - [RPM Limiter](#161-rpm-limiter-build-option) Limits the maximum average RPM, for Spec racing.
-    - [Quick OSD](#162-quick-osd-menu-build-option) Adds an OSD page that allows the user to make most race-related changes in one place.
-    - [RC Stats](#163-rc-stats-osd-build-option) Modified Stats screen including throttle summary data. 
-    - [Pre-Arm page](#164-pre-arm-spec-race-settings-osd-build-option) Pre-arm screen that displays values of relevance to spec racing
-    - [GPS Lap Timer](#165-gps-lap-timer) Ever wanted to fly laps at a park and time yourself, without complicated extra hardware?  Add a GPS module and you can do exactly that.
+	- [RACE_PRO](#161-race-pro-build-option) Includes RPM Limiter, Quick OSD, RC Stats, Pre-arm page, and changes a few default settings.
+    - [RPM Limiter](#162-rpm-limiter-build-option) Limits the maximum average RPM, for Spec racing.
+    - [Quick OSD](#163-quick-osd-menu-build-option) Adds an OSD page that allows the user to make most race-related changes in one place.
+    - [RC Stats](#164-rc-stats-osd-build-option) Modified Stats screen including throttle summary data. 
+    - [Pre-Arm page](#165-pre-arm-spec-race-settings-osd-build-option) Pre-arm screen that displays values of relevance to spec racing
+    - [GPS Lap Timer](#166-gps-lap-timer) Ever wanted to fly laps at a park and time yourself, without complicated extra hardware?  Add a GPS module and you can do exactly that.
 - [Blackbox Updates](#18-blackbox-and-logging-updates) RPM and pre-filter gyro included by default, 8 channels of debug data, awesome GPS mapping options.
 - [Other changes](#20-other-changes-and-fixes) RSSI now shows `dBm:channel` in diversity setups, Launch Control included always, DShot Telemetry independent of RPM filtering, Extended DShot Telementry, kaaak, many other small changes and fixes.
 
@@ -358,7 +359,28 @@ When making a build in a Terminal on your local computer, the build option must 
 
 The following build options were added in 4.5: 
 
-### 16.1 RPM Limiter build option
+### 16.1 RACE PRO build option
+
+The `RACE_PRO` option can be selected from the "Other Options" dropdown or typed into the "Custom Defines" field on the Firmware Flasher tab. This option includes the following features (described in details further in this document):
+- RPM Limiter
+- Quick OSD Menu
+- RC Stats
+- Pre-Arm Spec Screen
+- Some firmware default settings changes
+
+![RACE_PRO option](/img/race_pro.png)
+
+`RACE_PRO` modifies some default settings, making it more convenient for racers by eliminating the need for manual adjustments:
+- `small_angle` is set to 180 (instead of the default 25), allowing a drone to be armed at any angle or orientation.
+- Activates the DShot motor beeper when set on a switch.
+- `failsafe_recovery_delay` is reduced to 1 (from the default 5), enabling quicker recovery after a failsafe (100ms), which is particularly useful in team racing scenarios.
+- Alters the post-flight statistics screen defaults.
+
+:::warning
+`RACE_PRO` is not recommended for beginners, as some of the `RACE_PRO` default settings are generally less safe. It is advised to fully understand all the `RACE_PRO` changes before including in the firmware build.
+:::
+
+### 16.2 RPM Limiter build option
 
 This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.  
 
@@ -384,9 +406,11 @@ The accuracy of the RPM limit control function can be modified by tuning the RPM
 
 For more information see [PR 12977](https://github.com/betaflight/betaflight/pull/12054)
 
+This feature is included with `RACE_PRO` option.
+
 Thanks to: Tdogb, Limonspb, karatebrot
 
-### 16.2 Quick OSD Menu build option
+### 16.3 Quick OSD Menu build option
  
 This is a custom build option which adds a 'quick menu' to the OSD.  It is particularly useful for spec racers who need to easily configure and display throttle and RPM limits.
 
@@ -394,9 +418,11 @@ To use: include `OSD_QUICK_MENU` in Custom Defines when building, and enter `set
 
 For more information see [PR 12977](https://github.com/betaflight/betaflight/pull/12977)
 
+This feature is included with `RACE_PRO` option.
+
 Thanks to: limonspb
 
-### 16.3 RC Stats OSD build option
+### 16.4 RC Stats OSD build option
  
 This is a custom build option which adds flight throttle statistics, such as time on 100% throttle and average throttle, to the post-flight stats pages.
 
@@ -404,9 +430,11 @@ To use: include `RC_STATS` in Custom Defines, when building.
 
 For more information, see [PR 12978](https://github.com/betaflight/betaflight/pull/12978)
 
+This feature is included with `RACE_PRO` option.
+
 Thanks to: limonspb
 
-### 16.4 Pre-arm Spec Race settings OSD build option
+### 16.5 Pre-arm Spec Race settings OSD build option
  
 This is a custom build option which adds a special "prearm" OSD screen for racers, particularly spec class racers, where both pilot and race organisers can verify the settings. 
 
@@ -423,9 +451,11 @@ To use: include `SPEC_PREARM_SCREEN` in Custom Defines, when building, and then 
 
 For more information, see [PR 13210](https://github.com/betaflight/betaflight/pull/13210)
 
+This feature is included with `RACE_PRO` option.
+
 Thanks to: limonspb
 
-### 16.5 GPS Lap Timer
+### 16.6 GPS Lap Timer
 
 This is a custom build option that allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).
 
