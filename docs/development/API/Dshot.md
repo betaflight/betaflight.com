@@ -1,33 +1,33 @@
-# Dshot
+# DShot
 
-Dshot - Digital shot, is a very popular protocol for flight-controller to ESC communication. In the quadcopter hobby it is nowadays pretty much the standard. The protocol is used to send the target throttle value from the flight-controller to the ESC which in turn interprets it and drives the motor accordingly.
+DShot - Digital shot, is a very popular protocol for flight controller (FC) to electronic speed controller (ESC) communication. In the quadcopter hobby it is nowadays pretty much the standard. The protocol is used to send the target throttle value from the FC to the ESC, which in turn interprets it and drives the motor(s) accordingly.
 
-This is a compilation of Dshot and bidirectional Dshot implementation details created by one of the authors of the BlueJay ESC firmware. The original article and further sources are linked at the bottom of this page.
+This is a compilation of DShot and bidirectional DShot implementation details created by one of the authors of the BlueJay ESC firmware. The original article and further sources are linked at the bottom of this page.
 
 ## History
 
-Before Dshot there were analog protocols, most commonly known: PWM, although there are others like Oneshot and Multishot. Multishot is still quite popular within quadcopter pilots.
+Before DShot, analog protocols were used for FC-ESC communication. The most common was PWM, although there are others like Oneshot and Multishot.
 
 A digital protocol has a couple of huge benefits in comparison to the analog protocols:
 
 - **Error checking**: a checksum allows the ESC to confirm that the data is truly what has been sent by the flight controller and there was no interference (at least to a certain degree)
-- **Higher resolution**: in case of DHSOT 2000 steps of throttle resolution
+- **Higher resolution**: in case of DSHOT 2000 steps of throttle resolution
 - **No oscillator drift** and thus no need for calibration
 - **Two way communication on one wire**
 
-But, everything has two sides, and so do digital protocols. The downsides are, that the digital protocols are not the fastest since they carry an overhead like - in the case of Dshot - the CRC, which adds reliability but also increases the duration of a frame and thus data needed to be transmitted. Also frames are always of a fixed length, no matter if you are going full throttle or no throttle - wheres the length of a pulse is shorter with analog when the throttle value is smaller.
+But, everything has two sides, and so do digital protocols. The downsides are, that the digital protocols are not the fastest since they carry an overhead like - in the case of DShot - the CRC, which adds reliability but also increases the duration of a frame and thus data needed to be transmitted. Also frames are always of a fixed length, no matter if you are going full throttle or no throttle - whereas the length of a pulse is shorter with analog when the throttle value is smaller.
 
-> Multishot has a maximum frame duration of 25µs at full throttle and is still more than twice as fast as Dshot 300 with a constant frame duration of 53.28µs.
+> Multishot has a maximum frame duration of 25µs at full throttle and is still more than twice as fast as DShot 300 with a constant frame duration of 53.28µs.
 
 ## Supported Hardware
 
-Dshot is supported on all BLHELI_S, BLEHLI_32 and KISS ESC’s. One limitation are older BLHELI_S ESC’s with EFM8BB1 MCU: Only Dshot 150 and Dshot 300 are supported on those, but this should still be good enough for 99% of use cases.
+DShot is supported on all BLHELI_S, BLEHLI_32 and KISS ESC’s. One limitation are older BLHELI_S ESC’s with EFM8BB1 MCU: Only DShot 150 and DShot 300 are supported on those, but this should still be good enough for 99% of use cases.
 
-No extra settings on the ESC’s are needed - they automatically detect by which protocol they are driven and act accordingly. Some firmware might only support a certain subset of protocols though, so be aware of that. Bluejay for example only supports Dshot in all its variations, but none of the analog protocols.
+No extra settings on the ESC’s are needed - they automatically detect by which protocol they are driven and act accordingly. Some firmware might only support a certain subset of protocols though, so be aware of that. Bluejay for example only supports DShot in all its variations, but none of the analog protocols.
 
 ## Frame Structure
 
-Every digital protocol has a structure, also called a frame. It defines which information is at which position in the data stream. And the frame structure of Dshot is pretty straight forward:
+Every digital protocol has a structure, also called a frame. It defines which information is at which position in the data stream. And the frame structure of DShot is pretty straight forward:
 
 - **11 bit throttle**: 2048 possible values. 0 is reserved for disarmed. 1-47 are reserved for [special commands](#special-commands). Leaving 48 to 2047 (2000 steps) for the actual throttle value
 - **1 bit telemetry request** - if this is set, telemetry data is sent back via a separate channel
@@ -39,19 +39,18 @@ Resulting in a **16 bit** (2 byte) **frame** with the following structure:
 SSSSSSSSSSSTCCCC
 ```
 
-The interesting part is, that 1 and 0 in the Dshot frame are distinguished by their high time. This means that every bit has a certain (constant) length, and the length of the high part of the bit dictates if a 1 or 0 is being received.
+The interesting part is, that 1 and 0 in the DShot frame are distinguished by their high time. This means that every bit has a certain (constant) length, and the length of the high part of the bit dictates if a 1 or 0 is being received.
 
-<img src="dshot_bit.webp" alt="Dshot high times" width="400"/>
-![Dshot high times](./dshot_bit.webp)
+![DShot high times](./dshot_bit.webp)
 
 This has two benefits:
 
 1. Every frame has exactly the same, easy to calculate duration: **16 x (bit period time)**
-2. The measurement of a bit can always be triggered on a rising flank and stopped on a falling flank (or the other way around in case of the inverted signal with [bidirectional Dshot](#bidirectional-dshot))
+2. The measurement of a bit can always be triggered on a rising flank and stopped on a falling flank (or the other way around in case of the inverted signal with [bidirectional DShot](#bidirectional-dshot))
 
-In Dshot the **high time for a 1 is always double that of a 0**. The actual frame duration, bit period time and frame length depend on Dshot version:
+In DShot the **high time for a 1 is always double that of a 0**. The actual frame duration, bit period time and frame length depend on DShot version:
 
-| Dshot | Bitrate    | T1H   | T0H   | Bit (µs) | Frame (µs) |
+| DShot | Bitrate    | T1H   | T0H   | Bit (µs) | Frame (µs) |
 | ----- | ---------- | ----- | ----- | -------- | ---------- |
 | 150   | 150kbit/s  | 5.00  | 2.50  | 6.67     | 106.72     |
 | 300   | 300kbit/s  | 2.50  | 1.25  | 3.33     | 53.28      |
@@ -81,8 +80,8 @@ As mentioned in the previous section, the throttle values 0-47 are reserved for 
 | 10  | DSHOT_CMD_3D_MODE_ON                                   | Need 6x                                                                        |
 | 11  | DSHOT_CMD_SETTINGS_REQUEST                             | Currently not implemented                                                      |
 | 12  | DSHOT_CMD_SAVE_SETTINGS                                | Need 6x, wait at least 35ms before next command                                |
-| 13  | DSHOT_EXTENDED_TELEMETRY_ENABLE                        | Need 6x (only on EDT enabed firmware)                                          |
-| 14  | DSHOT_EXTENDED_TELEMETRY_DISABLE                       | Need 6x (only on EDT enabed firmware)                                          |
+| 13  | DSHOT_EXTENDED_TELEMETRY_ENABLE                        | Need 6x (only on EDT enabled firmware)                                          |
+| 14  | DSHOT_EXTENDED_TELEMETRY_DISABLE                       | Need 6x (only on EDT enabled firmware)                                          |
 | 15  | -                                                      | Not yet assigned                                                               |
 | 16  | -                                                      | Not yet assigned                                                               |
 | 17  | -                                                      | Not yet assigned                                                               |
@@ -102,8 +101,8 @@ As mentioned in the previous section, the throttle values 0-47 are reserved for 
 | 31  | Silent Mode on/Off                                     | Currently not implemented                                                      |
 | 32  | DSHOT_CMD_SIGNAL_LINE_TELEMETRY_DISABLE                | Need 6x. Disables commands 42 to 47                                            |
 | 33  | DSHOT_CMD_SIGNAL_LINE_TELEMETRY_ENABLE                 | Need 6x. Enables commands 42 to 47                                             |
-| 34  | DSHOT_CMD_SIGNAL_LINE_CONTINUOUS_ERPM_TELEMETRY        | Need 6x. Enables commands 42 to 47 and sends erpm if normal Dshot frame        |
-| 35  | DSHOT_CMD_SIGNAL_LINE_CONTINUOUS_ERPM_PERIOD_TELEMETRY | Need 6x. Enables commands 42 to 47 and sends erpm period if normal Dshot frame |
+| 34  | DSHOT_CMD_SIGNAL_LINE_CONTINUOUS_ERPM_TELEMETRY        | Need 6x. Enables commands 42 to 47 and sends eRPM if normal DShot frame        |
+| 35  | DSHOT_CMD_SIGNAL_LINE_CONTINUOUS_ERPM_PERIOD_TELEMETRY | Need 6x. Enables commands 42 to 47 and sends eRPM period if normal DShot frame |
 | 36  | -                                                      | Not yet assigned                                                               |
 | 37  | -                                                      | Not yet assigned                                                               |
 | 38  | -                                                      | Not yet assigned                                                               |
@@ -117,7 +116,7 @@ As mentioned in the previous section, the throttle values 0-47 are reserved for 
 | 46  | DSHOT_CMD_SIGNAL_LINE_ERPM_TELEMETRY                   | 100erpm per LSB, 409500erpm max                                                |
 | 47  | DSHOT_CMD_SIGNAL_LINE_ERPM_PERIOD_TELEMETRY            | 16us per LSB, 65520us max TBD                                                  |
 
-Commands 0-36 are only executed when motors are stopped. Some commands need to be sent multiple times in order for the ESC to act on it - those are marked with Needs nx - where n is the amount of times the command has to be sent in order for the ESC to act upon it.
+Commands 0-36 are only executed when motors are stopped. Some commands need to be sent multiple times in order for the ESC to act on it - those are marked with `Need nx` - where n is the number of times the command must be sent in order for the ESC to act upon it.
 
 ### BLHELI_32 ESC Info Frame
 
@@ -130,7 +129,7 @@ For sake of completeness here is the frame structure for a ESC_INFO response for
 | 14    | FW revision (32 = 32)                                                                             |
 | 15    | FW sub revision (10 = xx.1, 11 = xx.11)                                                           |
 | 16    | Unused                                                                                            |
-| 17    | Rotation direction reversed by dshot command or not (1:0)                                         |
+| 17    | Rotation direction reversed by DShot command or not (1:0)                                         |
 | 18    | 3D mode active or not (1:0)                                                                       |
 | 19    | Low voltage protection limit [0.1V] (255 = not capable, 0 = disabled)                             |
 | 20    | Currehttps://github.com/betaflight/betaflight.com/pull/353on or not (1:0, 255 = LED0 not present) |
@@ -149,7 +148,7 @@ The checksum is calculated over the throttle value and the telemetry bit, so the
 crc = (value ^ (value >> 4) ^ (value >> 8)) & 0x0F;
 ```
 
-Let’s assume we are sending a throttle value of 1046 - which is exactly half throttle and the telemetry bit is not set:
+Let’s assume we are sending a throttle value of 1046 (which is exactly half-throttle) and that the telemetry bit is not set:
 
 ```
 value = 100000101100
@@ -161,21 +160,21 @@ value = 100000101100
 (&) = 000000000110 # CRC
 ```
 
-So the two bytes transmitted from flight-controller to ESC would be:
+So the two bytes transmitted from the FC to ESC would be:
 
 ```
 1000001011000110
 ```
 
-We would put this signal on the wire to transmit the Dshot frame:
+We would put this signal on the wire to transmit the DShot frame:
 
-![Dshot frame](./dshot_frame.webp)
+![DShot frame](./dshot_frame.webp)
 
-The green part are the throttle bits, blue is the telemetry bit and yellow the CRC checksum.
+The green parts are the throttle bits, blue is the telemetry bit and yellow the CRC checksum.
 
 ### Arming sequence
 
-The arming sequenc might differ from implementation to implementation, but on most firmwares a 0 command is expected for a certain amount of time - 300ms on Bluejay for example - before the ESC goes into a state where it will accept actual throttle values.
+The arming sequence might differ from implementation to implementation, but on most firmwares a 0 command is expected for a certain amount of time - 300ms on Bluejay for example - before the ESC goes into a state where it will accept actual throttle values.
 
 ## Why is frame length important?
 
@@ -183,13 +182,13 @@ The frame length is important because it indicates how fast the ESC can be updat
 
 This is then only limited by the loop speed of the flight-controller. Or the other way around, as we will see.
 
-> Let’s have a look at Dshot 300: A frame length of 106.72µs allows us to theoretically send 18768 full frames per second. Which results in a maximum frequency of around 18kHz.
+> Let’s have a look at DShot 300: A frame length of 106.72µs allows us to theoretically send 18768 full frames per second. Which results in a maximum frequency of around 18 kHz.
 
-From this example **we can conclude that with a PID loop frequency of 8kHz we can’t exhaust Dshot 300**, so there is no real reason to run Dshot600 - at least if your PID loop frequency is 8kHz or less.
+From this example **we can conclude that with a PID loop frequency of 8kHz we can’t exhaust DShot 300**, so there is no real reason to run DShot600 - at least if your PID loop frequency is 8kHz or less.
 
-But this is actually not the whole truth, since the flight controller spaces out the frames and locks it to the PID loop frequency. Dshot frame generation thus always runs at PID loop rate - this on the other hand means, that if you are running really high PID loop frequencies, you also need to run a high Dshot version.
+But this is actually not the whole truth, since the flight controller spaces out the frames and locks it to the PID loop frequency. DShot frame generation thus always runs at PID loop rate - this on the other hand means, that if you are running really high PID loop frequencies, you also need to run a high DShot version.
 
-> Should you for example run a 32kHz loop, the flight controller will send DHSOT frames every 31.25µs - meaning you have to run at least Dshot600 in order to keep up.
+> Should you for example run a 32kHz loop, the flight controller will send DShot frames every 31.25µs - meaning you have to run at least DShot600 in order to keep up.
 
 ## What is ESC Telemetry?
 
@@ -197,14 +196,14 @@ In the section about Frames I mentioned a telemetry bit. The flight controller u
 
 Telemetry information can be different things, for example the temperature of the ESC, or the eRPM with which the motor is spinning, current draw and voltage.
 
-> **CAUTION**: Keep in mind that ESC telemetry is not [bidirectional Dshot](#bidirectional-dshot) and the communication is way too slow for RPM filtering to work properly.
+> **CAUTION**: Keep in mind that ESC telemetry is not [bidirectional DShot](#bidirectional-dshot) and the communication is way too slow for RPM filtering to work properly.
 
 ### Hardware compatibility
 
 ESC telemetry requires a **separate wire** to transmit information back to the flight-controller. It is generally only available on KISS and BLHELI_32 ESC’s. The wire to the flight-controller can be shared between multiple ESC’s and is connected to the TX pin (for half duplex communication) of an otherwise unused UART.
 
 :::info
-EDT (Extended Dshot Telemetry) is the replacement for ESC telemetry. EDT does not require extra wiring and is available for 8bit and 32bit ESCs
+EDT (Extended DShot Telemetry) is the replacement for ESC telemetry. EDT does not require extra wiring, and is available for 8 bit and 32 bit ESCs
 :::
 
 ### Which telemetry data is there?
@@ -213,21 +212,21 @@ As mentioned in the [section above](#special-commands), bits 1-47 are reserved f
 
 ### Transmission
 
-When the telemetry bit is set, the requested information is sent via a dedicated back-channel wire to the flight-controller. Multiple ESC’s can share the same wire. The protocol used is the KISS ESC telemetry protocol. And communicates the data via a single line back to the flight controller.
+When the telemetry bit is set, the requested information is sent via a dedicated back-channel wire to the flight-controller using the KISS ESC telemetry protocol. Multiple ESC’s can share the same wire.
 
 **The frame size is a whopping 10 byte - 80 bit and is transmitted with a baudrate of 115200.**
 
-All telemetry data is transmitted in this frame. Detailed specifications can be found in an [rcGroups thread](http://www.rcgroups.com/forums/showatt.php?attachmentid=8524039&d=1450424877).
+All telemetry data is transmitted in this frame. Detailed specifications can be found in an [RC Groups thread](http://www.rcgroups.com/forums/showatt.php?attachmentid=8524039&d=1450424877).
 
 > This way of querying is pretty much outdated and too slow to do anything meaningful - except if you are interested in the current draw directly at the ESC.
 
-## Bidirectional Dshot
+## Bidirectional DShot
 
-Bidirectional Dshot is available in BLHELI_32 and on BLHELI_S when using BlueJay firmware.
+Bidirectional DShot is available in BLHELI_32 and on BLHELI_S when using BlueJay firmware.
 
-Bidirectional Dshot is also known as **inverted Dshot**, because the signal level is inverted, so 1 is low and a 0 is high. This is done in order to let the ESC know, that we are operating in bidirectional mode and that it should be sending back eRPM telemetry packages.
+Bidirectional DShot is also known as **inverted DShot**, because the signal level is inverted, so 1 is low and a 0 is high. This is done in order to let the ESC know that we are operating in bidirectional mode and that it should be sending back eRPM telemetry packets.
 
-> Bidirectional Dshot only works with Dshot 300 and up.
+> Bidirectional DShot only works with DShot 300 and up.
 
 ### Calculating the Checksum
 
@@ -237,7 +236,7 @@ The calculation of the checksum is basically the same, just before the last step
 crc = (~(value ^ (value >> 4) ^ (value >> 8))) & 0x0F;
 ```
 
-With the same values as for the regular Dshot frame:
+With the same values as for the regular DShot frame:
 
 ```
 value = 100000101100
@@ -250,7 +249,7 @@ value = 100000101100
 (&) = 000000001001 # CRC
 ```
 
-### Bidirectional Dshot Frame (from flight-controller)
+### Bidirectional DShot Frame (from flight-controller)
 
 The frame sent from the flight controller to the ESC has exactly the same structure, just the signal is inverted. The two bytes transmitted from flight-controller to ESC would be:
 
@@ -259,20 +258,19 @@ The frame sent from the flight controller to the ESC has exactly the same struct
 ```
 
 On the wire, the signal would look like this:
+![DShot inverted frame for bidirectional DShot](./dshot_frame-inverted.webp)
 
-![Dshot inverted frame for bidirectional Dshot](./dshot_frame-inverted.webp)
+When bidirectional DShot is enabled, for each frame sent to the ESC a frame with eRPM telemetry data is returned (on the same line, not the additional telemetry line), effectively halving the amount of frames you can send per second. You need to keep this in mind, especially when running higher PID frequencies.
 
-When bidirectional DHSOT ist enabled, for each frame sent to the ESC a frame with eRPM telemetry data is returned (on the same line, not the additional telemetry line), effectively halving the amount of frames you can send per second. You need to keep this in mind, especially when running higher PID frequencies.
-
-Although in bidirectional DHSOT mode, eRPM are always returned, other telemetry information can still be requested, but is then sent via a separate wire.
+Although in bidirectional DShot mode, eRPM are always returned, other telemetry information can still be requested, but is then sent via a separate wire.
 
 Once the flight controller sends its frame, it switches to receive mode and waits for the eRPM frame to be returned from the ESC. The same thing is happening on the ESC - when the flight-controller is sending, the ESC is listening and the other way around.
 
-After sending a frame there is a [30µs break](https://github.com/betaflight/betaflight/pull/8554#issuecomment-512507625) to switch the line, DMA, and timers in order for a frame to be received. This break is independent of Dshot frequency.
+After sending a frame there is a [30µs break](https://github.com/betaflight/betaflight/pull/8554#issuecomment-512507625) to switch the line, DMA, and timers in order for a frame to be received. This break is independent of DShot frequency.
 
 ### eRPM Telemetry Frame (from ESC)
 
-The eRPM telemetry frame sent by the ESC in bidirectional Dshot mode is again a 16 bit value, so the same size as the received frame, but the structure is different:
+The eRPM telemetry frame sent by the ESC in bidirectional DShot mode is again a 16 bit value, so the same size as the received frame, but the structure is different:
 
 - **12 bit**: eRPM Data
 - **4 bit**: CRC
@@ -286,13 +284,13 @@ The encoding of the eRPM data is not as straight forward as the one of the throt
  eeemmmmmmmmmcccc
 ```
 
-The CRC is calculated exactly as it is with uninverted Dshot, it is also sent back to the flight-controller uninverted.
+The CRC is calculated exactly as it is with uninverted DShot, it is also sent back to the flight-controller uninverted.
 
-### Extended Dshot Telemetry (EDT)
+### Extended DShot Telemetry (EDT)
 
-Extended Dshot telemetry or EDT is a relative late addition to the Dshot “standard”. It allows transmission of additional telemetry within the eRPM frame, meaning no additional wire is needed to transmit additionsl telemetry from the ESC to the flight-controller. The EDT specification is continually evolving and is maintained in full at the [EDT Github Repo](https://github.com/bird-sanctuary/extended-dshot-telemetry).
+Extended DShot telemetry or EDT is a relatively late addition to the DShot “standard”. It allows transmission of additional telemetry within the eRPM frame, meaning no additional wire is needed to transmit additional telemetry from the ESC to the FC. The EDT specification is continually evolving and is maintained in full at the [EDT Github Repo](https://github.com/bird-sanctuary/extended-dshot-telemetry).
 
-> This needs to be supported by both sides, ESC and flight-controller. Bleujay, BLHeli_32, AM32 all support this feature in their latest version.
+> This needs to be supported by both sides, ESC and FC. Bluejay, BLHeli_32, AM32 all support this feature in their latest version.
 
 This is done by a special means of encoding: The eRPM telemetry is a bit redundant, if we just look at the data, ignoring the CRC:
 
@@ -301,7 +299,7 @@ eee mmmmmmmmm
 123 123456789
 ```
 
-If we have a closer look, we can see that the same eRPM value can (under certain circcumstances) be coded in different ways:
+If we have a closer look, we can see that the same eRPM value can (under certain circumstances) be coded in different ways:
 
 ```
 000 000000010 = 000000010
@@ -333,13 +331,13 @@ And this we can use to encode additional data. If we see a frame that starts lik
 eee 0mmmmmmmm
 ```
 
-we know that it is not a regular eRPM frame but instead an extended Dshot telemetry frame and we will interpret the package like so:
+we know that it is not a regular eRPM frame but instead an extended DShot telemetry frame and we will interpret the packet like so:
 
 ```
 pppp mmmmmmmm
 ```
 
-First four bits are telemetry type, last 8 bits are value. Since the last bit of telemetry type is alwys zero, we can encode the following telemetry types with an 8 bit value (0-255):
+First four bits are telemetry type, last 8 bits are value. Since the last bit of telemetry type is always zero, we can encode the following telemetry types with an 8 bit value (0-255):
 
 | Type | Description             |
 | ---- | ----------------------- |
@@ -351,7 +349,7 @@ First four bits are telemetry type, last 8 bits are value. Since the last bit of
 | 0x0C | Debug value 3           |
 | 0x0E | State/Event             |
 
-Which of those types are actually transmitted depends on the firmware and the ESCs capability. Temperature is supported on basically all of them since most MCUs have an internal temperature sensor anywa. BLHeli_32 and AM32 also support voltage and current
+Which of those types are actually transmitted depends on the firmware and the ESCs capability. Temperature is supported on basically all of them since most MCUs have an internal temperature sensor. BLHeli_32 and AM32 also support voltage and current.
 
 Debug values can be anything the developers want it to be and allow for easy run time debugging.
 
@@ -376,14 +374,14 @@ GCR: 11010 10010 11110 10110
 GCR: 11010100101111010110
 ```
 
-Now we mapped our 16 bit value to 20 bit, but this is not ready for transmission yet. A 21 bit needs to be added and the original bits are transformed following this rules:
+Now we mapped our 16 bit value to 20 bit value, but it is not ready for transmission yet. A 21st bit needs to be added, and the original bits are transformed following these rules:
 
 We map the GCR to a 21 bit value, this new value starts with a 0 and the rest of the bits is set by the following two rules:
 
 1. If the current bit in GCR data is a 1: The current new bit is the inversion of the last new bit
 2. If the current bit in GCR data is a 0: The current new bit is the same as the last new bit
 
-This is best explained with a short example. Lets assume we have the GCR value of 01100010:
+This is best explained with a short example. Let's assume we have the GCR value of 01100010:
 
 ```
 GCR: 01100010
@@ -415,9 +413,9 @@ We send this:
 
 ![GCR encoded bidirectional eRPM frame optimized](./dshot_gcr-optimized.webp)
 
-This value is then sent uninverted at a bitrate of 5/4 x current Dshot bitrate. So on Dshot600 the 21 bits are sent with a bitrate of 750kbit/s.
+This value is then sent uninverted at a bitrate of 5/4 x current DShot bitrate. So on DShot600 the 21 bits are sent with a bitrate of 750 kbit/s.
 
-You might now ask yourself: **WHY?** And that is a good question. It turns out that GCR is an excellent transmission format, very robust to jitter. Tests during implementation have shown that the error rate of the eRPM packets is significantly lower when using GCR in comparison to sending Dshot frames back to the flight-controller.
+You might now ask yourself: **WHY?** And that is a good question. It turns out that GCR is an excellent transmission format, very robust to jitter. Tests during implementation have shown that the error rate of the eRPM packets is significantly lower when using GCR in comparison to sending DShot frames back to the FC.
 
 ### Decoding eRPM frame (on flight-controller)
 
@@ -435,14 +433,14 @@ value = 011001100110011001100
 (^) = 010101010101010101010 # GCR
 ```
 
-_reproduced with permission from the original article at https://brushlesswhoop.com/dshot-and-bidirectional-dshot/ by https://github.com/stylesuxx_
+_Page reproduced with permission from the original article at https://brushlesswhoop.com/dshot-and-bidirectional-dshot/ by [stylesuxx](https://github.com/stylesuxx)_
 
 #### Sources
 
-- [Dshot release announcement](https://blck.mn/2016/11/dshot-the-new-kid-on-the-block/)
-- [Dshot protocol PR](https://github.com/betaflight/betaflight/pull/1282)
-- [Dshot bidirectional protocol PR](https://github.com/betaflight/betaflight/pull/7264)
-- [Dshot special commands list](https://github.com/betaflight/betaflight/files/2704888/Digital_Cmd_Spec.txt)
-- [Dshot bidirectional RPM telemetry PR](https://github.com/betaflight/betaflight/pull/8554#issuecomment-512507625)
+- [DShot Release Announcement](https://blck.mn/2016/11/dshot-the-new-kid-on-the-block/)
+- [DShot Protocol PR](https://github.com/betaflight/betaflight/pull/1282)
+- [Bidirectional DShot Protocol PR](https://github.com/betaflight/betaflight/pull/7264)
+- [DShot Special Commands List](https://github.com/betaflight/betaflight/files/2704888/Digital_Cmd_Spec.txt)
+- [Bidirectional DShot RPM Telemetry PR](https://github.com/betaflight/betaflight/pull/8554#issuecomment-512507625)
 - [EDT PR](https://github.com/betaflight/betaflight/pull/11694)
-- [EDT specification](https://github.com/bird-sanctuary/extended-dshot-telemetry)
+- [EDT Specification](https://github.com/bird-sanctuary/extended-dshot-telemetry)
