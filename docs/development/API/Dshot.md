@@ -1,23 +1,23 @@
 # DShot
 
-DShot - Digital shot, is a very popular protocol for flight controller (FC) to electronic speed controller (ESC) communication. In the quadcopter hobby it is nowadays pretty much the standard. The protocol is used to send the target throttle value from the FC to the ESC, which in turn interprets it and drives the motor(s) accordingly.
+DShot - **D**igital **Shot** - is a very popular protocol for flight controller (FC) to electronic speed controller (ESC) communication. In the quadcopter hobby it is nowadays pretty much the standard. The protocol is used to send the target throttle value from the FC to the ESC, which in turn interprets it and drives the motor(s) accordingly.
 
-This is a compilation of DShot and bidirectional DShot implementation details created by one of the authors of the BlueJay ESC firmware. The original article and further sources are linked at the bottom of this page.
+This is a compilation of DShot and bidirectional DShot implementation details created by one of the authors of the Bluejay ESC firmware. The original article and further sources are linked at the bottom of this page.
 
 ## History
 
-Before DShot, analog protocols were used for FC-ESC communication. The most common was PWM, although there are others like Oneshot and Multishot.
+Before DShot, analog protocols were used for FC-ESC communication. The most common being PWM, although there are others like OneShot and MultiShot.
 
 A digital protocol has a couple of huge benefits in comparison to the analog protocols:
 
 - **Error checking**: a checksum allows the ESC to confirm that the data is truly what has been sent by the flight controller and there was no interference (at least to a certain degree)
-- **Higher resolution**: in case of DSHOT 2000 steps of throttle resolution
+- **Higher resolution**: in case of DShot, 2000 steps of throttle resolution
 - **No oscillator drift** and thus no need for calibration
-- **Two way communication on one wire**
+- **Two-way communication on one wire**
 
 But, everything has two sides, and so do digital protocols. The downsides are, that the digital protocols are not the fastest since they carry an overhead like - in the case of DShot - the CRC, which adds reliability but also increases the duration of a frame and thus data needed to be transmitted. Also frames are always of a fixed length, no matter if you are going full throttle or no throttle - whereas the length of a pulse is shorter with analog when the throttle value is smaller.
 
-> Multishot has a maximum frame duration of 25µs at full throttle and is still more than twice as fast as DShot 300 with a constant frame duration of 53.28µs.
+> MultiShot has a maximum frame duration of 25µs at full throttle and is still more than twice as fast as DShot 300 with a constant frame duration of 53.28µs.  
 
 ## Supported Hardware
 
@@ -188,7 +188,7 @@ From this example **we can conclude that with a PID loop frequency of 8kHz we ca
 
 But this is actually not the whole truth, since the flight controller spaces out the frames and locks it to the PID loop frequency. DShot frame generation thus always runs at PID loop rate - this on the other hand means, that if you are running really high PID loop frequencies, you also need to run a high DShot version.
 
-> Should you for example run a 32kHz loop, the flight controller will send DShot frames every 31.25µs - meaning you have to run at least DShot600 in order to keep up.
+> Should you for example run a 32kHz loop, the flight controller will send DShot frames every 31.25µs - meaning you have to run at least DShot600 in order to keep up.  
 
 ## What is ESC Telemetry?
 
@@ -196,7 +196,7 @@ In the section about Frames I mentioned a telemetry bit. The flight controller u
 
 Telemetry information can be different things, for example the temperature of the ESC, or the eRPM with which the motor is spinning, current draw and voltage.
 
-> **CAUTION**: Keep in mind that ESC telemetry is not [bidirectional DShot](#bidirectional-dshot) and the communication is way too slow for RPM filtering to work properly.
+> **CAUTION**: Keep in mind that ESC telemetry is not [bidirectional DShot](#bidirectional-dshot) and the communication is way too slow for RPM filtering to work properly.  
 
 ### Hardware compatibility
 
@@ -218,7 +218,7 @@ When the telemetry bit is set, the requested information is sent via a dedicated
 
 All telemetry data is transmitted in this frame. Detailed specifications can be found in an [RC Groups thread](http://www.rcgroups.com/forums/showatt.php?attachmentid=8524039&d=1450424877).
 
-> This way of querying is pretty much outdated and too slow to do anything meaningful - except if you are interested in the current draw directly at the ESC.
+> This way of querying is pretty much outdated and too slow to do anything meaningful - except if you are interested in the current draw directly at the ESC.  
 
 ## Bidirectional DShot
 
@@ -226,7 +226,7 @@ Bidirectional DShot is available in BLHELI_32 and on BLHELI_S when using BlueJay
 
 Bidirectional DShot is also known as **inverted DShot**, because the signal level is inverted, so 1 is low and a 0 is high. This is done in order to let the ESC know that we are operating in bidirectional mode and that it should be sending back eRPM telemetry packets.
 
-> Bidirectional DShot only works with DShot 300 and up.
+> Bidirectional DShot only works with DShot 300 and up.  
 
 ### Calculating the Checksum
 
@@ -353,7 +353,7 @@ Which of those types are actually transmitted depends on the firmware and the ES
 
 Debug values can be anything the developers want it to be and allow for easy run time debugging.
 
-> The EDT frame is encoded and transmitted as any other eRPM frame. The frequency in which the telemetry frames are sent is basically up to the implementation. It is just important to note that they should not be sent too often as to not interfere with the RPM filtering.
+> The EDT frame is encoded and transmitted as any other eRPM frame. The frequency in which the telemetry frames are sent is basically up to the implementation. It is just important to note that they should not be sent too often as to not interfere with the RPM filtering.  
 
 ### eRPM Transmission
 
