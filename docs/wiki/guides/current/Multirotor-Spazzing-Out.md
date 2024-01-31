@@ -106,4 +106,4 @@ Then this guide might be for you.
 
 _Reference Image (this is the Betaflight default):_
 
-![Motor Direction](https://github.com/betaflight/betaflight-configurator/blob/master/resources/motor_order/quad_x.svg)
+![Motor Direction](/img/betaflight/quad_x.svg)
