@@ -315,6 +315,8 @@ If the user wants TPA reduction to be active at low throttle during the flight, 
 
 For more information, see [PR 13006](https://github.com/betaflight/betaflight/pull/13006).
 
+Renaming of the TPA low CLI variables [PR 13206](https://github.com/betaflight/betaflight/pull/13206).
+
 Thanks to: pichim
 
 ## 14. CRSF binding via CLI for TBS Receivers
