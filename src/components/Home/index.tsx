@@ -100,7 +100,7 @@ export default function Home({ recentPosts }: BlogProps) {
                 </a>
               </div>
               <div className="p-0 ml-2 mr-2 w-4/5 xs:w-1 lg:w-2/5">
-                <a href="https://www.tititop.com/" target="_blank" rel="noreferrer noopener">
+                <a href="https://www.dogcombattery.com/" target="_blank" rel="noreferrer noopener">
                   <ThemedImage
                     alt="Dogcom"
                     sources={{
