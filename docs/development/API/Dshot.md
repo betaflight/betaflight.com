@@ -25,7 +25,7 @@ But, everything has two sides, and so do digital protocols. The downsides are, t
 
 DShot is supported by all BLHELI_S, BLHELI_32 and KISS ESCs. Note that older BLHELI_S ESC’s with EFM8BB1 MCUs only support DShot 150 and DShot 300, but this should be fine for most cases.
 
-No additional configuration on the ESC-side is required to use DShot - they will automatically detect the protocol being used. Keep in mind that not all firmwares support all protocols, however. For example, Bluejay only supports DShot (all versions), but none of the analog protocols (e.g. PWM).
+No additional configuration on the ESC-side is required to use DShot - they will automatically detect the protocol being used. Keep in mind that not all firmwares support all protocols, however. For example, Bluejay only supports DShot, but none of the analog protocols (e.g. PWM).
 
 ## Frame Structure
 
