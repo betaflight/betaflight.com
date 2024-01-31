@@ -306,15 +306,17 @@ Thanks to: : tbolin
 
 Allows the user to apply TPA attenuation in the low end of the throttle range.  In highly tuned quads, this may help avoid excessive D shaking at low throttle values.
 
-The threshold or break point is set by `tpa_breakpoint_lower`, and the magnitude of the attenuation at zero throttle is set by `tpa_rate_lower`.  The default value for `tpa_rate_lower` is 20, which means a reduction in D of 20%, or that the D effect in the PIDs  will be 80% of normal, at zero throttle.
+The threshold or break point is set by `tpa_low_breakpoint`, and the magnitude of the attenuation at zero throttle is set by `tpa_low_rate`.  The default value for `tpa_low_rate` is 20, which means a reduction in D of 20%, or that the D effect in the PIDs  will be 80% of normal, at zero throttle.
 
-By default, the default behaviour is to apply the reduction only briefly after arming.  Once until the throttle is raised above `tpa_breakpoint_lower`, TPA lower is inactivated for the rest of the armed period.
+By default, the default behaviour is to apply the reduction only briefly after arming.  Once until the throttle is raised above `tpa_low_breakpoint`, TPA lower is inactivated for the rest of the armed period.
 
 Hence, by default, there will be only a minimal effect on arming, and no effect in flight..
 
-If the user wants TPA reduction to be active at low throttle during the flight, use `set tpa_breakpoint_lower_fade = OFF`.  TPA will now attenuate whenever throttle is low.
+If the user wants TPA reduction to be active at low throttle during the flight, use `set tpa_low_always = ON`.  TPA will now attenuate whenever throttle is low.
 
 For more information, see [PR 13006](https://github.com/betaflight/betaflight/pull/13006).
+
+Renaming of the TPA low CLI variables [PR 13206](https://github.com/betaflight/betaflight/pull/13206).
 
 Thanks to: pichim
 
