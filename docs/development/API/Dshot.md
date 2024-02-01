@@ -23,9 +23,9 @@ But, everything has two sides, and so do digital protocols. The downsides are, t
 
 ## Supported Hardware
 
-DShot is supported on all BLHELI_S, BLEHLI_32 and KISS ESC’s. One limitation are older BLHELI_S ESC’s with EFM8BB1 MCU: Only DShot 150 and DShot 300 are supported on those, but this should still be good enough for 99% of use cases.
+DShot is supported by all BLHELI_S, BLHELI_32 and KISS ESCs. Note that older BLHELI_S ESC’s with EFM8BB1 MCUs only support DShot 150 and DShot 300, but this should be fine for most cases.
 
-No extra settings on the ESC’s are needed - they automatically detect by which protocol they are driven and act accordingly. Some firmware might only support a certain subset of protocols though, so be aware of that. Bluejay for example only supports DShot in all its variations, but none of the analog protocols.
+No additional configuration on the ESC-side is required to use DShot - they will automatically detect the protocol being used. Keep in mind that not all firmwares support all protocols, however. For example, Bluejay only supports DShot, but none of the analog protocols (e.g. PWM).
 
 ## Frame Structure
 
@@ -118,7 +118,7 @@ As mentioned in the previous section, the throttle values 0-47 are reserved for 
 | 44  | DSHOT_CMD_SIGNAL_LINE_CURRENT_TELEMETRY                | 100mA per LSB, 409.5A max                                                      |
 | 45  | DSHOT_CMD_SIGNAL_LINE_CONSUMPTION_TELEMETRY            | 10mAh per LSB, 40.95Ah max                                                     |
 | 46  | DSHOT_CMD_SIGNAL_LINE_ERPM_TELEMETRY                   | 100erpm per LSB, 409500erpm max                                                |
-| 47  | DSHOT_CMD_SIGNAL_LINE_ERPM_PERIOD_TELEMETRY            | 16us per LSB, 65520us max TBD                                                  |
+| 47  | DSHOT_CMD_SIGNAL_LINE_ERPM_PERIOD_TELEMETRY            | 16µs per LSB, 65520µs max TBD                                                  |
 
 Commands 0-36 are only executed when motors are stopped. Some commands need to be sent multiple times in order for the ESC to act on it - those are marked with `Need nx` - where n is the number of times the command must be sent in order for the ESC to act upon it.
 
@@ -186,15 +186,15 @@ The frame length is important because it indicates how fast the ESC can be updat
 
 This is then only limited by the loop speed of the flight-controller. Or the other way around, as we will see.
 
-> Let’s have a look at DShot 300: A frame length of 106.72µs allows us to theoretically send 18768 full frames per second. Which results in a maximum frequency of around 18 kHz.
+> Let’s have a look at DShot 300: A frame length of 53.28 µs allows us to theoretically send 18768 full frames per second. Which results in a maximum frequency of around 18 kHz.
 
 <br/>
 
-From this example **we can conclude that with a PID loop frequency of 8kHz we can’t exhaust DShot 300**, so there is no real reason to run DShot600 - at least if your PID loop frequency is 8kHz or less.
+From this example **we can conclude that with a PID loop frequency of 8 kHz we can’t exhaust DShot 300**, so there is no real reason to run DShot600 - at least if your PID loop frequency is 8kHz or less.
 
 But this is actually not the whole truth, since the flight controller spaces out the frames and locks it to the PID loop frequency. DShot frame generation thus always runs at PID loop rate - this on the other hand means, that if you are running really high PID loop frequencies, you also need to run a high DShot version.
 
-> Should you for example run a 32kHz loop, the flight controller will send DShot frames every 31.25µs - meaning you have to run at least DShot600 in order to keep up.  
+> Note that enabling [bidirectional DShot](#bidirectional-dshot) roughly halves the effective frame rate due to time required to send the telemetry frame and switch between TX and RX. Taking the DShot 300 example above, with bidirectional DShot enabled, the effective total frame length becomes: 53.28 µs (DShot frame) + 30 µs (switching time) + 56 µs (telemetry frame) + 30 µs (switching time) = 169.28 µs, or a maximum frequency of about 5.9 kHz. Thus bidirectional DShot 300 is fast enough for a 4 kHz PID loop rate, but for an 8 kHz PID loop rate with bidirectional DShot enabled, DShot 600 should be used (max frequency of about 8.7 kHz).
   
 <br/>
 
