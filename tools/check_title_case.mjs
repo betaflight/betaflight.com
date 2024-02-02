@@ -11,12 +11,17 @@ function checkTitleCase(filePath) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
 
-    // Check if the line is a header (starts with '#' followed by a space)
-    if (line.match(/^#+\s/)) {
-      const headerText = line.replace(/^#+\s/, '');
+    // Check if the line is a first level header (starts with '#' followed by a space)
+    if (line.match(/^#\s/)) {
+      const headerText = line.replace(/^#\s/, '');
 
       // Check if the header is in title case
       if (titleCase(headerText) !== headerText) {
+        // If this is the first error, print the message
+        if (!hasError) {
+          console.log("This commit failed because some headings were not properly capitalized following the title case format. Use the proposed changes or make your own, and then try again. Or, commit with the --no-verify flag to bypass this check entirely:\n");
+        }
+
         console.log(
           `${chalk.red(headerText) 
           } -> ${ 
