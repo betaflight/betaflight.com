@@ -19,7 +19,7 @@ function checkTitleCase(filePath) {
       if (titleCase(headerText) !== headerText) {
         // If this is the first error, print the message
         if (!hasError) {
-          console.log("This commit failed because some headings were not properly capitalized following the title case format. Use the proposed changes or make your own, and then try again. Or, commit with the --no-verify flag to bypass this check entirely:\n");
+          console.log("This commit would fail because some headings were not properly capitalized following the title case format. Use the proposed changes or make your own, and then try again. Or, commit with the --no-verify flag to bypass this check entirely:\n");
         }
 
         console.log(
