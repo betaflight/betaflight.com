@@ -15,7 +15,7 @@ const log = console.log;
  */
 function checkFileName(fileName) {
   // Regular expression to match whitespaces and special characters
-  let pattern = /[\s~`!@#$%^&*()+=[\]\\';,/{}|\\":<>?]/g;
+  const pattern = /[^a-zA-Z0-9-_.]/g;
 
   // Check if the file name matches the pattern
   return fileName.match(pattern);
@@ -39,7 +39,7 @@ function processDir(dir, depth = 1) {
 
     const badChars = checkFileName(path.basename(file.name));
     if (badChars) {
-      log(`${chalk.red(`${dir}/${file.name}`)}: contains invalid characters ${badChars.join(', ')}`);
+      log(`${chalk.red(`${dir}/${file.name}`)}: contains invalid characters: ${badChars.join(', ')}`);
       hasError = true;
     }
   });
