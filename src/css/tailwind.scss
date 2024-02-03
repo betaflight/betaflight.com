@@ -50,10 +50,7 @@
     @apply p-1 m-0;
   }
 
-// drop shadow around img
-// shadow x offset, y offset, blur effect, spread, rgba(r,g,b,transparency)
   img:not(.no-effect) {
-    @apply rounded-xl drop-shadow shadow-[6px_6px_10px_0px_rgba(0,0,0,0.1)];
     margin: 6px;
   }
 
