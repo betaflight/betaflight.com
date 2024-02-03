@@ -189,7 +189,7 @@ The best way to demonstrate this is to give an example:
 make TARGET=STM32F411 EXTRA_FLAGS="-DUSE_GPS -DUSE_LED_STRIP"
 ```
 
-The above would make a F411 target hex with GPS and LED_STRIP included. Happy compiling! :). For the most part simply `make` with the MCU target will include almost everytihing. The exception is the lower flash MCUs, e.g. F411 and F722. These do not have the flash space for everything, so even building locally you will need to specify what you would like included.
+The above would make a F411 target hex with GPS and LED_STRIP included. Happy compiling! :). For the most part simply `make` with the MCU target will include almost everything. The exception is the lower flash MCUs, e.g. F411 and F722. These do not have the flash space for everything, so even building locally you will need to specify what you would like included.
 
 :::note
 
