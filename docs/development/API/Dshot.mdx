@@ -1,3 +1,10 @@
+import Bit from '/img/dshot/dshot_bit.webp'
+import Frame from '/img/dshot/dshot_frame.webp'
+import FrameInv from '/img/dshot/dshot_frame-inverted.webp'
+import Gcr from '/img/dshot/dshot_gcr.webp'
+import GcrOpt from '/img/dshot/dshot_gcr-optimized.webp'
+
+
 # DShot
 
 DShot - **D**igital **Shot** - is a very popular protocol for flight controller (FC) to electronic speed controller (ESC) communication. In the quadcopter hobby it is nowadays pretty much the standard. The protocol is used to send the target throttle value from the FC to the ESC, which in turn interprets it and drives the motor(s) accordingly.
@@ -43,7 +50,9 @@ SSSSSSSSSSSTCCCC
 
 The interesting part is, that 1 and 0 in the DShot frame are distinguished by their high time. This means that every bit has a certain (constant) length, and the length of the high part of the bit dictates if a 1 or 0 is being received.
 
-![DShot high times](./dshot_bit.webp)
+<p align="center">
+  <img src={Bit} alt="DShot Bit" className="themeInvert" />
+</p>
 
 This has two benefits:
 
@@ -172,7 +181,9 @@ So the two bytes transmitted from the FC to ESC would be:
 
 We would put this signal on the wire to transmit the DShot frame:
 
-![DShot frame](./dshot_frame.webp)
+<p align="center">
+  <img src={Frame} alt="DShot Frame" />
+</p>
 
 The green parts are the throttle bits, blue is the telemetry bit and yellow the CRC checksum.
 
@@ -272,7 +283,10 @@ The frame sent from the flight controller to the ESC has exactly the same struct
 ```
 
 On the wire, the signal would look like this:
-![DShot inverted frame for bidirectional DShot](./dshot_frame-inverted.webp)
+
+<p align="center">
+  <img src={FrameInv} alt="DShot Frame Inverted" />
+</p>
 
 When bidirectional DShot is enabled, for each frame sent to the ESC a frame with eRPM telemetry data is returned (on the same line, not the additional telemetry line), effectively halving the amount of frames you can send per second. You need to keep this in mind, especially when running higher PID frequencies.
 
@@ -425,17 +439,21 @@ When we put this value on the wire, we only have half the transitions (switching
 
 So instead of sending this:
 
-![GCR encoded bidirectional eRPM frame](./dshot_gcr.webp)
+<p align="center">
+  <img src={Gcr} alt="DShot GCR" className="themeInvert" />
+</p>
 
 We send this:
 
-![GCR encoded bidirectional eRPM frame optimized](./dshot_gcr-optimized.webp)
+<p align="center">
+  <img src={GcrOpt} alt="DShot GCR Optimized" className="themeInvert" />
+</p>
 
 This value is then sent uninverted at a bitrate of 5/4 x current DShot bitrate. So on DShot600 the 21 bits are sent with a bitrate of 750 kbit/s.
 
 You might now ask yourself: **WHY?** And that is a good question. It turns out that GCR is an excellent transmission format, very robust to jitter. Tests during implementation have shown that the error rate of the eRPM packets is significantly lower when using GCR in comparison to sending DShot frames back to the FC.
 
-### Decoding eRPM frame (on flight-controller)
+### Decoding eRPM frame (on Flight Controller)
 
 On the receiving end it is also pretty simple to decode the frame:
 
