@@ -2,8 +2,8 @@
 sidebar_position: 4
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 
 # MDX Reference
 
@@ -153,33 +153,23 @@ const foo: string = 'bar';
 ## Admonitions
 
 :::note
-
 This is a note. It notes things.
-
 :::
 
 :::caution
-
 This is a caution. It cautions things.
-
 :::
 
 :::danger
-
 This is a danger. It is dangerous.
-
 :::
 
 :::info
-
 This is an info. It informs things.
-
 :::
 
 :::tip
-
 This is a tip. It tips things.
-
 :::
 
 ## Mermaid Flow Charts
@@ -210,14 +200,14 @@ $$
 
 ## Images
 
-<div align="center">
- ![Betaflight Configurator](/img/MagOrientationDiagram.png)
-**Fig. 1** - centered image.
-</div>
+<p align="center">
+  ![Betaflight Configurator](/img/MagOrientationDiagram.png)
+  **Fig. 1** - centered image.
+</p>
  
- ```
-<div align="center">
-[Betaflight Configurator](/img/MagOrientationDiagram.png)
-**Fig. 1** - centered image.
-</div>
- ```
+```md
+<p align="center">
+  ![Betaflight Configurator](/img/MagOrientationDiagram.png)
+  **Fig. 1** - centered image.
+</p>
+```
