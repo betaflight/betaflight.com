@@ -16,6 +16,7 @@
     "lint": "eslint --ext .js,.tsx src",
     "lint:fix": "eslint --ext .js,.tsx --fix src",
     "format": "prettier --write src",
+    "check": "node tools/check_title_case.mjs && node tools/check_file_names.mjs",
     "prepare": "husky install",
     "check:title-case": "node tools/check_title_case.mjs",
     "check:file-names": "node tools/check_file_names.mjs"

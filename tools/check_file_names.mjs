@@ -1,5 +1,6 @@
 import fs from 'fs';
 import chalk from 'chalk';
+import path from 'path';
 
 const skipDirs = [
   'docs/development',
@@ -14,14 +15,10 @@ const log = console.log;
  */
 function checkFileName(fileName) {
   // Regular expression to match whitespaces and special characters
-  let pattern = /[\s~`!@#$%^&*()+=[\]\\';,/{}|\\":<>?]/;
+  const pattern = /[^a-zA-Z0-9-_.]/g;
 
   // Check if the file name matches the pattern
-  if (pattern.test(fileName)) {
-    return true;
-  } else {
-    return false;
-  }
+  return fileName.match(pattern);
 }
 
 /**
@@ -37,12 +34,12 @@ function processDir(dir, depth = 1) {
       if (skipDirs.some(skipDir => `${dir}/${file.name}`.includes(skipDir))) {
         return false;
       }
-      log(chalk.white.bgBlackBright(`${'\t'.repeat(depth)}${dir}/${file.name}:`));
       return processDir(`${dir}/${file.name}`, depth + 1);
     }
 
-    if (checkFileName(file.name)) {
-      log(`${chalk.red(`${'\t'.repeat(depth)}${file.name}`)}: contains invalid characters`);
+    const badChars = checkFileName(path.basename(file.name));
+    if (badChars) {
+      log(`${chalk.red(`${dir}/${file.name}`)}: contains invalid characters: ${badChars.join(', ')}`);
       hasError = true;
     }
   });
@@ -53,8 +50,7 @@ function runFull() {
   const rootDir = fs.readdirSync('./docs', { withFileTypes: true });
 
   return rootDir.map(file => {
-    log(chalk.white.bgBlackBright(`./docs:`));
-    return processDir(`./docs/${ file.name }`);
+    return processDir(`./docs/${file.name}`);
   });
 }
 
@@ -63,9 +59,12 @@ function runFull() {
  * @param {string} fileName 
  */
 function runSingle(fileName) {
-  if (checkFileName(fileName) && !skipDirs.some(skipDir => fileName.includes(skipDir))) {
-    log(`${chalk.red(`${fileName}`)}: contains invalid characters`);
+  const badChars = checkFileName(path.basename(fileName));
+  if (badChars && !skipDirs.some(skipDir => fileName.includes(skipDir))) {
+    log(`${chalk.red(`${fileName}`)}: contains invalid characters ${badChars.join(', ')}`);
+    return true;
   }
+  return false;
 }
 
 function run() {
@@ -81,4 +80,7 @@ function run() {
 
 const exitCode = run();
 
-process.exit(exitCode);
+// Exit with a non-zero code if there are errors
+if (exitCode !== 0) {
+  process.exit(exitCode);
+}

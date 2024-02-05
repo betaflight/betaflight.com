@@ -1,87 +1,59 @@
 import fs from 'fs';
 import path from 'path';
-import chalk from 'chalk';
 import { titleCase } from 'title-case';
-
-const skipDirs = [
-  'docs/development',
-  'docs/wiki',
-];
-
-const log = console.log;
+import chalk from 'chalk';
 
 function checkTitleCase(filePath) {
-  if (skipDirs.some(skipDir => filePath.includes(skipDir))) {
-    return true;
-  }
-  // Read the contents of the file
-  const fileContent = fs.readFileSync(filePath, 'utf8');
-  // Split the file content into an array of lines
-  const lines = fileContent.split('\n');
-
-  const errorLines = [];
-
-  // Iterate over each line
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    if (!/^#+\s/.test(line)) {
-      continue;
-    }
-
-    // Check if the line is in title-case
-    if (line !== titleCase(line)) {
-      errorLines.push([i+1, line]);
-    }
-  }
-
-  if (errorLines.length > 0) {
-    log(chalk.white.bgBlackBright(`${filePath}:`));
-    errorLines.forEach(([lineNumber, line]) => {
-      log(chalk.red(`\t${lineNumber}: ${line}`));
-      log(chalk.green(`\t${lineNumber}: ${titleCase(line)}`));
-    });
-  }
-
-  return errorLines.length === 0;
-}
-
-function readDir(dir) {
-  const files = fs.readdirSync(dir);
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const lines = content.split('\n');
   let hasError = false;
-  for (const file of files) {
-    const filePath = path.join(dir, file);
-    const fileStat = fs.lstatSync(filePath);
-    if (fileStat.isDirectory() && !skipDirs.some(skipDir => filePath.includes(skipDir))) {
-      // Recursively read the subdirectory
-      hasError &= readDir(filePath);
-    } else if (fileStat.isFile() && file.endsWith('.mdx')) {
-      // Check the file for title case
-      hasError &= checkTitleCase(filePath);
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+
+    // Check if the line is a first level header (starts with '#' followed by a space)
+    if (line.match(/^#\s/)) {
+      const headerText = line.replace(/^#\s/, '');
+
+      // Check if the header is in title case
+      if (titleCase(headerText) !== headerText) {
+        // If this is the first error, print the message
+        if (!hasError) {
+          console.log("This commit would fail because some headings were not properly capitalized following the title case format. Use the proposed changes or make your own, and then try again. Or, commit with the --no-verify flag to bypass this check entirely:\n");
+        }
+
+        console.log(
+          `${chalk.red(headerText) 
+          } -> ${ 
+            chalk.green(titleCase(headerText)) 
+          }\n${ 
+            chalk.white(`${filePath  }:${  i + 1}`)}\n`,
+        );
+        hasError = true;
+      }
     }
   }
-  return hasError;
-}
 
-function runFull() {
-  // Example usage
-  const directoryPath = './docs';
-  return readDir(directoryPath);
-}
-
-function run() {
-
-  const hasArgs = process.argv.length > 2;
-
-  if (!hasArgs) {
-    return runFull() ? 1 : 0;
+  if (hasError) {
+    process.exit(1);
   }
-  const [,, ...args] = process.argv;
-
-  return args.map(arg => {
-    return checkTitleCase(arg);
-  }).includes(true) ? 1 : 0;
 }
 
-const exitCode = run();
+function processFiles(filePath) {
+  if (fs.statSync(filePath).isDirectory()) {
+    const files = fs.readdirSync(filePath);
 
-process.exit(exitCode);
+    files.forEach(file => {
+      const nestedFilePath = path.join(filePath, file);
+      processFiles(nestedFilePath);
+    });
+  } else if (filePath.endsWith('.mdx')) {
+    checkTitleCase(filePath);
+  }
+}
+
+// Process files passed as arguments
+process.argv.slice(2).forEach(processFiles);
+
+const directoryPath = 'docs/';
+processFiles(directoryPath);
