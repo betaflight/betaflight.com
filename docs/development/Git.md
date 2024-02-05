@@ -192,7 +192,7 @@ git checkout 2500
 
 ## Squash your commits
 
-From the project folder you can use somethink like: https://www.scraggo.com/how-to-squash-commits.
+From the project folder you can use something like: https://www.scraggo.com/how-to-squash-commits.
 Note the number of commits in your PR.
 
 ```
