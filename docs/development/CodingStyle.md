@@ -29,7 +29,7 @@ indent -kr -i4 -nut
 
 (the options for these commands can be tuned more to comply even better)
 
-Note: These tools are not authorative.
+Note: These tools are not authoritative.
 Sometimes, for example, you may want other columns and line breaks so it looks like a matrix.
 
 Note2: The Astyle settings have been tested and will produce a nice result. Many files will be changed, mostly to the better but maybe not always, so use with care.
@@ -202,7 +202,7 @@ Using "temporaryCounter" in that case would not improve readability.
 Avoid global variables.
 
 Variables should be declared at the top of the smallest scope where the variable is used.
-Variable re-use should be avoided - use distinct variabes when their use is unrelated.
+Variable re-use should be avoided - use distinct variables when their use is unrelated.
 One blank line should follow the declaration(s).
 
 Hint: Sometimes you can create a block, i.e. add curly braces, to reduce the scope further.
@@ -344,7 +344,7 @@ Do not include things you are not using.
 
 All new code files, structs, enums, and functions should include a comment at its top describing its purpose.
 All PRs that modify existing items should add a comment if not already present, and update it if applicable due
-to changes made by the PR. These comments may be ommitted if the item is trivial or self-explanatory.
+to changes made by the PR. These comments may be omitted if the item is trivial or self-explanatory.
 
 Example file-level comment:
 
