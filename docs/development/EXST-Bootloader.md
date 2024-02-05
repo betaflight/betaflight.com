@@ -7,7 +7,7 @@ Example external storage systems include:
 - External Flash using Firmware Partition
 - File on an SD card.
 
-EXST targets also have the requirement of providing a mechansim to load and save configuration ('eeprom'). options for this include:
+EXST targets also have the requirement of providing a mechanism to load and save configuration ('eeprom'). options for this include:
 
 - CPU Embedded flash page.
 - External Flash using Config Partition
