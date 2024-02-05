@@ -199,7 +199,7 @@ Each LED has one base function:
 
 And each LED has overlays:
 
-- `W` - `W`warnings.
+- `W` - `W`arnings.
 - `I` - `I`ndicator.
 - `T` - `T`hrust state.
 - `B` - `B`link (flash twice) mode.
@@ -481,7 +481,7 @@ color 14 0,0,0
 color 15 0,0,0
 ```
 
-### Mode Colors Assignement
+### Mode Colors Assignment
 
 Mode Colors can be configured using the cli `mode_color` command.
 
@@ -707,7 +707,7 @@ Also check that the feature `LED_STRIP` was correctly enabled and that it does n
 
 ## Resource remapping
 
-If your board does not have a physical LED_STRIP pin you still can use this feature but configuration is dependend on target resources.
+If your board does not have a physical LED_STRIP pin you still can use this feature but configuration is dependent on target resources.
 
 An example for a Foxeer F745V3_AIO board using SERIAL_RX 1 as LED_STRIP:
 
@@ -716,7 +716,7 @@ resource SERIAL_RX 1 A10
 resource SERIAL_RX 1 NONE
 resource LED_STRIP 1 A10
 timer show # show current timer list
-timer A10 list # check available timers for next commmand
+timer A10 list # check available timers for next command
 timer A10 AF1
 dma show # show current dma list
 dma pin A10 list # check available dma pins for next command
