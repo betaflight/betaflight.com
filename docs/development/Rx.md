@@ -212,7 +212,7 @@ By default, when the signal loss is detected the FC will set pitch/roll/yaw to t
 
 Signal loss can be detected when:
 
-1. no rx data is received (due to radio reception, receivier configuration or cabling issues).
+1. no RX data is received (due to radio reception, receiver configuration or cabling issues).
 2. using Serial RX and receiver indicates failsafe condition.
 3. using any of the first 4 stick channels do not have a value in the range specified by `rx_min_usec` and `rx_max_usec`.
 
