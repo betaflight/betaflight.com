@@ -212,7 +212,7 @@ By default, when the signal loss is detected the FC will set pitch/roll/yaw to t
 
 Signal loss can be detected when:
 
-1. no rx data is received (due to radio reception, recevier configuration or cabling issues).
+1. no RX data is received (due to radio reception, receiver configuration or cabling issues).
 2. using Serial RX and receiver indicates failsafe condition.
 3. using any of the first 4 stick channels do not have a value in the range specified by `rx_min_usec` and `rx_max_usec`.
 
@@ -313,7 +313,7 @@ Set the RX for 'No Pulses'. Turn OFF TX and RX, Turn ON RX. Press and release F/
 ### Graupner GR-24 PWM
 
 Set failsafe on the throttle channel in the receiver settings (via transmitter menu) to a value below `rx_min_usec` using channel mode FAILSAFE.
-This is the prefered way, since this is _much faster_ detected by the FC then a channel that sends no pulses (OFF).
+This is the preferred way, since this is _much faster_ detected by the FC then a channel that sends no pulses (OFF).
 
 **NOTE:**
 One or more control channels may be set to OFF to signal a failsafe condition to the FC, all other channels _must_ be set to either HOLD or OFF.
@@ -336,7 +336,7 @@ you could use rx channel range configuration to map actual range of your transmi
 The low and high value of a channel range are often referred to as 'End-points'. e.g. 'End-point adjustments / EPA'.
 
 All attempts should be made to configure your transmitter/receiver to use the range 1000-2000 _before_ using this feature
-as you will have less preceise control if it is used.
+as you will have less precise control if it is used.
 
 To do this you should figure out what range your transmitter outputs and use these values for rx range configuration.
 You can do this in a few simple steps:
@@ -372,7 +372,7 @@ OpenTx and EdgeTx both enable an `ADC filter` by default. Betaflight users shoul
 
 The `ADC filter` converts what would otherwise be smooth changes in channel values into a series of steps, where each step is about 1% of the full stick travel. It is intended to reduce 'chatter' when the Rx is connected to a \*servo, so that the servo only changes position when a meaningful change has occurred. It is not intended for use with flight controllers.
 
-When the `ADC Filter` is active, Betaflight does not receive the most recent position of the gimabl with each new RC packet. Instead, the Rx repeatedly provides the same data, until a moving-averaged smoothed estimate of gimbal position has increased by about 1% of full stick resolution.
+When the `ADC Filter` is active, Betaflight does not receive the most recent position of the gimbal with each new RC packet. Instead, the Rx repeatedly provides the same data, until a moving-averaged smoothed estimate of gimbal position has increased by about 1% of full stick resolution.
 
 Betaflight needs a non-delayed, smooth and continuous representation of the stick travel to give the PID system a smooth target setpoint value. Our RC Smoothing is based on the assumption that every packet is unique and that each is a new representation of the most recent position of the gimbal. Feedforward is calculated from the packet-to-packet position difference, and absolutely relies on smooth and regular updates in measured gimbal position.
 
