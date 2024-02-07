@@ -77,7 +77,7 @@ This basically sets the baseline stick sensitivity.
 
 ### Pitch and Roll rates
 
-This is an multiplier on overall stick sensitivity, like RC rate, but for roll and pitch independently. Stablility (to outside factors like turbulence) is not reduced at stick extremes. A zero value is no increase in stick sensitivity over that set by RC rate above. Higher values increases stick sensitivity across the entire stick movement range.
+This is an multiplier on overall stick sensitivity, like RC rate, but for roll and pitch independently. Stability (to outside factors like turbulence) is not reduced at stick extremes. A zero value is no increase in stick sensitivity over that set by RC rate above. Higher values increases stick sensitivity across the entire stick movement range.
 
 ### Yaw Rate
 
