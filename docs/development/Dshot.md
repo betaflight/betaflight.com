@@ -2,6 +2,8 @@
 
 DShot is the name coined for a new digital ESC protocol by Felix (KISS) who is working in collaboration with Boris and the rest of the betaflight team, and Steffen (BLHeli) is also playing his part and introducing this protocol to BLHeli_S.
 
+Note: `BLHeli` stands for Brush Less Helicopters
+
 Make no mistake (despite what some have said) although this protocol uses the PWM (Pulse Width Modulation) features of the micro-controllers it is in fact digital. Each pulse represents a single bit. The timing of that pulse, as in the duration, in relation to the overall period between pulses dictates whether the bit is ON or OFF i.e. a bit value of a ZERO or a ONE. The micro-controllers are simply using the direct memory access, and timer capability within micro-controllers to generate the necessary signals on a motor pin so as to minimise the CPU utilisation.
 
 ### What is the difference to current protocols?
