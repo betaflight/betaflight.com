@@ -49,9 +49,11 @@ The license information is used to identify the license of the firmware. The con
 
 ### Board Configuration
 
-    #define FC_TARGET_MCU ATF435M
-    #define BOARD_NAME AIRBOTF435
-    #define MANUFACTURER_ID AIRB
+```
+#define FC_TARGET_MCU ATF435M
+#define BOARD_NAME AIRBOTF435
+#define MANUFACTURER_ID AIRB
+```
 
 ### Hardware Defines
 
@@ -69,25 +71,25 @@ Configure the timer in CLI:
 Example using a STM32F722:
 
 ```
-    #timer
-    timer A00 AF2
-    # pin A00: TIM5 CH1 (AF2)
-    timer A01 AF2
-    # pin A01: TIM5 CH2 (AF2)
-    timer A02 AF2
-    # pin A02: TIM5 CH3 (AF2)
-    timer A03 AF2
-    # pin A03: TIM5 CH4 (AF2)
-    timer B00 AF2
-    # pin B00: TIM3 CH3 (AF2)
-    timer B01 AF2
-    # pin B01: TIM3 CH4 (AF2)
-    timer C07 AF3
-    # pin C07: TIM8 CH2 (AF3)
-    timer C08 AF3
-    # pin C08: TIM8 CH3 (AF3)
-    timer C09 AF3
-    # pin C09: TIM8 CH4 (AF3)
+#timer
+timer A00 AF2
+# pin A00: TIM5 CH1 (AF2)
+timer A01 AF2
+# pin A01: TIM5 CH2 (AF2)
+timer A02 AF2
+# pin A02: TIM5 CH3 (AF2)
+timer A03 AF2
+# pin A03: TIM5 CH4 (AF2)
+timer B00 AF2
+# pin B00: TIM3 CH3 (AF2)
+timer B01 AF2
+# pin B01: TIM3 CH4 (AF2)
+timer C07 AF3
+# pin C07: TIM8 CH2 (AF3)
+timer C08 AF3
+# pin C08: TIM8 CH3 (AF3)
+timer C09 AF3
+# pin C09: TIM8 CH4 (AF3)
 ```
 
 Also set the DMA options, so the command `timer map` outputs the right values, else they will be `-1` for `dmaopt` (which is unused).
@@ -95,32 +97,34 @@ Also set the DMA options, so the command `timer map` outputs the right values, e
 e.g.
 
 ```
-    dma pin A01 0
-    # pin A01: DMA1 Stream 4 Channel 6
-    dma pin A00 0
-    # pin A00: DMA1 Stream 2 Channel 6
+dma pin A01 0
+# pin A01: DMA1 Stream 4 Channel 6
+dma pin A00 0
+# pin A00: DMA1 Stream 2 Channel 6
 ```
 
 The below is an example of the output after running timer map in CLI:
 
 ```
-    #timer map
+#timer map
 
-    Timer Mapping:
-     TIMER_PIN_MAP(0, PA0, 2, 0)
-     TIMER_PIN_MAP(1, PA1, 2, 0)
-     TIMER_PIN_MAP(2, PA2, 2, -1)
-     TIMER_PIN_MAP(3, PA3, 2, -1)
-     TIMER_PIN_MAP(4, PB0, 2, 0)
-     TIMER_PIN_MAP(5, PB1, 2, 0)
-     TIMER_PIN_MAP(6, PC7, 2, -1)
-     TIMER_PIN_MAP(7, PC8, 2, -1)
-     TIMER_PIN_MAP(8, PC9, 2, -1)
+Timer Mapping:
+    TIMER_PIN_MAP(0, PA0, 2, 0)
+    TIMER_PIN_MAP(1, PA1, 2, 0)
+    TIMER_PIN_MAP(2, PA2, 2, -1)
+    TIMER_PIN_MAP(3, PA3, 2, -1)
+    TIMER_PIN_MAP(4, PB0, 2, 0)
+    TIMER_PIN_MAP(5, PB1, 2, 0)
+    TIMER_PIN_MAP(6, PC7, 2, -1)
+    TIMER_PIN_MAP(7, PC8, 2, -1)
+    TIMER_PIN_MAP(8, PC9, 2, -1)
 ```
 
 To enable the `timer map` command you need to add the define `USE_TIMER_MAP_PRINT` so use either:
 
-    make TARGET EXTRA_FLAGS="-DUSE_TIMER_MAP_PRINT"
+```
+make TARGET EXTRA_FLAGS="-DUSE_TIMER_MAP_PRINT"
+```
 
 The `TIMER_PIN_MAP` config statement is broken down as follows:
 
@@ -147,17 +151,21 @@ The serial configuration is used to configure the serial ports on the flight con
 | 131072 | VTX_MSP_UART         |
 | 131073 | MSP_DISPLAYPORT_UART |
 
-The following example shows how to configure the serial ports for a flight controller with a GPS and SmartAudio VTX.
+The following example shows how to configure the serial ports for receiver, GPS and SmartAudio VTX.
 
-    #define SERIALRX_UART SERIAL_PORT_USART1
-    #define VTX_SMARTAUDIO_UART SERIAL_PORT_USART3
-    #define GPS_UART SERIAL_PORT_USART4
+```
+#define SERIALRX_UART SERIAL_PORT_USART1
+#define VTX_SMARTAUDIO_UART SERIAL_PORT_USART3
+#define GPS_UART SERIAL_PORT_USART4
+```
 
 :::note
 
 Serial command is zero index based, so the first serial port is `SERIAL_PORT_USART1` and not `SERIAL_PORT_USART0`.
-
-The USART is meant to do all of the “heavy lifting” serial communication during periods of “high” energy consumption. When the microcontroller is asleep and in a low power mode, though, the UART peripheral can handle low speed communications while offering a reduced energy footprint. Betaflight has UART4 and UART5. Other serial ports are USUART as some board provide LPUART1
+<br />
+The USART is meant to do all of the “heavy lifting” serial communication during periods of “high” energy consumption.
+<br />
+When the microcontroller is asleep and in a low power mode, though, the UART peripheral can handle low speed communications while offering a reduced energy footprint. Betaflight has UART4, UART5 and UART9. Other serial ports are USUART as some boards provide LPUART1
 
 :::
 
@@ -165,7 +173,9 @@ The USART is meant to do all of the “heavy lifting” serial communication dur
 
 BNF boards may want to configure the serial receiver provider on the flight controller. Example:
 
-    #define SERIALRX_PROVIDER CRSF
+```
+#define SERIALRX_PROVIDER CRSF
+```
 
 ### ADC Configuration
 
