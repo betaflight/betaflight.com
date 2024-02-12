@@ -31,7 +31,7 @@ There is also limited support for the following boards which may be removed due 
 
 - STM32F3Discovery with Chebuzz F3 shield.
 
-NOTE: Users are advised against purhasing boards that have CPUs with less than 256KB of EEPROM space - available features may be limited.
+NOTE: Users are advised against purchasing boards that have CPUs with less than 256KB of EEPROM space - available features may be limited.
 NOTE: Hardware developers should not design new boards that have CPUs with less than 256KB EEPROM space.
 
 Each board has it's pros and cons, before purchasing hardware the main thing to check is if the board offers enough serial ports and input/output pins for the hardware you want to use with it and that you can use them at the same time. On some boards some features are mutually exclusive.
