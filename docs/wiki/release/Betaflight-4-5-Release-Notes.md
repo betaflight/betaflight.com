@@ -14,6 +14,10 @@ As usual, Full Chip Erase is mandatory when flashing. Re-configuring from scratc
 
 If the `OSD_HD` option is included in the build, after a clean flash, all relevant OSD setups values will suit HD video.  Analog users should visit Configurator's OSD tab and change the Video Format to either Auto, NTSC or PAL, and save.  If only `OSD_SD` is included in the build, a clean flash will default to Analog OSD settings.
 
+:::note
+When having issues with elements on digital HD OSD not showing up set `displayport_msp_fonts = 0,0,0,0` until support is added to use four fonts.
+:::
+
 :::warning
 Angle, Horizon and GPS Rescue users should NOT use previous values in 4.5.  Start out with the new 4.5 defaults!
 Do not use 4.3 or earlier dumps or Presets in 4.5!
