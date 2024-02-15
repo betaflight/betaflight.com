@@ -221,6 +221,18 @@ The ability to customize IMU lowpass filtering and operate within the same GRMS/
 
 The IMU sensors, designed for applications outside of sUAS, are typically subjected to very harsh electromagnetic environments. Ensuring electromagnetic compatibility when using these immediately adjacent to ultrasonically switched power MOSFET devices, constantly operational radio frequency devices (such as remote control and FPV video systems), under thermal stresses of moving over 1kW through the complete flight stack, are a nontrivial operation. In order to minimize risks of flyaway and brownout behaviors which can be observed if IMU data filtering and power delivery are inadequate, proper circuit design and validation testing must be performed.
 
+:::note
+
+#### Advised power supply design for ICM-42xxx IMU. (also applies to others)
+
+These IMU require a stable and clean power supply to function correctly, provided with this they are very capable IMU for flight controller use.  
+Peak to peak noise of under 50uV on the supply should be the ideal goal.  
+Considerations for a suitable LDO are at least 500mA rated output allowing for extra capacitors on the output, two 20nF.  
+A PSRR >70dB down as low as 1Hz is preferred.  
+Where space allows, a dedicated LDO and circuit is advised for the IMU.
+
+:::
+
 ### 3.1.4 Electrical Isolation for Sensor Components
 
 Separate VDD from VDD_IO
