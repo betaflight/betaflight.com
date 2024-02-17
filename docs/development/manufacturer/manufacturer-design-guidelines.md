@@ -278,7 +278,7 @@ Each LED should be connected to a GPIO line. Polarity of the output does not mat
 | 1          | Green  | Preferably |
 | 2          | Amber  | No         |
 
-For details of the use of these LEDs, please see the [FC LEDs](FC LEDs) documentation
+For details of the use of these LEDs, please see the [FC LEDs](/docs/development/FC-LEDs) documentation
 
 ## 3.2 Resource Selection Considerations
 
