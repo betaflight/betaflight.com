@@ -87,7 +87,7 @@ FrSky (SPI) receivers uses SBUS or FPORT protocol depending on the receiver firm
 
 ### Telemetry Protocols
 
-Select the telemetry protocol used. For CRSF, ELRS or GHST protocols this is included by default to ease configuraton.
+Select the telemetry protocol used. For CRSF, ELRS, FPORT or GHST protocols this is included by default to ease configuraton.
 
 :::note
 
