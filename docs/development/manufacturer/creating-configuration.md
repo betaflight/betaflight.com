@@ -57,7 +57,7 @@ The license information is used to identify the license of the firmware. The con
 
 ### Hardware Defines
 
-For a list of hardware defines please see [Hardware Defines](manufacturer-design-guidelines## 4.2 Definitions for Targets)
+For a list of hardware defines please see [Definitions for Targets](manufacturer-design-guidelines.md#42-definitions-for-targets).
 
 ### Pin Resources
 
