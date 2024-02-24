@@ -76,7 +76,7 @@ BLHeli_32 is only available pre-installed on ESCs, the cost of BLHeli_32 license
 
 ### BlueJay
 
-BlueJay fully supports RPM filtering and EDT telementry and is the recommended ESC firmware for 8bit ESCs. Orginally developed by Mathias, a Betaflight developer, more recently BlueJay has been transferred to the BirdSanctuary team and is maintained by Damosvil and Stylesuxx in close partnership with the esc-configurator project.
+BlueJay fully supports RPM filtering and EDT telemetry and is the recommended ESC firmware for 8bit ESCs. Orginally developed by Mathias, a Betaflight developer, more recently BlueJay has been transferred to the BirdSanctuary team and is maintained by Damosvil and Stylesuxx in close partnership with the esc-configurator project.
 
 BlueJay is easily flashed with an elegant online flashing tool [ESC Configurator](https://esc-configurator.com/). An older offline configurator (https://github.com/mathiasvr/bluejay-configurator/releases) is available but not recommended for current releases. The firmware supports both L and H type ESCs as well as newer Z type, with a range of options, and has been tested on various ESC models.
 
