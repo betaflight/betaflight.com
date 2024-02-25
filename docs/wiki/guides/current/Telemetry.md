@@ -45,7 +45,7 @@ Here is the set of telemetry fields send via the Crossfire protocol.
 | WAIT        | Wait for GPS lock   |
 | appended *  | FC are not ARMED    |
 
-### Smartport protocol
+### Smartport protocol 
 
 Here is the set of telemtry fields sent via Smartport can be seen here : https://github.com/betaflight/betaflight/blob/daa6df80248c9a806b7d77c402d415a15f4e2667/src/main/telemetry/smartport.c#L89
 
