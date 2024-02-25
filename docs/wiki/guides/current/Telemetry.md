@@ -29,8 +29,7 @@ Here is the set of telemetry fields send via the Crossfire protocol.
 | Ptch	    | FC pitch angle                                        | radians   | ATTITUDE_ID    |   0   | 
 | Roll	    | FC roll angle                                         | radians   | ATTITUDE_ID    |   1   |
 | Yaw	    | FC yaw angle                                          | radians   | ATTITUDE_ID    |   2   |
-| FM	    | Flight mode                                           | See table | FLIGHT_MODE_ID |   0   |
-|           |                                                       | below     |                |       |
+| FM	    | Flight mode                                           | See below | FLIGHT_MODE_ID |   0   |
 
 #### CRSF flightmode
 | Flight Mode | Meaning             |
@@ -43,7 +42,7 @@ Here is the set of telemetry fields send via the Crossfire protocol.
 | HOR         | Horizon mode        |
 | AIR         | Air mode            |
 | WAIT        | Wait for GPS lock   |
-| appended *  | FC are not ARMED    |
+| appended *  | FC is not ARMED     |
 
 ### Smartport protocol 
 
