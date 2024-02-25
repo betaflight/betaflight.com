@@ -9,7 +9,7 @@ Here is the set of telemetry fields send via the Crossfire protocol.
 | --------- | ----------------------------------------------------- | --------- | -------------- | ----- |
 | 1RSS	    | Uplink - received signal strength antenna 1 (RSSI)    | db        | LINK ID        |   0   | 
 | 2RSS	    | Uplink - received signal strength antenna 2 (RSSI)    | db        | LINK ID        |   1   |
-| RQLY	    | Uplink - link quality (valid packets)	                | %         | LINK ID        |   2   |
+| RQLY	    | Uplink - link quality (valid packets)                 | %         | LINK ID        |   2   |
 | RSNR	    | Uplink - signal-to-noise ratio                        | db        | LINK ID        |   3   |
 | ANT	    | Antenna                                               | raw       | LINK ID        |   4   |
 | RFMD	    | Uplink - update rate; 0 = 4Hz; 1 = 50Hz; 2 = 150Hz    | raw       | LINK ID        |   5   |
@@ -20,7 +20,7 @@ Here is the set of telemetry fields send via the Crossfire protocol.
 | GPS	    | GPS Coordinates	                                    | lat + lon | GPS_ID         |   0   |
 | GSpd	    | GPS ground speed                                      | kmh       | GPS_ID         |   2   |
 | Hdg	    | Magnetic orientation / heading                        | deg       | GPS_ID         |   3   |
-| Alt	    | GPS Altitudes	                                        | m         | GPS_ID         |   4   |
+| Alt	    | GPS Altitudes                                         | m         | GPS_ID         |   4   |
 | Sats	    | GPS Satellites acquired                               | raw       | GPS_ID         |   5   |
 | RxBt	    | Battery voltage                                       | V	        | BATTERY_ID     |   0   |
 | Curr	    | Current draw                                          | A         | BATTERY_ID     |   1   |
