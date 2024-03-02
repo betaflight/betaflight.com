@@ -542,7 +542,7 @@ Limits the accumulation of I Term when fast movements happen. This helps special
 
 ### I-term relax cutoff
 
-- lower for for looser stick-feel instead of high feedforward
+- lower for looser stick-feel instead of high feedforward
 - it's not stiff anymore
 - 20 default, 15 - 10
 
