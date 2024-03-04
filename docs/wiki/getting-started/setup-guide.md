@@ -76,8 +76,7 @@ when conflicting options are set
 
 :::info
 
-If your flight controller has a built-in SPI receiver, you don't need to set up a UART for it. You can just set it up  
-in the [Receiver Tab](/docs/wiki/configurator/receiver-tab), we'll go over that right now
+If your flight controller has a built-in SPI receiver, you don't need to set up a UART for it. You can just set it up in the [Receiver Tab](/docs/wiki/configurator/receiver-tab), we'll go over that right now
 
 :::
 
