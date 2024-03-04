@@ -37,7 +37,7 @@ cd betaflight.com
 Install dependencies using npm:
 
 ```bash
-$ npm i
+npm i
 ```
 
 If npm is not installed and you are using Linux, you can typically install npm using your distribution's package manager. For example, on Debian or Ubuntu-based systems, you can use apt:
@@ -50,7 +50,7 @@ sudo apt install npm
 Copy the .env.example file to .env and configure it according to your setup.
 
 ```bash
-$ cp .env.example .env
+cp .env.example .env
 ```
 
 The default is for a standard development environment:
@@ -64,7 +64,7 @@ ORG=betaflight
 ## Start the Local Development server
 
 ```bash
-$ npm start
+npm start
 ```
 
 This command starts a local development server and opens up a browser window at http://localhost:3000. Most changes are reflected live without having to restart the server.
@@ -118,7 +118,7 @@ npm run
 To build the website for deployment, use the following command:
 
 ```bash
-$ npm run build
+npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
@@ -128,13 +128,13 @@ This command generates static content into the `build` directory and can be serv
 Using SSH:
 
 ```bash
-$ USE_SSH=true npm run deploy
+USE_SSH=true npm run deploy
 ```
 
 Not using SSH:
 
 ```bash
-$ GIT_USER=<Your GitHub username> npm run deploy
+GIT_USER=<Your GitHub username> npm run deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
