@@ -29,8 +29,8 @@ If you just get an error like this instead of a helpful popup prompt:
 
 Try running `xcode-select --install` instead to trigger the popup.
 
-If that doesn't work, you'll need to install the XCode development environment [from the App Store][]. After
-installation, open up XCode and enter its preferences menu. Go to the "downloads" tab and install the
+If that doesn't work, you'll need to install the Xcode development environment [from the App Store][]. After
+installation, open up Xcode and enter its preferences menu. Go to the "downloads" tab and install the
 "command line tools" package.
 
 [from the app store]: https://itunes.apple.com/us/app/xcode/id497799835
