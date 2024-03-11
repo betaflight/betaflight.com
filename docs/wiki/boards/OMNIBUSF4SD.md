@@ -18,7 +18,7 @@ If you want to run a mag or other i2c device on a board like this, wire SCL to t
 resource SERIAL_TX 3 none
 resource I2C_SCL 1 B10
 
-resource serial_rx 3 none
+resource SERIAL_RX 3 none
 resource I2C_SDA 1 B11
 ```
 
