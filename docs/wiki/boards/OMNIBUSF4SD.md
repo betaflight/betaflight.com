@@ -15,7 +15,7 @@ However, on some boards, the i2c SCL and SDA pads are connected in parallel to p
 If you want to run a mag or other i2c device on a board like this, wire SCL to the TX3/SCL pad, and SDA to the RC3/SDA pad, and reconfigure Betaflight as follows:
 
 ```
-resource serial_tx 3 none
+resource SERIAL_TX 3 none
 resource I2C_SCL 1 B10
 
 resource serial_rx 3 none
