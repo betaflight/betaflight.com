@@ -12,7 +12,7 @@ In Betaflight's config file, UART3 Tx and Rx are set to B10 and B11 respectively
 
 However, on some boards, the i2c SCL and SDA pads are connected in parallel to pads for TX3 and RX3. Obviously only one of the two functions can work at the same time.
 
-If you want to run a mag or other i2c device on a board like this, wire SCL to the TX3/SCL pad, and SDA to the RC3/SDA pad, and reconfigure Betaflight as follows:
+If you want to run a mag or other i2c device on a board like this, wire SCL to the TX3/SCL pad, and SDA to the RX3/SDA pad, and reconfigure Betaflight as follows:
 
 ```
 resource SERIAL_TX 3 none
