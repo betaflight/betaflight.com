@@ -144,16 +144,11 @@ Depending on the device some shortcut keys are also supported. For example keepi
 
 #### List of confirmed compatible cameras
 
-| Swift series       | Compatible |     | Eagle series  | Compatible |     | Sparrow series | Compatible |     | Owl series | Compatible |
-| ------------------ | ---------- | --- | ------------- | ---------- | --- | -------------- | ---------- | --- | ---------- | ---------- | --- |
-| Swift 2            | Yes        |     | Micro Eagle   | Yes        |     | Sparrow        | Yes        |     | Owl 2      | Yes        |
-| Micro Swift 2      | Yes        |     | Eagle 2 Pro   | Yes        |     | Micro Sparrow  | Yes        |     | Owl        | No         |
-| Swift 2 Rotor Riot | Yes        |     | Night Eagle 2 | Yes        |     |                |            |     |            |            |
+| Swift series       | Compatible |     | Eagle series  | Compatible |     | Sparrow series | Compatible |     | Owl series | Compatible |     | Sky series | Compatible |     | Nano | Compatible |
+| ------------------ | ---------- | --- | ------------- | ---------- | --- | -------------- | ---------- | --- | ---------- | ---------- | --- | ---------- | ---------- | --- | ---- | ---------- |
+| Swift 2            | Yes        |     | Micro Eagle   | Yes        |     | Sparrow        | Yes        |     | Owl 2      | Yes        |     | SKYPLUS    | Yes        |     | Nano | No         |
+| Micro Swift 2      | Yes        |     | Eagle 2 Pro   | Yes        |     | Micro Sparrow  | Yes        |     | Owl        | No         |     | SKY        | Yes        |     |      |            |
+| Swift 2 Rotor Riot | Yes        |     | Night Eagle 2 | Yes        |     |                |            |     |            |            |     |
 | Micro Swift        | Yes        |     | Eagle 2       | Yes        |     |                |            |     |            |            |     |
 | Swift Mini 2       | Yes        |     | Eagle         | No         |     |                |            |     |            |            |
 | Swift Mini         | Yes        |     |               |            |     |                |            |     |
-
-| Sky series | Compatible |     | Nano | Compatible |
-| ---------- | ---------- | --- | ---- | ---------- |
-| SKYPLUS    | Yes        |     | Nano | No         |
-| SKY        | Yes        |     |      |            |
