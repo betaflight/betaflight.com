@@ -104,3 +104,5 @@ The esc needs to be ready after 40us + one dshot frame length to receive the nex
 See https://en.wikipedia.org/wiki/Run-length_limited#GCR:_(0,2)_RLL for more details on the GCR encoding.
 
 See https://github.com/betaflight/betaflight/pull/8554
+
+See https://users.ece.cmu.edu/~koopman/crc/index.html
