@@ -1,0 +1,8 @@
+{
+  "label": "Archive",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Archive of board documentation pages that don't follow the current format, aren't up to date, or are no longer supported."
+  }
+}
