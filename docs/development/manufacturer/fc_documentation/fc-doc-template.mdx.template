@@ -1,10 +1,3 @@
----
-title: Flight Controller Documentation Template
----
-
-{/* The metadata at the top of the file is used to modify the page title only on this template page. REMOVE THEM AFTER COPYING THIS FILE */}
-{/* If title metadata is not present, the first-level header at the beginning of the file is used as the title. This is the recommended approach */}
-
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
