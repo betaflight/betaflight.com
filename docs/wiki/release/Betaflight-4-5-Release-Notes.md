@@ -70,11 +70,17 @@ Thanks to: @blckmn, unit, haslinghuis, many others
 
 ## 2. GPS
 
-The code connecting Betaflight to a GPS Module has been thoroughly overhauled.
+The code connecting Betaflight to a GPS Module has been thoroughly overhauled.  For the majority of users, the data from the module will be more reliable, because we reconfigure the module to send exactly what we want, when we want it, and nothing else.  This loads the MPU less and improves reliability.
 
-When the FC boots, our UBLox code cycles through all available baud rates on the GPS Port until we connect to the module.  Then we instruct the module to change its baud rate to match the requested baud rate, which defaults to 57600, and we re-connect at that baud rate.  We then detect the 'class' of GPS module (M10, M8 etc) so that we know what kind of configuration requests it will respond to, and we re-configure it to send only the values we need, and stop it sending any other data. This ensures that the traffic on the serial port is the absolute minimum required for our purposes, and reduces CPU time.
+:::note
 
-If the FC is connected to Configurator at boot time, we request the full satellite information list, so that we can populate the detailed satellite information list on the left side of Configurator's GPS tab.  Otherwise this information is not requested, because we do not require it while in flight, and it adds a lot of serial port traffic when enabled.
+Some GPS modules that 'worked' in 4.4 may not work at all in 4.5.  This is typically because the module is not responding to standard UBLox auto-configuration requests.  Such a module may 'work' in 4.5 if auto-configuration is disabled, but is not likely to be as reliable as a configurable module.  We recommend either getting a newer (and better) M10 GPS module, or using uCenter or pyGpsClient to reset the module to defaults (which should accept external configuration requests).
+
+:::
+
+When the FC boots, the auto-configuration code cycles the GPS Serial Port through the allowed baud rates until a successful connection is made.  Then we instruct the module to change its baud rate to match the user-requested baud rate, which defaults to 57600, and we re-connect at that baud rate.  We then detect the 'class' of GPS module (M10, M8 etc) so that we know what kind of configuration requests it will respond to, and re-configure it to send only the values we need (nav_pvt messages), and to not send any other data. This ensures that the traffic on the serial port is the absolute minimum required for our purposes.
+
+If the FC is connected to Configurator, the full satellite information list is also requested, so that we can populate the detailed satellite information list on the left side of Configurator's GPS tab.  Otherwise this information is not requested, because we do not require it while in flight, and it adds a lot of serial port traffic when enabled.
 
 The CPU cost and task timing for GPS data has been extensively reviewed and optimised.  Even so, GPS Rescue puts a huge load on a CPU.  For reliability it is best to use a 4k PID loop on most processors, especially at 57600 baud.  More information about CPU load vs Baud Rate is available in the [GPS Rescue 4.5 documentation](/docs/wiki/guides/current/GPS-Rescue-v4-5).  The CLI `tasks` command may be used to check CPU usage and task over-runs when evaluating the impact of baud rate in relation to PID loop frequency.
 
@@ -88,7 +94,9 @@ NMEA support is now very limited.  Using NMEA is not recommended.  Modern M10 GP
 
 There should be no need for a user with an M8 or higher UBlox module to customise it in any way, e.g. with uCenter, unless it is somehow strangely locked and unresponsive to normal UBlox configuration commands.  They should essentially all work 'out of the box'.
 
-Thanks to: unit(freasy), ctzsnooze, ledvinap, SteveCEvans, rabbitAmbulance
+The Configurator GPS has been improved a lot with a much more clear map, and a simplified and more relevant satellite information display.
+
+Thanks to: unit(freasy), ctzsnooze, ledvinap, SteveCEvans, rabbitAmbulance, haslinghuis
 
 ## 3. GPS Return to Home Improvements
 
@@ -98,13 +106,15 @@ Task timing was carefully optimised.
 
 Note: for most standard F4xx GPS Rescue builds, looptime should not exceed 4k, to provide enough clock cycles for all the required sensor data to be analysed and handled properly.
 
-In 4.4, if there was significant drift, due to wind, when initiating GPS Rescue, and a long climb period, the quad could think that it was flying nose-forward in the direction of the drift.  This caused the initial yaw correction to be wrong, and the quad would then fly off in the wrong direction, often at high speed.  After a few seconds, it would correct, but take a wide arc to return to the correct heading.  4.5 improves this considerably, but without a Mag, it still can happen, to some extent.
+In 4.4, if there was significant drift, due to wind, when initiating GPS Rescue, and a long climb period, the quad could think that it was flying nose-forward in the direction of the drift.  This caused the initial yaw correction to be wrong, and the quad would then fly off in the wrong direction, often at high speed.  After a few seconds, it would correct, but take a wide arc to return to the correct heading.  4.5 improves this considerably, with special code to avoid drift-based errors.
 
-Hence we also put a lot of effort into checking and optimising the Mag code (see later), and optimising its integration with GPS Rescue.
+In 4.4, wings would have difficulty determining the correct arrow position, and this has been considerably improved in 4.5.
+
+A lot of checking and optimising the Mag code has been done (see later), and it now integrates really well with GPS Rescue.
 
 In 4.5, if Mag is properly oriented, configured, and calibrated, and is confirmed to return reliable heading information, the quad should rotate correctly at the start of a rescue, and point directly to home every time, regardless of drift.  This significantly improves safety of a rescue on windy days.
 
-In 4.4, if there was a long descent phase on windy day, the quad could overshoot home and then need to turn 180 degrees to get back against the wind, which could result in a fast spiral descent with a rough landing.  In 4.5, this should be less of a problem, because we don't start to pitch forward after an overshoot until the yaw heading is largely corrected.  In 4.5, a properly validated Mag will improve heading control on windy days during the descent phase.
+In 4.4, if there was a long descent phase on windy day, the quad could overshoot home and then need to turn 180 degrees to get back against the wind, which could result in a fast spiral descent with a rough landing.  In 4.5, this should be much less of a problem, because we don't start to pitch forward after an overshoot until the yaw heading is largely corrected.  In 4.5, a properly oriented, configured and validated Mag will improve heading control on windy days during the descent phase.
 
 GPS Rescue can now be initiated directly overhead, in an emergency, eg when flying LOS, so long as the machine is more than the minimum allowed initiation height.  In this situation, the quad will climb, fly out to the minimum distance, turn back to home, and enter a normal rescue at that point.  This should only be used in an emergency, because the heading the quad will initially take is quite unpredictable, depending mostly on prior drift direction and velocity.
 
@@ -119,6 +129,8 @@ Please carefully read the [GPS Rescue 4.5 documentation](/docs/wiki/guides/curre
 Thanks to: ctzsnooze, ledvinap, SteveCEvans, Zzyzx, haslinghuis
 
 ## 4. Magnetometer update
+
+Magentometers now work really well.  However, it's fair to say that they are absoltely NOT plug and play.  The user will need to carefully read the documentation and absolutely must get the orientation and calibration of the mag right, and must validate that correct headings are returned (eg by comparing to a compass on a phone), regardless of the orientation of the quad.  It is quite challenging to do, but rewarding when completed.
 
 This code was extensively revised, with a lot of improvement in compass task scheduling and driver support.
 
@@ -211,11 +223,11 @@ Thanks to: Mr. Steve
 
 Angle and Horizon modes are completely different from 4.4.
 
-Angle mode is a lot snappier, due to `angle_feedforward`.  High angle P values, which used to cause oscillation, are no longer needed.  At P values which do not oscillate, the responsiveness to stick inputs is much quicker.
+Angle mode is a lot snappier, due to `angle_feedforward`.  High angle P values, which used to cause oscillation, are no longer needed.  At P values which do not oscillate, the responsiveness to stick inputs is much quicker, so there's no need for high angle P anymore.
 
-It also now uses the user's RC Rate settings to determine stick feel, facilitating the transition to Acro or Horizon.  Angle no longer has its own specific stick configuration.
+Angle mode also now uses the user's RC Rate settings to determine stick feel, facilitating the transition to Acro or Horizon.  Angle no longer has its own specific stick configuration; the old expo commands are not there any more.  It will feel very different from before, but makes the transition to Horizon and Acro much smoother.
 
-Angle Mode is now 'earth referenced' by default.  This means that a pure yaw stick input, while pitched forward, will result in a perfectly coordinated turn.  The code by Chris Rosser mixes in exactly the right amount of roll so that the horizon stays 'level' in the camera.  It also helps stabilise the quad during fast yaw inputs in Angle mode.
+Angle Mode is now 'earth referenced' by default.  This means that a pure yaw stick input, while pitched forward, will result in a perfectly coordinated turn.  This code, by Chris Rosser, mixes in exactly the right amount of roll so that the horizon stays 'level' in the camera.  It also helps stabilise the quad during fast yaw inputs in Angle mode and improves GPS Rescue.
 
 Roll inputs in angle mode will always add extra roll, and the 'horizon' in the camera will respond accordingly, if that's what the pilot wants to achieve.
 
@@ -223,7 +235,7 @@ The earth referencing behaviour can be disabled with `set angle_earth_ref = 0`, 
 
 Angle and Horizon mode motor control is now significantly smoother, due to filtering refactoring and optimisation, reducing motor heat and minimising camera jello.
 
-Horizon mode has been changed a lot.  Horizon mode provides self-levelling when the sticks are centered and the quad is close to being flat, but flies like acro at higher stick angles or when the quad is steeply angled.  The 'self-levelling' strength, when the sticks are in the center region and the quad is nearly flat, can be as strong, or as gentle, as the pilot likes.  The angle of the frame at which there is no self-levelling can als be adjusted.  With the default settings, flips and rolls to be performed, and with a bit of tweaking, inverted hangs are possible.
+Horizon mode has been changed a lot.  Horizon mode provides self-levelling when the sticks are centered and the quad is close to being flat, but flies like acro at higher stick angles or when the quad is steeply angled.  The 'self-levelling' strength, when the sticks are in the center region and the quad is nearly flat, can be as strong, or as gentle, as the pilot likes.  The angle of the frame at which there is no self-levelling can als be adjusted.  With the default settings, flips and rolls to be performed, and even inverted hangs, because by default there is a 'null' or 'no-levelling' zone while fully inverted (just like acro).  Take care... and have fun!
 
 For more information, and sample configuration snippets, see [PR 12231](https://github.com/betaflight/betaflight/pull/12231)
 
