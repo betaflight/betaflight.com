@@ -89,7 +89,8 @@ if (x is true) {
 }
 ```
 
-###Braces are required
+### Braces are required
+
 Omission of "unnecessary" braces in cases where an `if` or `else` block consists only of a single statement is not permissible in any case. These "single statement blocks" are future bugs waiting to happen when more statements are added without enclosing the block in braces.
 
 ## Spaces
