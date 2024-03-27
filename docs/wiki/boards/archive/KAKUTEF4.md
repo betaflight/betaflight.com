@@ -57,13 +57,14 @@ The Holybro Kakute F4 All-In-One flight controller makes it easy to build your m
 
 •Dimensions: 35x43x6mm (includes USB in height)
 
-•Mounting Holes: Standard 30.5mm square to center of holes 
+•Mounting Holes: Standard 30.5mm square to center of holes
 
 •Weight: 7g
 
 ## Pinout Diagram
 
 ![Pinout diagram](https://github.com/jamming/image/blob/master/kakuteF4-size.jpg?raw=true)
+
 ```
 BUZ- : Piezo buzzer negative leg
 
