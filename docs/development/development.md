@@ -48,11 +48,19 @@ GitHub actions are used to run automatic builds
 
 ## Translators
 
-We want to make Betaflight accessible for pilots who are not fluent in English, and for this reason we are currently maintaining translations into 21 languages for Betaflight Configurator: Català, Dansk, Deutsch, Español, Euskera, Français, Galego, Hrvatski, Bahasa Indonesia, Italiano, 日本語, 한국어, Latviešu, Português, Português Brasileiro, polski, Русский язык, Svenska, 简体中文, 繁體中文.
+### Betaflight Configurator
+We want to make Betaflight accessible for pilots who are not fluent in English, and for this reason we are currently maintaining translations into 21 languages for Betaflight Configurator: Català, Dansk, Deutsch, Español, Euskera, Français, Galego, Hrvatski, Bahasa Indonesia, Italiano, 日本語, 한국어, Netherlands, Português, Português Brasileiro, Polski, Русский, Svenska, українська, 简体中文, 繁體中文.
 We have got a team of volunteer translators who do this work, but additional translators are always welcome to share the workload, and we are keen to add additional languages. If you would like to help us with translations, you have got the following options:
 
 - If you would like to help by suggesting some updates or improvements to translations in a language you are familiar with, head to [crowdin](https://crowdin.com/project/betaflight-configurator) and add your suggested translations there
 - If you would like to start working on the translation for a new language, or take on responsibility for proof-reading the translation for a language you are very familiar with, please head over to the Betaflight [Discord server](https://discord.betaflight.com/invite), and join the translation channel in the [Development section](https://discord.com/channels/868013470023548938/1073533061330915328) - the people in there can help you to get a new language added, or set you up as a proof reader
+
+### Betaflight firmware / OSD
+We also have translation of OSD in Betaflight firmware, currently 1 languages: Dansk, but more to come.
+This are current under develompent, checkout the section Translation OSD, how to do.
+Intention are to have support with crowdin, ie. betaflight-firmware.
+
+For developers checkout [Translation OSD] (??? howto make link reference)
 
 ## General Principles
 
