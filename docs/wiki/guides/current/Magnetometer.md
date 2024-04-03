@@ -115,7 +115,7 @@ The `Mag alignment` setting in Configurator (`align_mag` in the [CLI](/docs/wiki
 
 ## Hardware and Connection
 
-Betaflight's build system must include `Magnetometers`, from the dropdown in the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware. The Mag build option includes drivers for all supported Mgnetometers.
+Betaflight's build system must include `Magnetometers`, from the dropdown in the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware. The Mag build option includes drivers for all supported Magnetometers.
 
 Additionally, GPS firmware support should be included in the build, whether or not you use a GPS.
 
@@ -330,7 +330,7 @@ If you have a beeper, there will be two short beeps confirming that you initiate
 
 You then have 15s in which to get ready. When ready, shake the frame at a rate exceeding 350 deg/s to start recording data for the calibration process itself.
 
-When the movement threshold is reached, the LED on the FC goes solid, and the beeper plays a fast 7-beep pattern. You then move the quad around in 3D space so that every axis, at some point in the next 30s, points directly into and out of the field.
+When the movement threshold is reached, the LED on the FC goes solid, and the beeper plays a fast 7-beep pattern. You then move the quad around in 3D space to collect a spherical data spread over the next 30s.
 
 If you don't achieve the movement threshold, the LED on the FC just keeps blinking regularly, and after 15s you'll get a 'failure' beep of two long beeps.
 
@@ -357,16 +357,16 @@ If you initiate a Mag Cal, and move the frame more than 350 deg/s, but fail to r
 
 ### Calibration Technique
 
-A good way to cover every possible angle is to:
+Any series of movements inside the 30s window, in which one axis maps out a sphere in 3D space, will result in all three axes mapping a sphere, and should give a good result.
+
+One way to cover every possible angle is to:
 
 - hold the quad by the battery
-- swing your arm around in a big circle, eg forwards -> up -> over -> backwards -> downwards, and keep swinging it around like this
+- swing your arm around in a big circle, eg forwards -> up -> over -> backwards -> downwards, or in a figure-8 pattern, and keep swinging it around like this
 - yaw the quad, randomly, left and right, at the same time
-- slowly rotate your whole body about its vertical axis by taking small steps, so that in 30s you have completed a full 360 degree rotation.
+- while doing the above, slowly rotate your whole body about its vertical axis by taking small steps, so that in 30s you have completed a full 360 degree rotation.
 
-If you know the local field direction, you may start and finish facing North, though this is not necessary.
-
-Smoothly completing full rotations about every 1.5-2 seconds works best, but keep in mind that you only have 30s.
+Completing each full arm rotation every 1.5-2 seconds works well, but keep in mind that you only have 30s to fully turn your body around.
 
 Another alternative method:
 
@@ -383,9 +383,8 @@ The calibration can be confirmed by:
 
 - checking in the Sensors Tab, with the `Mag_Calib` debug, that the Min and Max for each axis are approximately the same number
 - checking in the Sensors Tab, with `Mag_Calib` debug, that the Normalised 'length of MagADC' value is reasonably constant at all angles.
-- comparing the reportd Heading of the quad (GPS tab or Setup page of Configurator) to the compass reading on your phone
+- comparing the reported Heading of the quad (GPS tab or Setup page of Configurator) to the compass reading on your phone
 - pointing the Quad to True North (based on the phone) and checking that the arrow icon in the Map in the GPS Tab points straight upwards (the Map is always North at the top).
-- checking the Map in the GPS tab; the Heading I
 
 ### Single-axis calibration
 
