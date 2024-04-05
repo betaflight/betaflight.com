@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Approved Partner Program
+title: Partner Program
 ---
 
 ## Introduction
@@ -32,14 +32,8 @@ quality and performance. As part of the incentive to encourage engagement, we ar
 indicate to the userbase that they are supported by Betaflight and our development program.
 This will be valuable promotion for them to increase purchasing confidence from customers.
 
-## Compliance And Project Support
+## Betaflight 4.5 - 'Professional Support Services'
 
-At Betaflight we have a high quality coding team who donate their time and skills free of charge.
-It is important to retain them in order to progress and maintain the project, and that the work
-should not demand financial costs in hardware 'as well' as costs in time and effort. Therefore we
-ask that manufacturers donate hardware necessary in order to support the project.
-This partnership program is designed to create a 'win-win' scenario for developers and
-manufacturers. The Betaflight team can help manufacturers make better products and officially
-recommend them to the userbase, and manufacturers can support the developers with the
-necessary hardware. The userbase will then benefit from great hardware, and the future of the
-project will be secure.
+The outreach from Betaflight to the manufacturers has been a great success, to the extent that Betaflight has decided to transition from the limited availability service of the open source model, to professional support services. The FPV sector has grown significantly, with Betaflight at the forefront as the largest UAV firmware. The demands on developers time has grown significantly. This new setup will provide the type of reliable support expected by businesses in order to fit to development timelines.
+
+Those companies wishing to join the Betaflight Partner program can contact us at hardware@betaflight.com.
