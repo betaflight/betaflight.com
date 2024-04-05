@@ -34,6 +34,6 @@ This will be valuable promotion for them to increase purchasing confidence from 
 
 ## Betaflight 4.5 - 'Professional Support Services'
 
-The outreach from Betaflight to the manufacturers has been a great success, to the extent that Betaflight has decided to transition from the limited availability service of the open source model, to professional support services. The FPV sector has grown significantly, with Betaflight at the forefront as the largest UAV firmware. The demands on developers time has grown significantly. This new setup will provide the type of reliable support expected by businesses in order to fit to development timelines.
+The outreach from Betaflight to the manufacturers has been a great success, to the extent that Betaflight has decided to transition from the limited availability service of the open source model, to professional support services. The FPV sector has grown significantly, with Betaflight at the forefront as the largest UAV firmware, thus demands on developers time has grown significantly. This new setup will provide the type of reliable support expected by businesses in order to fit to development timelines.
 
 Those companies wishing to join the Betaflight Partner program can contact us at hardware@betaflight.com.
