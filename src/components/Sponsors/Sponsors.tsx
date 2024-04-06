@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useColorMode } from '@docusaurus/theme-common';
+import { sanitize } from 'dompurify';
 
 export default function Sponsors(): React.JSX.Element {
   const [data, setData] = useState(null);
@@ -18,5 +19,5 @@ export default function Sponsors(): React.JSX.Element {
     return <div>Loading...</div>;
   }
 
-  return <div dangerouslySetInnerHTML={{ __html: data }} />;
+  return <div dangerouslySetInnerHTML={{ __html: sanitize(data) }} />;
 }
