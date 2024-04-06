@@ -40,11 +40,11 @@ html {
   scroll-behavior: smooth;
 }
 
-[data-theme='light'] .themeInvert {
+[data-theme='light'] .invertable {
   @apply invert-0;
 }
 
-[data-theme='dark'] .themeInvert {
+[data-theme='dark'] .invertable {
   @apply invert;
 }
 
