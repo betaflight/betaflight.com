@@ -41,11 +41,13 @@ html {
 }
 
 [data-theme='light'] .themeInvert {
-  -webkit-filter: invert(0);
-  filter: invert(0);
+  @apply invert-0;
 }
 
 [data-theme='dark'] .themeInvert {
-  -webkit-filter: invert(1);
-  filter: invert(1);
+  @apply invert;
+}
+
+.img_sponsor {
+  @apply h-full px-[10px] max-h-[120px] inline;
 }
