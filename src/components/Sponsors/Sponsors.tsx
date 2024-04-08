@@ -13,7 +13,7 @@ export default function Sponsors(): React.JSX.Element {
 
   useEffect(() => {
     fetchData(colorMode, 'landing');
-  });
+  }, [colorMode]);
 
   if (!data) {
     return <div>Loading...</div>;
