@@ -71,7 +71,7 @@ export default function Media() {
                         {' '}
                         latest release
                       </a>
-                      .
+                      or run the <a href="https://app.betaflight.com" target="_top" className="fancy-link no-underline">latest version</a> directly in your browser.
                     </span>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export default function Media() {
                         {' '}
                         Betaflight Blackbox Log Viewer
                       </a>
-                      .
+                      or run the <a href="https://blackbox.betaflight.com" target="_top" className="fancy-link no-underline">latest version</a> directly in your browser.
                     </span>
                   </div>
                 </div>
