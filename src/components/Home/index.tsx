@@ -12,6 +12,7 @@ import Button from '../Button';
 import TeamFeature from '../Team';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Sponsors from '../Sponsors/Sponsors';
 
 export default function Home({ recentPosts }: BlogProps) {
   function clampAndFormatMinutes(minutes: number) {
@@ -68,50 +69,7 @@ export default function Home({ recentPosts }: BlogProps) {
       </div>
       <div className="m-4 flex flex-col space-y-4">
         <HomepageFeature title="Sponsors" blur={true}>
-          <div className="m-0 p-0">
-            <div className="flex flex-cols-4 items-center gap-2 sm:gap-5 xs:gap-0">
-              <div className="p-0 ml-2 mr-2 w-3/5 lg:w-1/4">
-                <a href="https://www.hqprop.com/" target="_blank" rel="noreferrer noopener">
-                  <img
-                    alt="HQProp"
-                    className="themeInvert"
-                    src="/img/betaflight/sponsors/hqprop.svg"
-                  />
-                </a>
-              </div>
-              <div className="lg:pb-8 sm:pb-4 ml-2 mr-2 w-4/5 lg:w-2/5">
-                <a href="https://www.radiomasterrc.com/" target="_blank" rel="noreferrer noopener">
-                  <img
-                    alt="RadioMaster"
-                    className="themeInvert"
-                    src="/img/betaflight/sponsors/radiomaster.svg"
-                  />
-                </a>
-              </div>
-              <div className="p-0 ml-2 mr-2 w-3/5 lg:w-[25%]">
-                <a href="https://www.axisflying.com/" target="_blank" rel="noreferrer noopener">
-                  <ThemedImage
-                    alt="Axisflying"
-                    sources={{
-                      light: useBaseUrl('/img/betaflight/sponsors/axisflying_light.svg'),
-                      dark: useBaseUrl('/img/betaflight/sponsors/axisflying_dark.svg'),
-                    }}
-                  />
-                </a>
-              </div>
-              <div className="p-0 ml-2 mr-2 w-4/5 xs:w-1 lg:w-2/5">
-                <a href="https://www.dogcombattery.com/" target="_blank" rel="noreferrer noopener">
-                  <ThemedImage
-                    alt="Dogcom"
-                    sources={{
-                      light: useBaseUrl('/img/betaflight/sponsors/dogcom_light.svg'),
-                      dark: useBaseUrl('/img/betaflight/sponsors/dogcom_dark.svg'),
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
+          <Sponsors />
         </HomepageFeature>
         <HomepageFeature title="About" compact={true}>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">

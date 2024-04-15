@@ -32,6 +32,7 @@ For technical information about changes since 4.4, please see:
 - [PR12859, IMU Yaw CoG gain](https://github.com/betaflight/betaflight/pull/12792): thanks to ledvinap
 
 :::note
+
 NMEA support is now very limited:
 
 - Do not use NMEA if the module supports UBlox protocols!
@@ -47,6 +48,15 @@ On the plus side:
 - If the user sets their NMEA module to power up with appropriate settings, it should work properly, including for rescue purposes.
 
 Please read [PR13044, minimal NMEA support for 4.5](https://github.com/betaflight/betaflight/pull/13044) before using NMEA.
+
+:::
+
+:::note
+
+Some GPS modules that 'worked' in 4.4 may not work at all in 4.5.
+
+Usually this is because the module is not responding to standard UBLox auto-configuration requests. Such a module may 'work' in 4.5 if auto-configuration is disabled, but is not likely to be as reliable as it should be. We recommend either getting a newer (and better) M10 GPS module, or using uCenter or pyGpsClient to reset the module to defaults (which should accept external configuration requests).
+
 :::
 
 ## About GPS Rescue
@@ -90,7 +100,7 @@ Typical applications include:
 
 - **Be 100% sure you have a valid Home Point before arming** or the quad will disarm and crash when a true failsafe occurs.
 
-- Do _NOT_ enable a Magnetometer unless you have absolutely confirmed that it correctly returns the attitude of the quad.
+- Do _NOT_ enable a Magnetometer unless you have absolutely confirmed that the Heading of the quad is correct. Compare the compass value in your phone (set to show True North, not Magnetic North), with the heading on Configurator's main opening screen, the GPS tab in Configurator, or the Sensors tab debug line 5 in debug mode `GPS_RESCUE_HEADING`, and check that both are within 10 degrees of each other. If the heading always starts at North, and follows fast movements quickly but then jumps to some other value, the Mag is not right.
 
 - Level mode MUST be trimmed to provide a stable, level, hover, for a rescue to work properly Check, using a level mode switch, before flying out. Sticks can be used to calibrate the Acc at the field.
 

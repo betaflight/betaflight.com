@@ -7,7 +7,7 @@ export default function FooterLayout({ style, links, logo, copyright }) {
       <div className="text-center">{links}</div>
       {copyright && (
         <div className="text-center">
-          <Logo className="themeInvert w-36 h-36 mr-12 mt-4 inline-block opacity-10"></Logo>
+          <Logo className="invertable w-36 h-36 mr-12 mt-4 inline-block opacity-10"></Logo>
           {copyright}
           <div className="mt-1 text-sm text-neutral-500/60">Built with Docusaurus</div>
           <a className="mt-1 text-sm text-neutral-500/60 font-bold hover:text-teal-500 no-underline duration-300" href="https://www.netlify.com">

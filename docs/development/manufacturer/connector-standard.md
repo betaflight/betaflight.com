@@ -150,7 +150,7 @@ The provided logo should be used to identify the connector as a Betaflight stand
 The logo should be used on all components that use the standardized connector system and can be used on PCBs, packaging, and other marketing materials.
 This way users know that the component is compatible with other components that use the standardized connector system.
 
-<ConnectorLogo className="themeInvert mb-2" />
+<ConnectorLogo className="invertable mb-2" />
 
 [**Download**](/img/betaflight/connector_logo.svg)
 

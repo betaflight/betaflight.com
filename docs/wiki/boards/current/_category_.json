@@ -1,0 +1,8 @@
+{
+  "label": "Current",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Up-to-date board documentation following the current format."
+  }
+}

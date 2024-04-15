@@ -1,0 +1,105 @@
+# How to Create Board Documentation
+
+The newly created board documentation format is made to take full advantage of the features available with the documentation platform in use - Docusaurus. It is extended with features not present in the default markdown format, and may be more complex to work with.
+
+It is not necessary to modify the additional components in the documentation file, all of the necessary info can be added using the default [markdown syntax](https://www.markdownguide.org/basic-syntax/). The additional components are there to provide a more visually appealing and interactive experience for the reader.
+
+## Local Development
+
+The documentation website can be run locally to preview changes before submitting a pull request. To do this, follow the steps below:
+
+1. Fork the repository, and clone it to your local machine
+2. Create a new branch for your changes with `git checkout -b <branch-name>`
+3. Run `npm install` in the root directory
+4. Run `npm run start` to start the development server
+
+When the server starts, a `localhost:3000` address will be opened in your default browser. If not, you can open it manually. The website will automatically update when changes are made to the documentation files, any errors will be displayed in the terminal.
+
+## Adding a New board
+
+New board documentation files should be added to the `docs/wiki/boards/current/<TARGETNAME>` directory. A template can be copied from `docs/development/manufacturer/fc_documentation/fc-doc-template.mdx.template` - this template contains all the necessary layout components, and comments explaining what to fill out and how.
+
+The `docs/wiki/boards/current/<TARGETNAME>` should have the following structure:
+
+```
+docs/wiki/boards/current/<TARGETNAME>
+├── <TARGETNAME>.mdx
+├── <TARGETNAME>-images/
+│   ├── <TARGETNAME-top>.png
+│   ├── <TARGETNAME-bottom>.png
+│   ├── ... (other images/media/diagrams)
+```
+
+## Writing Documentation
+
+There are some automated checks in place to ensure that the documentation is formatted correctly. They are run before a commit is made, and will prevent the commit if they fail. The checks are:
+
+- Document Title Case - The level 1 headings of the document should be in [title case](https://titlecaseconverter.com/). If the check fails, the error message will provide the line where the incorrect title is located, and a correct title case version of the title
+  s
+- Document File Name - The file name of the document should not contain any special characters - only letters, numbers, hyphens, and underscores are allowed
+
+Apart from the checks, the documentation can be written freely using the default markdown syntax. The additional `<Tabs>` and `<TabItem>` components should be kept as they are, and only the content inside them should be modified.
+
+### Special Formatting
+
+It's possible to add special formatting to the documentation with warning, info, and tip boxes. These boxes can be added with the following syntax:
+
+:::danger
+
+Danger box content
+
+:::
+
+:::warning
+
+Warning box content
+
+:::
+
+:::info
+
+Info box content
+
+:::
+
+:::tip
+
+Tip box content
+
+:::
+
+:::note
+
+Note box content
+
+:::
+
+For additional formatting options, refer to the [MDX Reference](/docs/development/mdx-reference) - Math formulas, code blocks, and other formatting options are available, but shouldn't be necessary for regular board documentation.
+
+### Adding Images
+
+Images should be added to the `<TARGETNAME>-images` directory, and referenced in the documentation file with the following syntax:
+
+```markdown
+![<Board Name>](./<TARGETNAME>-images/<TARGETNAME-top>.png)
+```
+
+Top/bottom images should be added for each board, and any additional images or diagrams can be added as needed. The images can be in any web-compatible format, but `.png` is recommended.
+
+## Submitting a Pull Request
+
+When the documentation is ready, it can be committed to your fork if all the checks pass - if not, try to fix the issues and commit again. You can then make a pull request from your fork and branch against the `master` branch of the `betaflight.com` repository.
+
+The pull request will be reviewed by the maintainers, and if everything is in order, it will be merged into the `master` branch. The changes will then be automatically deployed to the live website.
+
+# Additional Information
+
+## Board Samples
+
+As a manufacturer, you can write the documentation yourself without providing a sample, or you can provide the sample and a documentation page will be created for the board.
+
+While sample boards are not required for self-written documentation, it is recommended to send out samples so that the page can be modified if needed, and the developers have boards to provide user support.
+
+## Development Issues
+
+If you encounter an issue during document creation/writing/submission, please contact the development team - as a manufacturer, please do so in the private Discord communication channel if possible. As a non-manufacturer, please get in touch in the `#documentation` channel.
