@@ -49,5 +49,5 @@ html {
 }
 
 .img_sponsor {
-  @apply h-full px-[10px] max-w-[400px] h-auto inline;
+  @apply p-[10px] max-h-[99px] max-w-[330px] inline;
 }
