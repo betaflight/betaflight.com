@@ -4,7 +4,7 @@ import { sanitize } from 'dompurify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-const cycleIntervalMs = 10000; // 10 seconds
+const cycleIntervalMs = 30000; // 10 seconds
 
 export default function Sponsors(): React.JSX.Element {
   const [loading, setLoading] = useState<boolean>(true);
