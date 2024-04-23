@@ -55,7 +55,7 @@ This table summarises possible usage situations:
 
 :::info
 
-Smartport does not work over SmartPort with 19200.
+Smartport does not work over Softserial on 19200 baudrate.
 <br />
 With all limitation mentioned before we have provided a define to override the limitation using `OVERRIDE_SOFTSERIAL_BAUDRATE` custom define to be used when flashing firmware 4.5 or beyond. Note that the new `LOAD` flag arming disable flag would prevent arming when it surpasses the threshold.
 <br />
