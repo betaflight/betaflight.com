@@ -17,7 +17,6 @@ Softserial can also be used to assign one of a hardware UART's pins to a separat
 - in the CLI, use `RESOURCE SOFTSERIAL_TX1 <pin>` to configure Softserial 1's Tx line.
 - Softserial can no longer be used for MSP connections.
 - Softerial now has a hard limit of 19200 baud.
-- the old `SERIAL_TX 11` CLI command is now used for LPUART1, and must not be used to configure SoftSerial
 
 :::
 
@@ -53,6 +52,16 @@ This table summarises possible usage situations:
 | Single-wire communication protocols like S.Port telemetry | Assign a Softserial Tx pin, should be OK provided that the data rate is not excessive  |
 | ESC serial telemetry                                      | Assign a Softserial Rx pin, should be OK provided that the data rate is not excessive  |
 | Camera control                                            | Assign a Softserial Tx pin; may require hardware resistor to work                      |
+
+:::info
+
+Smartport does not work over Softserial on 19200 baudrate.
+<br />
+With all limitation mentioned before we have provided a define to override the limitation using `OVERRIDE_SOFTSERIAL_BAUDRATE` custom define to be used when flashing firmware 4.5 or beyond. Note that the new `LOAD` flag arming disable flag would prevent arming when it surpasses the threshold.
+<br />
+**ANY ISSUES WHILE USING THIS DEFINE WILL NOT BE SUPPORTED.**
+
+:::
 
 ### Softserial with GPS
 
