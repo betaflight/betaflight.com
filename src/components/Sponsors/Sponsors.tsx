@@ -45,7 +45,7 @@ export default function Sponsors(): React.JSX.Element {
   return (
     <div>
       {data ? (
-        <div className={`transition-opacity duration-1000 min-h-[99px] opacity-0 ${loading ? '' : 'opacity-100'}`} dangerouslySetInnerHTML={{ __html: sanitize(data) }} />
+        <div className={`transition-opacity duration-1000 min-h-[99px] ${loading ? 'opacity-0' : 'opacity-100'}`} dangerouslySetInnerHTML={{ __html: sanitize(data) }} />
       ) : (
         <div className="min-h-[99px] text-2xl flex justify-center items-center">
           <FontAwesomeIcon className="mr-2" icon={faSpinner} spin />
