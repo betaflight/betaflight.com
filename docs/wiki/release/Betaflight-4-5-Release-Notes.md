@@ -225,7 +225,9 @@ Angle and Horizon modes are completely different from 4.4.
 
 Angle mode is a lot snappier, due to `angle_feedforward`.  High angle P values, which used to cause oscillation, are no longer needed.  At P values which do not oscillate, the responsiveness to stick inputs is much quicker, so there's no need for high angle P anymore.
 
-Angle mode also now uses the user's RC Rate settings to determine stick feel, facilitating the transition to Acro or Horizon.  Angle no longer has its own specific stick configuration; the old expo commands are not there any more.  It will feel very different from before, but makes the transition to Horizon and Acro much smoother.
+Angle mode now uses the user's RC Rate settings to determine stick feel, facilitating the transition to Acro or Horizon.  Angle no longer has its own specific stick configuration via the old angle expo commands.  Angle mode users can use Rates Profiles to store up to four different Rates configurations for use in angle mode, and swap in-flight.  The center sensitivity value in Angle Mode is shown in the lower right corner of Configurator's  Rates Graph. For more information about setting Rates, see [PR 12231](https://github.com/betaflight/betaflight/pull/12231).
+
+Angle Mode will feel very different from before, partly because the stick response is so much quicker, and partly because the rates curve method is very different.  Once re-configured, the new method makes the transition to Horizon and Acro much smoother.
 
 Angle Mode is now 'earth referenced' by default.  This means that a pure yaw stick input, while pitched forward, will result in a perfectly coordinated turn.  This code, by Chris Rosser, mixes in exactly the right amount of roll so that the horizon stays 'level' in the camera.  It also helps stabilise the quad during fast yaw inputs in Angle mode and improves GPS Rescue.
 
@@ -233,13 +235,13 @@ Roll inputs in angle mode will always add extra roll, and the 'horizon' in the c
 
 The earth referencing behaviour can be disabled with `set angle_earth_ref = 0`, or its strength halved with `set angle_earth_ref = 50`.  Whoop racers may well prefer to disable it, however most beginners, and anyone doing cinematic shooting in Angle mode, should find it really nice.
 
-Angle and Horizon mode motor control is now significantly smoother, due to filtering refactoring and optimisation, reducing motor heat and minimising camera jello.
+Angle and Horizon mode motor control is now significantly smoother, due to filtering refactoring and optimisation.  This reduces motor heat and camera jello.
 
 Horizon mode has been changed a lot.  Horizon mode provides self-levelling when the sticks are centered and the quad is close to being flat, but flies like acro at higher stick angles or when the quad is steeply angled.  The 'self-levelling' strength, when the sticks are in the center region and the quad is nearly flat, can be as strong, or as gentle, as the pilot likes.  The angle of the frame at which there is no self-levelling can als be adjusted.  With the default settings, flips and rolls to be performed, and even inverted hangs, because by default there is a 'null' or 'no-levelling' zone while fully inverted (just like acro).  Take care... and have fun!
 
 For more information, and sample configuration snippets, see [PR 12231](https://github.com/betaflight/betaflight/pull/12231)
 
-Thanks to: ChrisRosser, ctzsnooze, ledvinap
+Thanks to: ChrisRosser, ctzsnooze, ledvinap, haslinghuis
 
 ## 9. Failsafe changes
 
