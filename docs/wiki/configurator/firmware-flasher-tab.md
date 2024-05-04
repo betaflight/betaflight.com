@@ -8,6 +8,8 @@ This tab is used to update the flight controller's Firmware.
 
 Since Betaflight 4.4, firmware updating is by an online build process. The user selects their flight controller, the code version to flash, and enables the features they want, then a custom firmware will be built online, downloaded, and installed onto the flight controller.
 
+Since Betaflight 4.4, updating the firmware is done via an online building process. The user selects their flight controller, the code version to flash, and enables the features they want. A custom firmware will then be built online, downloaded, and installed onto the flight controller.
+
 :::info
 
 The Firmware provides hardware-level support only.
@@ -247,6 +249,5 @@ To flash local development firmware with optional custom configuration use the <
 
 :::note
 
-If, when flashing older MPU-generic firmware, and if you have a local configuration file, load it first, then use the same button again to load the local hex file.
-
+If, when flashing older MCU-generic firmware, and if you have a local configuration file, load it first, then use the same button again to load the local hex file.
 :::
