@@ -56,9 +56,9 @@ The screen should look something like this, for a JHEF411 with ELRS, GPS, LEDstr
 
 ![Firmware Flasher basic](/img/betaflight_configurator_firmware_flasher_basic.png)
 
-If you're happy that everything is OK, then, down the bottom, click "Load Firmware [Online]", and wait for the firmware to be built and downloaded.
+If you're happy that everything is OK, then, down the bottom, click `Load Firmware [Online]`, and wait for the firmware to be built and downloaded.
 
-Then click 'Flash Firmware'. Before flashing starts, an option to save the current configuration as a `diff` file will be provided in case you didn't do this already.
+Then click `Flash Firmware`. Before flashing starts, an option to save the current configuration as a `diff` file will be provided in case you didn't do this already.
 
 Once the firmware is flashed, re-connect, calibrate your accelerometer, and re-configure your settings.
 
