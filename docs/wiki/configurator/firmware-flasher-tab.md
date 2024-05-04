@@ -146,6 +146,8 @@ For CRSF, ELRS, FPORT or GHST protocols, this is included by default to simplify
 
 ### Other Options
 
+These are custom functions or features that you can add to the firmware.
+
 | Option                    | Description                                                                                                   |
 | :------------------------ | :------------------------------------------------------------------------------------------------------------ |
 | AKK (SA Fix)              | SmartAudio patch for AKK hardware                                                                             |
@@ -155,8 +157,8 @@ For CRSF, ELRS, FPORT or GHST protocols, this is included by default to simplify
 | Dashboard                 | Enable external i2c Oled Display device (to be deprecated)                                                    |
 | EMFAT (AutoRun, Icon)     | Enable FAT emulation and icon for onboard flash or MSC                                                        |
 | ESC Serial (SK) Inc. 4way | Enable SimonK and ESC Serial support for flashing via 4way interface                                          |
-| Flash Storage             | Enable Blackbox Flash Storage                                                                                 |
-| FrSky OSD                 | Enable FrSky OSD support                                                                                      |
+| Flash Storage             | Auto-included in 4.5, enables Blackbox Flash Storage before 4.5                                               |
+| FrSky OSD                 | Auto-included in 4.5, enables FrSky OSD support before 4.5                                                    |
 | GPS                       | Enable GPS and GPS_PLUS_CODES                                                                                 |
 | LED Strip                 | Enable 32 LEDs                                                                                                |
 | LED Strip 64              | Enable 64 LEDs                                                                                                |
@@ -179,6 +181,8 @@ This field is only available in expert mode, and is intended for development and
 It allows the user to enter the coded 'name' for a 'hardware define', forcing that code to be included in the build. More than one define can be included, separated by spaces.
 
 For example, the local build options `-DUSE_RANGEFINDER -DUSE_ACCGYRO_LSM6DSO` can be included as Custom Defines when making a cloud build with `RANGEFINDER ACCGYRO_LSM6DSO`.
+
+This is a full listing of [Custom Defines](https://hackmd.io/@nerdCopter/H11rvS8Lh), current as of early 2025. Most hardware defines are already included in the board config. Some relate to archaic code that may not function properly and is not currently included in normal builds; test these at your own risk.
 
 ### Select Pull Request or Commit
 
