@@ -150,27 +150,27 @@ For CRSF, ELRS, FPORT or GHST protocols, this is included by default to simplify
 
 These are custom functions or features that you can add to the firmware.
 
-| Option                    | Description                                                                                                   |
-| :------------------------ | :------------------------------------------------------------------------------------------------------------ |
-| AKK (SA Fix)              | SmartAudio patch for AKK hardware                                                                             |
-| Acro Trainer              | Enable Acro Trainer support                                                                                   |
-| Batt. Continue            | See [#11084](https://github.com/betaflight/betaflight/pull/11084)                                             |
-| Cam. Control              | Enable Camera Control                                                                                         |
-| Dashboard                 | Enable external i2c Oled Display device (to be deprecated)                                                    |
-| EMFAT (AutoRun, Icon)     | Enable FAT emulation and icon for onboard flash or MSC                                                        |
-| ESC Serial (SK) Inc. 4way | Enable SimonK and ESC Serial support for flashing via 4way interface                                          |
-| Flash Storage             | Auto-included in 4.5, enables Blackbox Flash Storage before 4.5                                               |
-| FrSky OSD                 | Auto-included in 4.5, enables FrSky OSD support before 4.5                                                    |
-| GPS                       | Enable GPS and GPS_PLUS_CODES                                                                                 |
-| LED Strip                 | Enable 32 LEDs                                                                                                |
-| LED Strip 64              | Enable 64 LEDs                                                                                                |
-| Magnetometers             | Enable magnetometer (compass)                                                                                 |
-| OSD (SD)                  | Enable SD OSD (onboard MAX7456 required)                                                                      |
-| OSD (HD)                  | Enable HD OSD (eg DJI, HDZero, Walksnail)                                                                     |
-| PIN IO                    | Enable PINIO                                                                                                  |
-| RACE PRO                  | see [Betaflight 4.5 Release notes](/docs/wiki/release/betaflight-4-5-release-notes#161-race-pro-build-option) |
-| Servos                    | Enable Servo support                                                                                          |
-| VTX                       | Enable VTX                                                                                                    |
+| Option                    | Description                                                                                                                                                                            |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AKK (SA Fix)              | SmartAudio patch for AKK hardware                                                                                                                                                      |
+| Acro Trainer              | Enable Acro Trainer support                                                                                                                                                            |
+| Batt. Continue            | See [#11084](https://github.com/betaflight/betaflight/pull/11084)                                                                                                                      |
+| Cam. Control              | Enable Camera Control                                                                                                                                                                  |
+| Dashboard                 | Enable external i2c Oled Display device (to be deprecated)                                                                                                                             |
+| EMFAT (AutoRun, Icon)     | Enable FAT emulation and icon for onboard flash or MSC                                                                                                                                 |
+| ESC Serial (SK) Inc. 4way | Enable SimonK and ESC Serial support for flashing via 4way interface                                                                                                                   |
+| Flash Storage             | 4.4 and earlier only. Enables Blackbox Flash Storage support. In 4.5, is auto-included via the FC config file. To manually add Flash to a 4.5 build, enter `FLASH` in `Custom Defines` |
+| FrSky OSD                 | 4.4 and earlier only. For 4.5, enter `FRSKYOSD` in `Custom Defines`                                                                                                                    |
+| GPS                       | Enable GPS and GPS_PLUS_CODES                                                                                                                                                          |
+| LED Strip                 | Enable 32 LEDs                                                                                                                                                                         |
+| LED Strip 64              | Enable 64 LEDs                                                                                                                                                                         |
+| Magnetometers             | Enable magnetometer (compass)                                                                                                                                                          |
+| OSD (SD)                  | Enable SD OSD (onboard MAX7456 required)                                                                                                                                               |
+| OSD (HD)                  | Enable HD OSD (eg DJI, HDZero, Walksnail)                                                                                                                                              |
+| PIN IO                    | Enable PINIO                                                                                                                                                                           |
+| RACE PRO                  | see [Betaflight 4.5 Release notes](/docs/wiki/release/betaflight-4-5-release-notes#161-race-pro-build-option)                                                                          |
+| Servos                    | Enable Servo support                                                                                                                                                                   |
+| VTX                       | Enable VTX                                                                                                                                                                             |
 
 ### Motor Protocol
 
@@ -250,4 +250,5 @@ To flash local development firmware with optional custom configuration use the <
 :::note
 
 If, when flashing older MCU-generic firmware, and if you have a local configuration file, load it first, then use the same button again to load the local hex file.
+
 :::
