@@ -1,4 +1,4 @@
-# Betaflight 4.4 Cloud Build API
+# Betaflight Cloud Build API
 
 ## API
 
