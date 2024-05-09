@@ -1,33 +1,24 @@
 ---
-sidebar_position: 21
+sidebar_position: 0
 ---
 
 # Firmware Flasher Tab
 
 This tab is used to update the flight controller's Firmware.
 
-Since Betaflight 4.4, firmware updating is by an online build process. The user selects their flight controller, the code version to flash, and enables the features they want, then a custom firmware will be built online, downloaded, and installed onto the flight controller.
-
-Since Betaflight 4.4, updating the firmware is done via an online building process. The user selects their flight controller, the code version to flash, and enables the features they want. A custom firmware will then be built online, downloaded, and installed onto the flight controller.
-
-:::info
-
-The Firmware provides hardware-level support only.
-
-:::
+For Betaflight 4.4 and above, firmware updating uses an online build process. The user selects their flight controller, the code version to flash, and enables the features they want. A custom firmware 'hex' file is then built online, downloaded, and installed onto the flight controller.
 
 ![Firmware Flasher tab](/img/betaflight_configurator_firmware_flasher_tab.png)
 
 ## Preparation
 
 - Upgrade to the latest Betaflight Configurator.
-- Before upgrading, choose either `save backup` from the Presets Tab, or save a <b>diff</b> file via the CLI. This will store the configuration as used by your old firmware, in case you have to revert back to the old firmware. The CLI <b>status</b> command provides info about the hardware currently being used.
-- Settings other than those in the <b>master</b> and <b>profile</b> sections settings (eg, VTX, modes, etc) can usually be transferred via CLI copy and paste.
-- When updating to a new point version, it's best to rebuild your other settings carefully, from scratch.
+- Before upgrading a flight controller, choose either `save backup` from the Presets Tab, or save a <b>diff</b> file via the CLI. This will store the configuration as used by your old firmware, in case you have to revert back to the old firmware. The CLI <b>status</b> command provides info about the hardware currently being used.
 
-:::caution
+:::note
 
-To revert to previous firmware, the same online process would apply, but you would choose the older version when building, and then apply your saved `diff` file. <br/><br/>
+To revert to previous firmware, the same online process would apply, but you would choose the original firmware version, and then restore your saved `diff` file. <br/><br/>
+
 Configurator only supports Betaflight version 4.0 and newer. Older versions of Configurator may be needed to flash older firmware.
 
 :::
@@ -36,7 +27,7 @@ Configurator only supports Betaflight version 4.0 and newer. Older versions of C
 
 :::caution
 
-This will _always_ erase all previous configuration data from the flight controller!
+This will _ALWAYS_ erase all previous configuration data from the flight controller!
 
 :::
 
@@ -56,13 +47,15 @@ The screen should look something like this, for a JHEF411 with ELRS, GPS, LEDstr
 
 ![Firmware Flasher basic](/img/betaflight_configurator_firmware_flasher_basic.png)
 
-If you're happy that everything is OK, then, down the bottom, click `Load Firmware [Online]`, and wait for the firmware to be built and downloaded.
+If you're happy that everything is OK, click `Load Firmware [Online]`, and wait for the firmware to build and download.
 
-Then click `Flash Firmware`. Before flashing starts, an option to save the current configuration as a `diff` file will be provided in case you didn't do this already.
+Then click `Flash Firmware`.
+
+A dialog to save the current configuration as a `diff` file is provided in case you didn't do this already.
 
 Once the firmware is flashed, re-connect, calibrate your accelerometer, and re-configure your settings.
 
-Generally, we recommend full manual re-configuration. When the flash is from the same point version, usually it's OK to import a saved Preset, or paste a Diff. Parts of a diff can also be selectively pasted into the CLI, eg the VTX Table, or the modes and aux settings.
+Generally, we recommend full manual re-configuration. When the flash is from the same point version, usually it's OK to import a saved Preset, or paste a Diff. Parts of a diff can also be selectively pasted into the CLI, eg the VTX Table, or the modes and aux settings. Do not copy and paste data from the `profiles` or `master` sections of a dump unless you know what you are doing.
 
 :::caution
 
@@ -72,9 +65,9 @@ After flashing, always check that every setting is 'as it should be', before tes
 
 ## Flashing Release Candidate firmware builds
 
-Release Candidates are special firmware builds that are provided to test 'nearly completed' firmware, late in the development of a new firmware version. For example, `4.5.0-RC2` is the second RC version of Betaflight; it was released for testing on 08-Jan-2024. Usually these builds are stable and are only made available for testing close to the time of the final release. Developers are always grateful for public testing of PR builds.
+Release Candidates are special firmware builds that are provided to test 'nearly completed' firmware. They are only available late in the development of a new firmware version, when we think it is almost ready. For example, `4.5.0-RC2` is the second RC version of Betaflight 4.5; it was released for testing on 08-Jan-2024. Usually these builds are stable. Developers really appreciate public testing of PR builds.
 
-To see Release Candidates in the firmware build list:
+To see Release Candidates:
 
 - Enable Expert Mode
 - Enable 'Show release candidates'
@@ -85,11 +78,11 @@ To see Release Candidates in the firmware build list:
 
 ## Flashing Development builds
 
-Development builds are firmware derived from the most recent version of the code on Github. This will contain the most recent changes made to the firmware.
+Development builds contain the most recent changes made to the firmware.
 
-This option lets you test out a new feature, or try out a significant change to the code, as the code is being developed. If, for example, Betaflight 4.5 is the current release version, the development versions available in the list will be 4.6, and 4.5.1.
+This option lets you test out a new feature, or try out a significant change to the code, as soon as it is added to the `master` branch. If, for example, Betaflight 4.5 is the current release version, the development versions available in the list will be 4.6, and the latest code for the most recent update branch for 4.5, e.g. 4.5.3.
 
-To see Development versions in the firmware build list:
+To see Development versions:
 
 - Enable Expert Mode
 - Enable 'Show release candidates'
@@ -109,7 +102,7 @@ To see Development versions in the firmware build list:
 
 :::note
 
-`Full chip erase` completely wipes the NVRAM, deleting all your saved configuration data, replacing it with new default values and the new data structure for the new firmware.<br/><br/>
+`Full chip erase` completely wipes the NVRAM, deleting all your saved configuration data, and replaces it with new default values and the new data structure for the new firmware.<br/><br/>
 
 `Full chip erase` should only be disabled when you are 100% certain that the configuration data structure has not changed since the last flash, otherwise incorrect configuration values may be retrieved by the new firmware, with potentially disastrous results.
 
@@ -184,7 +177,7 @@ It allows the user to enter the coded 'name' for a 'hardware define', forcing th
 
 For example, the local build options `-DUSE_RANGEFINDER -DUSE_ACCGYRO_LSM6DSO` can be included as Custom Defines when making a cloud build with `RANGEFINDER ACCGYRO_LSM6DSO`.
 
-This is a full listing of [Custom Defines](https://hackmd.io/@nerdCopter/H11rvS8Lh), current as of early 2025. Most hardware defines are already included in the board config. Some relate to archaic code that may not function properly and is not currently included in normal builds; test these at your own risk.
+For advanced users, the [Defines](/docs/development/Defines) page in our development section provides a list of Custom Define options available early 2024.
 
 ### Select Pull Request or Commit
 
@@ -219,12 +212,8 @@ If your board pheriperals are not recognized after flashing, please help us add 
 Reach out to us on our [Discord server](https://discord.betaflight.com/invite) or create an issue in the Betaflight unified targets repo.
 <br/>
 To get the required information follow this procedure:
-<br/>
-<br/>
 1. Flash your board with the <b>Core Only</b> switch enabled
-<br/>
 2. Go to the CLI tab and click the <b>Submit Support Data</b> button.
-<br/>
 3. With this generated support <b>ID</b> we should have all the required information, but we would then need your help to confirm a fix..
 
 :::
