@@ -8,7 +8,7 @@ When selecting GPS, Baro, etc from the `Other Options` list the required additio
 
 Additional defines may be added:
 
-- to a cloud build, by entering the name of the define, \_without the USE\_\_ prefix, separated by spaces, in the `Custom Defines` list, e.g. `ANA EXTI`.
+- to a cloud build, by entering the name of the define, without the `USE_` prefix, separated by spaces, in the `Custom Defines` list, e.g. `ANA EXTI`.
 - to a local build, by adding the define in a syntax matching the other defines,
   e.g. `-DUSE_ANA -DUSE_EXTI`
 
@@ -17,6 +17,8 @@ A full list of defines as of MAY 2024 is provided below. The list was generated 
 :::note
 
 Not all the defines in this list are 'safe'; some are archaic and some are not actively maintained.
+Defines on commented-out lines are not included in the list.
+Some defines are for internal register definitions and are not end-user code options.
 
 :::
 
