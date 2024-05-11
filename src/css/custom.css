@@ -51,3 +51,7 @@ html {
 .img_sponsor {
   @apply p-[10px] max-h-[99px] max-w-[330px] inline mx-4;
 }
+
+#partner_overview .img_sponsor {
+  @apply p-0 max-h-[60px] max-w-[200px] inline m-4;
+}

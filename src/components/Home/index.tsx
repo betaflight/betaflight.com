@@ -12,7 +12,7 @@ import Button from '../Button';
 import TeamFeature from '../Team';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import Sponsors from '../Sponsors/Sponsors';
+import SponsorBanner from '../Sponsors/SponsorBanner';
 
 export default function Home({ recentPosts }: BlogProps) {
   function clampAndFormatMinutes(minutes: number) {
@@ -69,7 +69,7 @@ export default function Home({ recentPosts }: BlogProps) {
       </div>
       <div className="m-4 flex flex-col space-y-4">
         <HomepageFeature title="Sponsors" blur={true}>
-          <Sponsors />
+          <SponsorBanner />
         </HomepageFeature>
         <HomepageFeature title="About" compact={true}>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
