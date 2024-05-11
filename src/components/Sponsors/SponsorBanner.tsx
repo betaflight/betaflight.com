@@ -6,7 +6,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const cycleIntervalMs = 30000; // 10 seconds
 
-export default function Sponsors(): React.JSX.Element {
+export default function SponsorBanner(): React.JSX.Element {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<string | null>(null);
   const [counter, setCounter] = useState<number>(0);
