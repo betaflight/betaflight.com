@@ -12,7 +12,7 @@ Additional defines may be added:
 - to a local build, by adding the define in a syntax matching the other defines,
   e.g. `-DUSE_ANA -DUSE_EXTI`
 
-A full list of defines as of MAY 2024 is provided below. The list was generated using `grep --exclude-dir=config -Irh '^[^/].*' src/ | grep -wo 'USE_[0-9A-Z_]\+' | sort | uniq` - thanks @nerdcopter!
+A full list of defines as of MAY 2024 is provided below. The list was generated using `grep --exclude-dir=config -Irh '^[^/].*' src/main/ | grep -wo 'USE_[0-9A-Z_]\+' | sort | uniq` - thanks @nerdcopter!
 
 :::note
 
@@ -97,7 +97,6 @@ USE_CMS_FAILSAFE_MENU
 USE_CMS_GPS_LAP_TIMER_MENU
 USE_CMS_GPS_RESCUE_MENU
 USE_CONFIG
-USE_COVERAGE
 USE_CRAFTNAME_MSGS
 USE_CRSF_CMS_TELEMETRY
 USE_CRSF_LINK_STATISTICS
@@ -327,12 +326,10 @@ USE_PIN_AF
 USE_PIN_PULL_UP_DOWN
 USE_PROFILE_NAMES
 USE_PROSHOT
-USE_PTHREAD
 USE_PWM_OUTPUT
 USE_QUADSPI
 USE_QUADSPI_DEVICE_1
 USE_QUAD_MIXER_ONLY
-USE_QUAD_SPI
 USE_RACE_PRO
 USE_RAM_CODE
 USE_RANGEFINDER
