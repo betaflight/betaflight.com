@@ -53,7 +53,7 @@ You can select curves what you need by using the checkboxes to apply values.
 Click 'At all global log time' menu item to set MinMax values from log data during all time.
 Click 'At local window time' menu item to set MinMax values from current time interval at the chart window.
 Click 'At markere time range' menu item to set MinMax values from markered time interval what you select by using "I", "O" keys. If it is not select then will apply all log time interval.
-Click 'Back' menu item to go back to main menu.
+Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/7.jpg)
 
@@ -61,7 +61,7 @@ Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog bo
 
 You can select curves what you need by using the checkboxes to set the same scale.
 Click 'SET SET CURVES TO SAME SCALE' item for apply
-Click 'Back' menu item to go back to main menu.
+Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/8.jpg)
 
@@ -69,7 +69,7 @@ Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog bo
 
 You can select curves what you need by using the checkboxes to centered.
 Click 'SET CURVES TO ZERO OFFSET' item for apply
-Click 'Back' menu item to go back to main menu.
+Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/9.jpg)
 
@@ -77,7 +77,7 @@ Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog bo
 
 You can set the zoom procent value and select curves what you need by using the checkboxes to apply zoom.
 Click 'ZOOM IN', 'ZOOM OUT' items for apply zoom
-Click 'Back' menu item to go back to main menu.
+Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/10.jpg)
 
@@ -85,7 +85,7 @@ Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog bo
 
 You can select curves what you need by using the checkboxes to apply default values.
 Click 'SET CURVES TO DEFAULT' item for apply
-Click 'Back' menu item to go back to main menu.
+Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/11.jpg)
 
