@@ -222,7 +222,9 @@ To get the required information follow this procedure:
 
 The `Show Log` link will open the build log and show the defines being applied to the build, the code build outcome, and the file size details.
 
-A full string for use when flashing the same build locally is provided, both for Docker and Make.
+The log file incudes a full string for use when flashing the same build locally is provided, both for Docker and Make.
+
+At any time after flashing, the log can be re-loaded using the `log` buttom at the lower right side of Configurator's S`Setup` page. A summary of the included build options can be displayed using the nearby `Options` button.
 
 ### Local Flashing
 

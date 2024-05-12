@@ -1,18 +1,20 @@
 # Defines
 
-Betaflight uses `#DEFINE` syntax to include software components to support additional features at build time.
+Betaflight uses `#define` macro syntax to include software components that support additional features or specific hardware modules at build time.
 
-A basic set of defines is included in the config file for the board. At build time, the user can add extra defines in the the Configurator's Firmware Flasher Tab.
+A basic set of defines is included in the config file for each board. At build time, the user can add extra defines in the the Configurator's Firmware Flasher Tab.
 
-When selecting GPS, Baro, etc from the `Other Options` list the required additional defines are added automatically. For example, if `BARO` is requested by the user, the `USE_BARO` define, and all supported baro hardware defines are automatically included.
+When selecting GPS, Baro, etc from the `Other Options` list, any additional required or related defines are added automatically. For example, if `BARO` is requested by the user, the `USE_BARO` define, and all supported baro hardware defines, are automatically included.
 
 Additional defines may be added:
 
 - to a cloud build, by entering the name of the define, without the `USE_` prefix, separated by spaces, in the `Custom Defines` list, e.g. `ANA EXTI`.
 - to a local build, by adding the define in a syntax matching the other defines,
-  e.g. `-DUSE_ANA -DUSE_EXTI`
+  e.g. `-DUSE_ANA -DUSE_EXTI`.
 
-A full list of defines as of MAY 2024 is provided below. The list was generated using `grep --exclude-dir=config -Irh '^[^/].*' src/main/ | grep -wo 'USE_[0-9A-Z_]\+' | sort | uniq` - thanks @nerdcopter!
+The user may review the full list of defines in the build by checking the build log after flashing. A link to the log appears in the Flashing tab once flashing is complete. Later, it can be loaded from Configurator's main Setup page, using the `Log` button at bottom right. A summary of the included build options can also be displayed using the nearby `Options` button.
+
+A full list of defines as of May 2024 is provided below. The list was generated using `grep --exclude-dir=config -Irh '^[^/].*' src/main/ | grep -wo 'USE_[0-9A-Z_]\+' | sort | uniq` - thanks @nerdcopter!
 
 :::note
 
@@ -100,6 +102,7 @@ USE_CONFIG
 USE_CRAFTNAME_MSGS
 USE_CRSF_CMS_TELEMETRY
 USE_CRSF_LINK_STATISTICS
+USE_CRSF_OFFICIAL_SPEC
 USE_CRSF_V3
 USE_CRS_INTERRUPTS
 USE_CUSTOM_BOX_NAMES
