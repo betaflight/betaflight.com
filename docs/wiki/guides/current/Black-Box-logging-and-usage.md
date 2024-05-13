@@ -39,6 +39,10 @@ Some features are automatically disabled depending upon the firmware you are run
 
 Do click on all the buttons to learn what they do and '?' for the Keyboard Short cuts.
 
+#### Betaflight blackbox explorer Version 3.7
+
+[Blackbox Explorer MinMax control](/docs/wiki/guides/current/BBE-MinMax-control-manual)
+
 ### How to obtain data to evaluate noise frequency for setting the Notch filter.
 
 Super simple visual explanation of the gyro data sequence through the filters:
