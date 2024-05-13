@@ -1,6 +1,6 @@
-# The Betaflight blackbox explorer curves MinMax control feature
+# Blackbox Explorer MinMax control
 
-The MinMax control PR can control curves scale and placement quickly and full.
+The MinMax control feature can control curves scale and placement quickly and full.
 The current MinMax curves settings are showed at 'Configure graphs' dialog box in the "Minimum" and "Maximum" columns.
 ![image](./images/1.jpg)
 The MinMax values can be changed:
