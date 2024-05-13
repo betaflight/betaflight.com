@@ -43,7 +43,7 @@ The main context menu:
 
 You can change MinMax values and select curves what you need by using the checkboxes to apply these values.
 Click 'SET MIN-MAX VALUES' item for apply.
-Click 'Back' menu item to go back to main menu.
+Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/6.jpg)
 
