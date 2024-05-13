@@ -17,8 +17,8 @@ The main context menu:
 The main menu include following parts:
 
 1. The menu actions to edit all curves
-2. The menu actions to edit one curves what you selected by right mouse click (The 'Gyro pitch' for example at the picture)
-3. The extended mode
+2. The menu actions to edit <a href="#one">one curves</a> what you selected by right mouse click (The 'Gyro pitch' for example at the picture)
+3. The <a href="#extended">extended</a> mode
 
 ## Actions
 
@@ -29,7 +29,7 @@ The main menu include following parts:
 - 'Zoom in', 'Zoom out' - change zoom for all curves
 - 'Default' - set the all curves MinMax values to default
 
-## Single curve submenu
+## <a name="one">Single curve submenu</a>
 
 The single curve submenu has same actions:
 
@@ -41,7 +41,7 @@ If you open context menu for one curves chart, then you see the short menu:
 
 ![image](./images/4.jpg)
 
-## Extended Mode
+## <a name="extended">Extended Mode</a>
 
 The main menu has extended mode. You need press the 'Shift' key to activate it and select the submenu, what you need.
 
