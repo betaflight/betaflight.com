@@ -14,7 +14,7 @@ Additional defines may be added:
 
 The user may review the full list of defines in the build by checking the build log after flashing. A link to the log appears in the Flashing tab once flashing is complete. Later, it can be loaded from Configurator's main Setup page, using the `Log` button at bottom right. A summary of the included build options can also be displayed using the nearby `Options` button.
 
-A full list of defines as of May 2024 is provided below. The list was generated using `grep --exclude-dir=config -Irh '^[^/].*' src/main/ | grep -wo 'USE_[0-9A-Z_]\+' | sort | uniq` - thanks @nerdcopter!
+A full list of defines as of May 2024 is provided below. The list was generated using `grep --exclude-dir=config -Irh '^[^/].*' src/main/ | grep -wo 'USE_[0-9A-Z_]\+' | sort | uniq`
 
 :::note
 
