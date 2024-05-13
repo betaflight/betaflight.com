@@ -41,7 +41,7 @@ Do click on all the buttons to learn what they do and '?' for the Keyboard Short
 
 #### Betaflight blackbox explorer Version 3.7
 
-[The charts curves MinMax values control feature](/docs/wiki/guides/current/BBE-MinMax-control-manual)
+[Blackbox Explorer MinMax control](/docs/wiki/guides/current/BBE-MinMax-control-manual)
 
 ### How to obtain data to evaluate noise frequency for setting the Notch filter.
 
