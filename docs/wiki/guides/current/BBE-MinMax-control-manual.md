@@ -12,13 +12,15 @@ To show context menu you must do right mouse click on Minimum or Maximum values 
 The main context menu:
 ![image](./images/2.jpg)
 
-## The main menu include following parts:
+## Main menu
+
+The main menu include following parts:
 
 1. The menu actions to edit all curves
 2. The menu actions to edit one curves what you selected by right mouse click (The 'Gyro pitch' for example at the picture)
 3. The extended mode
 
-### The actions for all curves:
+## Actions
 
 - 'Like this one' - apply MinMax of curve what you selected by right mouse click ('Gyro pitch' for example) to all curves.
 - 'Full range' - set the all curves MinMax values from Log file data during the all flight time
@@ -27,19 +29,25 @@ The main context menu:
 - 'Zoom in', 'Zoom out' - change zoom for all curves
 - 'Default' - set the all curves MinMax values to default
 
-### The single curve submenu has same actions:
+## Single curve submenu
+
+The single curve submenu has same actions:
 
 ![image](./images/3.jpg)
 
-### If you open context menu for one curves chart, then you see the short menu:
+## Contect menu
+
+If you open context menu for one curves chart, then you see the short menu:
 
 ![image](./images/4.jpg)
 
-### The main menu has extended mode. You need press the 'Shift' key to activate it and select the submenu, what you need.
+## Extended Mode
+
+The main menu has extended mode. You need press the 'Shift' key to activate it and select the submenu, what you need.
 
 ![image](./images/5.jpg)
 
-#### The 'Like this one' extended submenu.
+### The 'Like this one' extended submenu.
 
 You can change MinMax values and select curves what you need by using the checkboxes to apply these values.
 Click 'SET MIN-MAX VALUES' item for apply.
@@ -47,7 +55,7 @@ Click 'Back' menu item to go back to main menu or click 'Close' menu item to clo
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/6.jpg)
 
-#### The 'Full range' extended submenu.
+### The 'Full range' extended submenu.
 
 You can select curves what you need by using the checkboxes to apply values.
 Click 'At all global log time' menu item to set MinMax values from log data during all time.
@@ -57,7 +65,7 @@ Click 'Back' menu item to go back to main menu or click 'Close' menu item to clo
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/7.jpg)
 
-#### The 'One scale' extended submenu.
+### The 'One scale' extended submenu.
 
 You can select curves what you need by using the checkboxes to set the same scale.
 Click 'SET SET CURVES TO SAME SCALE' item for apply
@@ -65,7 +73,7 @@ Click 'Back' menu item to go back to main menu or click 'Close' menu item to clo
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/8.jpg)
 
-#### The 'Centered' extended submenu.
+### The 'Centered' extended submenu.
 
 You can select curves what you need by using the checkboxes to centered.
 Click 'SET CURVES TO ZERO OFFSET' item for apply
@@ -73,7 +81,7 @@ Click 'Back' menu item to go back to main menu or click 'Close' menu item to clo
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/9.jpg)
 
-#### The 'Zoom in', 'Zoom out' extended submenu.
+### The 'Zoom in', 'Zoom out' extended submenu.
 
 You can set the zoom procent value and select curves what you need by using the checkboxes to apply zoom.
 Click 'ZOOM IN', 'ZOOM OUT' items for apply zoom
@@ -81,7 +89,7 @@ Click 'Back' menu item to go back to main menu or click 'Close' menu item to clo
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/10.jpg)
 
-#### The 'Default' extended submenu.
+### The 'Default' extended submenu.
 
 You can select curves what you need by using the checkboxes to apply default values.
 Click 'SET CURVES TO DEFAULT' item for apply
@@ -89,7 +97,7 @@ Click 'Back' menu item to go back to main menu or click 'Close' menu item to clo
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/11.jpg)
 
-#### The single curve submenu has one 'Full range' extended item:
+### The single curve submenu has one 'Full range' extended item:
 
 It is like 'Full range' extended submenu, but for one selected curve only.
 ![image](./images/12.jpg)
