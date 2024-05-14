@@ -2,7 +2,7 @@
 sidebar_position: 17
 ---
 
-# Led Transponder Tab
+# Led Strip Tab
 
 :::note
 Sorry; this Wiki page has not yet been written.

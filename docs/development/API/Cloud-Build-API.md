@@ -15,8 +15,8 @@ Uses config repo for targets using defines only. For more information see [How t
 
 ## Usage
 
-For optimal use please select ONLY the appropiate hardware for the flight controller after selecting the right target (using auto-detect button).
-Choices below are further described in the [wiki/Firmware Flasher page](/docs/wiki/configurator/firmware-flasher-tab)
+For optimal use please select ONLY the appropiate hardware for the flight controller after selecting the correct target (using auto-detect button).
+The options below are further described in the [wiki/Firmware Flasher page](/docs/wiki/configurator/firmware-flasher-tab). We also have a complete listing of [build options](/docs/development/Defines).
 
 ### Radio Protocols
 
