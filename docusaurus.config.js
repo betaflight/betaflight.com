@@ -165,17 +165,11 @@ const config = {
             position: 'left',
           },
           {
-            to: '/stats',
-            label: 'Stats',
-            position: 'left',
-          },
-          {
             type: 'docSidebar',
-            sidebarId: 'relations',
+            sidebarId: 'sponsors',
             position: 'left',
-            label: 'Relations',
+            label: 'Sponsors',
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/betaflight/betaflight',
             label: 'GitHub',
