@@ -8,7 +8,7 @@ If you see no signs of life on your host computer when you plug in your board, c
 
 ### Entering DFU Mode
 
-To force your baord into DFU mode, simply hold the boot switch pressed when plugging in the USB cable. Your can release the switch once the USB cable is connected. In case your USB device is then not recognized, e.g., Windows shows it as Unknown USB Device (Device Descriptor Failed), you might need to unsolder the data lines of UART1 as they can prevent the board from entering DFU mode correctly. See Joshua Bardwell [Video](https://www.youtube.com/watch?v=Zj24aEOyTWs) for more info.
+To force your baord into DFU mode, simply hold the boot switch pressed when plugging in the USB cable. Your can release the switch once the USB cable is connected. In case your USB device is then not recognized, e.g., Windows shows it as Unknown USB Device (Device Descriptor Failed), you might need to unsolder the data lines of UART1 as they can prevent the board from entering DFU mode correctly. See Joshua Bardwell's [Video](https://www.youtube.com/watch?v=Zj24aEOyTWs) for more info.
 
 ## Platform Specific: Linux
 
