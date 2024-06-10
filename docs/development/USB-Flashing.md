@@ -6,6 +6,10 @@ Some newer boards with full USB support must be flashed in USB DFU mode. This is
 
 If you see no signs of life on your host computer when you plug in your board, check your cable with your mobile phone or some other USB device - some charging cables have only the power pins connected. These will power up the board, so the leds light up, but the host computer will not react to the device at all. You need a proper USB cable to connect your board to the Betaflight Configurator.
 
+### Entering DFU Mode
+
+To force your baord into DFU mode, simply hold the boot switch pressed when plugging in the USB cable. Your can release the switch once the USB cable is connected. In case your USB device is then not recognized, e.g., Windows shows it as Unknown USB Device (Device Descriptor Failed), you might need to unsolder the data lines of UART1 as they can prevent the board from entering DFU mode correctly. See Joshua Bardwell [Video](https://www.youtube.com/watch?v=Zj24aEOyTWs) for more info.
+
 ## Platform Specific: Linux
 
 In order for Betaflight configurator to be able to access serial ports, your account needs to be in the `dialout` group. You can add yourself to this group as below:
