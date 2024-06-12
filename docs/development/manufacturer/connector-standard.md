@@ -48,13 +48,13 @@ V+ pads carry output from the FC's onboard voltage regulators.
 
 In some cases VTX or camera connectors may offer VBAT voltage directly but due to voltage fluctuations induced by the motors the use of VBAT direct to VTXs or cameras is discouraged.
 To minimise the risk to sensitive VTX hardware it is advisable to provide an additional high voltage regulator for such components.
-Recommended continuous power draw for this high voltage VTX regulator is ~18W, tranlating to at least a 9V/2A part, and output voltage should be between 8-12V.
+Recommended continuous power draw for this high voltage VTX regulator is ~18W, translating to at least a 9V/2A part, and output voltage should be between 8-12V.
 
 The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
-| 1     | V+          | Power       |
+| 1     | V+ (VBAT)   | Power       |
 | 2     | GND         | Ground      |
 | 3     | Current     | Current     |
 | 4     | Telemetry   | Telemetry   |
@@ -69,7 +69,7 @@ The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
-| 1     | V+          | Power       |
+| 1     | V+ (5V)     | Power       |
 | 2     | GND         | Ground      |
 | 3     | Signal 1    | RX          |
 | 4     | Signal 2    | TX          |
@@ -84,7 +84,7 @@ The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description    |
 | :---- | :---------- | :------------- |
-| 1     | V+          | Power          |
+| 1     | V+ (5V)     | Power          |
 | 2     | GND         | Ground         |
 | 3     | Signal 1    | RX             |
 | 4     | Signal 2    | TX             |
@@ -97,7 +97,7 @@ The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
-| 1     | V+          | Power       |
+| 1     | V+ (5V)     | Power       |
 | 2     | GND         | Ground      |
 | 3     | Signal 1    | SDA         |
 | 4     | Signal 2    | SCL         |
@@ -109,11 +109,17 @@ Pins are shared with PB10 and PB11 for TX3 and RX3 so please keep this in mind w
 
 ### Analog Camera Pin Configuration
 
+:::note
+It is no longer recommended to have and analoque OSD chip on the FC. The recommendation is to emulate the digital standard, and place the OSD chip on the VTX.
+
+This would render the Video (Signal 1) redundant.
+:::
+
 The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
-| 1     | V+          | Power       |
+| 1     | V+ (5v)     | Power       |
 | 2     | GND         | Ground      |
 | 3     | Signal 1    | Video       |
 | 4     | Signal 2    | RX          |
@@ -125,7 +131,7 @@ The pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
-| 1     | V+          | Power       |
+| 1     | V+ (8-12V)  | Power       |
 | 2     | GND         | Ground      |
 | 3     | Signal 1    | Video       |
 | 4     | Signal 2    | RX          |
@@ -137,7 +143,7 @@ The current pin configuration for the JST SH connector is as follows:
 
 | Pin # | Signal Name | Description  |
 | :---- | :---------- | :----------- |
-| 1     | V+          | Power        |
+| 1     | V+ (8-26V)  | Power        |
 | 2     | GND         | Ground       |
 | 3     | Signal 1    | TX           |
 | 4     | Signal 2    | RX           |
