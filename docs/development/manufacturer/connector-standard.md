@@ -48,7 +48,7 @@ V+ pads carry output from the FC's onboard voltage regulators.
 
 In some cases VTX or camera connectors may offer VBAT voltage directly but due to voltage fluctuations induced by the motors the use of VBAT direct to VTXs or cameras is discouraged.
 To minimise the risk to sensitive VTX hardware it is advisable to provide an additional high voltage regulator for such components.
-Recommended continuous power draw for this high voltage VTX regulator is ~18W, translating to at least a 9V/2A part, and output voltage should be between 8-12V.
+Recommended continuous power draw for this high voltage VTX regulator is ~18W, translating to at least a 9V/2A part, and output voltage should be between 8-12V, preferably 10V.
 
 The pin configuration for the JST SH connector is as follows:
 
