@@ -110,7 +110,7 @@ Pins are shared with PB10 and PB11 for TX3 and RX3 so please keep this in mind w
 ### Analog Camera Pin Configuration
 
 :::note
-It is no longer recommended to have and analogue OSD chip on the FC. The recommendation is to emulate the digital standard, and place the OSD chip on the VTX.
+It is no longer recommended to have an analogue OSD chip on the FC. The recommendation is to emulate the digital standard, and place the OSD chip on the VTX.
 
 This would render the Video (Signal 1) redundant.
 :::
