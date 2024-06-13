@@ -137,6 +137,10 @@ The pin configuration for the JST SH connector is as follows:
 | 4     | Signal 2    | RX          |
 | 5     | Signal 3    | TX          |
 
+:::note
+10V for V+ is prefered for providing analogue VTX power.
+:::
+
 ### Digital Video Transmitter Pin Configuration
 
 The current pin configuration for the JST SH connector is as follows:
@@ -149,6 +153,10 @@ The current pin configuration for the JST SH connector is as follows:
 | 4     | Signal 2    | RX           |
 | 5     | GND         | Ground (DJI) |
 | 6     | Signal 3    | SBUS (DJI)   |
+
+:::note
+10V for V+ is prefered for digital video transmitter power.
+:::
 
 ## Logo
 
