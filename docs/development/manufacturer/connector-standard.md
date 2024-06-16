@@ -90,7 +90,7 @@ The pin configuration for the 6 pin JST SH connector is as follows:
 | 6     | Signal 4    | I2C SCL     |
 
 :::note
-Whilst the 6 pin option is no longer recommended, if it is included in the design then care must be taken to label the connectors clearly so users do attempt to connect 5V equipment to the VTX 6 pin as the differing power voltages will likely cause damage.
+Whilst the 6 pin option is no longer recommended, if it is included in the design then care must be taken to label the connectors clearly so users do attempt to connect 5V equipment to any digital VTX 6 pin if present as the differing power voltages will likely cause damage.
 :::
 
 ### I2C Pin Configuration
