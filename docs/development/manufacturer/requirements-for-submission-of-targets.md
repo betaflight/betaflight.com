@@ -2,8 +2,12 @@
 
 The following new requirements for pull requests adding new targets or modifying existing targets are put in place from now on:
 
-1. Read the [hardware specification](manufacturer-design-guidelines)
+1. Read the [hardware specification](manufacturer-design-guidelines). Bad hardware designs will not be accepted.
 
-2. For any new target that is to be added, only a Unified Target config into https://github.com/betaflight/unified-targets/tree/master/configs/default needs to be submitted. See the [instructions](creating-an-unified-target) for how to create a Unified Target configuration. If there is no Unified Target for the MCU type of the new target (see instructions above), then a 'legacy' format target definition into `src/main/target/` has to be submitted as well;
+2. New manufacturers are required to be added to the `Manufacturers.md` list in https://github.com/betaflight/config.
 
-3. For changes to existing targets, the change needs to be applied to the Unified Target config in https://github.com/betaflight/unified-targets/tree/master/configs/default. If no Unified Target configuration for the target exists, a new Unified Target configuration will have to be created and submitted. If there is no Unified Target for the MCU type of the new target (see instructions above), then an update to the 'legacy' format target definition in `src/main/target/` has to be submitted alongside the update to the Unified Target configuration.
+3. For any new targets, a definition file needs to be submitted to https://github.com/betaflight/config. See the [instructions](https://betaflight.com/docs/development/manufacturer/creating-configuration) for how to create a configuration file.
+
+4. For changes to existing targets, consider updating both https://github.com/betaflight/config and https://github.com/betaflight/unified-targets.
+
+5. Upon approval and merging, consider adding [board documentation](https://betaflight.com/docs/category/boards) as per [documentation guidelines](https://betaflight.com/docs/development/manufacturer/fc_documentation/how-to-create-board-documentation).
