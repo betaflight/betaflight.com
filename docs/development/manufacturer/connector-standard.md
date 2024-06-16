@@ -10,6 +10,7 @@ Draft Proposal for Standardized Drone Connectors
 | :-------- | :------------ | :------------------------------- |
 | Draft 0.1 | 27 April 2023 | Initial Draft Format             |
 | Draft 0.2 | 08 May 2023   | Added Logo and pinout correction |
+| Draft 0.3 | 16 June 2024  | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD |
 
 ## Introduction
 
@@ -43,12 +44,9 @@ An additional 2-pin connector for power (ext. power) can be used for high-powere
 
 We recommend using twisted wires to eliminate any confusion about the mirroring of the connector and to ensure that the same wiring order is used on both sides of the connection.
 
-V+ connection from the ESC to FC will typically carry VBAT voltage direct from the battery connection. The ESC V+ connection is an Input Voltage to the FC whilst RX, GPS and other connectors'
-V+ pads carry output from the FC's onboard voltage regulators.
+V+ connection from the ESC to FC will typically carry VBAT voltage direct from the battery connection. The ESC V+ connection is an Input Voltage to the FC whilst RX, GPS and other connectors' V+ pads carry output from the FC's onboard voltage regulators.
 
-In some cases VTX or camera connectors may offer VBAT voltage directly but due to voltage fluctuations induced by the motors the use of VBAT direct to VTXs or cameras is discouraged.
-To minimise the risk to sensitive VTX hardware it is advisable to provide an additional high voltage regulator for such components.
-Recommended continuous power draw for this high voltage VTX regulator is ~18W, translating to at least a 9V/2A part, and output voltage should be between 8-12V, preferably 10V.
+In some cases VTX or camera connectors may offer VBAT voltage directly but due to voltage fluctuations induced by the motors the use of VBAT direct to VTXs or cameras is discouraged. To minimise the risk to sensitive VTX hardware it is advisable to provide an additional high voltage regulator for such components. Recommended continuous power draw for this high voltage VTX regulator is ~18W, translating to at least a 9V/2A part, and output voltage should be between 8-12V, preferably 10V.
 
 The pin configuration for the JST SH connector is as follows:
 
@@ -63,9 +61,9 @@ The pin configuration for the JST SH connector is as follows:
 | 7     | Signal 3    | Motor 3     |
 | 8     | Signal 4    | Motor 4     |
 
-### RX Pin Configuration
+### Serial (UART) Pin Configuration (RX, GPS, and other 5V serial devices)
 
-The pin configuration for the JST SH connector is as follows:
+The pin configuration for the 4 pin JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
@@ -75,21 +73,25 @@ The pin configuration for the JST SH connector is as follows:
 | 4     | Signal 2    | TX          |
 
 :::note
-This connector could also be used for other serial devices
+This connector could also be used for any number of serial devices.
+
+Where a GPS module uses a 6 pin cable, e.g. due to a magnetometer and requires I2C, then the requirement will be make use of a Y cable, and consume both a 4 pin serial connector and an I2C connector. Noting that it is not recommended to mount the magnetometer and GPS together.
 :::
 
-### GPS Pin Configuration
+The pin configuration for the 6 pin JST SH connector is as follows:
 
-The pin configuration for the JST SH connector is as follows:
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | V+ (5V)     | Power       |
+| 2     | GND         | Ground      |
+| 3     | Signal 1    | RX          |
+| 4     | Signal 2    | TX          |
+| 5     | Signal 3    | I2C SDA     |
+| 6     | Signal 4    | I2C SCL     |
 
-| Pin # | Signal Name | Description    |
-| :---- | :---------- | :------------- |
-| 1     | V+ (5V)     | Power          |
-| 2     | GND         | Ground         |
-| 3     | Signal 1    | RX             |
-| 4     | Signal 2    | TX             |
-| 5     | Signal 3    | SDA (optional) |
-| 6     | Signal 4    | SCL (optional) |
+:::note
+Whilst the 6 pin option is no longer recommended, if it is included in the design then care must be taken to label the connectors clearly so users do attempt to connect 5V equipment to the VTX 6 pin as the differing power voltages will likely cause damage.
+:::
 
 ### I2C Pin Configuration
 
@@ -103,8 +105,9 @@ The pin configuration for the JST SH connector is as follows:
 | 4     | Signal 2    | SCL         |
 
 :::note
-The I2C connector should be used for all I2C devices, including compasses, barometers, and other sensors.
-Pins are shared with PB10 and PB11 for TX3 and RX3 so please keep this in mind when using onboard I2C device such as compasses and barometers.
+The I2C connector should be used for all I2C devices, including compasses (magnetometers), barometers, and other sensors.
+
+On STM devices pins are shared with PB10 and PB11 for TX3 and RX3 so please keep this in mind when using onboard I2C device such as compasses and barometers.
 :::
 
 ### Analog Camera Pin Configuration
@@ -138,7 +141,7 @@ The pin configuration for the JST SH connector is as follows:
 | 5     | Signal 3    | TX          |
 
 :::note
-10V for V+ is prefered for providing analogue VTX power.
+10V regulated for V+ is prefered for providing analogue VTX power.
 :::
 
 ### Digital Video Transmitter Pin Configuration
@@ -156,6 +159,21 @@ The current pin configuration for the JST SH connector is as follows:
 
 :::note
 10V for V+ is prefered for digital video transmitter power.
+:::
+
+### SWD Pin Configuration
+
+The pin configuration for the JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | V+ (3V3)    | Power       |
+| 2     | GND         | Ground      |
+| 3     | Signal 1    | SWDIO       |
+| 4     | Signal 2    | SWCLK       |
+
+:::note
+This connector is recommended to be placed for prototyping boards when supplying to the Betaflight team for debugging and testing.
 :::
 
 ## Logo
