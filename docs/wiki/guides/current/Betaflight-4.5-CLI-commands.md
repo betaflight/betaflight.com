@@ -296,6 +296,9 @@ Allowed values: OFF, ON
 blackbox_disable_gyrounfilt = OFF
 Allowed values: OFF, ON
 
+blackbox_disable_mag = OFF
+Allowed values: OFF, ON
+
 blackbox_disable_motors = OFF
 Allowed values: OFF, ON
 
@@ -1032,10 +1035,10 @@ Allowed values: BLACK, WHITE, RED, ORANGE, YELLOW, LIME_GREEN, GREEN, MINT_GREEN
 level_race_mode = OFF
 Allowed values: OFF, ON
 
-mag_align_roll = 0
+mag_align_pitch = 0
 Allowed range: -3600 - 3600
 
-mag_align_pitch = 0
+mag_align_roll = 0
 Allowed range: -3600 - 3600
 
 mag_align_yaw = 0
@@ -1043,6 +1046,15 @@ Allowed range: -3600 - 3600
 
 mag_bustype = I2C
 Allowed values: NONE, I2C, SPI, SLAVE
+
+mag_calibration = 0,0,0
+Array length: 3
+
+mag_declination = 0
+Allowed range: 0 - 3599
+
+mag_hardware = AUTO
+Allowed values: AUTO, NONE, HMC5883, AK8975, AK8963, QMC5883, LIS2MDL, LIS3MDL, MPU925X_AK8963, IST8310
 
 mag_i2c_device = 0
 Allowed range: 0 - 3
@@ -1052,18 +1064,6 @@ Allowed range: 0 - 119
 
 mag_spi_device = 0
 Allowed range: 0 - 3
-
-mag_hardware = AUTO
-Allowed values: AUTO, NONE, HMC5883, AK8975, AK8963, QMC5883, LIS2MDL, LIS3MDL, MPU925X_AK8963, IST8310
-
-mag_calibration = 0,0,0
-Array length: 3
-
-blackbox_disable_mag = OFF
-Allowed values: OFF, ON
-
-mag_declination = 0
-Allowed range: 0 - 3599
 
 mavlink_mah_as_heading_divisor = 0
 Allowed range: 0 - 30000
