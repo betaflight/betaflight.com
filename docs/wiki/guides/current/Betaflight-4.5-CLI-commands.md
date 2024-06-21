@@ -206,6 +206,9 @@ Allowed range: -180 - 360
 align_board_yaw = 0
 Allowed range: -180 - 360
 
+align_mag = DEFAULT
+Allowed values: DEFAULT, CW0, CW90, CW180, CW270, CW0FLIP, CW90FLIP, CW180FLIP, CW270FLIP, CUSTOM
+
 altitude_d_lpf = 100
 Allowed range: 10 - 1000
 
@@ -729,6 +732,9 @@ Allowed range: 1000 - 2000
 gps_rescue_throttle_p = 15
 Allowed range: 0 - 255
 
+gps_rescue_use_mag = ON
+Allowed values: OFF, ON
+
 gps_rescue_velocity_d = 12
 Allowed range: 0 - 255
 
@@ -1025,6 +1031,39 @@ Allowed values: BLACK, WHITE, RED, ORANGE, YELLOW, LIME_GREEN, GREEN, MINT_GREEN
 
 level_race_mode = OFF
 Allowed values: OFF, ON
+
+mag_align_roll = 0
+Allowed range: -3600 - 3600
+
+mag_align_pitch = 0
+Allowed range: -3600 - 3600
+
+mag_align_yaw = 0
+Allowed range: -3600 - 3600
+
+mag_bustype = I2C
+Allowed values: NONE, I2C, SPI, SLAVE
+
+mag_i2c_device = 0
+Allowed range: 0 - 3
+
+mag_i2c_address = 0
+Allowed range: 0 - 119
+
+mag_spi_device = 0
+Allowed range: 0 - 3
+
+mag_hardware = AUTO
+Allowed values: AUTO, NONE, HMC5883, AK8975, AK8963, QMC5883, LIS2MDL, LIS3MDL, MPU925X_AK8963, IST8310
+
+mag_calibration = 0,0,0
+Array length: 3
+
+blackbox_disable_mag = OFF
+Allowed values: OFF, ON
+
+mag_declination = 0
+Allowed range: 0 - 3599
 
 mavlink_mah_as_heading_divisor = 0
 Allowed range: 0 - 30000
