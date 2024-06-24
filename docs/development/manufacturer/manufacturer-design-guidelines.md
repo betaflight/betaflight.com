@@ -296,23 +296,13 @@ For details of the use of these LEDs, please see the [FC LEDs](/docs/development
 
 ### 3.2.1 Assigning Resource by Priority
 
-Good resource allocation ensures maximum flexibility in the selection of the modes available to users (for example with DSHOT) and also minimizes conflict in timer and DMA stream allocation.
+Appropriate resource allocation ensures maximum flexibility in the selection of the modes available to users (for example with DSHOT) and also minimizes conflicts in timer and DMA stream allocation.
 
 Assign motor channels with highest priority …
 
-#### 3.2.1.1 G4 and H7 Resource Selection
+#### 3.2.1.1 F4 Resource Selection
 
-G4 and H7 have very flexible DMA controls, therefore we have no specific requirement for these processors.
-
-#### 3.2.1.2 F7 Resource Selection
-
-F7X2 MCUs provide greater flexibility and do not require inverters in order to support protocols such as SBUS, SmartPort, or F.Port. They also do not exhibit the SPI 1 DMA limitations of F4 processors.
-
-Bitbang DShot communcation protocol will always use Timer 1 and Timer 8 - Do NOT use these timers for any other functions
-
-#### 3.2.1.3 F4 Resource Selection
-
-Due to F4 MCU management of serial inversion, any pins that implement inversion should be clearly marked, and ideally not result in reduced capability of that UART when used with un-inverted peripheral connections.
+As F4 MCUs do not support UART inversion, a hardware inverter must be added in order to support inverted serial protocols such as SBUS, SmartPort, and F.Port. This functionality is not required for Betaflight approval, but if included any pins that implement inversion should be clearly marked, and ideally not result in reduced capability of that UART when used with non-inverted peripherals.
 
 For Betaflight 4.4 and later versions, the expected default configuration will take advantage of Bidirectional DShot, therefore default Looprates and DShot of 8k/4k/DShot-300 are anticipated to be the stock configuration. This does specifically require Motor Resource allocation to enable proper bidirectional DShot communication.
 
@@ -335,6 +325,16 @@ Practically, this means that all pins should be on the same port, or at most two
   The DIAT-FURYF4OSD is a good example configuration for F405 boards, because it uses pins with timers that do not experience any conflicts. Motors are on port pins with associated timers and use neither TIM 1 nor N Channels.
 
   As an additional reference design, see the Fenix F405: https://oshwlab.com/jyesmith/fenix-f405
+
+#### 3.2.1.2 F7 Resource Selection
+
+F7 series MCUs provide greater flexibility in resource assignments and do not require hardware inverters in order to support inverted serial protocols. They also do not exhibit the SPI 1 DMA limitations of F4 processors.
+
+Bitbang DShot communcation protocol will always use Timer 1 and Timer 8 - Do NOT use these timers for any other functions.
+
+#### 3.2.1.3 G4 and H7 Resource Selection
+
+G4 and H7 series MCUs include a DMAMUX, which allows for flexible DMA stream allocation. Therefore, only timer conflicts between motor outputs and other outputs need to be avoided.
 
 ### 3.2.2 Select appropriate default UARTs to avoid hijacking USB DFU
 
