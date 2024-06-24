@@ -294,6 +294,10 @@ For details of the use of these LEDs, please see the [FC LEDs](/docs/development
 
 ## 3.2 Resource Selection Considerations
 
+- Betaflight does not support sharing devices on the SPI bus which is blocking excution and results in bad performance. Mainly sharing MAX7456 and blackbox generates support issues.
+- Optimal motors assignment would use the same channel requiring only one DMA channel used for dshot telemetry with bitbang enabled.
+- Do not use advanced timers 1 or 8 for anything other then motors.
+
 ### 3.2.1 Assigning Resource by Priority
 
 Appropriate resource allocation ensures maximum flexibility in the selection of the modes available to users (for example with DSHOT) and also minimizes conflicts in timer and DMA stream allocation.
