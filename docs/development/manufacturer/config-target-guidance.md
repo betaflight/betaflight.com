@@ -11,13 +11,15 @@ From the 1st of July 2024 **ALL** targets presented to the config repository for
 2. Our team will assess the schematics. If the schematic has resource sharing, lack of DMA and or timers on critical functions eg gyro, motors, sharing SPI bus lines or is a blatant clone of existing designs (especially so if we consider it to be poorly designed), it will be DENIED a target until such time as it is redesigned to both meet the expected performance of the betaflight firmware, and demonstrates it is not merely a clone of an existing design.
 
 
+
 :::info
 
-For this reason it is advised to start this process with the Betaflight team before you move to making prototypes. The Betaflight team will endeavor to create a reference library to assist manufacturers.
+It is advised to start a dialogue with the Betaflight team before you move to making prototypes. The Betaflight team will endeavor to create a reference library to assist manufacturers as early as possible in the process.
 
 :::
 
 3. Due to the increasing number of issues from cheap poor quality hardware hitting the market there will be a target fee for our team to approve and add a target to our system for deployment in the cloud build system. Please contact the team via cloudtargets@betaflight.com for details. Note if you are a hobbyist please contact us via our discord or the above email as we will not be charging non commercial users for target insertion.
+
 
 
 :::info
