@@ -294,7 +294,7 @@ For details of the use of these LEDs, please see the [FC LEDs](/docs/development
 
 ## 3.2 Resource Selection Considerations
 
-::: warning
+:::warning
 
 Betaflight does not support sharing devices on the SPI bus which is blocking excution and results in bad performance. Mainly sharing MAX7456 and blackbox generates support issues.
 
@@ -313,7 +313,7 @@ There is also a choice between using advanced timers or not, TIM1/TIM8 are advan
 It may be optimal to use TIM1 + TIM8 for all motors so that the other timers are always free.
 Or it may be optimal to use timers other than TIM1/TIM8 for motors so that TIM1/TIM8 are free for other other uses when DSHOT BITBANG is NOT used.
 
-::: note
+:::note
 
 TIM1 has inter-peripheral connectivity that other timers do not have.
 
