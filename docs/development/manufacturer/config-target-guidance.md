@@ -15,8 +15,11 @@ For this reason it is advised to start this process with the Betaflight team bef
 
 3. Due to the increasing number of issues from cheap poor quality hardware hitting the market there will be a target fee for our team to approve and add a target to our system for deployment in the cloud build system. Please contact the team via cloudtargets@betaflight.com for details. Note if you are a hobbyist please contact us via our discord or the above email as we will not be charging non commercial users for target insertion.
 
+:::info
+
 **PLEASE NOTE:** that betaflight is free software, and will continue to be free, however the automated build and delivery system is not free and comes with operational costs. Supporting the costs of running the cloud build system is optional. You are free to distribute your own hexes however you choose. Your customers are able to flash your distributed firmware using the “Load Local” function of the betaflight configuration and maintenance application.
 
+:::
 
 4. If a company wants to collaborate on the design with our team for performance testing, optimisation  and official betaflight approved status to their flight controller we have a numbers of options available via the [Betaflight Partners Program](https://betaflight.com/docs/sponsors/partners) with details available via the email [partnersprogram@betaflight.com](mailto:partnersprogram@betaflight.com)
 
