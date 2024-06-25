@@ -2,7 +2,7 @@
 
 Due to the increase in poorly designed flight controllers, primarily clones of known poorly designed units, Betaflight is now taking a strong stance on adding targets to our cloud build platform.
 
-From July 1 2024 **ALL** targets presented to the config repository for use in the cloud build system will be required to follow these conditions:
+From the 1st of July 2024 **ALL** targets presented to the config repository for use in the cloud build system will be required to follow these conditions:
 
 
 1. Schematics need to be presented with the prospective config file. If your company requires these schematics to not be public they can be emailed to [cloudtargets@betaflight.com](mailto:cloudtargets@betaflight.com)
