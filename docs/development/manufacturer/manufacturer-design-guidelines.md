@@ -294,7 +294,11 @@ For details of the use of these LEDs, please see the [FC LEDs](/docs/development
 
 ## 3.2 Resource Selection Considerations
 
-- Betaflight does not support sharing devices on the SPI bus which is blocking excution and results in bad performance. Mainly sharing MAX7456 and blackbox generates support issues.
+::: warning
+
+Betaflight does not support sharing devices on the SPI bus which is blocking excution and results in bad performance. Mainly sharing MAX7456 and blackbox generates support issues.
+
+:::
 
 BITBANG is the new default on non-F4 and FC designers should use as few GPIO PORTS as possible to avoid needing a DMA stream per GPIO port. i.e.
 
