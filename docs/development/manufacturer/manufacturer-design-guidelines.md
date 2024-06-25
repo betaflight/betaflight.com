@@ -295,8 +295,21 @@ For details of the use of these LEDs, please see the [FC LEDs](/docs/development
 ## 3.2 Resource Selection Considerations
 
 - Betaflight does not support sharing devices on the SPI bus which is blocking excution and results in bad performance. Mainly sharing MAX7456 and blackbox generates support issues.
-- Optimal motor assignment would use the same channel each four motors requiring only one DMA channel used for dshot telemetry with bitbang enabled.
-- Do not use advanced timers 1 or 8 for anything other than motors.
+
+BITBANG is the new default on non-F4 and FC designers should use as few GPIO PORTS as possible to avoid needing a DMA stream per GPIO port. i.e.
+
+- 8 motors on 1 GPIO port is optimal.
+- 8 motors spread across 2 GPIO ports is OK,
+- 8 motors spread across more than 2 GPIO ports is BAD.
+
+Similarly, it is optimal to use two 4-channel timers for 8 motors for when BITBANG is disabled.
+
+There is also a choice between using advanced timers or not, TIM1/TIM8 are advanced and get used by DSHOT BITBANG.
+
+It may be optimal to use TIM1 + TIM8 for all motors so that the other timers are always free.
+Or it may be optimal to use timers other than TIM1/TIM8 for motors so that TIM1/TIM8 are free for other other uses when DSHOT BITBANG is NOT used.
+
+Note: TIM1 has inter-peripheral connectivity that other timers do not have.
 
 ### 3.2.1 Assigning Resource by Priority
 
