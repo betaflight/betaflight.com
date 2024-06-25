@@ -1,4 +1,4 @@
-# **ADDING A TARGET TO THE CLOUD BUILD SYSTEM**
+# Config Target Guidance - Cloud Build
 
 Due to the increase in poorly designed flight controllers, primarily clones of known poorly designed units, Betaflight is now taking a strong stance on adding targets to our cloud build platform.
 
