@@ -309,7 +309,11 @@ There is also a choice between using advanced timers or not, TIM1/TIM8 are advan
 It may be optimal to use TIM1 + TIM8 for all motors so that the other timers are always free.
 Or it may be optimal to use timers other than TIM1/TIM8 for motors so that TIM1/TIM8 are free for other other uses when DSHOT BITBANG is NOT used.
 
-Note: TIM1 has inter-peripheral connectivity that other timers do not have.
+::: note
+
+TIM1 has inter-peripheral connectivity that other timers do not have.
+
+:::
 
 ### 3.2.1 Assigning Resource by Priority
 
