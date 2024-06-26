@@ -1,0 +1,188 @@
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+# Orbit F405
+
+<Tabs>
+
+<TabItem value="specifications" label="Specifications" default>
+
+## Main Features
+
+- Target: `ORBITF405`
+- MCU: STM32F405
+- IMU: ICM42688P
+- Analog OSD: AT7456
+- Barometer: DPS310 or SPL06 (I2C)
+- Flash Storage: W25Q128JVPQ (16MB onboard dataflash)
+- SD Card Slot: Up to 4GB
+- Hardware Inverter: Yes
+- Power input: 2s - 6s Lipo (10V output will be lower when 2S is used)
+- Power output: 3.3V/500mA, 4.5V-5V/3A, 9V/3A
+- RSSI input: RSSI input solder pad
+- I2C: Used for external magnetometer (GPS module), Barometer module
+- ESC: 8 pwm pins for motors
+- Buzzer: Buz+ (5V) and Buz- pad used for 5V Buzzer
+- Mounting Holes: M4 30.5x30.5mm
+- Dimensions: 36x39mm (W x L)
+- Weight: 7.8g
+
+## Input/Output
+
+- USB Connector: USB Type-C
+- Motor Outputs: 8x
+- UARTs: 6x
+- I2C: Yes
+- SWD: Yes
+- SPI: No
+- 3.3V Output: Yes
+- 4.5V (VBUS) Output: Yes
+- 5V Output: 3A
+- 10V Output: 3A
+- Current Sensor: No
+- Analog RSSI Input: Yes
+- LED Strip Output: Yes
+- Buzzer Output: Yes
+
+## Pads
+
+### UARTs
+
+| Name   | Label | Notes                 |
+| ------ | ----- | --------------------- |
+| UART 1 | T1/R1 | Digital VTX telemetry |
+| UART 2 | T2/R2 | SBUS or ELRS receiver |
+| UART 3 | T3/R3 |                       |
+| UART 4 | T4/R4 |                       |
+| UART 5 | R5    | ESC Telemetry         |
+| UART 6 | T6/R6 | Can be used for GPS   |
+
+### RECEIVER (SBUS + ELRS)
+
+| Name      | Label     | Notes                                                 |
+| --------- | --------- | ----------------------------------------------------- |
+| SBUS      | SBUS (R2) | SBUS/F.port (inverter should be "ON" in configurator) |
+| USART2_TX | T2        |                                                       |
+| USART2_RX | R2        |                                                       |
+| 4V5       | 4V5       |                                                       |
+| GND       | G         |                                                       |
+| 3V3       | 3V3       |                                                       |
+| RSSI      | RS        | Analog Channel for RSSI                               |
+
+### Power
+
+| Name            | Label | Count | Notes |
+| --------------- | ----- | ----- | ----- |
+| 3.3V            | 3V3   | 2x    |       |
+| 4.5V            | 4V5   | 1x    |       |
+| 5V              | 5V    | 3x    |       |
+| 10V             | 10V   | 1x    |       |
+| Battery Voltage | VBAT  | 1x    |       |
+
+### ESC Signal
+
+| Name     | Label | Notes         |
+| -------- | ----- | ------------- |
+| Current  | CURR  |               |
+| UART5_RX | T     | ESC Telemetry |
+| Signal 1 | M1    |               |
+| Signal 2 | M2    |               |
+| Signal 3 | M3    |               |
+| Signal 4 | M4    |               |
+| Signal 5 | M5    |               |
+| Signal 6 | M6    |               |
+| Signal 7 | M7    |               |
+| Signal 8 | M8    |               |
+
+### Analog Video
+
+| Name           | Label | Notes |
+| -------------- | ----- | ----- |
+| Video In       | CAM   |       |
+| Camera Control | CC    |       |
+| Video Out      | VTX   |       |
+
+### Buzzer
+
+| Name     | Label | Notes                   |
+| -------- | ----- | ----------------------- |
+| Buzzer + | BZ+   | Connected 5V in circuit |
+| Buzzer - | BZ-   |                         |
+
+### WS2882 LED Output
+
+| Name | Label | Count | Notes                       |
+| ---- | ----- | ----- | --------------------------- |
+| LED  | LED   | 1x    | Strip LED output for WS2882 |
+
+### I2C
+
+| Name  | Label | Notes |
+| ----- | ----- | ----- |
+| Clock | SCL   |       |
+| Data  | SDA   |       |
+
+### SWD
+
+| Name   | Label | Notes |
+| ------ | ----- | ----- |
+| SWC    | SWC   |       |
+| SWD    | SWD   |       |
+| 3.3V   | 3V3   |       |
+| Ground | G     |       |
+
+## Connectors
+
+### ESC 1-4 (JST-SH 8 pins)
+
+| Pin | Name            | Label |
+| --- | --------------- | ----- |
+| 1   | Ground          | GND   |
+| 2   | Battery Voltage | VBAT  |
+| 3   | Current         | CURR  |
+| 4   | Telemetry       | RX2   |
+| 5   | Signal 1        | M1    |
+| 6   | Signal 2        | M2    |
+| 7   | Signal 3        | M3    |
+| 8   | Signal 4        | M4    |
+
+### Digital VTX (JST-SH 6 pins)
+
+| Pin | Name      | Label     |
+| --- | --------- | --------- |
+| 1   | 10V       | 10V       |
+| 2   | Ground    | G         |
+| 3   | USART1_TX | T1        |
+| 4   | USART2_RX | R1        |
+| 5   | Ground    | G         |
+| 6   | SBUS      | SBUS (R2) |
+
+</TabItem>
+<TabItem value="wiring" label="Wiring Diagrams">
+</TabItem>
+
+<TabItem value="photos" label="Photos"></TabItem>
+
+<TabItem value="notes" label="Notes">
+
+:::info
+
+**SBUS Inverter**
+
+The SBUS pad is connected to USART2_RX (R2) by an inverter circuit. This inverter circuit can be controlled with CLI commands via Betaflight. If you are going to use it as SBUS receiver please make sure that serialrx_inverted is ON. You can run the following command to turn it ON on the CLI.
+
+> set serialrx_inverted=ON
+
+> save
+
+:::
+
+:::danger
+
+When using individual ESCs with integrated BECs, please do not connect the 5V OUT of the ESC to the FC, it will cause the FC/ESC to burn.
+
+:::
+
+</TabItem>
+
+</Tabs>
