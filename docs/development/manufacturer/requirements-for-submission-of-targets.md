@@ -2,7 +2,7 @@
 
 The following new requirements for pull requests adding new targets or modifying existing targets are put in place from now on:
 
-1. Read the [hardware specification](manufacturer-design-guidelines). Bad hardware designs will not be accepted.
+1. Hardware must comply with the [Manufacturer Design Guidelines](manufacturer-design-guidelines). Bad hardware designs will not be accepted as described in the [Config Target Guidance](config-target-guidance).
 
 2. New manufacturers are required to be added to the `Manufacturers.md` list in https://github.com/betaflight/config.
 
@@ -10,4 +10,4 @@ The following new requirements for pull requests adding new targets or modifying
 
 4. For changes to existing targets, consider updating both https://github.com/betaflight/config and https://github.com/betaflight/unified-targets.
 
-5. Upon approval and merging, consider adding [board documentation](https://betaflight.com/docs/category/boards) as per [documentation guidelines](https://betaflight.com/docs/development/manufacturer/fc_documentation/how-to-create-board-documentation).
+5. Upon approval and merging, consider adding [board documentation](/docs/category/boards) as per [documentation guidelines](fc_documentation/how-to-create-board-documentation).
