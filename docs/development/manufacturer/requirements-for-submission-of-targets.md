@@ -10,4 +10,4 @@ The following new requirements for pull requests adding new targets or modifying
 
 4. For changes to existing targets, consider updating both https://github.com/betaflight/config and https://github.com/betaflight/unified-targets.
 
-5. Upon approval and merging, consider adding [board documentation](https://betaflight.com/docs/category/boards) as per [documentation guidelines](fc_documentation/how-to-create-board-documentation).
+5. Upon approval and merging, consider adding [board documentation](/docs/category/boards) as per [documentation guidelines](fc_documentation/how-to-create-board-documentation).
