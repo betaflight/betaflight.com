@@ -20,14 +20,10 @@ Any of these tools can get you pretty close:
 Eclipse built in "K&R" style, after changing the indent to 4 spaces and change Braces after function declarations to Next line.
 
 ```
-astyle --style=kr --indent=spaces=4 --min-conditional-indent=0 --max-instatement-indent=80 --pad-header --pad-oper --align-pointer=name --align-reference=name --max-code-length=120 --convert-tabs --preserve-date --suffix=none --mode=c
+make lint
 ```
 
-```
-indent -kr -i4 -nut
-```
-
-(the options for these commands can be tuned more to comply even better)
+(the rules for the linter can be tuned more to comply even better using [.astylerc](https://github.com/betaflight/betaflight/blob/master/.astylerc) config file)
 
 Note: These tools are not authoritative.
 Sometimes, for example, you may want other columns and line breaks so it looks like a matrix.
