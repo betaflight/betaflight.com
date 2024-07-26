@@ -1,7 +1,26 @@
+---
+sidebar_custom_props:
+  specs:
+    target: TARGETNAME
+    mcu: STM32F405
+    imu: ICM42688P
+    osd: MAX7456
+    barometer: DPS310
+    flash: W25Q128JVPQ (16MB)
+    dimensions: 36x39mm
+    mounting: 30.5x30.5mm
+    weight: 7.8g
+---
+
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
+import SpecGrid from '@site/src/components/SpecGrid'
 
 {/* IMPORTS NECESSARY FOR TAB FUNCTIONALITY, DO NOT REMOVE */}
+
+{/* fill the specs list above with the relevant information, don't change any of the keys unless you know what you're doing.
+If a feature isn't present, just type "None". The target name should be the exact same as in the config repo, 
+the MCU, IMU, OSD and Baro should be the part name if applicable */}
 
 {/* Fill out documentation content below. Document everything that applies to the board */}
 {/* Instructions, examples and mandatory values are commented out */}
@@ -12,23 +31,17 @@ import TabItem from '@theme/TabItem'
 
 <TabItem value="specifications" label="Specifications" default>
 
-## Main Features
+<SpecGrid>
 
-{/* List the available features, if a specific feature is not present, write "No" */}
+{/* Add a photo that will be used as the cover for the page in markdown format */}
+
+</SpecGrid>
+
+## Other Features
+
+{/* List the remaining available features, if a specific feature is not present, write "No" */}
 {/* The format and order of the list should stay the same */}
 
-- Target: `TARGETNAME`
-{/* as listed in the configurator */}
-- MCU: 
-{/* part number */}
-- IMU: 
-{/* part number */}
-- Analog OSD: 
-{/* part name and used interface - MAX7456 (SPI 1) */}
-- Barometer:
-{/* part name and used interface - DPS310 (I2C) */}
-- Flash Storage: 
-{/* part name and available space - W25Q128JVPQ (16MB) */}
 - SD Card Slot: 
 {/* Yes/No */}
 - Onboard Receiver: 
@@ -41,12 +54,6 @@ import TabItem from '@theme/TabItem'
 {/* Yes/No, if Yes, what interface - Yes (UART 2) */}
 - Onboard RGB LED:
 {/* Betaflight controlled LEDs, list total amount - 28x */}
-- Mounting Holes: 
-{/* metric hole size and mounting pattern - M4 30.5x30.5mm */}
-- Dimensions: 
-{/* length x width x height - 39x36x6mm */}
-- Weight: 
-{/* to 1 decimal place - 7.8g */}
 
 ## Input/Output
 
