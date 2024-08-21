@@ -42,7 +42,7 @@ These instructions explain how to create a new Target configuration. Creating Ta
 
 ### 2.1 Obtaining a Target Firmware for Your MCU
 
-Betaflight Configurator distributes customised targets featuring settings specific to each board. To create firmware for a new board it is recommended to build a generic firmware for Your MCU type - STM32F411, STM32F405, STM32F7X2, and so on. If Your board has special "compile time" configuration for specific hardware or boot configuration, these flags should be added as `EXTRA_FLAGS` on the make command line (e.g. `make TARGET=STM32F405 EXTRA_PARAMS="-D'MPU_I2C_INSTANCE=I2CDEV_1'"`. The `EXTRA_PARAMS` can be considered like the old target.h file.
+Betaflight Configurator distributes customised targets featuring settings specific to each board. To create firmware for a new board it is recommended to build a generic firmware for Your MCU type - STM32F411, STM32F405, STM32F7X2, and so on. If Your board has special "compile time" configuration for specific hardware or boot configuration, these flags should be added as `EXTRA_FLAGS` on the make command line (e.g. `make TARGET=STM32F405 EXTRA_FLAGS="-D'MPU_I2C_INSTANCE=I2CDEV_1'"`. The `EXTRA_FLAGS` can be considered like the old target.h file.
 
 These firmware types can be created by building locally and specifying the MCU type such as `make STM32F405`. Firmware files are created in the `obj` directory and can be flashed by choosing `Load local file` in Betaflight Configurator.
 
