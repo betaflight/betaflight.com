@@ -171,6 +171,20 @@ const config = {
             label: 'Sponsors',
           },
           {
+            label: 'Apps',
+            position: 'right',
+            items: [
+              {
+                label: 'Blackbox Explorer',
+                href: 'https://blackbox.betaflight.com',
+              },
+              {
+                label: 'Configurator',
+                href: 'https://app.betaflight.com/',
+              },
+            ],
+          },
+          {
             href: 'https://github.com/betaflight/betaflight',
             label: 'GitHub',
             position: 'right',
