@@ -1,5 +1,20 @@
+---
+sidebar_custom_props:
+  specs:
+    target: ORBITF405
+    mcu: STM32F405
+    imu: ICM42688P
+    osd: AT7456
+    barometer: SPL06
+    flash: W25Q128JVPQ (16MB)
+    dimensions: 39x41mm
+    mounting: M4 30.5x30.5mm
+    weight: 8.8g
+---
+
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
+import SpecGrid from '@site/src/components/SpecGrid'
 
 # Orbit F405
 
@@ -7,25 +22,22 @@ import TabItem from '@theme/TabItem'
 
 <TabItem value="specifications" label="Specifications" default>
 
-## Main Features
+<SpecGrid>
 
-- Target: `ORBITF405`
-- MCU: STM32F405
-- IMU: ICM42688P
-- Analog OSD: AT7456
-- Barometer: DPS310 or SPL06 (I2C)
-- Flash Storage: W25Q128JVPQ (16MB onboard dataflash)
+![Top](./ORBITF405-images/ORBITF405_Top.jpg)
+
+</SpecGrid>
+
+## Other Features
+
 - SD Card Slot: Up to 4GB
 - Hardware Inverter: Yes
 - Power input: 2s - 6s Lipo (10V output will be lower when 2S is used)
-- Power output: 3.3V/500mA, 4.5V-5V/3A, 9V/3A
+- Power output: 3.3V/500mA, 4.5V-5V/2.5A, 10V/3A
 - RSSI input: RSSI input solder pad
 - I2C: Used for external magnetometer (GPS module), Barometer module
 - ESC: 8 pwm pins for motors
 - Buzzer: Buz+ (5V) and Buz- pad used for 5V Buzzer
-- Mounting Holes: M4 30.5x30.5mm
-- Dimensions: 36x39mm (W x L)
-- Weight: 7.8g
 
 ## Input/Output
 
@@ -37,7 +49,7 @@ import TabItem from '@theme/TabItem'
 - SPI: No
 - 3.3V Output: Yes
 - 4.5V (VBUS) Output: Yes
-- 5V Output: 3A
+- 5V Output: 2.5A
 - 10V Output: 3A
 - Current Sensor: No
 - Analog RSSI Input: Yes
@@ -52,32 +64,32 @@ import TabItem from '@theme/TabItem'
 | ------ | ----- | --------------------- |
 | UART 1 | T1/R1 | Digital VTX telemetry |
 | UART 2 | T2/R2 | SBUS or ELRS receiver |
-| UART 3 | T3/R3 |                       |
-| UART 4 | T4/R4 |                       |
+| UART 3 | T3/R3 | Telemetry (CAM)       |
+| UART 4 | T4/R4 | Telemetry             |
 | UART 5 | R5    | ESC Telemetry         |
-| UART 6 | T6/R6 | Can be used for GPS   |
+| UART 6 | T6/R6 | GPS                   |
 
 ### RECEIVER (SBUS + ELRS)
 
-| Name      | Label     | Notes                                                 |
-| --------- | --------- | ----------------------------------------------------- |
-| SBUS      | SBUS (R2) | SBUS/F.port (inverter should be "ON" in configurator) |
-| USART2_TX | T2        |                                                       |
-| USART2_RX | R2        |                                                       |
-| 4V5       | 4V5       |                                                       |
-| GND       | G         |                                                       |
-| 3V3       | 3V3       |                                                       |
-| RSSI      | RS        | Analog Channel for RSSI                               |
+| Name      | Label     | Notes                                          |
+| --------- | --------- | ---------------------------------------------- |
+| SBUS      | SBUS (R2) | SBUS/F.port (serialrx_inverted=OFF by default) |
+| USART2_TX | T2        |                                                |
+| USART2_RX | R2        |                                                |
+| 4V5       | 4V5       |                                                |
+| GND       | G         |                                                |
+| 3V3       | 3V3       |                                                |
+| RSSI      | RS        | Analog Channel for RSSI                        |
 
 ### Power
 
-| Name            | Label | Count | Notes |
-| --------------- | ----- | ----- | ----- |
-| 3.3V            | 3V3   | 2x    |       |
-| 4.5V            | 4V5   | 1x    |       |
-| 5V              | 5V    | 3x    |       |
-| 10V             | 10V   | 1x    |       |
-| Battery Voltage | VBAT  | 1x    |       |
+| Name            | Label | Count | Notes      |
+| --------------- | ----- | ----- | ---------- |
+| 3.3V            | 3V3   | 1x    | 500mA max. |
+| 4.5V            | 4V5   | 2x    | 2.5A max.  |
+| 5V              | 5V    | 3x    | 2.5A max.  |
+| 10V             | 10V   | 1x    | 3A max.    |
+| Battery Voltage | VBAT  | 2x    | 2-6S input |
 
 ### ESC Signal
 
@@ -96,18 +108,18 @@ import TabItem from '@theme/TabItem'
 
 ### Analog Video
 
-| Name           | Label | Notes |
-| -------------- | ----- | ----- |
-| Video In       | CAM   |       |
-| Camera Control | CC    |       |
-| Video Out      | VTX   |       |
+| Name           | Label | Notes          |
+| -------------- | ----- | -------------- |
+| Video In       | CAM   | Camere Input   |
+| Camera Control | CC    | Camera Control |
+| Video Out      | VTX   | OSD output     |
 
 ### Buzzer
 
-| Name     | Label | Notes                   |
-| -------- | ----- | ----------------------- |
-| Buzzer + | BZ+   | Connected 5V in circuit |
-| Buzzer - | BZ-   |                         |
+| Name     | Label | Notes |
+| -------- | ----- | ----- |
+| Buzzer + | BZ+   |       |
+| Buzzer - | BZ-   |       |
 
 ### WS2882 LED Output
 
@@ -137,14 +149,27 @@ import TabItem from '@theme/TabItem'
 
 | Pin | Name            | Label |
 | --- | --------------- | ----- |
-| 1   | Ground          | GND   |
-| 2   | Battery Voltage | VBAT  |
+| 1   | Battery Voltage | VBAT  |
+| 2   | Ground          | GND   |
 | 3   | Current         | CURR  |
-| 4   | Telemetry       | RX2   |
+| 4   | Telemetry       | T     |
 | 5   | Signal 1        | M1    |
 | 6   | Signal 2        | M2    |
 | 7   | Signal 3        | M3    |
 | 8   | Signal 4        | M4    |
+
+### ESC 5-8 (JST-SH 8 pins)
+
+| Pin | Name          | Label |
+| --- | ------------- | ----- |
+| 1   | Not Connected |       |
+| 2   | Ground        | GND   |
+| 3   | Not Connected |       |
+| 4   | Telemetry     | T     |
+| 5   | Signal 1      | M1    |
+| 6   | Signal 2      | M2    |
+| 7   | Signal 3      | M3    |
+| 8   | Signal 4      | M4    |
 
 ### Digital VTX (JST-SH 6 pins)
 
@@ -159,6 +184,9 @@ import TabItem from '@theme/TabItem'
 
 </TabItem>
 <TabItem value="wiring" label="Wiring Diagrams">
+
+![Layout](./ORBITF405-images/ORBITF405_Layout.jpg)
+
 </TabItem>
 
 <TabItem value="photos" label="Photos"></TabItem>
@@ -169,9 +197,9 @@ import TabItem from '@theme/TabItem'
 
 **SBUS Inverter**
 
-The SBUS pad is connected to USART2_RX (R2) by an inverter circuit. This inverter circuit can be controlled with CLI commands via Betaflight. If you are going to use it as SBUS receiver please make sure that serialrx_inverted is ON. You can run the following command to turn it ON on the CLI.
+The SBUS pad is connected to USART2_RX (R2) by an inverter circuit. This inverter circuit can be controlled with CLI commands via Betaflight. If you are going to use R2 as SBUS receiver, please make sure that serialrx_inverted has set as OFF. You can run the following command to turn it ON on or OFF the CLI.
 
-> set serialrx_inverted=ON
+> set serialrx_inverted=OFF
 
 > save
 
