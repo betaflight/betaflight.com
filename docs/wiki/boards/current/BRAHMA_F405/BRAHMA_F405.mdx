@@ -1,5 +1,20 @@
+---
+sidebar_custom_props:
+  specs:
+    target: BRAHMA_F405
+    mcu: STM32F405
+    imu: BMI270
+    osd: AT7456E (SPI 1)
+    barometer: DPS310 (I2C)
+    flash: W25Q256JVEIQ (32MB)
+    dimensions: 37.5x37.5x5mm
+    mounting: M4 30.5x30.5mm
+    weight: 9g
+---
+
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
+import SpecGrid from '@site/src/components/SpecGrid'
 
 # Darkmatter Brahma F4 MK II
 
@@ -7,25 +22,20 @@ import TabItem from '@theme/TabItem'
 
 <TabItem value="specifications" label="Specifications" default>
 
-![Darkmatter Brahma F4 MK II](./BRAHMA_F405-images/BRAHMA_F405.jpg)
+<SpecGrid>
 
-## Main Features
+![Top](./BRAHMA_F405-images/BRAHMA_F405-top.jpg)
 
-- Target: `BRAHMA_F405`
-- MCU: STM32F405
-- IMU: BMI270
-- Analog OSD: AT7456E (SPI 1)
-- Barometer: DPS310 (I2C)
-- Flash Storage: W25Q256JVEIQ (32MB)
+</SpecGrid>
+
+## Other Features
+
 - SD Card Slot: No
 - Onboard Receiver: No
 - Hardware Inverter: Yes
 - Bluetooth: No
 - WiFi: No
 - Onboard RGB LED: No
-- Mounting Holes: M4 30.5x30.5mm
-- Dimensions: 37.5x37.5x5mm
-- Weight: 9g
 
 ## Input/Output
 

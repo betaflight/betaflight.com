@@ -294,6 +294,31 @@ For details of the use of these LEDs, please see the [FC LEDs](/docs/development
 
 ## 3.2 Resource Selection Considerations
 
+:::warning
+
+Betaflight does not support sharing devices on the SPI bus which is blocking excution and results in bad performance. Mainly sharing MAX7456 and blackbox generates support issues.
+
+:::
+
+BITBANG is the new default on non-F4 and FC designers should use as few GPIO PORTS as possible to avoid needing a DMA stream per GPIO port. i.e.
+
+- 8 motors on 1 GPIO port is optimal.
+- 8 motors spread across 2 GPIO ports is OK,
+- 8 motors spread across more than 2 GPIO ports is BAD.
+
+Similarly, it is optimal to use two 4-channel timers for 8 motors for when BITBANG is disabled.
+
+There is also a choice between using advanced timers or not, TIM1/TIM8 are advanced and get used by DSHOT BITBANG.
+
+It may be optimal to use TIM1 + TIM8 for all motors so that the other timers are always free.
+Or it may be optimal to use timers other than TIM1/TIM8 for motors so that TIM1/TIM8 are free for other other uses when DSHOT BITBANG is NOT used.
+
+:::note
+
+TIM1 has inter-peripheral connectivity that other timers do not have.
+
+:::
+
 ### 3.2.1 Assigning Resource by Priority
 
 Appropriate resource allocation ensures maximum flexibility in the selection of the modes available to users (for example with DSHOT) and also minimizes conflicts in timer and DMA stream allocation.
@@ -356,10 +381,12 @@ https://www.arterychip.com/download/DS/DS_AT32F435_437_V2.02-EN.pdf
 | :-------- | :----------------------------------------------------- |
 | STM32F411 | (PD05, PD06)                                           |
 | STM32F405 | (PA09, PA10), (PB10, PB11)                             |
-| STM32G473 | (PA09, PA10), (PA02, PA03), (PC10, PC11)               |
-| STM32H725 | (PA09, PA10), (PA02, PA03), (PB10, PB11), (PD08, PD09) |
-| STM32H735 | (PA09, PA10), (PA02, PA03), (PB10, PB11), (PD08, PD09) |
-| STM32H743 | (PA09, PA10), (PB14, PB15), (PA02, PA03), (PB10, PB11) |
+| STM32F7xx | (PA09, PA10), (PB10, PB11), (PC10, PC11)               |
+| STM32G47x | (PA09, PA10), (PA02, PA03), (PC10, PC11)               |
+| STM32H56x | (PA09, PA10), (PA02, PA03), (PD08, PD09)               |
+| STM32H72x | (PA09, PA10), (PA02, PA03), (PB10, PB11), (PD08, PD09) |
+| STM32H73x | (PA09, PA10), (PA02, PA03), (PB10, PB11), (PD08, PD09) |
+| STM32H74x | (PA09, PA10), (PB14, PB15), (PA02, PA03), (PB10, PB11) |
 | AT32F435  | (PA09, PA10), (PA02, PA03), (PB10, PB11)               |
 
 ## 3.3 Markings, Version Numbers, and Documentation
@@ -489,7 +516,8 @@ Define correct flash driver(s) only if physical present on the board.
 
 ```
 #define USE_FLASH_M25P16           // 16MB Micron M25P16 and others (https://github.com/betaflight/betaflight/blob/master/src/main/drivers/flash_m25p16.c#L68)
-#define USE_FLASH_W25N01G          // 1Gb NAND flash support - PLEASE AVOID USING this chip (slow, OSD issues)
+#define USE_FLASH_PY25Q128HA       // 16MB PUYA semi 25Q128
+#define USE_FLASH_W25N01G          // 1Gb NAND flash support
 #define USE_FLASH_W25M             // 16, 32, 64 or 128MB Winbond stacked die support
 #define USE_FLASH_W25M512          // 512Kb (256Kb x 2 stacked) NOR flash support
 #define USE_FLASH_W25M02G          // 2Gb (1Gb x 2 stacked) NAND flash support
