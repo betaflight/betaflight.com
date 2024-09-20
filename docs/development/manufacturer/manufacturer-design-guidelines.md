@@ -379,8 +379,8 @@ https://www.arterychip.com/download/DS/DS_AT32F435_437_V2.02-EN.pdf
 
 | MCU       | Pins                                                   |
 | :-------- | :----------------------------------------------------- |
-| STM32F411 | (PD05, PD06)                                           |
-| STM32F405 | (PA09, PA10), (PB10, PB11)                             |
+| STM32F411 | (PA09, PA10), (PD05, PD06)                             |
+| STM32F405 | (PA09, PA10), (PB10, PB11), (PC10, PC11)               |
 | STM32F7xx | (PA09, PA10), (PB10, PB11), (PC10, PC11)               |
 | STM32G47x | (PA09, PA10), (PA02, PA03), (PC10, PC11)               |
 | STM32H56x | (PA09, PA10), (PA02, PA03), (PD08, PD09)               |
