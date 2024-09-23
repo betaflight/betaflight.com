@@ -24,6 +24,7 @@ const githubUsers = [
   'limonspb',
   'McGiverGim',
   'nerdCopter',
+  'ot0tot',
   'SteveCEvans',
   'sugaarK',
   'SupaflyFPV',
