@@ -47,6 +47,7 @@ ENV{DEVTYPE}!="usb_device", GOTO="mm_usb_device_blacklist_end"
 
 ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", ENV{ID_MM_DEVICE_IGNORE}="1"
 ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", ENV{ID_MM_DEVICE_IGNORE}="1"
+ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", ENV{ID_MM_DEVICE_IGNORE}="1"
 
 LABEL="mm_usb_device_blacklist_end"
 
@@ -54,4 +55,6 @@ LABEL="mm_usb_device_blacklist_end"
 SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", TAG+="uaccess"
 #AT32 DFU Access
 SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", TAG+="uaccess"
+#APM32 DFU Access
+SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", TAG+="uaccess"
 ```
