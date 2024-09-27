@@ -141,7 +141,7 @@ If the preset options don't work, you can try changing the channel map manually.
 
 ### Drone Won't Arm
 
-- You need to have an `ARM` mode set up, which can be done in the [Modes tab](/docs/wiki/configurator/modes-tab) You can also arm using a stick command, but that is pretty dangerous and not recommended
+- You need to have an `ARM` mode set up, which can be done in the [Modes tab](/docs/wiki/configurator/auxiliary-tab) You can also arm using a stick command, but that is pretty dangerous and not recommended
 
 - There is a lot of checks that need to pass before the drone can arm. If any of them fail, the drone fail to do so. You can see the different arm prevention flags in the OSD, or in the [CLI tab](/docs/wiki/configurator/cli-tab) after sending a `status` command
 

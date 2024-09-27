@@ -40,7 +40,7 @@ If the RPM Filter is enabled but one or more of the ESC's are not supplying vali
 
 ## ESC Configuration
 
-Your ESC must support DShot, and be running [a suitable firmware](/docs/wiki/getting-started/hardware/esc) to support RPM filtering. At the minimum RPM telemetry is required, so the ESC must support bidirectional DShot. As EDT extends bidirectional DShot any ESC supporting EDT also support RPM telemetry.
+Your ESC must support DShot, and be running [a suitable firmware](/docs/wiki/getting-started/hardware/esc-firmware) to support RPM filtering. At the minimum RPM telemetry is required, so the ESC must support bidirectional DShot. As EDT extends bidirectional DShot any ESC supporting EDT also support RPM telemetry.
 
 ## Betaflight Configuration
 

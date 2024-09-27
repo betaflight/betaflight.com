@@ -245,7 +245,7 @@ do not match up with the motor numbers, you will have to remap them
 ## Mode Settings
 
 Modes serve as a way to change the behavior or action of your quadcopter in flight by using AUX channels as inputs.
-In the [Modes Tab](/docs/wiki/configurator/modes-tab), you will see a list of all the modes that are available.
+In the [Modes Tab](/docs/wiki/configurator/auxiliary-tab), you will see a list of all the modes that are available.
 
 Let's start with the only one you theoretically need:
 ![ARM Mode](/img/betaflight_configurator_modes_arm.png)
