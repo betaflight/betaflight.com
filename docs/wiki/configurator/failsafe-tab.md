@@ -5,7 +5,7 @@ sidebar_position: 5
 # Failsafe Tab
 
 Failsafe is the action your craft takes when it loses connection to the transmitter.
-This tab allows you to configure what your craft does when it loses connection to the transmitter.
+This tab allows you to configure what your craft does in an event of a failsafe.
 
 :::danger
 It is very important to set up your failsafe correctly to prevent your craft from flying away or crashing when you lose connection.
@@ -21,11 +21,11 @@ There are two stages of failsafe:
   there is no signal from the receiver at all, the channel fallback settings are applied to all channels and
   a short amount of time is provided to allow for recovery.
 
-- Stage 2 is entered when the error condition takes longer than the configured guard time while the craft is armed,
+- **Stage 2** - entered when the error condition takes longer than the configured guard time while the craft is armed,
   all channels will remain at the applied channel fallback setting unless overruled by the chosen procedure.
 
 :::note
-Prior to entering stage 1, channel fallback settings are also applied to individual AUX channels that have invalid pulses.
+Prior to entering **stage 1**, channel fallback settings are also applied to individual AUX channels that have invalid pulses.
 :::
 
 ## Valid Pulse Range Settings
