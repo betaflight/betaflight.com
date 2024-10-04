@@ -4,7 +4,7 @@ sidebar_position: 15
 
 # Video Transmitter Tab
 
-Set up your video transmitter using this tab. It allows you to set the power, band, and channels for your VTX.
+Configure the video transmitter (VTX) using this tab. It allows setting of the power, band, channels, etc.
 
 :::note
 When using a DJI or Walksnail video transmitters, this tab can be ignored.
