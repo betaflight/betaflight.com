@@ -21,8 +21,8 @@ There are two stages of failsafe:
   there is no signal from the receiver for 150ms, the channel fallback settings are applied. If valid data is received,
   Stage 1 failsafe will terminate automatically. Stage 1 duration is configured using the `failsafe_delay` duration, and defaults to 1.5s.
 
-- **Stage 2** - entered when the error condition takes longer than the configured Stage 1 duration while the craft is armed,
-  all channels will remain at their fallback setting.
+- **Stage 2** - entered when radio link is lost for more than the configured Stage 1 duration, and the quad is armed.
+  The Stage 2 Failsafe Mode will be activated. Channels that are not controlled by the failsafe mode remain at their fallback setting.
 
 :::note
 Prior to entering **stage 1**, channel fallback settings are also applied to individual AUX channels that have invalid pulses.
