@@ -266,7 +266,7 @@ The main benefit of doing this is that Failsafe itself can be configured to incl
 
 - **Ensure you have a Home Lock before takeoff, and that the Home Arrow points to Home when flying away!**. After arming, make sure the OSD shows the home icon, distance to home; after takeoff, ensure that the home arrow points to home.
 
-- Display the `osd_gps_sats_show_hdop` value in the OSD; if this gets close to, or below, 1.0, it's a good indicator of a solid, accurate fix (thanks @zzyzx).
+- Display the `osd_gps_sats_show_pdop` value in the OSD; if this gets close to, or below, 1.0, it's a good indicator of a solid, accurate fix (thanks @zzyzx).
 
 - Once you have a decent set of sats, and before arming, **tilt the quad to 45 degrees in all directions, and confirm that you don't lose a lot of your sats**. Sometimes if the signals are marginal, eg with micro or mini sized GPS modules, the quad will lose satellites when it pitches forward to fly home, and this can lead to a very erratic or failed rescue.
 
