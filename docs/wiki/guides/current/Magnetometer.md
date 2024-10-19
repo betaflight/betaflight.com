@@ -168,7 +168,7 @@ No matter how the magnetometer is mounted, is absolutely essential to confirm pr
 
 :::tip
 
-When the Mag orientation (alignment) is correct, the 'quad icon' in the Home screen of Configurator should move smoothly and appropriately as the quad is rotated, pitched and rolled. Note that when the quad's attitude is changed very quickly, the heading will initially react quickly, using Gyro and Acc data, and then over the next half second will be adjusted according to the Mag data. If the orientation of the Mag data axes is wrong, or the calibration is off, then the 'quad icon' will turn correctly at first, but then quickly shift to an incorrect heading. That's a red flag; you'll need to fix the Orientation, and re-calibrate.
+When the Mag orientation (alignment) is correct, the 'quad icon' in the Home screen of Configurator should move smoothly and appropriately as the quad is rotated, pitched and rolled. Note that when the quad's attitude is changed very quickly, the heading will initially react quickly, using Gyro and Acc data, and then over the next half second will be adjusted according to the Mag data. If the orientation of the Mag data axes is wrong, or the calibration is off, then the 'quad icon' will turn correctly at first, but then quickly shift to an incorrect heading. That's a red flag; you'll need to fix the orientation, and re-calibrate.
 
 :::
 
