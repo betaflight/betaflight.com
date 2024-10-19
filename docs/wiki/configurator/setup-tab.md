@@ -76,8 +76,8 @@ Shows some basic data from the flight controller. This includes:
 Shows the GPS data if the flight controller has a GPS module connected and set up. This includes:
 
 - **3D Fix** - Shows if the GPS has a 3D fix or not, a fix is needed for proper GPS functionality
-- **Sats** - Shows the current ammoount of satellites the GPS has a lock on. The more the better, usually 6 or more is needed for a good fix
-- **Lattitude/Longittude** - Shows the current lat/long coordinates of the drone
+- **Sats** - Shows the current amount of satellites the GPS has a lock on. The more the better, usually 6 or more is needed for a good fix
+- **Latitude/Longitude** - Shows the current lat/long coordinates of the drone
 
 ### Instruments
 

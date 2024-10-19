@@ -46,7 +46,7 @@ Consult your ESC manual for how to enable bi-directional mode on your ESC.
 
 - **BL Heli ESC:**
 
-(norm/reverse/birectional slider in BLHeli GUI) and set max pwm in the ESC GUI to the maximum your transmitter outputs on the throttle channel (normally 2000us) and min pwm to the minimum (normally 1000us) and the midpoint to halfway between (normally 1500us). The ESC will not ouput to the motors if its input is at the midpoint +/- a small deadband.
+(norm/reverse/birectional slider in BLHeli GUI) and set max pwm in the ESC GUI to the maximum your transmitter outputs on the throttle channel (normally 2000us) and min pwm to the minimum (normally 1000us) and the midpoint to halfway between (normally 1500us). The ESC will not output to the motors if its input is at the midpoint +/- a small deadband.
 
 - **Kiss 24A ESC:**
 
@@ -114,7 +114,7 @@ Some flight testing with Kiss 24A ESCs using Build #861 on a CC3D Revo F4 has be
 30-04-2017:
 Additional information for BLHeli*S is that there's currently an issue where the motors \_may* spin a different way using DShot to using oneshot/pwm and therefore motor direction MUST be checked when switching to DShot with 3D, you may need to set some motors to Bi-Directional and others to Bi-Directional reverse.
 
-DShot has an inverted lower section when compared to standard 3D. This means that full negative thrust in DShot3D is 1499 and minumum negative thrust is 1000 (as opposed to standard/oneshot 3D where full negative thrust would be 1000 and minimum would be 1499). Positive thrust has it's minimum at 1501 and maximum at 2000 _Positive values are a guess, needs confirmation_ You will notice this in the configurator.
+DShot has an inverted lower section when compared to standard 3D. This means that full negative thrust in DShot3D is 1499 and minimum negative thrust is 1000 (as opposed to standard/oneshot 3D where full negative thrust would be 1000 and minimum would be 1499). Positive thrust has it's minimum at 1501 and maximum at 2000 _Positive values are a guess, needs confirmation_ You will notice this in the configurator.
 
 Idle Percent is used for idle speed in BOTH directions.
 

@@ -29,7 +29,7 @@ For example, in the above log trace a higher cutoff value allows for better setp
 
 ## Known Drawbacks
 
-Bacause I is 'locked' to the pre-existing value before entering a fast maneuver, when it comes back on the old I offset takes a little while to resolve.
+Because I is 'locked' to the pre-existing value before entering a fast maneuver, when it comes back on the old I offset takes a little while to resolve.
 
 ![](https://user-images.githubusercontent.com/2025999/75109721-61eeb000-5626-11ea-81ef-75bee6628d59.jpg)
 

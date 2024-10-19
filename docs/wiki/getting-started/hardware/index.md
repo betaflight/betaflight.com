@@ -38,7 +38,7 @@ In order of power, from least to most:
 
 ### Voltage Regulator
 
-The voltage regulator is responsible for taking the input voltage and stepping it up/down to the voltage that the MCU and other components need. The MCU and oboard sensors usually run at 3.3V, and external peripherals like receivers, cameras, and some lower-power VTXs run at 5V. For running higher power VTXs, or basically most of the Digital options out there, you may see a 9/10/12V regulator (though 12V is recommended nowadays).
+The voltage regulator is responsible for taking the input voltage and stepping it up/down to the voltage that the MCU and other components need. The MCU and onboard sensors usually run at 3.3V, and external peripherals like receivers, cameras, and some lower-power VTXs run at 5V. For running higher power VTXs, or basically most of the Digital options out there, you may see a 9/10/12V regulator (though 12V is recommended nowadays).
 
 :::caution
 
@@ -48,7 +48,7 @@ If one or more of the regulators are overloaded, they may cause the rest of the 
 
 ### OSD
 
-To get OSD on analog video, the FC takes in the raw video signal directly from the camera, and feeds it through the MAX7456 chip (also the AT7456E - a drop-in replacement) which is used to overlay basic sprites defined in the font file ontop of the video. The modified analog video is then sent out to the VTX to be transmitted.
+To get OSD on analog video, the FC takes in the raw video signal directly from the camera, and feeds it through the MAX7456 chip (also the AT7456E - a drop-in replacement) which is used to overlay basic sprites defined in the font file on top of the video. The modified analog video is then sent out to the VTX to be transmitted.
 
 :::note
 
@@ -123,6 +123,6 @@ Used to get the position of the FC, and the speed it's moving at, utilizing the 
 
 :::danger
 
-Most GPS units on the market are based on the M8 chipset from uBlox. However, there are newer modules that use the M10 chipset. These work much better than M8... with a slight catch. As of the 4.4.1 release, The M10 is not supported for autoconfiguration in Betaflight yet, so you'll have to configure it manually in the u-center software. If not configured properly, it will lead to unreliable performance.
+Most GPS units on the market are based on the M8 chipset from uBlox. However, there are newer modules that use the M10 chipset. These work much better than M8... with a slight catch. As of the 4.4.1 release, The M10 is not supported for auto-configuration in Betaflight yet, so you'll have to configure it manually in the u-center software. If not configured properly, it will lead to unreliable performance.
 
 :::

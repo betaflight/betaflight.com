@@ -256,7 +256,7 @@ Thrust Linear helps to boost the PID gains low throttle helping to offset reduce
 
 ## RC smoothing
 
-Higher than default RC smoothing helps reducing stick input gliches caused by noise in the RC link.
+Higher than default RC smoothing helps reducing stick input glitches caused by noise in the RC link.
 
 ### Suggested setting:
 

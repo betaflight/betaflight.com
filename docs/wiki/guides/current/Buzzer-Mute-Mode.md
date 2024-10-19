@@ -8,5 +8,5 @@ Eg.:
 
 ```
    AUX5 < 1500 -> 'Beeper mute' is active, 'Beeper' is inactive.
-   AUX5 > 1500 -> 'Beepr mute' is inactive, 'Beeper' is active.
+   AUX5 > 1500 -> 'Beeper mute' is inactive, 'Beeper' is active.
 ```

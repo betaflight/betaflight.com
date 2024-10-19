@@ -46,7 +46,7 @@ Here is the set of telemetry fields send via the Crossfire protocol.
 
 ### Smartport protocol 
 
-Here is the set of telemtry fields sent via Smartport can be seen here : https://github.com/betaflight/betaflight/blob/daa6df80248c9a806b7d77c402d415a15f4e2667/src/main/telemetry/smartport.c#L89
+Here is the set of telemetry fields sent via Smartport can be seen here : https://github.com/betaflight/betaflight/blob/daa6df80248c9a806b7d77c402d415a15f4e2667/src/main/telemetry/smartport.c#L89
 
 ### Other protocols
 All telemetry protocols can be inspected here : https://github.com/betaflight/betaflight/tree/master/src/main/telemetry

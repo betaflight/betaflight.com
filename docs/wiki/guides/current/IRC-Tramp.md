@@ -63,7 +63,7 @@ https://github.com/betaflight/betaflight-tx-lua-scripts/releases
 
 ## Modify VTX Settings (TBS Unify / Tramp HV / RTC6705 ) using Spektrum VTX Setup Menu
 
-Any VTX that is configurable from CMS and CLI can also be controlled using a Spektrum TX with VTX Setup menues, introduced in betaflight 3.3.0.
+Any VTX that is configurable from CMS and CLI can also be controlled using a Spektrum TX with VTX Setup menus, introduced in betaflight 3.3.0.
 
 ![Spektrum VTX Setup menu](/img/Spektrum_VTX_Control_menu.jpg)
 
