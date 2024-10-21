@@ -11,7 +11,7 @@ Flight controller based failsafe is where the flight controller attempts to dete
 
 It is possible to use both types at the same time, which may be desirable. Flight controller failsafe can even help if your receiver signal wires come loose, get damaged or your receiver malfunctions in a way the receiver itself cannot detect.
 
-Alternatively you may configure a transmitter switch to activate failsafe mode. This is useful for fieldtesting the failsafe system and as a **_`PANIC`_** switch when you lose orientation.
+Alternatively you may configure a transmitter switch to activate failsafe mode. This is useful for field testing the failsafe system and as a **_`PANIC`_** switch when you lose orientation.
 
 ## Flight controller failsafe system
 

@@ -98,7 +98,7 @@ Read the [Installing BetaFlight ](Installing-Betaflight) support page.
 
 ## What's the history of Betaflight and it's relationship to Cleanflight ?
 
-A little history. This all started with OpenSource MultiWii code based on Arduino 8-bit boards. When the 32-bit STM32 processors become available the MutliWii code was ported to the STM32 and was called BaseFlight. Due to politics others forked the BaseFlight code to CleanFlight. More recently Boris decided that he could possibly make improvements on the way the PID control loop works and forked an Experimental version as BetaFlight.
+A little history. This all started with OpenSource MultiWii code based on Arduino 8-bit boards. When the 32-bit STM32 processors become available the MultiWii code was ported to the STM32 and was called BaseFlight. Due to politics others forked the BaseFlight code to CleanFlight. More recently Boris decided that he could possibly make improvements on the way the PID control loop works and forked an Experimental version as BetaFlight.
 Therefore documentation on ßF and CF tends to only show what is new or changed and the documentation of previous Firmware must be read.
 
 ## What is the difference between Min_Check Min_command and Min_throttle and stick inputs ?
@@ -128,7 +128,7 @@ Code from MW2.3 config.h file
 
 DEADBAND is only removing stick center value (all channels except throttle) to eliminate stick center jitter and non-returning to exactly 1500. no more, no less. Do not use this term for anything else.
 
-Reading the MutliWii WIKI and even the MultiWii code config.h file will help to understand what these values are. A link is in the ßF Wiki, FAQ: getting started.
+Reading the MultiWii WIKI and even the MultiWii code config.h file will help to understand what these values are. A link is in the ßF Wiki, FAQ: getting started.
 
 In CF and ßF the expected stick end point values are set with (I don't know in what versions these came about but were not in the original port of MW to BF code):
 Code:
@@ -145,8 +145,8 @@ The FC firmware uses the mid_rc and these to calculate a stick value to hand off
 
 If a channel does not get to these end points then the FC will simply not see full movement, either on one side or both. This is one reason I and others and the MW Wiki and CF docs state to adjust the radios stick end points to these defaults. The other is ensuring the stick exceed the min_check, max_check thresholds so stick commands work.
 
-Another explanation be joshua bardwell:
-Max and min channel values are determined by the rxrange command. They default to 1000 and 2000. Max_check and min_check are used to decide if you are entering a stick command. Here is the kicker--how do you disarm the copter if yaw is active? You would have to go full deflection and the copter would yaw like crazy. In order to address this, when the throttle is below min_check, and when stick arming is used (vs. switch arming), the yaw input is disabled. If you are using motor_stop, the motors also stop running when the throttle is below min_check. Sometimes, this behavior is referred to as a deadzone at the bottom of the throttle stick travel. Many people refer to this as Deadband but causes much confusion with stick center DEADBAND CLI settings, therefore DEADZONE is prefered
+Another explanation from Joshua Bardwell:
+Max and min channel values are determined by the rxrange command. They default to 1000 and 2000. Max_check and min_check are used to decide if you are entering a stick command. Here is the kicker--how do you disarm the copter if yaw is active? You would have to go full deflection and the copter would yaw like crazy. In order to address this, when the throttle is below min_check, and when stick arming is used (vs. switch arming), the yaw input is disabled. If you are using motor_stop, the motors also stop running when the throttle is below min_check. Sometimes, this behavior is referred to as a deadzone at the bottom of the throttle stick travel. Many people refer to this as Deadband but causes much confusion with stick center DEADBAND CLI settings, therefore DEADZONE is preferred
 
 You can see that there is no need for a corresponding disabling of inputs at the top of the throttle range, because you never input any stick commands that require the top of the range when you are flying. The only stick command that is input when you are flying is disarm, and that is low yaw and low throttle. So there is a dead space at the bottom of the throttle range (below min_check) but no dead space at the top of any channel range.
 
@@ -239,7 +239,7 @@ Some users were mailing Boris about the fact their radios couldn't be configured
 
 After some readings in other open source projects and some of the older discussions, he realized that the key for this was in the mixer logic as someone already had a proof of concept code to improve it, which is pretty much scaling the PID's to our throttle level and stopping the stabilization when one motor reaches min throttle. Now Boris understood why folks always preferred this Idle up switch as it was automatically gaining a little bit more stabilization. But this is just a workaround where you loose some throttle below! The current mixer logic sounds reasonable as the early developers were always considering the low throttle values as a NON flying situation. Guess what? In 2015 we fly a lot with 0 or low throttle and especially in the mini quad scene! This has to be changed! The real answer lies in smarter mixer approach where the calculated PID output would always consider the maximum available motor output range to be able to get the desired correction.
 
-With AIR mode the copter will always think it's in the "AIR" and will always try to correct as fast as possible and never become weak. We of course need this stabilization once in AIR! This has it's consequences for our ground situations which you have to be aware of. With Air mode it would mean that the motors could be spooling up after arming, but there is some protection built for that. When you arm and keep throttle stick low (below min check) it will know it is on the ground and the motors will not spool up. Once you move your throttle to higher position for more than 1 second and pitch and roll are not centered anymore it will fully activate the stabilization with 0 throttle! So you have to be aware that if you would land very quickly after first take off that the motors now are able to spool up as the copter thinks its flying and has max ability to correct. Dont worry you can disarm now or you can keep throttle low with roll + pitch stick centered and it will still spool down or at least it will not spool up anymore.
+With AIR mode the copter will always think it's in the "AIR" and will always try to correct as fast as possible and never become weak. We of course need this stabilization once in AIR! This has it's consequences for our ground situations which you have to be aware of. With Air mode it would mean that the motors could be spooling up after arming, but there is some protection built for that. When you arm and keep throttle stick low (below min check) it will know it is on the ground and the motors will not spool up. Once you move your throttle to higher position for more than 1 second and pitch and roll are not centered anymore it will fully activate the stabilization with 0 throttle! So you have to be aware that if you would land very quickly after first take off that the motors now are able to spool up as the copter thinks its flying and has max ability to correct. Don't worry you can disarm now or you can keep throttle low with roll + pitch stick centered and it will still spool down or at least it will not spool up anymore.
 
 ### A quicky explanation from ctzsnooze:
 
@@ -419,7 +419,7 @@ Here is a list of FCs compiled around the end of January 2016. The opinions rega
 | **[LUX](http://www.rcgroups.com/forums/showthread.php?t=2554204)**                                                      | F3 MPU6500-SPI   | Y                                                  | VCP USB, UARTs 1,2,3                  | Looks good. Doesn't have a dataflash chip. Uses the STM's Virtual Com Port which requires special procedures. Uses MPU6500 which is not ideal.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **[KISS](http://www.rcgroups.com/forums/showthread.php?t=2555204)**                                                     | F3 MPU6050-I2C   | Y                                                  | VCP USB                               | Doesn't run Betaflight (yet) LOL.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | **[SPRacingF3Mini board](http://www.rcgroups.com/forums/showthread.php?t=2592215)**                                     | F3               | Y                                                  | VCP USB                               | Now supported in 2.4.0-RC6. With SD Card Socket, Race Transponder and 5V BEC. Looks good for Racing copters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **[MotoLab Tempest](http://www.rcgroups.com/forums/showthread.php?t=2715556)**                                          | F3 MPU600-SPI    | Y                                                  | VCP USB, UARTs 1,2,3                  | Built in 5V switching regulator. Bi-directional ESC pins for HLBeli pass-through. Plus a PDB                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **[MotoLab Tempest](http://www.rcgroups.com/forums/showthread.php?t=2715556)**                                          | F3 MPU600-SPI    | Y                                                  | VCP USB, UARTs 1,2,3                  | Built in 5V switching regulator. Bi-directional ESC pins for BLHeli pass-through. Plus a PDB                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 ### Additional Information:
 
@@ -469,12 +469,12 @@ Code:
 	PTerm = (RateError * P * TPA) / 128;
 ```
 
-The difference above is that P gain number on rewrite is higher, but is being divided by 128 in the PTerm calculation, while luxfloat uses directly the number you entered from cli. Note that RateError number is using degrees/sec in luxfloat and in rewrite its abstraction from the original gyro output, but both can produce same PTerm when right P is selected.
+The difference above is that P gain number on rewrite is higher, but is being divided by 128 in the PTerm calculation, while Luxfloat uses directly the number you entered from cli. Note that RateError number is using degrees/sec in Luxfloat and in rewrite its abstraction from the original gyro output, but both can produce same PTerm when right P is selected.
 
 So if you can find P component what can produce the same PTerm result you will get same behaviour.
 
 Practical translation:
-1.0 in luxfloat means exactly 4.0 in rewrite just for Pterm.
+1.0 in Luxfloat means exactly 4.0 in rewrite just for Pterm.
 
 This same translation formula can be done on all numbers like rates, Dterm and Iterm.
 
@@ -484,21 +484,21 @@ The 'P' and 'D' Terms in Luxfloat are now shown as 4 times higher to allow bette
 
 Additional comment from Boris on MW-rewrite verse Luxfloat:
 There should not be any difference between both in terms of PID's and rates. Well there is one slight difference actually, which I forgot to mention and even I forgot about it.
-rewrite still has a bit higher D range. To be exact rewrite has 2x higher delta for Dterm due to averaging summing instead of average dividing the sum. I would rather like to remove this, but dont want to cause people having to retune their rewrite. But even though with this Dterm rewrite should in theory handle bounces better....right? But that isnt the case.
+rewrite still has a bit higher D range. To be exact rewrite has 2x higher delta for Dterm due to averaging summing instead of average dividing the sum. I would rather like to remove this, but don't want to cause people having to retune their rewrite. But even though with this Dterm rewrite should in theory handle bounces better....right? But that isn't the case.
 
-I know why. Rewrite has a Dterm deadband integrated in the integer logic, which helps keeping some noise away. But the lower numbers can cause some aliasing in dterm and some lower frequencies which aren't there may be thrown into pid controller.
-There will be some more data about this soon to confirm, but luxfloat may now become a winner certainly now where it became better tunable.
+I know why. Rewrite has a Dterm deadband integrated in the integer logic, which helps keeping some noise away. But the lower numbers can cause some aliasing in Dterm and some lower frequencies which aren't there may be thrown into pid controller.
+There will be some more data about this soon to confirm, but Luxfloat may now become a winner certainly now where it became better tunable.
 
 New in ßF 2.8 and above: the PIDC names LUXFLOAT & MWREWRITE are no longer used since Boris has rewritten the code and they not longer use the same algorithm as before. The new names are FLOAT & INTEGER.
 
 ## What PIDs do and how do they do it ?
 
-Here a good basic PID explaination by Bruce for those who want to learn about it.
+Here a good basic PID explanation by Bruce for those who want to learn about it.
 https://www.youtube.com/watch?v=0vqWyramGy8
 
 ## Is there a good resource for learning how to tune using Black Box ?
 
-a. "I would check out Joshua Bardwells youtube channel. I haven't watched all these videos... I just picked them from his channel.
+a. "I would check out Joshua Bardwell's youtube channel. I haven't watched all these videos... I just picked them from his channel.
 
 Quote:
 http://www.youtube.com/watch?v=FH_m5rI6MKY

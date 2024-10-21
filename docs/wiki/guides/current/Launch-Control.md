@@ -28,7 +28,7 @@ For Launch Control to be enabled the mode must be configured. The state of the m
 **`launch_control_mode`**: Allows `NORMAL` (default), `PITCHONLY`, and `FULL`.
 
 - `NORMAL`: designed for launching off the ground balanced on a bottom-mount battery. Roll and pitch will hold position. Yaw control is available but the PID controller will not attempt to hold yaw position.
-- `PITCHONLY`: for use with race launch stands or possibly off the gound with top-mount batteries. Disables roll and yaw completely. Also the front motors are kept at idle to minimize chances of falling off the stand. Do not use this mode if trying to balance off a battery as the quad will fall forward since the front motors will not react.
+- `PITCHONLY`: for use with race launch stands or possibly off the ground with top-mount batteries. Disables roll and yaw completely. Also the front motors are kept at idle to minimize chances of falling off the stand. Do not use this mode if trying to balance off a battery as the quad will fall forward since the front motors will not react.
 - `FULL`: Like `NORMAL` but adds position holding for yaw as well. Use care with this option as yaw tends to windup if left too long.
 
 **`launch_trigger_allow_reset`**: Allows `OFF` and `ON` (default).

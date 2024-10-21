@@ -137,7 +137,7 @@ SPI configuration details are resolved via software (part of the configuration d
 ### Telemetry Protocol
 
 Select the telemetry protocol you need.
-For CRSF, ELRS, FPORT or GHST protocols, this is included by default to simplify configuraton.
+For CRSF, ELRS, FPORT or GHST protocols, this is included by default to simplify configuration.
 
 ### Other Options
 
@@ -150,7 +150,7 @@ These are custom functions or features that you can add to the firmware.
 | Altitude Hold Mode        | Enable Altitude Hold Mode support. See [#13816](https://github.com/betaflight/betaflight/pull/13816)                                                                                   |
 | Batt. Continue            | See [#11084](https://github.com/betaflight/betaflight/pull/11084)                                                                                                                      |
 | Cam. Control              | Enable Camera Control                                                                                                                                                                  |
-| Dashboard                 | Enable external i2c Oled Display device (to be deprecated)                                                                                                                             |
+| Dashboard                 | Enable external i2c OLED Display device (to be deprecated)                                                                                                                             |
 | EMFAT (AutoRun, Icon)     | Enable FAT emulation and icon for onboard flash or MSC                                                                                                                                 |
 | ESC Serial (SK) Inc. 4way | Enable SimonK and ESC Serial support for flashing via 4way interface                                                                                                                   |
 | Flash Storage             | 4.4 and earlier only. Enables Blackbox Flash Storage support. In 4.5, is auto-included via the FC config file. To manually add Flash to a 4.5 build, enter `FLASH` in `Custom Defines` |
@@ -186,18 +186,18 @@ This field is only available in expert mode, and is intended for development and
 
 It defaults to the latest commit (master), meaning the most recent commit of the selected firmware branch. The dropdown includes some recent commits if you want to go back a bit.
 
-Each GitHub pull request has a uniqe ID. The user can include a specific, yet to be merged, `Pull Request`, over the top of master, by typing the number of the pull request, preceded by the `#` character. For example, to include Pull Request #13605, just enter `#13605` in the Custom Defines field.
+Each GitHub pull request has a unique ID. The user can include a specific, yet to be merged, `Pull Request`, over the top of master, by typing the number of the pull request, preceded by the `#` character. For example, to include Pull Request #13605, just enter `#13605` in the Custom Defines field.
 
 It is also possible to make a build from any previous point in time by entering the sha of the commit.
 
-## Troubeshooting
+## Troubleshooting
 
 :::tip
 
 - Use a good quality data cable, not a power cable.
 - USB hubs or OTG cables are sometimes needed with recent computers and in other cases they can cause issues.
 - Try disconnecting all cables from your PC first, try rebooting, other ports, upgrade system drivers. Remove other USB connections.
-- Try DFU mode (use boot button on FC while plugging in, use <b>Activate Boot Loader / DFU</b> button in setup tab or use <b>bl</b> command in CLI.
+- Try DFU mode (use boot button on FC while plugging in, use <b>Activate Boot Loader / DFU</b> button in setup tab or use <b>bl</b> command in CLI.)
 - Sometimes peripherals on the flight controller such as receivers or GPS devices can hijack port communication, preventing entering DFU mode. These may require de-soldering.
 - Linux needs configuration to allow flashing.
 - MacOS or Windows do not need any drivers.
@@ -207,7 +207,7 @@ It is also possible to make a build from any previous point in time by entering 
 
 :::info
 
-If your board pheriperals are not recognized after flashing, please help us add the required configuration details. Some boards have inadequate file definitions, or the manufacturer has changed something on the board.
+If your board peripherals are not recognized after flashing, please help us add the required configuration details. Some boards have inadequate file definitions, or the manufacturer has changed something on the board.
 
 <br/>
 Reach out to us on our [Discord server](https://discord.betaflight.com/invite) or create an issue in the Betaflight unified targets repo.
@@ -225,7 +225,7 @@ The `Show Log` link will open the build log and show the defines being applied t
 
 The log file incudes a full string for use when flashing the same build locally is provided, both for Docker and Make.
 
-At any time after flashing, the log can be re-loaded using the `log` buttom at the lower right side of Configurator's S`Setup` page. A summary of the included build options can be displayed using the nearby `Options` button.
+At any time after flashing, the log can be re-loaded using the `log` button at the lower right side of Configurator's S`Setup` page. A summary of the included build options can be displayed using the nearby `Options` button.
 
 ### Local Flashing
 

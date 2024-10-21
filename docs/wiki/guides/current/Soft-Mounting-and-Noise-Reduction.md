@@ -51,12 +51,12 @@ I did something like this about 30 years ago when testing frequency response of 
 
 ## Soft Mounting the FC board
 
-#### A nice Over view of the Yaw Twitch and/or throttle oscillations from ctzsnooze
+#### A nice overview of the Yaw Twitch and/or throttle oscillations from ctzsnooze
 
 Lots of us have seen exactly this behaviour. I am surprised that you seem so astonished now that you find it happens to you. It happens randomly. It could happen to anyone. It just happened to happen to you. :-)
 It goes away with replacing the gyro chip, replacing the FC, or soft mounting the FC; these fixes work whether or not capacitors are added. Sometimes it goes away by just adding capacitors.
 
-Since soft mounting is a reliable fix, external vibration seems the likely culprit, difficult otherwise to explain how soft mounting often causes it to just disappear. Blheli-s ESCs are more commonly implicated than non-BLHeli-s ESC's and in some cases capacitors help so there may be an electrical contribution. It is far more common on yaw than the other axes. The yaw sensor within the chip must be physically different from pitch/roll since the axes relative to the layer of silicon for yaw vs pitch/roll are quite different.
+Since soft mounting is a reliable fix, external vibration seems the likely culprit, difficult otherwise to explain how soft mounting often causes it to just disappear. BLHeli-s ESCs are more commonly implicated than non-BLHeli-s ESC's and in some cases capacitors help so there may be an electrical contribution. It is far more common on yaw than the other axes. The yaw sensor within the chip must be physically different from pitch/roll since the axes relative to the layer of silicon for yaw vs pitch/roll are quite different.
 
 That's all we know for sure. How these factors actually cause the oscillation, and why it is yaw exclusive, is completely speculative.
 When soft mounting doesn't work it's usually because it isn't done in such a way as to effectively isolate the FC.
@@ -65,7 +65,7 @@ I've seen such extreme examples as to render the quad un-flyable, and also much 
 Although the magnitude is increased by higher yaw P it is not simple feedback oscillation, there is no threshold value of P below which it disappears. The actual oscillation frequencies are so low as to not be attenuated by the o-rings. Exactly what the o-rings block is not clear.
 It cannot be eliminated by filtering the gyro data - as has been pointed out before, out the primary oscillation frequency is within the range we need for to fly the quad normally.
 
-It is not a software issue in blheli or Betaflight, we can be sure of that. Replacing the gyro chip doesn't change that software yet it does fix the problem.
+It is not a software issue in BLHeli or Betaflight, we can be sure of that. Replacing the gyro chip doesn't change that software yet it does fix the problem.
 My gut feeling is that this is an inherent issue in these gyro chip themselves, and that some individual examples of these chips get it much worse than others. That's why I recommend replacing the gyro chip or the whole FC if simple soft mounting fails to solve the problem.
 
 When you guys say you are soft mounting, be aware you need to over drill the holes to 4mm and ideally bevel the top and bottom of the hole so that the FC 'floats' in all axes. You need to check for free movement. If you don't drill out the holes the bolt holes will stick on yaw on the bolts and transmit vibrations directly. Also you can't have anything stiff pushing on the FC, ideally all wires to/from it need to be very fine silicone.
@@ -155,7 +155,7 @@ https://www.rcgroups.com/forums/showpost.php?p=36698872&postcount=2693
 
 #### Some experiments and observations from AILERON8:
 
-I've found it's these lower frequencies where the soft motor mounts work best. Sometimes shifting the noise upward, but often eliminating it altogether. In addition to trying-out the dynamic notch filter on two quads I spent last weekend playing with my motor softmounts. Empirical testing only, e.g., quads with busted BB's at the moment unfortunately. I also noticed how the higher sounding prop resonance from one of my quads didn't change (as much) with motor soft mounting. My FC soft mounts seemed to be more effective at alleviating the mid-to-high frequencies of the singing unbalanced butter cutters I was testing. It was far from an exhaustive design of experiment, but there was definitely a trend where my silicone and/or rubber soft mounts helped to get rid of the lower motor and frame resonance without having to place additional BF filters. Using the same butters I also noticed how removing my gyro notches had a noticeable impact on mid throttle oscillation reduction as it related to the noisy props. At least on the one quad I was testing, and that's not the first time I've experienced this effect. I'm hoping to do more testing this upcoming weekend and finally get some BB logs to show cause & effect.
+I've found it's these lower frequencies where the soft motor mounts work best. Sometimes shifting the noise upward, but often eliminating it altogether. In addition to trying-out the dynamic notch filter on two quads I spent last weekend playing with my motor soft mounts. Empirical testing only, e.g., quads with busted BB's at the moment unfortunately. I also noticed how the higher sounding prop resonance from one of my quads didn't change (as much) with motor soft mounting. My FC soft mounts seemed to be more effective at alleviating the mid-to-high frequencies of the singing unbalanced butter cutters I was testing. It was far from an exhaustive design of experiment, but there was definitely a trend where my silicone and/or rubber soft mounts helped to get rid of the lower motor and frame resonance without having to place additional BF filters. Using the same butters I also noticed how removing my gyro notches had a noticeable impact on mid throttle oscillation reduction as it related to the noisy props. At least on the one quad I was testing, and that's not the first time I've experienced this effect. I'm hoping to do more testing this upcoming weekend and finally get some BB logs to show cause & effect.
 
 Let me clarify on my first statement: not actually "shifting" the frequencies higher, but reducing the amplitude of the lower frequencies, leaving the higher frequency noise alone.
 

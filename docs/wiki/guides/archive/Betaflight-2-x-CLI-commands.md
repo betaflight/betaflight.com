@@ -203,7 +203,7 @@ Also reduce the amount of AUX channels to reduce time for task RX.
 Notes copied from Forum:
 
 - ATTITUDE is as it says acc calculations.
-- ACCEL is only sampling of accelerometer and filtering and ATTITUDE is real processing of it, which doesnt have to be fast. 100hz is more than enough!
+- ACCEL is only sampling of accelerometer and filtering and ATTITUDE is real processing of it, which doesn't have to be fast. 100hz is more than enough!
 
 - When posting to the Forum please type "version", "status" and "tasks" and post all three of these CLI outputs as well as which PIDC is used. Version is important since it shows What ßF version and processor binary (.hex or .bin) file was loaded.
 

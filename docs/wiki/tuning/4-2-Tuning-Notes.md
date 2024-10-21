@@ -320,11 +320,11 @@ Default boost is 15, and that works for nearly all quads. Racers may prefer 20. 
 
 ### Spike limiting: ff_spike_limit
 
-`ff_spike_limit` provides simple soft cliping method, to chop the tops off large FF spikes. The default should be acceptable for most radios. Most people should leave this value at defaults.
+`ff_spike_limit` provides simple soft clipping method, to chop the tops off large FF spikes. The default should be acceptable for most radios. Most people should leave this value at defaults.
 
 Higher numbers will allow progressively bigger spikes through. Racers or people with clean radios who want full feed forward aggression can increase this value, but should look closely at their feed forward trace to see what happens.
 
-The biggest normal single FF step change that a pilot ever generates is when they suddenly return from full stick deflection, ie on terminating a fast flip. If having the least possible delay at this point is important, maye try shifting the spike limit higher.
+The biggest normal single FF step change that a pilot ever generates is when they suddenly return from full stick deflection, ie on terminating a fast flip. If having the least possible delay at this point is important, maybe try shifting the spike limit higher.
 
 ### Overshoot limiting: ff_max_rate_limit
 
@@ -391,7 +391,7 @@ This means '100% compensation for voltage sag'.
 
 The code compensates for voltage changes from 4.2V down to the user's configured warning voltage of 3.5V.
 
-A fall from 4.2V to 3.5V is about a 16% reduction in voltage. Withs 100% compensation, a motor output reduction of about 16% will be applied when the battery is full. As the battery voltage falls, motor output is dynamically boosted back towards normal, canceling out the effect of the sag. Once the battery falls to 3.5V or lower, motor output will be normal, or back to 100%, and no further compensation is possible.
+A fall from 4.2V to 3.5V is about a 16% reduction in voltage. With 100% compensation, a motor output reduction of about 16% will be applied when the battery is full. As the battery voltage falls, motor output is dynamically boosted back towards normal, canceling out the effect of the sag. Once the battery falls to 3.5V or lower, motor output will be normal, or back to 100%, and no further compensation is possible.
 
 Both throttle and motor limits may need to be adjusted after enabling sag compensation. If you already have a static `motor_output_limit` value below 100, this code further reduces motor output below that value. You may want to lift `motor_output_limit` by about 10 for similar overall performance. If you have a throttle limit, there is usually no need to change it.
 
@@ -408,7 +408,7 @@ To only cover the slow fall, set `vbat_sag_lpf_period` to 200 (20 seconds period
 
 To respond quickly, stick with the default `vbat_sag_lpf_period` of 2, or 200ms. This has a time constant of about 33ms, fast enough to respond very quickly to fast throttle blips and quick split-S turn type sags.
 
-Whoops tend to be flown at lower voltages than mini quads, so the warning voltage is often set lower, eg 3.3V. The attenuation range, and the initial maximum motor output suppression value, will be a bit bigger. In this case, slightly reduceing the compensation amount, eg to say 80%, will stop it feeling very dull at the start. However, some whoops sag a lot, and on some a value above 100 may be useful to get a constant feeling across the battery range.
+Whoops tend to be flown at lower voltages than mini quads, so the warning voltage is often set lower, eg 3.3V. The attenuation range, and the initial maximum motor output suppression value, will be a bit bigger. In this case, slightly reducing the compensation amount, eg to say 80%, will stop it feeling very dull at the start. However, some whoops sag a lot, and on some a value above 100 may be useful to get a constant feeling across the battery range.
 
 No adjustments are required when using HV cells.
 

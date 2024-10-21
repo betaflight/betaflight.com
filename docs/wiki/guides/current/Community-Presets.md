@@ -1,6 +1,6 @@
 # Community Presets
 
-### The below presets are _**by the community, for the community**_. You will see the BF version the preset is targeted toward and the pilot's name who published their recommended preset(s). We encourage communitymembers to provide their own presets on this page. To do so, you simply need a Github account. Enjoy!
+### The below presets are _**by the community, for the community**_. You will see the BF version the preset is targeted toward and the pilot's name who published their recommended preset(s). We encourage community members to provide their own presets on this page. To do so, you simply need a Github account. Enjoy!
 
 ### IMPORTANT: These settings are NOT provided or endorsed by the Betaflight project. They are examples that others have found helpful for their particular quad. THEY MAY NOT BE SUITABLE FOR YOUR QUAD! A better use might be to examine similar configurations to yours and get ideas on possible tuning directions rather than blindly copy/pasting someone else's settings. Always test carefully and safely.
 
@@ -385,7 +385,7 @@ CLI Copy/Paste
 
 ```python
 
-# For racing 5" craft, preferred ESC settingss are 48kHz PWM, 23° Timing, 0.25 Rampup Power, DemagComp=Low
+# For racing 5" craft, preferred ESC settings are 48kHz PWM, 23° Timing, 0.25 Rampup Power, DemagComp=Low
 
 # Settings for All Quadcopters - Motors Reversed
 set debug_mode = GYRO_SCALED

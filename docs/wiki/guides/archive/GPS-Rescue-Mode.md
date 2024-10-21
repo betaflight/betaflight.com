@@ -50,13 +50,13 @@ This is the distance, in meters, at which your quad will start descending toward
 
 `set gps_rescue_ascend_rate = [number] (default is 500)` (added in betaflight 4.1)
 
-This is the vertical speed at which your quad will climb, espressed in centimeters for second
+This is the vertical speed at which your quad will climb, expressed in centimeters for second
 
 `set gps_rescue_descend_rate = [number] (default is 150)` (added in betaflight 4.1)
 
-This is the vertical speed at which your quad will descend, espressed in centimeters for second
+This is the vertical speed at which your quad will descend, expressed in centimeters for second
 
-`gps_rescue_throttle_min` and `gps_rescue_throttle_max` in betaflight 4.1 only limit the escursion of the the new pid controller(https://github.com/betaflight/betaflight/pull/8015)
+`gps_rescue_throttle_min` and `gps_rescue_throttle_max` in betaflight 4.1 only limit the excursion of the the new pid controller(https://github.com/betaflight/betaflight/pull/8015)
 
 `gps_rescue_alt_mode = [MAX_ALT, FIXED_ALT, CURRENT_ALT]` (added in betaflight 4.1)
 
@@ -66,7 +66,7 @@ now we can set the altitude of gps rescue
 
 **FIXED_ALT**, the quad will always try to return to the height set (`gps_rescue_initial_alt`)
 
-**CURRENT_ALT**, the quad will return maintaining the readed altitude during the rescue activation (not suggested)
+**CURRENT_ALT**, the quad will return maintaining the altitude read during the rescue activation (not suggested)
 
 ### At this point you are ready to test Rescue Mode.
 
@@ -150,7 +150,7 @@ If GPS Rescue is mapped to a switch and/or set as a failsafe procedure, a minimu
 
 ### Common pitfalls for old versions
 
-- For Betaflight versions prior to 4.0, it's highly encouraged to enable Air Mode, and optionally to finetune failsafe Stage1 settings, as a workaround for the crash detection issue immediately after activating Rescue Mode. Basically, ensure your settings will avoid the quad to be free-falling when entering into Stage2.
+- For Betaflight versions prior to 4.0, it's highly encouraged to enable Air Mode, and optionally to fine tune failsafe Stage1 settings, as a workaround for the crash detection issue immediately after activating Rescue Mode. Basically, ensure your settings will avoid the quad to be free-falling when entering into Stage2.
 - When changing failsafe parameters with Betaflight Configurator 10.4 or lower, the failsafe procedure will be silently reset. Ensure that you set the failsafe procedure manually on CLI after saving modifications on the failsafe tab.
 - Every time the quad is armed, the home point is updated. Prior to BF 4.0, home point was updated on disarm but could be missed if switching rapidly. Best practice for launching in all versions is to arm, wait a few seconds until home point shows up in osd with 0 distance, and then start flying. Otherwise, disarm, wait a few seconds and repeat. Since Betaflight 4.0 you can use this cli command `set gps_set_home_point_once = ON` in this way only the first arm after the battery is connected will be used as home point.
 - If you're using Crossfire, make sure to configure the Failsafe parameter as "Cut" on your "CROSSFIRE RX" menu.

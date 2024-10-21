@@ -5,7 +5,7 @@ The current MinMax curves settings are showed at 'Configure graphs' dialog box i
 ![image](./images/1.jpg)
 The MinMax values can be changed:
 
-- By direct input into table cells at 'Configure graphs' dialog box. It is possible to changes values manualy or set default values by double mouse click at values field.
+- By direct input into table cells at 'Configure graphs' dialog box. It is possible to changes values manually or set default values by double mouse click at values field.
 - By using context menu
 
 To show context menu you must do right mouse click on Minimum or Maximum values field what you want to edit.
@@ -35,7 +35,7 @@ The single curve submenu has same actions:
 
 ![image](./images/3.jpg)
 
-## Contect menu
+## Context menu
 
 If you open context menu for one curves chart, then you see the short menu:
 
@@ -60,7 +60,7 @@ Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog bo
 You can select curves what you need by using the checkboxes to apply values.
 Click 'At all global log time' menu item to set MinMax values from log data during all time.
 Click 'At local window time' menu item to set MinMax values from current time interval at the chart window.
-Click 'At markere time range' menu item to set MinMax values from markered time interval what you select by using "I", "O" keys. If it is not select then will apply all log time interval.
+Click 'At marker time range' menu item to set MinMax values from markered time interval what you select by using "I", "O" keys. If it is not select then will apply all log time interval.
 Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
 ![image](./images/7.jpg)
@@ -83,7 +83,7 @@ Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog bo
 
 ### The 'Zoom in', 'Zoom out' extended submenu.
 
-You can set the zoom procent value and select curves what you need by using the checkboxes to apply zoom.
+You can set the zoom percent value and select curves what you need by using the checkboxes to apply zoom.
 Click 'ZOOM IN', 'ZOOM OUT' items for apply zoom
 Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately

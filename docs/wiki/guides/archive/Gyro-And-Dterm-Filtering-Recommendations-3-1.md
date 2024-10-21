@@ -249,7 +249,7 @@ Well, first get the noise level under control with basic filtering (no notch fil
 
 If the P trace has a prominent noise peak, apply a gyro notch filter to specifically block that out - but only if the amplitude is big enough that you can see it in the P trace itself. If the noise is less than 1% of signal, like if you can't really see it in P trace compared to signal, ignore the spectrum and don't use any notch.
 
-If you need two gyro notch filters for speciific gyro peaks, use them.
+If you need two gyro notch filters for specific gyro peaks, use them.
 
 After doing all this, then look at the Dterm trace. You must have some basic Dterm filtering. If the Dterm trace appears to have less than a few percent noise, you don't need to do anything, you could conceivably use less filtering an get better performance. If you have a broad band of noise on D, then you may need to lower the overall D lowpass or use a BiQuad on D.
 

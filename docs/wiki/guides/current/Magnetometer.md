@@ -102,7 +102,7 @@ The sensor in most standalone Mag modules, e.g. the GY-271 board, is soldered on
 
 - centrally
 - in the same plane of the FC, typically both devices 'flat to the frame'
-- as far as possible, away from motors, other metallic onjects, and high-current wires
+- as far as possible, away from motors, other metallic objects, and high-current wires
 - with the X axis pointing forward, directly to the nose of the quad, Y left and Z up
 
 The sensor in most GPS modules is mounted _upside-down_. The Z axis points _downwards_. They require a _'flip'_ orientation.
@@ -168,7 +168,7 @@ No matter how the magnetometer is mounted, is absolutely essential to confirm pr
 
 :::tip
 
-When the Mag orientation (alignment) is correct, the 'quad icon' in the Home screen of Configurator should move smoothly and appropriately as the quad is rotated, pitched and rolled. Note that when the quad's attitude is changed very quickly, the heading will initially react quickly, using Gyro and Acc data, and then over the next half second will be adjusted according to the Mag data. If the orientation of the Mag data axes is wrong, or the calibration is off, then the 'quad icon' will turn correctly at first, but then quickly shift to an incorrect heading. That's a red flag; you'll need to fix the 0rientation, and re-calibrate.
+When the Mag orientation (alignment) is correct, the 'quad icon' in the Home screen of Configurator should move smoothly and appropriately as the quad is rotated, pitched and rolled. Note that when the quad's attitude is changed very quickly, the heading will initially react quickly, using Gyro and Acc data, and then over the next half second will be adjusted according to the Mag data. If the orientation of the Mag data axes is wrong, or the calibration is off, then the 'quad icon' will turn correctly at first, but then quickly shift to an incorrect heading. That's a red flag; you'll need to fix the orientation, and re-calibrate.
 
 :::
 
@@ -377,7 +377,7 @@ Another alternative method:
 
 Check the `mag_calibration` CLI numbers after each run to confirm that you are getting consistent values.
 
-You can be happy that things are pretty good if the values are within 20-30 field strengt units from run to run.
+You can be happy that things are pretty good if the values are within 20-30 field strength units from run to run.
 
 The calibration can be confirmed by:
 
@@ -444,7 +444,7 @@ _Drafted by **ctzsnooze** in 2023-09 for Betaflight 4.5. Huge shout out to **led
 [^2]: [Inclination or Dip - PhysicsMax](https://physicsmax.com/inclination-dip-7371)
 [^3]: [Magnetic Field Calculators - NOAA](https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml)
 [^4]: [Inclination and Declination map](https://www.magnetic-declination.com)
-[^5]: [AK8963 datasheet (disccontinued)](https://www.alldatasheet.com/datasheet-pdf/pdf/535561/AKM/AK8963.html)
+[^5]: [AK8963 datasheet (discontinued)](https://www.alldatasheet.com/datasheet-pdf/pdf/535561/AKM/AK8963.html)
 [^6]: [AK8975 datasheet (discontinued)](https://www.alldatasheet.com/datasheet-pdf/pdf/535562/AKM/AK8975.html)
 [^7]: [HMC5883L datasheet](https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf)
 [^8]: [QMC5883L datasheet](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)

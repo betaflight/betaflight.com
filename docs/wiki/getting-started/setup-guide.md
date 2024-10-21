@@ -228,7 +228,7 @@ Choosing the correct DShot speed:
 
 - The DShot speed also depends on the gyro (and thus also the PID loop) speed. If you have a gyro that runs at 8kHz
   (MPU6000), you can use DShot600. If you have a gyro that runs at 3.2KHz (BMI270), you should use DShot300. Using higher
-  DShot speeds on slower gyros shoudn't cause any issues, but it also won't give you any benefits
+  DShot speeds on slower gyros shouldn't cause any issues, but it also won't give you any benefits
 
 :::
 
@@ -290,9 +290,9 @@ Once you have the range set, then repeat the process for the other modes. You wi
 The OSD allows you to display information in the video feed from your quadcopter. In the [OSD Tab](/docs/wiki/configurator/osd-tab),
 you can set up the different elements that will be displayed.
 
-You have a list of all the elements on the left, and three columns of checkboxes next to it. Each culumn is for one
+You have a list of all the elements on the left, and three columns of checkboxes next to it. Each column is for one
 OSD profile. OSD profiles are a way to have different layouts for different situations and be able to easily switch
-between them. Enabling the checbox for an element in the first column will enable it for the first OSD profile, the
+between them. Enabling the checkbox for an element in the first column will enable it for the first OSD profile, the
 second column for the second OSD profile, and so on.
 
 When you enable an element, it will show up in the preview, and you can drag it around to move it as you like. There
@@ -304,7 +304,7 @@ You should have at least the following elements enabled:
 - `Warnings` - Displays warnings for low battery, low RSSI, and other things
 - `Battery average cell voltage` - Displays the average cell voltage of the battery, regardless of the number of cells
 - `Link quality`, `RSNR Value`, `RSSI Value`, `RSSI dBm Value` - Different ways of measuring the strength and/or quality of the radio
-  link. Choose the one that works best for your radio systemm, can usually be found in the manufacturer documentation
+  link. Choose the one that works best for your radio system, can usually be found in the manufacturer documentation
 
 ## Ready to Fly!
 

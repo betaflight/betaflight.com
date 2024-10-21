@@ -2,7 +2,7 @@
 
 ### Recent Announcements
 
-- [Bluejay](https://github.com/mathiasvr/bluejay) is a new, free, well-supported BlHeli-S firmware that supports DShot telemetry, with a range of options. It is most easily flashed using the [https://esc-configurator.com](https://esc-configurator.com) online ESC configurato, which can flash both BlHeli-S and Bluejay to BLHeli-S ESCs, and AM32 to BlHeli-32 ESCs.
+- [Bluejay](https://github.com/mathiasvr/bluejay) is a new, free, well-supported BlHeli-S firmware that supports DShot telemetry, with a range of options. It is most easily flashed using the [https://esc-configurator.com](https://esc-configurator.com) online ESC configurator, which can flash both BlHeli-S and Bluejay to BLHeli-S ESCs, and AM32 to BlHeli-32 ESCs.
 - [JESC](https://jflight.net) was the first ESC firmware to support RPM filtering on BLHeli_S escs. It was written by the JoeLucid, who wrote the DShot telemetry code that underpins all bidirectional DShot functionality, such as Dynamic Idle and RPM Filtering. JESC is free on L ESCs, but payment is required for H ESCs. 48khz and 96khz PWM versions are available.
 - [BlHeli-32](https://github.com/bitdump/BLHeli/tree/master/BLHeli_32%20ARM) fully supports Bidirectional DShot in versions 32.7.0 and higher
 - [AM32](https://github.com/AlkaMotors/AM32-MultiRotor-ESC-firmware) can also be flashed (but not readily un-flashed) to BlHeli-32 type ESCs, and also fully supports Bidirectional DShot.
@@ -62,7 +62,7 @@ With 4.1 and above it's no longer necessary to install a snippet. Instead just u
 
 ### Config Verification
 
-Your FC is now set up for bidirectional DShot - let's verify that it works. To do so power cycle FC and ESC. Connect the lipo first to the ESC, then the USB cable. Now open the Motors tab in Betaflight Configurator. There should be no red line indicating significant errors on any motor. When you spin the motors you should see the reported rpm. The reported error percentage should not exceed 1%. All motors should report an RPM of 0 unless spun.
+Your FC is now set up for bidirectional DShot - let's verify that it works. To do so power cycle FC and ESC. Connect the LIPO first to the ESC, then the USB cable. Now open the Motors tab in Betaflight Configurator. There should be no red line indicating significant errors on any motor. When you spin the motors you should see the reported rpm. The reported error percentage should not exceed 1%. All motors should report an RPM of 0 unless spun.
 
 **Important:**
 If you connect your FC via USB cable without connecting your LIPO battery, then at the Motors tab in Betaflight Configurator you will notice an invalid indication "Error 100%" (E: 100%). Connect the LIPO and wait ESC to initialize, the indication will drop down to 0% (E: 0%). Disconnecting the battery will keep showing 0% errors afterwards.

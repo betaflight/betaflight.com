@@ -165,7 +165,7 @@ Array length: 4
 Default value: 0,255,255,255
 ```
 
-This is PINIO #1(mapped to pin `B00`), so we only look at the _first_ of the four comma seperated values in the arrays.
+This is PINIO #1(mapped to pin `B00`), so we only look at the _first_ of the four comma separated values in the arrays.
 
 The value of `pinio_box` is `0`, which -- according to the table above -- is set to the `BOXARM` box/mode. So if the craft gets armed, this gets activated, too.
 
@@ -240,7 +240,7 @@ This time, we want to switch the VTX with an actual switch on the sender. For th
 
 For this, we use one of the `BOXUSER<n>` modes/boxes (IDs 40 to 43). This will add a matching User mode/function in the Modes tab of the Configurator, which can then be mapped to a channel on the sender.
 
-Let's say we have a "clean" flight controller without any preconfigured PINIOs or User functions and the PPM pin is the one to be used for this:
+Let's say we have a "clean" flight controller without any pre-configured PINIOs or User functions and the PPM pin is the one to be used for this:
 
 ```
 #resource

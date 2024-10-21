@@ -20,7 +20,7 @@ If you are adding a new flight controller then:
 
 ### MPU (SPI versus I2C)
 
-### MPU Interrrupt
+### MPU Interrupt
 
 ### Blackbox Flash
 

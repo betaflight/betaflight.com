@@ -4,7 +4,7 @@
 
 Betaflight-configurator font upload function via USB doesn't seem to work on some flight controllers.
 
-![OrsarLiang](https://oscarliang.com/ctt/uploads/2017/07/betaflight-osd-font-manager.jpg)
+![OscarLiang](https://oscarliang.com/ctt/uploads/2017/07/betaflight-osd-font-manager.jpg)
 
 No matter how many times you upload the font, the OSD still display the default font.
 

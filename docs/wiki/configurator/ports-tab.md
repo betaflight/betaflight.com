@@ -32,7 +32,7 @@ when conflicting options are set
 ## Serial RX
 
 Used to set the UART to receive serial data from a receiver. This is the most common use of a UART port.
-If you toggle this on, you likely do not need to touch any ohter options for this port
+If you toggle this on, you likely do not need to touch any other options for this port
 
 ## Telemetry Output
 
@@ -47,7 +47,7 @@ Receiver
 ## Sensor Input
 
 When you want the port to receive data from a sensor. This is used for things like BLHeli_32 ESC telemetry,
-or GPS. To get GPS working, you may need to manualy assign a baud rate as well
+or GPS. To get GPS working, you may need to manually assign a baud rate as well
 
 ## Peripherals
 

@@ -131,7 +131,7 @@ http://www.rcgroups.com/forums/showpost.php?p=34028986&postcount=18516
 
 ## Motor update
 
-I am also coming from the world of VOIP what is completaly different than control laws, but there jitter is even much more of an issue in realtime audio/video processing. There are several ways to deal with it. Another option would be dropping motor output signals when they come to soon....before the old signal finished. That would be the only other option.
+I am also coming from the world of VOIP what is completely different than control laws, but there jitter is even much more of an issue in realtime audio/video processing. There are several ways to deal with it. Another option would be dropping motor output signals when they come to soon....before the old signal finished. That would be the only other option.
 
 Another example: The new way runs cycletime of 125us and PID loop of 375us
 The motor update happens at begin of the new cycletime and not the begin of new PID looptime!
@@ -142,14 +142,14 @@ Having faster motor rate than loop rate is complete nonsense as the value will s
 Thats why i am reworking the tasking at the moment.
 The ideal motor handling would be to only write motors when there are new mixer calculations available and with the time interval between the motor updates never lower than the desired period. Longer motor updates are even not bad just as long as next motor update doesnt fall into previous one.
 
-Lets say the pid controller / mixer requests full motor power on oneshot125 which is about 250us PWM interval.....if we were updating motors at 2k interval than there is in total 250us free interval where it doesnt matter when you update it. so allowed jitter period is a bit less than 250us.
+Lets say the pid controller / mixer requests full motor power on oneshot125 which is about 250us PWM interval.....if we were updating motors at 2k interval than there is in total 250us free interval where it doesn't matter when you update it. so allowed jitter period is a bit less than 250us.
 
 On 4k speed the motor update period is totally not allowed to jitter to make full throttle possible.
 
-It doesnt matter if the motor gets updated too late but should never be updated too soon.
+It doesn't matter if the motor gets updated too late but should never be updated too soon.
 
-With low looptimes like now we are reaching the point where motor updates happen near the end of cycletime. So there is no such thing as delay there. It doesnt matter if you do something at the end or beginning.
-Imagine like running circles you can't tell what is begin or end. The order doesnt matter anymore.
+With low looptimes like now we are reaching the point where motor updates happen near the end of cycletime. So there is no such thing as delay there. It doesn't matter if you do something at the end or beginning.
+Imagine like running circles you can't tell what is begin or end. The order doesn't matter anymore.
 
 It's near the end of the cycletime where there is the most jitter. The time variations there are between 0 and 100us. Especially on low looptimes with scheduled tasking mechanism to get the maximum efficiency the end of loop cycle is really jittery.
 So when moving the motor update to the beginning of the loop you always have the constant timing. The variable delay you would have when writing the motors at the end of the loop now becomes a constant delay.
