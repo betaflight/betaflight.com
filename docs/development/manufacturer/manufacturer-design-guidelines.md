@@ -30,6 +30,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 | Draft 1.0 | 26 January 2023  | Add Signal Rules                  |
 | Draft 1.1 | 10 December 2023 | Add LSM6DSV16X and LPS22DF        |
 | Draft 1.2 | 13 January 2024  | Add Mag and Baro hardware note    |
+| Draft 1.3 | 23 October 2024  | Update MCU recommendations        |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -483,6 +484,14 @@ Looptime and Performance Recommendation Table:
 Additionally, there are no RC ecosystems that are actively developing a supported SPI Rx solution (ExpressLRS 3.0 and later do not support SPI; FrSky does not support SPI Rx over any protocol, and other SPI Rx solutions have been fully deprecated).
 
 Note that the use of gyros such as the BMI270 lowers the gyro loop rate from 8kHz to 3.2kHz and is therefore advantageous for F411 designs.
+
+:::warning
+
+Betaflight has deprecated implementation of new STM32F411 designs.
+
+BMI270 is no longer recommended.
+
+:::
 
 ## 4.2 Definitions for Targets
 
