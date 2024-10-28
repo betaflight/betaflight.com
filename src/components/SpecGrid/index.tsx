@@ -13,7 +13,7 @@ export default function VersionInfo({ children }) {
     imu: string
     osd: string
     barometer: string
-    flash: string
+    blackbox: string
     dimensions: string
     mounting: string
     weight: string
@@ -21,7 +21,7 @@ export default function VersionInfo({ children }) {
 
   const specs = frontMatter.sidebar_custom_props?.specs as Specs;
 
-  const { target = '', mcu = '', imu = '', osd = '', barometer = '', flash = '', dimensions = '', mounting = '', weight = '' } = specs;
+  const { target = '', mcu = '', imu = '', osd = '', barometer = '', blackbox: flash = '', dimensions = '', mounting = '', weight = '' } = specs;
 
   return (
     <div className="w-full flex lg:flex-row flex-col gap-2">
@@ -42,7 +42,7 @@ export default function VersionInfo({ children }) {
         <SpecBox icon={<Thermometer />} title="Baro:" color="neutral-light">
           {barometer}
         </SpecBox>
-        <SpecBox icon={<Save />} title="Flash:" color="neutral-light">
+        <SpecBox icon={<Save />} title="Blackbox:" color="neutral-light">
           {flash}
         </SpecBox>
         <SpecBox icon={<Ruler />} title="Measurements:" color="neutral-light" colSpan={2}>
