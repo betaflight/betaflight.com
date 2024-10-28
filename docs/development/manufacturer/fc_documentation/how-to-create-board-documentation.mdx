@@ -9,7 +9,7 @@ It is not necessary to modify the additional components in the documentation fil
 The documentation website can be run locally to preview changes before submitting a pull request. To do this, follow the steps below:
 
 1. Fork the repository, and clone it to your local machine
-2. Create a new branch for your changes with `git checkout -b <branch-name>`
+2. Create a new branch for your changes with `git checkout -b <branch-name>` (`<branch-name>` can be anything, but using `add-<board-name>` or similar is recommended)
 3. Run `npm install` in the root directory
 4. Run `npm run start` to start the development server
 
@@ -17,7 +17,7 @@ When the server starts, a `localhost:3000` address will be opened in your defaul
 
 ## Adding a New board
 
-New board documentation files should be added to the `docs/wiki/boards/current/<TARGETNAME>` directory. A template can be copied from `docs/development/manufacturer/fc_documentation/fc-doc-template.mdx.template` - this template contains all the necessary layout components, and comments explaining what to fill out and how.
+New board documentation files should be added to the `docs/wiki/boards/current/<TARGETNAME>` directory. A template can be copied from `docs/development/manufacturer/fc_documentation/fc-doc-template.mdx.template` - this template contains all the necessary layout components, and comments explaining what to fill out and how. When you have copied the template, rename it to `<TARGETNAME>.mdx` and fill out the necessary information.
 
 The `docs/wiki/boards/current/<TARGETNAME>` should have the following structure:
 
@@ -34,8 +34,7 @@ docs/wiki/boards/current/<TARGETNAME>
 
 There are some automated checks in place to ensure that the documentation is formatted correctly. They are run before a commit is made, and will prevent the commit if they fail. The checks are:
 
-- Document Title Case - The level 1 headings of the document should be in [title case](https://titlecaseconverter.com/). If the check fails, the error message will provide the line where the incorrect title is located, and a correct title case version of the title
-  s
+- Document Title Case - The level 1 headings of the document should be in [title case](https://titlecaseconverter.com/). If the check fails, the error message will provide the line where the incorrect title is located, and a correct title case version of the titles
 - Document File Name - The file name of the document should not contain any special characters - only letters, numbers, hyphens, and underscores are allowed
 
 Apart from the checks, the documentation can be written freely using the default markdown syntax. The additional `<Tabs>` and `<TabItem>` components should be kept as they are, and only the content inside them should be modified.
@@ -86,11 +85,19 @@ Images should be added to the `<TARGETNAME>-images` directory, and referenced in
 
 Top/bottom images should be added for each board, and any additional images or diagrams can be added as needed. The images can be in any web-compatible format, but `.png` is recommended.
 
+Use an image in a square aspect ratio (1:1) for the first image in the document, and use consistent filetype naming for the images - for example `.JPG` and `.jpg` can cause conflicts and confusion.
+
 ## Submitting a Pull Request
 
 When the documentation is ready, it can be committed to your fork if all the checks pass - if not, try to fix the issues and commit again. You can then make a pull request from your fork and branch against the `master` branch of the `betaflight.com` repository.
 
 The pull request will be reviewed by the maintainers, and if everything is in order, it will be merged into the `master` branch. The changes will then be automatically deployed to the live website.
+
+## Submitting Without a Pull Request
+
+For those who aren't experienced with git or wish to simply provide the documentation without going through the pull request process, you can send the documentation files to the development team directly. Compress the `<TARGETNAME>` directory as a `.zip` file and send it in the dedicated channel in the Discord server. Members of the development team will review the files and add them to the repository.
+
+If filling out the template is too complex, you can provide the necessary information in a simple text format (along with any of the necessayr media), and a documentation page will be made accordingly. Submitting information for new targets is highly encouraged, and the development team will assist in any way possible to make the process as smooth as possible.
 
 # Additional Information
 
