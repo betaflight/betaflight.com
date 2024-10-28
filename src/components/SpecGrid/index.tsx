@@ -24,9 +24,9 @@ export default function VersionInfo({ children }) {
   const { target = '', mcu = '', imu = '', osd = '', barometer = '', blackbox: flash = '', dimensions = '', mounting = '', weight = '' } = specs;
 
   return (
-    <div className="w-full flex lg:flex-row flex-col gap-2">
+    <div className="w-full flex 2xl:flex-row flex-col gap-2">
       <div className="aspect-square w-fit rounded-lg overflow-clip">{children}</div>
-      <div className="aspect-square w-full h-fit grid grid-cols-3 grid-rows-3 gap-2">
+      <div className="2xl:aspect-square w-full h-fit grid grid-cols-3 grid-rows-3 gap-2">
         <SpecBox icon={<Crosshair size={24} />} title="Target:" color="primary" colSpan={2}>
           <div className="font-mono">{target}</div>
         </SpecBox>
@@ -46,7 +46,7 @@ export default function VersionInfo({ children }) {
           {flash}
         </SpecBox>
         <SpecBox icon={<Ruler />} title="Measurements:" color="neutral-light" colSpan={2}>
-          <div>
+          <div className="flex gap-2 flex-wrap">
             <div>Size: {dimensions}</div>
             <div>Mounting: {mounting}</div>
             <div>Weight: {weight}</div>
