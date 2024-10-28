@@ -46,7 +46,7 @@ export default function VersionInfo({ children }) {
           {flash}
         </SpecBox>
         <SpecBox icon={<Ruler />} title="Measurements:" color="neutral-light" colSpan={2}>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-x-2 flex-wrap">
             <div>Size: {dimensions}</div>
             <div>Mounting: {mounting}</div>
             <div>Weight: {weight}</div>

@@ -17,25 +17,25 @@ export default function SpecBox({ icon, title, color, children, colSpan = 1 }) {
       bgColor = 'bg-primary-500/10';
       primaryTextColor = 'text-primary-500';
       secondaryTextColor = '';
-      childFontSize = '2xl:text-2xl lg:text-xl text-lg';
+      childFontSize = '2xl:text-lg text-base';
       break;
     case 'neutral':
       bgColor = 'bg-neutral-500/20';
       primaryTextColor = '';
       secondaryTextColor = '';
-      childFontSize = '2xl:text-2xl lg:text-xl text-lg';
+      childFontSize = '2xl:text-lg text-base';
       break;
     case 'neutral-light':
       bgColor = 'bg-neutral-500/10';
       primaryTextColor = '';
       secondaryTextColor = '';
-      childFontSize = '2xl:text-xl lg:text-xl text-base';
+      childFontSize = '2xl:text-lg text-base';
       break;
     default:
       bgColor = 'bg-neutral-500/10';
       primaryTextColor = '';
       secondaryTextColor = '';
-      childFontSize = '2xl:text-xl lg:text-xl text-base';
+      childFontSize = '2xl:text-lg text-base';
   }
 
   let colSpanClass = 'col-span-1';
