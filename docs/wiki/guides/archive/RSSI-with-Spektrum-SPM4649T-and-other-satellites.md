@@ -14,7 +14,7 @@ All you have to do is to
 
 Done.
 
-The Betaflight and Spektrum RSSI % values are not the same. Currently not user adjustable in Betaflight. In your Tx you should however be able to select three different units. "%", "dBm" or "%R". None of those scales in the same way as BetaFlight. Spektrum "%" and "dBm" drops too fast close up and "%R" to fast at range end. The scaling in BetaFflight is a compromise between the two, the green line below.
+The Betaflight and Spektrum RSSI % values are not the same. Currently not user adjustable in Betaflight. In your Tx you should however be able to select three different units. "%", "dBm" or "%R". None of those scales in the same way as BetaFlight. Spektrum "%" and "dBm" drops too fast close up and "%R" to fast at range end. The scaling in Betaflight is a compromise between the two, the green line below.
 
 ![RSSI vs Distancel menu](/img/ideal_rssi_to_range.jpg)
 

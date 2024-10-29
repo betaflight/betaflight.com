@@ -13,7 +13,7 @@ export default function VersionInfo({ children }) {
     imu: string
     osd: string
     barometer: string
-    flash: string
+    blackbox: string
     dimensions: string
     mounting: string
     weight: string
@@ -21,12 +21,12 @@ export default function VersionInfo({ children }) {
 
   const specs = frontMatter.sidebar_custom_props?.specs as Specs;
 
-  const { target = '', mcu = '', imu = '', osd = '', barometer = '', flash = '', dimensions = '', mounting = '', weight = '' } = specs;
+  const { target = '', mcu = '', imu = '', osd = '', barometer = '', blackbox: flash = '', dimensions = '', mounting = '', weight = '' } = specs;
 
   return (
-    <div className="w-full flex lg:flex-row flex-col gap-2">
+    <div className="w-full flex 2xl:flex-row flex-col gap-2">
       <div className="aspect-square w-fit rounded-lg overflow-clip">{children}</div>
-      <div className="aspect-square w-full h-fit grid grid-cols-3 grid-rows-3 gap-2">
+      <div className="2xl:aspect-square w-full h-fit grid grid-cols-3 grid-rows-3 gap-2">
         <SpecBox icon={<Crosshair size={24} />} title="Target:" color="primary" colSpan={2}>
           <div className="font-mono">{target}</div>
         </SpecBox>
@@ -42,11 +42,11 @@ export default function VersionInfo({ children }) {
         <SpecBox icon={<Thermometer />} title="Baro:" color="neutral-light">
           {barometer}
         </SpecBox>
-        <SpecBox icon={<Save />} title="Flash:" color="neutral-light">
+        <SpecBox icon={<Save />} title="Blackbox:" color="neutral-light">
           {flash}
         </SpecBox>
         <SpecBox icon={<Ruler />} title="Measurements:" color="neutral-light" colSpan={2}>
-          <div>
+          <div className="flex gap-x-2 flex-wrap">
             <div>Size: {dimensions}</div>
             <div>Mounting: {mounting}</div>
             <div>Weight: {weight}</div>

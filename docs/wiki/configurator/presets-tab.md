@@ -29,7 +29,7 @@ Narrow down your search by using the search filters. You can filter by:
 - **Status** - Select from various statuses to filter presets by
   - **OFFICIAL** - Presets that are made and/or officially supported by the Betaflight team. Usually more
     advanced and/or specific to a particular setting
-  - **COMMUNTIY** - Presets that are made by other users in the community. Often for specific products
+  - **COMMUNITY** - Presets that are made by other users in the community. Often for specific products
     (like VTX tables) and pilot rates
   - **EXPERIMENTAL** - Presets that are in development and in the process of being tested
 

@@ -20,6 +20,21 @@ Please also check [Vehicle Gateway](https://github.com/osrf/vehicle_gateway)
 
 Run `make TARGET=SITL`
 
+### Betaflight Web App
+
+Starting from Betaflight 4.6 online configurator is required which uses websockets for communication with SITL.
+
+To setup and configure a proxy use the following instructions in a new terminal session:
+
+```
+git clone git@github.com:novnc/websockify-other.git
+cd websockify-other/c
+make
+./websockify 127.0.0.1:6761 127.0.0.1:5761
+```
+
+Establish a connection using address `ws://127.0.0.1:6761`.
+
 ### Settings
 
 To avoid the simulation speed slowing down, it is suggested to set some settings, shown below:

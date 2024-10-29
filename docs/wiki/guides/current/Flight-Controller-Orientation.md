@@ -10,7 +10,7 @@ It is important to note that there is a sequence of so-called Euler angles (axes
 
 The internal rotation convention bf uses to represent the FC orientation is R = Rz(-Yaw) _ Ry(-Pitch) _ Rx(-Roll). On one hand the rotation matrix R describes how the FC with respect to the origin of the quad is rotated. On the other hand R describes the transformation of sensor readings of the FC as they were measured with a flight controller aligned with the quads frame (arrow pointing forward / x axis).
 
-For the alignment process its easier to think in the inverse transform R^T = Rx^T(-Roll) _ Ry^T(-Pitch) _ Rz^T(-Yaw). So we yaw first around the z axis, then pitch the yawed frame around its new y axis and finally roll the yawed and pitched frame around its new x axis. Due to the minus sign positiv angle direction is described by the left hand rule, e.g. to yaw positive you grab the z axis with your left hand and rotate towards the direction of your fingers.
+For the alignment process its easier to think in the inverse transform R^T = Rx^T(-Roll) _ Ry^T(-Pitch) _ Rz^T(-Yaw). So we yaw first around the z axis, then pitch the yawed frame around its new y axis and finally roll the yawed and pitched frame around its new x axis. Due to the minus sign positive angle direction is described by the left hand rule, e.g. to yaw positive you grab the z axis with your left hand and rotate towards the direction of your fingers.
 
 You can use the following link to figure out your board alignment angles: https://www.geogebra.org/3d/sj5aeucn
 

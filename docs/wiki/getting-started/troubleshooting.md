@@ -10,7 +10,7 @@ It is an unfortunate fact that sometimes things just go wrong. Be that on by a f
 
 ### No COM Port Appears
 
-- Make sure that you are plugging the USB cable into the flight controller. There may be parts thay may have a USB port, so don't confuse it with your flight controller A DJI Air Unit is a video transmitter.  
+- Make sure that you are plugging the USB cable into the flight controller. There may be parts that may have a USB port, so don't confuse it with your flight controller A DJI Air Unit is a video transmitter.  
   Neither should you try to connect your radio to the configurator. Betaflight Configurator is not meant be used to set up your radio, use your radio's software for that (OpenTX companion, EdgeTX Buddy, etc.)
 - Make sure you are using a USB cable that is capable of data transfer. Some USB cables are only for charging
 - You may need to install the drivers for your flight controller. There is a download link for the ImpulseRC Driver
@@ -40,7 +40,7 @@ If all of the sensor indicators in the configurator are grayed out, it means tha
 
 - If you have flashed the wrong firmware, the flight controller may not have the correct drivers for the sensors. Make sure you chose the correct target for your flight controller when flashing, and applied the custom defaults when prompted to
 
-- With Betaflight 4.4 and the new cloud build system, make sure that you have the appropriate options selected when bulding the firmware
+- With Betaflight 4.4 and the new cloud build system, make sure that you have the appropriate options selected when building the firmware
 
 ### Gyro Response Does Not Match Real Movement
 
@@ -141,7 +141,7 @@ If the preset options don't work, you can try changing the channel map manually.
 
 ### Drone Won't Arm
 
-- You need to have an `ARM` mode set up, which can be done in the [Modes tab](/docs/wiki/configurator/modes-tab) You can also arm using a stick command, but that is pretty dangerous and not recommended
+- You need to have an `ARM` mode set up, which can be done in the [Modes tab](/docs/wiki/configurator/auxiliary-tab) You can also arm using a stick command, but that is pretty dangerous and not recommended
 
 - There is a lot of checks that need to pass before the drone can arm. If any of them fail, the drone fail to do so. You can see the different arm prevention flags in the OSD, or in the [CLI tab](/docs/wiki/configurator/cli-tab) after sending a `status` command
 

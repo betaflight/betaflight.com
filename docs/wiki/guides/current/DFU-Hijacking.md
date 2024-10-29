@@ -16,7 +16,7 @@ STM32 family of MCUs, when in boot loader mode, look for input from several diff
 
 ## Possible Workarounds
 
-Work arounds against DFU hijacking by chatty devices are as follow.
+Workarounds against DFU hijacking by chatty devices are as follow.
 
 1. Shut the chatty device up by powering them down or physically disconnecting while flashing. Using a power supply pad not powered when only USB is connected is an alternative way of doing this.
 

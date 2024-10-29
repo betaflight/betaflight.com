@@ -50,7 +50,7 @@ This is a 'digital' way of calculating FF from each new RC 'step'. It gives a cl
 
 `set ff_interpolate_sp = ON` analyses each new incoming RC data packet, and the calculated change in setpoint is converted to an immediate step up in FF. Each step up is held constant until the next RC data step arrives.
 
-The sharp corner of the FF step can be smoothed according to the rc_smoothing_derivative lowpass filter frequency. This is set dynamically by default in AUTO mode, but can be manually overriden if desired. 120hz is a good smoothing value for a clean feed-forward trace. 20hz smoothes out traces with a fair bit of up and down; 10hz may be needed for very long range and cinematic quads where the large steps from 50hz mode and poor quality links can make the quad jerky in turns.
+The sharp corner of the FF step can be smoothed according to the rc_smoothing_derivative lowpass filter frequency. This is set dynamically by default in AUTO mode, but can be manually overridden if desired. 120hz is a good smoothing value for a clean feed-forward trace. 20hz smooths out traces with a fair bit of up and down; 10hz may be needed for very long range and cinematic quads where the large steps from 50hz mode and poor quality links can make the quad jerky in turns.
 
 Dropped RC packets will normally cause sudden FF drops to zero. `set ff_interpolate_sp = AVERAGE` is intended to help manage this specific issue. Alternatively, a low rc_smoothing_derivative filtering value can smooth the drops out a bit, at the cost of incoming RC delay.
 

@@ -12,7 +12,7 @@ An ESC is the Electronic Speed Controller which supplies power to the craft's mo
 
 ## Bidirectional DShot Firmware
 
-The Bidirectional DShot protocol can be enabled in the [Configurator Motors Tab](/docs/wiki/configurator/motors-tab#escmotor-features). Modern Bidirectional DShot is different (and more robust) in BetaFlight 4.5 than BetaFlight 4.0. The ESC firmware must be correct to ensure support for DShot Telemetry and provide the best Betaflight performance. We strongly recommend the use of DShot in conjunection with RPM filtering for the benefits in handling and smooth flight.
+The Bidirectional DShot protocol can be enabled in the [Configurator Motors Tab](/docs/wiki/configurator/motors-tab#escmotor-features). Modern Bidirectional DShot is different (and more robust) in BetaFlight 4.5 than BetaFlight 4.0. The ESC firmware must be correct to ensure support for DShot Telemetry and provide the best Betaflight performance. We strongly recommend the use of DShot in conjunction with RPM filtering for the benefits in handling and smooth flight.
 
 ### Bidirectional DShot Versions
 
@@ -43,7 +43,7 @@ Developers note - prior to 2.00 the AM32 project used a repo for each family of 
 | Version | Recommended | Comment                                                                                                                                                                 |
 | ------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2.00    | `N`         | Cleanup of target structure, unify projects                                                                                                                             |
-| 2.01    | `N`         | Increase 10khztimer to 20khz, increase max duty cycle change.                                                                                                           |
+| 2.01    | `N`         | Increase 10khz timer to 20khz, increase max duty cycle change.                                                                                                           |
 | 2.02    | `N`         | Increase startup power for inverted output targets.                                                                                                                     |
 | 2.03    | `N`         | Move chime from DShot direction change commands to save command.                                                                                                        |
 | 2.04    | `Y`         | Fix current protection, max duty cycle not increasing. Fix double startup chime. Change current averaging method for more precision. Fix startup ramp speed adjustment. |
@@ -76,11 +76,11 @@ BLHeli_32 is only available pre-installed on ESCs, the cost of BLHeli_32 license
 
 ### BlueJay
 
-BlueJay fully supports RPM filtering and EDT telemetry and is the recommended ESC firmware for 8bit ESCs. Orginally developed by Mathias, a Betaflight developer, more recently BlueJay has been transferred to the BirdSanctuary team and is maintained by Damosvil and Stylesuxx in close partnership with the esc-configurator project.
+BlueJay fully supports RPM filtering and EDT telemetry and is the recommended ESC firmware for 8bit ESCs. Originally developed by Mathias, a Betaflight developer, more recently BlueJay has been transferred to the BirdSanctuary team and is maintained by Damosvil and Stylesuxx in close partnership with the esc-configurator project.
 
 BlueJay is easily flashed with an elegant online flashing tool [ESC Configurator](https://esc-configurator.com/). An older offline configurator (https://github.com/mathiasvr/bluejay-configurator/releases) is available but not recommended for current releases. The firmware supports both L and H type ESCs as well as newer Z type, with a range of options, and has been tested on various ESC models.
 
-[Extended DShot Telementry (EDT)](https://github.com/bird-sanctuary/extended-DShot-telemetry) was created by the BlueJay team and allows ESCs without a separate telemetry UART to send additional telemetry alongside RPM data. EDT enables BlueJay ESCs to report voltage, current and temperature as well as signalling error events.
+[Extended DShot Telemetry (EDT)](https://github.com/bird-sanctuary/extended-DShot-telemetry) was created by the BlueJay team and allows ESCs without a separate telemetry UART to send additional telemetry alongside RPM data. EDT enables BlueJay ESCs to report voltage, current and temperature as well as signalling error events.
 
 | Version    | Recommended | Comment                                                                                                |
 | ---------- | ----------- | ------------------------------------------------------------------------------------------------------ |
@@ -109,7 +109,7 @@ JazzMaverick was poorly documented and has not been maintained for years.
 :::
 
 The current build of JazzMaverick's BLHeli fork is 16.9, often referred to as [BlHeli-M](https://www.rcgroups.com/forums/showthread.php?3621257-BLHeli_M-Maverick-version). The easiest way to flash 16.9 is with Asizon's Configurator.
-For earlier versions, go to [JazzMaverick](https://github.com/JazzMaverick/BLHeli/tree/JazzMaverick-patch-1/BLHeli_S%20SiLabs)'s code on github. Flash as usual with the conventional [BlHeli-S Configurator](https://github.com/blheli-configurator/blheli-configurator/releases) or use the convenient browser-based [ESC Configurator](https://esc-configurator.com/). Take a look wich version you have to flash correctly. Use either version 16.73 or 16.9.
+For earlier versions, go to [JazzMaverick](https://github.com/JazzMaverick/BLHeli/tree/JazzMaverick-patch-1/BLHeli_S%20SiLabs)'s code on github. Flash as usual with the conventional [BlHeli-S Configurator](https://github.com/blheli-configurator/blheli-configurator/releases) or use the convenient browser-based [ESC Configurator](https://esc-configurator.com/). Take a look which version you have to flash correctly. Use either version 16.73 or 16.9.
 
 Betaflight strongly recommends that users avoid JazzMaverick due to the lack of maintenance and the author's experimental approach. This ESC firmware included versions with non-linear throttle response and other features that surprised or confused users.
 
@@ -117,7 +117,7 @@ Betaflight strongly recommends that users avoid JazzMaverick due to the lack of 
 
 [BLHeli-S](https://www.rcgroups.com/forums/showthread.php?2640796-BLHeli_S-Smooth-as-Silk) introduced support for the BusyBee line of 8bit MCUs for ESC use. These MCUs featured hardware PWM generation unlike the earlier [BLHeli](https://www.rcgroups.com/forums/showthread.php?2136895-BLHeli-for-Atmel-and-Silabs-united-by-BLHeliSuite) hardware, synchronising the motor PWM tyo the MCU clock and supporting higher eRPM speed output. Damped light mode was also standard, allowing all ESCs to decelerate as well as accelerate the motor.
 
-Whilst these features may sound great these are now standard features and available in all other ESC firmware on this page. Note that DShot support was only added in revision 16.5 and turtle mode and DShot beeper only arrived in the last official 16.7 release. If you recieve an ESC with BLHeli-S we recommend connecting to [ESC Configurator](https://esc-configurator.com/) and flashing BlueJay, you can check a box to copy over the reversed/forward settings from BLHeli-S to BlueJay.
+Whilst these features may sound great these are now standard features and available in all other ESC firmware on this page. Note that DShot support was only added in revision 16.5 and turtle mode and DShot beeper only arrived in the last official 16.7 release. If you receive an ESC with BLHeli-S we recommend connecting to [ESC Configurator](https://esc-configurator.com/) and flashing BlueJay, you can check a box to copy over the reversed/forward settings from BLHeli-S to BlueJay.
 
 :::info
 These versions are for informational purposes only. Always upgrade BLHeli-S equipment to use BlueJay.
@@ -131,5 +131,5 @@ These versions are for informational purposes only. Always upgrade BLHeli-S equi
 | 16.3    | `N`         | Implemented programmable temperature protection. Improved protection of bootloader and generally reduced risk of flash corruption. Some small changes for improved sync hold.                                                                                                                                      |
 | 16.4    | `N`         | Fixed bug where bootloader operation could be blocked by a defective "eeprom" signature.                                                                                                                                                                                                                           |
 | 16.5    | `N`         | Added support for DShot150, DShot300 and DShot600.                                                                                                                                                                                                                                                                 |
-| 16.6    | `N`         | Oixed signal detection issue of multishot at 32kHz. Improved bidirectional mode for high input signal rates.                                                                                                                                                                                                       |
+| 16.6    | `N`         | Fixed signal detection issue of multishot at 32kHz. Improved bidirectional mode for high input signal rates.                                                                                                                                                                                                       |
 | 16.7    | `N`         | Addition of DShot commands for beeps and temporary reverse direction (largely by bycedjohnson)                                                                                                                                                                                                                     |

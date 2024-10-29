@@ -17,25 +17,25 @@ export default function SpecBox({ icon, title, color, children, colSpan = 1 }) {
       bgColor = 'bg-primary-500/10';
       primaryTextColor = 'text-primary-500';
       secondaryTextColor = '';
-      childFontSize = '2xl:text-2xl lg:text-xl text-2xl';
+      childFontSize = '2xl:text-lg text-base';
       break;
     case 'neutral':
       bgColor = 'bg-neutral-500/20';
       primaryTextColor = '';
       secondaryTextColor = '';
-      childFontSize = '2xl:text-2xl lg:text-xl text-2xl';
+      childFontSize = '2xl:text-lg text-base';
       break;
     case 'neutral-light':
       bgColor = 'bg-neutral-500/10';
       primaryTextColor = '';
       secondaryTextColor = '';
-      childFontSize = '2xl:text-xl lg:text-xl text-xl';
+      childFontSize = '2xl:text-lg text-base';
       break;
     default:
       bgColor = 'bg-neutral-500/10';
       primaryTextColor = '';
       secondaryTextColor = '';
-      childFontSize = '2xl:text-2xl lg:text-xl text-2xl';
+      childFontSize = '2xl:text-lg text-base';
   }
 
   let colSpanClass = 'col-span-1';
@@ -55,7 +55,7 @@ export default function SpecBox({ icon, title, color, children, colSpan = 1 }) {
     <div className={`${bgColor} ${colSpanClass} rounded-lg flex flex-col gap-2 p-4`}>
       <div className={`flex items-center gap-1 ${primaryTextColor}`}>
         {icon}
-        <div className="font-bold">{title}</div>
+        <div className="font-semibold">{title}</div>
       </div>
       <div className={`${secondaryTextColor} ${childFontSize} font-semibold`}>{children}</div>
     </div>

@@ -112,7 +112,7 @@ Stage 2 Failsafe is entered when signal loss persists longer then the configured
 
 - the selected `Stage 2 Failsafe_procedure` applies.
 - `!FS!` will be shown in the Flight Mode field of the OSD.
-- `RUNAWAY_TAKEOFF` protection is enabled in failsage before 4.3, but later versions disable it, to avoid unwanted mid-air disarms that could occur in GPS Rescue.
+- `RUNAWAY_TAKEOFF` protection is enabled in failsafe before 4.3, but later versions disable it, to avoid unwanted mid-air disarms that could occur in GPS Rescue.
 
 Entering Stage 2 is not possible until 5 seconds after the flight controller boots up. This is to prevent unwanted activation, as in the case of TX/RX gear with long bind procedures, before the Rx sends out valid data.
 
@@ -260,7 +260,7 @@ See [Rx documentation](/docs/development/Rx).
 
 Time for a recovered signal to be considered valid while in Stage 2 Failsafe. The signal must be 'good' for at least this time before control is returned to the pilot; the pilot cannot re-arm during this period. In GPS Return mode, this is the time required before the pilot's stick inputs will be assessed for the restoration of control. In Betaflight 4.5, this period is 0.5s by default, unless the `RACE_PRO` option was built into the firmware, when it is 0.1s by default. In Betaflight 4.4, this period is 1.0s. `RXLOSS` will still be shown in the OSD during the `failsafe_recovery_delay` period, since technically the signal is not yet considered OK.
 
-Note that during the `failsafe_recovery_delay` period, the quad cannot be re-armed. To be re-armed, the quad must first be disarmed. If the arm stick is in the armed position when the `failsafe_recovery_delay` expires, the warning `NOT_DISARMED` will be shown. It means that you need to toggle the arm switch back to the disarm psoition, and then you can re-arm.
+Note that during the `failsafe_recovery_delay` period, the quad cannot be re-armed. To be re-armed, the quad must first be disarmed. If the arm stick is in the armed position when the `failsafe_recovery_delay` expires, the warning `NOT_DISARMED` will be shown. It means that you need to toggle the arm switch back to the disarm position, and then you can re-arm.
 
 #### `failsafe_stick_threshold`
 

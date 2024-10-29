@@ -54,13 +54,13 @@ This is the distance, in meters, at which your quad will start descending toward
 
 `set gps_rescue_ascend_rate = [number] (default is 500)` (added in betaflight 4.1)
 
-This is the vertical speed at which your quad will climb, espressed in centimeters for second
+This is the vertical speed at which your quad will climb, expressed in centimeters for second
 
 `set gps_rescue_descend_rate = [number] (default is 150)` (added in betaflight 4.1)
 
-This is the vertical speed at which your quad will descend, espressed in centimeters for second
+This is the vertical speed at which your quad will descend, expressed in centimeters for second
 
-`gps_rescue_throttle_min` and `gps_rescue_throttle_max` in betaflight 4.1 only limit the escursion of the the new pid controller(https://github.com/betaflight/betaflight/pull/8015)
+`gps_rescue_throttle_min` and `gps_rescue_throttle_max` in betaflight 4.1 only limit the excursion of the the new pid controller(https://github.com/betaflight/betaflight/pull/8015)
 
 `gps_rescue_alt_mode = [MAX_ALT, FIXED_ALT, CURRENT_ALT]` (added in betaflight 4.1)
 
@@ -70,7 +70,7 @@ now we can set the altitude of gps rescue
 
 **FIXED_ALT**, the quad will always try to return to the height set (`gps_rescue_initial_alt`)
 
-**CURRENT_ALT**, the quad will return maintaining the readed altitude during the rescue activation (not suggested)
+**CURRENT_ALT**, the quad will return maintaining the altitude read during the rescue activation (not suggested)
 
 ### At this point you are ready to test Rescue Mode.
 

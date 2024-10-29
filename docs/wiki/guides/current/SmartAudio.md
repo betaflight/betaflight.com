@@ -127,7 +127,7 @@ In Betaflight, a SmartAudio device operates in one of two operational models:
 
 #### Race
 
-This is a model that gives minimum interferance to other pilots.
+This is a model that gives minimum interference to other pilots.
 A SmartAudio device powers up in pit mode, and remain in pit mode until transmission is commenced.
 
 When operating in this model, left most character of the status line is `R`.

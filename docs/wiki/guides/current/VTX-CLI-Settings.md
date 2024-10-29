@@ -4,7 +4,7 @@ As of Betaflight version 3.3.0, the CLI settings below can be used to
 configure addressable video transmitters (such as
 TBS-[SmartAudio](/docs/wiki/guides/current/SmartAudio)
 and
-IRC-[Tramp](IRC-Tramp)[)](IRC-Tramp)
+IRC-[Tramp](IRC-Tramp))
 that are connected to the flight controller.\
  \
  At startup the settings are applied to the transmitter. If the video

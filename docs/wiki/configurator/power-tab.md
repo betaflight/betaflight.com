@@ -61,12 +61,12 @@ voltage is not displayed correctly, you can adjust this value up/down to fix it
 ### Divider / Multiplier Value
 
 This defines how the value read by the ICs ADC converts into a voltage value that makes sense to the pilot.
-In easy terms this sets how the ratio difference between the two voltage divider resistors are used in the voltage calculation formular.
+In easy terms this sets how the ratio difference between the two voltage divider resistors are used in the voltage calculation formula.
 
 Example:  
 Scale: 110 = 10:1 voltage divider (10k:1k ohm resistors)  
 Divider: 10 = sets the direct resistor to resistor ratio  
-Multiplier: 1 = this is to finetune the outcome of the calculation, a value of 1 is "no correction"
+Multiplier: 1 = this is to fine-tune the outcome of the calculation, a value of 1 is "no correction"
 
 ## Amperage Meter
 

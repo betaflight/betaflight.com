@@ -10,7 +10,7 @@ Do not rely on any information presented here.
 
 **Test failsafe without propellers.**
 Arm the Quadcopter and shut the radio off.
-Full range receiver and Satellite behave diffently from brand to brand, read the operator's manual.
+Full range receiver and Satellite behave differently from brand to brand, read the operator's manual.
 
 What is a failsafe?
 
@@ -22,7 +22,7 @@ Why should I set my Failsafe?
 
 Failsafe places the flight controller in a "safer" state. Typically, a small quadcopter can fall without severe damage but with bigger quads, it might be better to land. The basic rule: it is better to drop from the sky unarmed than have a flyaway, randomly chasing people.
 
-You might want to set the RCcommand on failsafe for each channel. I usually set throttle to hold leaving pitch, roll and yaw to "auto". Auxilliary 1 switch to "unarmed", for me it is "set 1000" and AUX 2 "set 2000" ( I have a mini-Quad with a beeper which makes it easier to locate).
+You might want to set the RCcommand on failsafe for each channel. I usually set throttle to hold leaving pitch, roll and yaw to "auto". Auxiliary 1 switch to "unarmed", for me it is "set 1000" and AUX 2 "set 2000" ( I have a mini-Quad with a beeper which makes it easier to locate).
 
 -Enable Expert Mode
 ![Failsafe Tab](https://user-images.githubusercontent.com/25552059/44224354-2a14cb80-a158-11e8-884a-c9abeca80c3f.PNG)

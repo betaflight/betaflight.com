@@ -97,7 +97,7 @@ voltage chart vs remaining capacity.
 
 ![PID animation](https://github.com/bw1129/PIDtoolbox/raw/master/images/PID_Compensation_Animated.gif)
 
-- **P** = The present (proportional)
+- **P** = The Present (proportional)
 - **I** = The Past (integral)
 - **D** = The Future (derivative / damping) !Dangerous
 
@@ -128,7 +128,7 @@ You can lower P to reduce the oscillations, but reduce it too much and your quad
 - **High P-gain** means the copter accelerates harder to reach the target rotational rate
 - **Higher P-gain** feels `sharper`
 - **Lower P-gain** feels `softer`
-- **too high P-gain** results in more (slow, sluggish) oscillation
+- **Too high P-gain** results in more (slow, sluggish) oscillation
 
 ## I-Term (integral)
 
@@ -170,7 +170,7 @@ Another side effect of **excessive D-term is the decrease in the quad’s respon
 
 `set debug_mode=d_min`
 
-- Proportial to the _change in magnitude_ of error
+- Proportional to the _change in magnitude_ of error
 - Anticipates the _future state_ of the system based on its current movement
 - It reduces the P-term overshoot and oscillation (_damping effect_)
 - But accelerates the P term too!
@@ -191,7 +191,7 @@ Another side effect of **excessive D-term is the decrease in the quad’s respon
 
 ## d min
 
-Set the lowest D-term, it then get dymacially increased (to PID's maximum D-term) on sharper stick movements
+Set the lowest D-term, it then get dynamically increased (to PID's maximum D-term) on sharper stick movements
 
 D Min provides a way to have a lower level of D in normal flight and a higher level for quick maneuvers that might cause overshoot, like flips and rolls. It also brings D up during prop wash. Gain adjusts how fast D gets up to its maximum value and is based on gyro to determine sharp moves and propwash events. Advance makes D go up earlier by using setpoint instead of gyro to determine sharp moves.
 
@@ -199,7 +199,7 @@ D Min provides a way to have a lower level of D in normal flight and a higher le
 
 - Raise P till quad is "sharp"
 - Raise D till it's soft enough
-- Raise I till (too much looses control (slow response)
+- Raise I till (too much looses control (slow response))
 - if oscillation is fast, reduce D
 - if oscillation is slow, raise D (or lower P)
 
@@ -208,7 +208,7 @@ D Min provides a way to have a lower level of D in normal flight and a higher le
 ```
 P -> Higher makes Quad more sharp (oscillates if too high or low)
 I -> High Makes the quad more digital / mechanical (measures errors) holds the attitude better if raised
-D -> High values dampes the P (works against P, flattens the curve) D-term relates on the gyro measurements
+D -> High values dampen the P (works against P, flattens the curve) D-term relates on the gyro measurements
 ```
 
 ### Solve
@@ -228,10 +228,10 @@ D -> High values dampes the P (works against P, flattens the curve) D-term relat
 - my tuning approach focuses on:
   - minimizing propwash
   - eliminating bouncebacks after flips and rolls
-  - solitd attitude hold on throttle change
+  - solid attitude hold on throttle change
 - the main maneuvers I use to tune are sharp turns, flips and rolls, and throttle punches
 
-## PID Tuning (borrowed from Betaflights manual)
+## PID Tuning (borrowed from Betaflight's manual)
 
 [Guide](PID-Tuning-Guide)
 
@@ -267,7 +267,7 @@ Finally, refine the relationship between P and I by looking for a tendency to re
 
 ### PID Masterclass
 
-#### Autoselect Profile dependend on your Battery Voltage
+#### Autoselect Profile depending on your Battery Voltage
 
 This selects profile 1 if you connect a 3S battery and
 selects profile 2 if you connect a 4S battery
@@ -364,7 +364,7 @@ Most often noisier than other axis
 
 # Oscillations
 
-- Regular to the fixed freqzency = P-term issue
+- Regular to the fixed frequency = P-term issue
 - Randomly / irregular Vibration could be D-term (amplifies noise)
 - Props (punch throttle) oscillation higher frequency
 
@@ -381,8 +381,8 @@ These sudden movements cause the prop's spin to create turbulence, causing insta
 
 - Smoothing Type = Filter
 - Ch Smoothed = RPYT
-- If you dont smooth on Y then you cant have ff on yaw
-- Input cuttoffType = AUTO
+- If you don't smooth on Y then you cant have ff on yaw
+- Input cutoffType = AUTO
 - Input FilterType = BIQUAD
 - Derivative CutoffType = AUTO
 - Derivative FilterType = BIQUAD
@@ -458,7 +458,7 @@ Zero FeedForward allows D-term to dampen the quad all the time, even when the qu
 
 ```
 
-set f_ptich = 100
+set f_pitch = 100
 set f_roll = 100
 
 beacon RX_SET
@@ -497,7 +497,7 @@ Most motors take time to spin up / slow down. They need to be pushed harder at t
 ### Setpoint (deprecated) / FeedForward-transition
 
 - Reduces the weight when the stick is returning to center
-- 0.15 = 15% of sticktravel is smooth
+- 0.15 = 15% of stick travel is smooth
 
 - When nose is raising/lowering when giving throttle punch raise AG.
 - Is a virtual `I` booster if changed.
@@ -531,7 +531,7 @@ Integrated Yaw is a feature which corrects a fundamental issue with quad control
 
 ## I-term relax Type
 
-Limits the accumulation of I Term when fast movements happen. This helps specially to reduce the bounceback at the end of rolls and other fast movements. You can choose the axes in which this is active, and if the fast movement is detectd using the Gyro or the Setpoint (stick).
+Limits the accumulation of I Term when fast movements happen. This helps specially to reduce the bounceback at the end of rolls and other fast movements. You can choose the axes in which this is active, and if the fast movement is detected using the Gyro or the Setpoint (stick).
 
 - **Gyro** = more for Freestyle pilots (good at bouncebacks, bad in turns)
   - uses a high-pass filter based on rate of change stick movements
@@ -564,7 +564,7 @@ TPA basically allows an aggressively tuned multi-rotor (one that feels very lock
 
 - tpa_mode: PD/D (Only acts on D-term by default)
 - tpa_rate: TPA 0.6 means 60% PIDs decrease on full throttle
-- tpa_breakpoint: TPA breakpoint 1250(25%) - throttle value at wich TPA starts to work
+- tpa_breakpoint: TPA breakpoint 1250(25%) - throttle value at which TPA starts to work
 
 ![TPA](https://user-images.githubusercontent.com/15355893/165534786-978e3129-04e6-4943-9be0-bcc79ed3d622.png)
 
@@ -642,7 +642,7 @@ Mostly `set debug_mode = GYRO_SCALED` could be used.
 
 - below zero your quad is more heavy to the right
 - above zero your quad is more heavy to the left
-- could also occour on windy days (force from outside)
+- could also occur on windy days (force from outside)
 - is your gyro multiplied by a gain
 
 ### PID error
@@ -650,7 +650,7 @@ Mostly `set debug_mode = GYRO_SCALED` could be used.
 - is the offset of your setpoint and gyro
 - the "perfect tuned quad" always has zero PID error
 - gyro should exactly track setpoint
-- biggest errors occour if you start a sharp pitch or roll
+- biggest errors occur if you start a sharp pitch or roll
 - propwash also generates PID error
 - drives the PID
 
@@ -710,7 +710,7 @@ PID-error = Setpoint - Gyro
 - `resource show` `resource list (bf 3.x)` then it shows which Pins are used (Example: LedStrip, I2C)
 - `resource i2c_scl 1 none` unassign current I2C
 - `resource led_strip 1 none` unassign current LedStrip
-- `resouce camera_control B06` Whatever your PIN ID you have
+- `resource camera_control B06` Whatever your PIN ID you have
 - `resource list` check if your change is applied
 - `set camera_control_key_delay = 125`
 - `save`
@@ -760,7 +760,7 @@ https://drohnen360.com/was-bedeutet-pwm-ppm-sumd-sbus-f-port/
 
 **2RSS** - Antenna 2 Signal Strength Uplink - received signal strength antenna 2 (RSSI)
 
-**TRSS** - TX Radio Signal Strength ()Signalstärke Downlink)
+**TRSS** - TX Radio Signal Strength (Signalstärke Downlink)
 
 **RQly** - Uplink - link quality (valid packets) (Empfangsqualität Empfänger)
 
@@ -835,7 +835,7 @@ save`
 
 Done
 
-## Supermario as startup sound
+## Super Mario as startup sound
 
 ### Motor 1
 
@@ -881,7 +881,7 @@ C6 8 G5 8 C6 8 E6 8 G6 8 C7 8 G6 8 G#5 8 C6 8 D#6 8 G#6 8 D#6 8 G#6 8 C7 8 D#7 8
 
 Update BLHeli && Upgrade to latest Firmware
 Count your Magnets on motors and type that in Betaflight Configurator
-Set Dhsot 300/600
+Set Dshot 300/600
 go to Motors tab, connect your Battery and look that error rate (percentage) MUST be 0% (100% if Batt not connected)
 OG to Filter settings and Switch on Gyro RPM Filter
 Harmonics 1 (most cases) (BUT YOU SHOULD SET IT TO 3 )
@@ -890,7 +890,7 @@ you can now use dynamic notch to watch something else (noise) than the motors (l
 Set Dyn filter range to "low"
 Q to 200
 
-Make a slight test flight, if motors cool or slighly warm you can reduce filter by move "Gyro Filter Multiplier" and "D term Filter muliplier" to the right (less filtering)
+Make a slight test flight, if motors cool or slightly warm you can reduce filter by move "Gyro Filter Multiplier" and "D term Filter multiplier" to the right (less filtering)
 Do not use very new props (to prevent too less filtering)
 
 ##### you can use this too

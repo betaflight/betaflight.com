@@ -88,7 +88,7 @@ It is possible, but not recommended, to use softserial for MSP ports in 4.4 and 
 
 ### Enabling Softserial
 
-Softserial requires custom CLI commands. An unused pin with an associated timer must be found. The most common are PPM or LED_STRIP pins. Not all such pins will work on all boards, and you may need to do some reseach about using softserial on your board before you can make it work.
+Softserial requires custom CLI commands. An unused pin with an associated timer must be found. The most common are PPM or LED_STRIP pins. Not all such pins will work on all boards, and you may need to do some research about using softserial on your board before you can make it work.
 
 First go to the CLI and type `resource`, to get a list of the currently assigned pin numbers for each of the currently available pads on the device.
 
@@ -114,7 +114,7 @@ Note:
 - `resource show all` in CLI will provide a full list of all serial ports, timers etc.
 - just because the resources are re-assigned, it does not mean that the Softserial port will work properly.
 
-Oscarliang provides a good summary of [how to set up softserial](https://oscarliang.com/betaflight-soft-serial/). Remember that the commands have changed in Betaflight 4.5.
+Oscar Liang provides a good summary of [how to set up softserial](https://oscarliang.com/betaflight-soft-serial/). Remember that the commands have changed in Betaflight 4.5.
 
 ### The CLI Serial command.
 

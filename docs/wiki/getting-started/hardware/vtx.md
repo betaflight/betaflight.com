@@ -6,12 +6,12 @@ Video Transmitters are commonly referred to as VTX units. These are typically an
 
 Analogue video systems transmit a CVBS signal in either PAL or NTSC using channels in the 5.8GHz band.
 
-- Orginally the FPV hardware in quadcopters was based on analogue security cameras and the associated transmission equipment.
+- Originally the FPV hardware in quadcopters was based on analogue security cameras and the associated transmission equipment.
   - Early boards required manual channel selection using physical switches on the transmitter which was inconvenient for pilots
   - Pilots could easily power on and interrupt video for pilots already flying.
 - Cameras improved over time and VTX hardware has become more tightly integrated into the overall FPV experience.
-  - [SmartAudio from TBS](/docs/wiki/guides/current/SmartAudio) and [Tramp from ImmersionRC](/docs/wiki/guides/current/IRC-Tramp) - allow users to change their video channel, band and power output from the FC. Pilots must supply a list of valid channnels, bands and power levels to the FC called a [VTX Table](/docs/wiki/guides/current/VTX-Tables)
-  - [OpenVTX](https://github.com/OpenVTx/OpenVTx) introduced MSP VTX control. MSP VTXs can annouce available channel, band and power information so VTX Tables are not required.
+  - [SmartAudio from TBS](/docs/wiki/guides/current/SmartAudio) and [Tramp from ImmersionRC](/docs/wiki/guides/current/IRC-Tramp) - allow users to change their video channel, band and power output from the FC. Pilots must supply a list of valid channels, bands and power levels to the FC called a [VTX Table](/docs/wiki/guides/current/VTX-Tables)
+  - [OpenVTX](https://github.com/OpenVTx/OpenVTx) introduced MSP VTX control. MSP VTXs can announce available channel, band and power information so VTX Tables are not required.
   - [ExpressLRS backpack](https://github.com/ExpressLRS/Backpack/wiki) combines the ability to control any SmartAudio, Tramp or MSP VTX whilst simultaneously setting the same channel on the goggles.
 
 Originally the OSD for these systems was a separate add-in board such as Minim OSD, these have been replaced by OSD chips onboard the FC. This AT7456 is used on many FCs for this purpose and combines a black/white text-based OSD onto a video feed from the camera before sending the video signal to the VTX for transmission.

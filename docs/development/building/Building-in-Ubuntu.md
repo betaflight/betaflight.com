@@ -1,7 +1,7 @@
 # Building in Ubuntu
 
 Building for Ubuntu platform is remarkably easy.
-This document is tested and based on the latest Ubuntu 22.04 LTS release and can also be used for WSL.
+This document is tested and based on Ubuntu 22.04 LTS release and can also be used for WSL.
 
 ### Clone Betaflight Repository and Install Toolchain
 
@@ -52,10 +52,11 @@ In most Linux distributions the user won't have access to serial interfaces by d
     $ sudo usermod -a -G plugdev $USER
     $ sudo apt-get remove modemmanager
     $ sudo tee -a /etc/udev/rules.d/46-stdfu-permissions.rules <<EOF
-# DFU (Internal bootloader for STM32 and AT32 MCUs)
+# DFU (Internal bootloader for STM32, AT32 and APM32 MCUs)
 
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", MODE="0664", GROUP="plugdev"
 EOF
 ```
 
