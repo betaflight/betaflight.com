@@ -17,10 +17,10 @@ Example of `resource` with `PINIO`:
 
 ```
 [...]
-resource PINIO 1 A1
-resource PINIO 2 A8
-resource PINIO 3 C9
-resource PINIO 4 D2
+resource PINIO 1 A01
+resource PINIO 2 A08
+resource PINIO 3 C09
+resource PINIO 4 D02
 [...]
 ```
 
@@ -74,7 +74,7 @@ For permanent ID of boxes (or AUX modes), the table below is based on [msp/msp_b
 | `BOXARM`                | ARM                      |  `0` |
 | `BOXANGLE`              | ANGLE                    |  `1` |
 | `BOXHORIZON`            | HORIZON                  |  `2` |
-| `BOXBARO`               | BARO                     |  `3` |
+| `BOXALTHOLD`            | ALTITUDE HOLD            |  `3` | added 4.6 |
 | `BOXANTIGRAVITY`        | ANTI GRAVITY             |  `4` |
 | `BOXMAG`                | MAG                      |  `5` |
 | `BOXHEADFREE`           | HEADFREE                 |  `6` |
@@ -82,7 +82,7 @@ For permanent ID of boxes (or AUX modes), the table below is based on [msp/msp_b
 | `BOXCAMSTAB`            | CAMSTAB                  |  `8` |
 | `BOXCAMTRIG`            | CAMTRIG                  |  `9` | (removed) |
 | `BOXGPSHOME`            | GPS HOME                 | `10` | (removed) |
-| `BOXGPSHOLD`            | GPS HOLD                 | `11` | (removed) |
+| `BOXPOSHOLD`            | POSITION HOLD            | `11` | added 4.6 |
 | `BOXPASSTHRU`           | PASSTHRU                 | `12` |
 | `BOXBEEPERON`           | BEEPER                   | `13` |
 | `BOXLEDMAX`             | LEDMAX                   | `14` | (removed) |
