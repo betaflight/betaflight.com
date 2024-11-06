@@ -31,6 +31,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 | Draft 1.1 | 10 December 2023 | Add LSM6DSV16X and LPS22DF        |
 | Draft 1.2 | 13 January 2024  | Add Mag and Baro hardware note    |
 | Draft 1.3 | 23 October 2024  | Update MCU recommendations        |
+| Draft 1.4 | 06 November 2024 | Add LED pin resource warning      |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -292,6 +293,15 @@ Each LED should be connected to a GPIO line. Polarity of the output does not mat
 | 2          | Amber  | No         |
 
 For details of the use of these LEDs, please see the [FC LEDs](/docs/development/FC-LEDs) documentation
+
+:::warning
+
+Pin PC13, PC14 and PC15 are supplied through the power switch. Since the switch only sinks a limited amount of current (3 mA), the use of GPIOs PC13 to PC15 in output mode is limited:
+
+- The speed should not exceed 2 Mhz with a maximum load of 30 pF
+- These GPIOs must not be used as current sources (e.g. to drive an LED).
+
+:::
 
 ## 3.2 Resource Selection Considerations
 
