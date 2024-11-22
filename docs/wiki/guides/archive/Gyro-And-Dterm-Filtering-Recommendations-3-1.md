@@ -457,7 +457,7 @@ So I was sitting there, wondering what to try next, flicking the ends of the pro
 
 Got some cyclones, which I use sometimes, they 'pluck' at 300Hz (stiffer).
 
-So I stuck a gyro filter with midpoint 180 and low point at 140 and _bingo_ no more shaking - able to bring the lowpass values up quite high now. So I made another profile for cyclones with the notch centerd around 300. Same outcome!
+So I stuck a gyro filter with midpoint 180 and low point at 140 and _bingo_ no more shaking - able to bring the lowpass values up quite high now. So I made another profile for cyclones with the notch centered around 300. Same outcome!
 
 I also noticed that with PT1 on both gyro and D, the proportion of noise on D compared to P becomes progressively greater as frequency increases. To keep the two in a constant relationship, a biquad on D works much better. Once the amplitudes of P and D sort of are the same, we only need to put notches in the right place on gyro, and none are needed on D.
 
