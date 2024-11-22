@@ -302,7 +302,7 @@ Thanks to: tbolin
 
 ## 12. EzLanding
 
-This is a newly developed feature, CLI only, that makes landings less bouncy, even when airmode is on.  This is achieved by restricting the amount to which airmode can increase throttle, and by attenuating iTerm, when throttle is low and sticks are centerd.
+This is a newly developed feature, CLI only, that makes landings less bouncy, even when airmode is on.  This is achieved by restricting the amount to which airmode can increase throttle, and by attenuating iTerm, when throttle is low and sticks are centered.
 
 EzLanding is disabled by default.
 
