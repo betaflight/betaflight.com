@@ -39,7 +39,7 @@ The SPRacingH7EXTREME can be stand-alone or be turned into a stack that allows f
 - OSD with customisable layout, profiles and configuration menu system
 - On-board MEMS microphone
 - PID-Audio with CPU audio out and audio mixer
-- MicroSD card slot (SD/SDHC, upto 32GB) connected via 4-Bit SDIO
+- MicroSD card slot (SD/SDHC, up to 32GB) connected via 4-Bit SDIO
 - Durable 1.6mm thick 6-layer copper gold-plated PCB with cutouts for battery wires
 - Current sensor/Amperage meter (110A)
 - 2-6S BEC 5V Switching regulator, 1A

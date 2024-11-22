@@ -15,7 +15,7 @@ The KroozX combo is a combination of flight controller and 4in1 Blheli_S(BB2) ES
 - Hardware UARTS: 5 (RX6, RX1/TX1 with onboard inverter)
 - PWM outputs: 10
 - OSD: MAX7456 with a switch for 2 video channel
-- Blackbox: MicroSD card slot (SD/SDHC, upto 64GB)
+- Blackbox: MicroSD card slot (SD/SDHC, up to 64GB)
 - PPM/SBUS: RX6 with onboard inverter
 - Wireless: optional HM-TRP or HC-12 onboard transceiver
 - Battery Voltage Sensor: Yes, up to 6S input

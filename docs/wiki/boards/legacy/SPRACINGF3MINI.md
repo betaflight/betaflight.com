@@ -18,7 +18,7 @@ http://seriouslypro.com/spracingf3mini
 - Onboard regulator (BEC) for powering the FC, receiver and small servos.
 - Features the latest Accelerometer, Gyro and Mag/Compass and Baro/Altitude sensor technology.
 - 2 Buttons for binding Spektrum Satellite receivers, activating USB bootloader mode or resetting the configuration. More future uses coming!
-- Wire up using using pin headers for all major connections for excellent crash-durability. Use either right-angled or straight pin-headers.
+- Wire up using pin headers for all major connections for excellent crash-durability. Use either right-angled or straight pin-headers.
 - No compromise I/O. Use all the features all the time; e.g. Connect your USB + OSD + SmartPort + SBus + GPS + LED Strip + Battery Monitoring + Sonar + 8 motors - all at the same time!
 - 8 PWM output lines for ESCs and Servos. Arranged for easy wiring on standard pin headers.
 - Supports direct connection of SBus, SumH, SumD, Spektrum1024/2048, XBus receivers. No external inverters required (built-in).

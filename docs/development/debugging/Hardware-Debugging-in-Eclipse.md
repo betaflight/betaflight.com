@@ -36,7 +36,7 @@ stop the board, flash the firmware, restart:
 	reset halt
 ```
 
-A this point you can launch the debug in Eclispe.
+A this point you can launch the debug in Eclipse.
 ![](http://i.imgur.com/u7wDgxv.png)
 
 # GDB and J Link

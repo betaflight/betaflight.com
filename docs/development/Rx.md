@@ -218,8 +218,8 @@ Signal loss can be detected when:
 
 ### RX loss configuration
 
-The `rxfail` cli command is used to configure per-channel rx-loss behaviour.
-You can use the `rxfail` command to change this behaviour.
+The `rxfail` cli command is used to configure per-channel rx-loss behavior.
+You can use the `rxfail` command to change this behavior.
 A flight channel can either be AUTOMATIC or HOLD, an AUX channel can either be SET or HOLD.
 
 - AUTOMATIC - Flight channels are set to safe values (low throttle, mid position for yaw/pitch/roll).

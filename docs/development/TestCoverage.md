@@ -1,6 +1,6 @@
 # Test coverage analysis
 
-There are a number of possibilities to analyse test coverage and produce various reports. There are guides available from many sources, a good overview and link collection to more info can be found on Wikipedia:
+There are a number of possibilities to analyze test coverage and produce various reports. There are guides available from many sources, a good overview and link collection to more info can be found on Wikipedia:
 
 https://en.wikipedia.org/wiki/Gcov
 

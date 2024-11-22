@@ -149,7 +149,7 @@ note: it would be ideal to disable this when armed
 #### AdjustmentIndex
 
 The FC maintains internal state for each adjustmentStateIndex, currently 4 simultaneous adjustment states are maintained. Multiple adjustment ranges
-can be configured to use the same state but care should be taken not to send multiple adjustment ranges that when active would confict.
+can be configured to use the same state but care should be taken not to send multiple adjustment ranges that when active would conflict.
 
 e.g. Configuring two identical adjustment ranges using the same slot would conflict, but configuring two adjustment ranges that used
 only one half of the possible channel range each but used the same adjustmentStateIndex would not conflict.
@@ -158,7 +158,7 @@ The FC does NOT check for conflicts.
 
 #### AdjustmentFunction
 
-There are many adjustments that can be made, the numbers of them and their use is found in the documentation of the cli `adjrange` command in the 'Inflight Adjustents' section.
+There are many adjustments that can be made, the numbers of them and their use is found in the documentation of the cli `adjrange` command in the 'Inflight Adjustments' section.
 
 ### Implementation Notes
 

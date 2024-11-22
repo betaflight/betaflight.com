@@ -30,7 +30,7 @@ Before configuring or testing GPS Rescue, you must calibrate the accelerometer a
 
 ## Setting up GPS Rescue
 
-In order to set up GPS Rescue on your quad, it is highly recommended that you follow the complete setup procedure from scratch. This procedure is meant for practicing in a controlled environment and fully understanding the behaviour and limitations of GPS Rescue. Using GPS Rescue out of the box (copying someone else's configuration) will diminish the chances of success.
+In order to set up GPS Rescue on your quad, it is highly recommended that you follow the complete setup procedure from scratch. This procedure is meant for practicing in a controlled environment and fully understanding the behavior and limitations of GPS Rescue. Using GPS Rescue out of the box (copying someone else's configuration) will diminish the chances of success.
 
 ### Go to the Betaflight Modes tab and add a switch for GPS Rescue Mode. Verify that the mode actually gets activated (of course no props).
 
@@ -60,7 +60,7 @@ This is the vertical speed at which your quad will climb, expressed in centimete
 
 This is the vertical speed at which your quad will descend, expressed in centimeters for second
 
-`gps_rescue_throttle_min` and `gps_rescue_throttle_max` in betaflight 4.1 only limit the excursion of the the new pid controller(https://github.com/betaflight/betaflight/pull/8015)
+`gps_rescue_throttle_min` and `gps_rescue_throttle_max` in betaflight 4.1 only limit the excursion of the new pid controller(https://github.com/betaflight/betaflight/pull/8015)
 
 `gps_rescue_alt_mode = [MAX_ALT, FIXED_ALT, CURRENT_ALT]` (added in betaflight 4.1)
 

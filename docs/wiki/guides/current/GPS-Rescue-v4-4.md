@@ -1,6 +1,6 @@
 # GPS Rescue 4.4
 
-Betaflight 4.4 brings huge improvements in the altitude, velocity, flightpath accuracy and landing behaviour of the GPS Rescue code. The Sanity Checks that monitor the status of the Rescue are less likely to disarm the quad or falsely declare a failure of the rescue.
+Betaflight 4.4 brings huge improvements in the altitude, velocity, flightpath accuracy and landing behavior of the GPS Rescue code. The Sanity Checks that monitor the status of the Rescue are less likely to disarm the quad or falsely declare a failure of the rescue.
 
 ## About GPS Rescue
 
@@ -49,7 +49,7 @@ Level mode must provide a stable hover, after careful acc trimming. The throttle
 
 - **Heading** may be wrong, right at the start. Check the arrow in the OSD! Sometimes it takes several seconds to point directly to home. Do not immediately yaw heavily or rotate the quad a great deal on arming or immediately after takeoff. Be 100% sure you have a valid Home Point before takeoff. Do a clean, straight, medium speed forward flight directly away from home, soon after takeoff. This helps the IMU correctly determine the heading of the quad from the GPS data, and lets you that the Home Arrow is pointing the right way.
 - **Do not enable the Compass** _unless_ it has been properly calibrated and the data confirmed, by logging, to be useful and accurate.
-- **Use UBlox**. GPS units configured to use NMEA often update only once per second, or even slower. This makes GPS Rescue very jerky, and almost unusuable. It's better to use UBlox, which by default return data regularly at 5 times a second.
+- **Use UBlox**. GPS units configured to use NMEA often update only once per second, or even slower. This makes GPS Rescue very jerky, and almost unusable. It's better to use UBlox, which by default return data regularly at 5 times a second.
 - **SBAS** mode may cause problems with reliable GPS data, and may not function in some regions; if so, try setting SBAS mode off.
 - **Steps** in flight are normal, and due to the large time intervals between GPS data points.
 
@@ -59,7 +59,7 @@ Level mode must provide a stable hover, after careful acc trimming. The throttle
 
 - A working GPS module. Modern UBlox units work well. Check that they support UBlox, 10hz updates, and that they have a backup battery, so that it will regain satellites during repeated power cycles much more quickly.
 - `set GPS_PROVIDER = GPS_UBLOX` enables `UBLOX` mode. This is recommended and is now the default.
-- if the GPS doesn't support `UBLOX`, try `NMEA`. Some, but not all, NMEA-only units will provide 10Hz data updates, and can work really well. NMEA at 1Hz makes it very difficult for the quad to fly home; it will jerk and jump every second, with very erratic rescue flight behaviour.
+- if the GPS doesn't support `UBLOX`, try `NMEA`. Some, but not all, NMEA-only units will provide 10Hz data updates, and can work really well. NMEA at 1Hz makes it very difficult for the quad to fly home; it will jerk and jump every second, with very erratic rescue flight behavior.
 - test the accuracy of your GPS by watching it in Configurator while stable on a desk outdoors. Zoom in on the map and see how the position moves around, especially if the quad is put on an angle and some satellites are lost. Note that altitude estimation is quite unstable. It can take a long time for the GPS to really settle down.
 
 - If a Baro is present, enabling it will improve IMU altitude estimations significantly. We recommend enabling Baro by default, especially for short flights (eg up to 10-15min). Usually this results in better altitude control and more reliable landings. Check the Baro data in the sensors tab after enabling the `ALTITUDE` debug. It should be reasonably smooth after arming. Whether or not Baro is helpful is readily seen by doing some LOS rescues at low altitude over flat ground. For longer flights, and some Baro hardware, Baro drift can be more of a problem than GPS drift. Hence do some testing with it on or off and then set your Baro trust value appropriately for the kind of flying you intend to do.
@@ -92,7 +92,7 @@ Otherwise, read all the software settings below, and make sure they are suitable
 
 **1. RC Link Loss**
 
-Here we want the quad to enter Stage 1 Failsafe for the Stage 1 duration, just for long enough to be sure the link really is lost, then enter Stage 2 failsafe, which should be set to GPS Rescue and fly home. Once the link is restored, control can be restored by wiggling the sticks more than 30 degrees out from centre. WARNING: Do NOT wiggle the sticks until you've got an FPV video signal back, otherwise you may regain control but not know where you're going! Wait until your signal strength indicator is good and you have a decent FPV feed, **then** wiggle the sticks.
+Here we want the quad to enter Stage 1 Failsafe for the Stage 1 duration, just for long enough to be sure the link really is lost, then enter Stage 2 failsafe, which should be set to GPS Rescue and fly home. Once the link is restored, control can be restored by wiggling the sticks more than 30 degrees out from center. WARNING: Do NOT wiggle the sticks until you've got an FPV video signal back, otherwise you may regain control but not know where you're going! Wait until your signal strength indicator is good and you have a decent FPV feed, **then** wiggle the sticks.
 
 If the radio or FPV link never recover, let it fly home and it will land itself.
 
@@ -144,21 +144,21 @@ Basic setup:
 
 - **Ensure you have a Home Lock before takeoff, and that the Home Arrow points to Home!**. After arming, make sure the OSD shows the home icon, distance to home, and the home arrow points to home. Optionally, display the `osd_gps_sats_show_hdop` value in the OSD; if this gets close to, or below, 1.0, it's a good indicator of a solid fix (thanks @zzyzx).
 
-- **At the start of a mission-critical flight, confirm normal GPS Rescue behaviour a by doing a close-range test rescue with a switch**. Once you know that it turns and points to home, revert the test switch. You can enter and leave GPS Rescue with a switch with immediate effect anytime. This makes field checking easy.
+- **At the start of a mission-critical flight, confirm normal GPS Rescue behavior a by doing a close-range test rescue with a switch**. Once you know that it turns and points to home, revert the test switch. You can enter and leave GPS Rescue with a switch with immediate effect anytime. This makes field checking easy.
 
-- **Think carefully about the `GPS_SET_HOME_POINT_ONCE` option**. Resetting the home point on every new arm is OK for testing and normal use. Each time you arm, your home position is updated. The home position accuracy improves over time, so you're sure to get the best home position estimate when you finally do take off. The downside is that if you disarm during the flight, GPS rescue will take you back to that new arm point, not to home. If your craft disarms in a bad spot, even if you get signal back, it will will never fly home. In contrast, if you choose to only set the home position once, at first arm, it's important to not arm until you are sure you have a solid home position estimate. Be patient when using the first arm only method.
+- **Think carefully about the `GPS_SET_HOME_POINT_ONCE` option**. Resetting the home point on every new arm is OK for testing and normal use. Each time you arm, your home position is updated. The home position accuracy improves over time, so you're sure to get the best home position estimate when you finally do take off. The downside is that if you disarm during the flight, GPS rescue will take you back to that new arm point, not to home. If your craft disarms in a bad spot, even if you get signal back, it will never fly home. In contrast, if you choose to only set the home position once, at first arm, it's important to not arm until you are sure you have a solid home position estimate. Be patient when using the first arm only method.
 
 - The **Stage 1 Failsafe configuration is very important**, The defaults are not suitable. Choose either:
 
-- **Hold last values**: Configure stage 1 to hold all current channel values, including holding throttle, on signal loss. A transient dropout of less than Stage 1 duration will let the craft keep flying straight, or at whatever values it had just before the signal loss. For long-range cruising this keeps the flight smooth during brief dropouts. The pilot must monitor the Rx link in the OSD or they may not realise they getting dropouts.
+- **Hold last values**: Configure stage 1 to hold all current channel values, including holding throttle, on signal loss. A transient dropout of less than Stage 1 duration will let the craft keep flying straight, or at whatever values it had just before the signal loss. For long-range cruising this keeps the flight smooth during brief dropouts. The pilot must monitor the Rx link in the OSD or they may not realize they getting dropouts.
 
-- **Manually enable Level (Angle) mode, set throttle to climb a bit, and centre the sticks**: Probably the safer option. This will provide the cleanest initiation of the Rescue process.
+- **Manually enable Level (Angle) mode, set throttle to climb a bit, and center the sticks**: Probably the safer option. This will provide the cleanest initiation of the Rescue process.
 
-- NOTE: without a compass, the quad 'learns' the heading of the quad from the direction of travel over ground from data provided by the GPS. **The craft must be travelling at least 2m/s, in clean nose-forward flight, for at least several seconds, for its attitude to be correctly set by the GPS data.** Try to fly dead-straight and without side-wind, so that no roll correction is needed when the course over ground matches simple pitch-only flight-path of the quad. It's important fly straight and at least 2m/s before testing GPS Rescue at close range, or the IMU may be confused about the direction home. Check the Home Arrow before initiating the rescue. The default GPS_RESCUE_GROUND_SPEED value is 5m/s, and cannot be set under 2.5m/s, so that the quad will update the IMU heading during the rescue, even if the initial heading is incorrect, but may fly quite fast in the wrong direction beforehand. Hence it is really important to validate the Home Arrow early in the flight. The arrow in the OSD should be pointing to home, and the altitude and distance should be about right, soon after takeoff.
+- NOTE: without a compass, the quad 'learns' the heading of the quad from the direction of travel over ground from data provided by the GPS. **The craft must be traveling at least 2m/s, in clean nose-forward flight, for at least several seconds, for its attitude to be correctly set by the GPS data.** Try to fly dead-straight and without side-wind, so that no roll correction is needed when the course over ground matches simple pitch-only flight-path of the quad. It's important fly straight and at least 2m/s before testing GPS Rescue at close range, or the IMU may be confused about the direction home. Check the Home Arrow before initiating the rescue. The default GPS_RESCUE_GROUND_SPEED value is 5m/s, and cannot be set under 2.5m/s, so that the quad will update the IMU heading during the rescue, even if the initial heading is incorrect, but may fly quite fast in the wrong direction beforehand. Hence it is really important to validate the Home Arrow early in the flight. The arrow in the OSD should be pointing to home, and the altitude and distance should be about right, soon after takeoff.
 
 - **The GPS Rescue 'mode' switch will immediately initiate GPS Rescue when activated**. It doesn't use the failsafe system. This can be used as an 'emergency' rescue for loss of FPV signal or for disorientation when flying LOS. If a failsafe switch is configured, a similar outcome can be achieved by setting the switch mode to immediately action Stage 2. There will be only a short delay before the quad should level out and climb. In both cases, after hitting the switch, the quad's momentum will keep it moving as it was for at least a few seconds, so don't expect miracles.
 
-- In strong winds the maximum allowed angle of the craft during a rescue, `GPS_RESCUE_ANGLE`, may need to be increased enough that the quad can make forward speed into a headwind. The the craft may overshoot or land roughly if the wind is very strong, especially a strong tailwind.
+- In strong winds the maximum allowed angle of the craft during a rescue, `GPS_RESCUE_ANGLE`, may need to be increased enough that the quad can make forward speed into a headwind. The craft may overshoot or land roughly if the wind is very strong, especially a strong tailwind.
 
 - During a rescue, the built-in Betaflight Crash Detection code is automatically activated (even if you disabled it in your settings). If the quad has a hard crash or impact at any time on the way home, it may disarm immediately. This mechanism is quite different from the much more sensitive landing impact detection, which is only activated late in the Rescue once the altitude of the quad falls below the `GPS_RESCUE_LANDING_ALT` height.
 
@@ -234,7 +234,7 @@ The `GPS_RESCUE_ALT_MODE` setting, in association with the `GPS_RESCUE_RETURN_AL
 - The defaults should be 'about right' for a typical 5" freestyle quad.
 - The quad targets velocity in the direction of home. If it must fly into wind, the maximum angle (set by `GPS_RESCUE_ANGLE`), must be sufficient for the quad to overcome the wind. Provided the angle is sufficient, the return home velocity should be reasonably accurately maintained. `GPS_RESCUE_VELOCITY_I` is important when flying into the wind. On windy days, always confirm that the quad can overcome the wind. A lot of battery power can be consumed flying into the wind, always consider this when thinking about how far you fly out with the wind behind you.
 
-## Expected behaviours
+## Expected Behaviors
 
 - The disarm with remains active during switch-induced failsafe, including GPS Rescue. Take care with disarm if the craft is configured to reset the home point after a disarm.
 - To prevent flyaways, the low satellite sanity check will abort the rescue if satellite count falls below half the set GPS Rescue minimum sats for a cumulative increment/decrement period exceeding 10s.
@@ -269,7 +269,7 @@ The `GPS_RESCUE_ALT_MODE` setting, in association with the `GPS_RESCUE_RETURN_AL
 | Disarms while flying home                   | Not within 50% of target velocity or altitude for 20s or more in fly home phase                                            |
 | Altitude on return consistently low or high | Hover value not set correctly, not enough throttle I                                                                       |
 | Altitude on return randomly low or high     | GPS Altitude drift - check its stability before takeoff                                                                    |
-| Altitude overshoots at start                | Normal behaviour                                                                                                           |
+| Altitude overshoots at start                | Normal behavior                                                                                                            |
 | Altitude droops below target at start       | Set a higher altitude buffer if using current altitude `gps_rescue_alt_buffer`                                             |
 | Altitude droops below target at start       | Throttle P and D too low                                                                                                   |
 | Altitude wobbles quickly during return      | Throttle P and D too high                                                                                                  |
@@ -309,8 +309,8 @@ A sanity check failure due to GPS signal loss will inevitably be a disarm the cr
 
 There are three sanity check modes:
 
-- `RESCUE_SANITY_ON` - this gives the strongest sanity check behaviour, with immediate disarm for hard errors like loss of GPS communication, flyaway, low sat count, and no home point on initiating the rescue. These responses will be the same whether the rescue is 'real' or if it was initiated by a switch.
-- `RESCUE_SANITY_FS_ONLY`- this is the default mode, giving strong sanity check behaviour for true RC link loss, but additional time to reverse the switch for switch-induced failsafe. For example, the quad will enter "Do Nothing" mode for 20s if a rescue is initiated by switch and there is no Home Point.
+- `RESCUE_SANITY_ON` - this gives the strongest sanity check behavior, with immediate disarm for hard errors like loss of GPS communication, flyaway, low sat count, and no home point on initiating the rescue. These responses will be the same whether the rescue is 'real' or if it was initiated by a switch.
+- `RESCUE_SANITY_FS_ONLY`- this is the default mode, giving strong sanity check behavior for true RC link loss, but additional time to reverse the switch for switch-induced failsafe. For example, the quad will enter "Do Nothing" mode for 20s if a rescue is initiated by switch and there is no Home Point.
 - `RESCUE_SANITY_OFF` - this is intended for testing only. When in this mode, the quad will immediately disarm only if arming without a Home Fix was permitted, there is no Home Fix, and there is a hard (Rx Link Lost) failsafe. In all other cases a failed sanity check results in "Do Nothing" mode for 20s and then a disarm. For safety reasons - to prevent indefinite flyaways - it does not not turn "all sanity checks off" anymore.
 
 For sanity checks with a time element, we use a cumulative up/down counter. Starting from zero, the counter increases by 1 every second the value is 'bad', and decreases by 1 every second it is 'good'. Once the accumulator reaches the sanity check time-out, the sanity check fails.
@@ -328,7 +328,7 @@ This table explains the currently implemented sanity checks.
 | FlyHome failure                     | 15s then disarm                                   | 15s, `Do Nothing` for 20s, then disarm          | can't maintain at at least half the set velocity in the direction of home for cumulative 15s. |
 | Landing Phase failure               | 10s then disarm                                   | 10s then disarm                                 | descend rate less than half the set rate for cumulative 10s                                   |
 
-- 'Do Nothing' centres sticks and hovers to give the user time to reverse the failsafe switch, if used, or in case you just get lucky and signal comes back.
+- 'Do Nothing' centers sticks and hovers to give the user time to reverse the failsafe switch, if used, or in case you just get lucky and signal comes back.
 
 \*\* In `SANITY_OFF` mode, the craft can be armed with no home fix, but the rescue will fail, and the craft will disarm and crash after 10s of hovering, whenever the pilot attempts to enable a GPS Rescue.
 
@@ -338,7 +338,7 @@ Switch initiated GPS rescue may be helpful when FPV video is lost. The quad shou
 
 When GPS Rescue is enabled, arming is not permitted unless there is a GPS position fix and we have at least the required minimum number of satellites, set by `gps_rescue_min_sats`. This check can be bypassed by enabling `allow_arming_without_fix`.
 
-When arming is permitted without a fix, and the machine is armed without a Home Point being set, and a GPS rescue is initiated, the craft will go into 'do nothing' mode (slow descent with landing detection enabled) for 20s then disarm. This will happen both for true RC Link loss failsafe, and for switch-initiated failsafe tests. It will not fly home under any circumstances, because it has no clue where home is. The 'do nothing' period of 20s exists only to give the pilot time to undo the switch if they realise that the quad is not going to return.
+When arming is permitted without a fix, and the machine is armed without a Home Point being set, and a GPS rescue is initiated, the craft will go into 'do nothing' mode (slow descent with landing detection enabled) for 20s then disarm. This will happen both for true RC Link loss failsafe, and for switch-initiated failsafe tests. It will not fly home under any circumstances, because it has no clue where home is. The 'do nothing' period of 20s exists only to give the pilot time to undo the switch if they realize that the quad is not going to return.
 
 Never allow arming without a home point fix if you want GPS Rescue to get you home!
 

@@ -37,7 +37,7 @@ Then this guide might be for you.
 
 ## Prop Direction.
 
-1. According the the motor direction reference image at the bottom, look at each individual prop
+1. According to the motor direction reference image at the bottom, look at each individual prop
 2. If you spin the appropriate motor in the correct direction, the higher (leading edge) of the prop should be forwards in the direction of travel.
 3. Opposing motor corners in a quad must have the same direction propeller.
 4. If this is **NOT** correct:
@@ -88,8 +88,8 @@ Then this guide might be for you.
 7. Raise each slider one by one
 8. The number on the slider should be the same as the motor that it is spinning, according the the reference image below (or the image in the configurator)
 9. If this is **NOT** correct
-   - Grab a peice of paper and make a chart for any that differ
-   - || Slider thats being moved ||VS|| The motor number that actually spins ||
+   - Grab a piece of paper and make a chart for any that differ
+   - || Slider that's being moved ||VS|| The motor number that actually spins ||
    - Open CLI
      - Type `resource`
      - Scroll up find the list that looks like `resource MOTOR 1 ___`

@@ -40,7 +40,7 @@ Current meter cannot be used in conjunction with Parallel PWM and Sonar.
 
 #### Constraints
 
-Sonar cannot be used in conjuction with SoftSerial or Parallel PWM.
+Sonar cannot be used in conjunction with SoftSerial or Parallel PWM.
 
 ### SPRacingF3
 
@@ -50,4 +50,4 @@ Sonar cannot be used in conjuction with SoftSerial or Parallel PWM.
 
 #### Constraints
 
-Sonar cannot be used in conjuction with SoftSerial2 or Parallel PWM.
+Sonar cannot be used in conjunction with SoftSerial2 or Parallel PWM.

@@ -12,7 +12,7 @@ sidebar_position: 13
 - [D-only TPA](#d-only-tpa), to selectively reduce D related noise at high throttle and maintain normal P responsiveness
 - [Integrated yaw](/docs/wiki/guides/current/Integrated-Yaw), an experimental option which mathematically integrates the yaw PID values, potentially simplifying yaw tuning
 - [Improved setpoint mode iterm_relax](#improved-setpoint-mode-iterm_relax), intended to improve turn accuracy during spirals and slaloms - for racers
-- [Transient throttle limit](#transient-throttle-limit), which improves noise behaviour at low and high throttle by preventing refected noise from doubling up and becoming distorted
+- [Transient throttle limit](#transient-throttle-limit), which improves noise behavior at low and high throttle by preventing reflected noise from doubling up and becoming distorted
 - [Improved yaw PIDs](#improved-yaw-pids), with a better understanding of how to tune yaw
 - [Improved dynamic notch code](#improved-dynamic-notch-code) has been improved to better track and suppress motor noise with less delay, using two closely spaced, narrower notches
 
@@ -235,7 +235,7 @@ During propwash, the quad shakes at relatively low frequencies that are easily s
 - able to rapidly change thrust on demand, ie high turn authority, from:
   -- higher cell count, eg 6S is better than 4S
   -- lighter, easily spun props (don't over-prop)
-- heavier centre mass (more stable)
+- heavier center mass (more stable)
 - battery on top (less wobble momentum)
 
 From the software perspective:
@@ -336,7 +336,7 @@ Dynamic lowpass filtering works best when configured as a biquad. That single dy
 
 `dyn_lpf_gyro_max_hz`, sets the highest frequency the lowpass can rise to, following a smooth curve from zero throttle. Ideally `dyn_lpf_gyro_max_hz` should be set close to the quad's actual max rpm in hz. For a typical 5" this is about 450-500hz, equivalent to 27,000 to 30,000 rpm. Smaller props typically rev faster, eg 600-650hz for 3"-4", and larger quads rev slower, eg 300-350hz. Max frequency can be determined by displaying an rpm debug in the OSD as you fly, or making a log and performing blackbox or plasmatree analysis. Displaying the max value in the stats screen after disarming can be enabled via `set osd_stat_max_fft = ON`, make sure to set `dyn_lpf_gyro_max_hz` to at least 610 however as otherwise the dynamic notch will not be able to go high enough and the max FFT reading will be bogus.
 
-If on full throttle, the dynamic lowpass doesn't go high enough, it attenuates the motor peak so much that the dynamic notch FFT can't track the motor peak properly, which makes for worse noise overall. Likewise, if the lowpass doesn't go low enough, the FFT may jump up to the first harmonic, leaving a large fundamental frequency to get through. Logging with `set debug_mode = DYN_LPF` will show the centre frequency of the FFT that drives the dynamic notch (recorded into debug 0). The FFT value should smoothly track the motor frequency from low to high. If the FFT cannot stay stable on the high throttle motor peak, dyn_lpf_gyro_max_hz might be able to go a bit higher. If the FFT jumps around a lot at low throttle, you can help it track the primary motor peak better by adjusting dyn_lpf_gyro_min_hz.
+If on full throttle, the dynamic lowpass doesn't go high enough, it attenuates the motor peak so much that the dynamic notch FFT can't track the motor peak properly, which makes for worse noise overall. Likewise, if the lowpass doesn't go low enough, the FFT may jump up to the first harmonic, leaving a large fundamental frequency to get through. Logging with `set debug_mode = DYN_LPF` will show the center frequency of the FFT that drives the dynamic notch (recorded into debug 0). The FFT value should smoothly track the motor frequency from low to high. If the FFT cannot stay stable on the high throttle motor peak, dyn_lpf_gyro_max_hz might be able to go a bit higher. If the FFT jumps around a lot at low throttle, you can help it track the primary motor peak better by adjusting dyn_lpf_gyro_min_hz.
 
 Betaflight 4.0 uses a single dynamic biquad lowpass on gyro by default, rather than the two fixed PT1's of 3.5, because the biquad has a cleaner pass-band and much steeper cut above the cutoff point. It very effectively attenuates all noise above the anticipated motor peak and allows the dynamic notch to remove that. The end result should be very clean noise spectrum, with the fundamental motor peak, the harmonics, and most ordinary noise removed. Delay is about the same as 3.5 at low rpm but reduced above mid rpm. The default settings pass a lot more gyro data through below cutoff than in 3.5, leading to sharper responses generally, but particularly so at higher rpm.
 
@@ -372,7 +372,7 @@ The FFT based dynamic notch we've been using cannot track every motor individual
 
 During the 4.0 development period, we found that two, closely spaced, narrower notches, would achieve better noise results with less delay, than one single wider notch.
 
-The value `dyn_notch_width_percent` sets how far apart, in percentage either side of the centre frequency, these paired notches will be. The `dyn_notch_q` factor of 120 sets them to almost half the width of the dynamic notch in 3.5.
+The value `dyn_notch_width_percent` sets how far apart, in percentage either side of the center frequency, these paired notches will be. The `dyn_notch_q` factor of 120 sets them to almost half the width of the dynamic notch in 3.5.
 
 For clean quads, or where filter delay is critical, setting `dyn_notch_width_percent` to 0 runs only one single narrow notch. Motor temperatures are likely to be higher, but filter delay, and probably propwash, will be less. This is not recommended for normal quads but can be helpful on high-performance machines that are flown smoothly with clean props. Another approach for clean quads flown smoothly is to narrow the percentage width and increase the Q factor. For instance, setting width to 4% and Q to 200 results in a very narrow notch with much less delay.
 

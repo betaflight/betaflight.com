@@ -120,7 +120,7 @@ Note that if the rpm from `dyn_idle_min_rpm` is higher than that of DShot idle, 
 
 Mostly a high minimum RPM of 3500 - 4000 works best. The DSHot Idle value can be set low, eg 2-3%
 
-Racers typically use low throttle very little of the time, so you might wonder why you'd bother with something that only influences idle behaviour.
+Racers typically use low throttle very little of the time, so you might wonder why you'd bother with something that only influences idle behavior.
 
 There are two reasons.
 

@@ -4,7 +4,7 @@ sidebar_position: 13
 
 # BetaFlight 3.0 Release Notes
 
-This is really a major release. The full detailed change list can be found in the the commit history.
+This is really a major release. The full detailed change list can be found in the commit history.
 [https://github.com/betaflight/betaflight/commits/master]
 
 Here is a 3.0.0 Release overview video by joshuabardwell:
@@ -18,7 +18,7 @@ Boris
 
 This version has many changes in the under laying code so has its own section.
 
-Plan here to to list and explain only the differences from the previous 2.x versions.
+Plan here to list and explain only the differences from the previous 2.x versions.
 
 From Boris for those just trying 3.0:
 Just use things available in the configurator and leave the rest on default.
@@ -32,7 +32,7 @@ Betaflight has 2 different goals.
 ### Betaflight 3.0.1 (3.0 patch 1)
 
 - Finalized OSD Code. (More OSD configuration options)
-- Changed Relaxation Parameter to act as transition (Helps better against bounce backs on higher rates with high setpoint weight). Config's two sliders are now Dterm Setpoint and Dterm Transistion. See addition to the 2DOF PIDC description.
+- Changed Relaxation Parameter to act as transition (Helps better against bounce backs on higher rates with high setpoint weight). Config's two sliders are now Dterm Setpoint and Dterm Transition. See addition to the 2DOF PIDC description.
 - Fixed non working Baro for some boards
 - Added second notch for gyro (set gyro_notch1_hz and set gyro_notch2_hz, also available in the new 1.8.3 configurator)
 - Added configurable pidSum limit
@@ -50,7 +50,7 @@ Short Summary of changes:
 
 - STM32 F4 support (working blheli passthrough)
 - Full IO rework
-- Major target seperations. Easy implementation for new targets
+- Major target separations. Easy implementation for new targets
 - PWM code rework
 - Added OSD integration
 - Major code cleanups and rewrites
@@ -82,13 +82,13 @@ New blackbox 2.5.6 supports all new parameters
 
 1.7.8 configurator (RC12)
 1.7.7 configurator (RC11)
-1.7.6 configurator (RC10) supports some additional tuning parameters. Don't forget to check tooltips for explainations!
+1.7.6 configurator (RC10) supports some additional tuning parameters. Don't forget to check tooltips for explanations!
 1.7.5 configurator for RC 8 and up supports some additional tuning parameters. Don't forget to check tooltips for explanations!
 The ones who are trying a notch filter on pre RC7 releases and using separate gyro ans pid rate/denom you must upgrade to RC7 as there was a bug in coefficient calculation.
 
 Use 1.7.2 configurator for up to RC 7.
 
-1.7.1 configurator supports some additional tuning parameters. Don't forget to check tooltips for explainations!
+1.7.1 configurator supports some additional tuning parameters. Don't forget to check tooltips for explanations!
 
 The PID from 2.x versions can transfer to 3.0 as the scaling is the same, but you may expect that it should be possible to get higher PID's despite the same PID scaling due to new PID controller functionalities.
 
@@ -151,7 +151,7 @@ NOTE: this is only in versions up to RC5. In RC6 and up it is changed to:
 
 *[ON, OFF]*
 
-With this OFF the PIDC does NOT respond to Sticks when Throttle values in below min_check, just like in the orignal MultiWii, BaseFlight or CleanFlight.
+With this OFF the PIDC does NOT respond to Sticks when Throttle values in below min_check, just like in the original MultiWii, BaseFlight or CleanFlight.
 
 #### set airmode_activate_throttle = 1350
 
@@ -174,7 +174,7 @@ Same can also be done for roll and pitch axis what is disabled by default. It ca
 *[NORMAL, HIGH]*
 
  Sets how aggressive/steep the cutoff is. Steeper cutoff adds more delay compared to less steep one.
-Boris states: "The gyro doesnt need a very steep cut if you ask me on a descent setup, while dterm is the one what needs more filtering".
+Boris states: "The gyro doesn't need a very steep cut if you ask me on a descent setup, while dterm is the one what needs more filtering".
 
 ### The following CLI commands are Per PROFILE so can be different in each Profile.
 
@@ -279,7 +279,7 @@ linear rate without curves. Configurable up to 2000deg/sec
 super expo rate like it was already, but now doesnt need a feature for being activated. Set it to 0 and super expo is disabled. You can now even have super expo on one axis and not on another for example
 #### rc expo
 
-new expo what needs lower numbers with smoother curve and more center feel configurability. Usefull particularly for linear rates.
+new expo what needs lower numbers with smoother curve and more center feel configurability. Useful particularly for linear rates.
 
 Note: The Srates replace the old rates for Roll, Pitch & Yaw so still can be adjusted with Apps that use MSP like MWOSD.
 
@@ -356,7 +356,7 @@ When flying through turbulent air the quad gets lots of external inputs. If the 
 
 I takes time to build up and let go. So when flying at medium speed through slightly bumpy air and noticing you have a 'wandering line', more I will usually help. But too much I may mean that once you leave one bank of moving air and enter the next, the accumulated iTerm correction will be going the opposite way and will take some time - about half a second - to 'let go'. So adding more iTerm won't always solve the problem. I certainly won't fix fast buffeting, it is too slow, and 'too much' I may not be helpful even for slow wandering lines.
 
-D on the other hand responds immediately to sudden changes, and responds faster as the buffeting becomes faster. It does very little or nothing for slow drifting behaviours (thats what I is for).
+D on the other hand responds immediately to sudden changes, and responds faster as the buffeting becomes faster. It does very little or nothing for slow drifting behaviors (that's what I is for).
 
 P is good for any speed of buffeting but mostly when the angular deviations are larger, rather than small fast deviations for which D is more effective.
 
@@ -427,7 +427,7 @@ So scenario 1: Propwash
 - Crank the D, keeping an eye on motor temps
 - Motor temps high and still have propwash? Back off on P and try working D up again
 
-Scenario 2: Behaviour on stick return
+Scenario 2: Behavior on stick return
 
 - Play with sliders
 - Transition slider specifically introduces some deceleration on stick return so that stops are not as abrupt.
@@ -533,7 +533,7 @@ If its just the bounce:
 You could try lower p setpoint weight.
 But you could also try test dterm setpoint of 0.
 See if the above 2 can remove the need for more D.
-But high D is not an issue at all if the motors dont heat up and if it all still sounds smooth.
+But high D is not an issue at all if the motors don't heat up and if it all still sounds smooth.
 Thomas' Reply:
 Set dterm setpoint to 0 and no bounce back at all. Gonna try to go higher on P on Pitch and lower the D on pitch to get the feel I want!
 

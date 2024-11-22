@@ -67,7 +67,7 @@ Without RPM filtering, shifting the lowpass filters higher should be done cautio
 
 With RPM filtering, most quads will still have cool motors with filters at 2x normal. At 2x, the delay attributable to lowpass filtering is halved compared to normal, so long as the dynamic is kept on (see below), and propwash will be noticeably better compared to defaults. Some clean quads may tolerate up to 3x filtering with dynamic and rpm on. The sliders stop at 2x so to go higher you have to enter the numbers yourself.
 
-To revert to default filtering, just put the filter sliders back to the centre.
+To revert to default filtering, just put the filter sliders back to the center.
 
 ## Changes to the Dynamic Notch filter
 
@@ -196,7 +196,7 @@ The default value of 100 works well.
 
 The value may be tweaked to perfection. Get the quad tuned properly first, with whatever FF and boost works best. Look at the start of a hard flip in BlackBox Explorer and see if there is any overshoot. If with `ff_max_rate_limit = 100` there is still too much overshoot, try `ff_max_rate_limit = 95`. If the overshoot is too well controlled, try 105 to 110. The range of adjustment is quite tight.
 
-`ff_max_rate_limit` does not deal with overshoot when the sticks return to centre.
+`ff_max_rate_limit` does not deal with overshoot when the sticks return to center.
 
 It can be useful for racers who have such low rates that they often hit max travel when making tight turns.
 

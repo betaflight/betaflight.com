@@ -10,7 +10,7 @@ Changing settings during flight can make your aircraft unstable and crash if you
 
 - Always make adjustments while flying in a large open area.
 - Make small adjustments and fly carefully to test your adjustment.
-- Give yourself enough flying space and time to adjust to how your changes affect the behaviour of the aircraft.
+- Give yourself enough flying space and time to adjust to how your changes affect the behavior of the aircraft.
 - Remember to set adjustment channel switches/pots to the center position before powering on your TX and your aircraft.
 - If possible configure switch warnings on your transmitter for dedicated adjustment switches.
 - A momentary 3 position switch is the best choice of switch for this - i.e. one that re-centers itself when you let go of it.
@@ -23,10 +23,10 @@ The other mode is Absolute mode where a pot (knob/slider) may be directly mapped
 
 Both modes utilise two channels to make an adjustment.
 
-| Channel    | Use                                                                                                                                                                                                                                                                      |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Range      | This channel is used to enable an adjustment. When the channel is set to fall withing the specified range, then the corresponding adjustment is enabled. This is similar to mode setting where a given mode is enabled when a channel is within a lower and upper range. |
-| Adjustment | This channel is used to control the change to the specified setting                                                                                                                                                                                                      |
+| Channel    | Use                                                                                                                                                                                                                                                                     |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Range      | This channel is used to enable an adjustment. When the channel is set to fall within the specified range, then the corresponding adjustment is enabled. This is similar to mode setting where a given mode is enabled when a channel is within a lower and upper range. |
+| Adjustment | This channel is used to control the change to the specified setting                                                                                                                                                                                                     |
 
 Settings are not saved automatically, connect a GUI, refresh and save or save using stick position when disarmed.
 Powering off without saving will discard the adjustments.
@@ -278,6 +278,6 @@ The following examples shows **incorrect** configurations - the entire usable ra
 ![Configurator example 6](Screenshots/adjustments-incorrect-config-1.png)
 ![Configurator example 7](Screenshots/adjustments-incorrect-config-2.png)
 
-In the following example, the incorrect configuraton (above) has been corrected by adding a range that makes 'No changes'.
+In the following example, the incorrect configuration (above) has been corrected by adding a range that makes 'No changes'.
 
 ![Configurator example 7](Screenshots/adjustments-incorrect-config-2-corrected.png)

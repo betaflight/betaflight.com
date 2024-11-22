@@ -22,7 +22,7 @@ Do **NOT** use a magnetometer unless you have confirmed that:
 
 A magnetometer is a 3D electronic compass, returning magnetic field strength in 3 orthogonal axes. Magnetometer data is used to estimate the 'heading' of the quad, meaning the angle in degrees between the nose of the quad and "true North". When set up correctly, the returned value should, for example, be 90° when the nose of the quad is pointing due East, 180° when pointing due South, etc.
 
-Mag information improves behaviour in GPS Rescue during the climb and descend phases, where wind and drift can confuse a GPS-only heading. It essential for accurate position hold, which we will support later.
+Mag information improves behavior in GPS Rescue during the climb and descend phases, where wind and drift can confuse a GPS-only heading. It essential for accurate position hold, which we will support later.
 
 The Mag heading is shown numerically in Configurator on the main Setup screen, in the GPS tab, and graphically over the Map in the GPS tab.
 
@@ -289,7 +289,7 @@ Calibration 'zeroes out' local magnetic fields arising from nearby ferrous objec
 
 The calibration process can be initiated while connected to Configurator, by clicking the `Calibrate Magnetometer` button on Configurator's main Setup screen, or by using stick commands. The quad must be disarmed.
 
-The 'centre' or 'cal' value for an axis is a value midway between the min and max values detected for that axis. That 'cal' value is then is subtracted from every reading on that axis, centering all readings around zero. Once the cal value is applied, the reported maximum (most positive) and minimum (most negative) values for each axis should be approximately equal in value, but opposite in sign.
+The 'center' or 'cal' value for an axis is a value midway between the min and max values detected for that axis. That 'cal' value is then is subtracted from every reading on that axis, centering all readings around zero. Once the cal value is applied, the reported maximum (most positive) and minimum (most negative) values for each axis should be approximately equal in value, but opposite in sign.
 
 Cal values are saved, and may be edited, in the `mag_calibration` CLI parameter. For example, `set mag_calibration = 35,-130,-75` will cause the heading code to subtract 35 from every X reading, add 130 to every Y reading, and add 75 ro every Z reading.
 
@@ -336,7 +336,7 @@ If you don't achieve the movement threshold, the LED on the FC just keeps blinki
 
 When the cal process is complete, ie 30s after reaching the movement threshold, the LED on the FC will return to normal blinking, a 3 medium beeps will be played, and the previous cal values will be replaced with new values.
 
-This table summarises the beeper behaviour:
+This table summarises the beeper behavior:
 
 | State             | Beeper              | Tone used            | Notes                                            |
 | ----------------- | ------------------- | -------------------- | ------------------------------------------------ |

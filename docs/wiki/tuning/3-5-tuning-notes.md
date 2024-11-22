@@ -50,13 +50,13 @@ The default values (60) for FF are comparable to the previous 3.4 defaults.
 
 **NOTE: Your old D weight settings will be lost, in each PID profile, on updating from previous versions**.
 
-To start using 3.5 with exactly the same Feed Forward behaviour as you had with the old D weight method, calculate FF as `(D/26)*D_Weight`, where D is your PID 'D' value, and D_Weight is 100 times your D_Weight slider value, or your exact dterm_setpoint_weight value from the CLI. For example, if your D was 26, and your D weight slider was 1.0, the equivalent FF would be 100. If your D was 52, and D weight was 100, an FF of 200 would fly the same on that axis. Yaw FF is covered further down.
+To start using 3.5 with exactly the same Feed Forward behavior as you had with the old D weight method, calculate FF as `(D/26)*D_Weight`, where D is your PID 'D' value, and D_Weight is 100 times your D_Weight slider value, or your exact dterm_setpoint_weight value from the CLI. For example, if your D was 26, and your D weight slider was 1.0, the equivalent FF would be 100. If your D was 52, and D weight was 100, an FF of 200 would fly the same on that axis. Yaw FF is covered further down.
 
-You may have to update your transition value manually also, but the units, and behaviour, are the same.
+You may have to update your transition value manually also, but the units, and behavior, are the same.
 
 Feed Forward provides 'dynamic stick boost' or 'dynamic stick responsiveness'. It pushes the quad quicker into turns when the sticks are moved quickly. With Feed Forward, the faster the sticks are moved, the bigger the push. And it doesn't wait for any error to develop, the response is instantaneous.
 
-The Feed Forward effect is attenuated around centre sticks by the transition parameter, so the quad can be made more damped (less twitchy) around centre for freestyle type flying by setting transition to 0.5 or 0.1 as usual, but for racing and for direct responses it's best to leave transition at 0.
+The Feed Forward effect is attenuated around center sticks by the transition parameter, so the quad can be made more damped (less twitchy) around center for freestyle type flying by setting transition to 0.5 or 0.1 as usual, but for racing and for direct responses it's best to leave transition at 0.
 
 Zero Feed Forward allows D to dampen the quad all the time, even when the quad is instructed to turn quickly. Too much Feed Forward may make the quad too twitchy, and may cause overshoot.
 
@@ -94,7 +94,7 @@ set f_yaw = 100
 
 ## Smoother Anti_Gravity
 
-Quadcopters, particularly battery on the bottom designs where the centre of gravity is below the centre of thrust, or those where increasing airflow would tend to rotate the quad backwards, need to accumulate I as forward speed increases to maintain the set pitch angle. When the throttle is moved up and down quickly in forward flight, these kinds of quads may pitch their nose up and down. Anti-Gravity is the Betaflight function that helps I adapt more quickly to the new value required after a quick change in airspeed.
+Quadcopters, particularly battery on the bottom designs where the center of gravity is below the center of thrust, or those where increasing airflow would tend to rotate the quad backwards, need to accumulate I as forward speed increases to maintain the set pitch angle. When the throttle is moved up and down quickly in forward flight, these kinds of quads may pitch their nose up and down. Anti-Gravity is the Betaflight function that helps I adapt more quickly to the new value required after a quick change in airspeed.
 
 Before 3.5, Anti_Gravity used an 'all or none' method. Each time a new throttle value arrived, if that step change in throttle exceeded the threshold value, I was multiplied by the Anti_Gravity_Gain amount. But if the next step was just less than the threshold, nothing would happen.
 
@@ -114,7 +114,7 @@ The Dynamic Notch has been a vital factor in effective noise management.
 
 3.5 improves the algorithms and allows tuning via the CLI. Appropriate changes can, on many setups, result in less delay and/or even better noise control.
 
-Using the defaults preserves the old behaviour.
+Using the defaults preserves the old behavior.
 
 Quadcopters with relatively stiff frames, good motors and new props typically have a clean noise profile, apart from one noise peak that increases as the motor noise goes up.
 
@@ -139,9 +139,9 @@ The code was changed to:
 
 The old dynamic notch Q factor, and the current default, was 70. This restricted the range of movement of the dynamic to relatively narrow band, typically between 240 and 300 Hz. Setting dyn_notch_quality to 5 opens the bandwidth up to a range between 150 and 600Hz. This works really well on clean quads with a dominant well defined motor speed related peak that runs up to 600Hz.
 
-`dyn_notch_width_percent` sets how wide the dynamic notch will be. If set to 20, the notch will be +/- 20% of center frequency. If the algorithm would have set centre frequency to 300, a 20% wide notch would cover the range 240 to 360.
+`dyn_notch_width_percent` sets how wide the dynamic notch will be. If set to 20, the notch will be +/- 20% of center frequency. If the algorithm would have set center frequency to 300, a 20% wide notch would cover the range 240 to 360.
 
-The current default is 50%, which is about how wide the old dynamic filter was. Given the typical centre values of the old filter, this resulted in a wide notch, which caused meaningful additional delay.
+The current default is 50%, which is about how wide the old dynamic filter was. Given the typical center values of the old filter, this resulted in a wide notch, which caused meaningful additional delay.
 
 On clean quads, the dynamic can be narrowed to say 20% and still work really well.
 
@@ -159,7 +159,7 @@ set dyn_notch_quality = 5
 set dyn_notch_width_percent = 20
 ```
 
-To see what the centre frequency of the notch is doing on each axis in blackbox, and log raw gyro:
+To see what the center frequency of the notch is doing on each axis in blackbox, and log raw gyro:
 
 ```
 set debug_mode = FFT_FREQ

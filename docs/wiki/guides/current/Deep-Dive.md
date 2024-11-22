@@ -47,7 +47,7 @@ Before explaining I will first tell you what determines the Dterm part of PIDsum
 Lets say you're driving at a constant speed of 50km/h, then your speed derivative is 0. But when you push the pedal and keep accelerating and start speeding up with 5km/h per second then the derivative of your speed is 5. When you start slowing down, your speed derivative goes negative.
 
 Delta from error:
-This is the classical Derivative approach. It reflects the speed of error. Error is derived from stick input. Once you move the stick you introduce an error and PID controller has to correct the error. The faster the error grows the the bigger derivative gets. It helps PID loop to reach target faster. It is accelerating it more what creates the dampening effect.
+This is the classical Derivative approach. It reflects the speed of error. Error is derived from stick input. Once you move the stick you introduce an error and PID controller has to correct the error. The faster the error grows the bigger derivative gets. It helps PID loop to reach target faster. It is accelerating it more what creates the dampening effect.
 
 Delta from measurement/gyro:
 This is mathematically simplified formula for Derivative from error assuming that error is 0.
@@ -62,7 +62,7 @@ The main difference is that Delta from error kind of accelerates your stick inpu
 
 Actually, Dterm in gyro mode is inversely proportional to the rate of change of the gyro signal. It always opposes changes to the gyro signal. Frame inertia delays the response of the gyros to P changes, but since Dterm always opposed gyro changes, it typically is opposite in sign to Pterm (definitely opposite in sign to Dterm.
 
-When Pterm increases due to positive stick inputs, inertia of the quad initially results in a big Pterm error signal. Initially, the quad isn't moving, due to inertial mass. With no movement, Dterm is zero, while Pterm is quite large. Very quickly the motors spool up and start to rotate the quad, reducing Pterm as the rotation rate reaches target (i.e. as error falls). Dterm slows down the onset of the rotation, smoothing out both the start of the rotation and the end of the roll. But Pterm is always stronger, so the quad eventually gets the desired rotation rate. Because the rate of rotation is now constant, both Pterm and Dterm head to to zero. Momentum may cause the frame to keep rotating a bit past the point at which it was supposed to stop. P weakly opposes this since typically the actual magnitude of the offset due to momentum errors is small, but Dterm is very sensitive to the high velocity of Pterm overshoots and damps them away much more quickly than Pterm can.
+When Pterm increases due to positive stick inputs, inertia of the quad initially results in a big Pterm error signal. Initially, the quad isn't moving, due to inertial mass. With no movement, Dterm is zero, while Pterm is quite large. Very quickly the motors spool up and start to rotate the quad, reducing Pterm as the rotation rate reaches target (i.e. as error falls). Dterm slows down the onset of the rotation, smoothing out both the start of the rotation and the end of the roll. But Pterm is always stronger, so the quad eventually gets the desired rotation rate. Because the rate of rotation is now constant, both Pterm and Dterm head to zero. Momentum may cause the frame to keep rotating a bit past the point at which it was supposed to stop. P weakly opposes this since typically the actual magnitude of the offset due to momentum errors is small, but Dterm is very sensitive to the high velocity of Pterm overshoots and damps them away much more quickly than Pterm can.
 
 In the absence of stick movement, Pterm opposes an external force on the frame. The magnitude of the Pterm response is always in proportion to the error between the intended rotation rate and the measured rotation rate (e.g. unwanted rotation from flying into a gust of wind).
 
@@ -90,7 +90,7 @@ When D is based on error, a strong 'dterm kick' happens when rcCommand suddenly 
 
 During a sudden stick input, the quad will respond a bit quicker if Dterm is error seeking because D will not oppose the movement resulting from your stick inputs. Whether this is noticeable is unclear, but theoretically it should be a bit more responsive.
 
-There is a possible downside, however, in that that wobble after sudden stick inputs (e.g. at the end of a roll) may be less of a problem when Dterm is not error seeking. Additionally if the 'kicks' aren't smoothed they can cause noise in motors during stick inputs, reducing efficiency, and since RC smoothing to smooth them out may cause delays or otherwise be problematic, I think Boris is keen to revisit which approach is best.
+There is a possible downside, however, in that wobble after sudden stick inputs (e.g. at the end of a roll) may be less of a problem when Dterm is not error seeking. Additionally if the 'kicks' aren't smoothed they can cause noise in motors during stick inputs, reducing efficiency, and since RC smoothing to smooth them out may cause delays or otherwise be problematic, I think Boris is keen to revisit which approach is best.
 
 It might be useful, purely for testing purposes, if we could select the Dterm calculation mode via a switch, so we could change the functionality in flight to really see if it makes much of a difference. Or change it via a CLI parameter. Otherwise its a bit difficult to really know which approach is best, you have to reflash with a custom version and then it's not so easy to compare one to the other.
 
@@ -139,8 +139,8 @@ The motor update happens at begin of the new cycletime and not the begin of new 
 Start GYRO/PID loop------>+125us GYRO/MOTOR----->+125us GYRO----> +125 PID/GYRO------->+125 GYRO/MOTOR (375us)
 
 Having faster motor rate than loop rate is complete nonsense as the value will still be overwritten and cause jittering.
-Thats why i am reworking the tasking at the moment.
-The ideal motor handling would be to only write motors when there are new mixer calculations available and with the time interval between the motor updates never lower than the desired period. Longer motor updates are even not bad just as long as next motor update doesnt fall into previous one.
+That's why i am reworking the tasking at the moment.
+The ideal motor handling would be to only write motors when there are new mixer calculations available and with the time interval between the motor updates never lower than the desired period. Longer motor updates are even not bad just as long as next motor update doesn't fall into previous one.
 
 Lets say the pid controller / mixer requests full motor power on oneshot125 which is about 250us PWM interval.....if we were updating motors at 2k interval than there is in total 250us free interval where it doesn't matter when you update it. so allowed jitter period is a bit less than 250us.
 

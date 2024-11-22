@@ -8,7 +8,7 @@ An ESC is the Electronic Speed Controller which supplies power to the craft's mo
 - Older ESCs support analog protocols like PWM, Oneshot, and Multishot, or hybrid protocols like Proshot. Analog protocols require two-point calibration, are susceptible to noise, and can only provide telemetry over an additional serial connection. This is not suitable for RPM filtering.
 - Betaflight is enhanced by the ability of modern ESCs to supply in-band telemetry back to the Flight Controller via the DShot protocol.
 - Using telemetry from ESC to FC in addition to the normal motor commands from FC to ESC is referred to as Bidirectional DShot.
-- Bidirectional DShot is different from bidirectional motor control. Bidirectional motor control allows the ESC to actively rotate the motors forward and backwards, with the 'off' position at centre stick, as in 3D Flight Mode. Bidirectional motor control is not required for Bidirectional DShot telemetry.
+- Bidirectional DShot is different from bidirectional motor control. Bidirectional motor control allows the ESC to actively rotate the motors forward and backwards, with the 'off' position at center stick, as in 3D Flight Mode. Bidirectional motor control is not required for Bidirectional DShot telemetry.
 
 ## Bidirectional DShot Firmware
 
@@ -43,7 +43,7 @@ Developers note - prior to 2.00 the AM32 project used a repo for each family of 
 | Version | Recommended | Comment                                                                                                                                                                 |
 | ------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2.00    | `N`         | Cleanup of target structure, unify projects                                                                                                                             |
-| 2.01    | `N`         | Increase 10khz timer to 20khz, increase max duty cycle change.                                                                                                           |
+| 2.01    | `N`         | Increase 10khz timer to 20khz, increase max duty cycle change.                                                                                                          |
 | 2.02    | `N`         | Increase startup power for inverted output targets.                                                                                                                     |
 | 2.03    | `N`         | Move chime from DShot direction change commands to save command.                                                                                                        |
 | 2.04    | `Y`         | Fix current protection, max duty cycle not increasing. Fix double startup chime. Change current averaging method for more precision. Fix startup ramp speed adjustment. |
@@ -52,7 +52,7 @@ Developers note - prior to 2.00 the AM32 project used a repo for each family of 
 ### BLHeli_32
 
 :::warning
-Stuck motors, hot motors and unexpected behaviour have been observed in BLHeli_32 releases after 32.7. Betaflight recommends avoiding newer releases until a well-tested BLHeli_32 release is available.
+Stuck motors, hot motors and unexpected behavior have been observed in BLHeli_32 releases after 32.7. Betaflight recommends avoiding newer releases until a well-tested BLHeli_32 release is available.
 :::
 
 BLHeli_32 is only available pre-installed on ESCs, the cost of BLHeli_32 licenses are included in the hardware cost of each ESC. BLHeli_32 was a continuation of the original BLHeli project which introduced support for 32bit ESCs. Bidirectional DShot is now a fully supported feature in version 32.7.0. Just upgrade using blheli32 configurator.
@@ -94,7 +94,7 @@ _\*Recommended if you fly 3D as this fixes 3D mode transitions. Please read [Con
 
 ### JFlight
 
-This is the original BlHeli-S RPM firmware, from the developer of the underlying RPM filtering and DShot telemetry code. JFlight requires a license purchased for each ESC you wish to enable RPM telemetry on. Go to [jflight.net](https://jflight.net), check that your ESC and FC are supported, purchase enough licences, and follow the install instructions - download the custom JESC BLHeli-S configurator, select your ESC, select the correct hex, click the blue 'flash all' button, then then flash the telemetry code over that by clicking 'flash all telemetry'. Use the flash version at the top of the list. JESC requires Betaflight 4.1+.
+This is the original BlHeli-S RPM firmware, from the developer of the underlying RPM filtering and DShot telemetry code. JFlight requires a license purchased for each ESC you wish to enable RPM telemetry on. Go to [jflight.net](https://jflight.net), check that your ESC and FC are supported, purchase enough licences, and follow the install instructions - download the custom JESC BLHeli-S configurator, select your ESC, select the correct hex, click the blue 'flash all' button, then flash the telemetry code over that by clicking 'flash all telemetry'. Use the flash version at the top of the list. JESC requires Betaflight 4.1+.
 
 Only supports L and H MCUs, not recommended for new installs.
 

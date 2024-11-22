@@ -6,10 +6,10 @@ Draft Proposal for Standardized Drone Connectors
 
 ## Version Change Register
 
-| Version # | Revision Date | Changes, Reasons, and Notes      |
-| :-------- | :------------ | :------------------------------- |
-| Draft 0.1 | 27 April 2023 | Initial Draft Format             |
-| Draft 0.2 | 08 May 2023   | Added Logo and pinout correction |
+| Version # | Revision Date | Changes, Reasons, and Notes                                         |
+| :-------- | :------------ | :------------------------------------------------------------------ |
+| Draft 0.1 | 27 April 2023 | Initial Draft Format                                                |
+| Draft 0.2 | 08 May 2023   | Added Logo and pinout correction                                    |
 | Draft 0.3 | 16 June 2024  | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD |
 
 ## Introduction
@@ -141,7 +141,7 @@ The pin configuration for the JST SH connector is as follows:
 | 5     | Signal 3    | TX          |
 
 :::note
-10V regulated for V+ is prefered for providing analogue VTX power.
+10V regulated for V+ is preferred for providing analogue VTX power.
 :::
 
 ### Digital Video Transmitter Pin Configuration

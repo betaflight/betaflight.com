@@ -60,7 +60,7 @@ Welcome to a comprehensive guide to the Betaflight 4.3 update.
 
 - [Dynamic gyro filter expo curve](#dynamic-gyro-filtering-expo-curve) - Adjusting filter expo curves improves propwash by raising dynamic gyro filter cutoff values more quickly as you throttle up.
 
-- [Improved dynamic idle](#improved-dynamic-idle) - The dynamic idle code has been heavily revised, and can now keep RPM at a more stable value, more quickly and more precisely than before, and can be fine-tuned with its new single sided PID controller. It is now much simpler to set up. There is no need to measure RPM or change your D_Shot idle percentage value - leave that value at your normal setting. Just enable DShot Telemetry (and check it is working), and set a suitable idle RPM value in the PID Tuning page. Typically 3000-4000 rpm works great. This improves motor spin-up-from-low-rpm behaviour, enhancing low throttle input responsiveness, and reduces the risk of desyncs, while allowing motor drive to go all the way to zero for enhanced braking when appropriate and for longer inverted hang times.
+- [Improved dynamic idle](#improved-dynamic-idle) - The dynamic idle code has been heavily revised, and can now keep RPM at a more stable value, more quickly and more precisely than before, and can be fine-tuned with its new single sided PID controller. It is now much simpler to set up. There is no need to measure RPM or change your D_Shot idle percentage value - leave that value at your normal setting. Just enable DShot Telemetry (and check it is working), and set a suitable idle RPM value in the PID Tuning page. Typically 3000-4000 rpm works great. This improves motor spin-up-from-low-rpm behavior, enhancing low throttle input responsiveness, and reduces the risk of desyncs, while allowing motor drive to go all the way to zero for enhanced braking when appropriate and for longer inverted hang times.
 
 - [Linear and Dynamic mixer options](#linear-and-dynamic-mixer-options) - These are alternatives to the stock Betaflight mixer code. The dynamic option may result in less aggressive bump and landing responses for level mode or cinematic flights.
 
@@ -103,7 +103,7 @@ This is typically an issue for cinematic HD applications. There is low level, ra
 - be sure your capacitor is big
 - sometimes the gyro chip isn't working properly, and some ESCs just don't play nice, if all else fails, try changing these parts from a quad that does fly perfectly.
 - use a jitter reduction factor of 10-12. To test if feed-forward is making it worse, do a test flight with feedforward at zero. If there is no change, feed-forward isn't the problem, and can be used at normal settings.
-- high level RC smoothing (auto smoothing of 90 or higher) will attenuate the erratic behaviour of old gimbals or 'thumb shake'. To test whether your RC link is the problem, temporarily set a wide deadband. We don't recommend deadband much, but a high deadband test will eliminate all random noise on the RC link, when sticks are centered. If that makes no difference, your RC link isn't the cause of the problem.
+- high level RC smoothing (auto smoothing of 90 or higher) will attenuate the erratic behavior of old gimbals or 'thumb shake'. To test whether your RC link is the problem, temporarily set a wide deadband. We don't recommend deadband much, but a high deadband test will eliminate all random noise on the RC link, when sticks are centered. If that makes no difference, your RC link isn't the cause of the problem.
 - use very soft mounting for the camera.
 
 ### Zero throttle instability
@@ -466,7 +466,7 @@ For cinematic video, where absolute smoothness is needed, auto values around 90-
 
 The auto smoothing function adjusts the filters to give the least delay for the given link speed. At higher link speeds, the smoothing filters run faster, and give quicker stick responses.
 
-For cinematic flying with a fast radio link, and for crossfire in a non-locked mode, it may be best to manually over-ride the auto smoothing, to get a consistent amount of smoothness throughout the flight, and across builds with different radio links. This can be done by by setting fixed, non-auto, values in the CLI. For cinematic purposes, 10-15hz works well, regardless of link speeds. This snippet should work:
+For cinematic flying with a fast radio link, and for crossfire in a non-locked mode, it may be best to manually over-ride the auto smoothing, to get a consistent amount of smoothness throughout the flight, and across builds with different radio links. This can be done by setting fixed, non-auto, values in the CLI. For cinematic purposes, 10-15hz works well, regardless of link speeds. This snippet should work:
 
 ```text
 set rc_smoothing_setpoint_cutoff = 10
@@ -562,7 +562,7 @@ This is where the jitter reduction code helps remove that residual noise in high
 
 Hence the jitter reduction system markedly reduces gimbal jitter on all systems, but is most effective, and important, in higher link rate systems with only 800 steps. For that reason we suggest keeping it at the default value on all RC links, increasing it for freestyle and cinematic, and maybe dropping back to 5 but only on clean RC links for race purposes.
 
-The newer 11 and 12 bit RC link protocols with 2000 steps will provide better resolution, however gimbal noise will remain a problem, and hence the jitter reduction code is likely to remain needed for the forseeable future.
+The newer 11 and 12 bit RC link protocols with 2000 steps will provide better resolution, however gimbal noise will remain a problem, and hence the jitter reduction code is likely to remain needed for the foreseeable future.
 
 For more detail see [PR #10670](https://github.com/betaflight/betaflight/pull/10670)
 
@@ -682,7 +682,7 @@ In 4.3, feedforward now is available in Level, Level Race, and Horizon modes.
 
 In Level Mode, this results in a more immediate response when moving the sticks to change the angle of the quad. The quad should more promptly assume your new intended angle.
 
-In Horizon Mode, while flying aggressively, the behaviour is now nearly exactly the same as acro, with all the benefits that feedforward brings in terms of immediate stick response and reduced overshoot. It feels great!
+In Horizon Mode, while flying aggressively, the behavior is now nearly exactly the same as acro, with all the benefits that feedforward brings in terms of immediate stick response and reduced overshoot. It feels great!
 
 If you're a beginner and you find Level too twitchy, reduce the feedforward value in the PIDs.
 
@@ -732,7 +732,7 @@ Blackbox logs now show un-smoothed rcCommand, and the RC and feedforward debugs 
 
 ## Improved altitude estimation with baro and gps
 
-When you have both GPS and baro and fly without waiting for GPS fix, there was wrong altitude estimation (up to 100 meters error). Now it's fixed. Baro is used untill GPS captures required number of sats. New cli options introduced to configure behavior:
+When you have both GPS and baro and fly without waiting for GPS fix, there was wrong altitude estimation (up to 100 meters error). Now it's fixed. Baro is used until GPS captures required number of sats. New cli options introduced to configure behavior:
 
 `position_alt_gps_min_sats` - the required number of sats to start using both GPS and baro.
 `position_alt_baro_fallback_sats` - the required number of sats to stop using GPS and switch back to baro.

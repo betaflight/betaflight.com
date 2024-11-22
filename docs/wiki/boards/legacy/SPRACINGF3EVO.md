@@ -14,7 +14,7 @@ http://seriouslypro.com/spracingf3evo
 - MicroSD-Card socket for black box flight log recorder - optimize your tuning and see the results of your setup without guesswork.
 - Race transponder built in - just turn up at a race and have your lap times recorded.
 - Features the latest Accelerometer, Gyro and Mag/Compass and Baro/Altitude sensor technology.
-- Wire up using using pin headers for all major connections for excellent crash-durability. Use either right-angled or straight pin-headers.
+- Wire up using pin headers for all major connections for excellent crash-durability. Use either right-angled or straight pin-headers.
 - No compromise I/O. Use all the features all the time; e.g. Connect your USB + OSD + SmartPort + SBus + GPS + LED Strip + Battery Monitoring + 8 motors - all at the same time! (Sonar will be supported in CF 1.14)
 - 8 PWM output lines for ESCs and Servos. Arranged for easy wiring on standard pin headers.
 - Supports direct connection of SBus, SumH, SumD, Spektrum1024/2048, XBus receivers. No external inverters required (built-in).
@@ -157,7 +157,7 @@ The port cannot be used at the same time as UART2.
 - VCP: Yes
 - Hardware UARTS: 3
 - OSD: No
-- Blackbox: MicroSD card slot (SD/SDHC, upto 32GB)
+- Blackbox: MicroSD card slot (SD/SDHC, up to 32GB)
 - PPM/UART Shared: UART2
 - Battery Voltage Sensor: Yes
 - Integrated Voltage Regulator: Yes (3.3V 100mA max. / 5.0V is also supplied when powering via USB)

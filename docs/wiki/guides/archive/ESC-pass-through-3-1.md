@@ -42,7 +42,7 @@ Procedure is easy:
 - Press flash and you will see led blinking on the escs.
 - Disconnect lipo and usb cable and you are now able to use dshot
 
-If the above command doesnt work escserial flash passthrough is not enabled yet.
+If the above command doesn't work escserial flash passthrough is not enabled yet.
 Btw also castle escs can be flashed on the same way.
 
 [KISS Flashing Tips](https://www.rcgroups.com/forums/showthread.php?2864933-Another-Kiss-24a-ESC-flashing-question%21%21-need-some-tips)

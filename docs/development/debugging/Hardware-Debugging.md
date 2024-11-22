@@ -7,7 +7,7 @@ More information about the necessary hardware and setting up the eclipse IDE can
 A guide for visual studio can be found here:
 http://visualgdb.com/tutorials/arm/st-link/
 
-This video is also helpful in understanding the proces:
+This video is also helpful in understanding the process:
 https://www.youtube.com/watch?v=kjvqySyNw20
 
 ## Hardware
@@ -22,7 +22,7 @@ The Segger J-Link GDB server can be obtained from here.
 
 http://www.segger.com/jlink-software.html
 
-#### Segger J-Link EDU EDU version, for hobbyists and educational use.
+#### Segger J-Link EDU version, for hobbyists and educational use.
 
 ![Segger J-Link EDU](../assets/hardware/j-link-edu.jpg)
 

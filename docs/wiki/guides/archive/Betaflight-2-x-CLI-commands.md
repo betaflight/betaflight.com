@@ -440,12 +440,12 @@ Configurable Iterm reset offset
 <br/><br/><a name="v280"/>
 <u><i>Changes in 2.8.0</i></u><br/><br/>
 
-TODO - add new CLI comands with explainations
+TODO - add new CLI commands with explanations
 
 <br/>
 set airmode_activate_throttle = 1350<br/>
 <i>[1000-2000]</i><br/>
-This keeps AirMode OFF until the the first time throttle reaches this value. AirMode is always on after this.
+This keeps AirMode OFF until the first time throttle reaches this value. AirMode is always on after this.
 Note that 3D users have to reconfigure their threshold to something else otherwise airmode would be always enabled.
 
 <br/>
@@ -493,7 +493,7 @@ Both "iterm_ignore_threshold" and "yaw_iterm_ignore_threshold" parameters modify
 
 Note that with this system iTerm accumulation during uncommanded events (wind, impact, etc) is always 'normal' - the attenuation occurs only during commanded inputs.
 
-The intent is to smoothly reduce inputs to iTerm at high commanded turn rates, e.g. during flips and rolls, so that we minimise unwanted iTerm accumulation, which we know can cause bounce back or instability immediately we stop the flip or roll.
+The intent is to smoothly reduce inputs to iTerm at high commanded turn rates, e.g. during flips and rolls, so that we minimize unwanted iTerm accumulation, which we know can cause bounce back or instability immediately we stop the flip or roll.
 
 A higher threshold value allows more iTerm accumulation during high roll rate commands, and vice versa.
 
@@ -527,4 +527,4 @@ set rc_rate_yaw = 0<br/>
 <br/>
 set ledstrip_visual_beeper = OFF<br/>
 <i>[ON,OFF]</i><br/>
-When set to on, and the LEDLOW mode is active (i.e. LED strip off), blink the LED strip in synch with beeping, as a visual indicator in cases where the craft is too far away for the beeper to be heard / multiple craft are flying.
+When set to on, and the LEDLOW mode is active (i.e. LED strip off), blink the LED strip in sync with beeping, as a visual indicator in cases where the craft is too far away for the beeper to be heard / multiple craft are flying.

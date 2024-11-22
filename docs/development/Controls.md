@@ -55,7 +55,7 @@ The stick positions are combined to activate different functions:
 
 ### History
 
-Intial stick commands, came from MultiWII but the original code no-longer has direct links.
+Initial stick commands, came from MultiWII but the original code no-longer has direct links.
 
 The original documents as listed below can be found here https://code.google.com/archive/p/multiwii/source/default/source
 
@@ -122,7 +122,7 @@ https://www.youtube.com/watch?v=YNRl0OTKRGA
 
 ## Deadband
 
-If yaw, roll or pitch sticks do not reliably return to centre or the radio has a lot of jitter around the centrepoint, deadband can be applied. The whole deadband value is applied _either side_ of the center point rather than half the value above and half the value below. The deadband value will have an effect on stick endpoint values as the axis value will be reduced by the amount of deadband applied.
+If yaw, roll or pitch sticks do not reliably return to center or the radio has a lot of jitter around the center point, deadband can be applied. The whole deadband value is applied _either side_ of the center point rather than half the value above and half the value below. The deadband value will have an effect on stick endpoint values as the axis value will be reduced by the amount of deadband applied.
 
 `deadband` -
 Applied to roll, pitch.

@@ -30,7 +30,7 @@ Always ensure that the receiver is configured to 'send no data' on signal loss!
 
 Flight Controller failsafe continuously monitors the integrity of the radio link.
 
-It is essential that the Receiver is configured to send **no data** (no packets at all) on signal loss, otherwise Flight Controller based failsafe will never realise that anything is wrong.
+It is essential that the Receiver is configured to send **no data** (no packets at all) on signal loss, otherwise Flight Controller based failsafe will never realize that anything is wrong.
 
 Flight Controller failsafe will work if the wires connecting the FC to the Receiver come loose, or break, or your receiver locks up.
 
@@ -98,7 +98,7 @@ Because Stage 1 cuts throttle to zero by default, the craft may immediately star
 
 - the effect is immediate,
 - the aux channels remain active, and
-- returning the switch to normal terminates the failsafe behaviour immediately.
+- returning the switch to normal terminates the failsafe behavior immediately.
 
 :::caution
 If the switch is held ON for longer than the `failsafe_delay` period, the flight controller will enter Stage 2 (see below), and, depending on how Stage 2 is configured, may immediately drop, or disarm.
@@ -116,9 +116,9 @@ Stage 2 Failsafe is entered when signal loss persists longer then the configured
 
 Entering Stage 2 is not possible until 5 seconds after the flight controller boots up. This is to prevent unwanted activation, as in the case of TX/RX gear with long bind procedures, before the Rx sends out valid data.
 
-Stage 2 Failsafe can be activated by an aux channel switch. If the switch behaviour is set to `STAGE2` (`failsafe_switch_mode` in the CLI), Stage 2 activates immediately. Otherwise it waits until Stage 1 is complete.
+Stage 2 Failsafe can be activated by an aux channel switch. If the switch behavior is set to `STAGE2` (`failsafe_switch_mode` in the CLI), Stage 2 activates immediately. Otherwise it waits until Stage 1 is complete.
 
-When the flight contoller enters Stage 2, it implements one of three (actually, four) possible Stage 2 Failsafe procedures::
+When the flight controller enters Stage 2, it implements one of three (actually, four) possible Stage 2 Failsafe procedures::
 
 - **Drop**, the default, causing immediate disarm and motor stop. There is a time delay before re-arming is possible
 - **Landing Mode**, where the sticks are centered, throttle is held at a defined value, and the aux channels are set as configured for Stage 1 (which could include configuring an aux channel to enable Level mode). These settings will apply for the Landing Time (`failsafe_off_delay` period), which defaults to 1 second, but can be longer. At the end of this period, the quad will disarm (and crash). Landing Mode can be hazardous, since the motors and PIDs are active, and you cannot control where the quad goes. If the machine crashes and the props get stuck, they can burn out, though if the PID errors are bad enough, the runaway takeoff system may disarm the quad.
@@ -128,7 +128,7 @@ When the flight contoller enters Stage 2, it implements one of three (actually, 
 If the link is restored, control will be returned to the pilot:
 
 - in Landing Mode, when the RC signal has recovered for longer than the `failsafe_recovery_delay` period, or
-- in GPS Rescue Mode, when the link has returned for `failsafe_recovery_delay` and the pilot has moved the sticks more than 30 degrees out from centre.
+- in GPS Rescue Mode, when the link has returned for `failsafe_recovery_delay` and the pilot has moved the sticks more than 30 degrees out from center.
 
 :::warning
 **There is no way to instantly recover from Stage 2 Failsafe caused by signal loss, or from a disarm at the end of Stage 2**.
@@ -144,10 +144,10 @@ When Stage 2 is initiated by aux switch, recovery is immediate when the switch i
 
 ### Drop Mode
 
-The default signal loss behaviour with 1.5 seconds of stage 1 'guard time' is:
+The default signal loss behavior with 1.5 seconds of stage 1 'guard time' is:
 
 - 300ms holding last values
-- the next 1200ms at idle throttle with sticks centred (the default Stage 1 or fallback settings)
+- the next 1200ms at idle throttle with sticks centered (the default Stage 1 or fallback settings)
 - followed by disarm and drop.
 
 Recovery within the Stage 1 time is immediate, but if Stage 2 completes, and the quad disarms, the `failsafe_recovery_delay` time must expire before re-arming is possible.
@@ -178,10 +178,10 @@ You will only regain normal flight control during Landing Mode after the signal 
 2.  Set `failsafe_off_delay` to an appropriate value based on how high you fly (how long you think it will take to land at the set throttle value).
 3.  Set `failsafe_throttle` to a value that allows the aircraft to descend at approximately one meter per second (default is 1000 which should be throttle off).
 
-The behaviour with default one second of stage 1 'guard time' and a 10s Landing time is:
+The behavior with default one second of stage 1 'guard time' and a 10s Landing time is:
 
 - 300ms holding last values
-- the next 1,200ms at idle throttle with sticks centred (the default fallback settings)
+- the next 1,200ms at idle throttle with sticks centered (the default fallback settings)
 - 10s of landing throttle
 - your Stage 1 Aux switch values applied
 
@@ -189,7 +189,7 @@ The behaviour with default one second of stage 1 'guard time' and a 10s Landing 
 
 The full details of GPS Rescue are covered in the wiki, and elsewhere.
 
-You will regain during GPS Rescue Mode only after signal restores for more than the `failsafe_recovery_delay` period AND you move the sticks more than 30 degrees out from centre.
+You will regain during GPS Rescue Mode only after signal restores for more than the `failsafe_recovery_delay` period AND you move the sticks more than 30 degrees out from center.
 
 :::danger
 Do not forget to wiggle the sticks when attempting to recover from a true signal-loss GPS Rescue!
@@ -264,9 +264,9 @@ Note that during the `failsafe_recovery_delay` period, the quad cannot be re-arm
 
 #### `failsafe_stick_threshold`
 
-For GPS Return, the angle in degrees that the sticks must be 'wiggled' away from centre in order to return control to the pilot, assuming the signal has already recovered.
+For GPS Return, the angle in degrees that the sticks must be 'wiggled' away from center in order to return control to the pilot, assuming the signal has already recovered.
 
-The idea is that as the quad flies home, the pilot leaves the sticks centred. Once they get video back, and see that Rx signal has returned, moving the sticks allows the pilot to regain control at a time that suits them, rather than just immediately signal returns.
+The idea is that as the quad flies home, the pilot leaves the sticks centered. Once they get video back, and see that Rx signal has returned, moving the sticks allows the pilot to regain control at a time that suits them, rather than just immediately signal returns.
 
 #### `rx_min_usec`
 
@@ -308,7 +308,7 @@ Before testing failsafe, confirm what your radio does in Configurator's Rx tab i
 1. Configure Failsafe Stage 2 to Drop
 1. Arm the craft and throttle up briefly
 1. Emulate a link failure while wiggling throttle up and down
-1. Confirm the normal Stage 1 behaviour, which should last 1.5s by default
+1. Confirm the normal Stage 1 behavior, which should last 1.5s by default
 1. Confirm that the motors turn off and the quad disarms at the end of Stage 1.
 
 **Bench test of Stage 2 Landing Mode - _remove the props!_.**
@@ -316,7 +316,7 @@ Before testing failsafe, confirm what your radio does in Configurator's Rx tab i
 1. Configure Failsafe Stage 2 to Landing Mode, with a suitable Landing Mode throttle value
 1. Arm the craft and throttle up briefly
 1. Emulate a link failure while wiggling throttle up and down
-1. Confirm the normal Stage 1 behaviour, which should last 1.5s by default
+1. Confirm the normal Stage 1 behavior, which should last 1.5s by default
 1. Confirm that the motors then receive a fixed throttle value for the Stage 2 duration. Note that if the quad is in Angle mode, the PIDs will cause the motors to spool up.
 1. Confirm that the motors turn off and the quad disarms at the completion of the Landing duration.
 1. Repeat the above, restoring the link while in Landing Mode.

@@ -206,7 +206,7 @@ The use of magnetometers with non-standard axis orientations is not recommended.
 
 :::
 
-Note also that the IST8310 magnetometer can be configured with any one of four i2C adresses. Betaflight will only connect to the IST8310 automatically if the default i2C address of 0x0C is used. If any of the other three i2C addresses (0x0D, 0x0E, 0x0F) are used, the user will need to custom enter either 13, 14 or 15 as the `mag_i2c_address` value, or it will not work.
+Note also that the IST8310 magnetometer can be configured with any one of four i2C addresses. Betaflight will only connect to the IST8310 automatically if the default i2C address of 0x0C is used. If any of the other three i2C addresses (0x0D, 0x0E, 0x0F) are used, the user will need to custom enter either 13, 14 or 15 as the `mag_i2c_address` value, or it will not work.
 
 The QMC5883L has 'normal' axis orientation and works well.
 
@@ -257,7 +257,7 @@ Again, providing robust low-ripple power to these devices provides the maximum p
 
 #### 3.1.4.2 ADC Circuitry (e.g. for Current Sensors)
 
-Using ADC measurements on the flight controller to actively monitor current information from ESCs, or if using integral FC-PDB, minimizing noise on the circuit improves the accuracy and jitter of these signals. To reduce noise from current reading, instead of transfering voltage to FC, send current to FC then move RL Load resistor associated with INA31 onto FC with capacitor in parallel.
+Using ADC measurements on the flight controller to actively monitor current information from ESCs, or if using integral FC-PDB, minimizing noise on the circuit improves the accuracy and jitter of these signals. To reduce noise from current reading, instead of transferring voltage to FC, send current to FC then move RL Load resistor associated with INA31 onto FC with capacitor in parallel.
 https://www.ti.com/lit/ds/symlink/ina139.pdf
 
 Ideally there should be a pair of bridgeable pads on the ESC in series with the load resistor so that with legacy FCs one can bridge it to include the resistor. Correspondingly on FCs we should have a 82K resistor (and parallel 100nF cap), again with series bridging pads which would be left unbridged when paired with legacy ESCs.
@@ -322,7 +322,7 @@ Similarly, it is optimal to use two 4-channel timers for 8 motors for when BITBA
 There is also a choice between using advanced timers or not, TIM1/TIM8 are advanced and get used by DSHOT BITBANG.
 
 It may be optimal to use TIM1 + TIM8 for all motors so that the other timers are always free.
-Or it may be optimal to use timers other than TIM1/TIM8 for motors so that TIM1/TIM8 are free for other other uses when DSHOT BITBANG is NOT used.
+Or it may be optimal to use timers other than TIM1/TIM8 for motors so that TIM1/TIM8 are free for other uses when DSHOT BITBANG is NOT used.
 
 :::note
 
@@ -344,7 +344,7 @@ For Betaflight 4.4 and later versions, the expected default configuration will t
 
 If using Bitbang DShot, when SPI Bus #1 is to be used for the gyro, care must be taken to ensure that motor pins are assigned to appropriate timers. This is because Bitbang DSHOT uses DMA2 to write to GPIO ports. If this is enabled, it is not possible to enable DMA on an SPI bus using DMA2.
 Practically speaking this means that we can’t support DMA on SPI bus 1 (which uses DMA2) on F405 and F411 processors. It is better to put multiple devices on other SPI busses that use SPI bus 1, which is typically used for the gyro.
-Bitbang DShot communcation protocol will always use Timer 1 and Timer 8 - do NOT use these pins for any other functions.
+Bitbang DShot communication protocol will always use Timer 1 and Timer 8 - do NOT use these pins for any other functions.
 
 Further reading: Section 2.1.10 of the errata at
 https://www.st.com/resource/en/errata_sheet/dm00037591-stm32f405407xx-and-stm32f415417xx-device-limitations-stmicroelectronics.pdf
@@ -471,22 +471,22 @@ Importantly, although the Bidirectional DShot ENABLED may require lower PID Loop
 
 Looptime and Performance Recommendation Table:
 
-| MCU                           | IMU                          | Sampling Rate | Bidirectional DShot Status | PID Loop Rate | DShot Protocol |
-| :---------------------------- | :--------------------------- | :------------ | :------------------------- | :------------ | :------------- |
-| H7XX                          | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled or Disabled        | 8 kHz         | DShot 600      |
-|                               | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
-| F7X2, G4XX, AT32 and similar  | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled or Disabled        | 4 kHz         | DShot 300      |
-|                               | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
-| F405                          | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
-|                               | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Disabled (not recommended) | 8 kHz         | DShot 600      |
-|                               | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
-| F411 UART Rx \*\*             | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
-|                               | MPU60X0, ICM2060X            | 8 kHz         | Disabled (not recommended) | 8 kHz         | DShot 600      |
-|                               | BMI-270                      | 3.2 kHz       | Enabled                    | 3.2 kHz       | DShot 300      |
-| F411 SPI Rx \*\*\*            | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 2 kHz         | DShot 300      |
-|                               | MPU60X0, ICM2060X            | 8 kHz         | Disabled (not recommended) | 4 kHz         | DShot 300      |
-|                               | BMI-270                      | 3.2 kHz       | Enabled                    | 1.6 kHz       | DShot 300      |
-|                               | BMI-270                      | 3.2 kHz       | Disabled (not recommended) | 3.2 kHz       | DShot 300      |
+| MCU                          | IMU                          | Sampling Rate | Bidirectional DShot Status | PID Loop Rate | DShot Protocol |
+| :--------------------------- | :--------------------------- | :------------ | :------------------------- | :------------ | :------------- |
+| H7XX                         | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled or Disabled        | 8 kHz         | DShot 600      |
+|                              | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
+| F7X2, G4XX, AT32 and similar | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled or Disabled        | 4 kHz         | DShot 300      |
+|                              | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
+| F405                         | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
+|                              | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Disabled (not recommended) | 8 kHz         | DShot 600      |
+|                              | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
+| F411 UART Rx \*\*            | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
+|                              | MPU60X0, ICM2060X            | 8 kHz         | Disabled (not recommended) | 8 kHz         | DShot 600      |
+|                              | BMI-270                      | 3.2 kHz       | Enabled                    | 3.2 kHz       | DShot 300      |
+| F411 SPI Rx \*\*\*           | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 2 kHz         | DShot 300      |
+|                              | MPU60X0, ICM2060X            | 8 kHz         | Disabled (not recommended) | 4 kHz         | DShot 300      |
+|                              | BMI-270                      | 3.2 kHz       | Enabled                    | 1.6 kHz       | DShot 300      |
+|                              | BMI-270                      | 3.2 kHz       | Disabled (not recommended) | 3.2 kHz       | DShot 300      |
 
 \*\* For F411 UART Rx applications, using both available UARTs AND enabling SoftSerial, Accelerometer, large numbers of OSD elements, and using a larger number of filters, stability may require lowering looprate to 2kHz
 
@@ -505,7 +505,7 @@ BMI270 is no longer recommended.
 
 ## 4.2 Definitions for Targets
 
-As reference please choose the defines for your target from this list as applicable for the target to select appropiate hardware for the cloud build.
+As reference please choose the defines for your target from this list as applicable for the target to select appropriate hardware for the cloud build.
 
 ### 4.2.1 Defines for GYRO and ACC
 

@@ -44,7 +44,7 @@ If the maximum yaw rate is configured to be greater than the threshold, a sustai
 
 ### What should I do if I clip a gate and spin?
 
-No specific actions are required by the pilot. The safest thing to do is to cut throttle, centre sticks, and mentally prepare for either re-gaining control, or disarming.
+No specific actions are required by the pilot. The safest thing to do is to cut throttle, center sticks, and mentally prepare for either re-gaining control, or disarming.
 
 When yaw spin protection is triggered, the quad gets driven with 50% effective throttle. It will accelerate briefly, perpendicular to the spin axis, but control should be returned to the pilot quickly, and should not climb much. There is no need to increase throttle manually.
 
@@ -70,7 +70,7 @@ Yaw will jitter around whenever commanded yaw rate is held long enough for the q
 
 In normal FPV flying and racing, actual yaw rates more than 500 degrees/sec are unusual even in the fastest turns. However, some FPV freestyle pilots like to do fast yaw spins, and may set a maximum yaw spin rate (in the rates part of the configurator) as high as 1000, and actually achieve that sometimes.
 
-If, say, the quad was configured for yaw rates of 1000 degrees/second and the yaw spin protection threshold was set at 800, and if the pilot then did a flat yaw spin by holding yaw at 100% with pitch and roll centred... the quad would rotate faster and faster, using one pair of motors to generate the yaw. When the quad hit the yaw spin protection point of 800, the _opposite_ pair of motors would spin maximally, quickly slowing the yaw rate down to 700 degrees/second. This would probably take only 100ms. The quad might climb momentarily and wobble a bit, and for this short time there would be zero pitch and roll authority. This would quickly terminate, and if the higher yaw spin rate was still being commanded, the quad would again speed up to 800 degrees per second. An FPV pilot would see the yaw rate jittering between 700 and 800, there may be some pitch and roll artefacts, and the quad would make a strange noise.
+If, say, the quad was configured for yaw rates of 1000 degrees/second and the yaw spin protection threshold was set at 800, and if the pilot then did a flat yaw spin by holding yaw at 100% with pitch and roll centered... the quad would rotate faster and faster, using one pair of motors to generate the yaw. When the quad hit the yaw spin protection point of 800, the _opposite_ pair of motors would spin maximally, quickly slowing the yaw rate down to 700 degrees/second. This would probably take only 100ms. The quad might climb momentarily and wobble a bit, and for this short time there would be zero pitch and roll authority. This would quickly terminate, and if the higher yaw spin rate was still being commanded, the quad would again speed up to 800 degrees per second. An FPV pilot would see the yaw rate jittering between 700 and 800, there may be some pitch and roll artefacts, and the quad would make a strange noise.
 
 If this happens just turn the threshold up a bit.
 

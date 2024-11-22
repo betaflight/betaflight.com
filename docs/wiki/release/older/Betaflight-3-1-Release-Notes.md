@@ -225,7 +225,7 @@ Betaflight firmware has undergone some major changes under the hood. Hardware dr
 - Added experimental 32khz support for gyros that support it - @martinbudden.
 - Blackbox enhancements (use 2.5.8 blackbox-viewer) @GaryKeeble
 - Added new level sensitivity and level limit parameters in degrees. level_limit is the maximum allowed angle. Level_sensitivity is the max deflection on full stick @borisbstyle
-- Added IRC Tramp VTX support. Changable channel, band, power and pitmode @jflyper
+- Added IRC Tramp VTX support. Changeable channel, band, power and pitmode @jflyper
 - and many more: https://github.com/betaflight/betaflight/commits/master
 - Only one PIDC the 2DOF or Betaflight now (see the 3.0.x release notes for details)
 
@@ -242,8 +242,8 @@ Always use the Config GUI to setup and manually type into the CLI after doing a 
 - RC4 - Fix non MPU INT supporting targets // Added MPU Int NAZE // Fix adjustment for setpoint // Some cleanups
 - RC5 - Fix more non MPU INT supporting targets // fixed RACEBASE and some SPRACINGF3 variants // Fix ledstrip on BETAFLIGHTF3 and IMPULSERCF3 // DSHOT900 and DSHOT1200 added for testing (only to be enable through cli for now)
 - RC6 - Fix ledstrip IMPULSERCF3 // Fix DSHOT for SIRINFPV // Add PODIUMF4 // Improved CPU usage // Optimised RC interpolation // Improve DSHOT speed // Add more safety in DSHOT limits (DSHOT150 is limited to 4khz)
-- RC7 - Fix gyro detection handling for 32k mode // Improved target limitiation
-- RC8 - Fix FPV angle mix // Added RG_SSD_F3 target // SPRACINGF3NEO DSHOT optimalisations // CC3D_OPBL fix // Remove MSP from UART1 by default // Added debug for gyro calibration noise // Minor optimalisations
+- RC7 - Fix gyro detection handling for 32k mode // Improved target limitation
+- RC8 - Fix FPV angle mix // Added RG_SSD_F3 target // SPRACINGF3NEO DSHOT optimizations // CC3D_OPBL fix // Remove MSP from UART1 by default // Added debug for gyro calibration noise // Minor optimizations
 - RC9 (Build #959 - 16Jan2017)- Fix servo mixer scaling for tricopters // Add softserial for NAZE // Add IRC Tramp VTX support // Fix FPV angle mix
 - RC10 (Build #965 - 19Jan2017)- Added anti_gravity_gain // KISSFC dshot support motor 5 and 6 // CC3D startup issue solved // new defaults for level and PID's
 - RC11 - Fix spectrum bind PIN on BFF3 // Fix connection to some targets // Restore missing blackbox log fields
@@ -282,7 +282,7 @@ I see that Softserial does fit again since latest cleanups (RC9?). There is only
 #### question by fftunes:
 If i run 8k/1k, will the PID loop be calculated from an average of the 8 gyro samples, or will it only use 1 sample out of 8?
 Answer from Boris:
-There is no averaging. There is IIR filtering, what works faster than averaging. Every sample it's information is taken to the next sample a bit. Btw you can enable simple averaging with chosing FIR filter style. Averaging gives a lot of delay typically.
+There is no averaging. There is IIR filtering, what works faster than averaging. Every sample it's information is taken to the next sample a bit. Btw you can enable simple averaging with choosing FIR filter style. Averaging gives a lot of delay typically.
 It seems that a lot of guys really missed the early betaflights where all this was discussed a lot. All i can say is to read about the way how filtering works and look up about aliasing. (Filtering is explained here)
 
 #### Question by spikerspike97:
@@ -580,7 +580,7 @@ Has anyone tested these parameters on their quads?
 this from my notes, Boris B talking:
 Dont use that low threshold. I think 300 or 350 should be fine.
 What does the value mean?
-350 for example means 35% of throttle. Once the throttle has been increased or decreased with 35% within 100ms of time than it means that there might be a high gravitational change going on and iterm needs to be accelerated to go to its new value faster. The gain is Ki multiplier. So your igain gets a temporarily nitro boost to prevent pitch up / down behaviour caused by too slow iterm. Default value of 2 is really mellow and is done for safety reasons as I found out a lot of folks were running pretty high igains and with this value iterm might just get pushed easier over the edge.
+350 for example means 35% of throttle. Once the throttle has been increased or decreased with 35% within 100ms of time than it means that there might be a high gravitational change going on and iterm needs to be accelerated to go to its new value faster. The gain is Ki multiplier. So your igain gets a temporarily nitro boost to prevent pitch up / down behavior caused by too slow iterm. Default value of 2 is really mellow and is done for safety reasons as I found out a lot of folks were running pretty high igains and with this value iterm might just get pushed easier over the edge.
 
 Rate max is the rate where this feature completaly gets ignored.
 

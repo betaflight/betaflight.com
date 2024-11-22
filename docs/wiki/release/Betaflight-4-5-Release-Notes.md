@@ -58,7 +58,7 @@ The cloud build system [introduced in 4.4](/docs/wiki/release/Betaflight-4-4-Rel
 
 Most basic build options are included in the default group in the `Other Options box`, including AcroTrainer and both HD and SD OSD setups.
 
-The default Radio Protocol is CRSF, which automatically includes includes RF telementry (even though the Telemetry drop-down says 'none').
+The default Radio Protocol is CRSF, which automatically includes RF telementry (even though the Telemetry drop-down says 'none').
 
 Typically a user would de-select the SD OSD option if they used only HD, and vice versa.
 
@@ -104,7 +104,7 @@ In 4.5 there was a determined effort to make GPS Rescue even more reliable and p
 
 Task timing was carefully optimised.
 
-Note: for most standard F4xx GPS Rescue builds, looptime should not exceed 4k, to provide enough clock cycles for all the required sensor data to be analysed and handled properly.
+Note: for most standard F4xx GPS Rescue builds, looptime should not exceed 4k, to provide enough clock cycles for all the required sensor data to be analyzed and handled properly.
 
 In 4.4, if there was significant drift, due to wind, when initiating GPS Rescue, and a long climb period, the quad could think that it was flying nose-forward in the direction of the drift.  This caused the initial yaw correction to be wrong, and the quad would then fly off in the wrong direction, often at high speed.  After a few seconds, it would correct, but take a wide arc to return to the correct heading.  4.5 improves this considerably, with special code to avoid drift-based errors.
 
@@ -130,7 +130,7 @@ Thanks to: ctzsnooze, ledvinap, SteveCEvans, Zzyzx, haslinghuis
 
 ## 4. Magnetometer update
 
-Magentometers now work really well.  However, it's fair to say that they are absoltely NOT plug and play.  The user will need to carefully read the documentation and absolutely must get the orientation and calibration of the mag right, and must validate that correct headings are returned (eg by comparing to a compass on a phone), regardless of the orientation of the quad.  It is quite challenging to do, but rewarding when completed.
+Magentometers now work really well.  However, it's fair to say that they are absolutely NOT plug and play.  The user will need to carefully read the documentation and absolutely must get the orientation and calibration of the mag right, and must validate that correct headings are returned (eg by comparing to a compass on a phone), regardless of the orientation of the quad.  It is quite challenging to do, but rewarding when completed.
 
 This code was extensively revised, with a lot of improvement in compass task scheduling and driver support.
 
@@ -233,7 +233,7 @@ Angle Mode is now 'earth referenced' by default.  This means that a pure yaw sti
 
 Roll inputs in angle mode will always add extra roll, and the 'horizon' in the camera will respond accordingly, if that's what the pilot wants to achieve.
 
-The earth referencing behaviour can be disabled with `set angle_earth_ref = 0`, or its strength halved with `set angle_earth_ref = 50`.  Whoop racers may well prefer to disable it, however most beginners, and anyone doing cinematic shooting in Angle mode, should find it really nice.
+The earth referencing behavior can be disabled with `set angle_earth_ref = 0`, or its strength halved with `set angle_earth_ref = 50`.  Whoop racers may well prefer to disable it, however most beginners, and anyone doing cinematic shooting in Angle mode, should find it really nice.
 
 Angle and Horizon mode motor control is now significantly smoother, due to filtering refactoring and optimisation.  This reduces motor heat and camera jello.
 
@@ -302,18 +302,18 @@ Thanks to: tbolin
 
 ## 12. EzLanding
 
-This is a newly developed feature, CLI only, that makes landings less bouncy, even when airmode is on.  This is achieved by restricting the amount to which airmode can increase throttle, and by attenuating iTerm, when throttle is low and sticks are centred.
+This is a newly developed feature, CLI only, that makes landings less bouncy, even when airmode is on.  This is achieved by restricting the amount to which airmode can increase throttle, and by attenuating iTerm, when throttle is low and sticks are centered.
 
 EzLanding is disabled by default.
 
 - To enable, go `set mixer_type = EZLANDING` in CLI.
-- To return to normal behaviour, go `set mixer_type = LEGACY` in CLI.
+- To return to normal behavior, go `set mixer_type = LEGACY` in CLI.
 
 There are two tuning parameters:
 - `ez_landing_limit`: Default: 5, Range: 0-75. Allowed maximum percentage throttle increase via airmode, with sticks centered and throttle at zero. Higher values provide a bit more stability when perching or in flat drops. Lower values make landings less bouncy.
 - `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which airmode is given full authority to adjust the throttle, with linear attenuation towards the center
 
-The EzLanding effect is strongest when the sticks are centred and throttle is at zero.  Under these conditions there will be a small reduction in PID stabilisation. To retain a bit more stability, eg when trying to 'perch' on an object, or during flat or inverted zero throttle drops, retain a tiny bit of throttle during the move.
+The EzLanding effect is strongest when the sticks are centered and throttle is at zero.  Under these conditions there will be a small reduction in PID stabilisation. To retain a bit more stability, eg when trying to 'perch' on an object, or during flat or inverted zero throttle drops, retain a tiny bit of throttle during the move.
 
 For more information, see [PR 12094](https://github.com/betaflight/betaflight/pull/12094).
 Debug: `set debug_mode = EZLANDING`
@@ -326,7 +326,7 @@ Allows the user to apply TPA attenuation in the low end of the throttle range.  
 
 The threshold or break point is set by `tpa_low_breakpoint`, and the magnitude of the attenuation at zero throttle is set by `tpa_low_rate`.  The default value for `tpa_low_rate` is 20, which means a reduction in D of 20%, or that the D effect in the PIDs  will be 80% of normal, at zero throttle.
 
-By default, the default behaviour is to apply the reduction only briefly after arming.  Once until the throttle is raised above `tpa_low_breakpoint`, TPA lower is inactivated for the rest of the armed period.
+By default, the default behavior is to apply the reduction only briefly after arming.  Once until the throttle is raised above `tpa_low_breakpoint`, TPA lower is inactivated for the rest of the armed period.
 
 Hence, by default, there will be only a minimal effect on arming, and no effect in flight..
 
@@ -402,7 +402,7 @@ The `RACE_PRO` option can be selected from the "Other Options" dropdown or typed
 
 ### 16.2 RPM Limiter build option
 
-This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.  
+This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behavior for Spec Racing.  
 
 RPM Limiter actively limits the average rpms across all active motors.  For example, `set rpm_limit_value = 13000` will limit average RPM to 13000.
 
@@ -465,7 +465,7 @@ The OSD will show:
 - current &voltage, and
 - Betaflight version.
 
-The screen disappears upon arming. It is helpfull especially for spec racers and race organizers to verify the settings.
+The screen disappears upon arming. It is helpful especially for spec racers and race organizers to verify the settings.
 
 To use: include `SPEC_PREARM_SCREEN` in Custom Defines, when building, and then enable with `set osd_show_spec_prearm = ON`.
 
@@ -479,7 +479,7 @@ Thanks to: limonspb
 
 This is a custom build option that allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).
 
-Requires GPS in the firmware build, and a GPS module with good enough signal reception to track location even when the quad at a steep angle.  Basic configration is to add the relevant fields to the OSD display, and in Modes, enable 'Lap Timer Reset' on a switch.  At the field, the quad is placed at the start/finish gate, and `MISC/GPS LAP TIMER/SET POSITION` is activated until the gate is known.  The gate 'tolerance' or 'size' can be adjusted, and the minimum lap time can be used to avoid false triggers when some other gate is close to the main start-finish gate.  Go `Save Exit` to store the settings and do some laps!  
+Requires GPS in the firmware build, and a GPS module with good enough signal reception to track location even when the quad at a steep angle.  Basic configuration is to add the relevant fields to the OSD display, and in Modes, enable 'Lap Timer Reset' on a switch.  At the field, the quad is placed at the start/finish gate, and `MISC/GPS LAP TIMER/SET POSITION` is activated until the gate is known.  The gate 'tolerance' or 'size' can be adjusted, and the minimum lap time can be used to avoid false triggers when some other gate is close to the main start-finish gate.  Go `Save Exit` to store the settings and do some laps!  
 
 The minimum lap time and the gate size are saved between batteries (?), but the start/finish gate must be re-set each battery(?).  With M10 battery-backed up GPS the new location should be detected quickly, but for best results wait a while until the GPS position is stable before locking in the gate position.  
 
@@ -550,7 +550,7 @@ Thanks to: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, t
 - improved F7 UART behavior on boot, LED Strip fixes, 
 - improved F4xx UART enable/disable
 - ESC Serial fixes for HAL targets
-- Improved USART pull-down behaviour
+- Improved USART pull-down behavior
 - Fix for sag compensation when RPM limiting is active
 - Improved at32 support: UARTs, i2c code, SITL port number, SRAM configuration, camera control, evaluation order. additional timers
 - fix for USB comp port failures on some hosts

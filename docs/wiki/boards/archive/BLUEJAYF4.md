@@ -65,7 +65,7 @@ Rev2 (Full Size)
 
 ### FrSky Smartport
 
-Frysky smartport (or s-port) is inverted, and half duplex. You can modify your X4R or XSR by following the procedure here [https://blck.mn/2016/06/smartport-the-frsky-x4rs-and-betaflight/](https://blck.mn/2016/06/smartport-the-frsky-x4rs-and-betaflight/) and here (for a cleaner modification thats easily switchable between inverted and non-inverted) [https://blck.mn/2016/12/smartport-frsky-x4rs-and-betaflight-part-2/](https://blck.mn/2016/12/smartport-frsky-x4rs-and-betaflight-part-2/)
+Frysky smartport (or s-port) is inverted, and half duplex. You can modify your X4R or XSR by following the procedure here [https://blck.mn/2016/06/smartport-the-frsky-x4rs-and-betaflight/](https://blck.mn/2016/06/smartport-the-frsky-x4rs-and-betaflight/) and here (for a cleaner modification that's easily switchable between inverted and non-inverted) [https://blck.mn/2016/12/smartport-frsky-x4rs-and-betaflight-part-2/](https://blck.mn/2016/12/smartport-frsky-x4rs-and-betaflight-part-2/)
 
 For rev3 users, the addition of a diode on UART1, and the use of the builds in BF3.1 or later allow direct connection of s-port without modifying your RX unit.
 

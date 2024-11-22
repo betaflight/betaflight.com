@@ -48,7 +48,7 @@ ff_boost can work without any other of the ff_2.0 features being active.
 
 This is a 'digital' way of calculating FF from each new RC 'step'. It gives a cleaner feedforward trace than with the old 'filter' method, with less delay.
 
-`set ff_interpolate_sp = ON` analyses each new incoming RC data packet, and the calculated change in setpoint is converted to an immediate step up in FF. Each step up is held constant until the next RC data step arrives.
+`set ff_interpolate_sp = ON` analyzes each new incoming RC data packet, and the calculated change in setpoint is converted to an immediate step up in FF. Each step up is held constant until the next RC data step arrives.
 
 The sharp corner of the FF step can be smoothed according to the rc_smoothing_derivative lowpass filter frequency. This is set dynamically by default in AUTO mode, but can be manually overridden if desired. 120hz is a good smoothing value for a clean feed-forward trace. 20hz smooths out traces with a fair bit of up and down; 10hz may be needed for very long range and cinematic quads where the large steps from 50hz mode and poor quality links can make the quad jerky in turns.
 
@@ -68,7 +68,7 @@ A major benefit is that it markedly reduces the need for the opposing motors to 
 
 The default value of 100 works well, and attempts to reach FF outputs of 0 as gyro values reach setpoint.
 Lower values result in feedforward influence tapering to 0 at a percentage of those values (e.g. at a value of 50, in a sustained flip, once gyro reaches half the setpoint value the feedforward term will taper to zero). Higher values allow for feedforward to continue influencing the PID controller. For higher authority craft this will cause overshoot, but for authority-limited craft these higher values can be very beneficial.
-ff_max_rate_limit is not active as the sticks return to centre.
+ff_max_rate_limit is not active as the sticks return to center.
 
 To determine ff_max_rate_limit and ff_boost works best, look at the start of a hard flip in BlackBox Explorer and see if there is any overshoot. If with ff_max_rate_limit = 100 there is still too much overshoot, first evaluate if Feedforward or P-term is driving overshoot at the time of interest. If so, try ff_max_rate_limit = 95. If the overshoot is too well controlled, try 105 to 110. The range of adjustment is quite tight.
 
@@ -78,7 +78,7 @@ Since FF is calculated for each incoming RC step, we have a problem when a new s
 
 Usually this is caused by 'dropped packets', or when a TBS or R9 Rx switches out of 150hz mode to the slower 50hz mode. Anytime this happens, FF would normally drop suddenly to zero; when the next valid data value comes in, a double-height step up occurs. These zero/double-height pairs in the FF trace are very messy.
 
-In `AVERAGED` mode, the interpolation algorithm averages each two successive feed forward values. In the case of a sudden drop to zero with a large subsequent step up, this is is changed to a smaller drop, a middle value, and a jump up. Overall the steps are smaller.
+In `AVERAGED` mode, the interpolation algorithm averages each two successive feed forward values. In the case of a sudden drop to zero with a large subsequent step up, this is changed to a smaller drop, a middle value, and a jump up. Overall the steps are smaller.
 
 There is a downside to using `AVERAGED`. If the pilot makes a fast input, then suddenly holds the sticks perfectly still, ff_spread will hold FF at the previous, high, value for the set time, rather than dropping to zero immediately as it should. This can cause an overshoot for the duration set by the extend value. It is most easily seen at the start of a flip when the sticks hit their physical limit, but can happen at other times.
 

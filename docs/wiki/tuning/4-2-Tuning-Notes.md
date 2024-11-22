@@ -124,7 +124,7 @@ The following tuning suggestions may help minimise minor random wobbles in HD fo
 - and about half the default I on pitch and roll
 - high FF transition eg 0.7
 - make sure the ADC is not ticked in the hardware settings of OpenTx
-- use Actual Rates with centre set to 10-50, expo to 0, and your usual max rate. Actual with zero expo gives a soft centre with quicker return to normal responsiveness out of centre. Transition and/or deadband may not be required when the centre sensitivity is very low.
+- use Actual Rates with center set to 10-50, expo to 0, and your usual max rate. Actual with zero expo gives a soft center with quicker return to normal responsiveness out of center. Transition and/or deadband may not be required when the center sensitivity is very low.
 
 For zero throttle instability
 
@@ -282,7 +282,7 @@ Without bidirectional enabled:
 
 4.2 provides feed forward optimisations to suit everything from hard-core racing to cinematic HD.
 
-When configured aggressively, Feed Forward reacts immediately to any stick input. The basic feed forward component is proportional to the speed with which the sticks move, and the boost component is proportional to the instantaneous acceleration of the sticks. Aggressive feed forward can reduce setpoint to gyro delay to zero for most inputs, leading the high levels of control and immediacy required by the very best racers. Softer feed forward, including with Feed Forward Transition of 30, can make for a very smooth centre feel with quick responses to flick inputs, ideal for modern freestyle or cinematic purposes.
+When configured aggressively, Feed Forward reacts immediately to any stick input. The basic feed forward component is proportional to the speed with which the sticks move, and the boost component is proportional to the instantaneous acceleration of the sticks. Aggressive feed forward can reduce setpoint to gyro delay to zero for most inputs, leading the high levels of control and immediacy required by the very best racers. Softer feed forward, including with Feed Forward Transition of 30, can make for a very smooth center feel with quick responses to flick inputs, ideal for modern freestyle or cinematic purposes.
 
 The primary downside of aggressive feed forward is jitter when trying to fly smooth lines. Most radios have some jitter in their signal, many drop packets or send duplicate packets, and we all have some finger/thumb shake. If the quad reacts immediately to the tiniest input, it may 'tremble' or be a bit nervous when it should be in smooth forward flight or during gentle long radius turns.
 
@@ -420,21 +420,21 @@ Battery debug 3 carries the actual percentage reduction applied to motor output.
 
 ## New Rates modes
 
-We've introduced two new Rates configuration modes, and have updated the Configurator to graphically display the results of all Rates configurations. Using the latest Configurator is essential. Actual rates with zero expo and a low centre sensitivity is strongly recommended for cinematic or freestyle flying.
+We've introduced two new Rates configuration modes, and have updated the Configurator to graphically display the results of all Rates configurations. Using the latest Configurator is essential. Actual rates with zero expo and a low center sensitivity is strongly recommended for cinematic or freestyle flying.
 
 The two new rates modes are named `ACTUAL` and `QUICK`.
 
-They allow direct and completely independent configuration of centre stick feel, expo, and max roll rate.
+They allow direct and completely independent configuration of center stick feel, expo, and max roll rate.
 
-Centre stick 'feel' or 'sensitivity' is determined by the angle of the rates curve around the centre stick position. In both new methods, this is set directly and not affected by any other rate parameter.
+Center stick 'feel' or 'sensitivity' is determined by the angle of the rates curve around the center stick position. In both new methods, this is set directly and not affected by any other rate parameter.
 
-`QUICK` rates retains the traditional rcRate value as used in previous Betaflight versions to set centre sensitivity; you can keep the same value you've always used.
+`QUICK` rates retains the traditional rcRate value as used in previous Betaflight versions to set center sensitivity; you can keep the same value you've always used.
 
-`ACTUAL` rates lets you set your target centre rate is set in degrees/second. To convert your old rcRate value to degrees/second, multiply it by 200. For example, an rcRate of 1.0 would be entered as a centre sensitivity of 200 in `ACTUAL` rates. In `ACTUAL` rates, the centre and max numbers have the same units, and are directly comparable in terms of 'how it feels' in the centre compared to further out.
+`ACTUAL` rates lets you set your target center rate is set in degrees/second. To convert your old rcRate value to degrees/second, multiply it by 200. For example, an rcRate of 1.0 would be entered as a center sensitivity of 200 in `ACTUAL` rates. In `ACTUAL` rates, the center and max numbers have the same units, and are directly comparable in terms of 'how it feels' in the center compared to further out.
 
-In both the new models, expo shifts the curve further out, but doesn't change either the centre sensitivity (slope of the RC rate curve at centre), or the max rate. Higher expo extends the centre rate further out, so the quad won't spin fast until your sticks are a long way out. This is often favoured for freestyle or LOS acro. Lower expo keeps your low-sensitivity range more to the centre, and gives you more predictable reactions across the stick travel range once you leave centre. This is favoured by racers, with relatively high centre sensitivity, and by cinematic HD pilots, who want extremely low centre sensitivity without losing too much authority when they bring the sticks further out.
+In both the new models, expo shifts the curve further out, but doesn't change either the center sensitivity (slope of the RC rate curve at center), or the max rate. Higher expo extends the center rate further out, so the quad won't spin fast until your sticks are a long way out. This is often favoured for freestyle or LOS acro. Lower expo keeps your low-sensitivity range more to the center, and gives you more predictable reactions across the stick travel range once you leave center. This is favoured by racers, with relatively high center sensitivity, and by cinematic HD pilots, who want extremely low center sensitivity without losing too much authority when they bring the sticks further out.
 
-In `ACTUAL` rates, the amount of expo can be reduced below what was previously possible. This is really good for cinematic freestyle, where we want strong softness at centre, but a fairly early transition to strong authority.
+In `ACTUAL` rates, the amount of expo can be reduced below what was previously possible. This is really good for cinematic freestyle, where we want strong softness at center, but a fairly early transition to strong authority.
 
 For LOS acro, high expo in Actual mode gives a more linear stick feel over a wider range, then a sudden increase for high-speed flips only when the sticks are pushed well out.
 

@@ -106,7 +106,7 @@ The resources dump from my CLI looks like this for my flying wing, it remaps mot
 This setup is for the Flip32 F3 omnibus board using Betaflight 3.1.6
 The Servo needs an external 5V source with enough current to power the servo. The Omnibus' on-board 5V will not power a servo.
 First you need to setup the output motor # 4 to use as the servo controller.
-In the Cli command you want the final results to look like the following for a F3 omnibus, others just subsitute you motor assignments.
+In the Cli command you want the final results to look like the following for a F3 omnibus, others just substitute you motor assignments.
 
 CLI
 
@@ -165,7 +165,7 @@ The PPM signal is connected to MCU pin PB4, and you can use this for single-wire
 (taken from here : https://www.rcgroups.com/forums/showthread.php?2831228-OMNIBUS-F3-F3-Pro-PPM-An-extra-timer-pin)
 
 `feature -RX_PPM` //disable the rx-pwm
-`feature RX_SERIAL` //switch to serial reciever
+`feature RX_SERIAL` //switch to serial receiver
 `feature SOFTSERIAL` // enable soft serial
 `resource SERIAL_TX 11 B04` // enable softSerial1 tx on pin B04(PPM on J8)
 and/or `resource SERIAL_TX 12 B07` // enable softSerial2 tx on pin B07(PWM5 on J12)

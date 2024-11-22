@@ -57,7 +57,7 @@ See [BB logging page](/docs/wiki/guides/current/Black-Box-logging-and-usage) for
 
 The sequence in disabling notch filters isn't certain.
 
-The best approach is to blackbox the quad with both gyro notch filters off and look at the spectrum of the gyro trace. If there is a big peak there, and that peak is resulting in noise that is visible in the motors trace, then it should be filtered out by a gyro notch. If there is diffusely too much gyro noise, but no specific peak, then either use the biquad fitler or lower the gyro cut low pass filter.
+The best approach is to blackbox the quad with both gyro notch filters off and look at the spectrum of the gyro trace. If there is a big peak there, and that peak is resulting in noise that is visible in the motors trace, then it should be filtered out by a gyro notch. If there is diffusely too much gyro noise, but no specific peak, then either use the biquad filter or lower the gyro cut low pass filter.
 
 Not removing a prominent spike in gyro noise will just not be a good idea.
 
@@ -70,14 +70,14 @@ Well, it depends. A big spike in gyro that is not filtered out will cause noise 
 Without a black box there is no reliable way to know what to do. Certainly you can just disable the notches randomly, listen to the sound of the motors, see that they don't get hot, etc, and keep only the filters that are needed. But as to setting the ideal values, you need to get a black box log for that.
 
 Recently helped review a noisy log. Quad had PT1 on both gyro and D, and only one single notch, on Dterm.
-Log showed _no_ peak in noise at the centre point of the Dterm notch when looking at debug notch or the incoming gyro data! That notch was achieving absolutely nothing! :-)
+Log showed _no_ peak in noise at the center point of the Dterm notch when looking at debug notch or the incoming gyro data! That notch was achieving absolutely nothing! :-)
 
 Take home message: you cannot guess where to put notch filters!
 Notch filters really need a black box log to get them focused exactly on a peak. Otherwise they are useless and counterproductive.
 If you are going to blindly remove a notch to 'see how it goes', try removing the _lowest_ frequency notch before any others.
 That's the one that is most likely to mess with frequencies relevant to flight dynamics.
 
-A notch filter set very high up (eg 300 centre 200 cut) will have much less effect on flight dynamics than a lower notch filter (eg 200 centre 140 cut).
+A notch filter set very high up (eg 300 center 200 cut) will have much less effect on flight dynamics than a lower notch filter (eg 200 center 140 cut).
 
 Did a heap of testing today... interesting stuff.
 
@@ -130,7 +130,7 @@ As I said defaults are meant to be safe and protect against most common vibratio
 
 #### question from linklemming:
 
-From BB analysis with debug notch on, I have determined that D lowpass of PT1 is fine and that I only really 1 notch filter (300Hz Center, 200Hz low). I have a softmounted FC.
+From BB analysis with debug notch on, I have determined that D lowpass of PT1 is fine and that I only really 1 notch filter (300Hz center, 200Hz low). I have a softmounted FC.
 I can see the spike in the frequency range both in P and D.
 
 Boris mentions removing gyro notches first, I'm wondering what the trade-offs would be in selecting gyro notch vs D notch. Obviously if using only gyro notch, I get noise reductions in P and D and it seems to me this is better than using D notch unless there is some flight behaviors that would be better suited to using D notch only. The noise I believe is low enough that any P noise from using just D notch would be minimal.
@@ -153,7 +153,7 @@ Second, put the notch on gyro, that's where the noise is coming, this way both P
 Frankly I doubt it makes any difference..
 I do like the idea of only adding filtering where it is necessary; in this case, just putting the notch on D. Sure there will be slightly more phase delay between P and D, but D is already phase delayed because of the D lowpass filter, and the extra phase delay from a 300/200 notch filter on D alone may have no adverse effect.
 If you had time to try both and compare logs, that would be great. If possible make your flight testing 'blind', ie get someone else to make the change in the firmware so you don't know which you are flying.
-Be surprised if it makes the slightest difference. If you had to enable the notch filter lower down, eg centre 145 cut 90, for example, it might matter a lot. But high up probably either way is fine, gyro should end up slightly smoother and fly just as well.
+Be surprised if it makes the slightest difference. If you had to enable the notch filter lower down, eg center 145 cut 90, for example, it might matter a lot. But high up probably either way is fine, gyro should end up slightly smoother and fly just as well.
 
 #### Testimonials
 
@@ -314,8 +314,8 @@ Note that default betaflight filters are made so every beginner can put a quad i
 
 Post by ctzsnooze
 When Boris was first putting notch filters into betaflight they were intended as narrow, specific point filters, to block tight peaks of noise - and for this they are really, really good.
-However, when set wide, and particularly if set wide with a low cutoff, they do have a 'tail' that causes both delay and phase shift. Those negative effects can extend some way below the lower cutoff point, especially if the filter is 'wide', ie there is a big difference between centre point and low point.
-For example, setting a notch centre point to 200 and its low point at 100 will have significant effects below 100, whereas setting it to centre of 200 and low point of 160 won't be nearly as much of a problem.
+However, when set wide, and particularly if set wide with a low cutoff, they do have a 'tail' that causes both delay and phase shift. Those negative effects can extend some way below the lower cutoff point, especially if the filter is 'wide', ie there is a big difference between center point and low point.
+For example, setting a notch center point to 200 and its low point at 100 will have significant effects below 100, whereas setting it to center of 200 and low point of 160 won't be nearly as much of a problem.
 Notch filters should be used primarily to control tall, discrete 'peaks' of noise, and only made just wide enough to control the peak.
 
 #### post by r.a.v.
@@ -425,7 +425,7 @@ If the prop resonant frequency and the frame resonant frequency happen to be ver
 
 A good way to determine if this is happening is to hand hold the quad and run the motors with props on in the motors tab. Take care. You can then feel (and hear and see if the accelerometer is on) how each motor individually shakes the frame, and if there is some point where the whole thing shakes much more than any other, that’s the resonant point of the system. By testing individual motors you can tell which motor or motors are providing the greatest input stimulus (i.e. has the biggest problem. You can also test with all motors on at once, which tells you the overall smoothness of the whole frame. Note that in the motors tab the PID loop will not amplify anything; what you feel there is purely mechanical without PID amplification.
 
-The whole idea of notch filtering is to precisely match the centre of the notch filter exactly to a specific resonant point, and make it only wide enough to cover the width of the resonant peak.
+The whole idea of notch filtering is to precisely match the center of the notch filter exactly to a specific resonant point, and make it only wide enough to cover the width of the resonant peak.
 
 To do this we have to precisely know what the resonant points are, so we need a blackbox, and to look at the various traces carefully. As I explained before, a resonant peak on P needs a gyro notch, then re-log and check if D is still a problem.
 
@@ -433,7 +433,7 @@ Usually D is the main resonance amplifier. Without blackbox or notches, it is si
 
 Unfortunately there is no way to predict the resonant points for your frame, since they differ from prop to prop and frame to frame. The only way is to blackbox it and individualize the filters.
 
-In the case we are discussing, the only notch filter that was in use was a D filter, and it was achieving nothing because there was no resonant point at its centre frequency.
+In the case we are discussing, the only notch filter that was in use was a D filter, and it was achieving nothing because there was no resonant point at its center frequency.
 
 Notch filters have to be tuned specifically prop by prop and frame by frame.
 
@@ -457,7 +457,7 @@ So I was sitting there, wondering what to try next, flicking the ends of the pro
 
 Got some cyclones, which I use sometimes, they 'pluck' at 300Hz (stiffer).
 
-So I stuck a gyro filter with midpoint 180 and low point at 140 and _bingo_ no more shaking - able to bring the lowpass values up quite high now. So I made another profile for cyclones with the notch centred around 300. Same outcome!
+So I stuck a gyro filter with midpoint 180 and low point at 140 and _bingo_ no more shaking - able to bring the lowpass values up quite high now. So I made another profile for cyclones with the notch centered around 300. Same outcome!
 
 I also noticed that with PT1 on both gyro and D, the proportion of noise on D compared to P becomes progressively greater as frequency increases. To keep the two in a constant relationship, a biquad on D works much better. Once the amplitudes of P and D sort of are the same, we only need to put notches in the right place on gyro, and none are needed on D.
 
@@ -484,7 +484,7 @@ True motor noise (bearings, out of balance bells, loose bolts, out of balance pr
 
 Resonance is a definite 'noise' peak at a specific frequency. It really isn't random noise at all, it's a sine wave type pattern in the black box traces, and a definite tall peak in the spectrum. Generally it is at prop resonance frequency, or less commonly at the natural resonant frequency of (say) a loose or flexy arm or excessively soft motor mount. The resonant frequency does not change much with motor rpm, but may be triggered at specific rpm. The more aggressive your PIDs, the faster responding the ESCs and motors, the flexier the frame and the motor mounts, the bigger and stronger this resonance will be.
 
-Resonant peaks are best dealt with using a notch filter at the exact resonant point. When prop resonance is triggered, the frequency is relatively focused around the natural resonant frequency of the props. This can happen at idle, or at certain rpm points, or just be there all the time randomly. The props can resonate at nearby frequencies too, just not as well as the dead centre of their resonant point, so the peak can be wide or narrow.
+Resonant peaks are best dealt with using a notch filter at the exact resonant point. When prop resonance is triggered, the frequency is relatively focused around the natural resonant frequency of the props. This can happen at idle, or at certain rpm points, or just be there all the time randomly. The props can resonate at nearby frequencies too, just not as well as the dead center of their resonant point, so the peak can be wide or narrow.
 
 If there is a dominant peak, the auto setting filters being developed for 3.2 may be able to find that automatically.
 
@@ -492,7 +492,7 @@ In the meantime, for people without blackbox, a single gyro notch set at your pr
 
 If you are experimenting with PT1 only low pass and minimal notch setups, this is what I would do:
 
-Set both gyro and D to PT1 at about 100, disable all notch filters except just one. Measure your prop resonance, and set that single gyro notch at the prop resonance point, low side 25% below centre point, and check that the quad flies OK.
+Set both gyro and D to PT1 at about 100, disable all notch filters except just one. Measure your prop resonance, and set that single gyro notch at the prop resonance point, low side 25% below center point, and check that the quad flies OK.
 
 If the motors are too hot, my next step, rather than adding notches, would be to shift to biquad on D, since in nearly every log I've seen with broad motor noise, heat is mostly generated by D amplification at higher frequencies, and a biquad on D is the most effective method for dealing with this problem.
 
@@ -508,7 +508,7 @@ For our PT1 (one pole) type lowpass filters, phase shift is 45 degrees or 1/8th 
 
 For biquads we just double the delay, ie 2ms at 125Hz and 4ms at 62.5Hz.
 
-For notch filters, the delay is more complex, and is especially troublesome if set wide and low. I think that our notch filters cause phase shift of 45 degrees at their -3dB low point and 90 degrees at centre. Because the centre is not always twice the low point, there is no simple numerical 'delay' equivalent. However, if we have the low point of a notch at 125hz and centre at 250, the implied delay for both points is 1ms. But if the centre point is closer to the low point, the delay is no longer a simple time but is frequency dependent. Notch filters carry their phase shift / delay effect lower and deeper than simple low pass filters.
+For notch filters, the delay is more complex, and is especially troublesome if set wide and low. I think that our notch filters cause phase shift of 45 degrees at their -3dB low point and 90 degrees at center. Because the center is not always twice the low point, there is no simple numerical 'delay' equivalent. However, if we have the low point of a notch at 125hz and center at 250, the implied delay for both points is 1ms. But if the center point is closer to the low point, the delay is no longer a simple time but is frequency dependent. Notch filters carry their phase shift / delay effect lower and deeper than simple low pass filters.
 
 Note that in both cases, the higher the filter frequencies can go, the less delay we get. And that each filter adds its own delay, in series; they add up.
 
