@@ -43,7 +43,7 @@ set vcd_video_system = HD
 
 The size of the canvas (visible number of columns/rows) defaults to 53x20 (compared to 30x16 for PAL and 30x13 for NTSC). The VTX is then able to adjust this by sending an MSP command to adjust the canvas size. WTFOS will set this to 60x22 for example. This will be automatic with no user interaction required. Should the goggle vendor decide to support alternate canvas sizes then they would be selected in the goggle menus, and the new canvas size communicated to Betaflight which would then adjust the usable number of OSD rows/columns accordingly.
 
-Regardless of the canvas size the boot logo, armed message, stats, CMS menu etc. will be centerd correctly.
+Regardless of the canvas size the boot logo, armed message, stats, CMS menu etc. will be centered correctly.
 
 If the canvas size is reduced, either by selecting the PAL/NTSC options or by the VTX sending a different canvas size, all OSD elements will be moved onto the available canvas so they can be repositioned using the configurator.
 
