@@ -6,7 +6,7 @@ sidebar_position: 6
 
 **Wait, there is one more thing we can do to make it better!**
 
-This is what we realised about two months ago, as we were preparing for the release of Betaflight 3.4.0. And this is what led to the 'Feed Forward PID controller' being born. But when we came up with it was already too late to add it to 3.4.0, and it needed some more refinement before it was ready to go out anyway. So we decided to do Betaflight 3.5.0, a release that focuses on more flight improvements. We put the Feed Forward PID controller into it, we have made the dynamic notch filter a whole lot more awesome, and we made improvements to how anti gravity works. Man, all of these improvements show when you fly it!
+This is what we realized about two months ago, as we were preparing for the release of Betaflight 3.4.0. And this is what led to the 'Feed Forward PID controller' being born. But when we came up with it was already too late to add it to 3.4.0, and it needed some more refinement before it was ready to go out anyway. So we decided to do Betaflight 3.5.0, a release that focuses on more flight improvements. We put the Feed Forward PID controller into it, we have made the dynamic notch filter a whole lot more awesome, and we made improvements to how anti gravity works. Man, all of these improvements show when you fly it!
 
 To get the best out of the flight performance improvements, please read these [tuning tips](/docs/wiki/tuning/3-5-tuning-notes).
 

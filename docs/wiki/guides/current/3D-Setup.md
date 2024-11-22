@@ -105,7 +105,7 @@ The most common way to configure, compile, and flash SimonK esc's is using the K
 
 Currently DShot is working with 3D and according to Boris B still requires some serious flight testing as of 01-01-2017. Updates will be here as we get a greater understanding of 3D with DShot.
 
-DShot is definitely different with regards to behavior in the configurator, I'm not sure if the calibration process is still required e.t.c. but for now I'm setting up as before and then doing DShot specific tasks on top of the original setup. (30-04-2017EDIT: It has come to my attention that calibration is not required being that DShot is a digital signal, I should have realised this earlier, Teracis)
+DShot is definitely different with regards to behavior in the configurator, I'm not sure if the calibration process is still required e.t.c. but for now I'm setting up as before and then doing DShot specific tasks on top of the original setup. (30-04-2017EDIT: It has come to my attention that calibration is not required being that DShot is a digital signal, I should have realized this earlier, Teracis)
 
 Be aware that when using DShot and having 3D mode activated in the configurator if you go to the motor tab and then un-check the "I understand the risks..." box the configurator will tell the FC to send 1500us (the equivalent digital signal) to the ESCs which will spin the motors forward whilst running the DShot protocol. **As always, props off on the bench!**
 

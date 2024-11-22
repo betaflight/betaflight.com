@@ -473,7 +473,7 @@ Switch initiated GPS rescue may be helpful when FPV video is lost. The quad shou
 
 When GPS Rescue is enabled, arming is not permitted unless there is a GPS position fix and we have at least the required minimum number of satellites, set by `gps_rescue_min_sats`. This check can be bypassed by enabling `allow_arming_without_fix`.
 
-When arming is permitted without a fix, and the machine is armed without a Home Point being set, and a GPS rescue is initiated, the craft will go into 'do nothing' mode (slow descent with landing detection enabled) for 20s then disarm. This will happen both for true RC Link loss failsafe, and for switch-initiated failsafe tests. It will not fly home under any circumstances, because it has no clue where home is. The 'do nothing' period of 20s exists only to give the pilot time to undo the switch if they realise that the quad is not going to return.
+When arming is permitted without a fix, and the machine is armed without a Home Point being set, and a GPS rescue is initiated, the craft will go into 'do nothing' mode (slow descent with landing detection enabled) for 20s then disarm. This will happen both for true RC Link loss failsafe, and for switch-initiated failsafe tests. It will not fly home under any circumstances, because it has no clue where home is. The 'do nothing' period of 20s exists only to give the pilot time to undo the switch if they realize that the quad is not going to return.
 
 Never allow arming without a home point fix if you want GPS Rescue to get you home!
 

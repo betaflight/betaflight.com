@@ -8,7 +8,7 @@ sidebar_position: 5
 
 When we released 3.5 in August last year, the number of different targets supported by Betaflight had reached 150, and maintaining them was becoming a major effort and taking up a lot of our time. It became clear that we had to do something. We had been working on changing the architecture of Betaflight to make it possible to use the same firmware for different flight controllers for some time, and so we decided to complete this change before releasing the next version, and that because of this fundamental change the next version would be 4.0.
 
-As we approached the originally set release date for Betaflight 4.0, we realised that we were not quite ready, and we decided to take another three months, in order to be able to complete the work we had started.
+As we approached the originally set release date for Betaflight 4.0, we realized that we were not quite ready, and we decided to take another three months, in order to be able to complete the work we had started.
 
 So now, here we are, ‘Unified Targets’, as we called the new ‘one firmware for many flight controllers’ technology, is now a reality in Betaflight 4.0. There is still some work left to be done to add support for flashing Unified Targets with their configurations to Betaflight configurator, but once this is done, we will be able to allow manufacturers to make firmware for any number of boards, or RTF products, available directly in configurator.
 
