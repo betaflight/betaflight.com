@@ -4,7 +4,7 @@ Usually, the gyro orientation on the FC is ink-marked by an arrow pointing forwa
 
 In rare cases or due to space limitations, the flight controller needs to be positioned on the frame in awkward alignment, i.e. pivoted around multiple axes, NOT lining up with the main axes of the frame anymore.
 
-The FC firmware NEEDS to know how the FC axes are oriented with respect to the frame axes, otherwise the PID controller will misinterpret flight attitude and corrective actions, this will lead to unstable behaviour and flyaways. To keep all controls working as usual, you need to set the matching angle values in the Betaflight Configurator Configuration tab. These angles will tell the FC how to rotate the frame around multiple axes to fall in line with the alignment of the FC.
+The FC firmware NEEDS to know how the FC axes are oriented with respect to the frame axes, otherwise the PID controller will misinterpret flight attitude and corrective actions, this will lead to unstable behavior and flyaways. To keep all controls working as usual, you need to set the matching angle values in the Betaflight Configurator Configuration tab. These angles will tell the FC how to rotate the frame around multiple axes to fall in line with the alignment of the FC.
 
 It is important to note that there is a sequence of so-called Euler angles (axes of rotation in space, perpendicular to each other) for board/gyro alignment: yaw-pitch-roll or 3-2-1 Euler angles.
 

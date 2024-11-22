@@ -233,7 +233,7 @@ Angle Mode is now 'earth referenced' by default.  This means that a pure yaw sti
 
 Roll inputs in angle mode will always add extra roll, and the 'horizon' in the camera will respond accordingly, if that's what the pilot wants to achieve.
 
-The earth referencing behaviour can be disabled with `set angle_earth_ref = 0`, or its strength halved with `set angle_earth_ref = 50`.  Whoop racers may well prefer to disable it, however most beginners, and anyone doing cinematic shooting in Angle mode, should find it really nice.
+The earth referencing behavior can be disabled with `set angle_earth_ref = 0`, or its strength halved with `set angle_earth_ref = 50`.  Whoop racers may well prefer to disable it, however most beginners, and anyone doing cinematic shooting in Angle mode, should find it really nice.
 
 Angle and Horizon mode motor control is now significantly smoother, due to filtering refactoring and optimisation.  This reduces motor heat and camera jello.
 
@@ -302,18 +302,18 @@ Thanks to: tbolin
 
 ## 12. EzLanding
 
-This is a newly developed feature, CLI only, that makes landings less bouncy, even when airmode is on.  This is achieved by restricting the amount to which airmode can increase throttle, and by attenuating iTerm, when throttle is low and sticks are centred.
+This is a newly developed feature, CLI only, that makes landings less bouncy, even when airmode is on.  This is achieved by restricting the amount to which airmode can increase throttle, and by attenuating iTerm, when throttle is low and sticks are centerd.
 
 EzLanding is disabled by default.
 
 - To enable, go `set mixer_type = EZLANDING` in CLI.
-- To return to normal behaviour, go `set mixer_type = LEGACY` in CLI.
+- To return to normal behavior, go `set mixer_type = LEGACY` in CLI.
 
 There are two tuning parameters:
 - `ez_landing_limit`: Default: 5, Range: 0-75. Allowed maximum percentage throttle increase via airmode, with sticks centered and throttle at zero. Higher values provide a bit more stability when perching or in flat drops. Lower values make landings less bouncy.
 - `ez_landing_threshold`: Default: 25, Range: 0-200. Percentage stick deflection at which airmode is given full authority to adjust the throttle, with linear attenuation towards the center
 
-The EzLanding effect is strongest when the sticks are centred and throttle is at zero.  Under these conditions there will be a small reduction in PID stabilisation. To retain a bit more stability, eg when trying to 'perch' on an object, or during flat or inverted zero throttle drops, retain a tiny bit of throttle during the move.
+The EzLanding effect is strongest when the sticks are centerd and throttle is at zero.  Under these conditions there will be a small reduction in PID stabilisation. To retain a bit more stability, eg when trying to 'perch' on an object, or during flat or inverted zero throttle drops, retain a tiny bit of throttle during the move.
 
 For more information, see [PR 12094](https://github.com/betaflight/betaflight/pull/12094).
 Debug: `set debug_mode = EZLANDING`
@@ -326,7 +326,7 @@ Allows the user to apply TPA attenuation in the low end of the throttle range.  
 
 The threshold or break point is set by `tpa_low_breakpoint`, and the magnitude of the attenuation at zero throttle is set by `tpa_low_rate`.  The default value for `tpa_low_rate` is 20, which means a reduction in D of 20%, or that the D effect in the PIDs  will be 80% of normal, at zero throttle.
 
-By default, the default behaviour is to apply the reduction only briefly after arming.  Once until the throttle is raised above `tpa_low_breakpoint`, TPA lower is inactivated for the rest of the armed period.
+By default, the default behavior is to apply the reduction only briefly after arming.  Once until the throttle is raised above `tpa_low_breakpoint`, TPA lower is inactivated for the rest of the armed period.
 
 Hence, by default, there will be only a minimal effect on arming, and no effect in flight..
 
@@ -402,7 +402,7 @@ The `RACE_PRO` option can be selected from the "Other Options" dropdown or typed
 
 ### 16.2 RPM Limiter build option
 
-This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behaviour for Spec Racing.  
+This limits the max average RPM to a user-specified value, and is primarily intended to help standardise quad behavior for Spec Racing.  
 
 RPM Limiter actively limits the average rpms across all active motors.  For example, `set rpm_limit_value = 13000` will limit average RPM to 13000.
 
@@ -550,7 +550,7 @@ Thanks to: SteveCEvans, unit(freasy), blckmn, karatebrot, sugark, haslinghuis, t
 - improved F7 UART behavior on boot, LED Strip fixes, 
 - improved F4xx UART enable/disable
 - ESC Serial fixes for HAL targets
-- Improved USART pull-down behaviour
+- Improved USART pull-down behavior
 - Fix for sag compensation when RPM limiting is active
 - Improved at32 support: UARTs, i2c code, SITL port number, SRAM configuration, camera control, evaluation order. additional timers
 - fix for USB comp port failures on some hosts

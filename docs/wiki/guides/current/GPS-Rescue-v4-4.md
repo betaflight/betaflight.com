@@ -1,6 +1,6 @@
 # GPS Rescue 4.4
 
-Betaflight 4.4 brings huge improvements in the altitude, velocity, flightpath accuracy and landing behaviour of the GPS Rescue code. The Sanity Checks that monitor the status of the Rescue are less likely to disarm the quad or falsely declare a failure of the rescue.
+Betaflight 4.4 brings huge improvements in the altitude, velocity, flightpath accuracy and landing behavior of the GPS Rescue code. The Sanity Checks that monitor the status of the Rescue are less likely to disarm the quad or falsely declare a failure of the rescue.
 
 ## About GPS Rescue
 
@@ -59,7 +59,7 @@ Level mode must provide a stable hover, after careful acc trimming. The throttle
 
 - A working GPS module. Modern UBlox units work well. Check that they support UBlox, 10hz updates, and that they have a backup battery, so that it will regain satellites during repeated power cycles much more quickly.
 - `set GPS_PROVIDER = GPS_UBLOX` enables `UBLOX` mode. This is recommended and is now the default.
-- if the GPS doesn't support `UBLOX`, try `NMEA`. Some, but not all, NMEA-only units will provide 10Hz data updates, and can work really well. NMEA at 1Hz makes it very difficult for the quad to fly home; it will jerk and jump every second, with very erratic rescue flight behaviour.
+- if the GPS doesn't support `UBLOX`, try `NMEA`. Some, but not all, NMEA-only units will provide 10Hz data updates, and can work really well. NMEA at 1Hz makes it very difficult for the quad to fly home; it will jerk and jump every second, with very erratic rescue flight behavior.
 - test the accuracy of your GPS by watching it in Configurator while stable on a desk outdoors. Zoom in on the map and see how the position moves around, especially if the quad is put on an angle and some satellites are lost. Note that altitude estimation is quite unstable. It can take a long time for the GPS to really settle down.
 
 - If a Baro is present, enabling it will improve IMU altitude estimations significantly. We recommend enabling Baro by default, especially for short flights (eg up to 10-15min). Usually this results in better altitude control and more reliable landings. Check the Baro data in the sensors tab after enabling the `ALTITUDE` debug. It should be reasonably smooth after arming. Whether or not Baro is helpful is readily seen by doing some LOS rescues at low altitude over flat ground. For longer flights, and some Baro hardware, Baro drift can be more of a problem than GPS drift. Hence do some testing with it on or off and then set your Baro trust value appropriately for the kind of flying you intend to do.
@@ -144,7 +144,7 @@ Basic setup:
 
 - **Ensure you have a Home Lock before takeoff, and that the Home Arrow points to Home!**. After arming, make sure the OSD shows the home icon, distance to home, and the home arrow points to home. Optionally, display the `osd_gps_sats_show_hdop` value in the OSD; if this gets close to, or below, 1.0, it's a good indicator of a solid fix (thanks @zzyzx).
 
-- **At the start of a mission-critical flight, confirm normal GPS Rescue behaviour a by doing a close-range test rescue with a switch**. Once you know that it turns and points to home, revert the test switch. You can enter and leave GPS Rescue with a switch with immediate effect anytime. This makes field checking easy.
+- **At the start of a mission-critical flight, confirm normal GPS Rescue behavior a by doing a close-range test rescue with a switch**. Once you know that it turns and points to home, revert the test switch. You can enter and leave GPS Rescue with a switch with immediate effect anytime. This makes field checking easy.
 
 - **Think carefully about the `GPS_SET_HOME_POINT_ONCE` option**. Resetting the home point on every new arm is OK for testing and normal use. Each time you arm, your home position is updated. The home position accuracy improves over time, so you're sure to get the best home position estimate when you finally do take off. The downside is that if you disarm during the flight, GPS rescue will take you back to that new arm point, not to home. If your craft disarms in a bad spot, even if you get signal back, it will never fly home. In contrast, if you choose to only set the home position once, at first arm, it's important to not arm until you are sure you have a solid home position estimate. Be patient when using the first arm only method.
 
@@ -234,7 +234,7 @@ The `GPS_RESCUE_ALT_MODE` setting, in association with the `GPS_RESCUE_RETURN_AL
 - The defaults should be 'about right' for a typical 5" freestyle quad.
 - The quad targets velocity in the direction of home. If it must fly into wind, the maximum angle (set by `GPS_RESCUE_ANGLE`), must be sufficient for the quad to overcome the wind. Provided the angle is sufficient, the return home velocity should be reasonably accurately maintained. `GPS_RESCUE_VELOCITY_I` is important when flying into the wind. On windy days, always confirm that the quad can overcome the wind. A lot of battery power can be consumed flying into the wind, always consider this when thinking about how far you fly out with the wind behind you.
 
-## Expected behaviours
+## Expected Behaviors
 
 - The disarm with remains active during switch-induced failsafe, including GPS Rescue. Take care with disarm if the craft is configured to reset the home point after a disarm.
 - To prevent flyaways, the low satellite sanity check will abort the rescue if satellite count falls below half the set GPS Rescue minimum sats for a cumulative increment/decrement period exceeding 10s.
@@ -269,7 +269,7 @@ The `GPS_RESCUE_ALT_MODE` setting, in association with the `GPS_RESCUE_RETURN_AL
 | Disarms while flying home                   | Not within 50% of target velocity or altitude for 20s or more in fly home phase                                            |
 | Altitude on return consistently low or high | Hover value not set correctly, not enough throttle I                                                                       |
 | Altitude on return randomly low or high     | GPS Altitude drift - check its stability before takeoff                                                                    |
-| Altitude overshoots at start                | Normal behaviour                                                                                                           |
+| Altitude overshoots at start                | Normal behavior                                                                                                            |
 | Altitude droops below target at start       | Set a higher altitude buffer if using current altitude `gps_rescue_alt_buffer`                                             |
 | Altitude droops below target at start       | Throttle P and D too low                                                                                                   |
 | Altitude wobbles quickly during return      | Throttle P and D too high                                                                                                  |
@@ -309,8 +309,8 @@ A sanity check failure due to GPS signal loss will inevitably be a disarm the cr
 
 There are three sanity check modes:
 
-- `RESCUE_SANITY_ON` - this gives the strongest sanity check behaviour, with immediate disarm for hard errors like loss of GPS communication, flyaway, low sat count, and no home point on initiating the rescue. These responses will be the same whether the rescue is 'real' or if it was initiated by a switch.
-- `RESCUE_SANITY_FS_ONLY`- this is the default mode, giving strong sanity check behaviour for true RC link loss, but additional time to reverse the switch for switch-induced failsafe. For example, the quad will enter "Do Nothing" mode for 20s if a rescue is initiated by switch and there is no Home Point.
+- `RESCUE_SANITY_ON` - this gives the strongest sanity check behavior, with immediate disarm for hard errors like loss of GPS communication, flyaway, low sat count, and no home point on initiating the rescue. These responses will be the same whether the rescue is 'real' or if it was initiated by a switch.
+- `RESCUE_SANITY_FS_ONLY`- this is the default mode, giving strong sanity check behavior for true RC link loss, but additional time to reverse the switch for switch-induced failsafe. For example, the quad will enter "Do Nothing" mode for 20s if a rescue is initiated by switch and there is no Home Point.
 - `RESCUE_SANITY_OFF` - this is intended for testing only. When in this mode, the quad will immediately disarm only if arming without a Home Fix was permitted, there is no Home Fix, and there is a hard (Rx Link Lost) failsafe. In all other cases a failed sanity check results in "Do Nothing" mode for 20s and then a disarm. For safety reasons - to prevent indefinite flyaways - it does not not turn "all sanity checks off" anymore.
 
 For sanity checks with a time element, we use a cumulative up/down counter. Starting from zero, the counter increases by 1 every second the value is 'bad', and decreases by 1 every second it is 'good'. Once the accumulator reaches the sanity check time-out, the sanity check fails.

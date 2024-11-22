@@ -30,7 +30,7 @@ Before configuring or testing GPS Rescue, you must calibrate the accelerometer a
 
 ## Setting up GPS Rescue
 
-In order to set up GPS Rescue on your quad, it is highly recommended that you follow the complete setup procedure from scratch. This procedure is meant for practicing in a controlled environment and fully understanding the behaviour and limitations of GPS Rescue. Using GPS Rescue out of the box (copying someone else's configuration) will diminish the chances of success.
+In order to set up GPS Rescue on your quad, it is highly recommended that you follow the complete setup procedure from scratch. This procedure is meant for practicing in a controlled environment and fully understanding the behavior and limitations of GPS Rescue. Using GPS Rescue out of the box (copying someone else's configuration) will diminish the chances of success.
 
 ### Go to the Betaflight Modes tab and add a switch for GPS Rescue Mode. Verify that the mode actually gets activated (of course no props).
 

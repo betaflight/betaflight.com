@@ -86,7 +86,7 @@ Tests currently live in the `test` folder and they use the google test framework
 The tests are compiled and run natively on your development machine and not on the target platform.
 This allows you to develop tests and code and actually execute it to make sure it works without needing a development board or simulator.
 
-This project could really do with some functional tests which test the behaviour of the application.
+This project could really do with some functional tests which test the behavior of the application.
 
 All pull requests to add/improve the testability of the code or testing methods are highly sought!
 

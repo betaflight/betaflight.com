@@ -145,7 +145,7 @@ https://www.rcgroups.com/forums/showpost.php?p=38309374&postcount=51892
 - effectively made the setpoint weight behave as if it was set to zero (no matter what you set it to) if the setpoint transition was at the default 1.0. Fixed in RC5.
 
 ### RC5 Changes
-- Default setpoint weight has been changed to 0. This should result in flight behaviour identical to previous 3.2 RC's if the user left the relax ratio at the default of 1, because relax ratio of 1 was disabling setpoint weight in those RC's. This has been fixed in RC5, so that D weight is active even if relax is 1. Users wanting D weight behaviour like 3.1 should set weight to 0.6.
+- Default setpoint weight has been changed to 0. This should result in flight behavior identical to previous 3.2 RC's if the user left the relax ratio at the default of 1, because relax ratio of 1 was disabling setpoint weight in those RC's. This has been fixed in RC5, so that D weight is active even if relax is 1. Users wanting D weight behavior like 3.1 should set weight to 0.6.
 - Removed experimental Slew filter
 - Disabled beeping on gyro calibration during boot
 - Added gyro overflow protection for some newer gyros (ICMxxx gyro series is known to show inversion due to overflow above +/-2000deg/sec)

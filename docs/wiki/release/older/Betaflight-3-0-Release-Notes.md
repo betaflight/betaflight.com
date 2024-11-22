@@ -356,7 +356,7 @@ When flying through turbulent air the quad gets lots of external inputs. If the 
 
 I takes time to build up and let go. So when flying at medium speed through slightly bumpy air and noticing you have a 'wandering line', more I will usually help. But too much I may mean that once you leave one bank of moving air and enter the next, the accumulated iTerm correction will be going the opposite way and will take some time - about half a second - to 'let go'. So adding more iTerm won't always solve the problem. I certainly won't fix fast buffeting, it is too slow, and 'too much' I may not be helpful even for slow wandering lines.
 
-D on the other hand responds immediately to sudden changes, and responds faster as the buffeting becomes faster. It does very little or nothing for slow drifting behaviours (that's what I is for).
+D on the other hand responds immediately to sudden changes, and responds faster as the buffeting becomes faster. It does very little or nothing for slow drifting behaviors (that's what I is for).
 
 P is good for any speed of buffeting but mostly when the angular deviations are larger, rather than small fast deviations for which D is more effective.
 
@@ -427,7 +427,7 @@ So scenario 1: Propwash
 - Crank the D, keeping an eye on motor temps
 - Motor temps high and still have propwash? Back off on P and try working D up again
 
-Scenario 2: Behaviour on stick return
+Scenario 2: Behavior on stick return
 
 - Play with sliders
 - Transition slider specifically introduces some deceleration on stick return so that stops are not as abrupt.

@@ -43,7 +43,7 @@ set vcd_video_system = HD
 
 The size of the canvas (visible number of columns/rows) defaults to 53x20 (compared to 30x16 for PAL and 30x13 for NTSC). The VTX is then able to adjust this by sending an MSP command to adjust the canvas size. WTFOS will set this to 60x22 for example. This will be automatic with no user interaction required. Should the goggle vendor decide to support alternate canvas sizes then they would be selected in the goggle menus, and the new canvas size communicated to Betaflight which would then adjust the usable number of OSD rows/columns accordingly.
 
-Regardless of the canvas size the boot logo, armed message, stats, CMS menu etc. will be centred correctly.
+Regardless of the canvas size the boot logo, armed message, stats, CMS menu etc. will be centerd correctly.
 
 If the canvas size is reduced, either by selecting the PAL/NTSC options or by the VTX sending a different canvas size, all OSD elements will be moved onto the available canvas so they can be repositioned using the configurator.
 
@@ -100,7 +100,7 @@ Favorite presets are being remembered by it's path+name in the repo. So a favori
 
 **We strongly recommend reading the [instructions](/docs/wiki/guides/current/GPS-Rescue-v4-4).**
 
-Remember that in any true failsafe the quad will always enter Failsafe Stage 1 phase for 1s (user-configurable) before initiating the Rescue. You MUST set the Stage 1 behaviour NOT to DROP, or it will disarm and drop in Stage 1 and never enter GPS Rescue. The safest option for Stage 1 is to configure Angle Mode on an aux switch, and set Stage 1 Failsafe to enable Angle Mode at a fixed hover / light climb throttle value with all other sticks forced to center. When you get signal loss of more than 300ms, you'll enter Angle Mode, and the will start to level out. That will give you a clear advance warning that you are getting signal breakup. Alternatively, you can set Failsafe Stage 1 to hold all current values; the quad will then continue on the same path until Stage 1 Failsafe expires and the Rescue starts.
+Remember that in any true failsafe the quad will always enter Failsafe Stage 1 phase for 1s (user-configurable) before initiating the Rescue. You MUST set the Stage 1 behavior NOT to DROP, or it will disarm and drop in Stage 1 and never enter GPS Rescue. The safest option for Stage 1 is to configure Angle Mode on an aux switch, and set Stage 1 Failsafe to enable Angle Mode at a fixed hover / light climb throttle value with all other sticks forced to center. When you get signal loss of more than 300ms, you'll enter Angle Mode, and the will start to level out. That will give you a clear advance warning that you are getting signal breakup. Alternatively, you can set Failsafe Stage 1 to hold all current values; the quad will then continue on the same path until Stage 1 Failsafe expires and the Rescue starts.
 
 **Please disable the compass/magnetometer** unless:
 

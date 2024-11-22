@@ -68,7 +68,7 @@ A major benefit is that it markedly reduces the need for the opposing motors to 
 
 The default value of 100 works well, and attempts to reach FF outputs of 0 as gyro values reach setpoint.
 Lower values result in feedforward influence tapering to 0 at a percentage of those values (e.g. at a value of 50, in a sustained flip, once gyro reaches half the setpoint value the feedforward term will taper to zero). Higher values allow for feedforward to continue influencing the PID controller. For higher authority craft this will cause overshoot, but for authority-limited craft these higher values can be very beneficial.
-ff_max_rate_limit is not active as the sticks return to centre.
+ff_max_rate_limit is not active as the sticks return to center.
 
 To determine ff_max_rate_limit and ff_boost works best, look at the start of a hard flip in BlackBox Explorer and see if there is any overshoot. If with ff_max_rate_limit = 100 there is still too much overshoot, first evaluate if Feedforward or P-term is driving overshoot at the time of interest. If so, try ff_max_rate_limit = 95. If the overshoot is too well controlled, try 105 to 110. The range of adjustment is quite tight.
 

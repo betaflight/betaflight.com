@@ -21,7 +21,7 @@ Most of this document is of historical relevance and applies to earlier versions
 - 2017-02-12 Note on compatibility of SmartAudio V1 devices (Compatibility section)
 - 2018-07-19 Note on operational mode switching
 - 2020-07-25 Updated targets, removed broken link. Added link to latest revision of TBS SmartAudio documentation
-- 2024-01-12 Introductory paragraph, filename change to improve sorting behaviour
+- 2024-01-12 Introductory paragraph, filename change to improve sorting behavior
 
 #### TBS SmartAudio
 

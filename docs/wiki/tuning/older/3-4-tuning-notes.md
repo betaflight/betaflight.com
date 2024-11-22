@@ -8,7 +8,7 @@ No problem, flash the code, and do a brief test fly with the stock defaults. **B
 
 Note that 3.4 contains major changes to filtering and several new features that dramatically improve potential flight performance. Do not expect it to fly the same as earlier versions!
 
-If motor temps are OK, and handling generally alright, there are several changes that may further improve flight behaviour.
+If motor temps are OK, and handling generally alright, there are several changes that may further improve flight behavior.
 
 If motors are warmer than you'd like, check the section on filters below. Otherwise, the defaults are probably OK for your quad.
 
@@ -45,9 +45,9 @@ Note that with RC smoothing, the sharp spikes from D weight or throttle inputs w
 
 ### The defaults are OK but I want to make some changes. What do I need to know?
 
-**The new default D weight value is 0.6**. This is approximately equal to 0.8 in pre-3.4 versions. More D weight means greater immediacy of stick responses, particularly to quick stick movements. If the default of 0.6 doesn't feel responsive enough at the same rates as before, try a higher value. 1.0 is sufficient to overcome the normal damping behaviour that D itself would otherwise slow down responses to your stick inputs - the quad shifts from the measurement mode of D calculation to error mode. Values above 1.0 provide an additional 'feed forward' effect. Higher D weight can feel excessively twitchy, but can allow reduction in P while retaining the same overall responsiveness.
+**The new default D weight value is 0.6**. This is approximately equal to 0.8 in pre-3.4 versions. More D weight means greater immediacy of stick responses, particularly to quick stick movements. If the default of 0.6 doesn't feel responsive enough at the same rates as before, try a higher value. 1.0 is sufficient to overcome the normal damping behavior that D itself would otherwise slow down responses to your stick inputs - the quad shifts from the measurement mode of D calculation to error mode. Values above 1.0 provide an additional 'feed forward' effect. Higher D weight can feel excessively twitchy, but can allow reduction in P while retaining the same overall responsiveness.
 
-**The new default D Setpoint Transition value is zero**. If you previously flew with 1.0 or 0.5, to get a smooth centre feel for freestyle, and it now feels too twitchy around centre sticks, use your old setting. The default of 0 provides equal stick responsiveness regardless of stick position, and is recommended for racing. 0.5 is great for freestyle. Values above zero, but under 0.1, are not recommended, because they may cause glitching when the sticks are smoothly swept across the centre position.
+**The new default D Setpoint Transition value is zero**. If you previously flew with 1.0 or 0.5, to get a smooth center feel for freestyle, and it now feels too twitchy around center sticks, use your old setting. The default of 0 provides equal stick responsiveness regardless of stick position, and is recommended for racing. 0.5 is great for freestyle. Values above zero, but under 0.1, are not recommended, because they may cause glitching when the sticks are smoothly swept across the center position.
 
 If your PID settings were higher than the current defaults, and the quad feels like it is a bit less responsive than before, try with values for P, D, and D weight more like what you had, and consider trying 20% above your old defaults.
 
@@ -292,7 +292,7 @@ Normally, D setpoint weight is a feed forward amount that increases with quicker
 
 In the classical betaflight PID system, D setpoint weight assists P in initiating turns. Typically D setpoint weight climbs quicker and relatively earlier than P. Adding more D setpoint weight, and reducing P a little, can reduce PID overshoot without losing stick sensitivity.
 
-Smart Feed forward changes the D setpoint weight behaviour, such that it replaces P entirely, but only when it is greater than P (and in the same direction). For it to work, the D setpoint value must be set significantly higher than usual - up to 2.0 or more. Then, a large part of the initial part of a turn is driven very hard by D weight, and P doesn't need to do so much. In some settings, this can reduce overshoot a bit.
+Smart Feed forward changes the D setpoint weight behavior, such that it replaces P entirely, but only when it is greater than P (and in the same direction). For it to work, the D setpoint value must be set significantly higher than usual - up to 2.0 or more. Then, a large part of the initial part of a turn is driven very hard by D weight, and P doesn't need to do so much. In some settings, this can reduce overshoot a bit.
 
 ### Absolute Control
 

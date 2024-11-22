@@ -8,7 +8,7 @@ An ESC is the Electronic Speed Controller which supplies power to the craft's mo
 - Older ESCs support analog protocols like PWM, Oneshot, and Multishot, or hybrid protocols like Proshot. Analog protocols require two-point calibration, are susceptible to noise, and can only provide telemetry over an additional serial connection. This is not suitable for RPM filtering.
 - Betaflight is enhanced by the ability of modern ESCs to supply in-band telemetry back to the Flight Controller via the DShot protocol.
 - Using telemetry from ESC to FC in addition to the normal motor commands from FC to ESC is referred to as Bidirectional DShot.
-- Bidirectional DShot is different from bidirectional motor control. Bidirectional motor control allows the ESC to actively rotate the motors forward and backwards, with the 'off' position at centre stick, as in 3D Flight Mode. Bidirectional motor control is not required for Bidirectional DShot telemetry.
+- Bidirectional DShot is different from bidirectional motor control. Bidirectional motor control allows the ESC to actively rotate the motors forward and backwards, with the 'off' position at center stick, as in 3D Flight Mode. Bidirectional motor control is not required for Bidirectional DShot telemetry.
 
 ## Bidirectional DShot Firmware
 
@@ -52,7 +52,7 @@ Developers note - prior to 2.00 the AM32 project used a repo for each family of 
 ### BLHeli_32
 
 :::warning
-Stuck motors, hot motors and unexpected behaviour have been observed in BLHeli_32 releases after 32.7. Betaflight recommends avoiding newer releases until a well-tested BLHeli_32 release is available.
+Stuck motors, hot motors and unexpected behavior have been observed in BLHeli_32 releases after 32.7. Betaflight recommends avoiding newer releases until a well-tested BLHeli_32 release is available.
 :::
 
 BLHeli_32 is only available pre-installed on ESCs, the cost of BLHeli_32 licenses are included in the hardware cost of each ESC. BLHeli_32 was a continuation of the original BLHeli project which introduced support for 32bit ESCs. Bidirectional DShot is now a fully supported feature in version 32.7.0. Just upgrade using blheli32 configurator.

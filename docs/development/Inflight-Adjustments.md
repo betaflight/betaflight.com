@@ -10,7 +10,7 @@ Changing settings during flight can make your aircraft unstable and crash if you
 
 - Always make adjustments while flying in a large open area.
 - Make small adjustments and fly carefully to test your adjustment.
-- Give yourself enough flying space and time to adjust to how your changes affect the behaviour of the aircraft.
+- Give yourself enough flying space and time to adjust to how your changes affect the behavior of the aircraft.
 - Remember to set adjustment channel switches/pots to the center position before powering on your TX and your aircraft.
 - If possible configure switch warnings on your transmitter for dedicated adjustment switches.
 - A momentary 3 position switch is the best choice of switch for this - i.e. one that re-centers itself when you let go of it.

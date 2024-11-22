@@ -130,7 +130,7 @@ As I said defaults are meant to be safe and protect against most common vibratio
 
 #### question from linklemming:
 
-From BB analysis with debug notch on, I have determined that D lowpass of PT1 is fine and that I only really 1 notch filter (300Hz Center, 200Hz low). I have a softmounted FC.
+From BB analysis with debug notch on, I have determined that D lowpass of PT1 is fine and that I only really 1 notch filter (300Hz center, 200Hz low). I have a softmounted FC.
 I can see the spike in the frequency range both in P and D.
 
 Boris mentions removing gyro notches first, I'm wondering what the trade-offs would be in selecting gyro notch vs D notch. Obviously if using only gyro notch, I get noise reductions in P and D and it seems to me this is better than using D notch unless there is some flight behaviors that would be better suited to using D notch only. The noise I believe is low enough that any P noise from using just D notch would be minimal.

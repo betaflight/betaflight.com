@@ -18,7 +18,7 @@ Betaflight supports Actual, Quick, Betaflight, Raceflight and Kiss models.
 
 ## Actual Rates
 
-"Actual" rates, by @ctzsnooze, were introduced in 4.2 and became Betaflight's default in 4.3. The older "Betaflight" rates model is still supported, with . In Actual rates, the center sensitivity and maximum rate can be directly entered in deg/s. The expo setting shifts the kink point of the curve, without affecting centre or max rates. Each parameter is completely independent of the other.
+"Actual" rates, by @ctzsnooze, were introduced in 4.2 and became Betaflight's default in 4.3. The older "Betaflight" rates model is still supported, with . In Actual rates, the center sensitivity and maximum rate can be directly entered in deg/s. The expo setting shifts the kink point of the curve, without affecting center or max rates. Each parameter is completely independent of the other.
 
 To compare Actual with Betaflight rates, there are charting solutions by:
 

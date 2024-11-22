@@ -142,4 +142,4 @@ The two nearby LEDs will show the status of charging:
 - If you are only using a 4 channel RX, in the auxiliary configuration tab, you can add a "Horizon" mode range around 1500
   for one of the AUX channels which will result in it being always on
 - Enabling the feature MOTOR_STOP helps with crashes so it doesn't try to keep spinning on its back
-- When the power runs low, the quad will start jumping around a bit, if the flight behaviour seems strange, check your batteries charge
+- When the power runs low, the quad will start jumping around a bit, if the flight behavior seems strange, check your batteries charge

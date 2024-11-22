@@ -60,7 +60,7 @@ Welcome to a comprehensive guide to the Betaflight 4.3 update.
 
 - [Dynamic gyro filter expo curve](#dynamic-gyro-filtering-expo-curve) - Adjusting filter expo curves improves propwash by raising dynamic gyro filter cutoff values more quickly as you throttle up.
 
-- [Improved dynamic idle](#improved-dynamic-idle) - The dynamic idle code has been heavily revised, and can now keep RPM at a more stable value, more quickly and more precisely than before, and can be fine-tuned with its new single sided PID controller. It is now much simpler to set up. There is no need to measure RPM or change your D_Shot idle percentage value - leave that value at your normal setting. Just enable DShot Telemetry (and check it is working), and set a suitable idle RPM value in the PID Tuning page. Typically 3000-4000 rpm works great. This improves motor spin-up-from-low-rpm behaviour, enhancing low throttle input responsiveness, and reduces the risk of desyncs, while allowing motor drive to go all the way to zero for enhanced braking when appropriate and for longer inverted hang times.
+- [Improved dynamic idle](#improved-dynamic-idle) - The dynamic idle code has been heavily revised, and can now keep RPM at a more stable value, more quickly and more precisely than before, and can be fine-tuned with its new single sided PID controller. It is now much simpler to set up. There is no need to measure RPM or change your D_Shot idle percentage value - leave that value at your normal setting. Just enable DShot Telemetry (and check it is working), and set a suitable idle RPM value in the PID Tuning page. Typically 3000-4000 rpm works great. This improves motor spin-up-from-low-rpm behavior, enhancing low throttle input responsiveness, and reduces the risk of desyncs, while allowing motor drive to go all the way to zero for enhanced braking when appropriate and for longer inverted hang times.
 
 - [Linear and Dynamic mixer options](#linear-and-dynamic-mixer-options) - These are alternatives to the stock Betaflight mixer code. The dynamic option may result in less aggressive bump and landing responses for level mode or cinematic flights.
 
@@ -103,7 +103,7 @@ This is typically an issue for cinematic HD applications. There is low level, ra
 - be sure your capacitor is big
 - sometimes the gyro chip isn't working properly, and some ESCs just don't play nice, if all else fails, try changing these parts from a quad that does fly perfectly.
 - use a jitter reduction factor of 10-12. To test if feed-forward is making it worse, do a test flight with feedforward at zero. If there is no change, feed-forward isn't the problem, and can be used at normal settings.
-- high level RC smoothing (auto smoothing of 90 or higher) will attenuate the erratic behaviour of old gimbals or 'thumb shake'. To test whether your RC link is the problem, temporarily set a wide deadband. We don't recommend deadband much, but a high deadband test will eliminate all random noise on the RC link, when sticks are centered. If that makes no difference, your RC link isn't the cause of the problem.
+- high level RC smoothing (auto smoothing of 90 or higher) will attenuate the erratic behavior of old gimbals or 'thumb shake'. To test whether your RC link is the problem, temporarily set a wide deadband. We don't recommend deadband much, but a high deadband test will eliminate all random noise on the RC link, when sticks are centered. If that makes no difference, your RC link isn't the cause of the problem.
 - use very soft mounting for the camera.
 
 ### Zero throttle instability
@@ -682,7 +682,7 @@ In 4.3, feedforward now is available in Level, Level Race, and Horizon modes.
 
 In Level Mode, this results in a more immediate response when moving the sticks to change the angle of the quad. The quad should more promptly assume your new intended angle.
 
-In Horizon Mode, while flying aggressively, the behaviour is now nearly exactly the same as acro, with all the benefits that feedforward brings in terms of immediate stick response and reduced overshoot. It feels great!
+In Horizon Mode, while flying aggressively, the behavior is now nearly exactly the same as acro, with all the benefits that feedforward brings in terms of immediate stick response and reduced overshoot. It feels great!
 
 If you're a beginner and you find Level too twitchy, reduce the feedforward value in the PIDs.
 

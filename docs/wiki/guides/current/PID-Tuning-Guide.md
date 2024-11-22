@@ -7,7 +7,7 @@
 On my journey, though hundreds of videos, tutorials and manuals (Bardwell, UAV Tech, JohnnyFPV, Mr. Steele, Le Drib, RotorRiot (sorry, for the missed ones) and wrote down their suggestions). This is the result of my notes. It should provide the least necessary but most compressed information to start tuning and setting your Quadcopter.
 In my case I use the widely spread `Taranis X7` remote control.
 
-I am a **freestyle pilot**, so keep in mind, that these settings are in this scope (more smooth, softer flight behaviour).
+I am a **freestyle pilot**, so keep in mind, that these settings are in this scope (more smooth, softer flight behavior).
 
 # Remote Control (Taranis X7)
 
@@ -448,7 +448,7 @@ _0.15 means the center 15% of my stick travel are softer._
 
 FeedForward provides 'dynamic stick boost' or 'dynamic stick responsiveness'. It pushes the quad quicker into turns when the sticks are moved quickly. With feedforward, the faster the sticks are moved, the bigger the push. And it doesn't wait for any error to develop, the response is instantaneous.
 
-The feedforward effect is attenuated around centre sticks by the transition parameter, so the quad can be made more damped (less twitchy) around centre for freestyle type flying by setting transition to 0.5 or 0.1 as usual, but for racing and for direct responses it's best to leave transition at 0.
+The feedforward effect is attenuated around center sticks by the transition parameter, so the quad can be made more damped (less twitchy) around center for freestyle type flying by setting transition to 0.5 or 0.1 as usual, but for racing and for direct responses it's best to leave transition at 0.
 
 Zero FeedForward allows D-term to dampen the quad all the time, even when the quad is instructed to turn quickly.
 

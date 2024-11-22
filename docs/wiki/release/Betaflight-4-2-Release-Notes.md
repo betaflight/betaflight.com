@@ -51,7 +51,7 @@ _Happy flying, enjoy summer_
 
 - completely reworked the gyro loop, improved performance and made it always run at the native speed of the gyro ([#9444](https://github.com/betaflight/betaflight/pull/9444));
 - added new selectable ACTUAL and QUICK rates models ([#9495](https://github.com/betaflight/betaflight/pull/9495), [#9506](https://github.com/betaflight/betaflight/pull/9506));
-- added compensation for sagging battery voltage, resulting in more consistent throttle / PID behaviour over for the entire flight time ([#9561](https://github.com/betaflight/betaflight/pull/9561));
+- added compensation for sagging battery voltage, resulting in more consistent throttle / PID behavior over for the entire flight time ([#9561](https://github.com/betaflight/betaflight/pull/9561));
 - Added level race mode ('NFE race mode' in Silverware) ([#9481](https://github.com/betaflight/betaflight/pull/9481)).
 
 

@@ -580,7 +580,7 @@ Has anyone tested these parameters on their quads?
 this from my notes, Boris B talking:
 Dont use that low threshold. I think 300 or 350 should be fine.
 What does the value mean?
-350 for example means 35% of throttle. Once the throttle has been increased or decreased with 35% within 100ms of time than it means that there might be a high gravitational change going on and iterm needs to be accelerated to go to its new value faster. The gain is Ki multiplier. So your igain gets a temporarily nitro boost to prevent pitch up / down behaviour caused by too slow iterm. Default value of 2 is really mellow and is done for safety reasons as I found out a lot of folks were running pretty high igains and with this value iterm might just get pushed easier over the edge.
+350 for example means 35% of throttle. Once the throttle has been increased or decreased with 35% within 100ms of time than it means that there might be a high gravitational change going on and iterm needs to be accelerated to go to its new value faster. The gain is Ki multiplier. So your igain gets a temporarily nitro boost to prevent pitch up / down behavior caused by too slow iterm. Default value of 2 is really mellow and is done for safety reasons as I found out a lot of folks were running pretty high igains and with this value iterm might just get pushed easier over the edge.
 
 Rate max is the rate where this feature completaly gets ignored.
 
