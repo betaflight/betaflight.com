@@ -45,7 +45,7 @@ There is normally a pause between frames of at least 2 microseconds to indicate 
 
 It should of course be noted that DShot is not the absolute most efficient protocol for representing bit values in a serial stream, but the reason for the approach taken rather than other options is to ensure accuracy in the very noisy environment found on a multi-rotor. That said it is certainly no slouch. It takes it to the current crop, with DSHOT600 being a mere 1 microsecond slower than Multishot at full throttle. Even DSHOT150 is on a par with Oneshot42. The following graph represents the full throttle timing of the current protocols:
 
-DShot has no real concept of minimum and maximum durations for timing, it is a digital protocol afterall. A disarmed throttle value of 0 takes the same amount of time to communicate as a full throttle value.
+DShot has no real concept of minimum and maximum durations for timing, it is a digital protocol after all. A disarmed throttle value of 0 takes the same amount of time to communicate as a full throttle value.
 
 ### Will my ESCs or flight controller be supported?
 

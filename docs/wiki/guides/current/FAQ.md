@@ -214,7 +214,7 @@ One other method to free-up the CPU is to:
 Do not forget to check the Basics.
 Use the Receiver Tab and check that each stick moves the correct channel slider and the slider moves in the correct direction. If the wrong channel slider moves, then check the channel MAP (eg AETR instead of TAER).
 Also check that the stick End Point values are still correct. Min/max stick ends points should be 1000/2000. For more information take a look at the Question called "What is the best practice for configuring the Throttle end points".
-Make sure your throttle stick's minimum value is lower than min_check! If in the modes tab you see that the quad should be arming but isn't, use "set min_check" and make sure that that is greater than the lowest throttle value in the receiver tab.
+Make sure your throttle stick's minimum value is lower than min_check! If in the modes tab you see that the quad should be arming but isn't, use "set min_check" and make sure that is greater than the lowest throttle value in the receiver tab.
 
 Is the Accelerometer Calibrated? Needs to be done once to allow arming.
 
@@ -314,7 +314,7 @@ Individual PID values are calculated as usual, so the PID sum value (the sum of 
 
 The actual PID sum value can be thought of as the actual final value sent to drive the motors.
 
-Acro Plus modifies the PID sum value, essentially in linear proportion to acroPlus/100, and in square proportion to the angle of the sticks, up to the the maximum possible total PID value of 1000.
+Acro Plus modifies the PID sum value, essentially in linear proportion to acroPlus/100, and in square proportion to the angle of the sticks, up to the maximum possible total PID value of 1000.
 
 If the AcroPlus value is low, i.e. 1, there is almost no change in PID sum, regardless of stick angle. Basically the PIDs work like normal, its just that the iTerm effects described above are now fully active. As usual, stick sensitivity at 100% stick travel (i.e. maximum roll rate) is set by RC and pitch/roll rates, while center sensitivity is set by these and the amount of applied expo.
 
@@ -349,7 +349,7 @@ See the "Gyro based loop implementation" description on the support page.
 
 Here is a great analogy:
 You are driving a car. You run on 1khz so you are only allowed to open your eyes once per second. In this time you must not only look at the road ahead but also the wheel, speedo, RPM, radio, and so on. Now close your eyes until the next time.
-2khz let's you open your eyes and make decisions twice in the same timeframe as 1khz.
+2khz lets you open your eyes and make decisions twice in the same timeframe as 1khz.
 
 So you are heading for a collision at 60kph. 1khz will let you adjust over that distance by a factor of one. 2khz let's you adjust by a factor of two (Yea I know, but I am explaining basics). So to make a one meter horizontal adjustment in 1K would take you 6 meters the equivalent in 2k would take you 3 meters.
 This is not gospel, just a way to explain the difference.
@@ -554,7 +554,7 @@ Lowering yaw_jump_prevention_limit will result in less motor power spilled for y
 
 You still have the full yaw control when using stick input.
 
-But anyway I am still surprised that your gear suffers from jump. I would say that small...and powerfull x quads would typically not suffer from jumps." - Boris B
+But anyway I am still surprised that your gear suffers from jump. I would say that small...and powerful x quads would typically not suffer from jumps." - Boris B
 
 ## How should I configure the FailSafe system ?
 
@@ -660,7 +660,7 @@ Q by Ede2016- Does this mean from now on BetaFlight and CleanFlight are independ
 I thought the idea was that BetaFlight is for all the Beta testers (a lot by now) and CleanFlight should be for "normal" pilots who can wait a few months for updates - after they are beta tested and stable.
 A from Boris- That was the initial scope of this project, but you can understand that this all is done in free time. And maintaining multiple versions is really time consuming and not efficient....well actually impossible.
 
-Due to a lot of changes in betaflight it is not that easy to just merge things back easily. Betaflight is completaly open source and all code is available for other open source projects like cleanflight. There are actually some developers who are continously working on merging things back and forth, but even those are struggling as divergion is getting bigger and bigger.
+Due to a lot of changes in betaflight it is not that easy to just merge things back easily. Betaflight is completaly open source and all code is available for other open source projects like cleanflight. There are actually some developers who are continuously working on merging things back and forth, but even those are struggling as divergion is getting bigger and bigger.
 
 Also the scope of cleanflight is very wide and betaflight primary only focuses on acro and level performance.
 
@@ -710,7 +710,7 @@ A quick way to test that there isn't some other issue causing it is use the moto
 
 Since flashing 2.4.0 and rebooting from Configurator with a battery plugged in spins up the motors briefly. I'm fairly sure that didn't happen in 2.1.6, not sure about 2.3.5.
 
-Answer: This can happen in any firmware with battery plugged in. It can happen in 1 out of 100 times or every time. Thats not a bug....that's how OneShot works. The ESC would interpret a small pulse during power up and down as a signal and spin motors. It is really a short pulse what couldn't really harm anything but still can scare the s\*\*t out of you !
+Answer: This can happen in any firmware with battery plugged in. It can happen in 1 out of 100 times or every time. That's not a bug....that's how OneShot works. The ESC would interpret a small pulse during power up and down as a signal and spin motors. It is really a short pulse what couldn't really harm anything but still can scare the s\*\*t out of you !
 
 It is also highly recommended to always use a Current Limiter when the LiPo is connected and the Config Gui is opened. This can prevent burning ESCs and motors. See: http://www.rcgroups.com/forums/showthread.php?t=2327875
 
@@ -1003,7 +1003,7 @@ A to low yaw_jump_prevention_limit can prevent yaw P from getting enough authori
 
 From Joshua Bardwell
 
-yaw_iterm_reset_degrees determines the number of degrees above which the Iterm will reset to zero and stay there. the units are degrees per second rotation and they go from 25 to 1000. The issue here is that, on extreme acro moves like flips and rolls, the I term can accrue error, and then at the end of the move, the I term trying to unwind that error can result in rebound or overshoot, instead of sharply stopping the move. This parameter causes the I term to zero out when the rotational rate goes over a certain value. The idea is that, in a flip or roll, you don't care about correcting for persistent bias on that axis. You just want to flip or roll close to the targetted angular rate.
+yaw_iterm_reset_degrees determines the number of degrees above which the Iterm will reset to zero and stay there. the units are degrees per second rotation and they go from 25 to 1000. The issue here is that, on extreme acro moves like flips and rolls, the I term can accrue error, and then at the end of the move, the I term trying to unwind that error can result in rebound or overshoot, instead of sharply stopping the move. This parameter causes the I term to zero out when the rotational rate goes over a certain value. The idea is that, in a flip or roll, you don't care about correcting for persistent bias on that axis. You just want to flip or roll close to the targeted angular rate.
 
 ## How does Super Expo work ?
 
@@ -1637,7 +1637,7 @@ https://www.rcgroups.com/forums/showpost.php?p=36091829&postcount=2453
 vini3019:
 Just want to share with you guys some of my thinks...
 
-Recently I was fighting very hard against mid throttle "side effects" like mid throttle oscillations and yaw twitches (not talking about cases where the issue remains with zero PIDs). I realized that all those issues started when I switched to "over powered " builds where the motors were stronger, props lighter, frames lighter and smaller (with less inertia). I remember that when I was runnig Sunnysky 2204 for example, it was very easy to tune. I was able to push P and D very high without any problems. Yes, those motors are relatively weak with lower torque and slow acceleration. Then I switched to Cobra 2204/2206 and here it started (mid throttle oscillations) but it still was tunable. Today I am running Cobra Champion 2205 2300 and it becomes realy hard to deal with those side effects with just try to tune them out. Trying several ways to solve this issue I realised that there are two most effective ways:
+Recently I was fighting very hard against mid throttle "side effects" like mid throttle oscillations and yaw twitches (not talking about cases where the issue remains with zero PIDs). I realized that all those issues started when I switched to "over powered " builds where the motors were stronger, props lighter, frames lighter and smaller (with less inertia). I remember that when I was running Sunnysky 2204 for example, it was very easy to tune. I was able to push P and D very high without any problems. Yes, those motors are relatively weak with lower torque and slow acceleration. Then I switched to Cobra 2204/2206 and here it started (mid throttle oscillations) but it still was tunable. Today I am running Cobra Champion 2205 2300 and it becomes really hard to deal with those side effects with just try to tune them out. Trying several ways to solve this issue I realized that there are two most effective ways:
 
 1. Slightly heavier props but still efficient like HQ5x4x4 instead of HQ5x4x3
 2. Mechanical damping for FC (soft mounting). And I found it useful not only for sensitive gyros.
@@ -1659,7 +1659,7 @@ That do you think?
 
 Boris' Answer:
 I am not sure what you already tried, but if you use low noise gyro like MPU6000/MPU6050 the noise is really easy to solve.
-There is really no need of lowering your P's as you suggest just for that. You technically dont even need TPA in that case.
+There is really no need of lowering your P's as you suggest just for that. You technically don't even need TPA in that case.
 The notch default filters in 3.0.1 should deal with low and mid throttle vibrations in most cases.
 On few of my quads I also have the Cobra champion serie motors like you and had terrible time tuning those without notch filters before.
 
@@ -1705,7 +1705,7 @@ https://www.rcgroups.com/forums/showpost.php?p=36630822&postcount=43348
 
 I see the comments about notch filters helping with the noise issues, and the comparisons between the mpu6000 and the new icm20602 but not seeing anything about if the current iterations of Betaflight helped solve the noise problems. Is that what the notch filters are for?
 Boris:
-You can of course make the filtering more agressive, but readings from ICM20xxx gyros can be too messy on hardmounted solutions so softmounting to make them less sensitive seems like the only solution on those, where on mpu60x0 you would mostly get away on standard mounting.
+You can of course make the filtering more aggressive, but readings from ICM20xxx gyros can be too messy on hardmounted solutions so softmounting to make them less sensitive seems like the only solution on those, where on mpu60x0 you would mostly get away on standard mounting.
 
 ##### Post on testing DShot before and after adding Large, low ESR caps to power system:
 
@@ -1761,8 +1761,8 @@ added "#define USE_FLASH_TOOLS" in spracingF3/target.h, compiled and flashed boa
 Set PuTTY to log all session output to file, connect, type "#" to enter CLI, "flash_info" to get usedSize, "flash_read 0 'usedSize'" and the show begins. 11 minutes later close PuTTY and find a nice 8MB log on the harddrive.
 Blackbox viewer is robust enough to not care about the initial "talk" in the logfile.
 
-One thing that caught me at first was the flow control setting in PuTTY, has to be "none", got trucated logs with the default.
-Not as convinient like hitting some buttons in configurator but it will save me sooo much time, big thanks to whoever added this handy piece of code.
+One thing that caught me at first was the flow control setting in PuTTY, has to be "none", got truncated logs with the default.
+Not as convenient like hitting some buttons in configurator but it will save me sooo much time, big thanks to whoever added this handy piece of code.
 
 I think [this](https://github.com/cleanflight/cleanflight/commit/3eb28f16eaa5d4f4a085bcb87f334ba85d3ace84) is the initial commit to cleanflight and [this](https://github.com/betaflight/betaflight/commit/3eb28f16eaa5d4f4a085bcb87f334ba85d3ace84#diff-34076ed1dbe02400da4a39189fe5c250) to betaflight, date is 01/28/2015 for both. So my thanks go to thenickdude, the flash and blackbox guru.
 

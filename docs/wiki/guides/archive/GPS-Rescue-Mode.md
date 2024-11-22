@@ -56,7 +56,7 @@ This is the vertical speed at which your quad will climb, expressed in centimete
 
 This is the vertical speed at which your quad will descend, expressed in centimeters for second
 
-`gps_rescue_throttle_min` and `gps_rescue_throttle_max` in betaflight 4.1 only limit the excursion of the the new pid controller(https://github.com/betaflight/betaflight/pull/8015)
+`gps_rescue_throttle_min` and `gps_rescue_throttle_max` in betaflight 4.1 only limit the excursion of the new pid controller(https://github.com/betaflight/betaflight/pull/8015)
 
 `gps_rescue_alt_mode = [MAX_ALT, FIXED_ALT, CURRENT_ALT]` (added in betaflight 4.1)
 
@@ -107,7 +107,7 @@ v4.0.x notes - However, it will return control to the user as soon as the radio 
 
 v4.1 and beyond - After the RC link is restored, Betaflight now requires that any combination of roll/pitch/yaw inputs be moved beyond the `failsafe_stick_threshold` percentage value before failsafe will be exited and control returned to the pilot. The default for this setting is 30 which means you need to move roll, pitch, or yaw at least 30% off center before it will cancel Failsafe and return control. You may choose to reduce that setting value if you need a less abrupt transition from failsafe to full control.
 
-Additionally the failsafe procedure can be activated in the Failsafe tab of the configurator, or by using the OSD menus (`FEATURES > FAILSAFE`). The OSD menus setting is also convenient to disable GPS Rescue on failsafe in the field if you are flying in restricted or limited airspace (like indoors or among trees). Be sure to reenable when appropriate.
+Additionally the failsafe procedure can be activated in the Failsafe tab of the configurator, or by using the OSD menus (`FEATURES > FAILSAFE`). The OSD menus setting is also convenient to disable GPS Rescue on failsafe in the field if you are flying in restricted or limited airspace (like indoors or among trees). Be sure to re-enable when appropriate.
 
 ## DEALING WITH FAILURES / SANITY CHECKS (VERY IMPORTANT):
 

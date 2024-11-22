@@ -66,7 +66,7 @@ Size can be changed in `src/main/target/SITL/pg.ld` >> `__FLASH_CONFIG_Size`
 
 [RealFlight](https://www.realflight.com/) is one of the best commercial RC simulators with accurate airplane, helicopter, and multirotor simulations.
 ArduPilot also offers [RealFlight SITL](https://ardupilot.org/dev/docs/sitl-with-realflight.html).
-To use it you may need to purchase it on [Steam](https://store.steampowered.com/app/1070820/RealFlight_95S/) or [offical website](https://www.realflight.com/).
+To use it you may need to purchase it on [Steam](https://store.steampowered.com/app/1070820/RealFlight_95S/) or [official website](https://www.realflight.com/).
 
 ### Setup
 
@@ -131,7 +131,7 @@ To running SITL, you may need to:
        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
    ```
 
-   172.19.32.1 is the example output of your Windows IP and 172.19.41.192 is your WSL IP. **These IPs change everytime you reboot the computer.**
+   172.19.32.1 is the example output of your Windows IP and 172.19.41.192 is your WSL IP. **These IPs change every time you reboot the computer.**
 
    Then go to the Betaflight root and start the SITL with this IP.
 

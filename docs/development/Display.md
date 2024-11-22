@@ -23,7 +23,7 @@ feature DISPLAY
 The SSD1306 display is a 128x64 OLED display that is visible in full sunlight, small and consumes very little current.  
 This makes it ideal for aircraft use.
 
-There are various models of SSD1306 boards out there, they are not all equal and some require addtional modifications
+There are various models of SSD1306 boards out there, they are not all equal and some require additional modifications
 before they work. Choose wisely!
 
 Links to displays:

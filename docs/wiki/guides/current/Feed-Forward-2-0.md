@@ -78,7 +78,7 @@ Since FF is calculated for each incoming RC step, we have a problem when a new s
 
 Usually this is caused by 'dropped packets', or when a TBS or R9 Rx switches out of 150hz mode to the slower 50hz mode. Anytime this happens, FF would normally drop suddenly to zero; when the next valid data value comes in, a double-height step up occurs. These zero/double-height pairs in the FF trace are very messy.
 
-In `AVERAGED` mode, the interpolation algorithm averages each two successive feed forward values. In the case of a sudden drop to zero with a large subsequent step up, this is is changed to a smaller drop, a middle value, and a jump up. Overall the steps are smaller.
+In `AVERAGED` mode, the interpolation algorithm averages each two successive feed forward values. In the case of a sudden drop to zero with a large subsequent step up, this is changed to a smaller drop, a middle value, and a jump up. Overall the steps are smaller.
 
 There is a downside to using `AVERAGED`. If the pilot makes a fast input, then suddenly holds the sticks perfectly still, ff_spread will hold FF at the previous, high, value for the set time, rather than dropping to zero immediately as it should. This can cause an overshoot for the duration set by the extend value. It is most easily seen at the start of a flip when the sticks hit their physical limit, but can happen at other times.
 

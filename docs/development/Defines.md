@@ -2,7 +2,7 @@
 
 Betaflight uses `#define` macro syntax to include software components that support additional features or specific hardware modules at build time.
 
-A basic set of defines is included in the config file for each board. At build time, the user can add extra defines in the the Configurator's Firmware Flasher Tab.
+A basic set of defines is included in the config file for each board. At build time, the user can add extra defines in the Configurator's Firmware Flasher Tab.
 
 When selecting GPS, Baro, etc from the `Other Options` list, any additional required or related defines are added automatically. For example, if `BARO` is requested by the user, the `USE_BARO` define, and all supported baro hardware defines, are automatically included.
 

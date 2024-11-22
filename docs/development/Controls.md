@@ -55,7 +55,7 @@ The stick positions are combined to activate different functions:
 
 ### History
 
-Intial stick commands, came from MultiWII but the original code no-longer has direct links.
+Initial stick commands, came from MultiWII but the original code no-longer has direct links.
 
 The original documents as listed below can be found here https://code.google.com/archive/p/multiwii/source/default/source
 

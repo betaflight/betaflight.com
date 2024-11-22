@@ -58,7 +58,7 @@ The cloud build system [introduced in 4.4](/docs/wiki/release/Betaflight-4-4-Rel
 
 Most basic build options are included in the default group in the `Other Options box`, including AcroTrainer and both HD and SD OSD setups.
 
-The default Radio Protocol is CRSF, which automatically includes includes RF telementry (even though the Telemetry drop-down says 'none').
+The default Radio Protocol is CRSF, which automatically includes RF telementry (even though the Telemetry drop-down says 'none').
 
 Typically a user would de-select the SD OSD option if they used only HD, and vice versa.
 
@@ -130,7 +130,7 @@ Thanks to: ctzsnooze, ledvinap, SteveCEvans, Zzyzx, haslinghuis
 
 ## 4. Magnetometer update
 
-Magentometers now work really well.  However, it's fair to say that they are absoltely NOT plug and play.  The user will need to carefully read the documentation and absolutely must get the orientation and calibration of the mag right, and must validate that correct headings are returned (eg by comparing to a compass on a phone), regardless of the orientation of the quad.  It is quite challenging to do, but rewarding when completed.
+Magentometers now work really well.  However, it's fair to say that they are absolutely NOT plug and play.  The user will need to carefully read the documentation and absolutely must get the orientation and calibration of the mag right, and must validate that correct headings are returned (eg by comparing to a compass on a phone), regardless of the orientation of the quad.  It is quite challenging to do, but rewarding when completed.
 
 This code was extensively revised, with a lot of improvement in compass task scheduling and driver support.
 
@@ -465,7 +465,7 @@ The OSD will show:
 - current &voltage, and
 - Betaflight version.
 
-The screen disappears upon arming. It is helpfull especially for spec racers and race organizers to verify the settings.
+The screen disappears upon arming. It is helpful especially for spec racers and race organizers to verify the settings.
 
 To use: include `SPEC_PREARM_SCREEN` in Custom Defines, when building, and then enable with `set osd_show_spec_prearm = ON`.
 
@@ -479,7 +479,7 @@ Thanks to: limonspb
 
 This is a custom build option that allows the user to define a starting gate, fly a 'track' and return through the 'gate' and see the current lap time, the previous lap, and fastest three, in the OSD.  At the end of the flight, the best lap and time of the best three laps is shown in the OSD.  See this [video](https://www.youtube.com/watch?v=TA5cWwFafY4).
 
-Requires GPS in the firmware build, and a GPS module with good enough signal reception to track location even when the quad at a steep angle.  Basic configration is to add the relevant fields to the OSD display, and in Modes, enable 'Lap Timer Reset' on a switch.  At the field, the quad is placed at the start/finish gate, and `MISC/GPS LAP TIMER/SET POSITION` is activated until the gate is known.  The gate 'tolerance' or 'size' can be adjusted, and the minimum lap time can be used to avoid false triggers when some other gate is close to the main start-finish gate.  Go `Save Exit` to store the settings and do some laps!  
+Requires GPS in the firmware build, and a GPS module with good enough signal reception to track location even when the quad at a steep angle.  Basic configuration is to add the relevant fields to the OSD display, and in Modes, enable 'Lap Timer Reset' on a switch.  At the field, the quad is placed at the start/finish gate, and `MISC/GPS LAP TIMER/SET POSITION` is activated until the gate is known.  The gate 'tolerance' or 'size' can be adjusted, and the minimum lap time can be used to avoid false triggers when some other gate is close to the main start-finish gate.  Go `Save Exit` to store the settings and do some laps!  
 
 The minimum lap time and the gate size are saved between batteries (?), but the start/finish gate must be re-set each battery(?).  With M10 battery-backed up GPS the new location should be detected quickly, but for best results wait a while until the GPS position is stable before locking in the gate position.  
 

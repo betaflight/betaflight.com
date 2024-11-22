@@ -43,7 +43,7 @@ Developers note - prior to 2.00 the AM32 project used a repo for each family of 
 | Version | Recommended | Comment                                                                                                                                                                 |
 | ------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2.00    | `N`         | Cleanup of target structure, unify projects                                                                                                                             |
-| 2.01    | `N`         | Increase 10khz timer to 20khz, increase max duty cycle change.                                                                                                           |
+| 2.01    | `N`         | Increase 10khz timer to 20khz, increase max duty cycle change.                                                                                                          |
 | 2.02    | `N`         | Increase startup power for inverted output targets.                                                                                                                     |
 | 2.03    | `N`         | Move chime from DShot direction change commands to save command.                                                                                                        |
 | 2.04    | `Y`         | Fix current protection, max duty cycle not increasing. Fix double startup chime. Change current averaging method for more precision. Fix startup ramp speed adjustment. |
@@ -94,7 +94,7 @@ _\*Recommended if you fly 3D as this fixes 3D mode transitions. Please read [Con
 
 ### JFlight
 
-This is the original BlHeli-S RPM firmware, from the developer of the underlying RPM filtering and DShot telemetry code. JFlight requires a license purchased for each ESC you wish to enable RPM telemetry on. Go to [jflight.net](https://jflight.net), check that your ESC and FC are supported, purchase enough licences, and follow the install instructions - download the custom JESC BLHeli-S configurator, select your ESC, select the correct hex, click the blue 'flash all' button, then then flash the telemetry code over that by clicking 'flash all telemetry'. Use the flash version at the top of the list. JESC requires Betaflight 4.1+.
+This is the original BlHeli-S RPM firmware, from the developer of the underlying RPM filtering and DShot telemetry code. JFlight requires a license purchased for each ESC you wish to enable RPM telemetry on. Go to [jflight.net](https://jflight.net), check that your ESC and FC are supported, purchase enough licences, and follow the install instructions - download the custom JESC BLHeli-S configurator, select your ESC, select the correct hex, click the blue 'flash all' button, then flash the telemetry code over that by clicking 'flash all telemetry'. Use the flash version at the top of the list. JESC requires Betaflight 4.1+.
 
 Only supports L and H MCUs, not recommended for new installs.
 

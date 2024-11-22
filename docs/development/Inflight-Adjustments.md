@@ -23,10 +23,10 @@ The other mode is Absolute mode where a pot (knob/slider) may be directly mapped
 
 Both modes utilise two channels to make an adjustment.
 
-| Channel    | Use                                                                                                                                                                                                                                                                      |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Range      | This channel is used to enable an adjustment. When the channel is set to fall withing the specified range, then the corresponding adjustment is enabled. This is similar to mode setting where a given mode is enabled when a channel is within a lower and upper range. |
-| Adjustment | This channel is used to control the change to the specified setting                                                                                                                                                                                                      |
+| Channel    | Use                                                                                                                                                                                                                                                                     |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Range      | This channel is used to enable an adjustment. When the channel is set to fall within the specified range, then the corresponding adjustment is enabled. This is similar to mode setting where a given mode is enabled when a channel is within a lower and upper range. |
+| Adjustment | This channel is used to control the change to the specified setting                                                                                                                                                                                                     |
 
 Settings are not saved automatically, connect a GUI, refresh and save or save using stick position when disarmed.
 Powering off without saving will discard the adjustments.

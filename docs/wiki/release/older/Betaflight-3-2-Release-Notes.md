@@ -69,7 +69,7 @@ This release contains bugfixes and target changes only. For a full list of new f
 - [SITL](http://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html) simulator support (@cs8425)
 - Added crosshairs to CMS (@lostcontrol)
 - Improved ITerm windup handling for tricopter (@martinbudden)
-- Added SP RACING F3 OSD/PDB suport (@hydra)
+- Added SP RACING F3 OSD/PDB support (@hydra)
 - Added horizon_tilt_effect command (@ethomas997)
 - Improved scheduler efficiency (@lilcw)
 - Increased motor output resolution (@borisbstyle)
@@ -138,7 +138,7 @@ https://www.rcgroups.com/forums/showpost.php?p=38309374&postcount=51892
 - Reset iterm after crash for crash detection
 
 ### RC4 Bugs (see the Issues and Pull requests in Github for details)
-- gyro debug and notch debug doesnt work. No data is displaying in analyzer. Fixed in Build #179.
+- gyro debug and notch debug doesn't work. No data is displaying in analyzer. Fixed in Build #179.
 - various [Issues](https://github.com/betaflight/betaflight/issues/4001) with DSHOT1200
 - NAZE target not able to log data to Black Box
 - Gyro Cal beeps [issue 4107](https://github.com/betaflight/betaflight/issues/4107)
@@ -216,7 +216,7 @@ Official recommendation from myself and r.a.v. (who between us wrote the code) i
 TO DO - fill in CLI commands and what they do.
 
 Briefly the mode works like this:
-1. A crash is detected if `crash_dthreshold` and `crash_gthreshold` are exceded.
+1. A crash is detected if `crash_dthreshold` and `crash_gthreshold` are exceeded.
 2. Once a crash is detected, the craft tries to level itself, ignoring RC input on roll and pitch axes.
 3. Craft continues to try and level itself until either:
 1. `crash_time` milliseconds after the crash, or

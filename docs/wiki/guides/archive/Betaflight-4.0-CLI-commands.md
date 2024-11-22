@@ -200,7 +200,7 @@ Allowed values: OFF, ON
 
 **airmode_start_throttle_percent = 32**
 Allowed range: 0 - 100
-This keeps AirMode OFF until the the first time throttle reaches this value. AirMode is always on after this. Note that 3D users have to reconfigure their threshold to something else otherwise airmode would be always enabled.
+This keeps AirMode OFF until the first time throttle reaches this value. AirMode is always on after this. Note that 3D users have to reconfigure their threshold to something else otherwise airmode would be always enabled.
 
 **x_min_usec = 885**
 Allowed range: 750 - 2250

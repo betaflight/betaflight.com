@@ -101,7 +101,7 @@ vtxtable band 5 RACEBAND R FACTORY 5658 5695 5732 5769 5806 5843 5880 5917
 
 ### Power levels
 
-In addition the the frequency, videotransmitters also need to know how much power they should use for transmission.
+In addition to the frequency, video transmitters also need to know how much power they should use for transmission.
 The example shown previously contains three power levels, **each with a value and a label.** The label is shown to the user in the OSD,
 while the value is sent to the vtx.
 

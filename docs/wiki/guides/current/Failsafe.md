@@ -30,7 +30,7 @@ Always ensure that the receiver is configured to 'send no data' on signal loss!
 
 Flight Controller failsafe continuously monitors the integrity of the radio link.
 
-It is essential that the Receiver is configured to send **no data** (no packets at all) on signal loss, otherwise Flight Controller based failsafe will never realise that anything is wrong.
+It is essential that the Receiver is configured to send **no data** (no packets at all) on signal loss, otherwise Flight Controller based failsafe will never realize that anything is wrong.
 
 Flight Controller failsafe will work if the wires connecting the FC to the Receiver come loose, or break, or your receiver locks up.
 
@@ -118,7 +118,7 @@ Entering Stage 2 is not possible until 5 seconds after the flight controller boo
 
 Stage 2 Failsafe can be activated by an aux channel switch. If the switch behaviour is set to `STAGE2` (`failsafe_switch_mode` in the CLI), Stage 2 activates immediately. Otherwise it waits until Stage 1 is complete.
 
-When the flight contoller enters Stage 2, it implements one of three (actually, four) possible Stage 2 Failsafe procedures::
+When the flight controller enters Stage 2, it implements one of three (actually, four) possible Stage 2 Failsafe procedures::
 
 - **Drop**, the default, causing immediate disarm and motor stop. There is a time delay before re-arming is possible
 - **Landing Mode**, where the sticks are centered, throttle is held at a defined value, and the aux channels are set as configured for Stage 1 (which could include configuring an aux channel to enable Level mode). These settings will apply for the Landing Time (`failsafe_off_delay` period), which defaults to 1 second, but can be longer. At the end of this period, the quad will disarm (and crash). Landing Mode can be hazardous, since the motors and PIDs are active, and you cannot control where the quad goes. If the machine crashes and the props get stuck, they can burn out, though if the PID errors are bad enough, the runaway takeoff system may disarm the quad.
@@ -128,7 +128,7 @@ When the flight contoller enters Stage 2, it implements one of three (actually, 
 If the link is restored, control will be returned to the pilot:
 
 - in Landing Mode, when the RC signal has recovered for longer than the `failsafe_recovery_delay` period, or
-- in GPS Rescue Mode, when the link has returned for `failsafe_recovery_delay` and the pilot has moved the sticks more than 30 degrees out from centre.
+- in GPS Rescue Mode, when the link has returned for `failsafe_recovery_delay` and the pilot has moved the sticks more than 30 degrees out from center.
 
 :::warning
 **There is no way to instantly recover from Stage 2 Failsafe caused by signal loss, or from a disarm at the end of Stage 2**.
@@ -147,7 +147,7 @@ When Stage 2 is initiated by aux switch, recovery is immediate when the switch i
 The default signal loss behaviour with 1.5 seconds of stage 1 'guard time' is:
 
 - 300ms holding last values
-- the next 1200ms at idle throttle with sticks centred (the default Stage 1 or fallback settings)
+- the next 1200ms at idle throttle with sticks centered (the default Stage 1 or fallback settings)
 - followed by disarm and drop.
 
 Recovery within the Stage 1 time is immediate, but if Stage 2 completes, and the quad disarms, the `failsafe_recovery_delay` time must expire before re-arming is possible.
@@ -181,7 +181,7 @@ You will only regain normal flight control during Landing Mode after the signal 
 The behaviour with default one second of stage 1 'guard time' and a 10s Landing time is:
 
 - 300ms holding last values
-- the next 1,200ms at idle throttle with sticks centred (the default fallback settings)
+- the next 1,200ms at idle throttle with sticks centered (the default fallback settings)
 - 10s of landing throttle
 - your Stage 1 Aux switch values applied
 
@@ -189,7 +189,7 @@ The behaviour with default one second of stage 1 'guard time' and a 10s Landing 
 
 The full details of GPS Rescue are covered in the wiki, and elsewhere.
 
-You will regain during GPS Rescue Mode only after signal restores for more than the `failsafe_recovery_delay` period AND you move the sticks more than 30 degrees out from centre.
+You will regain during GPS Rescue Mode only after signal restores for more than the `failsafe_recovery_delay` period AND you move the sticks more than 30 degrees out from center.
 
 :::danger
 Do not forget to wiggle the sticks when attempting to recover from a true signal-loss GPS Rescue!
@@ -238,7 +238,7 @@ Default is set to 1000 which means throttle off, and will cause the quad to desc
 
 Configure the RC switched failsafe action. It can be one of:
 
-- `STAGE1` - activates Stage 1 Failsafe immediately. RC controls are applied as configured for Stage 1, but aux channels remain active. After the `failsafe_delay` guard time, Stage 2 is activated. This is useful if you want to simulate signal loss failsafe behavior. Recovery of signal immediately restores full pilot control.
+- `STAGE1` - activates Stage 1 Failsafe immediately. RC controls are applied as configured for Stage 1, but aux channels remain active. After the `failsafe_delay` guard time, Stage 2 is activated. This is useful if you want to simulate signal loss failsafe behaviour. Recovery of signal immediately restores full pilot control.
 - `STAGE2` - skips Stage 1 and immediately activates the selected Stage 2 procedure. Useful if you want to assign instant auto-landing, GPS Return, or Drop, to a switch.
 - `KILL` - immediately disarms the quad with no delay. Your craft will crash. Note that a single glitch on the failsafe channel will immediately crash the quad. Re-arming is blocked for 1 second after signal is restored. A similar, but safer effect can be achieved by:
   - setting `failsafe_switch_mode` to `STAGE2`, `failsafe_procedure` to `DROP`, and `failsafe delay` to 2. This gives a 200ms delay signal validation period, the shortest allowed, so that transient glitches on the failsafe channel will not falsely trigger a disarm. Drop recovery can be made faster than Kill by configuring a short `failsafe_recovery_delay` time (which can be as short as 200ms).
@@ -264,9 +264,9 @@ Note that during the `failsafe_recovery_delay` period, the quad cannot be re-arm
 
 #### `failsafe_stick_threshold`
 
-For GPS Return, the angle in degrees that the sticks must be 'wiggled' away from centre in order to return control to the pilot, assuming the signal has already recovered.
+For GPS Return, the angle in degrees that the sticks must be 'wiggled' away from center in order to return control to the pilot, assuming the signal has already recovered.
 
-The idea is that as the quad flies home, the pilot leaves the sticks centred. Once they get video back, and see that Rx signal has returned, moving the sticks allows the pilot to regain control at a time that suits them, rather than just immediately signal returns.
+The idea is that as the quad flies home, the pilot leaves the sticks centered. Once they get video back, and see that Rx signal has returned, moving the sticks allows the pilot to regain control at a time that suits them, rather than just immediately signal returns.
 
 #### `rx_min_usec`
 

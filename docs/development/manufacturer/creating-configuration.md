@@ -12,7 +12,7 @@ This guide will walk you through the process of creating a configuration file.
 ## Overview
 
 1. Create a new configuration file in the [config repository](https://github.com/betaflight/config).
-2. The configuration file consists of defines and is independant from using CLI commands. All defines are in the format `#define <setting> [value]`.
+2. The configuration file consists of defines and is independent from using CLI commands. All defines are in the format `#define <setting> [value]`.
 3. Other directives can be used in the configuration file, e.g. `#ifdef`, `#else` and `#endif`.
 
 ## Configuration

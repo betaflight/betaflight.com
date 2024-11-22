@@ -44,7 +44,7 @@ The following sensors are transmitted :
 | AccX,Y,Z | accelerometers values.                                                                                 |
 | Tmp1     | baro temp if available, gyro otherwise.                                                                |
 | RPM      | if armed, throttle value. battery capacity otherwise. (Blade number needs to be set to 12 in Taranis). |
-| VFAS     | actual vbat value (see VFAS precision section bellow).                                                 |
+| VFAS     | actual vbat value (see VFAS precision section below).                                                  |
 | Curr     | actual current comsuption, in amp.                                                                     |
 | Fuel     | if capacity set, remaining battery percentage mah drawn otherwise.                                     |
 | GPS      | GPS coordinates.                                                                                       |
@@ -193,7 +193,7 @@ The following sensors are transmitted :
 > set report_cell_voltage = OFF
 > ```
 >
-> Note: cell voltage values are an assumed reputation of the cell voltage based on the packs voltage. Actual cell voltage may differ. It is recommeded that you chain the flight controllers telemetry with a real FrSky FLVSS s.port sensor.
+> Note: cell voltage values are an assumed reputation of the cell voltage based on the packs voltage. Actual cell voltage may differ. It is recommended that you chain the flight controllers telemetry with a real FrSky FLVSS s.port sensor.
 >
 > To view individual cells or more importantly to get lowest cell (all cells are the sum of vbat, so each cell is the same in this case):
 > See [OpenTX 2.1 & FrSky FLVSS Individual Cell Voltages](http://openrcforums.com/forum/viewtopic.php?t=7266).
@@ -206,7 +206,7 @@ The following sensors are transmitted :
 
 ### Integrate Betaflight telemetry with FrSky Smartport sensors
 
-While Betaflight telemetry brings a lot of valuable data to the radio, there are additional sensors, like Lipo cells sensor FLVSS, that can be a great addition for many aircrafts. Smartport sensors are designed to be daisy chained, and CF telemetry is no exception to that. To add an external sensor, just connect the "S" port of the FC and sensor(s) together, and ensure the sensor(s) are getting connected to GND and VCC either from the controler or the receiver
+While Betaflight telemetry brings a lot of valuable data to the radio, there are additional sensors, like Lipo cells sensor FLVSS, that can be a great addition for many aircraft. Smartport sensors are designed to be daisy chained, and CF telemetry is no exception to that. To add an external sensor, just connect the "S" port of the FC and sensor(s) together, and ensure the sensor(s) are getting connected to GND and VCC either from the controller or the receiver
 
 ![Smartport diagram](assets/images/integrate_smartport.png)
 

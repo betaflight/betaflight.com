@@ -58,6 +58,6 @@ _Happy flying, enjoy summer_
 ## Minor Features:
 
 - added the option to display the OSD logo on arming ([#9244](https://github.com/betaflight/betaflight/pull/9244));
-- added support for enhanced OSD / CMS devices, made it possible to support highligting of text or symbols ([#9212](https://github.com/betaflight/betaflight/pull/9212));
+- added support for enhanced OSD / CMS devices, made it possible to support highlighting of text or symbols ([#9212](https://github.com/betaflight/betaflight/pull/9212));
 - added support for FrSkyOSD OSD devices ([#9127](https://github.com/betaflight/betaflight/pull/9127));
 - added support for the Redpine RC protocol on devices with an SPI connected CC2500 chip (FrSky SPI) ([#7601](https://github.com/betaflight/betaflight/pull/7601)).

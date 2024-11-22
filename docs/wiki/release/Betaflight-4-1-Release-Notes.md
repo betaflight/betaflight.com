@@ -11,7 +11,7 @@ As you've come to expect, we've packed this release with a whole lot of new flyi
 For an extended list of new features see below.
 
 
-To make sure you get the latest version of your target installed, head over to [the GitHub Betaflight Configurator Releases page](https://github.com/betaflight/betaflight-configurator/releases) and and install at least version 10.6 **before updating your firmware**.  Later versions of Configurator should work, but may have minor issues.
+To make sure you get the latest version of your target installed, head over to [the GitHub Betaflight Configurator Releases page](https://github.com/betaflight/betaflight-configurator/releases) and install at least version 10.6 **before updating your firmware**.  Later versions of Configurator should work, but may have minor issues.
 
 To get the best out of the flight performance improvements, please read these [tuning tips](/docs/wiki/tuning/4-1-Tuning-Notes).
 

@@ -557,7 +557,7 @@ For an I-interval of 32, these are the resulting logging patterns at some differ
 #### Firmware type (optional)
 
 Because Blackbox records the internal flight controller state, the interpretation of the logged data will depend
-on knowing which flight controller recorded it. To accomodate this, the name of the flight controller should be recorded:
+on knowing which flight controller recorded it. To accommodate this, the name of the flight controller should be recorded:
 
 ```
 H Firmware type:Cleanflight

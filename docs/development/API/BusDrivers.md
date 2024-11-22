@@ -157,7 +157,7 @@ It can be faster to perform short transfers using polled access rather than sett
 1. DMA is enabled on the bus and device
 2. All transmit/receive buffers are in memory supporting DMAs
 3. One of the following:
-   1. There are are at least `SPI_DMA_THRESHOLD` bytes to transfer
+   1. There are at least `SPI_DMA_THRESHOLD` bytes to transfer
    2. There is more than a single element in the segment list
    3. The `negateCS` boolean is set to `false` in the terminating entry of the list.
 
@@ -167,7 +167,7 @@ The ELRS driver in `rx_sx1280.c` is an example of 3.3 where the terminating link
 void spiSequence(const extDevice_t *dev, busSegment_t *segments);
 ```
 
-This routine queues the given segment list for processing. If the device's bus is already busy then this segment list will be linked to the preceeding one in the queue so that the accesses will automatically proceed one after the other as quickly as possible.
+This routine queues the given segment list for processing. If the device's bus is already busy then this segment list will be linked to the preceding one in the queue so that the accesses will automatically proceed one after the other as quickly as possible.
 
 ```
 void spiWait(const extDevice_t *dev);

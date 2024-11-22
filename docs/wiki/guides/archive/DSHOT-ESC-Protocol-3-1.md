@@ -427,11 +427,11 @@ https://www.rcgroups.com/forums/showpost.php?p=36897835&postcount=3488
 
 ##### with caps off Motors are smooth from the motor tab but I get jitter on sticks
 
-So dshot is fine, when you use your sticks the radio, the reciever, the wiring to the receiver, the gyro, the physical components of the quad and the PID loops are all combining, something somewhere is causing the flight controller to command the shakes you are seeing, fix the problem and stop worrying about dshot
+So dshot is fine, when you use your sticks the radio, the receiver, the wiring to the receiver, the gyro, the physical components of the quad and the PID loops are all combining, something somewhere is causing the flight controller to command the shakes you are seeing, fix the problem and stop worrying about dshot
 
 ##### Will dshot work with these escs ......
 
-DShot will work on blheli_s escs (and of course kiss but there is now a seperate thread for kiss) if the escs are flashed with a version of blheli_s that supports it and the caps don't interfere with the signal. Bb1 processors will not do faster speeds, but bb2 will do up to dshot600. Just because the esc doesn't overtly say it on the literature - dshot came out after many blheli_s escs - or because it is 4 in 1 or 2 in 1 or 0.5 in 1 , well perhaps not the last, but if it is blheli_s bb2 make sure the caps are removed from the signal line and it will run dshot
+DShot will work on blheli_s escs (and of course kiss but there is now a separate thread for kiss) if the escs are flashed with a version of blheli_s that supports it and the caps don't interfere with the signal. Bb1 processors will not do faster speeds, but bb2 will do up to dshot600. Just because the esc doesn't overtly say it on the literature - dshot came out after many blheli_s escs - or because it is 4 in 1 or 2 in 1 or 0.5 in 1 , well perhaps not the last, but if it is blheli_s bb2 make sure the caps are removed from the signal line and it will run dshot
 
 So if you want to run dshot - TAKE THE CAPS OFF (manufacturers are starting to ship with out the caps on)
 If you don't and you have problems, then guess what?

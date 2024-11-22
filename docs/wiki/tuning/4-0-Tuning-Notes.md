@@ -12,7 +12,7 @@ sidebar_position: 13
 - [D-only TPA](#d-only-tpa), to selectively reduce D related noise at high throttle and maintain normal P responsiveness
 - [Integrated yaw](/docs/wiki/guides/current/Integrated-Yaw), an experimental option which mathematically integrates the yaw PID values, potentially simplifying yaw tuning
 - [Improved setpoint mode iterm_relax](#improved-setpoint-mode-iterm_relax), intended to improve turn accuracy during spirals and slaloms - for racers
-- [Transient throttle limit](#transient-throttle-limit), which improves noise behaviour at low and high throttle by preventing refected noise from doubling up and becoming distorted
+- [Transient throttle limit](#transient-throttle-limit), which improves noise behaviour at low and high throttle by preventing reflected noise from doubling up and becoming distorted
 - [Improved yaw PIDs](#improved-yaw-pids), with a better understanding of how to tune yaw
 - [Improved dynamic notch code](#improved-dynamic-notch-code) has been improved to better track and suppress motor noise with less delay, using two closely spaced, narrower notches
 

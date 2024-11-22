@@ -62,7 +62,7 @@ I have found these instructions work with the Betaflight 3.2.2, Something has ch
 
 I have not tried between version 3.2.2 - 3.4.0 either. I am at the moment trying to figure out what has changed, and why, but, if you want to try with higher versions, try it, and try to figure it out. Betaflight 3.2.2 works with a minimum of effort to get your craft flying.
 
-In the future, I want to experiment with GPS rescue for tricopter, which Betaflight 3.2.2 does not support, so I am going to go foward to version 3.4.1 which supports GPS rescue, and start there.
+In the future, I want to experiment with GPS rescue for tricopter, which Betaflight 3.2.2 does not support, so I am going to go forward to version 3.4.1 which supports GPS rescue, and start there.
 
 If you power down the board, press the bootloader button on the Matek F411 flight controller, and plug back in like a lot of other boards, it does not enter bootloader mode, and there is NO blinking led confirming bootloader mode, at least with my windows 10 laptop. It does not work.
 
@@ -125,7 +125,7 @@ feature CHANNEL_FOWARDING
 
 Need to be OFF.
 
-Selecting TRICOPTER sets yaw output to servo automaticly.
+Selecting TRICOPTER sets yaw output to servo automatically.
 
 How to set the tail servo:
 

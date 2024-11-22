@@ -90,7 +90,7 @@ This project could really do with some functional tests which test the behaviour
 
 All pull requests to add/improve the testability of the code or testing methods are highly sought!
 
-Note: Tests are written in C++ and linked with with firmware's C code. All code is also instrumented using gcov to make test coverage analysis possible.
+Note: Tests are written in C++ and linked with firmware's C code. All code is also instrumented using gcov to make test coverage analysis possible.
 
 ### Running the Tests
 

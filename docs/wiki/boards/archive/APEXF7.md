@@ -24,7 +24,7 @@ id: APEXF7
 
 - OSD
 
-- Bluetooth Connectivity via soldered module (active, when board isnt armed)
+- Bluetooth Connectivity via soldered module (active, when board isn't armed)
 
 - WS2812 LED Output
 
@@ -34,7 +34,7 @@ id: APEXF7
 
 ### Connections
 
-|   Function    | SolderPad/SilkScreen | Rescource |   MCU Pin    |                 Notes                  |
+|   Function    | SolderPad/SilkScreen | Resource  |   MCU Pin    |                 Notes                  |
 | :-----------: | :------------------: | :-------: | :----------: | :------------------------------------: |
 |     SBUS      |         SBUS         |    RX1    |     PA10     |              No Inverter               |
 |     DSM2      |         TX1          |    TX1    |     PA9      |       CLI serial_halfduplex = ON       |

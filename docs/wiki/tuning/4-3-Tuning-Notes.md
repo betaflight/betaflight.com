@@ -466,7 +466,7 @@ For cinematic video, where absolute smoothness is needed, auto values around 90-
 
 The auto smoothing function adjusts the filters to give the least delay for the given link speed. At higher link speeds, the smoothing filters run faster, and give quicker stick responses.
 
-For cinematic flying with a fast radio link, and for crossfire in a non-locked mode, it may be best to manually over-ride the auto smoothing, to get a consistent amount of smoothness throughout the flight, and across builds with different radio links. This can be done by by setting fixed, non-auto, values in the CLI. For cinematic purposes, 10-15hz works well, regardless of link speeds. This snippet should work:
+For cinematic flying with a fast radio link, and for crossfire in a non-locked mode, it may be best to manually over-ride the auto smoothing, to get a consistent amount of smoothness throughout the flight, and across builds with different radio links. This can be done by setting fixed, non-auto, values in the CLI. For cinematic purposes, 10-15hz works well, regardless of link speeds. This snippet should work:
 
 ```text
 set rc_smoothing_setpoint_cutoff = 10
@@ -562,7 +562,7 @@ This is where the jitter reduction code helps remove that residual noise in high
 
 Hence the jitter reduction system markedly reduces gimbal jitter on all systems, but is most effective, and important, in higher link rate systems with only 800 steps. For that reason we suggest keeping it at the default value on all RC links, increasing it for freestyle and cinematic, and maybe dropping back to 5 but only on clean RC links for race purposes.
 
-The newer 11 and 12 bit RC link protocols with 2000 steps will provide better resolution, however gimbal noise will remain a problem, and hence the jitter reduction code is likely to remain needed for the forseeable future.
+The newer 11 and 12 bit RC link protocols with 2000 steps will provide better resolution, however gimbal noise will remain a problem, and hence the jitter reduction code is likely to remain needed for the foreseeable future.
 
 For more detail see [PR #10670](https://github.com/betaflight/betaflight/pull/10670)
 
@@ -732,7 +732,7 @@ Blackbox logs now show un-smoothed rcCommand, and the RC and feedforward debugs 
 
 ## Improved altitude estimation with baro and gps
 
-When you have both GPS and baro and fly without waiting for GPS fix, there was wrong altitude estimation (up to 100 meters error). Now it's fixed. Baro is used untill GPS captures required number of sats. New cli options introduced to configure behavior:
+When you have both GPS and baro and fly without waiting for GPS fix, there was wrong altitude estimation (up to 100 meters error). Now it's fixed. Baro is used until GPS captures required number of sats. New cli options introduced to configure behavior:
 
 `position_alt_gps_min_sats` - the required number of sats to start using both GPS and baro.
 `position_alt_baro_fallback_sats` - the required number of sats to stop using GPS and switch back to baro.

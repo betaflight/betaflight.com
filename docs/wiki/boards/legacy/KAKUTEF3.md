@@ -30,7 +30,7 @@
 - Raceflight ready
 - Betaflight ready
 
-### Kakute FC Betaflight additional features pad assigments
+### Kakute FC Betaflight additional features pad assignments
 
 | PAD ON Kakute FC | FUNCTION     |
 | ---------------- | ------------ |

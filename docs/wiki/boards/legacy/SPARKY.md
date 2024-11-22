@@ -58,7 +58,7 @@ It should show up as "STM Device in DFU mode" under Universal Serial Bus Control
 If it shows up as "STMicroelectronics Virtual COM" under Ports (COM & LPT) instead then the board is not in DFU mode. Disconnect the board, short the bootloader pins again while connecting the board.
 
 If the board shows up as "STM 32 Bootloader" device in the device manager, the drivers need to be updated manually.
-Select the device in the device manager, press "update drivers", select "manual update drivers" and choose the location where you extracted the STM VCP Drivers, select "let me choose which driver to install". You shoud now be able to select either the STM32 Bootloader driver or the STM in DFU mode driver. Select the later and install.
+Select the device in the device manager, press "update drivers", select "manual update drivers" and choose the location where you extracted the STM VCP Drivers, select "let me choose which driver to install". You should now be able to select either the STM32 Bootloader driver or the STM in DFU mode driver. Select the later and install.
 
 Then flash the binary as below.
 

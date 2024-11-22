@@ -83,7 +83,7 @@ performing the PID tuning.
   <summary>Click to expand!</summary>
 VBatSagCompensation works by adjusting the overall motor outputs depending on battery voltage.  Using higher values of VBatSagCompensation, such as 100, will attempt to completely eliminate reduction in power from battery response down to the 3.3V/cell threshold.  This will reduce opportunities for a pilot to perceive battery sag .While a very consistent response for the same throttle inputs from the start of a flight towards the end of the flight is great, the inherent risk with this approach is that flight performance will go from nominal to battery dropping below 3.0V/cell very quickly if all the battery capacity is used.  For this reason, many pilots would prefer to run lower  values if they are accustomed to using the battery sag response to gauge when it is prudent to land.
 
-Due to the chemistry of Lithium Polymer batteries, operating them below 3.0V/cell results in plating lithium onto the anode, which permanently reduces both the capacity and to to a peak discharge capability of the battery. This is to be avoided if at all possible.
+Due to the chemistry of Lithium Polymer batteries, operating them below 3.0V/cell results in plating lithium onto the anode, which permanently reduces both the capacity and to a peak discharge capability of the battery. This is to be avoided if at all possible.
 
 </details>
 

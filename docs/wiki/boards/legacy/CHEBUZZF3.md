@@ -66,7 +66,7 @@ There is space for a MS5611 pressure sensor at the top left inner of the board.
 There is an I2C socket on the left outer of the board which connects to a PCA9306 I2C level shifter directly opposite (inner).
 The PCA9306 is not populated on some boards and thus the I2C socket is unusable.
 
-There is a CAN socket on the top right outer of the board which connects to a MAX3015 CAN Tranceiver.
+There is a CAN socket on the top right outer of the board which connects to a MAX3015 CAN Transceiver.
 The MAX3015 is not populated on some boards and thus the CAN socket is unusable.
 
 There are some solder pads labelled Ext 1-4 at the top right inner of the board.

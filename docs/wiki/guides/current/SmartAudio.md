@@ -153,7 +153,7 @@ There is an `OPMODEL` entry in the `CONFIG` sub-menu. Select either `FREE` or `R
 
 When a SmartAudio device is in user frequency mode, the SmartAudio CMS Top Menu looks like this.
 ![SmartAudio CMS Top menu (Frequency mode)](https://cloud.githubusercontent.com/assets/14850998/22690953/7ac836ee-ed7b-11e6-8c71-139f1eb919aa.png)
-It allows direct entry of arbitral frequency between 5600 and 5900MHz, by selecting the `FREQ` entry, which will take to a submenu like this.
+It allows direct entry of arbitrary frequency between 5600 and 5900MHz, by selecting the `FREQ` entry, which will take to a submenu like this.
 
 ![SmartAudio Frequency selection menu](https://cloud.githubusercontent.com/assets/14850998/22690983/a8db502a-ed7b-11e6-9570-e2f406f5d29b.png)
 
