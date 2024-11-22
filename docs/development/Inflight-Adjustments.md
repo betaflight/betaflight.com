@@ -278,6 +278,6 @@ The following examples shows **incorrect** configurations - the entire usable ra
 ![Configurator example 6](Screenshots/adjustments-incorrect-config-1.png)
 ![Configurator example 7](Screenshots/adjustments-incorrect-config-2.png)
 
-In the following example, the incorrect configuraton (above) has been corrected by adding a range that makes 'No changes'.
+In the following example, the incorrect configuration (above) has been corrected by adding a range that makes 'No changes'.
 
 ![Configurator example 7](Screenshots/adjustments-incorrect-config-2-corrected.png)
