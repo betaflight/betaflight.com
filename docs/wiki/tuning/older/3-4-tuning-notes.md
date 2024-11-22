@@ -66,7 +66,7 @@ https://github.com/joelucid/betaflight/releases/tag/3.4a
 
 The two gyro filters clean up noise before the gyro signal enters the PID loop. P, I and D are then derived from that filtered data. The two D filters are applied only to the D signal.
 
-To determine the relative contribution of P and D noise to overall motor noise, analyse a blackbox spectrum from PID_P and compare that to a spectrum from PID_D. Typically there will be more D noise than P noise. Hence we usually need filter D more heavily than P.
+To determine the relative contribution of P and D noise to overall motor noise, analyze a blackbox spectrum from PID_P and compare that to a spectrum from PID_D. Typically there will be more D noise than P noise. Hence we usually need filter D more heavily than P.
 
 The more filtering we apply, the less noise gets through to the motors, and this keeps them sounding smooth and running cool. If we apply too much filtering, the PID calculations will be delayed, and flight performance will suffer. Without enough filtering, the motors may run hot, especially if the props get bent or the motor bearings are worn, etc.
 
@@ -216,7 +216,7 @@ Probably. It does add delay, but really helps if a prop gets bent. For super cle
 
 Short answer: No. They cause a lot of delay, and dual PT1 filters usually are enough.
 
-Long answer: Fixed notch filters may be useful if a log spectrum shows a clear noise peak despite the dynamic notch. Typically a problematic peak will appear at prop resonant frequency on flexible frames. The only way to know for sure is to get a blackbox log and use PID-Analyzer or Blackbox Explorer to perform spectral analysis. Prop resonant frequency can be determined using an audio spectrum analyser and 'plucking' the propeller, sometimes just setting a D notch at that frequency can be useful.
+Long answer: Fixed notch filters may be useful if a log spectrum shows a clear noise peak despite the dynamic notch. Typically a problematic peak will appear at prop resonant frequency on flexible frames. The only way to know for sure is to get a blackbox log and use PID-Analyzer or Blackbox Explorer to perform spectral analysis. Prop resonant frequency can be determined using an audio spectrum analyzer and 'plucking' the propeller, sometimes just setting a D notch at that frequency can be useful.
 
 ### Do I need to change Airmode settings?
 

@@ -104,7 +104,7 @@ In 4.5 there was a determined effort to make GPS Rescue even more reliable and p
 
 Task timing was carefully optimised.
 
-Note: for most standard F4xx GPS Rescue builds, looptime should not exceed 4k, to provide enough clock cycles for all the required sensor data to be analysed and handled properly.
+Note: for most standard F4xx GPS Rescue builds, looptime should not exceed 4k, to provide enough clock cycles for all the required sensor data to be analyzed and handled properly.
 
 In 4.4, if there was significant drift, due to wind, when initiating GPS Rescue, and a long climb period, the quad could think that it was flying nose-forward in the direction of the drift.  This caused the initial yaw correction to be wrong, and the quad would then fly off in the wrong direction, often at high speed.  After a few seconds, it would correct, but take a wide arc to return to the correct heading.  4.5 improves this considerably, with special code to avoid drift-based errors.
 

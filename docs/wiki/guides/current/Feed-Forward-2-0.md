@@ -48,7 +48,7 @@ ff_boost can work without any other of the ff_2.0 features being active.
 
 This is a 'digital' way of calculating FF from each new RC 'step'. It gives a cleaner feedforward trace than with the old 'filter' method, with less delay.
 
-`set ff_interpolate_sp = ON` analyses each new incoming RC data packet, and the calculated change in setpoint is converted to an immediate step up in FF. Each step up is held constant until the next RC data step arrives.
+`set ff_interpolate_sp = ON` analyzes each new incoming RC data packet, and the calculated change in setpoint is converted to an immediate step up in FF. Each step up is held constant until the next RC data step arrives.
 
 The sharp corner of the FF step can be smoothed according to the rc_smoothing_derivative lowpass filter frequency. This is set dynamically by default in AUTO mode, but can be manually overridden if desired. 120hz is a good smoothing value for a clean feed-forward trace. 20hz smooths out traces with a fair bit of up and down; 10hz may be needed for very long range and cinematic quads where the large steps from 50hz mode and poor quality links can make the quad jerky in turns.
 
