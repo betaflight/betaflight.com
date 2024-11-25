@@ -1,6 +1,6 @@
 # Create a Customized Version
 
-The flight controllers have some limitations in space and computing capacity. The developers must decide what features enable and what others disable to create a firmware file that can be used by the majority of users.
+Flight controllers have limitations in space and computing capacity. The developers must decide which features to enable or disable in order to create a firmware file that can be used by the majority of users. Cloud build was introduced in firmware 4.4, where users can decide for themselves which required features they want to add.
 
 For example, the official firmware published to users include support for a lot of brands of transmitters and receivers, but habitually you will use only one. This is necessary for a public version, but the protocols not used are spending space that can be used for other features.
 
