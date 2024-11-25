@@ -1,16 +1,16 @@
 # Create a Customized Version
 
-The flight controllers have some limitations in space and computing capacity. The developers must decide what features enable and what others disable to create a firmware file that can be used for the major part or users.
+Flight controllers have limitations in space and computing capacity. The developers must decide which features to enable or disable in order to create a firmware file that can be used by the majority of users. Cloud build was introduced in firmware 4.4, where users can decide for themselves which required features they want to add.
 
 For example, the official firmware published to users include support for a lot of brands of transmitters and receivers, but habitually you will use only one. This is necessary for a public version, but the protocols not used are spending space that can be used for other features.
 
 This document gives a little guide of how-to start creating your own version, activating and deactivating features, especially if your flight controller is an older one with not too much space.
 
-Keep in mind that when you create your own firmware you're using a piece of software created by you and can have some bugs that are not present in official version. **You use it at your own risk**.
+Keep in mind that when you create your own firmware, you're using a piece of software created by you and can have some bugs that are not present in the official version. **You use it at your own risk**.
 
 ## Build the firmware
 
-This document is aimed to people who has some knowledge about programming skills and can build its own firmware. You can find information about this process in the [`building`](/docs/category/building) pages.
+This document is aimed to people who have some knowledge about programming skills and can build their own firmware. You can find information about this process in the [`building`](/docs/category/building) pages.
 
 Once you are able to compile your own firmware, you can continue to the next section of this document.
 
@@ -25,7 +25,7 @@ The 'text + data' gives you the flash size, and the 'data + bss' is the (static)
 
 ## Commons features for all Flight Controllers
 
-The first file where the developers specify the features that are activated or not for a flight controller, is the `target/common_pre.h`.
+The first file, where the developers specify the features that are activated or not for a flight controller, is the `target/common_pre.h`.
 
 This file specifies the features enabled/disabled depending on the memory flash size of the flight controller, or other conditions.
 
@@ -94,9 +94,9 @@ Another interesting thing of this file, are others features deactivated by the c
 #endif
 ```
 
-If the flight controller hasn't a FPU (F1 processors for example) you can use only 6 auxiliary channels of the receiver.
+If the flight controller hasn't an FPU (F1 processors for example) you can use only 6 auxiliary channels of the receiver.
 
-After looking carefully to this file, you must know what features you want to disable or enable in your customized build.
+After looking carefully at this file, you must know what features you want to disable or enable in your customized build.
 
 _NOTE: It is better to not change this file, but it's useful to see what features you can activate or deactivate in your custom build._
 
@@ -108,7 +108,7 @@ This file is located in `target/[FLIGHT_CONTROLLER_NAME]/target.h` and it's load
 
 The first thing to do is to _#undef_ all the features that we want to disable from the _common_pre.h_.
 
-For example, in a NAZE32, if we're using Serial RX, with a FlySky receiver (that uses de iBus protocol) and we don't have a led strip we will add all this _#undef_ to the file.
+For example, in a NAZE32, if we're using Serial RX, with a FlySky receiver (using iBus protocol) and we don't have a LED strip we will add all this _#undef_ to the file.
 
 ```
 #undef USE_RX_PPM
@@ -159,9 +159,9 @@ To customize more if needed, this file defines all the hardware supported by dif
 #define USE_BARO_BMP280
 ```
 
-Here you have different gyroscopes, accelerometers and barometers defined, to support all the variants of the flight controller. You can comment all the models that you're sure that your flight controller is not using and you will get some free space.
+Here you have different gyroscopes, accelerometers and barometers defined, to support all the variants of the flight controller. You can comment all the models that you're sure that your flight controller is not using, and you will get some free space.
 
-You can find too some features disabled for this flight controller, in this case, for example:
+You can also find some features disabled for this flight controller, in this case, for example:
 
 ```
 /*
@@ -171,9 +171,9 @@ You can find too some features disabled for this flight controller, in this case
 */
 ```
 
-The magnetometer is commented. If you uncomment it, then it will be activated and you can use it in the NAZE flight controller.
+The magnetometer is commented. If you uncomment it, then it will be activated, and you can use it in the NAZE flight controller.
 
-After modifying this file, you only need to build your firmware again and you will have your own customized version with all and only the features that you need.
+After modifying this file, you only need to build your firmware again, and you will have your own customized version with all and only the features that you need.
 
 ## Final considerations
 
