@@ -108,7 +108,7 @@ This file is located in `target/[FLIGHT_CONTROLLER_NAME]/target.h` and it's load
 
 The first thing to do is to _#undef_ all the features that we want to disable from the _common_pre.h_.
 
-For example, in a NAZE32, if we're using Serial RX, with a FlySky receiver (that uses de iBus protocol) and we don't have a LED strip we will add all this _#undef_ to the file.
+For example, in a NAZE32, if we're using Serial RX, with a FlySky receiver (using iBus protocol) and we don't have a LED strip we will add all this _#undef_ to the file.
 
 ```
 #undef USE_RX_PPM
