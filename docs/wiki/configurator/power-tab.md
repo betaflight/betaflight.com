@@ -73,7 +73,7 @@ Multiplier: 1 = this is to fine-tune the outcome of the calculation, a value of 
 Settings for the amperage meter to measure the current draw correctly, using this formula:
 
 $$
-Current(Amps) = (\frac{ADC (mV) * 10000}{amperage\_meter\_scale} + amperage\_meter\_offset) / 1000
+\text{Current[A] = } \frac{\text{ADC[mV]} \cdot 10}{\text{amperage\_meter\_scale}} + \frac{\text{amperage\_meter\_offset}}{1000}
 $$
 
 ### Scale
