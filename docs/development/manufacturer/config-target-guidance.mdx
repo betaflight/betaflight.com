@@ -6,6 +6,22 @@ sidebar_position: 1
 
 Due to the increase in poorly designed flight controllers, primarily clones of known poorly designed units, Betaflight is now taking a strong stance on adding targets to our cloud build platform.
 
+:::note
+From the 3rd of December 2024, the Betaflight project will no longer accept new flight controller designs using the STM F4 and F7 series microcontroller where there is more than 4 motor outputs. 
+
+We strive to be the best flight experience available on the widest range of hardware. To continue delivering that we now need to limit flight controller designs using the older microcontrollers that have restrictions on timer and DMA resources.
+
+Moving forward these microcontrollers should only be used on budget freestyle or racing designs and for AIOs that only require 4 motor outputs. The STM H743 is now very close in price to the F405 and is a much better choice. We recommend the H743 be used in high performance, high motor output and high IO flight Controller designs where an STM microcontroller is preferred by the designer or manufacturer.
+
+Existing designs will not be affected by this change but features maybe restricted for those flight controllers in the future where performance becomes an issue.
+:::
+
+:::note
+From the 16th of September 2024 the betaflight project has deprecated implementation of new STM F411 applications.
+
+The BMI270 IMU is no longer recommended due to calibration issues (drift).
+:::
+
 From the 1st of July 2024 **ALL** targets presented to the config repository for use in the cloud build system will be required to follow these conditions:
 
 
