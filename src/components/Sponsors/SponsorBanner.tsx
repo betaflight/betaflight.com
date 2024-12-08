@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useColorMode } from '@docusaurus/theme-common';
-import { sanitize } from 'dompurify';
+import DOMPurify from 'dompurify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
@@ -45,7 +45,7 @@ export default function SponsorBanner(): React.JSX.Element {
   return (
     <div>
       {data ? (
-        <div className={`transition-opacity duration-1000 min-h-[99px] ${loading ? 'opacity-0' : 'opacity-100'}`} dangerouslySetInnerHTML={{ __html: sanitize(data) }} />
+        <div className={`transition-opacity duration-1000 min-h-[99px] ${loading ? 'opacity-0' : 'opacity-100'}`} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data) }} />
       ) : (
         <div className="min-h-[99px] text-2xl flex justify-center items-center">
           <FontAwesomeIcon className="mr-2" icon={faSpinner} spin />

@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a variant of the other [OmnibusF4](/docs/wiki/boards/OMNIBUSF4SD) boards with a slightly different configuration.
+This is a variant of the other [OmnibusF4](/docs/wiki/boards/archive/OMNIBUSF4) boards with a slightly different configuration.
 
 This target applies to many variants, including 20x20 boards without an SD reader.
 
