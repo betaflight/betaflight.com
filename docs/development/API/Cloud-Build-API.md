@@ -1,4 +1,6 @@
-# Betaflight 4.4 Cloud Build API
+# Betaflight Cloud Build API
+
+Cloud build API was introduced in firmware version 4.4.
 
 ## API
 
@@ -55,8 +57,14 @@ Note: telemetry for CRSF, ELRS, FPORT and GHST are included during the build.
 ### Other Options
 
 ```
+ACRO_TRAINER
 AKK (SA FIX)
-FLASH
+ALTITUDE_HOLD
+BATTERY_CONTINUE
+CAMERA_CONTROL
+DASHBOARD
+EMFAT
+ESC_SERIAL
 GPS
 LED
 LED64
@@ -64,7 +72,11 @@ MAG
 OSD
 OSD (HD)
 PINIO
+POSITION_HOLD
+RACE_PRO
+SOFTSERIAL
 VTX
+WING
 ```
 
 ### Motor Protocols
@@ -81,20 +93,10 @@ PWM
 ### Custom Defines
 
 ```
-ACRO_TRAINER
-BATTERY_CONTINUE
 CRSF_OFFICIAL_SPEC
-DASHBOARD
-EMFAT_AUTORUN
-EMFAT_ICON
-ESCSERIAL_SIMONK
-GPS
-GPS_PLUS_CODES
-LED_STRIP
 OSD_QUICK_MENU
 RC_STATS
 RPM_LIMIT
-SERIAL_4WAY_SK_BOOTLOADER
 SPEC_PREARM_SCREEN
 ```
 
@@ -107,4 +109,23 @@ OSD_QUICK_MENU
 RC_STATS
 RPM_LIMIT
 SPEC_PREARM_SCREEN
+```
+
+### WING Define
+
+There is a special USE_WING define which combines the following defines as one feature pack:
+
+```
+ADVANCED_TPA
+SERVOS
+```
+
+Note this define will remove the following defines:
+
+```
+ABSOLUTE_CONTROL
+INTEGRATED_YAW_CONTROL
+LAUNCH_CONTROL
+RUNAWAY_TAKEOFF
+YAW_SPIN_RECOVERY
 ```
