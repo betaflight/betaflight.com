@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useColorMode } from '@docusaurus/theme-common';
-import { sanitize } from 'dompurify';
+import DOMPurify from 'dompurify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,5 +26,5 @@ export default function PartnerOverview(): React.JSX.Element {
     );
   }
 
-  return <div id="partner_overview" className="min-h-[54px]" dangerouslySetInnerHTML={{ __html: sanitize(data) }} />;
+  return <div id="partner_overview" className="min-h-[54px]" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data) }} />;
 }

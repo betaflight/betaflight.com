@@ -219,7 +219,7 @@ See: [AlienFlightNG Support](https://www.alienflightng.com/wiki/)
 ##### MOTOLAB - (MotoF3, Cyclone & Tempest)
 
 Move motor 1 from Output #1 header pin to the PPM input header pin.
-[See MOTOLAB board for wiring detail ](/docs/wiki/boards/MOTOLAB)
+[See MOTOLAB board for wiring detail ](/docs/wiki/boards/legacy/MOTOLAB)
 Follow above and to re-map output type in CLI:
 
 ```
@@ -228,7 +228,7 @@ resource motor 1 A07
 save
 ```
 
-See the [MOTOLAB](/docs/wiki/boards/MOTOLAB) Wiki page for other Remapping info.
+See the [MOTOLAB](/docs/wiki/boards/legacy/MOTOLAB) Wiki page for other Remapping info.
 
 ##### PIKOBLX - Re-map motor 1 to the PPM pin (same as MotoLab). Solder motor 1 signal to the PPM pad leaving the SBUS jumper 'shorted'.
 
@@ -339,7 +339,7 @@ See Github Issue #2282 [Emax Femto (SPRACING F3EVO) - DSHOT 600 Motor 4 not spin
 `resource motor 6 B08`
 `save`
 
-##### AIR32 - [instructions](/docs/wiki/boards/AIR32#faq-and-known-issues)
+##### AIR32 - [instructions](/docs/wiki/boards/legacy/AIR32#faq-and-known-issues)
 
 #### FC Target reported NOT working
 
