@@ -6,7 +6,7 @@ When used together, these features allow the pilot to hit a switch and the aircr
 
 ## Quick-Start
 
-- Include `ALT_HOLD_MODE` and `POS_HOLD_MODE` in your firmware build.
+- Include `ALTITUDE_HOLD` and `POSITION_HOLD` in your firmware build.
 - Ensure your GPS is working properly
 - Ideally, include a Magnetometer and verify that it is working properly
 - Set the hover throttle value accurately
