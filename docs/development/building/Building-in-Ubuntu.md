@@ -36,9 +36,9 @@ Make sure to remove `obj/` and `make clean`, before building again.
 $ sudo apt update && sudo apt upgrade
 $ sudo apt install libatomic1 npm
 $ sudo npm install -g gulp-cli yarn
-$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 $ source ~/.bashrc
-$ nvm install 16 (for exact version please check link below)
+$ nvm install 20 (for exact version please check link below)
 ```
 
 See [Betaflight Configurator Development](https://github.com/betaflight/betaflight-configurator#development) for how to build the Betaflight Configurator.
