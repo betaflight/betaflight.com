@@ -42,7 +42,7 @@ XBUS
 
 ```
 FRSKY_HUB
-GHOST
+GHST
 HOTT
 IBUS_EXTENDED
 JETIEXBUS
@@ -52,7 +52,7 @@ SMARTPORT
 SRXL
 ```
 
-Note: telemetry for CRSF, ELRS, FPORT and GHST are included during the build.
+Note: telemetry for CRSF, ELRS, FPORT and GHOST are included during the build.
 
 ### OSD Options
 
