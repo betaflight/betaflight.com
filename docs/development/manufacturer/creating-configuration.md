@@ -132,7 +132,7 @@ The `TIMER_PIN_MAP` config statement is broken down as follows:
 
 - WW - zero-indexed counter, increment by 1 for each line in the timer map
 - XX - pin number to set the timer on
-- YY - selected instance of the timer configuration where multiple options are available. See your MCU's target timer code for the list of options. For example F772 should reference [this timer file](https://github.com/betaflight/betaflight/blob/master/src/main/drivers/mcu/stm32/timer_stm32f7xx.c).
+- YY - selected instance of the timer configuration where multiple options are available. See your MCU's target timer code for the list of options. For example F772 should reference [this timer file](https://github.com/betaflight/betaflight/blob/master/src/platform/STM32/timer_stm32f7xx.c).
 - ZZ - DMA setting for that timer, same number as used in the `dma pin <pin number> <dma>` command.
 
 ### Serial Configuration
