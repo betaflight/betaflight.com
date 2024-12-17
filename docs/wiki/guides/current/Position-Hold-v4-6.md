@@ -114,7 +114,7 @@ If both Position Hold and Altitude Hold are working, and failsafe is set to `lan
   - if there is no GPS 3D fix.
   - if there is no Mag, and the GPS has not yet provided a workable heading because the aircraft has not been flown cleanly pitched forward for long enough, or not fast enough
   - when there is a Mag, and it is needed because the GPS Heading is not available as a fallback (see above), or the Mag is 'not healthy', ie broken, or has never been calibrated.
-- A `POS HOLD FAIL` message will appear in the OSD if Position Hold is attempted and any of the above checks fail.
+- The `POS HOLD FAIL` message appears in the OSD if Position Hold is attempted and any of the above checks fail, or if the sanity check fails.
 - By default, Mag is required. The pilot can permit Pos Hold without Mag only with `set pos_hold_without_mag = true`
 - If `pos_hold_without_mag` is set to true, and there is no Mag, Position Hold will not be available immediately after takeoff, and will not be permitted until the GPS has provided a useful heading. The user must fly in a straight line with a solid pitch forward angle, and no roll or yaw input, for several seconds at least, to orient the IMU to the GPS. Until that orientation takes place, Position Hold will not initiate, and will show the failure warning in the OSD.
 - If the craft is armed, and then Position Hold is enabled, the OSD flight mode will show `POSH`, the quad will start Angle Mode and wait for throttle to be raised. Once the throttle is raised, the aircraft should lift off, and once it is about 1m up in the air, Position Hold will engage.
