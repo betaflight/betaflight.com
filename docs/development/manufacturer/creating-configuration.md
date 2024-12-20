@@ -1,7 +1,5 @@
 # How to Create a Flight Controller Configuration File for Betaflight
 
-Since firmware 4.5 unified targets are replaced with a new format for configuration.
-
 Under construction.
 
 This document describes how to create a flight controller configuration file for Betaflight 4.5 and is a work in progress.
@@ -175,7 +173,7 @@ When the microcontroller is asleep and in a low power mode, though, the UART per
 
 Gyro alignment configuration is mutual exclusive.
 
-Default we use `USE_GYRO_1_ALIGN` ALIGNMENT
+Default we use `USE_GYRO_1_ALIGN` `ALIGNMENT`
 
 where `ALIGNMENT` preset is one of
 ```bash
@@ -190,7 +188,7 @@ CW270_DEG_FLIP
 ALIGN_CUSTOM
 ```
 
-When using `ALIGN_CUSTOM` specify orientation in decidegrees:
+When using `ALIGN_CUSTOM` specify orientation in `DECIDEGREES` ranging from -3600-3600:
 
 ```
 #define ALIGN_1_GYRO_ROLL DECIDEGREES
