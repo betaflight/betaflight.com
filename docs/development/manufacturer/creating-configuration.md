@@ -1,4 +1,4 @@
-# How to Create a Flight Controller Configuration File for Betaflight 4.5
+# How to Create a Flight Controller Configuration File for Betaflight
 
 Under construction.
 
@@ -168,6 +168,33 @@ The USART is meant to do all of the “heavy lifting” serial communication dur
 When the microcontroller is asleep and in a low power mode, though, the UART peripheral can handle low speed communications while offering a reduced energy footprint. Betaflight has UART4, UART5 and UART9. Other serial ports are USUART as some boards provide LPUART1
 
 :::
+
+### Gyro Alignment Settings
+
+Gyro alignment configuration is mutual exclusive.
+
+Default we use #define `USE_GYRO_1_ALIGN` `ALIGNMENT`
+
+where `ALIGNMENT` preset is one of
+```bash
+CW0_DEG
+CW90_DEG
+CW180_DEG
+CW270_DEG
+CW0_DEG_FLIP
+CW90_DEG_FLIP
+CW180_DEG_FLIP
+CW270_DEG_FLIP
+ALIGN_CUSTOM
+```
+
+When using `ALIGN_CUSTOM` specify orientation in `DECIDEGREES` ranging from -3600-3600:
+
+```
+#define ALIGN_1_GYRO_ROLL DECIDEGREES
+#define ALIGN_1_GYRO_PITCH DECIDEGREES
+#define ALIGN_1_GYRO_ROLL DECIDEGREES
+```
 
 ### Serial Receiver Provider
 
