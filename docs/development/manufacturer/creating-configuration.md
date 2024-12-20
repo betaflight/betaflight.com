@@ -173,7 +173,7 @@ When the microcontroller is asleep and in a low power mode, though, the UART per
 
 Gyro alignment configuration is mutual exclusive.
 
-Default we use `USE_GYRO_1_ALIGN` `ALIGNMENT`
+Default we use #define `USE_GYRO_1_ALIGN` `ALIGNMENT`
 
 where `ALIGNMENT` preset is one of
 ```bash
