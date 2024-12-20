@@ -193,7 +193,7 @@ When using `ALIGN_CUSTOM` specify orientation in `DECIDEGREES` ranging from -360
 ```
 #define ALIGN_1_GYRO_ROLL DECIDEGREES
 #define ALIGN_1_GYRO_PITCH DECIDEGREES
-#define ALIGN_1_GYRO_ROLL DECIDEGREES
+#define ALIGN_1_GYRO_YAW DECIDEGREES
 ```
 
 ### Serial Receiver Provider
