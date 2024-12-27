@@ -106,7 +106,7 @@ Note: for Identifier see serialPortIdentifier_e in the source; for Function bitm
 | SERIAL_PORT_UART9       |    59 |
 | SERIAL_PORT_USART10     |    60 |
 
-Firmware 4.6 changes the way CLI handles serial configuration as it uses serial port name instead of identifier - restoring previous diff won't be possible (breaking port configuration)
+Firmware 4.6 changes the way CLI handles serial configuration as it uses serial port name instead of identifier.
 
 ```
 serial VCP 1 115200 57600 0 115200
