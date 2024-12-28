@@ -94,14 +94,39 @@ Note: for Identifier see serialPortIdentifier_e in the source; for Function bitm
 | SERIAL_PORT_SOFTSERIAL1 |    30 |
 | SERIAL_PORT_SOFTSERIAL2 |    31 |
 | SERIAL_PORT_LPUART1     |    40 |
+| SERIAL_PORT_UART0       |    50 |
+| SERIAL_PORT_USART1      |    51 |
+| SERIAL_PORT_USART2      |    52 |
+| SERIAL_PORT_USART3      |    53 |
+| SERIAL_PORT_UART4       |    54 |
+| SERIAL_PORT_UART5       |    55 |
+| SERIAL_PORT_USART6      |    56 |
+| SERIAL_PORT_USART7      |    57 |
+| SERIAL_PORT_USART8      |    58 |
+| SERIAL_PORT_UART9       |    59 |
+| SERIAL_PORT_USART10     |    60 |
+
+Firmware 4.6 changes the way CLI handles serial configuration as it uses serial port name instead of identifier.
+
+```
+serial VCP 1 115200 57600 0 115200
+serial UART1 2048 115200 57600 0 115200
+serial UART2 64 115200 57600 0 115200
+serial UART3 0 115200 57600 0 115200
+serial UART4 0 115200 57600 0 115200
+serial UART6 2 115200 57600 0 115200
+```
 
 :::note
 
-- ID's 0-19 reserved for UARTS 1-20
-- ID's 20-29 reserved for USB 1-10
-- ID's 30-39 reserved for SoftSerial 1-10
-- ID's 40-49 reserved for LPUART 1-10
-- Other devices can be added starting from id 50.
+- ID's 0-19 reserved for UART 1-20 (legacy in firmware 4.6)
+- ID's 20-29 reserved for USB VCP
+- ID's 30-39 reserved for SoftSerial 1 and 2
+- ID's 40-49 reserved for LPUART 1
+- ID's 50-60 reserved for UART 0-10 (added in firmware 4.6)
+- Other devices can be added starting from ID 70
+- Port 0, 4, 5, 9 use `UART` designator
+- Port 1, 2, 3, 6, 7, 8, 10 use `USART` designator
 
 :::
 
