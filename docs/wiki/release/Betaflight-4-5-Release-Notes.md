@@ -7,7 +7,7 @@ sidebar_position: 1
 Betaflight 4.5 is an incremental release. The basic flight parameters have not changed from 4.4 to 4.5, although iTerm is slightly better suppressed.  Previous filters, PID settings, and other tuning values should not need to change.
 
 :::note
-IMPORTANT: use Configurator 10.10!  The most recent release version is available [here](https://github.com/betaflight/betaflight-configurator/tags), or use the [latest nightly build](https://github.com/betaflight/betaflight-configurator-nightlies).
+IMPORTANT: use Configurator 10.10!  The most recent release version is available [here](https://github.com/betaflight/betaflight-configurator/tags), or use the [online app](https://app.betaflight.com).
 :::
 
 As usual, Full Chip Erase is mandatory when flashing. Re-configuring from scratch is safer than importing a CLI dump or a saved Preset.  Users of GPS Rescue, Angle and Horizon modes shold NOT use their old values.  Otherwise, most flight, Rx, Mode, OSD, and GPS parameters have not changed since 4.4.  Any new or re-named parameters will get default values, so importing a 4.4 save file (Presets>Save) is, in most cases, OK.
