@@ -147,7 +147,7 @@ These are custom functions or features that you can add to the firmware.
 | :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AKK (SA Fix)              | SmartAudio patch for AKK hardware                                                                                                                                                      |
 | Acro Trainer              | Enable Acro Trainer support                                                                                                                                                            |
-| Altitude Hold Mode        | Enable Altitude Hold Mode support. See [#13816](https://github.com/betaflight/betaflight/pull/13816)                                                                                   |
+| Altitude Hold             | Enable Altitude Hold Mode support. See [#13816](https://github.com/betaflight/betaflight/pull/13816)                                                                                   |
 | Batt. Continue            | See [#11084](https://github.com/betaflight/betaflight/pull/11084)                                                                                                                      |
 | Cam. Control              | Enable Camera Control                                                                                                                                                                  |
 | Dashboard                 | Enable external i2c OLED Display device (to be deprecated)                                                                                                                             |
@@ -162,9 +162,12 @@ These are custom functions or features that you can add to the firmware.
 | OSD (SD)                  | Enable SD OSD (onboard MAX7456 required)                                                                                                                                               |
 | OSD (HD)                  | Enable HD OSD (eg DJI, HDZero, Walksnail)                                                                                                                                              |
 | PIN IO                    | Enable PINIO                                                                                                                                                                           |
+| Position Hold             | Enable Position Hold Mode support. See [#13975](https://github.com/betaflight/betaflight/pull/13975)                                                                                   |
 | RACE PRO                  | see [Betaflight 4.5 Release notes](/docs/wiki/release/betaflight-4-5-release-notes#161-race-pro-build-option)                                                                          |
+| Soft Serial               | Enable support for [Software Serial](/docs/wiki/guides/current/softserial)                                                                                                             |
 | Servos                    | Enable Servo support                                                                                                                                                                   |
 | VTX                       | Enable VTX                                                                                                                                                                             |
+| Wing                      | TPA mode PDS + Wing setpoint attenuation. See [#14010](https://github.com/betaflight/betaflight/pull/14010)                                                                            |
 
 ### Motor Protocol
 
