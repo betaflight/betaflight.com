@@ -1,13 +1,13 @@
 # Building in Ubuntu
 
 Building for Ubuntu platform is remarkably easy.
-This document is tested and based on Ubuntu 22.04 LTS release and can also be used for WSL.
+This document is tested and based on Ubuntu 24.04 LTS release and can also be used for WSL.
 
 ### Clone Betaflight Repository and Install Toolchain
 
 ```
 $ sudo apt update && sudo apt upgrade
-$ sudo apt install build-essential libblocksruntime-dev libtool git curl clang-12
+$ sudo apt install build-essential libblocksruntime-dev libtool git curl clang-18
 $ git clone https://github.com/betaflight/betaflight.git
 $ cd betaflight
 $ make arm_sdk_install
