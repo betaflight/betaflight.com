@@ -68,6 +68,6 @@ changes from the repository, then rebuild the firmware:
 git reset --hard
 git pull
 
-make clean
+make clean CONFIG=MATEKH743
 make MATEKH743
 ```
