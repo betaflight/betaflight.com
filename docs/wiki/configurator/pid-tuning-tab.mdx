@@ -1,0 +1,112 @@
+---
+sidebar_position: 7
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import Admonition from '@theme/Admonition'
+
+# PID Tuning Tab
+
+Configure the PID controller settings, Filter settings, as well as the rates.
+
+Betaflight has a profiles system that allows you to save multiple configurations for different scenarios.
+On the top left of the PID Tuning tab, it is possible to select the profile to be edited.
+
+- **Profile:** 4 profiles that can be configured for PID & Filter settings.
+- **Rate Profile:** 4 profiles that can be configured for Rate settings.
+
+On the top right of the configurator, the following options are available:
+
+- **Copy profile**: Make a duplicate of the current profile to another profile.
+- **Copy rateprofile**: Make a duplicate of the current rate profile to another rate profile.
+- **Reset this Profile**: Reset the current profile to default values.
+- **Show all PIDs**: Show PID values for the Magnetometer.
+
+<Tabs>
+  <TabItem value="pids" label="PID Profile Settings" default>
+    ## PID Profile Settings
+
+    Tune the PID controller settings for the craft. Detailed explanation can be found [here](/docs/development/pid-tuning).
+    <br />
+    ![PID Tuning Tab](/img/betaflight_configurator_pid_tuning_tab.png)
+    <br />
+    - **PID profile name:** PID profile name which can describe what conditions this profile was tuned to.
+
+    Betaflight allows to tune PIDs using simplified tuning. The sliders can be used to adjust the PID value indirectly.
+    When the `Mode` is set to `OFF`, the sliders are disabled, and the user can input the PID values directly.
+
+    ### Mode
+    - **OFF:** no sliders, enter values manually
+    - **RP:** sliders control Roll and Pitch only, enter Yaw values manually
+    - **RPY:** sliders control all PID values
+    <br />
+    <Admonition type="warning">
+    Going from RP to RPY mode will overwrite Yaw settings with firmware settings.
+    </Admonition>
+
+    ### Sliders
+    Sliders to adjust the aircraft flight characteristics (PID gains).
+    <br />
+    | Name | Description |
+    | ---- | ----------- |
+    | **Damping** <br /> *(D Gains)* |Damping (D gain): **Resists fast movement, minimises P oscillation.**<br />Relatively high D-gain will dampen stick responsiveness and may make motors hot, but should help control fast oscillations and will improve prop-wash.<br />Relatively low D-term gives quicker stick responsiveness, but will weaken prop-wash performance and reacting to external forces (wind). |
+    | **Tracking** <br /> *(P & I Gains)* | **Enchances the responsiveness of the aircraft, if too high may cause trilling or oscillation.**<br />Increase the Tracking slider to sharpen the aircraft's response to your commands and also outside influences; avoiding the nose of the aircraft going off course in any condition. <br />Lower ‘Tracking’ values will have lots of bobbles and will go off course on stick moves and in prop wash. High ‘Tracking’ may result in oscillation and fast bounceback (hard to see, but you canhear). Excessive Tracking may result in oscillations and hot motors. |
+    | **Stick Response** <br /> *(FF Gains)* | **Increases the responsiveness of the aircraft to faster stick movements.** <br />Lower Stick Response will increase the latency of the aircraft movements to commands and may result in slow bounceback at the end of a flip or roll. <br />Higher Stick Response will give snappier aircraft response to sharp stick moves. Too much Stick Response can cause overshoots at the end of a flip or roll. <br />***Note**: “I-term Relax” can reduce bounceback for low authority aircraft or if low Stick Response Gains are used.* |
+    | **Dynamic Damping** <br /> *(D Max)* | **Sets the maximum amount that D can be boosted to during fast movements.**<br />Increases D max, the maximum amount that D can increase to during faster movements. <br />For race aircraft, where the main Damping slider has been set low to minimize motor heat, moving this slider to the right will improve overshoot control for quick direction changes. <br />For HD or cinematic aircraft, instability in forward flight is best addressed by moving the Damping slider (not the Dynamic Damping slider) to the right. Check for motor heat and listen for weird noises during quick inputs when moving this slider to the right. <br />For freestyle aircraft, especially heavier builds, moving this slider to the right may help control overshoot in flips and rolls.<br />***Note**: Generally overshoot in flips and rolls is due to not enough 'i-Term Relax', or motor desyncs, or inadequate authority (a.k.a. Motor Saturation). If you find that moving the Damping Boost slider to the right doesn't improve flip or roll overshoot, put it back to the normal position, and seek out the reason for the overshoot or wobble.* |
+    | **Drift - Wobble** <br /> *(I Gains)* | **Fine adjustment of I.**<br />Increases or decreases I. Higher I may improve tracking in spiral turns, orbits, or 0% throttle commands. Too much I, particularly with not enough P, may cause wobbles or bounceback after flips/rolls or on chopping the throttle to 0%. <br />Generally you want the ‘Drift – Wobble’ slider to be as high as it can be to keep the aircraft tracking in spiral turns, orbits, ect... but not so high that you start to see wobbles on chopping the throttle to 0%.<br />***Note:** If you experience bounceback at any time that is easy to see, make sure that “I-term Relax” is enabled, and try lowering the iterm_relax_cutoff value.* |
+    | **Pitch Damping** <br /> *(Pitch:Roll D)* | **Increases the amount of damping on pitch relative to roll.**<br />Increases Damping (D) on the Pitch axis ONLY, i.e, for Pitch relative to Roll. Helps control Pitch specific overshooting or bounce-back.<br />Aircraft with 'heavier' moment of inertia on the Pitch axis generally need more Damping authority (since Pitch has more inertia and accumulates more momentum). <br />Tune the master 'Damping' and/or 'Tracking' sliders first, until you get good Roll axis behavior. Then use the Pitch sliders (increase or decrease) to fine tune the Pitch axis without affecting Roll. |
+    | **Pitch Tracking** <br /> *(Pitch:Roll P, I & FF)* | **Increases stabilising strenght on pitch relative to roll.**<br />Increases the Tracking strength on the Pitch axis ONLY, by changing Pitch P and I values relative to Roll. Allows stronger tracking authority on the Pitch axis relative to Roll. <br />Increase to stabilise pitch (nose) bobble with sharp pitch inputs or throttle chops. Also consider raising Anti-Gravity gains. <br />Tune the master 'Damping' and/or 'Tracking' sliders first, until you get good Roll axis behaviour. Then use the Pitch sliders (increase or decrease) to fine tune the Pitch axis without affecting Roll. |
+    | **Master Multiplier** | **Increases all PID parameters equally.**<br />Don't change this slider unless you run out of adjustment on the other sliders. Typically this is only needed for low authority or high moment of inertia (MoI) aircraft like X-Class or cinelifter builds. Too much master gain may cause trilling oscillations or hot motors. |
+
+    ### PID Controller Settings
+
+    #### Feed-Forward
+    | Name | Description |
+    | ---- | ----------- |
+    | **Jitter Reduction** | Reduces Feedforward when the sticks move slowly, regardless of their position. This allows smooth, jitter-free flight when making smooth slow arcs, yet provides full feedforward without any delay when the sticks are moved quickly. Transition is not required, and should be set to zero, when jitter reduction is active. |
+    | **Smoothness** | Feedforward smoothing is essential to attenuate noise in the feedforward trace. The smallest value that gives a smooth trace is best. |
+    | **Averaging** | Feedforward Averaging takes the average of the last 2 or 3 feedforward steps. This smooths the feedforward trace, but adds some delay. It is most effective when there is sequential up/down jitter in the signal, which is common with faster RC links. |
+    | **Boost** | Feedforward boost adds extra push in response to stick acceleration or deceleration. This minimises the gyro lag that is caused by motor acceleration delay, and reduces overshoot when the sticks decelerate by pulling back hard on the motors. |
+    | **Max Rate Limit** | Cuts feedforward as the sticks move towards maximum deflection, to minimise overshoot at the start of a flip or roll. Does nothing at the end of a flip or roll. Lower values make the attenuation start earlier. |
+    | **Transition** | Linearly reduces Feedforward when sticks are close to the centre. In 4.2 and earlier, transition can be used to provide smoother stick responses around centre stick position. In 4.3, transition is not recommended, as it has been 'replaced' by the jitter reduction function. A value of 0 disables transition. A value of 0.3 cuts feedforward to zero when sticks are at dead centre, but it increases to full normal when sticks are >30% out from centre. |
+
+    #### Others
+    | Name | Description |
+    | ---- | ----------- |
+    | **I Term Relax** | Suppresses I Term accumulation when fast movements occur, reducing bounce-back at the end of rolls, flips and other quick inputs. Setpoint mode responds to smoothed stick inputs and works best for responsive aircraft. Gyro mode can be useful for extremely laggy aircraft. Usually iTerm Relax should not be applied to yaw. |
+    | **Anti Gravity** | Boosts I (and, in 4.3, P) during and shortly after fast throttle changes, increasing attitude stability during throttle pumps. Higher gain values may improve stability on low authority machines or those with an offset centre of gravity. |
+    | **I Term Rotation** | Rotates the current I Term vector properly to other axes as the aircraft rotates when yawing continuously during rolls and when performing funnels and other tricks. Very appreciated by LOS acro pilots. |
+    | **Dynamic Damping - Gain** | Increases the sensitivity of the system that increases D when the aircraft turns quickly or is shaking in propwash. Higher Gain values bring D up more readily than lower values, lifting D towards D Max more quickly. Values of 40 or even 50 may work well for clean Freestyle builds. Lower values will not raise D towards DMax except in really fast moves, and may suit race setups better by minimising D lag.<br />*WARNING: Either Gain, or Advance, must be set above about 20, or D will not increase as it should. Setting both to zero will lock D at the base value.* |
+    | **Dynamic Damping - Advance** | Adds sensitivity to the Gain factor when the sticks are moved quickly. Advance does not respond to gyro or propwash. It acts earlier than the Gain factor and is occasionally useful for low authority aircraft that tend to lag badly at the start of a move. Generally it is best left at zero.<br />*WARNING: Either Advance, or Gain, must be set above about 20, or D will not increase as it should. Setting both to zero will lock D at the base value.* |
+
+    ### Throttle and Motor Settings
+    | Name | Description |
+    | ---- | ----------- |
+    | **Throttle Boost** | Transiently boosts throttle with faster throttle inputs, providing a more immediate throttle response. |
+    | **Motor Output Limit** | Percentage reduction in per-motor drive signal. Reduces ESC current and motor heat when using higher cell count batteries on high KV motors. When using a 6S battery on a aircraft that with 4S motors, props and tuning, try 66%; when using a 4S battery on a aircraft intended for 3S, try 75%. Be sure that all of your components can support the voltage of the battery you are using. |
+    | **Dynamic Idle Value** <br /> [* 100 RPM] | Improves control at low rpm and reduces risk of motor desyncs. It improves PID authority, zero throttle stability, inverted hang time, and motor braking. The Dynamic Idle min rpm should be set to around 3000 - 3500 rpm.<br />Visit [this wiki entry](/docs/wiki/guides/current/dynamic-idle) for more info. |
+    | **Vbat Sag Compensation** | Gives consistent throttle and PID performance over the usable battery voltage range by increasing motor output as battery voltage falls. The amount of compensation can be varied between 0 and 100%. Full compensation (100%) is recommended.<br />Visit [this wiki entry](/docs/wiki/tuning/4-2-tuning-notes#dynamic-battery-sag-compensation) for more info. |
+    | **Thrust Linearization** | Improves low throttle authority and responsiveness. Especially useful for whoops and 48k ESCs. Has no effect at higher throttle. The amount of compensation can be varied between 0 and 150%. Usually 30-40% is enough. |
+
+    ### Miscellaneous Settings
+    | Name | Description |
+    | ---- | ----------- |
+    | **Cell Count - for auto profile switching** | Set the number of cells in the battery to automatically switch profiles. |
+    | **Acro Trainer Angle Limit** | Helps pilots learn to fly in acro mode by limiting the angle that the aircraft can attain. Valid limits are 10-80 degrees. The mode must be activated with a switch in the Modes tab. |
+    | **Integrated Yaw** | Integrated Yaw integrates yaw P, I and D values, allowing yaw P, I and D to be tuned a bit like you'd tune pitch and roll.<br />Very little I is required, because the integrated P acts like I, and integrated D acts like P.<br />***NOTE**: Integrated Yaw requires use of Absolute Control, since no I is needed with Integrated Yaw.* |
+    | **Absolute Control** | This feature solves some underlying problems of I Term Rotation and may replace it at some point. It accumulates the absolute gyro error in aircraft coordinates and mixes a proportional correction into setpoint. <br />AirMode must be enabled and I Term Relax (for RP). When combined with Integrated Yaw, you can set I Term Relax enabled for RPY. |
+
+  </TabItem>
+  <TabItem value="rates" label="Rateprofile Settings">
+    <Admonition type="note">
+      Sorry; this Wiki tab has not yet been written.
+    </Admonition>
+
+  </TabItem>
+  <TabItem value="filters" label="Filter Settings">
+    <Admonition type="note">
+      Sorry; this Wiki tab has not yet been written.
+    </Admonition>
+  </TabItem>
+</Tabs>
