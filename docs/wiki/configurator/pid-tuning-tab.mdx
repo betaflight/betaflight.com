@@ -29,7 +29,7 @@ On the top right of the configurator, the following options are available:
 
     Tune the PID controller settings for the craft. Detailed explanation can be found [here](/docs/development/pid-tuning).
     <br />
-    ![PID Tuning Tab](/img/betaflight_configurator_pid_tuning_tab.png)
+    ![PID Profile Settings](/img/betaflight_configurator_pid_profile_settings.png)
     <br />
     - **PID profile name:** PID profile name which can describe what conditions this profile was tuned to.
 
@@ -99,9 +99,26 @@ On the top right of the configurator, the following options are available:
 
   </TabItem>
   <TabItem value="rates" label="Rateprofile Settings">
-    <Admonition type="note">
-      Sorry; this Wiki tab has not yet been written.
-    </Admonition>
+    ## Rateprofile Settings
+
+    Adjust the rates for the aircraft.
+    <br />
+    ![Rateprofile Settings](/img/betaflight_configurator_rateprofile_settings.png)
+    <br />
+    - **Rate profile name:** Rate profile name which can describe what type of flying this profile is for.
+    - **Rates Type:** Changing rates type will change the rates curve and the way you can set it.<br />Choose between:<ul><li>Actual (default)</li><li>Betaflight (older betaflight rates)</li><li>KISS</li><li>QuickRates</li><li>Raceflight</li></ul>
+
+    - **Rates and Expo:** Determine your stick feel based on these parameters. Use the graph and live 3D model to find your favourite rate setting.
+    - **Rates Preview:** Preview the rate curve in the graph. Play with the rates and see how those affect the stick curve.
+    <br />
+    | Name | Description |
+    | ---- | ----------- |
+    | **Throttle Limit** | Select the type of throttle limiting.<br />**OFF** disables the feature<br />**SCALE** will transform the throttle range from 0 to the selected percentage using the full stick travel<br />**CLIP** will set a max throttle percentage and stick travel above that will have no additional effect |
+    | **Throttle Limit %** | Set the percentage of throttle limit. |
+    | **Throttle MID** | Adjust the center of the expo curve. If Throttle Expo is 0, Throttle MID doesn't affect anything. |
+    | **Throttle Expo** | Add expo to the throttle curve |
+
+    - **Rates Preview:** 3D preview of the rates on the craft. Move the sticks to see how the rates affect the movement in real-time.
 
   </TabItem>
   <TabItem value="filters" label="Filter Settings">
