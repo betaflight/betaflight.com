@@ -37,7 +37,7 @@ Thank you for considering or continuing your development of Betaflight capable f
 
 Betaflight is an open source project that is free to use and does not incur a license cost, however for the most successful release of a new flight controller or complete ready-to-fly product that is using Betaflight, it remains immensely beneficial to provide representative production samples or pre-production testing units to the Betaflight development team for testing and development feedback.
 
-In order to have hardware added to the Betaflight approved hardware list, hardware samples representative of the final configuration must be provided to designated members of the betaflight development team. It is strongly recommended that samples of development hardware or production-representative examples are evaluated positively before accepting pre-orders or releasing products. Many of the same benefits can be provided for inclusive hardware packages, including flight control stacks, or ready-to-fly craft.
+In order to have hardware added to the Betaflight approved hardware list, hardware samples representative of the final configuration must be provided to designated members of the Betaflight development team. It is strongly recommended that samples of development hardware or production-representative examples are evaluated positively before accepting pre-orders or releasing products. Many of the same benefits can be provided for inclusive hardware packages, including flight control stacks, or ready-to-fly craft.
 
 Sharing schematics/layouts with the reviewers will also be beneficial and improve the quality of the review.
 
@@ -45,7 +45,7 @@ This provides the Betaflight team with an opportunity to ensure that the hardwar
 
 Additional benefits are also present in the form of allowing experienced active pilots with backgrounds in engineering of these systems to assist with aspects of the development process particularly in respect to real world use the products will be subjected to.
 
-Finally, we will offer a ’Betaflight approved’ product list on the Betaflight github to advise the userbase on electronics which both follow our ‘best practice’ guidance, and which have been tested by our development team. This will be available for flight controller hardware, as well as electronic speed controller stacks, AIOs, and ready-to-fly craft. This strategy is designed to help both developers optimise their hardware and our user base get directed to optimal hardware, and reduce support requests for the Betaflight team who serve a user base of over a hundred thousand users.
+Finally, we will offer a ’Betaflight approved’ product list on the Betaflight GitHub to advise the userbase on electronics which both follow our ‘best practice’ guidance, and which have been tested by our development team. This will be available for flight controller hardware, as well as electronic speed controller stacks, AIOs, and ready-to-fly craft. This strategy is designed to help both developers optimize their hardware and our user base get directed to optimal hardware, and reduce support requests for the Betaflight team who serve a user base of over a hundred thousand users.
 
 # 1 Important Terms and Conditions
 
@@ -110,7 +110,7 @@ Achieving state of the art performance requires minimizing latency in craft resp
 
 - Reporting of performance
 
-  - With sufficient test time using the final product, developers can agree to recommend products which meet our guidelines and performance expectations. Products will be noted on Betaflight Github.
+  - With sufficient test time using the final product, developers can agree to recommend products which meet our guidelines and performance expectations. Products will be noted on Betaflight GitHub.
 
 - Submission
 
@@ -134,7 +134,7 @@ These guidelines provide best practices for physical, electrical, and documentat
 
 ## 3.1 Best Practices for Flight Controller Design and Performance
 
-When asked to review hardware our first action will be to review schematics/layouts against the application notes for the applicable data sheets. The specifics of how the hardware is interconnected is of course going to be driven by a number of constraints, such as recommended pinouts, as outlined below, but is it essential that good design practises are followed with respect to providing good quality power regulation, appropriate use of ground/power planes, decoupling component positioning etc.
+When asked to review hardware our first action will be to review schematics/layouts against the application notes for the applicable data sheets. The specifics of how the hardware is interconnected is of course going to be driven by a number of constraints, such as recommended pinouts, as outlined below, but is it essential that good design practices are followed with respect to providing good quality power regulation, appropriate use of ground/power planes, decoupling component positioning etc.
 
 ### 3.1.1 Physical Configuration
 
@@ -166,13 +166,40 @@ For connector pinout please refer to the [Betaflight Connector Standard](connect
 
 ### 3.1.2 Inertial Measurement Unit (IMU) Selection
 
-Selecting an appropriate IMU for flight controller operation is critical to the resulting flight performance of systems. Proven examples of hardware using single Invensense MPU-6000, single or dual ICM-20602, and also Bosch BMI-270 and BMI-180 units have been successfully demonstrated to operate with Betaflight, although the latter two examples have required significand development effort to bring performance of the IMU gyroscope and accelerometer sensing behaviors up to the standards required to maximize flight performance.
+Selecting an appropriate IMU for flight controller operation is critical to the resulting flight performance of systems. Proven examples of hardware using single Invensense MPU-6000, single or dual ICM-20602, and also Bosch BMI-270 and BMI-180 units have been successfully demonstrated to operate with Betaflight, although the latter two examples have required significant development effort to bring performance of the IMU gyroscope and accelerometer sensing behaviors up to the standards required to maximize flight performance.
 
 :::note
 
 We do not recommend using the Bosch BMI-270 IMU, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used.
 
 :::
+
+
+
+### 3.1.2.1 Future IMU Options and How to Select Preferred Options
+
+As the MPU-6000 is EOL, the currently recommended IMU for most applications is the TDK InvenSense ICM-42688-P. This gyro has been proven in many designs to provide excellent performance with low noise and good durability. In all cases, it is strongly recommended that the gyro be powered from its own LDO. For the ICM-42688-P, this is *required*. See below for more on electrical noise considerations. 
+
+The ICM-42688-P also supports an external clock input, which can yield increased stability and performance. If your design allows, consider adding external clock support. See the following PR for more info: https://github.com/betaflight/betaflight/pull/13912
+
+Future IMU selection should be carried out with close involvement of the Betaflight development group. Early hardware validation samples should be explored in collaboration with Betaflight developers to determine the suitability of these IMU units in relevant environments.
+The ability to customize IMU lowpass filtering and operate within the same GRMS/Shock environment allows for maximum portability of existing filtering and tune schemes, but this development must occur with complete hardware samples and flown in representative flight regimes in order to replicate the EMI environment end users will experience.
+
+The IMU sensors, designed for applications outside of sUAS, are typically subjected to very harsh electromagnetic environments. Ensuring electromagnetic compatibility when using these immediately adjacent to ultrasonically switched power MOSFET devices, constantly operational radio frequency devices (such as remote control and FPV video systems), under thermal stresses of moving over 1kW through the complete flight stack, are a nontrivial operation. In order to minimize risks of flyaway and brownout behaviors which can be observed if IMU data filtering and power delivery are inadequate, proper circuit design and validation testing must be performed.
+
+:::note
+
+#### Advised power supply design for ICM-42xxx IMU. (also applies to others)
+
+These IMU require a stable and clean power supply to function correctly, provided with this they are very capable IMU for flight controller use.  
+Peak to peak noise of under 50uV on the supply should be the ideal goal.  
+Considerations for a suitable LDO are at least 500mA rated output allowing for extra capacitors on the output, two 20nF.  
+A PSRR >70dB down as low as 1Hz is preferred.  
+Where space allows, a dedicated LDO and circuit is advised for the IMU.
+
+:::
+
+### 3.1.3 Other Sensors
 
 **Barometer selection**
 
@@ -216,25 +243,6 @@ Where a barometer or magnetometer has a configurable i2C address, always use the
 
 :::
 
-### 3.1.3 Future IMU Options and How to Select Preferred Options
-
-Future IMU selection should be carried out with close involvement of the Betaflight development group. In cases such as the ICM-42688-P, ICM-42688-V, or ICM-42605, early hardware validation samples should be explored in collaboration with Betaflight developers to determine the suitability of these IMU units in relevant environments.
-The ability to customize IMU lowpass filtering and operate within the same GRMS/Shock environment allows for maximum portability of existing filtering and tune schemes, but this development must occur with complete hardware samples and flown in representative flight regimes in order to replicate the EMI environment end users will experience.
-
-The IMU sensors, designed for applications outside of sUAS, are typically subjected to very harsh electromagnetic environments. Ensuring electromagnetic compatibility when using these immediately adjacent to ultrasonically switched power MOSFET devices, constantly operational radio frequency devices (such as remote control and FPV video systems), under thermal stresses of moving over 1kW through the complete flight stack, are a nontrivial operation. In order to minimize risks of flyaway and brownout behaviors which can be observed if IMU data filtering and power delivery are inadequate, proper circuit design and validation testing must be performed.
-
-:::note
-
-#### Advised power supply design for ICM-42xxx IMU. (also applies to others)
-
-These IMU require a stable and clean power supply to function correctly, provided with this they are very capable IMU for flight controller use.  
-Peak to peak noise of under 50uV on the supply should be the ideal goal.  
-Considerations for a suitable LDO are at least 500mA rated output allowing for extra capacitors on the output, two 20nF.  
-A PSRR >70dB down as low as 1Hz is preferred.  
-Where space allows, a dedicated LDO and circuit is advised for the IMU.
-
-:::
-
 ### 3.1.4 Electrical Isolation for Sensor Components
 
 Separate VDD from VDD_IO
@@ -255,16 +263,11 @@ Such 10V regulators should function at full rated current down to 10V input volt
 
 Again, providing robust low-ripple power to these devices provides the maximum performance potential and hardware longevity for operation in the challenging EMI environments present on these craft.
 
-#### 3.1.4.2 ADC Circuitry (e.g. for Current Sensors)
+#### 3.1.4.2 ADC Circuitry (e.g. for Vbat and Current Sensors)
 
-Using ADC measurements on the flight controller to actively monitor current information from ESCs, or if using integral FC-PDB, minimizing noise on the circuit improves the accuracy and jitter of these signals. To reduce noise from current reading, instead of transferring voltage to FC, send current to FC then move RL Load resistor associated with INA31 onto FC with capacitor in parallel.
-https://www.ti.com/lit/ds/symlink/ina139.pdf
+All ADC inputs (e.g. VBAT, CURR, RSSI) should be equipped with 100nF bypass caps to minimize noise. 
 
-Ideally there should be a pair of bridgeable pads on the ESC in series with the load resistor so that with legacy FCs one can bridge it to include the resistor. Correspondingly on FCs we should have a 82K resistor (and parallel 100nF cap), again with series bridging pads which would be left unbridged when paired with legacy ESCs.
-
-When using an ESC/FC stack supporting the above bridging pads, one would leave the ESC pads open and short those on the FC for noise free current reading. In all other cases the ESC pads would be bridged or the FC’s left open to support the current configuration at the expense of higher noise.
-
-Note that the above recommendation is based on the fact that if current if fed into one end of a wire, that same current will always flow out of the other end, whereas with a voltage there will be a voltage drop due to resistance in both that wire and the ground return, and the currents flowing through them. Converting the current to a voltage at the input of the ADC will result in significant noise reduction.
+The recommended Vbat voltage divider for most designs is 100K/10K. Note the tolerance of the resistors used here affects the accuracy of the voltage scale set in the config file. 
 
 #### 3.1.4.3 Supporting Additional Features
 
@@ -307,7 +310,13 @@ Pin PC13, PC14 and PC15 are supplied through the power switch. Since the switch 
 
 :::warning
 
-Betaflight does not support sharing devices on the SPI bus which is blocking excution and results in bad performance. Mainly sharing MAX7456 and blackbox generates support issues.
+Betaflight does not support sharing devices on the SPI bus which is blocking execution and results in bad performance. Mainly sharing MAX7456 and blackbox generates support issues.
+
+:::
+
+:::warning
+
+Effective immediately, new flight controller designs that use the STM F4 and F7 series MCUs will be limited to 4 motor outputs. For designs requiring more than 4 motor outputs, it is highly recommended to use the STM32 H7 series MCUs. 
 
 :::
 
@@ -340,16 +349,16 @@ Assign motor channels with highest priority …
 
 As F4 MCUs do not support UART inversion, a hardware inverter must be added in order to support inverted serial protocols such as SBUS, SmartPort, and F.Port. This functionality is not required for Betaflight approval, but if included any pins that implement inversion should be clearly marked, and ideally not result in reduced capability of that UART when used with non-inverted peripherals.
 
-For Betaflight 4.4 and later versions, the expected default configuration will take advantage of Bidirectional DShot, therefore default Looprates and DShot of 8k/4k/DShot-300 are anticipated to be the stock configuration. This does specifically require Motor Resource allocation to enable proper bidirectional DShot communication.
+For Betaflight 4.4 and later versions, the expected default configuration will take advantage of Bidirectional DShot, therefore default PID loop rates and motor protocol of 4kHz and DSHOT300 are anticipated to be the stock configuration. This requires proper Motor Resource allocation to enable bidirectional DShot communication.
 
-If using Bitbang DShot, when SPI Bus #1 is to be used for the gyro, care must be taken to ensure that motor pins are assigned to appropriate timers. This is because Bitbang DSHOT uses DMA2 to write to GPIO ports. If this is enabled, it is not possible to enable DMA on an SPI bus using DMA2.
+If using Bitbanged DShot, when SPI Bus #1 is to be used for the gyro, care must be taken to ensure that motor pins are assigned to appropriate timers. This is because Bitbanged DSHOT uses DMA2 to write to GPIO ports. If this is enabled, it is not possible to enable DMA on an SPI bus using DMA2.
 Practically speaking this means that we can’t support DMA on SPI bus 1 (which uses DMA2) on F405 and F411 processors. It is better to put multiple devices on other SPI busses that use SPI bus 1, which is typically used for the gyro.
-Bitbang DShot communication protocol will always use Timer 1 and Timer 8 - do NOT use these pins for any other functions.
+Bitbanged DShot communication protocol will always use Timer 1 and Timer 8 - do NOT use these pins for any other functions.
 
 Further reading: Section 2.1.10 of the errata at
 https://www.st.com/resource/en/errata_sheet/dm00037591-stm32f405407xx-and-stm32f415417xx-device-limitations-stmicroelectronics.pdf
 
-Corruption may occurs on DMA2 if AHB peripherals (e.g. GPIO ports) are accessed concurrently with APB peripherals (eg SPI busses).
+Corruption may occur on DMA2 if AHB peripherals (e.g. GPIO ports) are accessed concurrently with APB peripherals (eg SPI busses).
 Practically, this means that all pins should be on the same port, or at most two ports, so that only one (or two) DMA streams are required for bitbanged operation.
 
 - Additional Recommendations:
@@ -366,11 +375,17 @@ Practically, this means that all pins should be on the same port, or at most two
 
 F7 series MCUs provide greater flexibility in resource assignments and do not require hardware inverters in order to support inverted serial protocols. They also do not exhibit the SPI 1 DMA limitations of F4 processors.
 
-Bitbang DShot communcation protocol will always use Timer 1 and Timer 8 - Do NOT use these timers for any other functions.
+Bitbanged DShot communication protocol will always use Timer 1 and Timer 8 - Do NOT use these timers for any other functions.
 
-#### 3.2.1.3 G4 and H7 Resource Selection
+#### 3.2.1.3 G4, H7, and AT32F435 Resource Selection
 
 G4 and H7 series MCUs include a DMAMUX, which allows for flexible DMA stream allocation. Therefore, only timer conflicts between motor outputs and other outputs need to be avoided.
+
+:::note
+
+STM32 F4 MCUs should use PWM-based DShot by default, due to a chip errata that prevents peripherals on DMA2 (usually gyro on SPI1) from using DMA when bitbanged DShot is used. All other MCUs (F7, H7, G4, AT32F435) should use bitbanged DShot by default for the best performance and most efficient use of timer and DMA resources. 
+
+:::
 
 ### 3.2.2 Select appropriate default UARTs to avoid hijacking USB DFU
 
