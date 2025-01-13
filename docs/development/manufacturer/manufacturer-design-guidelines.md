@@ -195,7 +195,7 @@ These IMU require a stable and clean power supply to function correctly, provide
 Peak to peak noise of under 50uV on the supply should be the ideal goal.  
 Considerations for a suitable LDO are at least 500mA rated output allowing for extra capacitors on the output, two 20nF.  
 A PSRR >70dB down as low as 1Hz is preferred.  
-Where space allows, a dedicated LDO and circuit is advised for the IMU.
+Where space allows, a dedicated LDO and circuit is advised for the IMU. For ICM-42688-P this is *required*.
 
 :::
 
