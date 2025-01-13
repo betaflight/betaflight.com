@@ -32,6 +32,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 | Draft 1.2 | 13 January 2024  | Add Mag and Baro hardware note    |
 | Draft 1.3 | 23 October 2024  | Update MCU recommendations        |
 | Draft 1.4 | 06 November 2024 | Add LED pin resource warning      |
+| Draft 1.5 | 13 January 2025  | Update ADC/gyro recommendations   |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
