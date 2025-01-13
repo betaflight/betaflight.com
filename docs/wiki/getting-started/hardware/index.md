@@ -123,6 +123,6 @@ Used to get the position of the FC, and the speed it's moving at, utilizing the 
 
 :::danger
 
-Most GPS units on the market are based on the M8 chipset from uBlox. However, there are newer modules that use the M10 chipset. These work much better than M8... with a slight catch. Prior to the 4.5.0 release, the M10 was not supported for auto-configuration in Betaflight, so you had to configure it manually in the u-center software. If not configured properly, this will result in unreliable performance. From release 4.5.0, manual configuration is no longer necessary.
+Most GPS units on the market are based on the M8 chipset from uBlox. However, there are newer modules that use the M10 chipset. These work much better than M8... with a slight catch. Prior to the 4.5.0 release, the M10 was not supported for auto-configuration in Betaflight, As such, it required manual configuration in the u-center software. When not properly configured, it results in unreliable performance. From release 4.5.0, manual configuration is no longer necessary.
 
 :::
