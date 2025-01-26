@@ -1053,6 +1053,10 @@ Array length: 3
 mag_declination = 0
 Allowed range: 0 - 3599
 
+:::note
+Betaflight 4.6 uses allowed range: -300 - 300 for 30 degrees declination.
+:::
+
 mag_hardware = AUTO
 Allowed values: AUTO, NONE, HMC5883, AK8975, AK8963, QMC5883, LIS2MDL, LIS3MDL, MPU925X_AK8963, IST8310
 

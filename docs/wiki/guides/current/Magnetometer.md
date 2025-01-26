@@ -94,6 +94,15 @@ In Betaflight 4.5, the CLI variable `mag_declination` was introduced, to correct
 
 Declination values should be entered in decidegrees; in the above example, `set mag_declination = 130` would correct for a 13° positive declination, and `set mag_declination = 34` for positive 3.4° of declination. A negative local declination, eg -3°, should be entered as `set mag_declination = 3570` (i.e. 3600 - 30).
 
+:::note
+In firmare 4.6 declination has been changed to use a range of 30 degrees.
+13° would still be `130` but -3° needs to be initialized as `-30`.
+
+`mag_declination` is the difference of angles (between true and magnetic north).
+Declination value in inhabited areas is within +- 30 degrees range.
+The limit should prevent misuse of declination for other purposes.
+:::
+
 ## Mounting a Magnetometer
 
 It is a whole lot easier to fix orientation problems if the magnetometer is physically mounted in the same plane as the FC (e.g., flat to the frame).
@@ -135,7 +144,6 @@ The user should use the default `set mag_hardware = AUTO` in CLI, so that Betafl
 
 :::warning
 Magnetometer detection takes place on power up. Make sure that the Mag powers up at the same time as the FC.
-
 :::
 
 The magnetometer is usually connected via i2C. All supported magnetometers are specified only up to 400Hz 'fast' mode. Wire up the SCL and SDA pins on the module to the pins of the same name on the FC, and power the module with either 5V or 3.3V depending its requirements.
