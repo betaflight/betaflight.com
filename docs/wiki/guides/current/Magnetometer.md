@@ -92,7 +92,7 @@ As an example, in Sydney, Australia, 151°E 34°S, the Earth's magnetic field is
 
 In Betaflight 4.5, the CLI variable `mag_declination` was introduced, to correct for declination offsets. When correctly set, Betaflight will return "true North", not "magnetic North", like the GPS course over ground values, which also return true North.
 
-Declination values should be entered in decidegrees; in the above example, `set mag_declination = 130` would correct for a 13° positive declination, and `set mag_declination = 34` for positive 3.4° of declination. A negative local declination, eg -3°, should be entered as `set mag_declination = 3570` (i.e. 3600 - 30).
+Declination values should be entered in decidegrees; in the above example, `set mag_declination = 130` would correct for a 13° positive declination, and `set mag_declination = 34` for positive 3.4° of declination. A negative local declination, eg -3°, should be entered as `set mag_declination = -30`.
 
 ## Mounting a Magnetometer
 
