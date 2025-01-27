@@ -1054,7 +1054,7 @@ mag_declination = 0
 Allowed range: 0 - 3599
 
 :::note
-Betaflight 4.6 uses allowed range: -300 - 300 for 30 degrees declination.
+Betaflight 4.6 uses allowed range: range: -300 to +300 for ±30.0 degrees `mag_declination`.
 :::
 
 mag_hardware = AUTO
