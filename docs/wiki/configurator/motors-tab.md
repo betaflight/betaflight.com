@@ -43,6 +43,12 @@ BLHeli_S, BLHeli_32, BlueJay or AM32 ESCs should all use DShot
 - **MOTOR_STOP** - Prevent motors spinning at idle when armed. Not normally required and it is considered safer to spin
   motors so bystanders can see that your quad is armed
 
+| **Scenario**                         | **Motors Behavior When Armed**                      |
+|--------------------------------------|----------------------------------------------------|
+| **AIRMODE Disabled & Motor Stop Enabled**  | Motors stay **off** until throttle is raised. |
+| **AIRMODE Disabled & Motor Stop Disabled** | Motors **spin at idle speed** when armed. |
+| **AIRMODE Enabled**                  | Motors **always spin** when armed, even at zero throttle. |
+
 - **ESC_SENSOR** - Prefer ESC telemetry data from a UART connection to the ESC as configured in the Ports tab
 
 - **Bidirectional DShot** - Required for RPM filtering. Instead of only sending DShot commands to the ESC on the motor
