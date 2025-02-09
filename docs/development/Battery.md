@@ -220,7 +220,7 @@ The general method is:
 Given (a) the mAh recharged and (b) the cleanflight reported mAh drawn, calculate a new `amperage_meter_scale` value as follows:
 
 ```
-amperage_meter_scale = old_amperage_meter_scale * (mAh_recharged / cleanflight_reported_mAh_drawn)
+amperage_meter_scale = old_amperage_meter_scale * (cleanflight_reported_mAh_drawn / mAh_recharged)
 ```
 
 For example, assuming:
@@ -232,7 +232,7 @@ For example, assuming:
 Then the updated `amperage_meter_scale` is:
 
 ```
-amperage_meter_scale = old_amperage_meter_scale * (mAh_recharged / cleanflight_reported_mAh_drawn)
-                     = 400 * (1500 / 2000)
-                     = 300
+amperage_meter_scale = old_amperage_meter_scale * (cleanflight_reported_mAh_drawn / mAh_recharged)
+                     = 400 * (2000 / 1500)
+                     = 533
 ```
