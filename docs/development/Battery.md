@@ -212,12 +212,12 @@ The general method is:
 
 1. Fully charge your flight battery
 2. Fly your craft, using >50% of your battery pack capacity (estimated)
-3. Note Cleanflight's reported mAh drawn
+3. Note reported mAh drawn
 4. Fully charge your flight battery again, noting the amount of mAh recharged
 5. Adjust `amperage_meter_scale` to according to the formula given below
 6. Repeat and test
 
-Given (a) the mAh recharged and (b) the cleanflight reported mAh drawn, calculate a new `amperage_meter_scale` value as follows:
+Given (a) the mAh recharged and (b) the reported mAh drawn, calculate a new `amperage_meter_scale` value as follows:
 
 ```
 amperage_meter_scale = old_amperage_meter_scale * (reported_mAh_drawn / mAh_recharged)
@@ -226,7 +226,7 @@ amperage_meter_scale = old_amperage_meter_scale * (reported_mAh_drawn / mAh_rech
 For example, assuming:
 
 - An amount recharged of 1500 mAh
-- A Cleanflight reported current drawn of 2000 mAh
+- A reported current drawn of 2000 mAh
 - An existing `amperage_meter_scale` value of 400 (the default)
 
 Then the updated `amperage_meter_scale` is:
