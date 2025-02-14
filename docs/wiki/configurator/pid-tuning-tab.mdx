@@ -122,8 +122,79 @@ On the top right of the configurator, the following options are available:
 
   </TabItem>
   <TabItem value="filters" label="Filter Settings">
-    <Admonition type="note">
-      Sorry; this Wiki tab has not yet been written.
+    ## Filter Settings
+
+    Adjust the filter settings for the aircraft.
+    <br />
+    ![Filters Settings](/img/betaflight_configurator_filter_settings.png)
+    <br />
+    ### Sliders
+    These sliders adjust the Gyro and D-term filters.
+    <br />
+    | Name | Description |
+    | ---- | ----------- |
+    | **Gyro Filter Multiplier** | <b>Changes the Gyro Lowpass filter cutoffs.</b><br />Moving the slider to the left gives stronger Gyro filtering (lower cutoff frequency).<br />Moving the slider to the right gives less Gyro filtering (higher cutoff frequency).<br />When moving the slider to the right to improve propwash handling, BE CAREFUL to not get too radical. You will allow more noise into both P and D and may get fly-aways or burnt out motors.<br />You may need to move the slider to left if you have frame resonance issues, bad bearings, beat up props, hot motors, etc.<br />Gyro filtering is applied before, and in addition to, D filtering. |
+    | **D Term Filter Multiplier** | <b>Changes the D-term Lowpass Filter cutoffs.</b><br />Moving the slider to the left gives stronger D filtering (lower cutoff frequency). <br />Moving the slider to the right gives less filtering (higher cutoff frequency). <br />D-term is the most sensitive PID element to noise and resonance. It can amplify high frequency noise by 10x to 100x. That's why D filter cutoffs are much lower than the gyro filters. <br />D-term filtering is applied after, and in addition to, the gyro filtering. The default D filtering is optimal for most aircraft and rarely needs changing. <br />Moving this slider to the left reduces motor heat in noisy aircraft and with high PID 'D' tunes, but we may see more propwash and lower frequency D resonances. <br />Moving the slider to the right is not recommended, but may improve propwash on clean builds. It may cause motor grinding on arming, sudden resonances in-flight, and serious motor overheating. |
+
+    ### Profile Independent Filter Settings
+    These settings are independent of the profile and are applied to all profiles.
+
+    **Use Gyro Slider:** Whether to use the Gyro Filter Multiplier. If disabled, the values have to set manually.
+
+    #### Gyro Lowpass Filters
+
+    | Name | Description |
+    | ---- | ----------- |
+    | **Gyro Lowpass 1** | The use of gyro lowpass 1 in dynamic mode was important with the earlier dynamic notch code. Gyro lowpass 1 can usually be disabled completely in firmware 4.3 when RPM filtering is used, unless the gyro has no internal hardware filtering.<br />In dynamic mode, filtering will be stronger at low throttle, with less filtering and less delay as throttle increases. The transition from low to high cutoff will happen earlier, as throttle increases, with higher Gyro lowpass expo values.<br />In static mode, the cutoff frequency is fixed.<br />Filter type defaults to PT1. Higher order filtering is rarely required. |
+    | **Gyro Lowpass 2** | This filter runs in the gyro loop, filtering the signal before it enters the PID loop. It is always in static (fixed cutoff) mode.<br />If the PID loop frequency is less than the gyro loop frequency, eg a 4k PID loop with an 8k gyro loop, this filter should be retained to prevent aliasing issues due to 8k->4k downsampling.<br />A single gyro lowpass 2 configuration, set to somewhere 500 and 1000Hz, works well for Betaflight 4.3 or higher, for clean builds with RPM filtering active and at least default D filtering. |
+
+    #### Gyro Notch Filters
+
+    | Name | Description |
+    | ---- | ----------- |
+    | **Gyro Notch Filter 1** | Applies a static (constant frequency) notch filter to Gyro, at the specified Center frequency.<br />May be useful for isolated, constant frequency resonances that affect both P and D.<br />To be useful, the resonant frequency must be constant across the throttle range.<br />Notch width is set by the cutoff frequency. Cutoff should typically be set between 10% and 40% below centre frequency. Use the tightest filter range that controls the resonance. Avoid setting notch filters below 100hz except in special circumstances. |
+    | **Gyro Notch Filter 2** | Applies a second static (constant frequency) notch filter to Gyro.<br />This is rarely required, and should only be used as a last resort to combat a second fixed frequency resonance line that can't be controlled by other means. |
+
+    #### Gyro RPM Filter
+    RPM filtering is a bank of notch filters on gyro which use the RPM telemetry data to remove motor noise with surgical precision.
+    <br />
+    <Admonition type="warning">
+      The ESC must support the Bidirectional DShot protocol and the value of the Motor poles in the Motors tab must be correct for this filter to work.
     </Admonition>
+
+    | Name | Description |
+    | ---- | ----------- |
+    | **Gyro RPM Filter Harmonics Number** | Number of harmonics per motor. A value of 3 (recommended for most aircraft) will generate 3 notch filters, per motor for each axis, totaling 36 notches. One at the base motor frequency and two harmonics at multiples of that base frequency. |
+    | **Gyro RPM Filter Min Frequency [Hz]** | Minimum frequency that will be used by the RPM Filter. |
+
+    #### Dynamic Notch Filter
+    The Dynamic Notch Filter tracks peak motors noise frequency peaks and places notch filters at those frequencies, independently for each axis.
+    <br />
+    | Name | Description |
+    | ---- | ----------- |
+    | **Notch Count** | Sets the number of dynamic notches per axis. With RPM filter enabled a value of 1 or 2 is recommended. Without RPM filter a value of 4 or 5 is recommended. Lower numbers will reduce filter delay, however it may increase motor temperature. |
+    | **Q Factor** | Adjust how narrow or wide the dynamic notch filters are. Higher value makes it narrower and more precise and lower value makes it wider and broader. Having a really low value will greatly increase filter delay. |
+    | **Min Frequency [Hz]** | Set this to the lowest incoming noise frequency that is needed to be controlled by the dynamic notch. |
+    | **Max Frequency [Hz]** | Set this to the highest incoming noise frequency that is needed to be controlled by the dynamic notch. |
+
+    ### Profile Dependent Filter Settings
+    These settings are dependent on the profile and are applied to the selected profile.
+
+    **Use D Term Slider:** Whether to use the D Term Filter Multiplier. If disabled, the values have to set manually.
+
+    #### D Term Lowpass Filters
+
+    | Name | Description |
+    | ---- | ----------- |
+    | **D Term Lowpass 1** | In dynamic mode, filtering will be stronger at low throttle, with less filtering and less delay as throttle increases. This helps control motor grinding or unexpected flyways on arming, while reducing delay and propwash after takeoff. The transition from low to high cutoff will happen earlier, as throttle is increased, with higher D-term lowpass expo values.<br />In static mode, the cutoff frequency is fixed. This is not recommended for D filtering.<br />Filter type defaults to PT1, though some users have used only a single dynamic Biquad filter here, with no second PT1.<br />Changes that result in less D filtering may cause serious motor overheating or flyaways on arming. |
+    | **D Term Lowpass 2** | This filter is always in static (fixed cutoff) mode. At least two PT1 lowpass filters, or a single second order filter, are required for D filtering.<br />Usually this cutoff is set to the higher value of the dynamic lowpass 1 range. This provides second order noise control above that frequency.<br />Changes that result in less D filtering may cause serious motor overheating or flyaways on arming. |
+
+    #### D Term Notch Filter
+    Applies a static (constant frequency) notch filter to D-Term data, at the specified Center frequency.
+    Notch width is set by the cutoff frequency.<br />May be useful for isolated, constant frequency resonances that are amplified by D.<br />Keep the cutoff as close to centre as possible. Avoid setting notch filters below 100hz except on low RPM builds.
+
+    #### Yaw Lowpass Filter
+    Applies a PT1 filter at the specified cutoff frequency to Gyro data on the yaw axis.
+
   </TabItem>
 </Tabs>
