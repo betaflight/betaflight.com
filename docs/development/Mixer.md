@@ -42,6 +42,10 @@ You can also use the Command Line Interface (CLI) to set the mixer type:
 | CUSTOM AIRPLANE  | User-defined airplane     | M1-M2  | S1-S8          |
 | CUSTOM TRICOPTER | User-defined tricopter    |        |                |
 
+:::note
+In firmware 4.6 the `CUSTOM AIRPLANE` mixer model has been updated to require minimal one motor
+:::
+
 ## Servo configuration
 
 The cli `servo` command defines the settings for the servo outputs.
