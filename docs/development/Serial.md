@@ -42,7 +42,8 @@ Configure serial ports first, then enable/disable features that use the ports. T
 If the configuration is invalid the serial port configuration will reset to its defaults and features may be disabled.
 
 - There must always be a port available to use for MSP/CLI.
-- There is a maximum of 3 MSP ports.
+- The default number of MSP ports is 3. Starting with firmware 4.6, you can use a custom define to add additional msp ports.
+  e.g. When flashing, in the Build Configuration section, add a custom define of "MAX_MSP_PORT_COUNT=n" where n equals the number of ports, not to exceed 6.
 - To use a port for a function, the function's corresponding feature must be also be enabled.
   e.g. after configuring a port for GPS enable the GPS feature.
 - If SoftSerial is used, then all SoftSerial ports must use the same baudrate.
