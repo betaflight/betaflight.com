@@ -33,6 +33,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 | Draft 1.3 | 23 October 2024  | Update MCU recommendations        |
 | Draft 1.4 | 06 November 2024 | Add LED pin resource warning      |
 | Draft 1.5 | 13 January 2025  | Update ADC/gyro recommendations   |
+| Draft 1.6 | 18 Febrary 2025  | Add W25N02K flash define          |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -554,10 +555,11 @@ Define correct flash driver(s) only if physical present on the board.
 ```
 #define USE_FLASH_M25P16           // 16MB Micron M25P16 and others (https://github.com/betaflight/betaflight/blob/master/src/main/drivers/flash_m25p16.c#L68)
 #define USE_FLASH_PY25Q128HA       // 16MB PUYA semi 25Q128
-#define USE_FLASH_W25N01G          // 1Gb NAND flash support
+#define USE_FLASH_W25N01G          // 1GB NAND flash support
+#define USE_FLASH_W25N02K          // 2GB NAND flash support
 #define USE_FLASH_W25M             // 16, 32, 64 or 128MB Winbond stacked die support
-#define USE_FLASH_W25M512          // 512Kb (256Kb x 2 stacked) NOR flash support
-#define USE_FLASH_W25M02G          // 2Gb (1Gb x 2 stacked) NAND flash support
+#define USE_FLASH_W25M512          // 512KB (256Kb x 2 stacked) NOR flash support
+#define USE_FLASH_W25M02G          // 2GB (1Gb x 2 stacked) NAND flash support
 #define USE_FLASH_W25Q128FV        // 16MB Winbond 25Q128 and the 8MB Winbond W25Q8 types
 ```
 
