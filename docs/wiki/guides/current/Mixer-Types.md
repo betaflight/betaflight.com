@@ -31,3 +31,9 @@ _Note: The above graph is the ideal scenario of dynamic mixer, but the actual re
 **LINEAR** will start changing throttle earlier in order to prevent these steep transitions at the end. In other words it smooths out the thrust increase/decrease for desired correction.
 
 **DYNAMIC** This is another experimental mixer variation of mixer from tylercorleone. It behaves very similar to linear mixer, but much smarter. When all of the PIDsum comes from single axis it will behave exactly same as linear mixer, but when PIDsum to mixer is combined from other axes the mixer will adapt itself to stay closer to requested throttle level.
+
+### **Mixer type EZLANDING:**
+
+**set mixer_type = EZLANDING** \<--- to enable
+
+Please reference Betaflight 4.5 Release Notes for [EzLanding settings](https://betaflight.com/docs/wiki/release/betaflight-4-5-release-notes#12-ezlanding).
