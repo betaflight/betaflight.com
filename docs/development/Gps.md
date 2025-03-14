@@ -164,7 +164,7 @@ Set to `Dynamic Model` to `Airborne <1g` and click `Send`.
 
 This enables sanity checks for a maximum altitude of 50,000m, maximum vertical or horizontal speed of 100m/s. Any measurement outside these would invalidate the fix as they are not plausible.
 
-Betaflight on auto-config will use `Stationary` before arming and `Airborne <4g` after arming.
+Betaflight on auto-config will use `Stationary` before arming and `Airborne <1g` after arming.
 
 It is recommended to use Airborne \<1g, but consult the u-blox documentation for sanity checks.
 
