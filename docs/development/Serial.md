@@ -26,8 +26,8 @@ Drivers will usually need to be installed to suit the adapter's chipset.
 
 Examples:
 
-- [FT232RL FTDI USB To TTL Serial Converter Adapter](http://www.banggood.com/FT232RL-FTDI-USB-To-TTL-Serial-Converter-Adapter-Module-For-Arduino-p-917226.html)
-- [USB To TTL / COM Converter Module buildin-in CP2102](http://www.banggood.com/Wholesale-USB-To-TTL-Or-COM-Converter-Module-Buildin-in-CP2102-New-p-27989.html)
+- [FT232RL FTDI USB To TTL Serial Converter Adapter](https://www.google.com/search?q=FT232RL+FTDI+USB+To+TTL+Serial+Converter+Adapter)
+- [USB To TTL / COM Converter Module CP2102](https://www.google.com/search?q=USB+To+TTL+%2F+COM+Converter+Module++CP2102)
 
 Both SoftSerial and UART ports can be connected to your computer via USB to UART converter boards. In general, SoftSerial ports should not be used for this purpose, and Betaflight 4.5 and higher will not allow SoftSerial ports to be used for MSP connections.
 
