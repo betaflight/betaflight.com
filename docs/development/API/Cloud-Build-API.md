@@ -105,7 +105,12 @@ EMFAT_AUTORUN
 EMFAT_ICON
 EMFAT_TOOLS
 ESCSERIAL_SIMONK
+GIMBAL
+OPTICALFLOW
+OPTICALFLOW_MT
 OSD_QUICK_MENU
+RANGEFINDER
+RANGEFINDER_MT
 RC_STATS
 RPM_LIMIT
 SPEC_PREARM_SCREEN
@@ -113,7 +118,7 @@ SPEC_PREARM_SCREEN
 
 ### RACE_PRO Define
 
-There is a special RACE_PRO define which combines the following defines as one feature pack:
+There is a special `RACE_PRO` define which combines the following defines as one feature pack:
 
 ```
 OSD_QUICK_MENU
@@ -124,7 +129,7 @@ SPEC_PREARM_SCREEN
 
 ### WING Define
 
-There is a special USE_WING define which combines the following defines as one feature pack:
+There is a special `WING` define which combines the following defines as one feature pack:
 
 ```
 ADVANCED_TPA
@@ -139,4 +144,10 @@ INTEGRATED_YAW_CONTROL
 LAUNCH_CONTROL
 RUNAWAY_TAKEOFF
 YAW_SPIN_RECOVERY
+```
+
+### Defines for non compliant Smart Audio
+
+```
+SMARTAUDIO_NOPULLDOWN (STM32F4)
 ```
