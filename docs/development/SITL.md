@@ -20,6 +20,8 @@ Please also check [Vehicle Gateway](https://github.com/osrf/vehicle_gateway)
 
 Run `make TARGET=SITL`
 
+Start Betaflight: `./obj/main/betaflight_SITL.elf`
+
 ### Betaflight Web App
 
 Starting from Betaflight 4.6 online configurator is required which uses websockets for communication with SITL.
@@ -33,7 +35,9 @@ make
 ./websockify 127.0.0.1:6761 127.0.0.1:5761
 ```
 
-Establish a connection using address `ws://127.0.0.1:6761`.
+Open the Betaflight Online Configurator, and in Options enable "manual connection mode"
+
+Then establish a connection by putting address `ws://127.0.0.1:6761` in the Port field
 
 ### Settings
 
@@ -46,7 +50,7 @@ In `configuration` page:
 
 ### Start and Run
 
-1. Start Betaflight: `./obj/main/betaflight_SITL.elf`
+1. Start Betaflight if it's not already running: `./obj/main/betaflight_SITL.elf`
 2. Start Gazebo: `gazebo --verbose ./iris_arducopter_demo.world`
 3. Connect your transmitter and fly/test, used app to send `MSP_SET_RAW_RC`, see [code](https://github.com/cs8425/msp-controller).
 
