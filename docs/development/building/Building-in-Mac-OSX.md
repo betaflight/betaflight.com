@@ -1,3 +1,9 @@
+---
+sidebar_position: 3
+sidebar_label: Building in Mac OS X
+title: Building in Mac OS X
+---
+
 # Building in Mac OS X
 
 Building in Mac OS X can be accomplished in just a few steps:

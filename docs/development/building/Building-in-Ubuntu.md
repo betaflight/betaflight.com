@@ -1,3 +1,9 @@
+---
+sidebar_position: 1
+sidebar_label: Building in Ubuntu
+title: Building in Ubuntu
+---
+
 # Building in Ubuntu
 
 Building for Ubuntu platform is remarkably easy.
@@ -7,7 +13,7 @@ This document is tested and based on Ubuntu 24.04 LTS release and can also be us
 
 ```
 $ sudo apt update && sudo apt upgrade
-$ sudo apt install build-essential libblocksruntime-dev libtool git curl clang-18
+$ sudo apt install build-essential libblocksruntime-dev libtool git curl clang-18 python3 python-is-python3
 $ git clone https://github.com/betaflight/betaflight.git
 $ cd betaflight
 $ make arm_sdk_install
