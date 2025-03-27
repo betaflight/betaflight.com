@@ -32,7 +32,7 @@ wsl.exe --install Ubuntu-24.04
 shutdown.exe /r /f /t 5
 ```
 
-After Ubuntu (WSL) is installed, use the Start Menu to search for and run Ubuntu 24.04.
+After Ubuntu (WSL) is installed, use the Start Menu to search for and run Ubuntu 24.04. You will be prompted to create a new username and password upon first launch. Linux is case sensitive, so use a lowercase username.
 
 :::tip
 It will be the developers option to create a project-folder. Although not necessary, some examples might be a folder named `Git`, or `Github` or `My-Projects`. In your `bash` terminal, create a folder with `mkdir [foldername]` and change to that folder with `cd [foldername]`.
