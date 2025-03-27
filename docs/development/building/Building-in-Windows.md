@@ -12,27 +12,59 @@ The official Microsoft instruction to install WSL is https://msdn.microsoft.com/
 
 ## Install the Ubuntu (WSL) in Windows 11
 
-Enable WSL2 by opening "Control Panel", "Programs", "Turn Windows features on or off", selecting "Windows Subsystem for Linux", "Hyper-V" and press OK. Reboot if required.
+Open any one of `Windows Terminal`, `Command Prompt` (CMD) or `PowerShell` with elevated privileges. I.e. Search for `Terminal`, `PowerShell`, or `CMD` and select "Run As Administrator".
 
-From the Microsoft Store, install the latest Ubuntu LTS (Long Term Support). Reboot if required.
+Execute the following commands in order:
 
-Launch from windows search your Ubuntu, by typing Ubuntu. In the bash screen that opens add a user (lower case) and password.
+```
+dism.exe /online /enable-feature /featurename:Microsoft-Hyper-V-All /all /norestart
 
-The Linux system like Ubuntu use an "administrator" which has privileged commands and correspond to user `root` (like windows administrator) then we have regular users we can name as we want. Let's enable administrator!! In a command prompt type `wsl -u root`, then type `passwd root` and set your root password.
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
-In the bash window type `AllowRoot=true`.
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 
-Login as root typing "su root" and login with your root password
+wsl.exe --install --no-distribution
 
-Before proceeding, edit WSL's DNS resolution with `sudo nano /etc/resolv.conf` and replace nameserver ip with Google's `8.8.8.8`. Type `Ctrl + o` to save and `Ctrl + x` to exit. WSL usually creates a nameserver with dummy 172.xxx.xxx.xxx (Class B network) that doesn't work on public network.
+wsl.exe --update
 
-Please note that it will be the developers option to create a project-folder. Although not necessary, some examples might be a folder named `Git`, or `Github` or `My-Projects`. In your `bash` terminal, create a folder with `mkdir [foldername]` and change to that folder with `cd [foldername]`. Example:
+wsl.exe --install Ubuntu-24.04
+
+shutdown.exe /r /f /t 5
+```
+
+After Ubuntu (WSL) is installed, use the Start Menu to search for and run Ubuntu 24.04.
+
+:::tip
+It will be the developers option to create a project-folder. Although not necessary, some examples might be a folder named `Git`, or `Github` or `My-Projects`. In your `bash` terminal, create a folder with `mkdir [foldername]` and change to that folder with `cd [foldername]`.
+
+Example:
 
 ```
 mkdir Git
 cd Git
 ```
 
-**Note:** The file system mapping of WSL is mounted into `Ubuntu 22.0.4 //wsl/localhost` . They are accessible, but they are mounted with `root:root` permissions. This causes permission issues with a lot of things and leads to errors when trying to build Betaflight from a repository that was cloned in Linux on a local disk under Windows. Therefore, always access, modify and build from the Ubuntu bash. Example folder: `\\wsl.localhost\Ubuntu-22.04\home\username\Git\betaflight`.
+:::
 
-Once you have `bash` On Windows running you can follow the "[Building in Ubuntu](Building-in-Ubuntu)" instructions for building Betaflight.
+:::note
+Linux systems like Ubuntu use an administrator account named `root` which has privileged rights. Regular users can elevate to root privileges with the `sudo` command.
+
+If your newly created user has issue with sudo or otherwise does not have privileges, please refer to option 2 or 3 here: https://www.tenforums.com/tutorials/128094-add-remove-list-sudo-users-wsl-linux-distro-windows-10-a.html#option2
+:::
+
+:::note
+If you have Internet connectivity issues from within Ubuntu (WSL), then please solve using some of these methods: https://www.google.com/search?hl=en&q=wsl%20no%20internet%20on%20public%20network.
+
+Specifically substituting DNS resolution nameservers with known good DNS servers like 1.1.1.1 (Cloudflare), 8.8.8.8 (Google), or 208.67.222.222 (OpenDNS).
+:::
+
+:::info
+The file system mapping of WSL is mounted into `Ubuntu 22.0.4 //wsl/localhost` . They are accessible, but they are mounted with `root:root` permissions. This causes permission issues with a lot of things and leads to errors when trying to build Betaflight from a repository that was cloned in Linux on a local disk under Windows. Therefore, always access, modify and build from the Ubuntu `bash` terminal.
+Example folder: `\\wsl.localhost\Ubuntu-22.04\home\username\Git\betaflight`.
+:::
+
+:::info
+It is not recommended to run WSL inside of a Windows VM (Hypervisor Guest) as the performance will be degraded.. If you choose to do so, you will required to enable the `Virtualize Intel VT-x/EPT or AMD-RVI` option or similar in the hypervisor's VM options.
+:::
+
+Once you have Ubuntu (WSL) `bash` running properly on Windows, you can follow the "[Building in Ubuntu](Building-in-Ubuntu)" instructions for building Betaflight.
