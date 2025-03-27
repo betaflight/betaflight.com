@@ -46,6 +46,8 @@ cd Git
 
 :::
 
+Once you have Ubuntu (WSL) `bash` running properly on Windows, you can follow the "[Building in Ubuntu](Building-in-Ubuntu)" instructions for building Betaflight.
+
 :::note
 Linux systems like Ubuntu use an administrator account named `root` which has privileged rights. Regular users can elevate to root privileges with the `sudo` command.
 
@@ -64,7 +66,5 @@ Example folder: `\\wsl.localhost\Ubuntu-22.04\home\username\Git\betaflight`.
 :::
 
 :::info
-It is not recommended to run WSL inside of a Windows VM (Hypervisor Guest) as the performance will be degraded.. If you choose to do so, you will required to enable the `Virtualize Intel VT-x/EPT or AMD-RVI` option or similar in the hypervisor's VM options.
+It is not recommended to run WSL inside of a Windows VM (Hypervisor Guest) as the performance will be degraded. If you choose to do so, you will required to enable the `Virtualize Intel VT-x/EPT or AMD-RVI` option or similar in the hypervisor's VM options.
 :::
-
-Once you have Ubuntu (WSL) `bash` running properly on Windows, you can follow the "[Building in Ubuntu](Building-in-Ubuntu)" instructions for building Betaflight.
