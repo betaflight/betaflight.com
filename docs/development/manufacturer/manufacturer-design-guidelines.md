@@ -171,11 +171,11 @@ For connector pinout please refer to the [Betaflight Connector Standard](connect
 
 ### 3.1.2 Inertial Measurement Unit (IMU) Selection
 
-Selecting an appropriate IMU for flight controller operation is critical to the resulting flight performance of systems. Proven examples of hardware using single InvenSense MPU-6000, single or dual ICM-20602, and also Bosch BMI-270 and BMI-180 units have been successfully demonstrated to operate with Betaflight, although the latter two examples have required significant development effort to bring performance of the IMU gyroscope and accelerometer sensing behaviors up to the standards required to maximize flight performance.
+Selecting the right IMU for a flight controller is crucial for optimal flight performance. The InvenSense MPU-6000, the long-time standard, has reached end-of-life. As a replacement, we strongly recommend the ICM-42688-P (see below). Note that gyroscopes must communicate via SPI; I2C gyros are not supported. Legacy models such as the MPU-6500 will not be accepted. 
 
 :::note
 
-We do not recommend using the Bosch BMI-270 IMU, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used.
+We do not recommend using the Bosch BMI-270 IMU, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used. New designs using this gyro will not be approved. 
 
 :::
 
@@ -196,7 +196,7 @@ The IMU sensors, designed for applications outside of sUAS, are typically subjec
 
 #### Advised power supply design for ICM-42xxx IMU. (also applies to others)
 
-These IMU require a stable and clean power supply to function correctly, provided with this they are very capable IMU for flight controller use.  
+These IMU require a stable and clean power supply to function correctly, provided with this they are very capable IMU for flight controller use.  Refer to the datasheets for recommended power filtering / bypass caps. 
 Peak to peak noise of under 50uV on the supply should be the ideal goal.  
 Considerations for a suitable LDO are at least 500mA rated output allowing for extra capacitors on the output, two 20nF.  
 A PSRR >70dB down as low as 1Hz is preferred.  
