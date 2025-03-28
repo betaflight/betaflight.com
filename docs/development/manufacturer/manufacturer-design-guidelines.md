@@ -647,6 +647,8 @@ See reference to [cloud build API](/docs/development/API/Cloud-Build-API)
 
 - Betaflight is an open source flight controller software (firmware) used to fly multi-rotor and fixed wing aircraft.
 
+- The Betaflight name and logos are registered trademarks and may not be used in any commercial products or services without prior approval from the project.
+
 - Betaflight is a fork of Baseflight and Cleanflight, with an emphasis focused on flight performance, leading-edge feature additions, and wide target support. Combining cutting edge flight performance with diverse hardware support, Betaflight is the leading solution for high performance small unmanned aircraft.
 
 - This project is operated and maintained by volunteers, with community support from pilots with a diverse range of flight goals.
