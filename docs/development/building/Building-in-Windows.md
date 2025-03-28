@@ -25,7 +25,11 @@ wsl.exe --update
 shutdown.exe /r /f /t 5
 ```
 
-After reboot, open an elevated terminal again and run the following commands:
+After reboot, continue with the following steps.
+
+By default WSL is configured for 2GB memory usage. Use the Start-menu to search for and open `WSL Settings`. Increase WSL's `Memory Size` to at least `4096`. (Note, some targets will compile with only 2048, but newer G4 and H7 may not.)
+
+Open an elevated terminal again and run the following commands:
 
 ```
 wsl.exe --install Ubuntu-24.04
