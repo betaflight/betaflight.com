@@ -20,8 +20,6 @@ Please also check [Vehicle Gateway](https://github.com/osrf/vehicle_gateway)
 
 Run `make TARGET=SITL`
 
-Start Betaflight: `./obj/main/betaflight_SITL.elf`
-
 ### Betaflight Web App
 
 Starting from Betaflight 4.6 online configurator is required which uses websockets for communication with SITL.
