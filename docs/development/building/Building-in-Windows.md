@@ -26,7 +26,7 @@ shutdown.exe /r /f /t 5
 ```
 
 :::tip
-WSL is configured for to use half your physical RAM by default. Newer targets such as G4 and H7 may require 4GB memory. Use the Start-menu to search for and open `WSL Settings`. Increase WSL's `Memory Size` to at least `4096` if not already set. (Note, some targets such as F4 and F7 will compile with only 2GB.)
+WSL is configured for to use half your physical RAM by default. Newer targets such as G4 and H7 may require 4GB memory or more. Use the Start-menu to search for and open `WSL Settings`. Increase WSL's `Memory Size` to at least `4096` if not already set. Alternatively, when building targets, use the `-j` parameter with the `make` command to reduce memory usage. Example: `make -j 2 [target]`. (Note, some targets such as F4 and F7 will compile with only 2GB.)
 :::
 
 After reboot, open an elevated terminal again and run the following commands:
