@@ -2,7 +2,7 @@
 
 The following new requirements for pull requests adding new targets or modifying existing targets are put in place from now on:
 
-1. Hardware must comply with the [Manufacturer Design Guidelines](manufacturer-design-guidelines). Bad hardware designs will not be accepted as described in the [Config Target Guidance](config-target-guidance).
+1. Hardware must comply with the [Manufacturer Design Guidelines](manufacturer-design-guidelines). Bad hardware designs will not be accepted as described in the [Config Target Guidance](config-target-guidance). To avoid costly issues and delays, **please consult the Betaflight developers early in the design process.**
 
 2. New manufacturers are required to be added to the `Manufacturers.md` list in https://github.com/betaflight/config.
 

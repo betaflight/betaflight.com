@@ -25,7 +25,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 | Draft 0.5 | 24 October 2022  | Add additional information        |
 | Draft 0.6 | 06 November 2022 | Add cloud build information       |
 | Draft 0.7 | 17 November 2022 | Remove off-board hardware defines |
-| Draft 0.8 | 01 January 2023  | Update baro and CC2500            |
+| Draft 0.8 | 01 January 2023  | Update Baro and CC2500            |
 | Draft 0.9 | 14 January 2023  | Add FC LEDs                       |
 | Draft 1.0 | 26 January 2023  | Add Signal Rules                  |
 | Draft 1.1 | 10 December 2023 | Add LSM6DSV16X and LPS22DF        |
@@ -33,7 +33,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 | Draft 1.3 | 23 October 2024  | Update MCU recommendations        |
 | Draft 1.4 | 06 November 2024 | Add LED pin resource warning      |
 | Draft 1.5 | 13 January 2025  | Update ADC/gyro recommendations   |
-| Draft 1.6 | 18 Febrary 2025  | Add W25N02K flash define          |
+| Draft 1.6 | 18 February 2025 | Add W25N02K flash define          |
+| Draft 1.7 | 27 March 2025    | Update FC review policy           |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -46,6 +47,8 @@ Sharing schematics/layouts with the reviewers will also be beneficial and improv
 This provides the Betaflight team with an opportunity to ensure that the hardware and firmware behave 100% as expected in the representative configuration, as well as support verification of custom defaults required for firmware operation. After-sales support to customers from members of the Betaflight team are also made possible for reproducing end user issues.
 
 Additional benefits are also present in the form of allowing experienced active pilots with backgrounds in engineering of these systems to assist with aspects of the development process particularly in respect to real world use the products will be subjected to.
+
+Note: Manufacturers may use the same target for multiple flight controller designs; however, **all new flight controllers must undergo the review process**, regardless of whether they use an existing target.
 
 Finally, we will offer a ’Betaflight approved’ product list on the Betaflight GitHub to advise the userbase on electronics which both follow our ‘best practice’ guidance, and which have been tested by our development team. This will be available for flight controller hardware, as well as electronic speed controller stacks, AIOs, and ready-to-fly craft. This strategy is designed to help both developers optimize their hardware and our user base get directed to optimal hardware, and reduce support requests for the Betaflight team who serve a user base of over a hundred thousand users.
 
@@ -168,7 +171,7 @@ For connector pinout please refer to the [Betaflight Connector Standard](connect
 
 ### 3.1.2 Inertial Measurement Unit (IMU) Selection
 
-Selecting an appropriate IMU for flight controller operation is critical to the resulting flight performance of systems. Proven examples of hardware using single Invensense MPU-6000, single or dual ICM-20602, and also Bosch BMI-270 and BMI-180 units have been successfully demonstrated to operate with Betaflight, although the latter two examples have required significant development effort to bring performance of the IMU gyroscope and accelerometer sensing behaviors up to the standards required to maximize flight performance.
+Selecting an appropriate IMU for flight controller operation is critical to the resulting flight performance of systems. Proven examples of hardware using single InvenSense MPU-6000, single or dual ICM-20602, and also Bosch BMI-270 and BMI-180 units have been successfully demonstrated to operate with Betaflight, although the latter two examples have required significant development effort to bring performance of the IMU gyroscope and accelerometer sensing behaviors up to the standards required to maximize flight performance.
 
 :::note
 
@@ -205,7 +208,7 @@ Where space allows, a dedicated LDO and circuit is advised for the IMU. For ICM-
 
 **Barometer selection**
 
-The Bosch BMP280 is a commonly used barometer. The 'real' unit is marked "Bosch BMP280" on the metal case. Sometimes it is replaced with a 'clone' which mimic the BMP280 in appearance, and reports the same i2C address and data structures, so that they show up as being a BMP280 in Betaflight. Manufacturers should only say that a board has a BMP280 barometer if it is a 'real' Bosch manufactured barometer. If a clone of the BMP280 is used, the name of the barometer used must be shown, eg A7L01, ASK03, and the manufacturer must confirm that the clone is as accurate as the original Bosch BMP280.
+The Bosch BMP280 is a commonly used barometer. The 'real' unit is marked "Bosch BMP280" on the metal case. Sometimes it is replaced with a 'clone' which mimic the BMP280 in appearance, and reports the same i2C address and data structures, so that they show up as being a BMP280 in Betaflight. Manufacturers should only say that a board has a BMP280 barometer if it is a 'real' Bosch manufactured barometer. If a clone of the BMP280 is used, the name of the barometer used must be shown, e.g. A7L01, ASK03, and the manufacturer must confirm that the clone is as accurate as the original Bosch BMP280.
 
 The recommended i2C address for the BMP280 is 0x76, with SDO grounded, permitting automatic address identification by Betaflight.
 
@@ -291,7 +294,7 @@ FCs should implement at least one LED to indicate activity. The second is prefer
 
 Each LED should be connected to a GPIO line. Polarity of the output does not matter.
 
-| LED Number | Colour | Required   |
+| LED Number | Color  | Required   |
 | :--------- | :----- | :--------- |
 | 0          | Blue   | Yes        |
 | 1          | Green  | Preferably |
@@ -303,7 +306,7 @@ For details of the use of these LEDs, please see the [FC LEDs](/docs/development
 
 Pin PC13, PC14 and PC15 are supplied through the power switch. Since the switch only sinks a limited amount of current (3 mA), the use of GPIOs PC13 to PC15 in output mode is limited:
 
-- The speed should not exceed 2 Mhz with a maximum load of 30 pF
+- The speed should not exceed 2 MHz with a maximum load of 30 pF
 - These GPIOs must not be used as current sources (e.g. to drive an LED).
 
 :::
@@ -345,7 +348,9 @@ TIM1 has inter-peripheral connectivity that other timers do not have.
 
 Appropriate resource allocation ensures maximum flexibility in the selection of the modes available to users (for example with DSHOT) and also minimizes conflicts in timer and DMA stream allocation.
 
-Assign motor channels with highest priority …
+Assign motor channels with highest priority.
+
+Note: As of December 2024, STM32F4 and STM32F7 MCUs are limited to 4 motor outputs. 
 
 #### 3.2.1.1 F4 Resource Selection
 
@@ -360,14 +365,14 @@ Bitbanged DShot communication protocol will always use Timer 1 and Timer 8 - do 
 Further reading: Section 2.1.10 of the errata at
 https://www.st.com/resource/en/errata_sheet/dm00037591-stm32f405407xx-and-stm32f415417xx-device-limitations-stmicroelectronics.pdf
 
-Corruption may occur on DMA2 if AHB peripherals (e.g. GPIO ports) are accessed concurrently with APB peripherals (eg SPI busses).
+Corruption may occur on DMA2 if AHB peripherals (e.g. GPIO ports) are accessed concurrently with APB peripherals (e.g. SPI busses).
 Practically, this means that all pins should be on the same port, or at most two ports, so that only one (or two) DMA streams are required for bitbanged operation.
 
 - Additional Recommendations:
 
-  Use A00 for LED Strip (diatone fury resources insert as example)
+  Use A00 for LED Strip (Diatone Fury resources insert as example)
 
-  Use pins PA13 and 14 for debug options. Including test point pads (these can by tiny) as well as the necessary 3.3v/Ground pads is strongly recommended.
+  Use pins PA13 and PA14 for debug options. Including test point pads (these can by tiny) as well as the necessary 3.3v/Ground pads is strongly recommended.
 
   The DIAT-FURYF4OSD is a good example configuration for F405 boards, because it uses pins with timers that do not experience any conflicts. Motors are on port pins with associated timers and use neither TIM 1 nor N Channels.
 
