@@ -61,7 +61,7 @@ Specifically substituting DNS resolution nameservers with known good DNS servers
 
 :::info
 The file system mapping of WSL is mounted into `Ubuntu 24.04 //wsl/localhost` . They are accessible, but they are mounted with `root:root` permissions. This causes permission issues with a lot of things and leads to errors when trying to build Betaflight from a repository that was cloned in Linux on a local disk under Windows. Therefore, always access, modify and build from the Ubuntu `bash` terminal.
-Example folder: `\\wsl.localhost\Ubuntu-22.04\home\username\Git\betaflight`.
+Example folder: `\\wsl.localhost\Ubuntu-24.04\home\username\Git\betaflight`.
 :::
 
 :::info
