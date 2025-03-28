@@ -33,7 +33,9 @@ make
 ./websockify 127.0.0.1:6761 127.0.0.1:5761
 ```
 
-Establish a connection using address `ws://127.0.0.1:6761`.
+Open the Betaflight Online Configurator, and in Options enable "manual connection mode"
+
+Then establish a connection by using address `ws://127.0.0.1:6761` in the Port field and clicking Connect.
 
 ### Settings
 
