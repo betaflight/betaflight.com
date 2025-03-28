@@ -18,21 +18,20 @@ Execute the following commands in order:
 
 ```
 dism.exe /online /enable-feature /featurename:Microsoft-Hyper-V-All /all /norestart
-
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-
 wsl.exe --install --no-distribution
-
 wsl.exe --update
-
-wsl.exe --install Ubuntu-24.04
-
 shutdown.exe /r /f /t 5
 ```
 
-After Ubuntu (WSL) is installed, use the Start Menu to search for and run Ubuntu 24.04. You will be prompted to create a new username and password upon first launch. Linux is case sensitive, so use a lowercase username.
+After reboot, open an elevated terminal again and run the following commands:
+
+```
+wsl.exe --install Ubuntu-24.04
+```
+
+After Ubuntu (WSL) is installed, use the Start Menu to search for and run Ubuntu 24.04. It may take some time for the menu index to update. Upon launching Ubuntu, you will be prompted to create a new username and password. Linux is case sensitive, so use a lowercase username.
 
 :::tip
 It will be the developers option to create a project-folder. Although not necessary, some examples might be a folder named `Git`, or `Github` or `My-Projects`. In your `bash` terminal, create a folder with `mkdir [foldername]` and change to that folder with `cd [foldername]`.
@@ -61,7 +60,7 @@ Specifically substituting DNS resolution nameservers with known good DNS servers
 :::
 
 :::info
-The file system mapping of WSL is mounted into `Ubuntu 22.0.4 //wsl/localhost` . They are accessible, but they are mounted with `root:root` permissions. This causes permission issues with a lot of things and leads to errors when trying to build Betaflight from a repository that was cloned in Linux on a local disk under Windows. Therefore, always access, modify and build from the Ubuntu `bash` terminal.
+The file system mapping of WSL is mounted into `Ubuntu 24.04 //wsl/localhost` . They are accessible, but they are mounted with `root:root` permissions. This causes permission issues with a lot of things and leads to errors when trying to build Betaflight from a repository that was cloned in Linux on a local disk under Windows. Therefore, always access, modify and build from the Ubuntu `bash` terminal.
 Example folder: `\\wsl.localhost\Ubuntu-22.04\home\username\Git\betaflight`.
 :::
 
