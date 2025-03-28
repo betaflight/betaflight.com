@@ -6,7 +6,7 @@ title: Building in Windows
 
 # Building on Windows 11 using the Linux Subsystem
 
-A new feature in since Windows 10 allows any developer to quickly and easily run an entire Linux subsystem in Windows (WSL) and access it via a `bash` terminal. This gives developers full use of the entire Linux OS and all of the great existing Linux tools and programs. When Bash for Windows is up and running it feels like you ssh'd into a full Linux box, except the Linux distro is actually running alongside Windows locally.
+Since Windows 10, there is a new feature that allows any developer to quickly and easily run a complete Linux subsystem in Windows (WSL) and access it via a `bash` terminal. This gives developers full use of the entire Linux OS and all of the great existing Linux tools and programs. When Bash for Windows is up and running it feels like you ssh'd into a full Linux box, except the Linux distro is actually running alongside Windows locally.
 
 The official Microsoft instruction to install WSL is https://msdn.microsoft.com/commandline/wsl/install_guide; However, we will include our own instructions below.
 
