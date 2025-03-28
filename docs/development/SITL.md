@@ -48,7 +48,7 @@ In `configuration` page:
 
 ### Start and Run
 
-1. Start Betaflight if it's not already running: `./obj/main/betaflight_SITL.elf`
+1. Start Betaflight in terminal: `./obj/main/betaflight_SITL.elf`
 2. Start Gazebo: `gazebo --verbose ./iris_arducopter_demo.world`
 3. Connect your transmitter and fly/test, used app to send `MSP_SET_RAW_RC`, see [code](https://github.com/cs8425/msp-controller).
 
