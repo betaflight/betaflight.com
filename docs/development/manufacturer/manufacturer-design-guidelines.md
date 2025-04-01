@@ -206,25 +206,44 @@ Where space allows, a dedicated LDO and circuit is advised for the IMU. For ICM-
 
 ### 3.1.3 Other Sensors
 
+#### 3.1.4.1 I2C Devices and I2C Buses
+
+Barometers and magnetometers should use I2C, not SPI. Betaflight operates with a fast (800 kHz) I2C bus speed by default, making proper pull-up resistor selection critical to prevent signal loss. The optimal pull-up values depend on bus capacitance, but 4.7kΩ is a recommended starting point.
+I2C is a shared bus, meaning multiple devices can communicate over the same two-wire interface (SCL and SDA). However, for reliable communication, careful attention must be given to signal integrity and noise immunity. Excessive bus capacitance, improper PCB layout, or insufficient pull-up resistance can lead to communication errors or device malfunctions.
+
+When designing a flight controller with I2C sensors, manufacturers should:
+
+Keep I2C traces as short as possible to minimize capacitance and signal degradation.
+
+Use a ground plane beneath I2C traces to reduce noise and improve signal integrity.
+
+Avoid routing I2C traces near high-noise sources such as motor drivers and power regulation circuits.
+
+Select appropriate pull-up resistor values based on the number of devices and overall bus capacitance. In cases where multiple devices share the bus, adjusting pull-up values (e.g., lowering to 2.2kΩ or raising to 10kΩ) may be necessary to achieve optimal signal quality.
+
+Additionally, manufacturers should test the stability of the I2C bus under realistic operating conditions, including different temperature and voltage scenarios, to ensure robustness and reliability in flight.
+
 **Barometer selection**
 
-The Bosch BMP280 is a commonly used barometer. The 'real' unit is marked "Bosch BMP280" on the metal case. Sometimes it is replaced with a 'clone' which mimic the BMP280 in appearance, and reports the same i2C address and data structures, so that they show up as being a BMP280 in Betaflight. Manufacturers should only say that a board has a BMP280 barometer if it is a 'real' Bosch manufactured barometer. If a clone of the BMP280 is used, the name of the barometer used must be shown, e.g. A7L01, ASK03, and the manufacturer must confirm that the clone is as accurate as the original Bosch BMP280.
+The Bosch BMP280 is a commonly used barometer. The 'real' unit is marked "Bosch BMP280" on the metal case. Sometimes it is replaced with a 'clone' which mimic the BMP280 in appearance, and reports the same I2C address and data structures, so that they show up as being a BMP280 in Betaflight. Manufacturers should only say that a board has a BMP280 barometer if it is a 'real' Bosch manufactured barometer. If a clone of the BMP280 is used, the name of the barometer used must be shown, e.g. A7L01, ASK03, and the manufacturer must confirm that the clone is as accurate as the original Bosch BMP280.
 
-The recommended i2C address for the BMP280 is 0x76, with SDO grounded, permitting automatic address identification by Betaflight.
-
-The plastic-cased, individually calibrated Infineon DPS310 provides a significant improvement in absolute and relative altitude accuracy, and much lower noise levels, compared to the BMP280. Each individual Infineon DPS310 is programmed with custom temperature correction coefficients at the time of its manufacture, ensuring exceptionally accurate temperature measurement, and thereby very accurate pressure measurement in response to temperature changes.
-
-Unfortunately, we note that many manufacturers are using 'clones' of the DPS310, typically with an integral metal case that has a small hole. Because these devices report the same i2C ID as the 'real' DPS310, and use the same control and data registers, Betaflight reports them as being DPS310's, and will return pressure values. However, unlike the real DPS310, logging has shown that these clones typically report incorrect temperature readings, most likely because the custom temperature coefficients for the chip are not written individually at production time. Incorrect temperature readings may lead to altitude errors. A number users have reported inappropriate barometer readings with these clones.
-
-The Infineon DPS310 was updated to the Infineon DPS368 in late 2019, and the DPS368 has even greater accuracy than the DPS310.
+The recommended I2C address for the BMP280 is 0x76, with SDO grounded, permitting automatic address identification by Betaflight.
 
 :::note
 
-Metal-cased clones of the DPS310 barometer should NOT be used unless they report temperature accurately
+If only one I2C bus is available and shared between an onboard barometer and an external connector for a magnetometer or other device, it is advisable to include a method for changing the barometer’s I2C address in case of conflicts. This can be achieved by incorporating jumper pads or a zero-ohm resistor, allowing for easy reconfiguration. Providing this flexibility ensures broader compatibility with external sensors and prevents address conflicts that could disrupt communication. 
 
-Manufacturers who use clones of the Infineon DPS310 barometer MUST NOT claim that their barometer is a DPS310.
+:::
 
-We strongly recommend the latest Infineon DPS368 barometer, or the earlier Infineon DPS310, both of which are marked 'Infineon' and are supplied in a plastic case.
+The plastic-cased, individually calibrated Infineon DPS310 provides a significant improvement in absolute and relative altitude accuracy, and much lower noise levels, compared to the BMP280. Each individual Infineon DPS310 is programmed with custom temperature correction coefficients at the time of its manufacture, ensuring exceptionally accurate temperature measurement, and thereby very accurate pressure measurement in response to temperature changes.
+
+Unfortunately, we note that many manufacturers are using 'clones' of the DPS310, typically with an integral metal case that has a small hole. Because these devices report the same I2C ID as the 'real' DPS310, and use the same control and data registers, Betaflight reports them as being DPS310's, and will return pressure values. However, unlike the real DPS310, logging has shown that these clones typically report incorrect temperature readings, most likely because the custom temperature coefficients for the chip are not written individually at production time. Incorrect temperature readings may lead to altitude errors. A number users have reported inappropriate barometer readings with these clones.
+
+The Infineon DPS310 was replaced with the Infineon DPS368 in late 2019, and the DPS368 has even greater accuracy than the DPS310.
+
+:::note
+
+Metal-cased clones of the DPS310 barometer should NOT be used unless they report temperature accurately. Manufacturers who use clones of the Infineon DPS310 barometer MUST NOT claim that their barometer is a DPS310. We strongly recommend the latest Infineon DPS368 barometer, or the earlier Infineon DPS310, both of which are marked 'Infineon' and are supplied in a plastic case.
 
 :::
 
@@ -238,13 +257,13 @@ The use of magnetometers with non-standard axis orientations is not recommended.
 
 :::
 
-Note also that the IST8310 magnetometer can be configured with any one of four i2C addresses. Betaflight will only connect to the IST8310 automatically if the default i2C address of 0x0C is used. If any of the other three i2C addresses (0x0D, 0x0E, 0x0F) are used, the user will need to custom enter either 13, 14 or 15 as the `mag_i2c_address` value, or it will not work.
+Note also that the IST8310 magnetometer can be configured with any one of four I2C addresses. Betaflight will only connect to the IST8310 automatically if the default I2C address of 0x0C is used. If any of the other three I2C addresses (0x0D, 0x0E, 0x0F) are used, the user will need to custom enter either 13, 14 or 15 as the `mag_i2c_address` value, or it will not work.
 
 The QMC5883L has 'normal' axis orientation and works well.
 
 :::note
 
-Where a barometer or magnetometer has a configurable i2C address, always use the default address, so that it can be automatically detected in Betaflight
+Where a barometer or magnetometer has a configurable I2C address, always use the default address, so that it can be automatically detected in Betaflight
 
 :::
 
