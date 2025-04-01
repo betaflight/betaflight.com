@@ -214,13 +214,13 @@ I2C is a shared bus, meaning multiple devices can communicate over the same two-
 
 When designing a flight controller with I2C sensors, manufacturers should:
 
-Keep I2C traces as short as possible to minimize capacitance and signal degradation.
+  - Keep I2C traces as short as possible to minimize capacitance and signal degradation.
 
-Use a ground plane beneath I2C traces to reduce noise and improve signal integrity.
+  - Use a ground plane beneath I2C traces to reduce noise and improve signal integrity.
 
-Avoid routing I2C traces near high-noise sources such as motor drivers and power regulation circuits.
+  - Avoid routing I2C traces near high-noise sources such as motor drivers and power regulation circuits.
 
-Select appropriate pull-up resistor values based on the number of devices and overall bus capacitance. In cases where multiple devices share the bus, adjusting pull-up values (e.g., lowering to 2.2kΩ or raising to 10kΩ) may be necessary to achieve optimal signal quality.
+  - Select appropriate pull-up resistor values based on the number of devices and overall bus capacitance. In cases where multiple devices share the bus, adjusting pull-up values (e.g., lowering to 2.2kΩ or raising to 10kΩ) may be necessary to achieve optimal signal quality.
 
 Additionally, manufacturers should test the stability of the I2C bus under realistic operating conditions, including different temperature and voltage scenarios, to ensure robustness and reliability in flight.
 
