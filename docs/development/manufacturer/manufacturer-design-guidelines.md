@@ -258,7 +258,7 @@ The use of magnetometers with non-standard axis orientations is not recommended.
 
 :::
 
-Note also that the IST8310 magnetometer can be configured with any one of four I2C addresses. Betaflight will only connect to the IST8310 automatically if the default I2C address of 0x0C is used. If any of the other three I2C addresses (0x0D, 0x0E, 0x0F) are used, the user will need to custom enter either 13, 14 or 15 as the `mag_i2c_address` value, or it will not work.
+Note also that the IST8310 magnetometer can be configured with any one of four I2C addresses. Betaflight will only connect to the IST8310 automatically if the default I2C address of 0x0E is used. If any of the other three I2C addresses (0x0C, 0x0D, 0x0F) are used, the user will need to custom enter either 12, 13 or 15 as the `mag_i2c_address` value, or it will not work.
 
 The QMC5883L has 'normal' axis orientation and works well.
 
