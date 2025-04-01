@@ -35,6 +35,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 | Draft 1.5 | 13 January 2025  | Update ADC/gyro recommendations   |
 | Draft 1.6 | 18 February 2025 | Add W25N02K flash define          |
 | Draft 1.7 | 27 March 2025    | Update FC review policy           |
+| Draft 1.8 | 01 April 2025    | Update I2C Device Info            |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
