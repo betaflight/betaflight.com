@@ -166,13 +166,24 @@ This enables sanity checks for a maximum altitude of 50,000m, maximum vertical o
 
 Betaflight on auto-config will use `Stationary` before arming and `Airborne <4g` after arming.
 
-It is recommended to use Airborne \<1g, but consult the u-blox documentation for sanity checks.
+It is recommended to use Airborne \<1g (see note), but consult the u-blox documentation for sanity checks.
 
 From the [u-blox protocol specification](https://www.u-blox.com/en/product-resources?query=protocol&legacy=Current):
 
 - Pedestrian - Applications with low acceleration and speed, e.g. how a pedestrian would move. Low acceleration assumed. MAX Altitude [m]: 9000, MAX Velocity [m/s]: 30, MAX Vertical, Velocity [m/s]: 20, Sanity check type: Altitude and Velocity, Max Position Deviation: Small.
 - Portable - Applications with low acceleration, e.g. portable devices. Suitable for most situations. MAX Altitude [m]: 12000, MAX Velocity [m/s]: 310, MAX Vertical Velocity [m/s]: 50, Sanity check type: Altitude and Velocity, Max Position Deviation: Medium.
 - Airborne < 1G - Used for applications with a higher dynamic range and vertical acceleration than a passenger car. No 2D position fixes supported. MAX Altitude [m]: 50000, MAX Velocity [m/s]: 100, MAX Vertical Velocity [m/s]: 100, Sanity check type: Altitude, Max Position Deviation: Large
+
+:::note
+The flight modes of 1G, 2G, 4G control the amount and type of filtering the module applies.
+
+- 1G has a lot less filtering, and seemed generally fine for long range cruising. 1G would theoretically have more accurate position updates. But it would be more succeptible to rapid or jerky position changes.
+Testing has shown that in this situation the module stops reporting a position if the amount of change exceeds the threshold.
+
+- 4G has a lot more filtering. Opposite plus/minus, more accurate at high speeds or rapid position changes. More resistent to position changing all over the place, like when doing acrobatics. Less accurate at smooth flight.
+
+- If 1G is the desired default to accommodate the probably more common long range use case with less dynamic flight, users should be advised to try 2G then 4G if they fly more dynamic as described.
+:::
 
 #### Satellite-Based Augmentation System (SBAS) settings
 
