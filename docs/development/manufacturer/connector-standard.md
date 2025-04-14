@@ -2,8 +2,6 @@ import ConnectorLogo from '/img/betaflight/connector_logo.svg'
 
 # Betaflight Connector Standard
 
-Draft Proposal for Standardized Drone Connectors
-
 ## Version Change Register
 
 | Version #   | Revision Date | Changes, Reasons, and Notes                                         |
