@@ -6,20 +6,20 @@ Draft Proposal for Standardized Drone Connectors
 
 ## Version Change Register
 
-| Version # | Revision Date | Changes, Reasons, and Notes                                         |
-| :-------- | :------------ | :------------------------------------------------------------------ |
-| Draft 0.1 | 27 April 2023 | Initial Draft Format                                                |
-| Draft 0.2 | 08 May 2023   | Added Logo and pinout correction                                    |
-| Draft 0.3 | 16 June 2024  | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD |
+| Version #   | Revision Date | Changes, Reasons, and Notes                                         |
+| :---------- | :------------ | :------------------------------------------------------------------ |
+| Draft 0.1   | 27 April 2023 | Initial Draft Format                                                |
+| Draft 0.2   | 08 May 2023   | Added Logo and pinout correction                                    |
+| Draft 0.3   | 16 June 2024  | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD |
+| Version 1.0 | 14 April 2025 | Formalize standard                                                  |
 
 ## Introduction
 
-The use of drones has increased significantly in recent years. The drone community has grown rapidly and there are now many different types of drones available on the market.
-The drone community is also very active and there are many different manufacturers of drones and components. This has led to a wide variety of drones and components that are not compatible with each other.
-This makes it difficult for users to build and maintain multi-rotor drones. With this increase comes the need for standardization.
-Standardization will help reduce confusion and ensure compatibility between components from different manufacturers, making it easier for users to build and maintain multi-rotor drones.
-Standardization would enable easier compatibility between components from different manufacturers, leading to more efficient and cost-effective and cost-effective industry.
-This proposal aims to establish a standard for drone connectors that will be wildly adopted by manufacturers and users.
+Drone usage has grown rapidly in recent years, along with a thriving community and a wide variety of drone types now available on the market. Many manufacturers produce drones and components, but the lack of standardization has led to compatibility issues between parts.
+
+This fragmentation has made it challenging for users to build and maintain multi-rotor drones. As the industry continues to expand, the need for standardized components has become increasingly clear.
+
+To address this, we have established a standard for drone connectors designed to ensure compatibility across components from different manufacturers. This standard will reduce confusion, streamline the building and maintenance process, and contribute to a more efficient and cost-effective drone industry.
 
 ## Connector Standards
 
@@ -30,7 +30,7 @@ The harness should be available from multiple sources and should be easy to obta
 
 ### JST SH Series as Standard for Connectors.
 
-JST-SH is wildly used and reliable connector that proven to be a robust choice for drone applications.
+JST-SH is a widely used and reliable connector that has proven to be a robust choice for drone applications.
 The connector should be the standard for all drone manufacturers, ensuring compatibility between components from different manufacturers.
 
 ### JST GH Series as Optional Component.
@@ -158,7 +158,7 @@ The current pin configuration for the JST SH connector is as follows:
 | 6     | Signal 3    | SBUS (DJI)   |
 
 :::note
-10V for V+ is prefered for digital video transmitter power.
+10V for V+ is preferred for digital video transmitter power.
 :::
 
 ### SWD Pin Configuration
@@ -196,5 +196,5 @@ Documentation should include schematics, pinouts, and other information that wil
 
 ## Conclusion
 
-The standardized connector system proposed in this document will help reduce confusion and ensure compatibility between components from different manufacturers, making it easier for users to build and maintain multi-rotor drones.
-We recommend that drone manufacturers and component manufacturers adopt the Betaflight standardized connector system to benefit the entire drone community.
+The standardized connector system described in this document will help reduce confusion and ensure compatibility between components from different manufacturers, making it easier for users to build and maintain multi-rotor drones.
+We strongly recommend that drone manufacturers and component manufacturers adopt the Betaflight Connector Standard to benefit the entire drone community.
