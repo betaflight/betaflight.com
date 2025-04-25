@@ -27,6 +27,11 @@ To address this, we have established a standard for drone connectors designed to
 Any harness should be widely available and easy to obtain.
 The harness should be available from multiple sources and should be easy to obtain from any source.
 
+:::note
+Using yellow connectors would make it clear the new standard is used.
+Provide legacy wire harness in addition to the standard for current products.
+:::
+
 ### JST SH Series as Standard for Connectors.
 
 JST-SH is a widely used and reliable connector that has proven to be a robust choice for drone applications.
