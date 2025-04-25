@@ -28,7 +28,7 @@ Any harness should be widely available and easy to obtain.
 The harness should be available from multiple sources and should be easy to obtain from any source.
 
 :::note
-Using yellow connectors would make it clear the new standard is used.
+Using yellow connectors is preferred to make it clear the new standard is used.
 Provide legacy wire harness in addition to the standard for current products.
 :::
 
