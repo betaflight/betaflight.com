@@ -24,7 +24,7 @@ jobs:
 
     - name: Build package
       id: build-package
-      run: npm run Build
+      run: npm run build
       env:
         BASE_URL: /
         URL: https://betaflight.com
