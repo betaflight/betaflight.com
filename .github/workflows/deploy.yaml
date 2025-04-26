@@ -1,0 +1,51 @@
+name: Builds and Deploys the master branch
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 18
+        cache: npm
+        cache-dependency-path: ./package-lock.json
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build package
+      id: build-package
+      run: npm run Build
+      env:
+        BASE_URL: /
+        URL: https://betaflight.com
+        ORG: betaflight
+
+    - name: Deploy to AWS S3
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: us-east-1
+        SOURCE_DIR: ./build
+
+    - name: Invalidate CloudFront cache
+      uses: chetan/invalidate-cloudfront-action@master
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: us-east-1
+        DISTRIBUTION: ${{ env.AWS_CF_DISTRIBUTION_ID }}
+        PATHS: "/*"
