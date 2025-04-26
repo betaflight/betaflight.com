@@ -26,7 +26,7 @@ jobs:
       id: build-package
       run: npm run build
       env:
-        BASE_URL: /
+        BASE_PATH: /
         URL: https://betaflight.com
         ORG: betaflight
 
