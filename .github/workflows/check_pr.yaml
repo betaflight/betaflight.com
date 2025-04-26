@@ -31,7 +31,7 @@ jobs:
     - name: Build package
       id: build-package
       continue-on-error: true
-      run: npm run Build
+      run: npm run build
 
   check-file-names:
     runs-on: ubuntu-latest
