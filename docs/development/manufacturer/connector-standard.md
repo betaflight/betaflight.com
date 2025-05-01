@@ -10,7 +10,7 @@ import ConnectorLogo from '/img/betaflight/connector_logo.svg'
 | Draft 0.2   | 08 May 2023   | Added Logo and pinout correction                                    |
 | Draft 0.3   | 16 June 2024  | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD |
 | Version 1.0 | 14 April 2025 | Formalize standard                                                  |
-| Version 1.1 | 24 April 2025 | Add 10P ESC socket and standard CRSF socket                         |
+| Version 1.1 | 24 April 2025 | Add option for 10P ESC socket                                       |
 
 ## Introduction
 
@@ -82,17 +82,6 @@ Alternative a 10-pin connector can be used:
 | 8     | Signal 2    | Motor 2     |
 | 9     | Signal 3    | Motor 3     |
 | 10    | Signal 4    | Motor 4     |
-
-### Remote Control Link Pin Configuration (CRSF, ELRS)
-
-This receiver has the following standard pinout:
-
-| Pin # | Signal Name | Description |
-| :---- | :---------- | :---------- |
-| 1     | GND         | Ground      |
-| 2     | V+ (5V)     | Power       |
-| 3     | Signal 1    | RX          |
-| 4     | Signal 2    | TX          |
 
 ### Serial (UART) Pin Configuration (RX, GPS, and other 5V serial devices)
 
