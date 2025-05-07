@@ -10,6 +10,7 @@ import ConnectorLogo from '/img/betaflight/connector_logo.svg'
 | Draft 0.2   | 08 May 2023   | Added Logo and pinout correction                                    |
 | Draft 0.3   | 16 June 2024  | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD |
 | Version 1.0 | 14 April 2025 | Formalize standard                                                  |
+| Version 1.1 | 24 April 2025 | Add option for 10P ESC socket                                       |
 
 ## Introduction
 
@@ -26,6 +27,11 @@ To address this, we have established a standard for drone connectors designed to
 Any harness should be widely available and easy to obtain.
 The harness should be available from multiple sources and should be easy to obtain from any source.
 
+:::note
+Using yellow connectors is preferred to make it clear the new standard is used.
+Provide legacy wire harness in addition to the standard for current products.
+:::
+
 ### JST SH Series as Standard for Connectors.
 
 JST-SH is a widely used and reliable connector that has proven to be a robust choice for drone applications.
@@ -38,13 +44,13 @@ This connector type is optional for drone manufacturers, allowing them to choose
 
 ### ESC Pin Configuration
 
-An additional 2-pin connector for power (ext. power) can be used for high-powered devices or if the user wants to use an external power source.
-
 We recommend using twisted wires to eliminate any confusion about the mirroring of the connector and to ensure that the same wiring order is used on both sides of the connection.
 
 V+ connection from the ESC to FC will typically carry VBAT voltage direct from the battery connection. The ESC V+ connection is an Input Voltage to the FC whilst RX, GPS and other connectors' V+ pads carry output from the FC's onboard voltage regulators.
 
 In some cases VTX or camera connectors may offer VBAT voltage directly but due to voltage fluctuations induced by the motors the use of VBAT direct to VTXs or cameras is discouraged. To minimise the risk to sensitive VTX hardware it is advisable to provide an additional high voltage regulator for such components. Recommended continuous power draw for this high voltage VTX regulator is ~18W, translating to at least a 9V/2A part, and output voltage should be between 8-12V, preferably 10V.
+
+#### Standard ESC Pin Configuration
 
 The pin configuration for the JST SH connector is as follows:
 
@@ -58,6 +64,24 @@ The pin configuration for the JST SH connector is as follows:
 | 6     | Signal 2    | Motor 2     |
 | 7     | Signal 3    | Motor 3     |
 | 8     | Signal 4    | Motor 4     |
+
+#### ESC with additional power requirements
+
+An additional 2-pin connector for power (ext. power) can be used for high-powered devices or if the user wants to use an external power source.
+Alternative a 10-pin connector can be used:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | V+ (VBAT)   | Power       |
+| 2     | V+ (VBAT)   | Power       |
+| 3     | GND         | Ground      |
+| 4     | GND         | Ground      |
+| 5     | Current     | Current     |
+| 6     | Telemetry   | Telemetry   |
+| 7     | Signal 1    | Motor 1     |
+| 8     | Signal 2    | Motor 2     |
+| 9     | Signal 3    | Motor 3     |
+| 10    | Signal 4    | Motor 4     |
 
 ### Serial (UART) Pin Configuration (RX, GPS, and other 5V serial devices)
 
