@@ -2561,7 +2561,7 @@
 	)
 	(global_label "UART_TX"
 		(shape input)
-		(at 227.33 101.6 180)
+		(at 227.33 99.06 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2571,7 +2571,7 @@
 		)
 		(uuid "12b53efb-f0b9-43c8-a86a-ea2f85676af3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 216.9155 101.6 0)
+			(at 216.9155 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3177,7 +3177,7 @@
 	)
 	(global_label "UART_RX"
 		(shape output)
-		(at 227.33 99.06 180)
+		(at 227.33 101.6 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3187,7 +3187,7 @@
 		)
 		(uuid "fb2532b2-8326-442c-85df-36719722af41")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 216.9155 99.06 0)
+			(at 216.9155 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4403,7 +4403,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+9-12V"
+		(property "Value" "+8-26V"
 			(at 223.52 93.9799 90)
 			(effects
 				(font
