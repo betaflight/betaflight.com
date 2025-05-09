@@ -11,6 +11,7 @@ import ConnectorLogo from '/img/betaflight/connector_logo.svg'
 | Draft 0.3   | 16 June 2024  | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD |
 | Version 1.0 | 14 April 2025 | Formalize standard                                                  |
 | Version 1.1 | 24 April 2025 | Add option for 10P ESC socket                                       |
+| Version 1.2 | 08 May 2025   | Add reference schematic + board renders                             |
 
 ## Introduction
 
@@ -65,6 +66,14 @@ The pin configuration for the JST SH connector is as follows:
 | 7     | Signal 3    | Motor 3     |
 | 8     | Signal 4    | Motor 4     |
 
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![ESC Connector Schematic](/img/connector_standard/esc_connector_schematic.png)
+
+![ESC Connector Board Render](/img/connector_standard/esc_connector_render.png)
+
+</div>
+
 #### ESC with additional power requirements
 
 An additional 2-pin connector for power (ext. power) can be used for high-powered devices or if the user wants to use an external power source.
@@ -83,6 +92,14 @@ Alternative a 10-pin connector can be used:
 | 9     | Signal 3    | Motor 3     |
 | 10    | Signal 4    | Motor 4     |
 
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![Extended ESC Connector Schematic](/img/connector_standard/extended_esc_connector_schematic.png)
+
+![Extended ESC Connector Board Render](/img/connector_standard/extended_esc_connector_render.png)
+
+</div>
+
 ### Serial (UART) Pin Configuration (RX, GPS, and other 5V serial devices)
 
 The pin configuration for the 4 pin JST SH connector is as follows:
@@ -93,6 +110,14 @@ The pin configuration for the 4 pin JST SH connector is as follows:
 | 2     | GND         | Ground      |
 | 3     | Signal 1    | RX          |
 | 4     | Signal 2    | TX          |
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![UART Connector Schematic](/img/connector_standard/uart_connector_schematic.png)
+
+![UART Connector Board Render](/img/connector_standard/uart_connector_render.png)
+
+</div>
 
 :::note
 This connector could also be used for any number of serial devices.
@@ -111,6 +136,14 @@ The pin configuration for the 6 pin JST SH connector is as follows:
 | 5     | Signal 3    | I2C SDA     |
 | 6     | Signal 4    | I2C SCL     |
 
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![UART + I2C Connector Schematic](/img/connector_standard/uart_i2c_connector_schematic.png)
+
+![UART + I2C Connector Board Render](/img/connector_standard/uart_i2c_connector_render.png)
+
+</div>
+
 :::note
 Whilst the 6 pin option is no longer recommended, if it is included in the design then care must be taken to label the connectors clearly so users do attempt to connect 5V equipment to any digital VTX 6 pin if present as the differing power voltages will likely cause damage.
 :::
@@ -125,6 +158,14 @@ The pin configuration for the JST SH connector is as follows:
 | 2     | GND         | Ground      |
 | 3     | Signal 1    | SDA         |
 | 4     | Signal 2    | SCL         |
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![I2C Connector Schematic](/img/connector_standard/i2c_connector_schematic.png)
+
+![I2C Connector Board Render](/img/connector_standard/i2c_connector_render.png)
+
+</div>
 
 :::note
 The I2C connector should be used for all I2C devices, including compasses (magnetometers), barometers, and other sensors.
@@ -150,6 +191,14 @@ The pin configuration for the JST SH connector is as follows:
 | 4     | Signal 2    | RX          |
 | 5     | Signal 3    | TX          |
 
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![Analog Camera Connector Schematic](/img/connector_standard/camera_connector_schematic.png)
+
+![Analog Camera Connector Board Render](/img/connector_standard/camera_connector_render.png)
+
+</div>
+
 ### VTX Pin Configuration
 
 The pin configuration for the JST SH connector is as follows:
@@ -161,6 +210,14 @@ The pin configuration for the JST SH connector is as follows:
 | 3     | Signal 1    | Video       |
 | 4     | Signal 2    | RX          |
 | 5     | Signal 3    | TX          |
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![Analog VTX Connector Schematic](/img/connector_standard/analog_vtx_connector_schematic.png)
+
+![Analog VTX Connector Board Render](/img/connector_standard/analog_vtx_connector_render.png)
+
+</div>
 
 :::note
 10V regulated for V+ is preferred for providing analogue VTX power.
@@ -179,6 +236,14 @@ The current pin configuration for the JST SH connector is as follows:
 | 5     | GND         | Ground (DJI) |
 | 6     | Signal 3    | SBUS (DJI)   |
 
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![Digital VTX Connector Schematic](/img/connector_standard/digital_vtx_connector_schematic.png)
+
+![Digital VTX Connector Board Render](/img/connector_standard/digital_vtx_connector_render.png)
+
+</div>
+
 :::note
 10V for V+ is preferred for digital video transmitter power.
 :::
@@ -194,6 +259,14 @@ The pin configuration for the JST SH connector is as follows:
 | 3     | Signal 1    | SWDIO       |
 | 4     | Signal 2    | SWCLK       |
 
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![SWD Connector Schematic](/img/connector_standard/swd_connector_schematic.png)
+
+![SWD Connector Board Render](/img/connector_standard/swd_connector_render.png)
+
+</div>
+
 :::note
 This connector is recommended to be placed for prototyping boards when supplying to the Betaflight team for debugging and testing.
 :::
@@ -207,6 +280,20 @@ This way users know that the component is compatible with other components that 
 <ConnectorLogo className="invertable mb-2" />
 
 [**Download**](/img/betaflight/connector_logo.svg)
+
+## Complete Schematic
+
+### SVG
+
+![Complete Schematic](/img/connector_standard/bf_connector_standard.svg)
+
+### PDF
+
+[Download](/img/connector_standard/bf_connector_standard.pdf)
+
+### KiCad Schematic
+
+[Download](/img/connector_standard/bf_connector_standard.kicad_sch)
 
 ## Betaflight Configurator
 
