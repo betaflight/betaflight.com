@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          persist-credentials: false  # Don't persist GitHub token        
+          persist-credentials: false  # Don't persist GitHub token
 
       - name: Cache node_modules
         uses: actions/cache@v4
@@ -67,7 +67,7 @@ jobs:
         with:
           name: build-files
           path: build
-          
+
       - name: Set short git commit SHA
         id: vars
         run: |
