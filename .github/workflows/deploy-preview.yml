@@ -50,7 +50,8 @@ jobs:
         with:
           name: build-files
           path: build
-  
+
+  # Job 2: Deploy with secrets (no PR code checkout)
   deploy:
     needs: build  # Wait for build job to complete
     permissions:
