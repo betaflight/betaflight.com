@@ -2,7 +2,7 @@
 
 The MinMax control feature can control curves scale and placement quickly and full.
 The current MinMax curves settings are showed at 'Configure graphs' dialog box in the "Minimum" and "Maximum" columns.
-![image](./images/1.jpg)
+![image](/img/blackbox/min-max_1.jpg)
 The MinMax values can be changed:
 
 - By direct input into table cells at 'Configure graphs' dialog box. It is possible to changes values manually or set default values by double mouse click at values field.
@@ -10,7 +10,7 @@ The MinMax values can be changed:
 
 To show context menu you must do right mouse click on Minimum or Maximum values field what you want to edit.
 The main context menu:
-![image](./images/2.jpg)
+![image](/img/blackbox/min-max_2.jpg)
 
 ## Main menu
 
@@ -33,19 +33,19 @@ The main menu include following parts:
 
 The single curve submenu has same actions:
 
-![image](./images/3.jpg)
+![image](/img/blackbox/min-max_3.jpg)
 
 ## Context menu
 
 If you open context menu for one curves chart, then you see the short menu:
 
-![image](./images/4.jpg)
+![image](/img/blackbox/min-max_4.jpg)
 
 ## <a name="extended">Extended Mode</a>
 
 The main menu has extended mode. You need press the 'Shift' key to activate it and select the submenu, what you need.
 
-![image](./images/5.jpg)
+![image](/img/blackbox/min-max_5.jpg)
 
 ### The 'Like this one' extended submenu.
 
@@ -53,7 +53,7 @@ You can change MinMax values and select curves what you need by using the checkb
 Click 'SET MIN-MAX VALUES' item for apply.
 Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
-![image](./images/6.jpg)
+![image](/img/blackbox/min-max_6.jpg)
 
 ### The 'Full range' extended submenu.
 
@@ -63,7 +63,7 @@ Click 'At local window time' menu item to set MinMax values from current time in
 Click 'At marker time range' menu item to set MinMax values from markered time interval what you select by using "I", "O" keys. If it is not select then will apply all log time interval.
 Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
-![image](./images/7.jpg)
+![image](/img/blackbox/min-max_7.jpg)
 
 ### The 'One scale' extended submenu.
 
@@ -71,7 +71,7 @@ You can select curves what you need by using the checkboxes to set the same scal
 Click 'SET SET CURVES TO SAME SCALE' item for apply
 Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
-![image](./images/8.jpg)
+![image](/img/blackbox/min-max_8.jpg)
 
 ### The 'Centered' extended submenu.
 
@@ -79,7 +79,7 @@ You can select curves what you need by using the checkboxes to centered.
 Click 'SET CURVES TO ZERO OFFSET' item for apply
 Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
-![image](./images/9.jpg)
+![image](/img/blackbox/min-max_9.jpg)
 
 ### The 'Zoom in', 'Zoom out' extended submenu.
 
@@ -87,7 +87,7 @@ You can set the zoom percent value and select curves what you need by using the 
 Click 'ZOOM IN', 'ZOOM OUT' items for apply zoom
 Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
-![image](./images/10.jpg)
+![image](/img/blackbox/min-max_10.jpg)
 
 ### The 'Default' extended submenu.
 
@@ -95,12 +95,12 @@ You can select curves what you need by using the checkboxes to apply default val
 Click 'SET CURVES TO DEFAULT' item for apply
 Click 'Back' menu item to go back to main menu or click 'Close' menu item to close it.
 Click 'Apply change' or 'Cancel' button on the main 'Configure graphs' dialog box to close the menu and dialog box immediately
-![image](./images/11.jpg)
+![image](/img/blackbox/min-max_11.jpg)
 
 ### The single curve submenu has one 'Full range' extended item:
 
 It is like 'Full range' extended submenu, but for one selected curve only.
-![image](./images/12.jpg)
+![image](/img/blackbox/min-max_12.jpg)
 
 ## The examples of using curves MinMax control
 
@@ -112,4 +112,11 @@ It is like 'Full range' extended submenu, but for one selected curve only.
 
 At this picture the Gyro and Setpoint are set to one full range scale and the PID values are in the other own full range scale.
 The all are centered.
-![image](./images/13.jpg)
+![image](/img/blackbox/min-max_13.jpg)
+
+## Using MinMax values in the workspace
+The MinMax values curves settings are stored in the workspace.
+![image](/img/blackbox/min-max_14.jpg)
+The Blackbox explorer has two preinstalled workspaces inside.
+You can select it from menu by press Shift+W keys.
+![image](/img/blackbox/min-max_15.jpg)
