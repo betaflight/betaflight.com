@@ -60,6 +60,9 @@ To compare PSD spectrums for different log file curves:
 ![image](/img/blackbox/psd_9.jpg)
 ![image](/img/blackbox/psd_10.jpg)
 
+The legends width and position can set in User settings dialog box
+![image](/img/blackbox/psd_11.jpg)
+
 
 
 
