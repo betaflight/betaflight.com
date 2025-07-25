@@ -113,3 +113,10 @@ It is like 'Full range' extended submenu, but for one selected curve only.
 At this picture the Gyro and Setpoint are set to one full range scale and the PID values are in the other own full range scale.
 The all are centered.
 ![image](./images/min-max_13.jpg)
+
+## Using MinMax values in the workspace
+The MinMax values curves settings are stored in the workspace.
+![image](./images/min-max_14.jpg)
+The Blackbox explorer has two preinstalled workspaces inside.
+You can select it from menu by press Shift+W keys.
+![image](./images/min-max_15.jpg)
