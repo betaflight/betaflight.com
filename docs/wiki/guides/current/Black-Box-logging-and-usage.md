@@ -42,6 +42,8 @@ Do click on all the buttons to learn what they do and '?' for the Keyboard Short
 #### Betaflight blackbox explorer Version 3.7
 
 [Blackbox Explorer MinMax control](/docs/wiki/guides/current/BBE-MinMax-control-manual)
+[Blackbox Explorer Power: Spectral density spectrums chart](/docs/wiki/guides/current/BBE-Power-Specttral-Density-charts)
+[Blackbox Explorer Power: Spectral density spectrums comparison](/docs/wiki/guides/current/BBE-Power-Specttral-Density-charts)
 
 ### How to obtain data to evaluate noise frequency for setting the Notch filter.
 
