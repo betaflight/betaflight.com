@@ -37,7 +37,7 @@ But the power spectral density by RPM is more helpfull, when the RPM filter work
 ![image](./images/psd_7.jpg)
 
 
-# Blackbox Explorer Power spectral density curves comparison
+# <a name="spectrum_comparison">Blackbox Explorer: Power spectral density curves comparison</a>
 
 It possible to compare several spectrums by using of power spectral density spectrum chart.
 It possible to compare up to 6 spectrums.
