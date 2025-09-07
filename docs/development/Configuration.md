@@ -12,7 +12,7 @@ The GUI cannot currently configure all aspects of the system, the CLI must be us
 
 ## GUI
 
-![Betaflight App](img/betaflight_configurator_welcome.png)
+![Betaflight App](/img/betaflight_configurator_welcome.png)
 
 The [Betaflight App](https://app/.betaflight.com) is the preferred way of configuration. The app also includes a terminal which can be used to interact with the CLI.
 
