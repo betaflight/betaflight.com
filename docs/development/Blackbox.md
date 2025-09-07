@@ -16,7 +16,7 @@ https://github.com/betaflight/blackbox-tools
 
 ## Logged data
 
-The blackbox records flight data on every iteration of the flight control loop. It records the current time in microseconds, P, I and D corrections for each axis, your RC command stick positions (after applying expo curves), gyroscope data, accelerometer data (after your configured low-pass filtering), barometer and sonar readings, 3-axis magnetometer readings, raw VBAT and current measurements, RSSI, and the command being sent to each motor speed controller. This is all stored without any approximation or loss of precision, so even quite subtle problems should be detectable from the fight data log.
+The blackbox records flight data on every iteration of the flight control loop. It records the current time in microseconds, P, I and D corrections for each axis, your RC command stick positions (after applying expo curves), gyroscope data, accelerometer data (after your configured low-pass filtering), barometer and sonar readings, 3-axis magnetometer readings, raw VBAT and current measurements, RSSI, and the command being sent to each motor speed controller. This is all stored without any approximation or loss of precision, so even quite subtle problems should be detectable from the flight data log.
 
 GPS data is logged whenever new GPS data is available. Although the CSV decoder will decode this data, the video renderer does not yet show any of the GPS information (this will be added later).
 
@@ -30,7 +30,7 @@ Betaflight's `looptime` setting decides how frequently an update is saved to the
 
 ## Setting up logging
 
-First, you must enable the Blackbox feature. In the [Betaflight App][] enter the Configuration tab, tick the "BLACKBOX" feature at the bottom of the page, and click "Save and reboot"
+First, you must enable the Blackbox feature. In the [Betaflight App](https://app.betaflight.com) enter the Configuration tab, tick the "BLACKBOX" feature at the bottom of the page, and click "Save and reboot"
 
 Now you must decide which device to store your flight logs on. You can either transmit the log data over a serial port to an external logging device like the [OpenLog serial data logger][] to be recorded to a microSDHC card, or if you have a compatible flight controller you can store the logs on the onboard dataflash storage instead.
 
@@ -68,7 +68,7 @@ You should format any card you use with the [SD Association's special formatting
 
 First, tell the Blackbox to log using a serial port (rather than to an onboard dataflash chip). Go to the App's CLI tab, enter `set blackbox_device=SERIAL` to switch logging to serial, and save.
 
-You need to let Betaflight know which of [your serial ports][] you connect your OpenLog to (i.e. the Blackbox port), which you can do on the App's Ports tab.
+You need to let Betaflight know which of your serial ports you connect your OpenLog to (i.e. the Blackbox port), which you can do on the App's Ports tab.
 
 You should use a hardware serial port (such as UART1 on the Naze32, the two-pin Tx/Rx header in the center of the board). SoftSerial ports can be used for the Blackbox. However, because they are limited to 19200 baud, your logging rate will need to be severely reduced to compensate. Therefore the use of SoftSerial is not recommended.
 
@@ -163,7 +163,7 @@ The Blackbox currently provides two settings (`blackbox_rate_num` and `blackbox_
 
 If you're using a slower MicroSD card, you may need to reduce your logging rate to reduce the number of corrupted logged frames that `blackbox_decode` complains about. A rate of 1/2 is likely to work for most craft.
 
-You can change the logging rate settings by entering the CLI tab in the [Betaflight App][] and using the `set` command, like so:
+You can change the logging rate settings by entering the CLI tab In the [Betaflight App](https://app.betaflight.com) and using the `set` command, like so:
 
 ```
 set blackbox_rate_num = 1
@@ -194,7 +194,7 @@ Don't insert or remove the SD card while the OpenLog is powered up.
 
 ### Usage - Dataflash chip
 
-After your flights, you can use the [Betaflight App][] to download the contents of the dataflash to your computer. Go to the "dataflash" tab and click the "save flash to file..." button. Saving the log can take 2 or 3 minutes.
+After your flights, you can use the [Betaflight App](https://app.betaflight.com) to download the contents of the dataflash to your computer. Go to the "dataflash" tab and click the "save flash to file..." button. Saving the log can take 2 or 3 minutes.
 
 ![Dataflash tab in App](Screenshots/blackbox-dataflash.png)
 

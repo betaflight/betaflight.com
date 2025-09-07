@@ -1,10 +1,10 @@
 # Transponder
 
-Betaflight supports the generation of race transponder signals on compatiable F3 and F4 targets.
+Betaflight supports the generation of race transponder signals on compatible targets.
 
 IR led connections is target specific. Please consult the reference manual for your FC.
 
-Betaflight currently supports 3 transponder protocol providers (as of 2.10).
+Betaflight currently supports 3 transponder protocol providers.
 
 ## iLap Provider
 
@@ -17,7 +17,7 @@ Contact: cs@rclapcounter.com
 
 iLap is a commercial system that uses 6 byte transponder codes and a 460kHz carrier.
 
-Transponder codes are entered in the CF Configurator Transponder tab as 12 hex digits.
+Transponder codes are entered in the Betaflight App Transponder tab as 12 hex digits.
 
 Codes are theoretical unique. Codes are obtained for iLap or come with some flight controllers.
 
@@ -34,7 +34,7 @@ contact: info@arcitimer.com
 
 Arctimer is a commercial system that uses 9 byte transponder codes and a 42kHz carrier.
 
-There are only 9 unique Arctimer codes. Codes are pick from a list on CF Configurator Transponder tab.
+There are only 9 unique Arctimer codes. Codes are pick from a list on Betaflight App Transponder tab.
 
 ![Provider ArcTimer](Screenshots/Provider%20ArcTimer.png)
 
@@ -51,6 +51,6 @@ There are only 9 unique Arctimer codes. Codes are pick from a list on CF Configu
 
 EasyRaceLapTimer is a open source system that uses 6bit transponder codes and a 38kHz carrier.
 
-There are 64 unique ERLT codes. Codes are pick from a list on CF Configurator Transponder tab.
+There are 64 unique ERLT codes. Codes are pick from a list on the Betaflight App Transponder tab.
 
 ![Provider ELRT](Screenshots/Provider%20ERLT.png)

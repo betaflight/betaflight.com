@@ -8,7 +8,7 @@ DISCLAIMER: This documents is a work in progress. We cannot guarantee the safety
 
 NOTE: Flight Controllers are typically equipped with accelerometers. These devices are sensitive to shocks. When the device is not yet installed to an aircraft, it has very little mass by itself. If you drop or bump the controller, a big force will be applied on its accelerometers, which could potentially damage them. Bottom line: Handle the board very carefully until it's installed on an aircraft!
 
-For an overview of the hardware Betaflight can run on, see [Boards.md](Boards). For information about specific boards, see the board specific documentation.
+For an overview of supported hardware, see the board-specific documentation.
 
 - Assuming that you have a flight controller board (hereby FC) in hand, you should first read through the manual that it came with. You can skip the details about software setup, as we'll cover that here.
 

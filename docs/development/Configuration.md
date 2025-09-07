@@ -1,6 +1,6 @@
 # Configuration
 
-Betaflight is configured primarily using the [Betaflight App](https://app/.betaflight.com).
+Betaflight is configured primarily using the [Betaflight App](https://app.betaflight.com).
 
 Both the command line interface and GUI are accessible by connecting to a serial port on the target, be it a USB virtual serial port, physical hardware UART port or a SoftSerial port.
 
@@ -14,11 +14,11 @@ The GUI cannot currently configure all aspects of the system, the CLI must be us
 
 ![Betaflight App](/img/betaflight_configurator_welcome.png)
 
-The [Betaflight App](https://app/.betaflight.com) is the preferred way of configuration. The app also includes a terminal which can be used to interact with the CLI.
+The [Betaflight App](https://app.betaflight.com) is the preferred way of configuration. The app also includes a terminal which can be used to interact with the CLI.
 
 If you cannot use the latest version of the app to access the FC due to firmware compatibility issues you can still access the FC via the CLI to backup your settings, or you can install an old version of the app.
 
-Old versions of the app (formerly the configurator) can be downloaded from the releases page: https://github.com/betalfight/betaflight-configurator/releases
+Old versions of the app (formerly the configurator) can be downloaded from the [releases page](https://github.com/betalfight/betaflight-configurator/releases).
 
 See the README file that comes with the release for installation instructions.
 
