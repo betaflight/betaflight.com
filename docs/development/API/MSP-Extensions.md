@@ -1,7 +1,7 @@
 # MSP Extensions
 
-Cleanflight includes a number of extensions to the MultiWii Serial Protocol (MSP). This document describes
-those extensions in order that 3rd party tools may identify cleanflight firmware and react appropriately.
+Betaflight includes a number of extensions to the MultiWii Serial Protocol (MSP). This document describes
+those extensions in order that 3rd party tools may identify Betaflight firmware and react appropriately.
 
 Issue the MSP_API_VERSION command to find out if the firmware supports them.
 
@@ -28,7 +28,7 @@ Unassigned slots have rangeStartStep == rangeEndStep. Each element contains the 
 | rangeStartStep  | uint8 | The start value for this element in 'blocks' of 25 where 0 == 900 and 48 == 2100 |
 | rangeEndStep    | uint8 | The end value for this element in 'blocks' of 25 where 0 == 900 and 48 == 2100   |
 
-Thus, for a cleanflight firmware with 40 slots 160 bytes would be returned in response to MSP_MODE_RANGES.
+Thus, for a Betaflight firmware with 40 slots 160 bytes would be returned in response to MSP_MODE_RANGES.
 
 ### MSP_MODE_RANGES_EXTRA
 
@@ -52,7 +52,7 @@ following fields:
 | modeLogic   | uint8 | 0 = Logic AND; 1 = Logic OR                        |
 | linkedTo    | uint8 | Permanent id to which this mode is linked.         |
 
-Thus, for a cleanflight firmware with 20 slots, 61 bytes (including prepended size) would be returned in response to
+Thus, for a Betaflight firmware with 20 slots, 61 bytes (including prepended size) would be returned in response to
 MSP_MODE_RANGES_EXTRA.
 
 ### MSP_SET_MODE_RANGE
@@ -110,7 +110,7 @@ Unassigned slots have rangeStartStep == rangeEndStep. Each element contains the 
 | adjustmentFunction    | uint8 | See below                                                                        |
 | auxSwitchChannelIndex | uint8 | The Aux channel number used to perform the function (indexed from 0)             |
 
-Thus, for a cleanflight firmware with 12 slots 72 bytes would be returned in response to MSP_ADJUSTMENT_RANGES,
+Thus, for a Betaflight firmware with 12 slots 72 bytes would be returned in response to MSP_ADJUSTMENT_RANGES,
 
 ### MSP_SET_ADJUSTMENT_RANGE
 
@@ -173,12 +173,12 @@ There are many adjustments that can be made, the numbers of them and their use i
 
 The following MSP commands are replaced by the MSP_MODE_RANGES and
 MSP_SET_MODE_RANGE extensions, and are not recognised by
-cleanflight.
+Betaflight.
 
 - MSP_BOX
 - MSP_SET_BOX
 
 ## See Also
 
-[Modes](/docs/development/Modes) describes the user visible implementation for the cleanflight
+[Modes](/docs/development/Modes) describes the user visible implementation for the Betaflight
 modes extension.

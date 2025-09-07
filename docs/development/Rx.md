@@ -109,7 +109,7 @@ Receivers with UDI output
 
 ### XBUS MODE B RJ01
 
-There exist a remote receiver made for small BNF-models like the Align T-Rex 150 helicopter. The code also supports using the Align DMSS RJ01 receiver directly with the cleanflight software.
+There exist a remote receiver made for small BNF-models like the Align T-Rex 150 helicopter. The code also supports using the Align DMSS RJ01 receiver directly with the Betaflight software.
 To use this receiver you must power it with 3V from the hardware, and then connect the serial line as other serial RX receivers.
 In order for this receiver to work, you need to specify the XBUS_MODE_B_RJ01 for serialrx_provider. Note that you need to set your radio mode for XBUS "MODE B" also for this receiver to work.
 Receiver name: Align DMSS RJ01 (HER15001)
@@ -331,7 +331,7 @@ The channels defined in CleanFlight are as follows:
 | 3              | Throttle     |
 
 If you have a transmitter/receiver, that output a non-standard pulse range (i.e. 1070-1930 as some Spektrum receivers)
-you could use rx channel range configuration to map actual range of your transmitter to 1000-2000 as expected by Cleanflight.
+you could use rx channel range configuration to map actual range of your transmitter to 1000-2000 as expected by Betaflight.
 
 The low and high value of a channel range are often referred to as 'End-points'. e.g. 'End-point adjustments / EPA'.
 

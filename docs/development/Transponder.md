@@ -1,10 +1,10 @@
 # Transponder
 
-Cleanflight supports the generation of race transponder signals on compatiable F3 and F4 targets.
+Betaflight supports the generation of race transponder signals on compatiable F3 and F4 targets.
 
 IR led connections is target specific. Please consult the reference manual for your FC.
 
-Cleanflight currently supports 3 tranponder protocol providers (as of 2.10).
+Betaflight currently supports 3 tranponder protocol providers (as of 2.10).
 
 ## iLap Provider
 

@@ -1,22 +1,20 @@
 # Getting Started
 
-This is a step-by-step guide that can help a person that has never used Cleanflight before set up a flight controller and the aircraft around it for flight. Basic RC knowledge is required, though. A total beginner should first familiarize themselves with concepts and techniques of RC before using this (e.g. basic controls, soldering, transmitter operation etc). One could use [RCGroups](http://www.rcgroups.com/forums/index.php) and/or [the Youtube show FliteTest](https://www.youtube.com/user/flitetest) for this.
+This is a step-by-step guide that can help a person that has never used Betaflight before set up a flight controller and the aircraft around it for flight. Basic RC knowledge is required, though. A total beginner should first familiarize themselves with concepts and techniques of RC before using this (e.g. basic controls, soldering, transmitter operation etc). One could use [RCGroups](http://www.rcgroups.com/forums/index.php) and/or [the Youtube show FliteTest](https://www.youtube.com/user/flitetest) for this.
 
 DISCLAIMER: This documents is a work in progress. We cannot guarantee the safety or success of your project. At this point the document is only meant to be a helping guide, not an authoritative checklist of everything you should do to be safe and successful. Always exercise common sense, critical thinking and caution.
-
-Read the [Introduction](Introduction) chapter for an overview of Cleanflight and how the community works.
 
 ## Hardware
 
 NOTE: Flight Controllers are typically equipped with accelerometers. These devices are sensitive to shocks. When the device is not yet installed to an aircraft, it has very little mass by itself. If you drop or bump the controller, a big force will be applied on its accelerometers, which could potentially damage them. Bottom line: Handle the board very carefully until it's installed on an aircraft!
 
-For an overview of the hardware Cleanflight (hereby CF) can run on, see [Boards.md](Boards). For information about specific boards, see the board specific documentation.
+For an overview of the hardware Betaflight can run on, see [Boards.md](Boards). For information about specific boards, see the board specific documentation.
 
 - Assuming that you have a flight controller board (hereby FC) in hand, you should first read through the manual that it came with. You can skip the details about software setup, as we'll cover that here.
 
 - Decide how you'll connect your receiver by reading the [receiver](Rx) chapter, and how many pins you need on the outputs (to connect ESCs and servos) by reading about [Mixers](Mixer).
 
-- If you're interested in monitoring your flight battery with CF, see [Battery Monitoring](Battery).
+- If you're interested in monitoring your flight battery with Betaflight, see [Battery Monitoring](Battery).
 
 - You may want audible feedback from your copter so skim through [Buzzer](Buzzer) and mark the pins that will be used.
 
@@ -32,19 +30,18 @@ For an overview of the hardware Cleanflight (hereby CF) can run on, see [Boards.
 
 ## Software setup
 
-Now that your board has pins on it, you are ready to connect it to your PC and flash it with CF. Install the Chromium browser or Google Chrome to your PC, if you don't have it already, add the [Cleanflight Configurator](https://chrome.google.com/webstore/detail/cleanflight-configurator/enacoimjcgeinfnnnpajinjgmkahmfgb) to it, and start it.
+Now that your board has pins on it, you are ready to connect it to your PC and flash it with Betaflight. You can use the Betaflight App for this, so if you haven't already please check out the latest versions of the [Betaflight App](https://app.betaflight.com).
 
-Then follow these instructions for [Installation](Installation) of the firmware to the FC.
 
-## Cleanflight Configuration
+## Configuring Betaflight
 
-Your FC should now be running CF, and you should be able to connect to it using the Configurator. If that is not the case, please go back to the previous sections and follow the steps carefully.
+Your FC should now be running Betaflight, and you should be able to connect to it using the App. If that is not the case, please go back to the previous sections and follow the steps carefully.
 
 <!--- This next paragraph should probably contain less info, as this info already exists in Configuration.md -->
 
-Now, there are two ways to [configure CF](Configuration); via the Configurator's tabs (in a "graphical" way, clicking through and selecting/changing values and tickboxes) and using the [Command Line Interface (CLI)](Cli). Some settings may only be configurable using the CLI and some settings are best configured using the GUI (particularly the ports settings, which aren't documented for the CLI as they're not human friendly).
+Now, there are two ways to [configure Betaflight](Configuration); via the App's tabs (in a "graphical" way, clicking through and selecting/changing values and tickboxes) and using the [Command Line Interface (CLI)](Cli). Some settings may only be configurable using the CLI and some settings are best configured using the GUI (particularly the ports settings, which aren't documented for the CLI as they're not human friendly).
 
-- It is now a good time to setup your RC Receiver and Transmitter. Set the Tx so that it outputs at least 4 channels (Aileron, Elevator, Throttle, Rudder) but preferably more. E.g. you can set channels 5 and 6 to be controlled by 3-position switches, to be used later. Maybe set up EXPO on AIL/ELE/RUD, but you should know that it can also be done in CF's software later. If using RSSI over PPM or PWM, it's now time to configure your Rx to output it on a spare channel.
+- It is now a good time to setup your RC Receiver and Transmitter. Set the Tx so that it outputs at least 4 channels (Aileron, Elevator, Throttle, Rudder) but preferably more. E.g. you can set channels 5 and 6 to be controlled by 3-position switches, to be used later. Maybe set up EXPO on AIL/ELE/RUD, but you should know that it can also be done in Betaflight's software later. If using RSSI over PPM or PWM, it's now time to configure your Rx to output it on a spare channel.
 
 - Connect the Rx to the FC, and the FC to the PC. You may need to power the Rx through a BEC (its 5V rail - observe polarity!).
 
@@ -78,7 +75,7 @@ Now, there are two ways to [configure CF](Configuration); via the Configurator's
 
 ## Final testing and safety
 
-It's important that you have configured CF properly, so that your aircraft does not fly away, or even worse fly into property and people! This is an important step that you should NOT postpone until after your maiden flight. Please do this now, before you head off to the flying field.
+It's important that you have configured Betaflight properly, so that your aircraft does not fly away, or even worse fly into property and people! This is an important step that you should NOT postpone until after your maiden flight. Please do this now, before you head off to the flying field.
 
 - First read the [safety](Safety) section.
 - Next, learn how to arm your FC, and about other [controls](Controls).

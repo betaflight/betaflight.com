@@ -1,6 +1,6 @@
 # In-flight Adjustments
 
-With Cleanflight it's possible to make adjustments to various settings by using AUX channels from your transmitter while the aircraft is flying.
+With Betaflight it's possible to make adjustments to various settings by using AUX channels from your transmitter while the aircraft is flying.
 
 ## Warning
 

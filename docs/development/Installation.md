@@ -1,19 +1,21 @@
 # Installation
 
-## Using the configurator
+## Using the Betaflight App
 
-This is a generic procedure to flash a board using the configurator. The configurator does not yet support all boards, so please check the documentation corresponding to your board before proceeding.
+This is a generic procedure to flash a board using the app.
 
-Make sure you have the [Cleanflight Configurator](https://github.com/cleanflight/cleanflight-configurator) installed, then:
+Make sure you have the [Betaflight App](https://app.betaflight.com) either installed or opened in a browser, then:
 
 - Connect the flight controller to the PC.
-- Start the Cleanflight Configurator.
-- Click on "Disconnect" if the configurator connected to the board automatically.
+- Open the betaflight App.
+- Click on "Disconnect" if the app connected to the board automatically.
 - Click on the "Firmware Flasher" tab.
-- Make sure you have internet connectivity and click on the "Load Firmware [Online]" button.
+- Make sure you have internet connectivity.
 - Click on the "Choose a Firmware / Board" dropdown menu, and select the latest stable version for your flight controller.
+- Select the build options relevant to you (e.g. make sure you choose an OSD protocol - you will be asked!).
+- Click on the "Load Firmware [Online]" button (the firmware will build)
 - IMPORTANT: Read and understand the release notes that are displayed. When upgrading review all release notes since your current firmware.
-- If this is the first time Cleanflight is flashed to the board, tick the "Full Chip Erase" checkbox.
+- If this is the first time Betaflight is flashed to the board, tick the "Full Chip Erase" checkbox.
 - Connect the flight controller board to the PC. Ensure the correct serial port is selected.
 - Click on the "Flash Firmware" button and hold still (do not breathe, too).
 - When the progress bar becomes green and reads "Programming: SUCCESSFUL" you are done!

@@ -1,6 +1,6 @@
 # Mixer
 
-Cleanflight supports a number of mixing configurations as well as custom mixing. Mixer configurations determine how the servos and motors work together to control the aircraft.
+Betaflight supports a number of mixing configurations as well as custom mixing. Mixer configurations determine how the servos and motors work together to control the aircraft.
 
 ## Configuration
 
@@ -277,7 +277,7 @@ smix reverse 5 2 r
 Here is an example of a custom twin engine plane with [Differential Thrust](http://rcvehicles.about.com/od/rcairplanes/ss/RCAirplaneBasic.htm#step8)
 Motors take the first 2 pins, the servos take pins as indicated in the [Servo slot] chart above.
 Settings below have motor yaw influence at "0.3", you can change this number to have more or less differential thrust over the two motors.
-Note: You can look at the Motors tab in [Cleanflight Cofigurator](https://chrome.google.com/webstore/detail/cleanflight-configurator/enacoimjcgeinfnnnpajinjgmkahmfgb?hl=en) to see motor and servo outputs.
+Note: You can look at the Motors tab in [Betaflight App](https://app.betaflight.com) to see motor and servo outputs.
 
 | Pins | Outputs          |
 | ---- | ---------------- |

@@ -1,6 +1,6 @@
 # Configuration Storage
 
-The configuration in cleanflight is stored at the end of the flash ram, currently it uses 2-4KB of flash depending on the target.
+The configuration in Betaflight is stored at the end of the flash ram, currently it uses 2-4KB of flash depending on the target.
 
 Sometimes it's necessary to erase this during development.
 

@@ -18,7 +18,7 @@ When you compile the firmware, the `make` process ends with an info summary of t
 
 ```
    text    data     bss     dec     hex filename
- 126312    1444   18260  146016   23a60 ./obj/main/cleanflight_NAZE.elf
+ 470129    5964   84964  561057   88fa1 ./obj/main/betaflight_STM32F405_STM32F4DISCOVERY.elf
 ```
 
 The 'text + data' gives you the flash size, and the 'data + bss' is the (static) ram usage. It's recommended to keep the customized version under the values of the unmodified version.
@@ -102,9 +102,9 @@ _NOTE: It is better to not change this file, but it's useful to see what feature
 
 ## Specific features for each Flight Controller
 
-Each flight controller has its own file to specify what features are enabled or disabled only for it. Sometimes they have been disabled by space limitations, but other times it's for limited computing capacity or a bug, so enable them at your own risk.
+Each flight controller has its own file to specify what features are enabled or disabled only for it. Sometimes they have been disabled by space limitations, but other times it's for limited computing capacity or a bug, so enable them at your own risk. These are located in a sub-module within the betaflight repository. The [config repository](https://github.com/betaflight/config) is also available for pull requests (encouraged from both manufacturers or users).
 
-This file is located in `target/[FLIGHT_CONTROLLER_NAME]/target.h` and it's loaded **after** the `target/common_pre.h`. Any changes in this file will overwrite the default settings, so this file is the place where you must touch to create your custom firmware.
+This file is located in `./src/main/configs/config/[FLIGHT_CONTROLLER_NAME]/config.h` and it's loaded **before** the `target/common_pre.h`. Any changes in this file will overwrite the default settings, so this file is the place where you must touch to create your custom firmware.
 
 The first thing to do is to _#undef_ all the features that we want to disable from the _common_pre.h_.
 

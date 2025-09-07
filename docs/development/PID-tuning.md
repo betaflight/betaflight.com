@@ -45,28 +45,6 @@ An Example: With TPA = 50 (or .5 in the GUI) and `tpa_breakpoint` = 1500 (assume
 
 If you are getting oscillations starting at say 3/4 throttle, set `tpa_breakpoint` = 1750 or lower (remember, this is assuming your throttle range is 1000-2000), and then slowly increase TPA until your oscillations are gone. Usually, you will want `tpa_breakpoint` to start a little sooner than when your oscillations start so you'll want to experiment with the values to reduce/remove the oscillations.
 
-## PID controllers
-
-Cleanflight 1.x had experimental pid controllers, for cleanflight 2.0 there is only one.
-
-### PID controller "LUXFloat"
-
-This is a new floating point based PID controller. MW23 and MWREWRITE use integer arithmetic, which was faster in the days of the slower 8-bit MultiWii controllers, but is less precise.
-
-This controller has code that attempts to compensate for variations in the looptime, which should mean that the PIDs don't have to be retuned when the looptime setting changes.
-
-It is the first PID Controller designed for 32-bit processors and not derived from MultiWii.
-
-The strength of the auto-leveling correction applied during _Angle_ mode is controlled by the LEVEL "P" PID term which is labeled "Angle", "Strength" in the GUI (prior to version v1.13.0 the parameter `level_angle` was used). This can be used to tune the auto-leveling strength in _Angle_ mode compared to _Horizon_ mode. The default is 50.
-
-The strength of the auto-leveling correction applied during _Horizon_ mode is set by the LEVEL "I" PID term which is labeled "Horizon", "Strength" in the GUI (prior to version v1.13.0 the parameter `level_horizon` was used). The default is also 50.
-
-The transition between self-leveling and acro behavior in _Horizon_ mode is controlled by the LEVEL "D" term which is labeled "Horizon", "Transition" in the GUI (prior to version of v1.13.0 the parameter `sensitivity_horizon` parameter was used) . This sets the percentage of your stick travel that should have self-leveling applied to it, so smaller values cause more of the stick area to fly using only the gyros.
-
-For example, at a setting of "100" for sensitivity horizon, 100% self-leveling strength will be applied at center stick, 50% self-leveling will be applied at 50% stick, and no self-leveling will be applied at 100% stick. If sensitivity is decreased to 75, 100% self-leveling will be applied at center stick, 50% will be applied at 63% stick, and no self-leveling will be applied at 75% stick and onwards.
-
-See below for descriptions of the Horizon Mode Commands.
-
 ## RC rate, Pitch and Roll Rates (P/R rate before they were separated), and Yaw rate
 
 ### RC Rate

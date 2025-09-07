@@ -66,7 +66,7 @@ export default function Media() {
                 <div className="flex flex-col">
                   <div className="flex flex-row space-x-1 mt-0">
                     <span>
-                      Betaflight Configurator is a Windows/OSX/Linux application for building, flashing and configuring Betaflight. Download the{' '}
+                      Betaflight App is a Windows/OSX/Linux application for building, flashing and configuring Betaflight. Download the{' '}
                       <a href="https://github.com/betaflight/betaflight-configurator/releases/latest" className="fancy-link no-underline">
                         {' '}
                         latest release
@@ -81,7 +81,7 @@ export default function Media() {
                 <div className="flex flex-col">
                   <div className="flex flex-row space-x-1 mt-0">
                     <span>
-                      For Betaflight 4.4 and higher, Configurator builds a custom firmware file 'in the cloud' and flashes it to your flight controller. For 4.3 and earlier, download the correct{' '}
+                      For Betaflight 4.4 and higher, the Betaflight App builds a custom firmware file 'in the cloud' and flashes it to your flight controller. For 4.3 and earlier, download the correct{' '}
                       <a href="https://github.com/betaflight/betaflight/releases" className="fancy-link no-underline">
                         {' '}
                         'hex' file for your flight controller

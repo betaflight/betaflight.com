@@ -1,6 +1,6 @@
 # Command Line Interface (CLI)
 
-Cleanflight has a command line interface (CLI) that can be used to change settings and configure the FC.
+Betaflight has a command line interface (CLI) that can be used to change settings and configure the FC.
 
 ## Accessing the CLI.
 
