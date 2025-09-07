@@ -53,10 +53,8 @@ The cli mixer `smix` command controls how the mixer maps internal FC data (RC in
 
 ### Channel Forwarding
 
-Channel Forwarding allows you to forward your AUX channels directly to servos over PWM pins 5-8. You can enable it under features in the GUI or using the cli
-with `feature CHANNEL_FORWARDING`. This requires you to run PPM or another serial RC protocol, and is currently supported on NAZE and SPRACINGF3 targets.
-Note that if you have the led feature enabled on the NAZE target, AUX1-2 is mapped to PWM13-14 instead. So for instance if you enable this feature on a Naze
-AUX1 from your receiver will automatically be forwarded to PWM5 as a servo signal.
+Channel Forwarding allows you to forward your AUX channels directly to servos over PWM pins. You can enable it under features in the GUI or using the cli
+with `feature CHANNEL_FORWARDING`.
 
 ### cli `servo`
 
