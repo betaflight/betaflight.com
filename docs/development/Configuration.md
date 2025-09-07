@@ -18,7 +18,7 @@ The [Betaflight App](https://app.betaflight.com) is the preferred way of configu
 
 If you cannot use the latest version of the app to access the FC due to firmware compatibility issues you can still access the FC via the CLI to backup your settings, or you can install an old version of the app.
 
-Old versions of the app (formerly the configurator) can be downloaded from the [releases page](https://github.com/betalfight/betaflight-configurator/releases).
+Old versions of the app (formerly the configurator) can be downloaded from the [releases page](https://github.com/betaflight/betaflight-configurator/releases).
 
 See the README file that comes with the release for installation instructions.
 

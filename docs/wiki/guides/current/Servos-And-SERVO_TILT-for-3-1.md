@@ -168,7 +168,7 @@ I have not tried between version 3.2.2 - 3.4.0 either. I am at the moment trying
 
 In the future, I want to experiment with GPS rescue for tricopter, which Betaflight 3.2.2 does not support, so I am going to go forward to version 3.4.1 which supports GPS rescue, and start there.
 
-If you power down the board, press the bootloader button on the Matek F411 flight controller, and plug back in like a lot of other boards, it does not enter bootloader mode, and there is NO blinking led confirming bootloader mode, at least with my windows 10 laptop. It does not work.
+If you power down the board, press the bootloader button on the Matek F411 flight controller, and plug back in like a lot of other boards, it does not enter bootloader mode, and there is NO blinking LED confirming bootloader mode, at least with my windows 10 laptop. It does not work.
 
 If computer can't detect it, reinstall DFU drivers with zadig or use this https://impulserc.blob.core.windows.net/utilities/ImpulseRC_Driver_Fixer.exe
 
