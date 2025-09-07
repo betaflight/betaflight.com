@@ -24,7 +24,7 @@ Buzzer is enabled by default on platforms that have buzzer connections.
 
 Buzzer tone sequences (square wave generation) are made so that : 1st, 3rd, 5th, .. are the delays how long the beeper is on and 2nd, 4th, 6th, .. are the delays how long beeper is off. Delays are in milliseconds/10 (i.e., 5 => 50ms).
 
-Sequences available in Betaflight v1.9 and above are :
+Sequences available in Betaflight are :
 
 ```
 0    GYRO_CALIBRATED       20, 10, 20, 10, 20, 10	Gyro is calibrated
@@ -59,17 +59,3 @@ Examples of a known-working buzzers.
 - [Radio Shack Model: 273-074 PC-BOARD 12VDC (3-16v) 70DB PIEZO BUZZER](http://www.radioshack.com/pc-board-12vdc-70db-piezo-buzzer/2730074.html#.VIAtpzHF_Si)
 - [MultiComp MCKPX-G1205A-3700 TRANSDUCER, THRU-HOLE, 4V, 30MA](http://uk.farnell.com/multicomp/mckpx-g1205a-3700/transducer-thru-hole-4v-30ma/dp/2135914?CMP=i-bf9f-00001000)
 - [3-24V Piezo Electronic Tone Buzzer Alarm 95DB](http://www.banggood.com/3-24V-Piezo-Electronic-Tone-Buzzer-Alarm-95DB-Continuous-Sound-p-919348.html)
-
-## Connections
-
-### Naze32
-
-Connect a supported buzzer directly to the BUZZ pins. Observe polarity. Also if you are working with flight controller outside of a craft, on a bench for example, you need to supply 5 volts and ground to one of the ESC connections or the buzzer will not function.
-
-### CC3D
-
-Buzzer support on the CC3D requires that a buzzer circuit be created to which the input is PA15.
-PA15 is unused and not connected according to the CC3D Revision A schematic.
-Connecting to PA15 requires careful soldering.
-
-See the [CC3D - buzzer circuit.pdf](Wiring/CC3D%20-%20buzzer%20circuit.pdf) for details.
