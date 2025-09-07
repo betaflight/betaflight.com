@@ -4,7 +4,7 @@ Betaflight supports a number of mixing configurations as well as custom mixing. 
 
 ## Configuration
 
-To use a built-in mixing configuration, you can use the Chrome configuration GUI. It includes images of the various mixer types to assist in making the proper connections. See the Configuration section of the documentation for more information on the GUI.
+To use a built-in mixing configuration, you can use the Chrome configuration GUI. It includes images of the various mixer types to assist in making the proper connections. See the Configuration section of the documentation for more information on the Betaflight App.
 
 You can also use the Command Line Interface (CLI) to set the mixer type:
 
@@ -53,7 +53,7 @@ The cli mixer `smix` command controls how the mixer maps internal FC data (RC in
 
 ### Channel Forwarding
 
-Channel Forwarding allows you to forward your AUX channels directly to servos over PWM pins. You can enable it under features in the GUI or using the cli
+Channel Forwarding allows you to forward your AUX channels directly to servos over PWM pins. You can enable it under features in the Betaflight App or using the cli
 with `feature CHANNEL_FORWARDING`.
 
 ### cli `servo`

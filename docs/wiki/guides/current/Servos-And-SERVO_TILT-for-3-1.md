@@ -291,9 +291,9 @@ save
 
 If you quickly move your tail to the right the motor must tilt quickly to the left, and vice versa.
 
-You can just reverse the yaw direction on your Tx, but it is better to do it in the GUI, so the flight controller does not have to process the data.
+You can just reverse the yaw direction on your Tx, but it is better to do it in the Betaflight App, so the flight controller does not have to process the data.
 
-Set the endpoints in the GUI so you have 40 degrees deflection in both directions, and neutral at as level as you can get it.
+Set the endpoints in the Betaflight App so you have 40 degrees deflection in both directions, and neutral at as level as you can get it.
 
 An analog servo works as will a digital one in most cases my directions were not reversed with an analog servo, but may be with a digital.
 

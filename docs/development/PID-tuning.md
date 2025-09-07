@@ -22,7 +22,7 @@ _TPA_ stands for Throttle PID Attenuation and according to [AlexYork.net](http:/
 
 > "TPA basically allows an aggressively tuned multi-rotor (one that feels very locked in) to reduce its PID gains when throttle is applied beyond the TPA threshold/breakpoint in order to eliminate fast oscillations.."
 
-Note that TPA is set via CLI or on the PID TUNING tab of the GUI. `tpa_breakpoint` is set via CLI
+Note that TPA is set via CLI or on the PID TUNING tab of the Betaflight App. `tpa_breakpoint` is set via CLI
 
 Also, note that TPA and `tpa_breakpoint` may not be used with certain PID controllers. Check the description on the individual controller.
 
@@ -32,7 +32,7 @@ TPA applies a PID value reduction in relation to full throttle. It is used to ap
 
 **tpa_breakpoint** = the point in the throttle curve at which TPA will begin to be applied.
 
-An Example: With TPA = 50 (or .5 in the GUI) and `tpa_breakpoint` = 1500 (assumed throttle range 1000 - 2000)
+An Example: With TPA = 50 (or .5 in the Betaflight App) and `tpa_breakpoint` = 1500 (assumed throttle range 1000 - 2000)
 
 - At 1500 on the throttle channel, the PIDs will begin to be dampened.
 - At 3/4 throttle (1750), PIDs are reduced by approximately 25% (half way between 1500 and 2000 the dampening will be 50% of the total TPA value of 50% in this example)

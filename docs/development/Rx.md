@@ -49,7 +49,7 @@ http://www.lemon-rx.com/index.php?route=product/product&product_id=118
 - You probably need an inverter between the receiver output and the flight controller. However, some flight controllers have this built in (the main port on CC3D, for example), and doesn't need one.
 - Some OpenLRS receivers produce a non-inverted SBUS signal. It is possible to switch SBUS inversion off using CLI command `set sbus_inversion = OFF` when using an F3 based flight controller.
 - Softserial ports cannot be used with SBUS because it runs at too high of a bitrate (1Mbps). Refer to the chapter specific to your board to determine which port(s) may be used.
-- You will need to configure the channel mapping in the GUI (Receiver tab) or CLI (`map` command). Note that channels above 8 are mapped "straight", with no remapping.
+- You will need to configure the channel mapping in the Betaflight App (Receiver tab) or CLI (`map` command). Note that channels above 8 are mapped "straight", with no remapping.
 
 These receivers are reported working:
 
@@ -272,9 +272,9 @@ The highest channel value considered valid. e.g. PWM/PPM pulse length
 
 See the Serial chapter for some some RX configuration examples.
 
-To setup spectrum on the Naze32 or clones in the GUI:
+To setup spectrum in the Betaflight App:
 
-1. Start on the "Ports" tab make sure that UART2 has serial RX. If not set the checkbox, save and reboot.
+1. Start on the "Ports" tab make sure that a UART has serial RX. If not set the checkbox, save and reboot.
 2. Move to the "Configuration" page and in the upper lefthand corner choose Serial RX as the receiver type.
 3. Below that choose the type of serial receiver that you are using. Save and reboot.
 

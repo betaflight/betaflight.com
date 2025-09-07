@@ -39,7 +39,7 @@ Your FC should now be running Betaflight, and you should be able to connect to i
 
 <!--- This next paragraph should probably contain less info, as this info already exists in Configuration.md -->
 
-Now, there are two ways to [configure Betaflight](Configuration); via the App's tabs (in a "graphical" way, clicking through and selecting/changing values and tickboxes) and using the [Command Line Interface (CLI)](Cli). Some settings may only be configurable using the CLI and some settings are best configured using the GUI (particularly the ports settings, which aren't documented for the CLI as they're not human friendly).
+Now, there are two ways to [configure Betaflight](Configuration); via the App's tabs (in a "graphical" way, clicking through and selecting/changing values and tickboxes) and using the [Command Line Interface (CLI)](Cli). Some settings may only be configurable using the CLI and some settings are best configured using the Betaflight App (particularly the ports settings, which aren't documented for the CLI as they're not human friendly).
 
 - It is now a good time to setup your RC Receiver and Transmitter. Set the Tx so that it outputs at least 4 channels (Aileron, Elevator, Throttle, Rudder) but preferably more. E.g. you can set channels 5 and 6 to be controlled by 3-position switches, to be used later. Maybe set up EXPO on AIL/ELE/RUD, but you should know that it can also be done in Betaflight's software later. If using RSSI over PPM or PWM, it's now time to configure your Rx to output it on a spare channel.
 

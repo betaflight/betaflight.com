@@ -144,15 +144,15 @@ The datasheet can be found here: http://www.adafruit.com/datasheets/WS2812.pdf
 
 ## Configuration
 
-The LED strip feature can be configured via the GUI.
+The LED strip feature can be configured via the Betaflight App.
 
 GUI:
-Enable the Led Strip feature via the GUI under setup.
+Enable the Led Strip feature via the Betaflight App under setup.
 
 Configure the LEDs from the Led Strip tab in the Betaflight GUI.
 First setup how the LEDs are laid out so that you can visualize it later as you configure and so the flight controller knows how many LEDs there are available.
 
-There is a step by step guide on how to use the GUI to configure the Led Strip feature using the GUI https://oscarliang.com/setup-led-betaflight/ which was published early 2015 by Oscar Liang which may or may not be up-to-date by the time you read this.
+There is a step by step guide on how to use the Betaflight App to configure the Led Strip feature using the Betaflight App https://oscarliang.com/setup-led-betaflight/ which was published early 2015 by Oscar Liang which may or may not be up-to-date by the time you read this.
 
 CLI:
 Enable the `LED_STRIP` feature via the cli:

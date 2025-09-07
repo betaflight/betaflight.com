@@ -6,7 +6,7 @@ Profiles offer another way to perform PID or Filter tuning (currently only Dterm
 
 ## Changing profiles
 
-Profiles can be selected using the GUI, CLI, OSD or stick combinations. Once selected, changes to settings can be made and saved to the active Profile. Also worth mentioning when selecting a Profile, that Profile will remain the active Profile even over power cycles.
+Profiles can be selected using the Betaflight App, CLI, OSD or stick combinations. Once selected, changes to settings can be made and saved to the active Profile. Also worth mentioning when selecting a Profile, that Profile will remain the active Profile even over power cycles.
 
 Betaflight Configurator (GUI): In the PID Tuning Tab > Select a Profile using the drop-down menu. Once a profile is chosen, that profile is activated for current use. Any modifications made are saved when pressing Save button.
 
@@ -48,7 +48,7 @@ Betaflight Configurator (GUI): Click PID Tuning Tab > Select a Rate Profile usin
 
 OSD: Access CMS (Left Yaw + Pitch up) > Select `Profiles` > Change `Rate Prof`. Make sure to Save + Exit or Save + Reboot to save settings.
 
-Aux Channel (In-flight Adjustments): Adjustments need to be configured first using the GUI. You must have an available AUX channel configured on your radio.  
+Aux Channel (In-flight Adjustments): Adjustments need to be configured first using the Betaflight App. You must have an available AUX channel configured on your radio.  
 Enable Expert Mode in the Configurator > Click Adjustments
 Click the slider for If enable. Select the AUX # channel to use.
 For the Range, Select the whole Range from 900 to 2100. Select Rate Profile Selection from the drop-down menu. Via Channel is the same as the AUX channel used.
@@ -67,7 +67,7 @@ save
 
 ## Backing up Profiles and Rate Profiles
 
-Currently creating a backup from the GUI only backs up the active Profile and Rate Profile. So the best way to see and backup all Profiles is to use CLI.
+Currently creating a backup from the Betaflight App only backs up the active Profile and Rate Profile. So the best way to see and backup all Profiles is to use CLI.
 
 ### Using Diff and Dump to output only Profiles
 

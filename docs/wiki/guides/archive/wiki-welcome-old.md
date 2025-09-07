@@ -90,7 +90,7 @@ https://github.com/betaflight/betaflight/milestones
 
 ## Configuration Tool
 
-To configure Betaflight you should use the latest stable Betaflight-configurator GUI tool (Windows/OSX/Linux) that can be found in the Betaflight Configurator repository:
+To configure Betaflight you should use the latest stable Betaflight-configurator Betaflight App (Windows/OSX/Linux) that can be found in the Betaflight Configurator repository:
 https://github.com/betaflight/betaflight-configurator/releases
 
 _BETA TESTING_

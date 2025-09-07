@@ -361,7 +361,7 @@ Have a look at this video form more information: http://www.youtube.com/watch?v=
 
 ## How do I activate 2kHz mode ?
 
-For Betaflight 2.4.0 onwards you should NOT use CLI but rather set looptime to 500 in the Configuration tab of the GUI. CAUTION: Appropriate sensors will automatically be disabled on F1 boards.
+For Betaflight 2.4.0 onwards you should NOT use CLI but rather set looptime to 500 in the Configuration tab of the Betaflight App. CAUTION: Appropriate sensors will automatically be disabled on F1 boards.
 
 For betaflight version prior to 2.4.0 can use the CLI and make the following commands, dependent on the Flight Controller type:
 
@@ -861,32 +861,9 @@ But I agree if josh doesn't already have a video on it he needs one
 Some info here on Oscar Liang's excellent Blog site regarding MultiShot technique:
 http://blog.oscarliang.net/raceflight-multishot/
 
-## What cycle time can I run on what board ?
+## How do I go about suggesting Betaflight App enhancements ?
 
-### F3 i2c targets:
-
-250 cycletime without acc, you can enable acc mode, but watch out for CPU usage when many features enabled. Anyway I recommend going to 2.6k when using accelerometer.
-Also boards with baro or mag on it even when disabled may decrease performance a bit.
-
-### F3 spi targets:
-
-Not much worrying here. 125us looptimes and accelerometer and everything can be on. But always check CPU to be sure.
-
-### F1
-
-With rewrite or mw23 250us cycle should be possible without problems on NAZE32 and all clones of it like flip32 etc when accelerometer disabled.
-Especially the boards without fancy sensors like baro or mag should run super smooth. The boards with baro even when disabled may have a bit higher cpu times.
-For level modes I recommend 1k mode. Those users don't necessary have to run 188hz gyro lpf....they still can set gyro_sync_denom to 8 to minimize latency by 1 millisecond.
-
-CC3D users should stay with 375 or 500 cycletimes.
-
-And all F1 users on luxfloat should not go lower than 500 or 375....probably even 375 is too much.
-With acc enabled stick to 1khz.
-(From BorisB)
-
-## How do I go about suggesting CF Configurator enhancements ?
-
-1. On GitHub, look up the Cleanflight Git. There's a link to the Configurator.
+1. On GitHub, look up the Betaflight Git. There's a link to the Betaflight App repository.
 2. Click on "Issues".
 3. Start a new issue and preface it with "Suggestion: short summary".
 4. Explain the new enhancement suggestion.
@@ -1057,41 +1034,11 @@ Note: there are many more new FC's on the market. Check the Seller's specs.
 
 ## Which HEX target do I download and flash to my Flight Controller ?
 
-Sometimes it's pretty obvious which Betaflight HEX file to download and flash to your Flight Controller (like NAZE) but other times it's not (like RMDO). It's also worth noting that some of the HEX files are used with multiple FCs (like clones for instance).
-
-We typically just say HEX file but many targets also have a BIN file. These are just for different Flashing software tools. Use the HEX file in the CF config GUI and when un-bricking with the ATM Flash Loaded tool. The BIN files are used with other tools like the Linix DFU flash utility. See the threads/instructions for individual FC boards to find out if and how a BIN file is required.
-
-Having all the Flight Controllers listed here (and their associated HEX/BIN) should help avoid some confusion.
-
-| Flight Controller                                                                                                                                           | HEX/BIN File       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| [AfroMini Naze 32](http://www.readymaderc.com/store/index.php?main_page=product_info&products_id=4406)                                                      | AFROMINI           |
-| [Alien Flight F1](http://alienflight.com/)                                                                                                                  | ALIENFLIGHTF1      |
-| [Alien Flight F3](http://alienflight.com/)                                                                                                                  | ALIENFLIGHTF3      |
-| [Flip32/Flip32 Pro](http://www.readytoflyquads.com/flight-controllers/flip-series)                                                                          | NAZE               |
-| [DTFc Flight Controller](http://rotorgeeks.com/index.php?route=product%2Fproduct&path=34_44&product_id=555)                                                 | DOGE               |
-| [DragonFly32/mini/compact](http://www.multirotormania.com/129-dragonfly32)                                                                                  | NAZE               |
-| [FuryF3](http://www.2dogrc.com/furyf3-board.html)                                                                                                           | FURYF3             |
-| [ImmersionRC Fusion](http://www.immersionrc.com/fpv-products/vortex-250-pro/)                                                                               | IRCFUSIONF3        |
-| [Lumenier LUX](http://www.getfpv.com/lumenier-lux-flight-controller.html)                                                                                   | LUX_RACE           |
-| [Motolab Tornado](http://impulserc.com/motolab-tornadofc-stm32f3-flight-controller)                                                                         | MOTOLAB            |
-| [Motolab Cyclone](http://impulserc.com/motolab-cyclone-stm32f3-flight-controller)                                                                           | MOTOLAB            |
-| [Motolab Tempest](https://www.multirotorparts.com/electronics/flightcontrollers/motolab-tempest-f3-flightcontroller-with-pdb.html)                          | MOTOLAB            |
-| [Naze32 Acro](https://www.nextfpv.com.au/products/naze-acro-flight-controller-white-genuine)                                                                | NAZE               |
-| [Naze32 Full](https://www.nextfpv.com.au/products/naze-32-flight-controllerred)                                                                             | NAZE               |
-| [OpenPilot CC3D](http://www.getfpv.com/openpilot-cc3d-flight-controller-straight-pins.html)                                                                 | CC3D_OPBL          |
-| [RMRC Seriously Dodo](http://www.readymaderc.com/store/index.php?main_page=product_info&products_id=4221)                                                   | RMDO or SPRACINGF3 |
-| [Singularity](http://singularity.impulserc.com/)                                                                                                            | SINGULARITY        |
-| [Sparky](http://www.readytoflyquads.com/sparky-flight-controller)                                                                                           | SPARKY             |
-| [Seriously Pro Racing F3](http://seriouslypro.com/spracingf3)                                                                                               | SPRACINGF3         |
-| [Seriously Pro Racing F3 EVO](http://seriouslypro.com/spracingf3evo)                                                                                        | SPRACINGF3EVO      |
-| [Seriously Pro Racing F3 Mini](http://seriouslypro.com/spracingf3mini)                                                                                      | SPRACINGF3MINI     |
-| [TBS Colibri Race](https://www.multirotorsuperstore.com/controllers/controllers-by-firmware/baseflight-cleanflight/tbs-colibri-race-flight-controller.html) | COLIBRI_RACE       |
-| [X-Racer F303 V1 -> 2.1](http://www.fpvmodel.com/x-racer-f303-flight-controller_g1106.html)                                                                 | SPRACINGF3         |
+The cloud build is now available to assist all our users. You either compile your own firmware or use cloud build for its simplicity. 
 
 ## How do I setup for reversed prop rotation ?
 
-Just change props and motor rotation in BlHeli.
+Just change props and motor rotation in your ESC management tool.
 Then change set yaw_motor_direction = -1
 Remember to cycle power to FC so new setting become properly used.
 
@@ -1264,11 +1211,11 @@ There used to be MultiWii. MultiWii had RC rate and Expo. That was it. RC rate s
 
 MultiWii didn't spin fast enough at full stick deflection for the new breed of crazy LOS Aerobatic pilots (Warthox), so the Pitch/Roll rate was added. In MW2.3 PID controller, the P/R rate relaxed the PIDs as stick deflection increased, allowing the copter to spin much faster. So P/R rates were kind of like a "super expo" on top of the normal RC and Expo functions. The effect of P/R rates was to increase the maximum rotation rate at extreme stick deflection.
 
-Fast forward to CleanFlight. Cleanflight had several PID controllers. It had the MW2.3 PID controller, so Cleanflight also had the RC Rate, P/R rate, and Expo functions. But Cleanflight also had Luxfloat and Rewrite, and those PID controllers didn't have the "super expo" like function. They simply used a linear rate curve with expo function, like the original MW PID controller. So what are they supposed to do with the P/R rate parameter in the GUI? Well... they just added it to RC rate, basically. The actual effect was not quite linear, because the scaling factor for P/R rate was not the same as RC rate. So adding, say, 0.5 of P/R rate did not result in the same degrees per second as adding 0.5 of RC rate. But the key thing to know is that, in Luxfloat and Rewrite, the P/R rate parameters had no special "super expo" like effect. They simply linearly increased the rate "curve", which was actually a line. And then the expo curve was applied on top of that.
+Fast forward to CleanFlight. Cleanflight had several PID controllers. It had the MW2.3 PID controller, so Cleanflight also had the RC Rate, P/R rate, and Expo functions. But Cleanflight also had Luxfloat and Rewrite, and those PID controllers didn't have the "super expo" like function. They simply used a linear rate curve with expo function, like the original MW PID controller. So what are they supposed to do with the P/R rate parameter in the Betaflight App? Well... they just added it to RC rate, basically. The actual effect was not quite linear, because the scaling factor for P/R rate was not the same as RC rate. So adding, say, 0.5 of P/R rate did not result in the same degrees per second as adding 0.5 of RC rate. But the key thing to know is that, in Luxfloat and Rewrite, the P/R rate parameters had no special "super expo" like effect. They simply linearly increased the rate "curve", which was actually a line. And then the expo curve was applied on top of that.
 
 Now we move to Betaflight. Betaflight continued to play with the PID controllers, as Boris' attention shifted around. For a while, Luxfloat was Boris' favorite, and then Rewrite. Eventually, Boris realized that the "super expo" effect of MW2.3 was actually pretty cool in some circumstances. Possibly this realization was the result of Boris playing with KISS--the timing would be correct for that. That's when Boris implemented "super expo" in Betaflight.
 
-At this time, there was some inconsistency in the GUI parameters. If you were using feature super-expo, then the P/R rate parameters worked like in MW2.3, with a big increase in full-stick rate. If you were NOT using feature super-expo, then the P/R parameters worked like in Luxfloat and Rewrite, with a linear increase in rates. And all of this was still interacting with the original Expo function of course.
+At this time, there was some inconsistency in the Betaflight App parameters. If you were using feature super-expo, then the P/R rate parameters worked like in MW2.3, with a big increase in full-stick rate. If you were NOT using feature super-expo, then the P/R parameters worked like in Luxfloat and Rewrite, with a linear increase in rates. And all of this was still interacting with the original Expo function of course.
 
 You can see that this arrangement is both confusing and unnecessary. If you want a linear rate function, there is no need to have two parameters (RC and P/R). You can just use RC and Expo and be done. The only reason why both RC and P/R ever affected the linear rate function is because Cleanflight had several PID controllers, and some of them (Luxfloat and Rewrite) had a linear rate function and others (MW2.3) had a super-expo rate function. But in Betaflight 3.0, MW2.3 PID controller is now gone, so there is no need for a duplicate, conflicting definition of the P/R rate function.
 
