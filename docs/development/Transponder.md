@@ -4,7 +4,7 @@ Betaflight supports the generation of race transponder signals on compatiable F3
 
 IR led connections is target specific. Please consult the reference manual for your FC.
 
-Betaflight currently supports 3 tranponder protocol providers (as of 2.10).
+Betaflight currently supports 3 transponder protocol providers (as of 2.10).
 
 ## iLap Provider
 
