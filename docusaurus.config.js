@@ -179,7 +179,7 @@ const config = {
                 href: 'https://blackbox.betaflight.com',
               },
               {
-                label: 'Configurator',
+                label: 'Betaflight App',
                 href: 'https://app.betaflight.com/',
               },
             ],

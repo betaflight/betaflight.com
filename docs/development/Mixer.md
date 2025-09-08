@@ -1,10 +1,10 @@
 # Mixer
 
-Cleanflight supports a number of mixing configurations as well as custom mixing. Mixer configurations determine how the servos and motors work together to control the aircraft.
+Betaflight supports a number of mixing configurations as well as custom mixing. Mixer configurations determine how the servos and motors work together to control the aircraft.
 
 ## Configuration
 
-To use a built-in mixing configuration, you can use the Chrome configuration GUI. It includes images of the various mixer types to assist in making the proper connections. See the Configuration section of the documentation for more information on the GUI.
+To use a built‑in mixing configuration, use the [Betaflight App](https://app.betaflight.com). It includes images of mixer types to assist with correct wiring. See the Configuration section of the docs for more information on the Betaflight App.
 
 You can also use the Command Line Interface (CLI) to set the mixer type:
 
@@ -43,7 +43,7 @@ You can also use the Command Line Interface (CLI) to set the mixer type:
 | CUSTOM TRICOPTER | User-defined tricopter    |        |                |
 
 :::note
-In firmware 4.6 the `CUSTOM AIRPLANE` mixer model has been updated to require minimal one motor
+In firmware 2025.12, the `CUSTOM AIRPLANE` mixer model now requires at least one motor.
 :::
 
 ## Servo configuration
@@ -53,10 +53,7 @@ The cli mixer `smix` command controls how the mixer maps internal FC data (RC in
 
 ### Channel Forwarding
 
-Channel Forwarding allows you to forward your AUX channels directly to servos over PWM pins 5-8. You can enable it under features in the GUI or using the cli
-with `feature CHANNEL_FORWARDING`. This requires you to run PPM or another serial RC protocol, and is currently supported on NAZE and SPRACINGF3 targets.
-Note that if you have the led feature enabled on the NAZE target, AUX1-2 is mapped to PWM13-14 instead. So for instance if you enable this feature on a Naze
-AUX1 from your receiver will automatically be forwarded to PWM5 as a servo signal.
+Channel Forwarding lets you forward AUX channels to servos over PWM pins. Enable it in the Betaflight App (Features), or via the CLI with `feature CHANNEL_FORWARDING`.
 
 ### cli `servo`
 
@@ -102,7 +99,7 @@ Custom motor mixing allows for completely customized motor configurations. Each 
 Steps to configure custom mixer in the CLI:
 
 1. Use `mixer custom` to enable the custom mixing.
-2. Use `mmix reset` to erase the any existing custom mixing.
+2. Use `mmix reset` to erase any existing custom mixing.
 3. Optionally use `mmix load <name>` to start with one of available mixers.
 4. Issue a `mmix` statement for each motor.
 
@@ -274,10 +271,9 @@ smix reverse 5 2 r
 
 ### Example 4: Custom Airplane with Differential Thrust
 
-Here is an example of a custom twin engine plane with [Differential Thrust](http://rcvehicles.about.com/od/rcairplanes/ss/RCAirplaneBasic.htm#step8)
-Motors take the first 2 pins, the servos take pins as indicated in the [Servo slot] chart above.
-Settings below have motor yaw influence at "0.3", you can change this number to have more or less differential thrust over the two motors.
-Note: You can look at the Motors tab in [Cleanflight Cofigurator](https://chrome.google.com/webstore/detail/cleanflight-configurator/enacoimjcgeinfnnnpajinjgmkahmfgb?hl=en) to see motor and servo outputs.
+Here is an example of a custom twin-engine plane with differential thrust. Motors use outputs 1–2; servos use the outputs indicated in the [Servo slot] chart above. The settings below set motor yaw influence to 0.3; increase or decrease this value for more or less differential thrust.
+
+Note: You can view motor and servo outputs in the Motors tab of the [Betaflight App](https://app.betaflight.com).
 
 | Pins | Outputs          |
 | ---- | ---------------- |

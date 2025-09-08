@@ -97,7 +97,7 @@ Configure your tx/rx channel limits to use values between 1000 and 2000. The ran
 
 When a channel is within a specified range the corresponding mode is enabled.
 
-Use the GUI configuration tool to allow easy configuration when channel.
+Use the Betaflight App configuration tool to allow easy configuration when channel.
 
 ### CLI
 

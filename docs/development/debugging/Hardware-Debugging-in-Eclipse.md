@@ -28,7 +28,7 @@ stop the board, flash the firmware, restart:
 	sleep 100
 	poll
 	flash probe 0
-	flash write_image erase /home/user/git/cleanflight/obj/cleanflight_NAZE.hex 0x08000000
+	flash write_image erase /home/user/git/betaflight/obj/betaflight_STM32F4DISCOVERY.hex 0x08000000
 	sleep 200
 	soft_reset_halt
 	wait_halt

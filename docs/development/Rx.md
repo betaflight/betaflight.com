@@ -49,7 +49,7 @@ http://www.lemon-rx.com/index.php?route=product/product&product_id=118
 - You probably need an inverter between the receiver output and the flight controller. However, some flight controllers have this built in (the main port on CC3D, for example), and doesn't need one.
 - Some OpenLRS receivers produce a non-inverted SBUS signal. It is possible to switch SBUS inversion off using CLI command `set sbus_inversion = OFF` when using an F3 based flight controller.
 - Softserial ports cannot be used with SBUS because it runs at too high of a bitrate (1Mbps). Refer to the chapter specific to your board to determine which port(s) may be used.
-- You will need to configure the channel mapping in the GUI (Receiver tab) or CLI (`map` command). Note that channels above 8 are mapped "straight", with no remapping.
+- You will need to configure the channel mapping in the Betaflight App (Receiver tab) or CLI (`map` command). Note that channels above 8 are mapped "straight", with no remapping.
 
 These receivers are reported working:
 
@@ -109,7 +109,7 @@ Receivers with UDI output
 
 ### XBUS MODE B RJ01
 
-There exist a remote receiver made for small BNF-models like the Align T-Rex 150 helicopter. The code also supports using the Align DMSS RJ01 receiver directly with the cleanflight software.
+There is a remote receiver made for small BNF-models like the Align T-Rex 150 helicopter. The code also supports using the Align DMSS RJ01 receiver directly with the Betaflight software.
 To use this receiver you must power it with 3V from the hardware, and then connect the serial line as other serial RX receivers.
 In order for this receiver to work, you need to specify the XBUS_MODE_B_RJ01 for serialrx_provider. Note that you need to set your radio mode for XBUS "MODE B" also for this receiver to work.
 Receiver name: Align DMSS RJ01 (HER15001)
@@ -272,9 +272,9 @@ The highest channel value considered valid. e.g. PWM/PPM pulse length
 
 See the Serial chapter for some some RX configuration examples.
 
-To setup spectrum on the Naze32 or clones in the GUI:
+To setup spectrum in the Betaflight App:
 
-1. Start on the "Ports" tab make sure that UART2 has serial RX. If not set the checkbox, save and reboot.
+1. Start on the "Ports" tab make sure that a UART has serial RX. If not set the checkbox, save and reboot.
 2. Move to the "Configuration" page and in the upper lefthand corner choose Serial RX as the receiver type.
 3. Below that choose the type of serial receiver that you are using. Save and reboot.
 
@@ -331,7 +331,7 @@ The channels defined in CleanFlight are as follows:
 | 3              | Throttle     |
 
 If you have a transmitter/receiver, that output a non-standard pulse range (i.e. 1070-1930 as some Spektrum receivers)
-you could use rx channel range configuration to map actual range of your transmitter to 1000-2000 as expected by Cleanflight.
+you could use rx channel range configuration to map actual range of your transmitter to 1000-2000 as expected by Betaflight.
 
 The low and high value of a channel range are often referred to as 'End-points'. e.g. 'End-point adjustments / EPA'.
 

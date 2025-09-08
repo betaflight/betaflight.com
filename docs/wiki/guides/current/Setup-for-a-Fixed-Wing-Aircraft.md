@@ -131,7 +131,7 @@ My resource setup looks like this:
 `resource SERVO 2 A11`
 `resource SERVO 3 B06`
 `resource SERVO 4 B07`
-These are the resources used by motors 1-4 typically. Interestingly, as identified in the GUI under the servos tab and in the smix commands, as you may have noticed, all the servo labels in the resource command are -1 in value compared to the values used in smix and in the servos tab. So that is one bug that could be fixed. You must use an index between 1 and 8 when resourcing a servo. I tried to resource servo 0 and servo -1 to compensate for the strangeness and it doesn't let you.
+These are the resources used by motors 1-4 typically. Interestingly, as identified in the Betaflight App under the servos tab and in the smix commands, as you may have noticed, all the servo labels in the resource command are -1 in value compared to the values used in smix and in the servos tab. So that is one bug that could be fixed. You must use an index between 1 and 8 when resourcing a servo. I tried to resource servo 0 and servo -1 to compensate for the strangeness and it doesn't let you.
 These resources are also only applicable to the Naze32 I'm pretty sure. Other boards are likely to have a different IO and to determine where to assign the servos can be done with the resource command. You will be able to see where motors 1-4 are resourced and just swap in the servos to these places.
 ISSUES:
 I've been having issues with the BF CLI by the way. Sometimes I get garbage characters in the top of the display and other weird things happen sometimes. I flashed cleanflight to my Naze and in the cleanflight CLI it's all pretty and straight. Not that betaflight doesn't work, but it looks a little weird, thought I'd say something.

@@ -4,7 +4,7 @@
 
 ### IMPORTANT: These settings are NOT provided or endorsed by the Betaflight project. They are examples that others have found helpful for their particular quad. THEY MAY NOT BE SUITABLE FOR YOUR QUAD! A better use might be to examine similar configurations to yours and get ideas on possible tuning directions rather than blindly copy/pasting someone else's settings. Always test carefully and safely.
 
-To use, simply copy and paste the preset CLI commands into the Betaflight CLI tab. After the paste, type "save" and hit [enter]. That will load the settings of the preset which you can see (mostly) through the GUI tabs.
+To use, simply copy and paste the preset CLI commands into the CLI tab in the Betaflight App. After the paste, type "save" and hit [enter]. That will load the settings of the preset which you can see (mostly) through the Betaflight App tabs.
 
 # BF 4.2
 

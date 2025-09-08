@@ -39,7 +39,7 @@ Procedure is easy:
 - Select dshot hex file to flash
 - You can enable fast bootloader for faster flashing. Some report Fast not working so disable if fails.
 - Connect lipo (through a Current Limiter). Do not connect before this step.
-- Press flash and you will see led blinking on the escs.
+- Press flash and you will see LED blinking on the escs.
 - Disconnect lipo and usb cable and you are now able to use dshot
 
 If the above command doesn't work escserial flash passthrough is not enabled yet.

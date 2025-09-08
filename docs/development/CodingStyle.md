@@ -2,8 +2,9 @@
 
 ## General
 
-This document overrides the original Baseflight style that was referenced before.
-This document has taken inspiration from that style, from Eclipse defaults and from Linux, as well as from some Cleanflight and Betaflight developers and existing code.
+This document overrides the original Baseflight and Cleanflight styles that were referenced before.
+
+This document has taken inspiration from that style, from Eclipse defaults and from Linux, as well as from some Betaflight developers and existing code.
 
 There are not so many changes from the old style, if you managed to find it.
 

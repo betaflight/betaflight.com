@@ -165,8 +165,6 @@ MAVLink implementation in Betaflight is transmit-only and usable on low baud rat
 
 Smartport is a telemetry system used by newer FrSky transmitters and receivers such as the Taranis/XJR and X8R, X6R and X4R(SB).
 
-More information about the implementation can be found here: https://github.com/frank26080115/cleanflight/wiki/Using-Smart-Port
-
 ### Available sensors
 
 The following sensors are transmitted :

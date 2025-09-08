@@ -136,7 +136,7 @@ WS2812 LEDs on full brightness can consume quite a bit of current. It is recomme
 | ChebuzzF3/F3Discovery | PB8  | Data In   | PB8    |
 | Sparky                | PWM5 | Data In   | PA6    |
 
-Since RC5 is also used for SoftSerial on the Naze it means that you cannot use SoftSerial and led strips at the same time. Additionally, since RC5 is also used for Parallel PWM RC input on both the Naze, Chebuzz and STM32F3Discovery targets, led strips can not be used at the same time at Parallel PWM.
+Since RC5 is also used for SoftSerial on the Naze it means that you cannot use SoftSerial and LED strips at the same time. Additionally, since RC5 is also used for Parallel PWM RC input on both the Naze, Chebuzz and STM32F3Discovery targets, LED strips can not be used at the same time at Parallel PWM.
 
 If you have LEDs that are intermittent, flicker or show the wrong colors then drop the VIN to less than 4.7v, e.g. by using an inline diode on the VIN to the LED strip. The problem occurs because of the difference in voltage between the data signal and the power signal. The WS2811 LED's require the data signal (Din) to be between 0.3 _ Vin (Max) and 0.7 _ VIN (Min) to register valid logic low/high signals. The LED pin on the CPU will always be between 0v to ~3.3v, so the Vin should be 4.7v (3.3v / 0.7 = 4.71v). Some LEDs are more tolerant of this than others.
 
@@ -144,15 +144,15 @@ The datasheet can be found here: http://www.adafruit.com/datasheets/WS2812.pdf
 
 ## Configuration
 
-The led strip feature can be configured via the GUI.
+The LED strip feature can be configured via the Betaflight App.
 
 GUI:
-Enable the Led Strip feature via the GUI under setup.
+Enable the Led Strip feature via the Betaflight App under setup.
 
 Configure the LEDs from the Led Strip tab in the Betaflight GUI.
 First setup how the LEDs are laid out so that you can visualize it later as you configure and so the flight controller knows how many LEDs there are available.
 
-There is a step by step guide on how to use the GUI to configure the Led Strip feature using the GUI https://oscarliang.com/setup-led-betaflight/ which was published early 2015 by Oscar Liang which may or may not be up-to-date by the time you read this.
+There is a step by step guide on how to use the Betaflight App to configure the Led Strip feature using the Betaflight App https://oscarliang.com/setup-led-betaflight/ which was published early 2015 by Oscar Liang which may or may not be up-to-date by the time you read this.
 
 CLI:
 Enable the `LED_STRIP` feature via the cli:
@@ -165,14 +165,14 @@ If you enable LED_STRIP feature and the feature is turned off again after a rebo
 
 Configure the LEDs using the `led` command.
 
-The `led` command takes either zero or two arguments - an zero-based led number and a sequence which indicates pair of coordinates, direction flags and mode flags and a color.
+The `led` command takes either zero or two arguments - an zero-based LED number and a sequence which indicates pair of coordinates, direction flags and mode flags and a color.
 
-If used with zero arguments it prints out the led configuration which can be copied for future reference.
+If used with zero arguments it prints out the LED configuration which can be copied for future reference.
 
-Each led is configured using the following template: `x,y:ddd:mmm:cc`
+Each LED is configured using the following template: `x,y:ddd:mmm:cc`
 
 `x` and `y` are grid coordinates of a 0 based 16x16 grid, north west is 0,0, south east is 15,15
-`ddd` specifies the directions, since an led can face in any direction it can have multiple directions. Directions are:
+`ddd` specifies the directions, since an LED can face in any direction it can have multiple directions. Directions are:
 
 `N` - North
 `E` - East
@@ -339,7 +339,7 @@ LEDs are set in a specific order:
 
 That is, south facing LEDs have priority.
 
-The mapping between modes led placement and colors is currently fixed and cannot be changed.
+The mapping between modes LED placement and colors is currently fixed and cannot be changed.
 
 #### Indicator
 
@@ -401,7 +401,7 @@ This mode fades the current LED color to the previous/next color in the HSB colo
 
 #### Thrust ring state
 
-This mode is allows you to use one or multiple led rings (e.g. NeoPixel ring) for an afterburner effect. LEDs with this mode will light up with their assigned color in a repeating sequence. Assigning the color black to an LED with the ring mode will prevent the LED from lighting up.
+This mode is allows you to use one or multiple LED rings (e.g. NeoPixel ring) for an afterburner effect. LEDs with this mode will light up with their assigned color in a repeating sequence. Assigning the color black to an LED with the ring mode will prevent the LED from lighting up.
 
 A better effect is achieved when LEDs configured for thrust ring have no other functions.
 
@@ -409,7 +409,7 @@ LED direction and X/Y positions are irrelevant for thrust ring LED state. The or
 
 Each LED of the ring can be a different color. The color can be selected between the 16 colors available.
 
-For example, led 0 is set as a `R`ing thrust state led in color 13 as follow.
+For example, LED 0 is set as a `R`ing thrust state LED in color 13 as follow.
 
 ```
 led 0 2,2::R:13
@@ -425,7 +425,7 @@ x,y position and directions are ignored when using this mode.
 
 Other modes will override or combine with the color mode.
 
-For example, to set led 0 to always use color 10 you would issue this command.
+For example, to set LED 0 to always use color 10 you would issue this command.
 
 ```
 led 0 0,0::C:10

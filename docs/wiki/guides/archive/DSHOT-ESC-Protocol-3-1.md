@@ -38,7 +38,7 @@ The Latest Development version of the Configurator is recommended.
 
 Go to the CLI and type "get pwm". All settings with 'pwm' in the name will be shown with all options.
 If DSHOT150, DSHOT300, DSHOT600 is NOT in the list for the "motor_pwm_protocol" then this firmware does NOT support DShot.
-Example for NAZE that does Not support DShot:
+Example for a target that does NOT support DShot:
 
 motor_pwm_protocol = ONESHOT42
 Allowed values: OFF, ONESHOT125, ONESHOT42, MULTISHOT, BRUSHED
