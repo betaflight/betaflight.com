@@ -271,7 +271,7 @@ smix reverse 5 2 r
 
 ### Example 4: Custom Airplane with Differential Thrust
 
-Here is an example of a custom twin‑engine plane with differential thrust. Motors take the first 2 pins, the servos take pins as indicated in the [Servo slot] chart above. Settings below have motor yaw influence at "0.3", you can change this number to have more or less differential thrust over the two motors.
+Here is an example of a custom twin-engine plane with differential thrust. Motors use outputs 1–2; servos use the outputs indicated in the [Servo slot] chart above. The settings below set motor yaw influence to 0.3; increase or decrease this value for more or less differential thrust.
 
 Note: You can view motor and servo outputs in the Motors tab of the [Betaflight App](https://app.betaflight.com).
 
