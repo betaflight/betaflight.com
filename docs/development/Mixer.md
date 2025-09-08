@@ -4,7 +4,7 @@ Betaflight supports a number of mixing configurations as well as custom mixing. 
 
 ## Configuration
 
-To use a built-in mixing configuration, you can use the Chrome configuration GUI. It includes images of the various mixer types to assist in making the proper connections. See the Configuration section of the documentation for more information on the Betaflight App.
+To use a built‑in mixing configuration, use the [Betaflight App](https://app.betaflight.com). It includes images of mixer types to assist with correct wiring. See the Configuration section of the docs for more information on the Betaflight App.
 
 You can also use the Command Line Interface (CLI) to set the mixer type:
 
@@ -53,8 +53,7 @@ The cli mixer `smix` command controls how the mixer maps internal FC data (RC in
 
 ### Channel Forwarding
 
-Channel Forwarding allows you to forward your AUX channels directly to servos over PWM pins. You can enable it under features in the Betaflight App or using the cli
-with `feature CHANNEL_FORWARDING`.
+Channel Forwarding lets you forward AUX channels to servos over PWM pins. Enable it in the Betaflight App (Features), or via the CLI with `feature CHANNEL_FORWARDING`.
 
 ### cli `servo`
 
@@ -272,10 +271,9 @@ smix reverse 5 2 r
 
 ### Example 4: Custom Airplane with Differential Thrust
 
-Here is an example of a custom twin engine plane with [Differential Thrust](http://rcvehicles.about.com/od/rcairplanes/ss/RCAirplaneBasic.htm#step8)
-Motors take the first 2 pins, the servos take pins as indicated in the [Servo slot] chart above.
-Settings below have motor yaw influence at "0.3", you can change this number to have more or less differential thrust over the two motors.
-Note: You can look at the Motors tab in [Betaflight App](https://app.betaflight.com) to see motor and servo outputs.
+Here is an example of a custom twin engine plane with [Differential Thrust](http://rcvehicles.about.com/od/rcairplanes/ss/RCAirplaneBasic.htm#step8) Motors take the first 2 pins, the servos take pins as indicated in the [Servo slot] chart above. Settings below have motor yaw influence at "0.3", you can change this number to have more or less differential thrust over the two motors.
+
+Note: You can view motor and servo outputs in the Motors tab of the [Betaflight App](https://app.betaflight.com).
 
 | Pins | Outputs          |
 | ---- | ---------------- |

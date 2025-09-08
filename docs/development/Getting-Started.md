@@ -2,7 +2,7 @@
 
 This is a step-by-step guide that can help a person that has never used Betaflight before set up a flight controller and the aircraft around it for flight. Basic RC knowledge is required, though. A total beginner should first familiarize themselves with concepts and techniques of RC before using this (e.g. basic controls, soldering, transmitter operation etc). One could use [RCGroups](http://www.rcgroups.com/forums/index.php) and/or [the Youtube show FliteTest](https://www.youtube.com/user/flitetest) for this.
 
-DISCLAIMER: This documents is a work in progress. We cannot guarantee the safety or success of your project. At this point the document is only meant to be a helping guide, not an authoritative checklist of everything you should do to be safe and successful. Always exercise common sense, critical thinking and caution.
+DISCLAIMER: This document is a work in progress. We cannot guarantee the safety or success of your project. At this point the document is only meant to be a helping guide, not an authoritative checklist of everything you should do to be safe and successful. Always exercise common sense, critical thinking and caution.
 
 ## Hardware
 
@@ -45,7 +45,7 @@ Now, there are two ways to [configure Betaflight](Configuration); via the App's 
 
 - Connect the Rx to the FC, and the FC to the PC. You may need to power the Rx through a BEC (its 5V rail - observe polarity!).
 
-- On your PC, connect to the Configurator, and go to the first tab. Check that the board animation is moving properly when you move the actual board. Do an accelerometer calibration.
+- On your PC, connect to the Betaflight App, and go to the first tab. Check that the board animation is moving properly when you move the actual board. Do an accelerometer calibration.
 
 - Configuration tab: Select your aircraft configuration (e.g. Quad X), and go through each option in the tab to check if relevant for you.
 
@@ -66,7 +66,7 @@ Now, there are two ways to [configure Betaflight](Configuration); via the App's 
 - Receiver tab:
   - Check that the channel inputs move according to your Tx inputs.
   - Check that the Channel map is correct along with the RSSI Channel, if you use that.
-  - Verify the range of each channel goes from ~1000 to ~2000. See also [controls](Controls). and `rx_min_usec` and `rx_max_usec`.
+  - Verify the range of each channel goes from ~1000 to ~2000. See also [controls](Controls) and `rx_min_usec`/`rx_max_usec`.
   - You can also set EXPO here instead of your Tx.
   - Click Save!
 - Modes tab: Setup the desired modes. See the [modes](Modes) chapter for what each mode does, but for the beginning you mainly need HORIZON, if any.

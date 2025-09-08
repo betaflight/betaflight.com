@@ -22,22 +22,22 @@ _TPA_ stands for Throttle PID Attenuation and according to [AlexYork.net](http:/
 
 > "TPA basically allows an aggressively tuned multi-rotor (one that feels very locked in) to reduce its PID gains when throttle is applied beyond the TPA threshold/breakpoint in order to eliminate fast oscillations.."
 
-Note that TPA is set via CLI or on the PID TUNING tab of the Betaflight App. `tpa_breakpoint` is set via CLI
+Note that TPA can be set via the CLI or in the PID Tuning tab of the Betaflight App. The `tpa_breakpoint` parameter is set via the CLI.
 
 Also, note that TPA and `tpa_breakpoint` may not be used with certain PID controllers. Check the description on the individual controller.
 
-TPA applies a PID value reduction in relation to full throttle. It is used to apply dampening of PID values as full throttle is reached.
+TPA applies a gain reduction relative to throttle. In current Betaflight, TPA attenuates P and D (not I) as full throttle is approached.
 
-**TPA** = % of dampening that will occur at full throttle.
+**TPA** = % of damping that will occur at full throttle.
 
 **tpa_breakpoint** = the point in the throttle curve at which TPA will begin to be applied.
 
-An Example: With TPA = 50 (or .5 in the Betaflight App) and `tpa_breakpoint` = 1500 (assumed throttle range 1000 - 2000)
+Example: With TPA = 50% (or 0.5 in the Betaflight App) and `tpa_breakpoint` = 1500 (assuming throttle range 1000–2000).
 
-- At 1500 on the throttle channel, the PIDs will begin to be dampened.
-- At 3/4 throttle (1750), PIDs are reduced by approximately 25% (half way between 1500 and 2000 the dampening will be 50% of the total TPA value of 50% in this example)
-- At full throttle (2000) the full amount of dampening set in TPA is applied. (50% reduction in this example)
-- TPA can lead into increase of rotation rate when more throttle applied. You can get faster flips and rolls when more throttle applied due to coupling of PID's and rates. Only the PID controllers MWREWRITE and LUX are using a linear TPA implementation, where no rotation rates are affected when TPA is being used.
+- At 1500 on the throttle channel, the PIDs will begin to be damped.
+- At 3/4 throttle (1750), PIDs are reduced by approximately 25% (half way between 1500 and 2000 the damping will be 50% of the total TPA value of 50% in this example)
+- At full throttle (2000) the full amount of damping set in TPA is applied. (50% reduction in this example)
+- TPA can lead into increase of rotation rate when more throttle applied. You can get faster flips and rolls when more throttle applied due to coupling of PID's and rates. 
 
 ![tpa example chart](https://user-images.githubusercontent.com/15355893/165317342-9639a7f8-1a05-4584-9b80-3faa2da565cb.png 'TPA Example Chart')
 

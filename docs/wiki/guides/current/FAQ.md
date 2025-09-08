@@ -863,10 +863,10 @@ http://blog.oscarliang.net/raceflight-multishot/
 
 ## How do I go about suggesting Betaflight App enhancements ?
 
-1. On GitHub, look up the Betaflight Git. There's a link to the Betaflight App repository.
-2. Click on "Issues".
-3. Start a new issue and preface it with "Suggestion: short summary".
-4. Explain the new enhancement suggestion.
+1. On GitHub, open the Betaflight App repository.
+2. Click “Issues” and search for existing requests first.
+3. If none match, open a new issue using the feature request template with a clear, concise summary.
+4. Describe the enhancement, user benefit, and any screenshots/mockups.
 
 ## How do I lower the chance of my copter producing Magic Smoke when powering on ?
 
@@ -1038,9 +1038,7 @@ The cloud build is now available to assist all our users. You either compile you
 
 ## How do I setup for reversed prop rotation ?
 
-Just change props and motor rotation in your ESC management tool.
-Then change set yaw_motor_direction = -1
-Remember to cycle power to FC so new setting become properly used.
+Just change props and motor rotation in your ESC management tool. Then in the CLI: `set yaw_motors_reversed = ON`; `save`. Power-cycle the FC to ensure the setting takes effect.
 
 ## What is a recommended FC and esc setup to run at 8khz also i see reference to 4/4 or 4/4/32 or 8/8, what are these referring to ?
 

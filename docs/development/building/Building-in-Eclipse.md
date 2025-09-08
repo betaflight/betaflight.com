@@ -2,6 +2,9 @@
 
 How to build, test & debug Betaflight in Eclipse on Linux, Windows & MacOS.
 
+> Note
+> This guide targets Eclipse Luna-era tooling (2014–2016) and is kept for legacy reference. It is not maintained. Prefer the current build instructions (Betaflight App/Cloud build or supported IDEs). If you still use Eclipse, expect paths, plugins and menus to differ.
+
 ## Checklist
 
 Use this checklist to make sure you didn't miss a step. Versions mandated below are current and correct as of January 2016.
@@ -89,7 +92,7 @@ Enter betaflight as the project name and browse to your home directory -> git ->
 
 ![finish checkout](../assets/building-in-eclipse/checkout-betaflight-008.PNG)
 
-Set your build and debug targets by going to project properties -> C/C++ Build and choose the Behavior tab. Replace "all" in the build box with "TARGET=xxx DEBUG=GDB" where xxx is your platform such as STM32F4DISCOVERY
+Set your build and debug targets by going to project properties -> C/C++ Build and choose the Behavior tab. Replace "all" in the build box with "TARGET=<your_target> DEBUG=GDB" (e.g., STM32F4DISCOVERY).
 
 ![build](../assets/building-in-eclipse/checkout-betaflight-012.PNG)
 
