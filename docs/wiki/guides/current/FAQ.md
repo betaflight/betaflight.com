@@ -361,9 +361,9 @@ Have a look at this video form more information: http://www.youtube.com/watch?v=
 
 ## How do I activate 2kHz mode ?
 
-For Betaflight 2.4.0 onwards you should NOT use CLI but rather set looptime to 500 in the Configuration tab of the Betaflight App. CAUTION: Appropriate sensors will automatically be disabled on F1 boards.
+For Betaflight 2.4.0 and later you should NOT use CLI; set looptime to 500 in the Configuration tab. Note: on legacy firmware/configurator versions, UI labels may differ from the current Betaflight App. CAUTION: Appropriate sensors will automatically be disabled on F1 boards.
 
-For betaflight version prior to 2.4.0 can use the CLI and make the following commands, dependent on the Flight Controller type:
+For Betaflight versions prior to 2.4.0 you can use the CLI and execute the following commands, dependent on the Flight Controller type:
 
 **For F3 boards**
 

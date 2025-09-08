@@ -92,7 +92,7 @@ Enter betaflight as the project name and browse to your home directory -> git ->
 
 ![finish checkout](../assets/building-in-eclipse/checkout-betaflight-008.PNG)
 
-Set your build and debug targets by going to project properties -> C/C++ Build and choose the Behavior tab. Replace "all" in the build box with "TARGET=<your_target> DEBUG=GDB" (e.g., STM32F4DISCOVERY).
+Set your build and debug targets by going to project properties -> C/C++ Build and choose the Behavior tab. Replace `all` in the build box with `TARGET=[your_target] DEBUG=GDB` (e.g., STM32F4DISCOVERY).
 
 ![build](../assets/building-in-eclipse/checkout-betaflight-012.PNG)
 

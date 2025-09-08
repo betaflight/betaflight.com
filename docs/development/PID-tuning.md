@@ -37,7 +37,7 @@ Example: With TPA = 50% (or 0.5 in the Betaflight App) and `tpa_breakpoint` = 15
 - At 1500 on the throttle channel, the PIDs will begin to be damped.
 - At 3/4 throttle (1750), PIDs are reduced by approximately 25% (half way between 1500 and 2000 the damping will be 50% of the total TPA value of 50% in this example)
 - At full throttle (2000) the full amount of damping set in TPA is applied. (50% reduction in this example)
-- TPA can lead into increase of rotation rate when more throttle applied. You can get faster flips and rolls when more throttle applied due to coupling of PID's and rates. 
+- TPA can lead to an increase in rotation rate as throttle rises. You may see faster flips and rolls at higher throttle due to coupling between PIDs and rates. 
 
 ![tpa example chart](https://user-images.githubusercontent.com/15355893/165317342-9639a7f8-1a05-4584-9b80-3faa2da565cb.png 'TPA Example Chart')
 

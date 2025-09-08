@@ -43,7 +43,7 @@ You can also use the Command Line Interface (CLI) to set the mixer type:
 | CUSTOM TRICOPTER | User-defined tricopter    |        |                |
 
 :::note
-In firmware 4.6 the `CUSTOM AIRPLANE` mixer model has been updated to require minimal one motor
+In firmware 2025.12, the `CUSTOM AIRPLANE` mixer model now requires at least one motor.
 :::
 
 ## Servo configuration
@@ -99,7 +99,7 @@ Custom motor mixing allows for completely customized motor configurations. Each 
 Steps to configure custom mixer in the CLI:
 
 1. Use `mixer custom` to enable the custom mixing.
-2. Use `mmix reset` to erase the any existing custom mixing.
+2. Use `mmix reset` to erase any existing custom mixing.
 3. Optionally use `mmix load <name>` to start with one of available mixers.
 4. Issue a `mmix` statement for each motor.
 
@@ -271,7 +271,7 @@ smix reverse 5 2 r
 
 ### Example 4: Custom Airplane with Differential Thrust
 
-Here is an example of a custom twin engine plane with [Differential Thrust](http://rcvehicles.about.com/od/rcairplanes/ss/RCAirplaneBasic.htm#step8) Motors take the first 2 pins, the servos take pins as indicated in the [Servo slot] chart above. Settings below have motor yaw influence at "0.3", you can change this number to have more or less differential thrust over the two motors.
+Here is an example of a custom twin‑engine plane with differential thrust. Motors take the first 2 pins, the servos take pins as indicated in the [Servo slot] chart above. Settings below have motor yaw influence at "0.3", you can change this number to have more or less differential thrust over the two motors.
 
 Note: You can view motor and servo outputs in the Motors tab of the [Betaflight App](https://app.betaflight.com).
 

@@ -1,10 +1,10 @@
 ## Cygwin on Windows
 
-Don't do it. Use WSL :)
+Cygwin on Windows is no longer supported. Use Windows Subsystem for Linux (WSL) instead.
 
 ## GNU ARM Toolchain Version
 
-To use the latest tool chain, simply run:
+To install or update the GNU Arm Embedded Toolchain, run:
 
 ```
 make arm_sdk_install
@@ -23,7 +23,7 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 Problem is a missing library, install it this way:
 
 ```
-$ sudo apt-get install libblocksruntime-dev
+$ sudo apt install libblocksruntime-dev
 ```
 
 ## Compiling Unit Tests fails with errors
@@ -37,4 +37,4 @@ $ sudo apt install clang
 
 ## GLIBC issues on Alpine
 
-Please see: [Apline wiki](https://wiki.alpinelinux.org/wiki/Running_glibc_programs)
+Please see: [Alpine wiki](https://wiki.alpinelinux.org/wiki/Running_glibc_programs)
