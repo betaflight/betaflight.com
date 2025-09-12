@@ -36,6 +36,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 | Draft 1.6 | 18 February 2025 | Add W25N02K flash define          |
 | Draft 1.7 | 27 March 2025    | Update FC review policy           |
 | Draft 1.8 | 01 April 2025    | Update I2C Device Info            |
+| Draft 1.9 | 12 September 2025| Update motor requirements         |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -348,8 +349,9 @@ Effective immediately, new flight controller designs that use the STM F4 and F7 
 BITBANG is the new default on non-F4 and FC designers should use as few GPIO PORTS as possible to avoid needing a DMA stream per GPIO port. i.e.
 
 - 8 motors on 1 GPIO port is optimal.
-- 8 motors spread across 2 GPIO ports is OK,
-- 8 motors spread across more than 2 GPIO ports is BAD.
+- first 4 motors are required to use a 1 GPIO and one 4-channel timer.
+- 8 motors spread across 2 GPIO ports is OK where both use 4-channel timers.
+- 8 motors spread across more than 2 GPIO ports is BAD practice and will be rejected.
 
 Similarly, it is optimal to use two 4-channel timers for 8 motors for when BITBANG is disabled.
 
