@@ -390,14 +390,6 @@ https://www.st.com/resource/en/errata_sheet/dm00037591-stm32f405407xx-and-stm32f
 Corruption may occur on DMA2 if AHB peripherals (e.g. GPIO ports) are accessed concurrently with APB peripherals (e.g. SPI busses).
 Practically, this means that all pins should be on the same port, or at most two ports, so that only one (or two) DMA streams are required for bitbanged operation.
 
-- Additional Recommendations:
-
-  Use A00 for LED Strip (Diatone Fury resources insert as example)
-
-  Use pins PA13 and PA14 for debug options. Including test point pads (these can by tiny) as well as the necessary 3.3v/Ground pads is strongly recommended.
-
-  The DIAT-FURYF4OSD is a good example configuration for F405 boards, because it uses pins with timers that do not experience any conflicts. Motors are on port pins with associated timers and use neither TIM 1 nor N Channels.
-
   As an additional reference design, see the Fenix F405: https://oshwlab.com/jyesmith/fenix-f405
 
 #### 3.2.1.2 F7 Resource Selection
