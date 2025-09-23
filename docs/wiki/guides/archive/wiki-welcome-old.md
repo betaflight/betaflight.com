@@ -26,7 +26,7 @@ To get the latest update from us, you can now also visit our webpage at https://
 
 ## Merchandise:
 
-**For a limited time only:** Buy a [Betaflight Shirt or Hoodie](Betaflight-merchandise)!
+**For a limited time only:** Buy a [Betaflight Shirt or Hoodie](Betaflight-Merchandise)!
 
 ## Wiki Tips:
 

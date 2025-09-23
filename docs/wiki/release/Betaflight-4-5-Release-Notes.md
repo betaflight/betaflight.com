@@ -357,7 +357,7 @@ For Betaflight 4.5 and higher, Soft Serial pin assignment must be made using CLI
 | `RESOURCE SOFTSERIALRX 2 <pin>` | `RESOURCE SERIALRX12 <pin>` |
 | `RESOURCE SOFTSERIALTX 2 <pin>` | `RESOURCE SERIALTX12 <pin>` |
 
-A maximum of two Soft Serial ports can be enabled. For more information, see the [SoftSerial guide](/docs/wiki/guides/current/softserial).
+A maximum of two Soft Serial ports can be enabled. For more information, see the [SoftSerial guide](/docs/wiki/guides/current/SoftSerial).
 
 :::note
 

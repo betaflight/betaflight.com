@@ -27,7 +27,7 @@ On the top right of the configurator, the following options are available:
   <TabItem value="pids" label="PID Profile Settings" default>
     ## PID Profile Settings
 
-    Tune the PID controller settings for the craft. Detailed explanation can be found [here](/docs/development/pid-tuning).
+    Tune the PID controller settings for the craft. Detailed explanation can be found [here](/docs/development/PID-tuning).
     <br />
     ![PID Profile Settings](/img/betaflight_configurator_pid_profile_settings.png)
     <br />
@@ -85,8 +85,8 @@ On the top right of the configurator, the following options are available:
     | ---- | ----------- |
     | **Throttle Boost** | Transiently boosts throttle with faster throttle inputs, providing a more immediate throttle response. |
     | **Motor Output Limit** | Percentage reduction in per-motor drive signal. Reduces ESC current and motor heat when using higher cell count batteries on high KV motors. When using a 6S battery on a aircraft that with 4S motors, props and tuning, try 66%; when using a 4S battery on a aircraft intended for 3S, try 75%. Be sure that all of your components can support the voltage of the battery you are using. |
-    | **Dynamic Idle Value** <br /> [* 100 RPM] | Improves control at low rpm and reduces risk of motor desyncs. It improves PID authority, zero throttle stability, inverted hang time, and motor braking. The Dynamic Idle min rpm should be set to around 3000 - 3500 rpm.<br />Visit [this wiki entry](/docs/wiki/guides/current/dynamic-idle) for more info. |
-    | **Vbat Sag Compensation** | Gives consistent throttle and PID performance over the usable battery voltage range by increasing motor output as battery voltage falls. The amount of compensation can be varied between 0 and 100%. Full compensation (100%) is recommended.<br />Visit [this wiki entry](/docs/wiki/tuning/4-2-tuning-notes#dynamic-battery-sag-compensation) for more info. |
+    | **Dynamic Idle Value** <br /> [* 100 RPM] | Improves control at low rpm and reduces risk of motor desyncs. It improves PID authority, zero throttle stability, inverted hang time, and motor braking. The Dynamic Idle min rpm should be set to around 3000 - 3500 rpm.<br />Visit [this wiki entry](/docs/wiki/guides/current/Dynamic-Idle) for more info. |
+    | **Vbat Sag Compensation** | Gives consistent throttle and PID performance over the usable battery voltage range by increasing motor output as battery voltage falls. The amount of compensation can be varied between 0 and 100%. Full compensation (100%) is recommended.<br />Visit [this wiki entry](/docs/wiki/tuning/4-2-Tuning-Notes#dynamic-battery-sag-compensation) for more info. |
     | **Thrust Linearization** | Improves low throttle authority and responsiveness. Especially useful for whoops and 48k ESCs. Has no effect at higher throttle. The amount of compensation can be varied between 0 and 150%. Usually 30-40% is enough. |
 
     ### Miscellaneous Settings
