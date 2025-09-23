@@ -1,15 +1,23 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer').themes.github
-const darkCodeTheme = require('prism-react-renderer').themes.dracula
-const math = require('remark-math')
-const mentions = require('remark-mentions')
-const katex = require('rehype-katex')
+import { themes } from 'prism-react-renderer';
+import remarkMath from 'remark-math';
+import remarkMentions from 'remark-mentions';
+import rehypeKatex from 'rehype-katex';
+import dotenv from 'dotenv';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
+import { createRequire } from 'module';
 
-require('dotenv').config()
+const require = createRequire(import.meta.url);
 
-const sortDescending = ['release']
+dotenv.config();
+
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
+
+const sortDescending = ['release'];
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -68,16 +76,16 @@ const config = {
     ],
     'docusaurus-plugin-sass',
     require.resolve('docusaurus-lunr-search'),
-    async function tailwind(context, options) {
+    async function tailwind() {
       return {
         name: 'docusaurus-tailwindcss',
         configurePostCss(postcssOptions) {
           // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(require('tailwindcss'))
-          postcssOptions.plugins.push(require('autoprefixer'))
-          return postcssOptions
+          postcssOptions.plugins.push(tailwindcss);
+          postcssOptions.plugins.push(autoprefixer);
+          return postcssOptions;
         },
-      }
+      };
     },
   ],
 
@@ -93,19 +101,19 @@ const config = {
           /*editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',*/
           remarkPlugins: [
-            math,
+            remarkMath,
             [
-              mentions,
+              remarkMentions,
               {
                 usernameLink: (username) => `https://github.com/${username}`,
               },
             ],
           ],
-          rehypePlugins: [katex],
+          rehypePlugins: [rehypeKatex],
           async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
-            const sidebarItems = await defaultSidebarItemsGenerator(args)
-            const mustReverse = sortDescending.includes(args.item.dirName)
-            return mustReverse ? sidebarItems.reverse() : sidebarItems
+            const sidebarItems = await defaultSidebarItemsGenerator(args);
+            const mustReverse = sortDescending.includes(args.item.dirName);
+            return mustReverse ? sidebarItems.reverse() : sidebarItems;
           },
         },
         blog: false,
@@ -286,6 +294,6 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
-}
+};
 
-module.exports = config
+export default config;
