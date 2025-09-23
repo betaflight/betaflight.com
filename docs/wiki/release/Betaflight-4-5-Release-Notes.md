@@ -1,3 +1,7 @@
+For details, see the bullet point "Keep i-term at zero throttle for fixed wings" in section 19 below.
+See [16. Changed Soft Serial pin assignment CLI command](#16-changed-soft-serial-pin-assignment-cli-command) for more information.
+See the Blackbox and logging updates in section 19 below.
+See [19. Other Changes and fixes](#19-other-changes-and-fixes) for a summary.
 ---
 sidebar_position: 1
 ---

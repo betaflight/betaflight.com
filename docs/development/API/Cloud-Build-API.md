@@ -9,7 +9,7 @@ The build log has information about the build in case of any failure.
 
 ### Firmware 4.4
 
-Uses unified targets defined hardware drivers to be included in the firmware as described in the [Hardware specification](/docs/development/manufacturer/manufacturer-design-guidelines#42-definitions-for-unified-targets)
+Uses unified targets defined hardware drivers to be included in the firmware
 
 ### Firmware 4.5
 
