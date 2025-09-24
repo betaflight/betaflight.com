@@ -43,7 +43,7 @@ SERIALRX_CRSF       // Team BlackSheep Crossfire protocol
 SERIALRX_GHST       // ImmersionRC Ghost Protocol
 SERIALRX_IBUS       // FlySky and Turnigy receivers
 SERIALRX_SBUS       // FrSky and Futaba receivers
-SERIALRX_SPEKTRUM   // SRXL, DSM2 and DSMX protocols
+SERIALRX_SPEKTRUM   // DSM2/DSMX (Spektrum)
 SERIALRX_FPORT      // FrSky FPort
 SERIALRX_XBUS       // JR
 SERIALRX_SRXL2      // Spektrum SRXL2 protocol
@@ -68,7 +68,9 @@ TELEMETRY_HOTT
 TELEMETRY_LTM
 ```
 
-Note: telemetry for CRSF (includes ELRS), FPORT or GHST is included during the build.
+:::
+Telemetry for CRSF (including ELRS), FPORT, and GHST is included during the build.
+:::
 
 ### OSD Options
 
@@ -88,7 +90,6 @@ BATTERY_CONTINUE
 CAMERA_CONTROL
 DASHBOARD
 EMFAT_TOOLS
-ESCSERIAL_SIMONK
 GPS
 LED_STRIP
 LED_STRIP_64
@@ -163,7 +164,7 @@ YAW_SPIN_RECOVERY
 
 ### Defines for non compliant Smart Audio
 
-This workaround is only needed for some MCU (STM32F4) using firmware 4.5.2 and is no longer needed for 2025.12.0
+This workaround applies only to some targets on firmware 4.5.2.
 
 ```c
 SMARTAUDIO_NOPULLDOWN
