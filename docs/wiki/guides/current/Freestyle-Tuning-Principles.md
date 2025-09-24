@@ -221,7 +221,7 @@ and rolls ([BF doc ref](I-Term-Relax-Explained)).
 
 Anti Gravity boosts the I term when fast throttle changes are detected.
 It has been introduced to mitigate the craft nose tilt on throttle
-changes ([BF doc ref](PID-Tuning-Guide#antigravity)).
+changes ([BF doc ref](/docs/wiki/guides/current/PID-Tuning-Guide#antigravity)).
 
 Anti gravity helps to increase smoothness and hold the attitude on
 maneuvers with fast throttle changes like boosts, powerloops, etc.

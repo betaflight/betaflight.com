@@ -54,11 +54,11 @@ Welcome to a comprehensive guide to the Betaflight 4.3 update.
 
 - [Feedforward jitter reduction](#feedforward-jitter-reduction) - 4.3 introduces **feedforward jitter reduction**, which is an improvement on feedforward transition. It delivers a ‘dynamic transition’ effect to the feedforward, where you can get silky smooth responses while making slow stick inputs, and immediate, snappy feedforward responses to quick inputs. Usually, Transition is not required any more. Jitter reduction provides the Transition type effect, but at any stick angle. Jitter reduction also attenuates RC link noise during slow movements, especially for the newer higher rate Rx links. Racers will tend to use lower jitter reduction values than Freestylers, since that will attenuate link noise without delaying stick responses.
 
-- [Other feedforward improvements](#other-feedforward-improvements) - We now have second order smoothing on boost, soft interpolation during slow stick moves, and more accurate duplicate packet interpolation. Most slower radio links won't need averaging, which is now off by default. High speed radio links (250hz and higher) will typically benefit from 2 point averaging and stronger smoothing. Presets to suit most common link types make Radio link configuration easy.
+- [Other feedforward improvements](#other-feedforward-changes) - We now have second order smoothing on boost, soft interpolation during slow stick moves, and more accurate duplicate packet interpolation. Most slower radio links won't need averaging, which is now off by default. High speed radio links (250hz and higher) will typically benefit from 2 point averaging and stronger smoothing. Presets to suit most common link types make Radio link configuration easy.
 
 - [AntiGravity improvements](#antigravity-improvements) - P boost has been added, along with I boost timing optimisation to peak when it is most needed. This provides greater stability during rapid throttle changes. **The default value of 3.5 should not be increased without careful testing.**
 
-- [Dynamic gyro filter expo curve](#dynamic-gyro-filtering-expo-curve) - Adjusting filter expo curves improves propwash by raising dynamic gyro filter cutoff values more quickly as you throttle up.
+- [Dynamic gyro filter expo curve](#dynamic-gyro-filter-expo-curve) - Adjusting filter expo curves improves propwash by raising dynamic gyro filter cutoff values more quickly as you throttle up.
 
 - [Improved dynamic idle](#improved-dynamic-idle) - The dynamic idle code has been heavily revised, and can now keep RPM at a more stable value, more quickly and more precisely than before, and can be fine-tuned with its new single sided PID controller. It is now much simpler to set up. There is no need to measure RPM or change your D_Shot idle percentage value - leave that value at your normal setting. Just enable DShot Telemetry (and check it is working), and set a suitable idle RPM value in the PID Tuning page. Typically 3000-4000 rpm works great. This improves motor spin-up-from-low-rpm behavior, enhancing low throttle input responsiveness, and reduces the risk of desyncs, while allowing motor drive to go all the way to zero for enhanced braking when appropriate and for longer inverted hang times.
 
@@ -72,7 +72,7 @@ Welcome to a comprehensive guide to the Betaflight 4.3 update.
 
 - **ELRS over SPI support for ELRS V2 on-board receivers**. Many thanks to Phobos and the other ELRS devs for helping make this happen.
 
-- [Lua script updates](#lua-script-updates) - we now have RSSI in your OSD via LUA, Slider control from the radio, and lots of other changes.
+- **Lua script updates** - we now have RSSI in your OSD via LUA, Slider control from the radio, and lots of other changes.
 
 - Changed CLI command names - many CLI parameters are re-named. As a result, a lot of copy and paste efforts will fail to make all the changes you intended. Using the CLI 'get' command now finds related values more easily. For example, `get gyro_lp` will find all gyro lowpass filter settings, `get feed` will find all feedforward values, etc.
 

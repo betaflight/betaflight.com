@@ -1,5 +1,5 @@
 For details, see the bullet point "Keep i-term at zero throttle for fixed wings" in section 19 below.
-See [16. Changed Soft Serial pin assignment CLI command](#16-changed-soft-serial-pin-assignment-cli-command) for more information.
+See [15. Changed Soft Serial pin assignment CLI command](#15-changed-soft-serial-pin-assignment-cli-command) for more information.
 See the Blackbox and logging updates in section 19 below.
 See [19. Other Changes and fixes](#19-other-changes-and-fixes) for a summary.
 ---
@@ -44,8 +44,8 @@ Always test new firmware carefully and in a controlled environment!
 - [EzLanding](#12-ezlanding) Limit PID response when throttle is low and sticks are centered, calming aggressive reactions when landing.
 - [Low throttle TPA](#13-low-throttle-tpa) Allows TPA mediated inhibition at the very low end of the throttle range, for quads that are really excitable while waiting on the ground.  Optionally can be applied throughout the flight.
 - [CLI binding for TBS Rx](#14-crsf-binding-via-cli-for-tbs-receivers) - Useful when you can't get to the Bind button easily.
-- [Improved landings for wings](#15-keep-i-term-at-zero-for-fixed-wings-at-zero-throttle) iTerm is now kept active for wings while gliding into land, at zero throttle.
-- [Changed Soft Serial pin assignment command](#16-changed-soft-serial-pin-assignment-cli-command) Use `RESOURCE SOFTSERIALTX 1 <pin>` instead of `RESOURCE SERIALTX11 <pin>`.
+- [Improved landings for wings](#19-other-changes-and-fixes) iTerm is now kept active for wings while gliding into land, at zero throttle.
+- [Changed Soft Serial pin assignment command](#15-changed-soft-serial-pin-assignment-cli-command) Use `RESOURCE SOFTSERIALTX 1 <pin>` instead of `RESOURCE SERIALTX11 <pin>`.
 - [Custom Build Options](#16-custom-build-options):
 	- [RACE_PRO](#161-race-pro-build-option) Includes RPM Limiter, Quick OSD, RC Stats, Pre-arm page, and changes a few default settings.
     - [RPM Limiter](#162-rpm-limiter-build-option) Limits the maximum average RPM, for Spec racing.
@@ -53,8 +53,8 @@ Always test new firmware carefully and in a controlled environment!
     - [RC Stats](#164-rc-stats-osd-build-option) Modified Stats screen including throttle summary data. 
     - [Pre-Arm page](#165-pre-arm-spec-race-settings-osd-build-option) Pre-arm screen that displays values of relevance to spec racing
     - [GPS Lap Timer](#166-gps-lap-timer) Ever wanted to fly laps at a park and time yourself, without complicated extra hardware?  Add a GPS module and you can do exactly that.
-- [Blackbox Updates](#18-blackbox-and-logging-updates) RPM and pre-filter gyro included by default, 8 channels of debug data, awesome GPS mapping options.
-- [Other changes](#20-other-changes-and-fixes) RSSI now shows `dBm:channel` in diversity setups, Launch Control included always, DShot Telemetry independent of RPM filtering, Extended DShot Telementry, kaaak, many other small changes and fixes.
+- [Blackbox Updates](#17-blackbox-and-logging-updates) RPM and pre-filter gyro included by default, 8 channels of debug data, awesome GPS mapping options.
+- [Other changes](#19-other-changes-and-fixes) RSSI now shows `dBm:channel` in diversity setups, Launch Control included always, DShot Telemetry independent of RPM filtering, Extended DShot Telementry, kaaak, many other small changes and fixes.
 
 ## 1. Cloud Build
 
