@@ -111,7 +111,8 @@ const config = {
           rehypePlugins: [rehypeKatex],
           async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
             const sidebarItems = await defaultSidebarItemsGenerator(args);
-            const mustReverse = sortDescending.has(args.item.dirName);
+            const dirName = args?.item?.dirName;
+            const mustReverse = dirName && sortDescending.has(dirName);
             return mustReverse ? sidebarItems.reverse() : sidebarItems;
           },
         },
