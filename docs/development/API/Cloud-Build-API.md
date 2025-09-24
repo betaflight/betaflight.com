@@ -164,10 +164,10 @@ RUNAWAY_TAKEOFF
 YAW_SPIN_RECOVERY
 ```
 
-### Defines for non compliant SmartAudio
+### SmartAudio Bug
 
 This workaround applies only to some targets on firmware 4.5.2.
 
 ```c
-SMARTAUDIO_NOPULLDOWN
+NONCOMPLIANT_SMARTAUDIO
 ```
