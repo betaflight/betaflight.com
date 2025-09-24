@@ -9,15 +9,15 @@ The build log has information about the build in case of any failure.
 
 ### Firmware 4.4
 
-Uses unified targets defined hardware drivers to be included in the firmware as described in the [Hardware specification](/docs/development/manufacturer/manufacturer-design-guidelines#42-definitions-for-unified-targets)
+Uses unified targets defined hardware drivers to be included in the firmware as described in the [Hardware specification](/docs/development/manufacturer/manufacturer-design-guidelines#42-definitions-for-unified-targets).
 
 ### Firmware 4.5
 
-Firmware 4.5 or later releases uses config repo for targets using defines only. For more information see [How to Create a Flight Controller Configuration File for Betaflight](/docs/development/manufacturer/creating-configuration)
+Firmware 4.5 and later use the config repository for targets defined via preprocessor defines. For more information, see [How to Create a Flight Controller Configuration File for Betaflight](/docs/development/manufacturer/creating-configuration).
 
 ## Usage
 
-For optimal use, please select ONLY the appropriate hardware for the flight controller after selecting the correct target (using the auto-detect button).
+For optimal results, select only the appropriate hardware for your flight controller after selecting the correct target (you can use the auto‑detect button).
 
 ### How to Install Additional Build Options
 
@@ -32,9 +32,13 @@ When using the cloud build system (via the Configurator or API), you can customi
 
 For more details, see the [wiki/Firmware Flasher page](/docs/wiki/configurator/firmware-flasher-tab) and the complete listing of [build options](/docs/development/Defines).
 
+:::note
+Selecting many options increases firmware size and may exceed flash limits on 512K targets; if that happens, the build will fail and the log will indicate which options to remove.
+:::
+
 ### Radio Protocols
 
-```
+```c
 SERIALRX_CRSF       // Team Black Sheep Crossfire protocol
 SERIALRX_GHST       // ImmersionRC Ghost Protocol
 SERIALRX_IBUS       // FlySky and Turnigy receivers
@@ -50,7 +54,7 @@ SERIALRX_SUMH       // Graupner legacy protocol
 
 ### Telemetry Protocols
 
-```
+```c
 TELEMETRY_FRSKY_HUB
 TELEMETRY_SMARTPORT
 TELEMETRY_CRSF
@@ -64,11 +68,11 @@ TELEMETRY_HOTT
 TELEMETRY_LTM
 ```
 
-Note: telemetry for CRSF, ELRS, FPORT and GHOST are included during the build.
+Note: telemetry for CRSF (includes ELRS), FPORT or GHST is included during the build.
 
 ### OSD Options
 
-```
+```c
 FRSKYOSD
 OSD_SD
 OSD_HD
@@ -76,7 +80,7 @@ OSD_HD
 
 ### Other Options
 
-```
+```c
 ACRO_TRAINER
 AKK (SA FIX)
 ALTITUDE_HOLD
@@ -100,7 +104,7 @@ WING
 
 ### Motor Protocols
 
-```
+```c
 BRUSHED
 DSHOT
 MULTISHOT
@@ -111,7 +115,7 @@ PWM
 
 ### Custom Defines
 
-```
+```c
 CRSF_OFFICIAL_SPEC
 EMFAT_AUTORUN
 EMFAT_ICON
@@ -132,7 +136,7 @@ SPEC_PREARM_SCREEN
 
 There is a special `RACE_PRO` define which combines the following defines as one feature pack:
 
-```
+```c
 OSD_QUICK_MENU
 RC_STATS
 RPM_LIMIT
@@ -143,14 +147,14 @@ SPEC_PREARM_SCREEN
 
 There is a special `WING` define which combines the following defines as one feature pack:
 
-```
+```c
 ADVANCED_TPA
 SERVOS
 ```
 
 Note this define will remove the following defines:
 
-```
+```c
 ABSOLUTE_CONTROL
 INTEGRATED_YAW_CONTROL
 LAUNCH_CONTROL
@@ -160,8 +164,8 @@ YAW_SPIN_RECOVERY
 
 ### Defines for non compliant Smart Audio
 
-This workaround is only needed for firmware 4.5.2 and is no longer needed for 2025.12.0
+This workaround is only needed for some MCU (STM32F4) using firmware 4.5.2 and is no longer needed for 2025.12.0
 
-```
-SMARTAUDIO_NOPULLDOWN (STM32F4)
+```c
+SMARTAUDIO_NOPULLDOWN
 ```
