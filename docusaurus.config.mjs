@@ -8,7 +8,7 @@ import rehypeKatex from 'rehype-katex';
 import dotenv from 'dotenv';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 
@@ -17,7 +17,7 @@ dotenv.config();
 const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.dracula;
 
-const sortDescending = ['release'];
+const sortDescending = new Set(['release']);
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -80,9 +80,8 @@ const config = {
       return {
         name: 'docusaurus-tailwindcss',
         configurePostCss(postcssOptions) {
-          // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(tailwindcss);
-          postcssOptions.plugins.push(autoprefixer);
+		  // Appends TailwindCSS and AutoPrefixer.
+		  postcssOptions.plugins.push(tailwindcss, autoprefixer);
           return postcssOptions;
         },
       };
@@ -112,7 +111,7 @@ const config = {
           rehypePlugins: [rehypeKatex],
           async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
             const sidebarItems = await defaultSidebarItemsGenerator(args);
-            const mustReverse = sortDescending.includes(args.item.dirName);
+            const mustReverse = sortDescending.has(args.item.dirName);
             return mustReverse ? sidebarItems.reverse() : sidebarItems;
           },
         },

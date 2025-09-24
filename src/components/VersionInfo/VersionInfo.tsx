@@ -1,6 +1,17 @@
 import { useDoc } from '@docusaurus/plugin-content-docs/client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import semver from 'semver';
+
+function isUpToDate(currentVersion, latestVersion) {
+  const currentSemver = semver.parse(currentVersion);
+  const latestSemver = semver.parse(latestVersion);
+
+  if (!currentSemver || !latestSemver) {
+    throw new Error('Invalid version format');
+  }
+
+  return currentSemver.major === latestSemver.major && currentSemver.minor === latestSemver.minor;
+}
 
 export default function VersionInfo() {
   const { frontMatter } = useDoc();
@@ -10,17 +21,6 @@ export default function VersionInfo() {
 
   const [upToDate, setUpToDate] = useState(true);
   const [versionLatest, setVersionLatest] = useState('');
-
-  function isUpToDate(currentVersion, latestVersion) {
-    const currentSemver = semver.parse(currentVersion);
-    const latestSemver = semver.parse(latestVersion);
-
-    if (!currentSemver || !latestSemver) {
-      throw new Error('Invalid version format');
-    }
-
-    return currentSemver.major === latestSemver.major && currentSemver.minor === latestSemver.minor;
-  }
 
   fetch('https://api.github.com/repos/betaflight/betaflight/releases/latest', {
     headers: {
