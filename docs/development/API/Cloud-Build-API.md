@@ -13,43 +13,55 @@ Uses unified targets defined hardware drivers to be included in the firmware as 
 
 ### Firmware 4.5
 
-Uses config repo for targets using defines only. For more information see [How to Create a Flight Controller Configuration File for Betaflight 4.5](/docs/development/manufacturer/creating-configuration)
+Firmware 4.5 or later releases uses config repo for targets using defines only. For more information see [How to Create a Flight Controller Configuration File for Betaflight](/docs/development/manufacturer/creating-configuration)
 
 ## Usage
 
-For optimal use please select ONLY the appropriate hardware for the flight controller after selecting the correct target (using auto-detect button).
-The options below are further described in the [wiki/Firmware Flasher page](/docs/wiki/configurator/firmware-flasher-tab). We also have a complete listing of [build options](/docs/development/Defines).
+For optimal use, please select ONLY the appropriate hardware for the flight controller after selecting the correct target (using the auto-detect button).
+
+### How to Install Additional Build Options
+
+When using the cloud build system (via the Configurator or API), you can customize your firmware by selecting additional build options. This allows you to enable extra features, protocols, or telemetry support as needed.
+
+**To install additional build options:**
+
+1. **Select your target**: Use the auto-detect button or manually choose your flight controller target.
+2. **Choose build options**: In the firmware flasher or build interface, look for checkboxes, dropdowns, or multi-select lists for features such as radio protocols, telemetry, OSD, and other options. You can select multiple options if supported (e.g., enable both CRSF and FPORT protocols, or multiple telemetry systems).
+3. **Custom Defines**: For advanced users, you can add custom defines (macros) to further customize your build. Enter these in the provided field, separated by spaces or commas.
+4. **Build and flash**: Click the build or flash button. The cloud build system will generate firmware with your selected options included.
+
+For more details, see the [wiki/Firmware Flasher page](/docs/wiki/configurator/firmware-flasher-tab) and the complete listing of [build options](/docs/development/Defines).
 
 ### Radio Protocols
 
 ```
-CRSF
-EXPRESSLRS
-FPORT
-GHOST
-IBUS
-JETIEXBUS
-PPM
-SBUS
-SPECTRUM
-SRXL2
-SUMD
-SUMH
-XBUS
+SERIALRX_CRSF       // Team Black Sheep Crossfire protocol
+SERIALRX_GHST       // ImmersionRC Ghost Protocol
+SERIALRX_IBUS       // FlySky and Turnigy receivers
+SERIALRX_SBUS       // Frsky and Futaba receivers
+SERIALRX_SPEKTRUM   // SRXL, DSM2 and DSMX protocol
+SERIALRX_FPORT      // FrSky FPort
+SERIALRX_XBUS       // JR
+SERIALRX_SRXL2      // Spektrum SRXL2 protocol
+SERIALRX_JETIEXBUS
+SERIALRX_SUMD       // Graupner Hott protocol
+SERIALRX_SUMH       // Graupner legacy protocol
 ```
 
 ### Telemetry Protocols
 
 ```
-FRSKY_HUB
-GHST
-HOTT
-IBUS_EXTENDED
-JETIEXBUS
-LTM
-MAVLINK
-SMARTPORT
-SRXL
+TELEMETRY_FRSKY_HUB
+TELEMETRY_SMARTPORT
+TELEMETRY_CRSF
+TELEMETRY_GHST
+TELEMETRY_SRXL
+TELEMETRY_IBUS
+TELEMETRY_IBUS_EXTENDED
+TELEMETRY_JETIEXBUS
+TELEMETRY_MAVLINK
+TELEMETRY_HOTT
+TELEMETRY_LTM
 ```
 
 Note: telemetry for CRSF, ELRS, FPORT and GHOST are included during the build.
@@ -147,6 +159,8 @@ YAW_SPIN_RECOVERY
 ```
 
 ### Defines for non compliant Smart Audio
+
+This workaround is only needed for firmware 4.5.2 and is no longer needed for 2025.12.0
 
 ```
 SMARTAUDIO_NOPULLDOWN (STM32F4)
