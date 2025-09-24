@@ -47,7 +47,7 @@ SERIALRX_SPEKTRUM   // SRXL, DSM2 and DSMX protocol
 SERIALRX_FPORT      // FrSky FPort
 SERIALRX_XBUS       // JR
 SERIALRX_SRXL2      // Spektrum SRXL2 protocol
-SERIALRX_JETIEXBUS
+SERIALRX_JETIEXBUS  // Jeti EX Bus Communication protocol
 SERIALRX_SUMD       // Graupner Hott protocol
 SERIALRX_SUMH       // Graupner legacy protocol
 ```
