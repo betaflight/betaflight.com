@@ -80,8 +80,8 @@ const config = {
       return {
         name: 'docusaurus-tailwindcss',
         configurePostCss(postcssOptions) {
-		  // Appends TailwindCSS and AutoPrefixer.
-		  postcssOptions.plugins.push(tailwindcss, autoprefixer);
+          // Appends TailwindCSS and AutoPrefixer.
+          postcssOptions.plugins.push(tailwindcss, autoprefixer);
           return postcssOptions;
         },
       };
