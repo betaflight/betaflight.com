@@ -33,7 +33,7 @@ When using the cloud build system (via the Configurator or API), you can customi
 For more details, see the [wiki/Firmware Flasher page](/docs/wiki/configurator/firmware-flasher-tab) and the complete listing of [build options](/docs/development/Defines).
 
 :::note
-Selecting many options increases firmware size and may exceed flash limits on 512K targets; if that happens, the build will fail and the log will indicate which options to remove.
+Selecting many options increases firmware size and may exceed flash limits on 512K targets.
 :::
 
 ### Radio Protocols
@@ -82,7 +82,7 @@ OSD_HD
 
 ```c
 ACRO_TRAINER
-AKK (SA FIX)
+AKK_SMARTAUDIO
 ALTITUDE_HOLD
 BATTERY_CONTINUE
 CAMERA_CONTROL
