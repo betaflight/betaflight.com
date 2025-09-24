@@ -9,7 +9,7 @@ The build log has information about the build in case of any failure.
 
 ### Firmware 4.4
 
-Uses unified targets defined hardware drivers to be included in the firmware as described in the [Hardware specification](/docs/development/manufacturer/manufacturer-design-guidelines#42-definitions-for-unified-targets).
+Firmware 4.4 uses unified targets to define which hardware drivers are included in the firmware, as described in the [Hardware specification](/docs/development/manufacturer/manufacturer-design-guidelines#42-definitions-for-unified-targets).
 
 ### Firmware 4.5
 
@@ -27,7 +27,7 @@ When using the cloud build system (via the Configurator or API), you can customi
 
 1. **Select your target**: Use the auto-detect button or manually choose your flight controller target.
 2. **Choose build options**: In the firmware flasher or build interface, look for checkboxes, dropdowns, or multi-select lists for features such as radio protocols, telemetry, OSD, and other options. You can select multiple options if supported (e.g., enable both CRSF and FPORT protocols, or multiple telemetry systems).
-3. **Custom Defines**: For advanced users, you can add custom defines (macros) to further customize your build. Enter these in the provided field, separated by spaces or commas.
+3. **Custom defines**: Add compile‑time defines (macros) to customize your build. Enter them as space‑separated tokens (for example: `FRSKYOSD SMARTAUDIO_NOPULLDOWN`).
 4. **Build and flash**: Click the build or flash button. The cloud build system will generate firmware with your selected options included.
 
 For more details, see the [wiki/Firmware Flasher page](/docs/wiki/configurator/firmware-flasher-tab) and the complete listing of [build options](/docs/development/Defines).
@@ -39,11 +39,11 @@ Selecting many options increases firmware size and may exceed flash limits on 51
 ### Radio Protocols
 
 ```c
-SERIALRX_CRSF       // Team Black Sheep Crossfire protocol
+SERIALRX_CRSF       // Team BlackSheep Crossfire protocol
 SERIALRX_GHST       // ImmersionRC Ghost Protocol
 SERIALRX_IBUS       // FlySky and Turnigy receivers
-SERIALRX_SBUS       // Frsky and Futaba receivers
-SERIALRX_SPEKTRUM   // SRXL, DSM2 and DSMX protocol
+SERIALRX_SBUS       // FrSky and Futaba receivers
+SERIALRX_SPEKTRUM   // SRXL, DSM2 and DSMX protocols
 SERIALRX_FPORT      // FrSky FPort
 SERIALRX_XBUS       // JR
 SERIALRX_SRXL2      // Spektrum SRXL2 protocol
@@ -119,7 +119,6 @@ PWM
 CRSF_OFFICIAL_SPEC
 EMFAT_AUTORUN
 EMFAT_ICON
-EMFAT_TOOLS
 ESCSERIAL_SIMONK
 GIMBAL
 OPTICALFLOW
