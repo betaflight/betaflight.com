@@ -41,8 +41,7 @@ Therefore be sure to Read the Release Notes to know what commands or features ar
 1. [With vbat_pid_compensation are there issues moving from 3S to 4S batteries ?](#with-vbat_pid_compensation-are-there-issues-moving-from-3s-to-4s-batteries-)
 1. [How can I run the PID controller faster than 2kHz ?](#how-can-i-run-the-pid-controller-faster-than-2khz-)
 1. [What is OneShot125, OneShot42 and MultiShot and how do these relate to max_throttle and Looptime ?](#what-is-oneshot125-oneshot42-and-multishot-and-how-do-these-relate-to-max_throttle-and-looptime-)
-1. [What cycle time can I run on what board ?](#what-cycle-time-can-i-run-on-what-board-)
-1. [How do I go about suggesting CF Configurator enhancements ?](#how-do-i-go-about-suggesting-cf-configurator-enhancements-)
+1. [How do I go about suggesting Betaflight App enhancements ?](#how-do-i-go-about-suggesting-betaflight-app-enhancements-)
 1. [How do I lower the chance of my copter producing Magic Smoke when powering on ?](#how-do-i-lower-the-chance-of-my-copter-producing-magic-smoke-when-powering-on-)
 1. [Why do we have RC Rate and also Yaw Pitch Roll Rates ?](#why-do-we-have-rc-rate-and-also-yaw-pitch-roll-rates-)
 1. [Why does it matter to prevent motor jitter ?](#why-does-it-matter-to-prevent-motor-jitter-)
@@ -50,23 +49,23 @@ Therefore be sure to Read the Release Notes to know what commands or features ar
 1. [Will MW2.3 PID controller work on default PIDS ?](#will-mw23-pid-controller-work-on-default-pids-)
 1. [How do I keep and then restore my Betaflight Settings each time I upgrade ?](#how-do-i-keep-and-then-restore-my-betaflight-settings-each-time-i-upgrade-)
 1. [What is yaw_jump_prevention_limit and what does it do ?](#what-is-yaw_jump_prevention_limit-and-what-does-it-do-)
-1. [What is yaw_iterm_reset_degrees and what does it do ?](#what-is-yaw_iterm_reset_degrees-and-what-does-it-do)
+1. [What is yaw_iterm_reset_degrees and what does it do ?](#what-is-yaw_iterm_reset_degrees-and-what-does-it-do-)
 1. [How does Super Expo work ?](#how-does-super-expo-work-)
 1. [How do rates relate to pitch roll & yaw degrees/s ?](#how-do-rates-relate-to-pitch-roll--yaw-degreess-)
 1. [Which Flight Controllers currently use SPI ?](#which-flight-controllers-currently-use-spi-)
 1. [Which HEX target do I download and flash to my Flight Controller ?](#which-hex-target-do-i-download-and-flash-to-my-flight-controller-)
 1. [How do I setup for reversed prop rotation ?](#how-do-i-setup-for-reversed-prop-rotation-)
-1. [What is a recommended FC and esc setup to run at 8khz, also i see reference to 4/4 or 4/4/32 or 8/8, what are these referring to?](#what-is-a-recommended-fc-and-esc-setup-to-run-at-8khz-also-i-see-reference-to-4/4-or-4/4/32-or-8/8,-what-are-these-referring-to-)
+1. [What is a recommended FC and esc setup to run at 8khz, also i see reference to 4/4 or 4/4/32 or 8/8, what are these referring to?](#what-is-a-recommended-fc-and-esc-setup-to-run-at-8khz-also-i-see-reference-to-44-or-4432-or-88-what-are-these-referring-to-)
 1. [Is PID tuning any different at different PIDC rates ?](#is-pid-tuning-any-different-at-different-pidc-rates-)
-1. [What is the difference in PIDC Iterm in bF versions ?](#what-is-the-difference-in-pidc-Iterm-in-bF-versions-)
+1. [What is the difference in PIDC Iterm in bF versions ?](#what-is-the-difference-in-pidc-iterm-in-bf-versions-)
 1. [How to setup blackbox record rate with onboard dataflash ?](#how-to-setup-blackbox-record-rate-with-onboard-dataflash-)
 1. [How to setup the rates and SuperExpo ?](#how-to-setup-the-rates-and-superexpo-)
 1. [What is the story on the different Rates and Expos ?](#what-is-the-story-on-the-different-rates-and-expos-)
 1. [How do I solve Yaw twitches or mid throttle oscillations ?](#how-do-i-solve-yaw-twitches-or-mid-throttle-oscillations-)
 1. [Is there a way to download blackbox logs through a terminal client ?](#is-there-a-way-to-download-blackbox-logs-through-a-terminal-client-)
 1. [Why do LED strips not work ?](#why-do-led-strips-not-work-)
-1. [Recently with the temps dropping, my quad has started to develop a random twitch. Anyone else experience random issues when it's 20'ish degree's F outside ?](#recently-with-the-temps-dropping,-my-quad-has-started-to-develop-a-random-twitch.-Anyone-else-experience-random-issues-when-it's-20'ish-degree's-F-outside-)
-1. [Why can't I connect to my flight controller using MSP over UART1?](#why-cant-i-connect-to-my-flight-controller-using-msp-over-uart1)
+1. [Recently with the temps dropping, my quad has started to develop a random twitch. Anyone else experience random issues when it's 20'ish degree's F outside ?](#recently-with-the-temps-dropping-my-quad-has-started-to-develop-a-random-twitch-anyone-else-experience-random-issues-when-its-20ish-degrees-f-outside-)
+1. [Why can't I connect to my flight controller using MSP over UART1?](#why-cant-i-connect-to-my-flight-controller-using-msp-over-uart1-broken-usb)
 1. [Is it possible that we can flash the FrSky receivers thru the flight controller like we now flash the ESC?](#is-it-possible-that-we-can-flash-the-frsky-receivers-thru-the-flight-controller-like-we-now-flash-the-esc)
 1. [Is there a way to dismiss the OSD post flight statistics screen?](#is-there-a-way-to-dismiss-the-osd-post-flight-statistics-screen)
 
@@ -1034,7 +1033,7 @@ Note: there are many more new FC's on the market. Check the Seller's specs.
 
 ## Which HEX target do I download and flash to my Flight Controller ?
 
-The cloud build is now available to assist all our users. You either compile your own firmware or use cloud build for its simplicity. 
+The cloud build is now available to assist all our users. You either compile your own firmware or use cloud build for its simplicity.
 
 ## How do I setup for reversed prop rotation ?
 

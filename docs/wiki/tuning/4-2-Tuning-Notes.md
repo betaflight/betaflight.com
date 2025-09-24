@@ -32,7 +32,7 @@ If you're new to 4.2, please read the 4.0 and 4.1 tuning notes.
 
 **NOTE 2**: If you previously set `dyn_notch_range` to `LOW`, change `dyn_notch_max_hz` to 350, and for `HIGH` to 700. Default of 500 for most quads is fine otherwise. Read more about setting the range [here](#improved-dynamic-notch-filter).
 
-**NOTE 3**:If your previous PID `I` values were changed from default, the anti-gravity gain values in 4.2 may need changing a little to get the same outcome. We recommend flying the default antigravity value and re-tuning it to the optimal value. Details [here](#antigravity-gain-independent-of-I-values).
+**NOTE 3**:If your previous PID `I` values were changed from default, the anti-gravity gain values in 4.2 may need changing a little to get the same outcome. We recommend flying the default antigravity value and re-tuning it to the optimal value. Details [here](#antigravity-gain-independent-of-i-values).
 
 **NOTE 4**: If using the Accelerometer, arming will fail unless it has been calibrated.
 
@@ -312,7 +312,7 @@ Values above default will provide a smoother FF signal, but may cause so much de
 
 ### Boost: ff_boost
 
-This hasn't changed since 4.1; please read the [4.1 tuning notes](4-1-Tuning-Notes#Feed-Forward-Boost)
+This hasn't changed since 4.1; please read the [4.1 tuning notes](4-1-Tuning-Notes#feed-forward-boost)
 
 To summarise, boost responds to stick acceleration, and helps overcome motor lag with quick stick inputs. It also generates RC jitter and glitch artefact better than anything else. The default settings in 4.2 attempt to strike a good balance.
 

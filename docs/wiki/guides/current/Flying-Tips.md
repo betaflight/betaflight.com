@@ -6,9 +6,9 @@ Here is a central place for the sharing of Betaflight related flying tips or ful
 
 ## Contents
 
-1. [How To Fly An FPV Multirotor In Acro Mode](#how-to-fly-an-fpv-multirotor-in-acro-mode-)
-1. [Making coordinated turns in Acro mode](#making-coordinated-turns-in-acro-mode-)
-1. [How to Fly FPV Quads](#how-to-fly-fpv-quads-)
+1. [How To Fly An FPV Multirotor In Acro Mode](#how-to-fly-an-fpv-multirotor-in-acro-mode)
+1. [Making coordinated turns in Acro mode](#making-coordinated-turns-in-acro-mode)
+1. [How to Fly FPV Quads](#how-to-fly-fpv-quads)
 
 ---
 

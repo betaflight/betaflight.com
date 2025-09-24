@@ -17,7 +17,7 @@ RPM based filtering gives better control over motor RPM related noise than was p
 
 With RPM filtering, the dynamic notch filter can be narrower, reducing delay, and since it doesn't need to track motor rpm related noise, is now better at eliminating frame resonances. Configurator automatically makes these adjustments when RPM filtering is enabled or disabled.
 
-On clean quads, lowpass filter delay can usually be improved by moving cutoff frequencies higher or disabling some gyro filtering once RPM filtering is enabled. This should be done carefully, after reading the [tuning guide](#Tuning).
+On clean quads, lowpass filter delay can usually be improved by moving cutoff frequencies higher or disabling some gyro filtering once RPM filtering is enabled. This should be done carefully, after reading the [tuning guide](#tuning).
 
 ## Underlying technology:
 
