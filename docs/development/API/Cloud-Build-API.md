@@ -30,7 +30,9 @@ When using the cloud build system (via the Configurator or API), you can customi
 3. **Custom defines**: Add compile‑time defines (macros) to customize your build. Enter them as space‑separated tokens (for example: `FRSKYOSD SMARTAUDIO_NOPULLDOWN`).
 4. **Build and flash**: Click the build or flash button. The cloud build system will generate firmware with your selected options included.
 
+:::info
 For more details, see the [wiki/Firmware Flasher page](/docs/wiki/configurator/firmware-flasher-tab) and the complete listing of [build options](/docs/development/Defines).
+:::
 
 :::note
 Selecting many options increases firmware size and may exceed flash limits on 512K targets.
@@ -162,7 +164,7 @@ RUNAWAY_TAKEOFF
 YAW_SPIN_RECOVERY
 ```
 
-### Defines for non compliant Smart Audio
+### Defines for non compliant SmartAudio
 
 This workaround applies only to some targets on firmware 4.5.2.
 
