@@ -50,7 +50,7 @@ AlienWhoop
 
 ## Maintainers
 
-[@brucesdad13](https://github.com/brucesdad13)
+@brucesdad13 (https://github.com/brucesdad13)
 
 ## Acknowledgements
 

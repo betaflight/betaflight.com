@@ -56,4 +56,4 @@ To view how these rates systems differ between each other, and to visualise the 
 
 ## Rates listings
 
-- [@microraptor's gist page](https://gist.github.com/microraptor/52f01490f1c7aa86d91e8710556f123b) lists the rates type and the values used by some pilots and for specific applications in summer 2021.
+- [microraptor's gist page](https://gist.github.com/microraptor/52f01490f1c7aa86d91e8710556f123b) lists the rates type and the values used by some pilots and for specific applications in summer 2021.

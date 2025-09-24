@@ -17,8 +17,8 @@ The main context menu:
 The main menu include following parts:
 
 1. The menu actions to edit all curves
-2. The menu actions to edit <a href="#one">one curves</a> what you selected by right mouse click (The 'Gyro pitch' for example at the picture)
-3. The <a href="#extended">extended</a> mode
+2. The menu actions to edit [one curves](#single-curve-submenu) what you selected by right mouse click (The 'Gyro pitch' for example at the picture)
+3. The [extended](#extended-mode) mode
 
 ## Actions
 
@@ -29,7 +29,7 @@ The main menu include following parts:
 - 'Zoom in', 'Zoom out' - change zoom for all curves
 - 'Default' - set the all curves MinMax values to default
 
-## <a name="one">Single curve submenu</a>
+## Single curve submenu
 
 The single curve submenu has same actions:
 
@@ -41,7 +41,7 @@ If you open context menu for one curves chart, then you see the short menu:
 
 ![image](/img/blackbox/min-max_4.jpg)
 
-## <a name="extended">Extended Mode</a>
+## Extended Mode
 
 The main menu has extended mode. You need press the 'Shift' key to activate it and select the submenu, what you need.
 
@@ -115,6 +115,7 @@ The all are centered.
 ![image](/img/blackbox/min-max_13.jpg)
 
 ## Using MinMax values in the workspace
+
 The MinMax values curves settings are stored in the workspace.
 ![image](/img/blackbox/min-max_14.jpg)
 The Blackbox explorer has two preinstalled workspaces inside.

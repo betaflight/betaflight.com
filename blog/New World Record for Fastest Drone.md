@@ -1,6 +1,6 @@
 # New Speed Record for “Fastest ground speed by a battery-powered remote-controlled (RC) quadcopter.”
 
-Its simply a case of "ICYMI". Yes folks Betaflight, albeit an earlier version than current, was the firmware behind the most recent record breaking success story for the “Fastest ground speed by a battery-powered remote-controlled (RC) quadcopter.”.
+Its simply a case of "ICYMI". Yes folks Betaflight, albeit an earlier version than current, was the firmware behind the most recent record breaking success story for the “Fastest ground speed by a battery-powered remote-controlled (RC) quadcopter.”.<!-- truncate -->
 
 The Guinness World Records has granted the title to Ryan Lademann (USA), using his custom built drone called the XLR V3 Red. This drone powered its way to the record books by hitting 224mph (360kmh). Yes thats right folks this drone nearly hit 200knots (195knots). Many light aircraft would love to reach those speeds. The record attempt was made in Scottsdale, Arizona, USA, on 8 November 2022. What a way to finish out the year.
 

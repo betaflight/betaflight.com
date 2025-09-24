@@ -27,10 +27,12 @@ It is a good idea at this stage to configure your ESC for oneshot mode (by solde
 Connect a USB cable to your board, and connect using the Chrome GUI app.
 
 Go to the CLI tab, and type the following:
+
 ```
 feature ONESHOT125
 save
 ```
+
 Then you can safely power up your ESCs again.
 
 ## Configuration
@@ -47,4 +49,4 @@ The process for calibrating oneshot ESCs is the same as any other ESC.
 
 ## References
 
-- FlyDuino (<a href="http://flyduino.net/">http://flyduino.net/</a>)
+- FlyDuino (http://flyduino.net/)
