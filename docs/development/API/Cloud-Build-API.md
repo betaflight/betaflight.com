@@ -68,7 +68,7 @@ TELEMETRY_HOTT
 TELEMETRY_LTM
 ```
 
-:::
+:::note
 Telemetry for CRSF (including ELRS), FPORT, and GHST is included during the build.
 :::
 
