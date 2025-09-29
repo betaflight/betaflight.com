@@ -11,9 +11,9 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v5
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v5
       with:
         node-version: 20
         cache: npm
@@ -38,9 +38,9 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v5
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v5
       with:
         node-version: 20
         cache: npm
@@ -58,9 +58,9 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v5
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v5
       with:
         node-version: 20
         cache: npm
