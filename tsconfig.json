@@ -2,6 +2,6 @@
   "extends": "@tsconfig/docusaurus/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "module": "Node16"
+    "module": "node20"
   }
 }
