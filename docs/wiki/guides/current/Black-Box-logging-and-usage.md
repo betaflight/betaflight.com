@@ -43,7 +43,7 @@ Do click on all the buttons to learn what they do and '?' for the Keyboard Short
 
 [Blackbox Explorer MinMax control](/docs/wiki/guides/current/BBE-MinMax-control-manual)
 [Blackbox Explorer: Power spectral density spectrums charts](/docs/wiki/guides/current/BBE-Power-Spectral-Density-charts)
-[Blackbox Explorer: Power spectral density spectrums comparison](/docs/wiki/guides/current/BBE-Power-Spectral-Density-charts#spectrum_comparison)
+[Blackbox Explorer: Power spectral density spectrums comparison](/docs/wiki/guides/current/BBE-Power-Spectral-Density-charts#blackbox-explorer-power-spectral-density-curves-comparison)
 
 ### How to obtain data to evaluate noise frequency for setting the Notch filter.
 

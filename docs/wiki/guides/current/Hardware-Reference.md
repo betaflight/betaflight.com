@@ -28,12 +28,12 @@ If you are adding a new flight controller then:
 
 Excerpts from the data sheets / reference manuals that cover possible pin / timer / DMA assignments:
 
-- [STM32F3](reference/stm/stm32f3_pins_timers_dma.pdf)
-- [STM32F405](reference/stm/stm32f405_pins_timers_dma.pdf)
-- [STM32F411](reference/stm/stm32f411_pins_timers_dma.pdf)
-- [STM32F722](reference/stm/stm32f722_pins_timers_dma.pdf)
-- [STM32F745](reference/stm/stm32f745_pins_timers_dma.pdf)
-- [STM32H743](reference/stm/stm32h743_pins.pdf) (pins only)
+- [STM32F3](/reference/stm/stm32f3_pins_timers_dma.pdf)
+- [STM32F405](/reference/stm/stm32f405_pins_timers_dma.pdf)
+- [STM32F411](/reference/stm/stm32f411_pins_timers_dma.pdf)
+- [STM32F722](/reference/stm/stm32f722_pins_timers_dma.pdf)
+- [STM32F745](/reference/stm/stm32f745_pins_timers_dma.pdf)
+- [STM32H743](/reference/stm/stm32h743_pins.pdf) (pins only)
 
 ## Protocols
 

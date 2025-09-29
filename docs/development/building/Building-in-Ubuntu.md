@@ -11,7 +11,7 @@ This document is tested and based on Ubuntu 24.04 LTS release and can also be us
 
 ### Clone Betaflight Repository and Install Toolchain
 
-Cloning the Betaflight repository will create a folder named `betaflight` in your current folder and download a copy for local use. You may wish to begin in a project folder such as `~/Git/`, `~/Github/`, or `~/My-Projects/`. Your local clone will not be automatically synced when Betaflight's github repository is updated; Syncing must be done manually. If development and pull-requests is intended, then please see the "[Git and Github](../git)" section. The following command-lines will install necessary prerequisites, clone and setup Betaflight.
+Cloning the Betaflight repository will create a folder named `betaflight` in your current folder and download a copy for local use. You may wish to begin in a project folder such as `~/Git/`, `~/Github/`, or `~/My-Projects/`. Your local clone will not be automatically synced when Betaflight's github repository is updated; Syncing must be done manually. If development and pull-requests is intended, then please see the "[Git and Github](../Git)" section. The following command-lines will install necessary prerequisites, clone and setup Betaflight.
 
 ```
 sudo apt update && sudo apt upgrade

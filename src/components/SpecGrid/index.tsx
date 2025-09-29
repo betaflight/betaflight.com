@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useDoc } from '@docusaurus/theme-common/internal';
+import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import React from 'react';
 import { Save, Cpu, Crosshair, MonitorStop, Rotate3D, Ruler, Thermometer } from 'lucide-react';
 import SpecBox from '../SpecGrid/SpecBox';

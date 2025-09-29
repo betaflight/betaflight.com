@@ -27,7 +27,7 @@ connected then 'vtx_freq' will be set to the current frequency value
 (in MHz) at startup.\
 
 :::note
-Values for settings like vtx_band, vtx_channel, vtx_power are relevant for Betaflight versions prior to 4.1 which had these default values built in. In Betaflight 4.1 and newer to control your VTX you must configure a [VTX Table](VTX-tables) in which you define your own bands, channels and power settings based on local regulations.
+Values for settings like vtx_band, vtx_channel, vtx_power are relevant for Betaflight versions prior to 4.1 which had these default values built in. In Betaflight 4.1 and newer to control your VTX you must configure a [VTX Table](VTX-Tables) in which you define your own bands, channels and power settings based on local regulations.
 :::
 
 **vtx_band = \#**\

@@ -65,7 +65,7 @@ https://www.banggood.com/Racerstar-Crazybee-F3-Flight-Controller-4-IN-1-5A-1S-Bl
 
 ## Maintainers
 
-## FAQ & Known Issues
+## FAQ & Known Issues {#faq--known-issues}
 
 - The board specifications claim DSHOT600-ready, but due to the use of a type L (BB1 24MHz) ESC, only DSHOT300 is reliably supported, although DSHOT600 seems to be working for quite a few people. But just how clean that ESC control signal is when using DSHOT600, is untested. For a discussion on this, see https://www.rcgroups.com/forums/showthread.php?3036325-Racerstar-Crazybee-F3-Ultimate-Micro-AIO-FC%21-1S-5A-BlheliS-FrSky-Flysky-OSD/page3 .
 - The factory default GYRO / PID config is 8KHz / 2KHz . There are reports that this may lead to possible instability and 4KHz / 4KHz is recommended.

@@ -546,7 +546,7 @@ Limits the accumulation of I Term when fast movements happen. This helps special
 - it's not stiff anymore
 - 20 default, 15 - 10
 
-# Antigravity
+## Antigravity
 
 Fixes the problem when you move throttle stick rapidly, to tilt the quad up or down the nose.
 `0 - 30`
