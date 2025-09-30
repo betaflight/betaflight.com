@@ -16,27 +16,27 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 ## Version Change Register
 
-| Version # | Revision Date    | Changes, Reasons, and Notes       |
-| :-------- | :--------------- | :-------------------------------- |
-| Draft 0.1 | 14 May 2022      | Initial Draft Format              |
-| Draft 0.2 | 04 June 2022     | Revise format to Final Format     |
-| Draft 0.3 | 12 June 2022     | Update Visual Media and Tables    |
-| Draft 0.4 | 21 October 2022  | Update format, add information    |
-| Draft 0.5 | 24 October 2022  | Add additional information        |
-| Draft 0.6 | 06 November 2022 | Add cloud build information       |
-| Draft 0.7 | 17 November 2022 | Remove off-board hardware defines |
-| Draft 0.8 | 01 January 2023  | Update Baro and CC2500            |
-| Draft 0.9 | 14 January 2023  | Add FC LEDs                       |
-| Draft 1.0 | 26 January 2023  | Add Signal Rules                  |
-| Draft 1.1 | 10 December 2023 | Add LSM6DSV16X and LPS22DF        |
-| Draft 1.2 | 13 January 2024  | Add Mag and Baro hardware note    |
-| Draft 1.3 | 23 October 2024  | Update MCU recommendations        |
-| Draft 1.4 | 06 November 2024 | Add LED pin resource warning      |
-| Draft 1.5 | 13 January 2025  | Update ADC/gyro recommendations   |
-| Draft 1.6 | 18 February 2025 | Add W25N02K flash define          |
-| Draft 1.7 | 27 March 2025    | Update FC review policy           |
-| Draft 1.8 | 01 April 2025    | Update I2C Device Info            |
-| Draft 1.9 | 12 September 2025| Update motor requirements         |
+| Version # | Revision Date     | Changes, Reasons, and Notes       |
+| :-------- | :---------------- | :-------------------------------- |
+| Draft 0.1 | 14 May 2022       | Initial Draft Format              |
+| Draft 0.2 | 04 June 2022      | Revise format to Final Format     |
+| Draft 0.3 | 12 June 2022      | Update Visual Media and Tables    |
+| Draft 0.4 | 21 October 2022   | Update format, add information    |
+| Draft 0.5 | 24 October 2022   | Add additional information        |
+| Draft 0.6 | 06 November 2022  | Add cloud build information       |
+| Draft 0.7 | 17 November 2022  | Remove off-board hardware defines |
+| Draft 0.8 | 01 January 2023   | Update Baro and CC2500            |
+| Draft 0.9 | 14 January 2023   | Add FC LEDs                       |
+| Draft 1.0 | 26 January 2023   | Add Signal Rules                  |
+| Draft 1.1 | 10 December 2023  | Add LSM6DSV16X and LPS22DF        |
+| Draft 1.2 | 13 January 2024   | Add Mag and Baro hardware note    |
+| Draft 1.3 | 23 October 2024   | Update MCU recommendations        |
+| Draft 1.4 | 06 November 2024  | Add LED pin resource warning      |
+| Draft 1.5 | 13 January 2025   | Update ADC/gyro recommendations   |
+| Draft 1.6 | 18 February 2025  | Add W25N02K flash define          |
+| Draft 1.7 | 27 March 2025     | Update FC review policy           |
+| Draft 1.8 | 01 April 2025     | Update I2C Device Info            |
+| Draft 1.9 | 12 September 2025 | Update motor requirements         |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -173,19 +173,17 @@ For connector pinout please refer to the [Betaflight Connector Standard](connect
 
 ### 3.1.2 Inertial Measurement Unit (IMU) Selection
 
-Selecting the right IMU for a flight controller is crucial for optimal flight performance. The InvenSense MPU-6000, the long-time standard, has reached end-of-life. As a replacement, we strongly recommend the ICM-42688-P (see below). Note that gyroscopes must communicate via SPI; I2C gyros are not supported. Legacy models such as the MPU-6500 will not be accepted. 
+Selecting the right IMU for a flight controller is crucial for optimal flight performance. The InvenSense MPU-6000, the long-time standard, has reached end-of-life. As a replacement, we strongly recommend the ICM-42688-P (see below). Note that gyroscopes must communicate via SPI; I2C gyros are not supported. Legacy models such as the MPU-6500 will not be accepted.
 
 :::note
 
-We do not recommend using the Bosch BMI-270 IMU, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used. New designs using this gyro will not be approved. 
+We do not recommend using the Bosch BMI-270 IMU, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used. New designs using this gyro will not be approved.
 
 :::
 
-
-
 ### 3.1.2.1 Future IMU Options and How to Select Preferred Options
 
-As the MPU-6000 is EOL, the currently recommended IMU for most applications is the TDK InvenSense ICM-42688-P. This gyro has been proven in many designs to provide excellent performance with low noise and good durability. In all cases, it is strongly recommended that the gyro be powered from its own LDO. For the ICM-42688-P, this is *required*. See below for more on electrical noise considerations. 
+As the MPU-6000 is EOL, the currently recommended IMU for most applications is the TDK InvenSense ICM-42688-P. This gyro has been proven in many designs to provide excellent performance with low noise and good durability. In all cases, it is strongly recommended that the gyro be powered from its own LDO. For the ICM-42688-P, this is _required_. See below for more on electrical noise considerations.
 
 The ICM-42688-P also supports an external clock input, which can yield increased stability and performance. If your design allows, consider adding external clock support. See the following PR for more info: https://github.com/betaflight/betaflight/pull/13912
 
@@ -198,11 +196,11 @@ The IMU sensors, designed for applications outside of sUAS, are typically subjec
 
 #### Advised power supply design for ICM-42xxx IMU. (also applies to others)
 
-These IMU require a stable and clean power supply to function correctly, provided with this they are very capable IMU for flight controller use.  Refer to the datasheets for recommended power filtering / bypass caps. 
+These IMU require a stable and clean power supply to function correctly, provided with this they are very capable IMU for flight controller use. Refer to the datasheets for recommended power filtering / bypass caps.
 Peak to peak noise of under 50uV on the supply should be the ideal goal.  
 Considerations for a suitable LDO are at least 500mA rated output allowing for extra capacitors on the output, two 20nF.  
 A PSRR >70dB down as low as 1Hz is preferred.  
-Where space allows, a dedicated LDO and circuit is advised for the IMU. For ICM-42688-P this is *required*.
+Where space allows, a dedicated LDO and circuit is advised for the IMU. For ICM-42688-P this is _required_.
 
 :::
 
@@ -215,13 +213,13 @@ I2C is a shared bus, meaning multiple devices can communicate over the same two-
 
 When designing a flight controller with I2C sensors, manufacturers should:
 
-  - Keep I2C traces as short as possible to minimize capacitance and signal degradation.
+- Keep I2C traces as short as possible to minimize capacitance and signal degradation.
 
-  - Use a ground plane beneath I2C traces to reduce noise and improve signal integrity.
+- Use a ground plane beneath I2C traces to reduce noise and improve signal integrity.
 
-  - Avoid routing I2C traces near high-noise sources such as motor drivers and power regulation circuits.
+- Avoid routing I2C traces near high-noise sources such as motor drivers and power regulation circuits.
 
-  - Select appropriate pull-up resistor values based on the number of devices and overall bus capacitance. In cases where multiple devices share the bus, adjusting pull-up values (e.g., lowering to 2.2kΩ or raising to 10kΩ) may be necessary to achieve optimal signal quality.
+- Select appropriate pull-up resistor values based on the number of devices and overall bus capacitance. In cases where multiple devices share the bus, adjusting pull-up values (e.g., lowering to 2.2kΩ or raising to 10kΩ) may be necessary to achieve optimal signal quality.
 
 Additionally, manufacturers should test the stability of the I2C bus under realistic operating conditions, including different temperature and voltage scenarios, to ensure robustness and reliability in flight.
 
@@ -233,7 +231,7 @@ The recommended I2C address for the BMP280 is 0x76, with SDO grounded, permittin
 
 :::note
 
-If only one I2C bus is available and shared between an onboard barometer and an external connector for a magnetometer or other device, it is advisable to include a method for changing the barometer’s I2C address in case of conflicts. This can be achieved by incorporating jumper pads or a zero-ohm resistor, allowing for easy reconfiguration. Providing this flexibility ensures broader compatibility with external sensors and prevents address conflicts that could disrupt communication. 
+If only one I2C bus is available and shared between an onboard barometer and an external connector for a magnetometer or other device, it is advisable to include a method for changing the barometer’s I2C address in case of conflicts. This can be achieved by incorporating jumper pads or a zero-ohm resistor, allowing for easy reconfiguration. Providing this flexibility ensures broader compatibility with external sensors and prevents address conflicts that could disrupt communication.
 
 :::
 
@@ -291,9 +289,9 @@ Again, providing robust low-ripple power to these devices provides the maximum p
 
 #### 3.1.4.2 ADC Circuitry (e.g. for Vbat and Current Sensors)
 
-All ADC inputs (e.g. VBAT, CURR, RSSI) should be equipped with 100nF bypass caps to minimize noise. 
+All ADC inputs (e.g. VBAT, CURR, RSSI) should be equipped with 100nF bypass caps to minimize noise.
 
-The recommended Vbat voltage divider for most designs is 100K/10K. Note the tolerance of the resistors used here affects the accuracy of the voltage scale set in the config file. 
+The recommended Vbat voltage divider for most designs is 100K/10K. Note the tolerance of the resistors used here affects the accuracy of the voltage scale set in the config file.
 
 #### 3.1.4.3 Supporting Additional Features
 
@@ -315,11 +313,11 @@ FCs should implement at least one LED to indicate activity. The second is prefer
 
 Each LED should be connected to a GPIO line. Polarity of the output does not matter.
 
-| LED Number | Color  | Required   |
-| :--------- | :----- | :--------- |
-| 0          | Blue   | Yes        |
-| 1          | Green  | Preferably |
-| 2          | Amber  | No         |
+| LED Number | Color | Required   |
+| :--------- | :---- | :--------- |
+| 0          | Blue  | Yes        |
+| 1          | Green | Preferably |
+| 2          | Amber | No         |
 
 For details of the use of these LEDs, please see the [FC LEDs](/docs/development/FC-LEDs) documentation
 
@@ -342,7 +340,7 @@ Betaflight does not support sharing devices on the SPI bus which is blocking exe
 
 :::warning
 
-Effective immediately, new flight controller designs that use the STM F4 and F7 series MCUs will be limited to 4 motor outputs. For designs requiring more than 4 motor outputs, it is highly recommended to use the STM32 H7 series MCUs. 
+Effective immediately, new flight controller designs that use the STM F4 and F7 series MCUs will be limited to 4 motor outputs. For designs requiring more than 4 motor outputs, it is highly recommended to use the STM32 H7 series MCUs.
 
 :::
 
@@ -372,7 +370,7 @@ Appropriate resource allocation ensures maximum flexibility in the selection of 
 
 Assign motor channels with highest priority.
 
-Note: As of December 2024, STM32F4 and STM32F7 MCUs are limited to 4 motor outputs. 
+Note: As of December 2024, STM32F4 and STM32F7 MCUs are limited to 4 motor outputs.
 
 #### 3.2.1.1 F4 Resource Selection
 
@@ -390,7 +388,7 @@ https://www.st.com/resource/en/errata_sheet/dm00037591-stm32f405407xx-and-stm32f
 Corruption may occur on DMA2 if AHB peripherals (e.g. GPIO ports) are accessed concurrently with APB peripherals (e.g. SPI busses).
 Practically, this means that all pins should be on the same port, or at most two ports, so that only one (or two) DMA streams are required for bitbanged operation.
 
-  As an additional reference design, see the Fenix F405: https://oshwlab.com/jyesmith/fenix-f405
+As an additional reference design, see the Fenix F405: https://oshwlab.com/jyesmith/fenix-f405
 
 #### 3.2.1.2 F7 Resource Selection
 
@@ -404,7 +402,7 @@ G4 and H7 series MCUs include a DMAMUX, which allows for flexible DMA stream all
 
 :::note
 
-STM32 F4 MCUs should use PWM-based DShot by default, due to a chip errata that prevents peripherals on DMA2 (usually gyro on SPI1) from using DMA when bitbanged DShot is used. All other MCUs (F7, H7, G4, AT32F435) should use bitbanged DShot by default for the best performance and most efficient use of timer and DMA resources. 
+STM32 F4 MCUs should use PWM-based DShot by default, due to a chip errata that prevents peripherals on DMA2 (usually gyro on SPI1) from using DMA when bitbanged DShot is used. All other MCUs (F7, H7, G4, AT32F435) should use bitbanged DShot by default for the best performance and most efficient use of timer and DMA resources.
 
 :::
 
@@ -572,14 +570,14 @@ Define at least one gyro and one accelerometer.
 Define correct flash driver(s) only if physical present on the board.
 
 ```
-#define USE_FLASH_M25P16           // 16MB Micron M25P16 and others (https://github.com/betaflight/betaflight/blob/master/src/main/drivers/flash_m25p16.c#L68)
-#define USE_FLASH_PY25Q128HA       // 16MB PUYA semi 25Q128
-#define USE_FLASH_W25N01G          // 1GB NAND flash support
-#define USE_FLASH_W25N02K          // 2GB NAND flash support
+#define USE_FLASH_M25P16           // 16Mb (2MB) Micron M25P16 and many others (https://github.com/betaflight/betaflight/blob/master/src/main/drivers/flash/flash_m25p16.c#L68)
+#define USE_FLASH_PY25Q128HA       // 128Mb (16MB) PUYA semi 25Q128
+#define USE_FLASH_W25N01G          // 1Gb (128MB) NAND flash support
+#define USE_FLASH_W25N02K          // 2Gb (256MB) NAND flash support
 #define USE_FLASH_W25M             // 16, 32, 64 or 128MB Winbond stacked die support
-#define USE_FLASH_W25M512          // 512KB (256Kb x 2 stacked) NOR flash support
-#define USE_FLASH_W25M02G          // 2GB (1Gb x 2 stacked) NAND flash support
-#define USE_FLASH_W25Q128FV        // 16MB Winbond 25Q128 and the 8MB Winbond W25Q8 types
+#define USE_FLASH_W25M512          // 512Mb (64 MB, 256Mb x 2 stacked) NOR flash support
+#define USE_FLASH_W25M02G          // 2Gb (256MB, 1Gb x 2 stacked) NAND flash support
+#define USE_FLASH_W25Q128FV        // 128Mb (16MB) Winbond 25Q128 and 16 Mb (2MB) 25Q16 support (for quad and octo SPI support, for standard SPI use USE_FLASH_M25P16)
 ```
 
 ### 4.2.3 Defines for BARO
