@@ -189,6 +189,12 @@ As the MPU-6000 is EOL, the currently recommended IMU for most applications is t
 
 The ICM-42688-P also supports an external clock input, which can yield increased stability and performance. If your design allows, consider adding external clock support. See the following PR for more info: https://github.com/betaflight/betaflight/pull/13912
 
+:::note
+
+Using a single timer with 4 channels dedicated to dual gyro FSYNC/INT pins for such a timer would be ideal 
+
+:::
+
 Future IMU selection should be carried out with close involvement of the Betaflight development group. Early hardware validation samples should be explored in collaboration with Betaflight developers to determine the suitability of these IMU units in relevant environments.
 The ability to customize IMU lowpass filtering and operate within the same GRMS/Shock environment allows for maximum portability of existing filtering and tune schemes, but this development must occur with complete hardware samples and flown in representative flight regimes in order to replicate the EMI environment end users will experience.
 
@@ -362,6 +368,7 @@ Or it may be optimal to use timers other than TIM1/TIM8 for motors so that TIM1/
 
 :::note
 
+When DSHOT BITBANG is used, the advanced timers (TIM1/TIM8 on H7) use DMA to drive the GPIO signals directly, the GPIO pins' timer AF modes are NOT used.  The timer(s) used by DSHOT BITBANG can drive GPIO signals on any GPIO pins, even if they do not have timer AF signals.
 TIM1 has inter-peripheral connectivity that other timers do not have.
 
 :::
