@@ -1,6 +1,6 @@
 # HQProp - Betaflight Development Team Sponsor.
 
-Founded in 2012, HQProp are devoted to supplying the RC community with High Quality props. This brand has been fundamental to the development of the FPV quadcopter hobby by producing cutting edge designs over the whole range of drone size and uses, and they are a popular choice in the Betaflight development team.
+Founded in 2012, HQProp are devoted to supplying the RC community with High Quality props. <!-- truncate --> This brand has been fundamental to the development of the FPV quadcopter hobby by producing cutting edge designs over the whole range of drone size and uses, and they are a popular choice in the Betaflight development team.
 
 We are therefore delighted to partner with them as an offical Betaflight Team Sponsor.
 

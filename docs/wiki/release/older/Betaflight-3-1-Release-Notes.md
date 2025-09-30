@@ -357,7 +357,6 @@ I think after I "fixed it" with transition setpoint, I could even back off with 
 Note: See the [3.0.Release Notes](Betaflight-3-0-Release-Notes) 
 
 for CLI commands plus other features that were new in 3.0.x
-See the [V2.x CLI Commands](/docs/wiki/guides/archive/Betaflight-2-x-CLI-commands) page for a history of CLI command changes. This site has only documented Changes from being Forked from CleanFlight. Do see the CF docs.
 
 #### Resource Remapping
 From betaflight v3.1 there is a new command to map resources. No more custom motor mixes just to move a motor pin.

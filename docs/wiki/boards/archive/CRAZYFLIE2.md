@@ -53,7 +53,7 @@ The board has its own operating system and set of client side tools which enable
 
 ## Maintainers
 
-[Sean Kelly, @theseankelly](https://github.com/theseankelly)
+[Sean Kelly](https://github.com/theseankelly)
 
 ## Similar Targets
 

@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "^3.8.1",
+    "@docusaurus/faster": "^3.8.1",
     "@docusaurus/preset-classic": "^3.8.1",
     "@docusaurus/theme-mermaid": "^3.8.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
