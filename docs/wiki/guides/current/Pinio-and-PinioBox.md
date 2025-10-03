@@ -74,26 +74,26 @@ For permanent ID of boxes (or AUX modes), the table below is based on [msp/msp_b
 | `BOXARM`                | ARM                      |  `0` |
 | `BOXANGLE`              | ANGLE                    |  `1` |
 | `BOXHORIZON`            | HORIZON                  |  `2` |
-| `BOXALTHOLD`            | ALTITUDE HOLD            |  `3` | added 4.6 |
+| `BOXALTHOLD`            | ALTITUDE HOLD            |  `3` | 2025.12 |
 | `BOXANTIGRAVITY`        | ANTI GRAVITY             |  `4` |
 | `BOXMAG`                | MAG                      |  `5` |
 | `BOXHEADFREE`           | HEADFREE                 |  `6` |
 | `BOXHEADADJ`            | HEADADJ                  |  `7` |
 | `BOXCAMSTAB`            | CAMSTAB                  |  `8` |
-| `BOXCAMTRIG`            | CAMTRIG                  |  `9` | (removed) |
-| `BOXGPSHOME`            | GPS HOME                 | `10` | (removed) |
-| `BOXPOSHOLD`            | POSITION HOLD            | `11` | added 4.6 |
+| `BOXCAMTRIG`            | CAMTRIG                  |  `9` | removed |
+| `BOXGPSHOME`            | GPS HOME                 | `10` | removed |
+| `BOXPOSHOLD`            | POSITION HOLD            | `11` | 2025.12 |
 | `BOXPASSTHRU`           | PASSTHRU                 | `12` |
 | `BOXBEEPERON`           | BEEPER                   | `13` |
-| `BOXLEDMAX`             | LEDMAX                   | `14` | (removed) |
+| `BOXLEDMAX`             | LEDMAX                   | `14` | removed |
 | `BOXLEDLOW`             | LEDLOW                   | `15` |
-| `BOXLLIGHTS`            | LLIGHTS                  | `16` | (removed) |
+| `BOXLLIGHTS`            | LLIGHTS                  | `16` | removed |
 | `BOXCALIB`              | CALIB                    | `17` |
-| `BOXGOV`                | GOVERNOR                 | `18` | (removed) |
+| `BOXGOV`                | GOVERNOR                 | `18` | removed |
 | `BOXOSD`                | OSD DISABLE SW           | `19` |
 | `BOXTELEMETRY`          | TELEMETRY                | `20` |
-| `BOXGTUNE`              | GTUNE                    | `21` | (removed) |
-| `BOXRANGEFINDER`        | RANGEFINDER              | `22` | (removed) |
+| `BOXGTUNE`              | GTUNE                    | `21` | removed |
+| `BOXRANGEFINDER`        | RANGEFINDER              | `22` | removed |
 | `BOXSERVO1`             | SERVO1                   | `23` |
 | `BOXSERVO2`             | SERVO2                   | `24` |
 | `BOXSERVO3`             | SERVO3                   | `25` |
@@ -109,7 +109,7 @@ For permanent ID of boxes (or AUX modes), the table below is based on [msp/msp_b
 | `BOXFLIPOVERAFTERCRASH` | FLIP OVER AFTER CRASH    | `35` |
 | `BOXPREARM`             | PREARM                   | `36` |
 | `BOXBEEPGPSCOUNT`       | BEEP GPS SATELLITE COUNT | `37` |
-| `BOX3DONASWITCH`        | 3D ON A SWITCH           | `38` | (removed) |
+| `BOX3DONASWITCH`        | 3D ON A SWITCH           | `38` | removed |
 | `BOXVTXPITMODE`         | VTX PIT MODE             | `39` |
 | `BOXUSER1`              | USER1                    | `40` |
 | `BOXUSER2`              | USER2                    | `41` |

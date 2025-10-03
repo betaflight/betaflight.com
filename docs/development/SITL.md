@@ -22,7 +22,7 @@ Run `make TARGET=SITL`
 
 ### Betaflight Web App
 
-Starting from Betaflight 4.6 online configurator is required which uses websockets for communication with SITL.
+Starting from Betaflight 2025.12 online configurator is required which uses websockets for communication with SITL.
 
 To setup and configure a proxy use the following instructions in a new terminal session:
 

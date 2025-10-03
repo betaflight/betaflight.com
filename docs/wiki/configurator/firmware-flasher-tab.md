@@ -80,7 +80,7 @@ To see Release Candidates:
 
 Development builds contain the most recent changes made to the firmware.
 
-This option lets you test out a new feature, or try out a significant change to the code, as soon as it is added to the `master` branch. If, for example, Betaflight 4.5 is the current release version, the development versions available in the list will be 4.6, and the latest code for the most recent update branch for 4.5, e.g. 4.5.3.
+This option lets you test out a new feature, or try out a significant change to the code, as soon as it is added to the `master` branch. If, for example, Betaflight 4.5 is the current release version, the development versions available in the list will be 2025.12.0, and the latest code for the most recent update branch for 4.5, e.g. 4.5.3.
 
 To see Development versions:
 
