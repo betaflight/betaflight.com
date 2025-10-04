@@ -1,6 +1,6 @@
-# Position Hold 4.6
+# Position Hold 2025.12
 
-Betaflight 4.6 introduces Altitude Hold and Position Hold.
+Betaflight 2025.12 introduces Altitude Hold and Position Hold.
 
 When used together, these features allow the pilot to hit a switch and the aircraft will hover at a fixed location and constant altitude, in Angle Mode. The sticks can then be used to ajust altitude and location. A GPS is essential, and a Magnetometer is strongly recommended.
 

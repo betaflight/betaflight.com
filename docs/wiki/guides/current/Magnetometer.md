@@ -95,7 +95,7 @@ In Betaflight 4.5, the CLI variable `mag_declination` was introduced, to correct
 Declination values should be entered in decidegrees; in the above example, `set mag_declination = 130` would correct for a 13° positive declination, and `set mag_declination = 34` for positive 3.4° of declination. A negative local declination, eg -3°, should be entered as `set mag_declination = 3570` (i.e. 3600 - 30).
 
 :::note
-In firmare 4.6 declination has been changed to use a range of 30 degrees.
+In firmware 2025.12 declination has been changed to use a range of 30 degrees.
 13° would still be `130` but -3° needs to be initialized as `-30`.
 
 `mag_declination` is the difference of angles (between true and magnetic north).

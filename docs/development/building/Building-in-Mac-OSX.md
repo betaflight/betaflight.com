@@ -62,7 +62,7 @@ To install the needed compiler you just need to enter the betaflight directory a
 
 Enter the betaflight directory and run `make configs` to retrieve board targets then `make MATEKH743` to
 build firmware for the MATEKH743. When the build completes, the .hex firmware should be available as
-`obj/betaflight_4.6.0_MATEKH743.hex` for you to flash using the Betaflight Configurator.
+`obj/betaflight_2025.12.0_MATEKH743.hex` for you to flash using the Betaflight Configurator.
 
 ## Updating to the latest source
 
