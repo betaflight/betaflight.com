@@ -159,7 +159,7 @@ On the OMNIBUSF4, the UART1 RX pin is available for use on 3 different headers, 
 
 ### Spektrum Binding (v3.1.6+)
 
-- Configure the flight controller for your receiver by opening the BetaFlight Configurator and on the ports page, set UART1 to Serial RX and click save. Switch to the configuration tab and in the Receiver section, set the mode to SerialRX and provider to either:
+- Configure the flight controller for your receiver by opening the Betaflight App and on the ports page, set UART1 to Serial RX and click save. Switch to the configuration tab and in the Receiver section, set the mode to SerialRX and provider to either:
 
   - Spektrum 2048 for DSMX
   - Spektrum 1024 for DSM2
@@ -189,4 +189,4 @@ set spektrum_sat_bind = 0
 save
 ```
 
-- Make sure to change to TAER channel order under the Receiver tab in the BetaFlight configurator.
+- Make sure to change to TAER channel order under the Receiver tab in the Betaflight App.

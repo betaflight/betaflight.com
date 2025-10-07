@@ -21,7 +21,7 @@ Then this guide might be for you.
 
 1. **Remove your props!**
 2. Plug your multirotor into your computer
-3. Navigate to the Betaflight configurator
+3. Navigate to the Betaflight App
 4. In the _Setup_ tab, you should see a 3D model of a quadcopter
 5. Move your model around in your hand, verifying that each movement correctly corresponds to whats shown on the screen (with the arrow aligning with what is supposed to be the front of your quad)
 6. If this is **NOT** correct:
@@ -57,7 +57,7 @@ Then this guide might be for you.
 
 1. **Remove your props!**
 1. Plug your multirotor into your computer
-1. Navigate to the Betaflight configurator
+1. Navigate to the Betaflight App
 1. Plug in your LiPo (PROPS OFF)
 1. Navigate to the _Motors_ tab
 1. Click the checkbox verifying that you've taken off your props
@@ -81,12 +81,12 @@ Then this guide might be for you.
 
 1. **Remove your props**
 2. Plug your multirotor into your computer
-3. Navigate to the Betaflight configurator
+3. Navigate to the Betaflight App
 4. Plug in your LiPo (PROPS OFF)
 5. Navigate to the _Motors_ tab
 6. Click the checkbox verifying that you've taken off your props
 7. Raise each slider one by one
-8. The number on the slider should be the same as the motor that it is spinning, according the the reference image below (or the image in the configurator)
+8. The number on the slider should be the same as the motor that it is spinning, according to the reference image below (or the image in the configurator)
 9. If this is **NOT** correct
    - Grab a piece of paper and make a chart for any that differ
    - || Slider that's being moved ||VS|| The motor number that actually spins ||

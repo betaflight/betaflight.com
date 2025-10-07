@@ -28,7 +28,7 @@ The current protocol specification can be found here:
 ## Setup
 
 - One free non-inverted UART on the FC is required (TX and RX)
-- Select Runcam Device in the Ports Tab in Betaflight Configurator for the used UART.
+- Select Runcam Device in the Ports Tab in the Betaflight App for the used UART.
 - Soft serial may work for some devices and some functions (Softserial has been reported to work with the Runcam Split 2/Mini at least for the record button function).
 
 ## Supported cameras/devices and functions
@@ -73,13 +73,13 @@ Any available UART interface on the BetaFlight
 
 ###### 2.Make the Flight Controller recognize the Split
 
-For example, we connect the Split to the UART 3 interface on the BetaFlight: connect the flight controller to the computer, then open the Betaflight Configurator.
+For example, we connect the Split to the UART 3 interface on the BetaFlight: connect the flight controller to the computer, then open the Betaflight App.
 In the Peripherals column of the line UART3 (on the Ports tab), select RunCam Device and click Save And Reboot.
 ![bf-ports-setup-for-rcsplit](https://s3-us-west-2.amazonaws.com/runcamfcfiles/bf-ports-setup-for-rcsplit.png)
 
 ###### 3.Instructions of the functions of the camera and assigning transmitter channels to them
 
-In the Betaflight Configurator, navigate to the Modes tab. There are new CAMERA WI-FI, CAMERA POWER and CAMERA CHANGE modes.
+In the Betaflight App, navigate to the Modes tab. There are new CAMERA WI-FI, CAMERA POWER and CAMERA CHANGE modes.
 
 CAMERA WI-FI: turn on/off the WIFI of the camera. When in the OSD of the camera, this is used to confirm your selection.
 CAMERA POWER: start/stop the video. When in the OSD of the camera, this is used to move to the next menu item.

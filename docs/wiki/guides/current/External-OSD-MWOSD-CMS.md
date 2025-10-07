@@ -42,7 +42,7 @@ If you are building your own Betaflight FC firmware:
 ### About this mode:
 
 - MWOSD acts dumb and displays screen sent from FC.
-- OSD layouts are configured in the Betaflight Configurator OSD tab.
+- OSD layouts are configured in the Betaflight App OSD tab.
 
 Limitations:
 

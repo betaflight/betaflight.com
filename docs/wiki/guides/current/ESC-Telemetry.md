@@ -35,7 +35,7 @@ The following information is quite old and may not be accurate.
 ### Requirements:
 
 - Supported flight controller with Betaflight version 3.1.0 RC1 or later.
-- Betaflight configurator version 1.8.5 or later.
+- Betaflight App version 1.8.5 or later.
 - ESC with Serial Telemetry enabled (usually requires AM32 or BLHeli32)
 - A spare hardware UART on the flight controller.
 - (Optional) Telemetry from flight controller to RC receiver.
@@ -44,11 +44,11 @@ The following information is quite old and may not be accurate.
 
 **Install the ESCs** to the quad and connect the ESC's Tx pin, and ground, to the RX pin of the spare hardware UART on the flight controller. With individual ESCs, a loom to split the single wire from the RX pin of the UART into four wires (one for each ESC) will be required.
 
-**Open the Betaflight configurator (V 1.8.5 or later) and go to the Ports tab.**
+**Open the Betaflight App (V 1.8.5 or later) and go to the Ports tab.**
 
 Find the UART that the ESC telemetry is connected to and in the column marked "Sensor Input", select ESC in the left box and leave AUTO in the right box. Don't forget to hit the "save and reboot" button.
 
-**Still in Betaflight configurator, switch to the Configuration tab.**
+**Still in Betaflight App, switch to the Configuration tab.**
 
 _**Make sure you are using the DShot protocol for ESC communication!**_
 

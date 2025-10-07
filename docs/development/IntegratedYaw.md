@@ -12,7 +12,7 @@ Integrated Yaw fixes this by integrating the output of the yaw pid before applyi
 
 ## Setup
 
-From Betaflight 4.1.0 / Betaflight configurator 10.6.0 on Integrated Yaw can be set up in configurator, in the 'PID Tuning' tab.
+From Betaflight 4.1.0 / Betaflight configurator (now App) 10.6.0 on Integrated Yaw can be set up in the app, in the 'PID Tuning' tab.
 
 As a fallback, these are the CLI commands to enable it:
 

@@ -71,7 +71,7 @@ This command starts a local development server and opens up a browser window at 
 
 ## Usage Instructions
 
-Once Betaflight is set up, you can access the website locally through your browser. Users can easily navigate through the various sections of the platform to find the information they need. The Wiki section provides detailed documentation on Betaflight-related topics. The Development section is primarily for developers on how to contribute. The Downloads section offers access to essential resources such as Betaflight Configurator, Firmware, Lua Tx Scripts, BlackBox Log Viewer, and more. Additionally, users can check Build Statistics, find Betaflight Sponsors, and stay up-to-date with the latest developments and announcements by checking the Blog section.
+Once Betaflight is set up, you can access the website locally through your browser. Users can easily navigate through the various sections of the platform to find the information they need. The Wiki section provides detailed documentation on Betaflight-related topics. The Development section is primarily for developers on how to contribute. The Downloads section offers access to essential resources such as Betaflight App, Firmware, Lua Tx Scripts, BlackBox Log Viewer, and more. Additionally, users can check Build Statistics, find Betaflight Sponsors, and stay up-to-date with the latest developments and announcements by checking the Blog section.
 
 ## Troubleshooting
 

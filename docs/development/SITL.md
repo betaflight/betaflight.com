@@ -154,7 +154,7 @@ To running SITL, you may need to:
    unusedPinsInit
    ```
 
-   Then you can open the Betaflight Configurator on **Windows** to connect to RealFlight via **WSL IP**.
+   Then you can open the Betaflight App on **Windows** to connect to RealFlight via **WSL IP**.
    ![](/img/sitl/betaflight.jpg)
 
    After connect to Betaflight you need to apply this [DIFF file](/sitl/BTFL_quadcopter_rf9.txt) and set the arming switch with your controller.

@@ -1,6 +1,6 @@
 # Debugging Configurator in VSCode on Windows
 
-It is possible to debug Betaflight configurator with Visual Studio Code which is a more friendly environment than DevTools.
+It is possible to debug the Betaflight App with Visual Studio Code which is a more friendly environment than DevTools.
 This procedure has been tested only for Windows 10.
 
 Make sure you use Configurator 10.8 + after this PR is merged:

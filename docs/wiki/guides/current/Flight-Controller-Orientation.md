@@ -4,7 +4,7 @@ Usually, the gyro orientation on the FC is ink-marked by an arrow pointing forwa
 
 In rare cases or due to space limitations, the flight controller needs to be positioned on the frame in awkward alignment, i.e. pivoted around multiple axes, NOT lining up with the main axes of the frame anymore.
 
-The FC firmware NEEDS to know how the FC axes are oriented with respect to the frame axes, otherwise the PID controller will misinterpret flight attitude and corrective actions, this will lead to unstable behavior and flyaways. To keep all controls working as usual, you need to set the matching angle values in the Betaflight Configurator Configuration tab. These angles will tell the FC how to rotate the frame around multiple axes to fall in line with the alignment of the FC.
+The FC firmware NEEDS to know how the FC axes are oriented with respect to the frame axes, otherwise the PID controller will misinterpret flight attitude and corrective actions, this will lead to unstable behavior and flyaways. To keep all controls working as usual, you need to set the matching angle values in the Betaflight App Configuration tab. These angles will tell the FC how to rotate the frame around multiple axes to fall in line with the alignment of the FC.
 
 It is important to note that there is a sequence of so-called Euler angles (axes of rotation in space, perpendicular to each other) for board/gyro alignment: yaw-pitch-roll or 3-2-1 Euler angles.
 
@@ -20,11 +20,11 @@ For the alignment process think of a frame mounted to your quad and a frame moun
 2. Pitch the already yawed frame around its new y axis
 3. Roll the already yawed and pitched frame around its new x axis
 
-To test your alignment process before you mount it to your frame use the FC only pointing towards your monitor and the the Setup page of the Betaflight Configurator and simply start with:
+To test your alignment process before you mount it to your frame use the FC only pointing towards your monitor and the Setup page of the Betaflight App and simply start with:
 
 1. Yaw the FC, hit Reset Z axis, check the visualisation of the quad, if ok proceed
 2. Pitch the yawed FC, reset Z axis, check, if ok proceed
 3. Roll the yawed and pitched FC, reset Z axis, check, if ok proceed
 4. Double check!
 
-After determining these 3 correction angles needed to rotate the quad frame into the FC frame, the values for yaw, pitch and roll can be entered into the respective fields in the Betaflight Configurator.
+After determining these 3 correction angles needed to rotate the quad frame into the FC frame, the values for yaw, pitch and roll can be entered into the respective fields in the Betaflight App.

@@ -880,7 +880,7 @@ C6 8 G5 8 C6 8 E6 8 G6 8 C7 8 G6 8 G#5 8 C6 8 D#6 8 G#6 8 D#6 8 G#6 8 C7 8 D#7 8
 # BiDirectional DShot
 
 Update BLHeli && Upgrade to latest Firmware
-Count your Magnets on motors and type that in Betaflight Configurator
+Count your Magnets on motors and type that in the Betaflight App
 Set Dshot 300/600
 go to Motors tab, connect your Battery and look that error rate (percentage) MUST be 0% (100% if Batt not connected)
 OG to Filter settings and Switch on Gyro RPM Filter

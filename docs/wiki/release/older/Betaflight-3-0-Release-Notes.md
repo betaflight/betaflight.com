@@ -43,7 +43,7 @@ Betaflight has 2 different goals.
 
 #### Final Release
 
-This is really a major release. The full detailled change list can be found in the the commit history.
+This is really a major release. The full detailed change list can be found in the commit history.
 [https://github.com/betaflight/betaflight/commits/master]
 
 Short Summary of changes:

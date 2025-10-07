@@ -2,7 +2,7 @@
 
 ## How to install Betaflight firmware on your FC:
 
-Using Betaflight Configurator, select the Firmware Flasher tab and select what firmware to flash in one of two different ways, online or local firmware.
+Using the Betaflight App, select the Firmware Flasher tab and select what firmware to flash in one of two different ways, online or local firmware.
 
 1. Load online firmware.
    Select Target and Version in the upper left corner. Press "Load Firmware [Online]", lower right part of the screen.
@@ -48,14 +48,14 @@ Make sure you have zadig if you're using Windows to enable the DFU driver. Instr
 1. In the box to the right of the green arrow, select WinUSB (v6.1.7600.16385)
 1. Click Install Driver
 1. After the install completes, restart your computer (you can cheat and ensure no browser is running - but it is not guaranteed to work). The board should stay in DFU mode - IF - usb power remains during the reboot. If not, execute step 2 again.
-1. Open up the Betaflight configurator.
+1. Open up the Betaflight App.
 1. Go to firmware flasher, select "No reboot sequence"
 1. On F4 targets disable "Full Chip Erase". Use the config reset in Configurator later. ([#200](https://github.com/betaflight/betaflight-configurator/issues/200) reports the issue.)
 1. Load Firmware [Local]
 1. Browse to and select the proper hex file. (betaflight_REVO.hex for the revo, for example)
 1. Click flash firmware.
 1. The board should start flashing. First indicating an erase, then flash and finally verification.
-1. Once flashed your board will reboot, but you may need to install the STM VCP driver (see below) for Betaflight Configurator to connect to the board.
+1. Once flashed your board will reboot, but you may need to install the STM VCP driver (see below) for the Betaflight App to connect to the board.
 
 ### Installing STMicro Virtual Com Port (VCP) Driver under Windows:
 
@@ -75,7 +75,7 @@ https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vc
 
 ### Platform Specific: Linux
 
-Linux does not know the concept of product specific 'device drivers', so no driver installation is needed. But there are a couple of steps required to make the Betaflight configurator work on linux:
+Linux does not know the concept of product specific 'device drivers', so no driver installation is needed. But there are a couple of steps required to make the Betaflight App work on linux:
 
 Linux requires udev rules to allow write access to USB devices for users. If you are not familiar with udev rules don’t worry, we will walk you through the process in the proceeding steps using the command line interface (CLI).
 
@@ -169,7 +169,7 @@ Video Tutorial:
 Start with the following video that gives a very comprehensive guide on Betaflight and the best practice approach for it's configuration:
 http://www.youtube.com/watch?v=xSzO6HP6yzs
 
-New Video by Joshua Bardwell on the BetaFlight Configurator:
+New Video by Joshua Bardwell on the Betaflight App:
 https://www.youtube.com/watch?v=VAHUZZXIn9o
 
 There is a step-by-step guide on how to flash the flight controller with Betaflight here: http://quadquestions.com/blog/2015/12/25/betaflight_flashing/

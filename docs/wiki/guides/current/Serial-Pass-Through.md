@@ -38,7 +38,7 @@ ALSO, this works best if you know SmartPort is working, as you will use this UAR
 
 - Connect the copter to your computer via USB (if the Rx powers up, might as well stop - it should not power up), and note the COM port
 - Go to **Ports** tab and note the UART SmartPort is on, and subtract 1 (e.g., if SmartPort is on UART 3, then 2 is the number you want)
-- Open Betaflight Configurator, connect you copter, access CLI
+- Open the Betaflight App, connect your copter, access CLI
 - Enter and send command `serialpassthrough 2 57600` (where '2' is the UART ID; remember, UART 3 is actually ID 2, UART 2 would be 1, and UART 1 would be 0), then press **ENTER**.
 
 If all went well, you should see:
@@ -47,9 +47,9 @@ If all went well, you should see:
 
 `Forwarding, power cycle to exit`
 
-- Close Betaflight Configurator (but do not power cycle the FC)
+- Close the Betaflight App (but do not power cycle the FC)
 - Start the **FrSky_Update_sport_rev**... tool (this will be found in the folder where the contents of _Tool-FrSky update sport_ were extracted to)
-- Select the COM port (whatever Betaflight Configurator was using).
+- Select the COM port (whatever the Betaflight App was using).
 - Then click the **File** button and navigate to where you extracted the firmware update for your Rx. The tool is now waiting to find a device; the bottom of the tool window will show "_Finding device..."_
 - Apply power to the copter (LiPo), which will power the Rx.
 

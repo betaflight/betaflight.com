@@ -12,7 +12,7 @@ For Betaflight 4.4 and above, firmware updating uses an online build process. Th
 
 ## Preparation
 
-- Upgrade to the latest Betaflight Configurator.
+- Upgrade to the latest Betaflight App.
 - Before upgrading a flight controller, choose either `save backup` from the Presets Tab, or save a <b>diff</b> file via the CLI. This will store the configuration as used by your old firmware, in case you have to revert back to the old firmware. The CLI <b>status</b> command provides info about the hardware currently being used.
 
 :::note

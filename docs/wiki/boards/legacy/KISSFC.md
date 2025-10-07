@@ -103,7 +103,7 @@ How to enable/use ESC Telemetry:
 
 1. Create solder-brigde between TX3/RX3 on the bottom of the KISS FC board.
 2. Connect ESC telemetry wires to the TLM pads
-3. Start Betaflight Configurator
+3. Start the Betaflight App
 4. Open Ports Tab
 5. Select `ESC` for `Sensor Input` on `UART3`.
 6. Hit Save & Reboot.

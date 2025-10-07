@@ -42,7 +42,7 @@ The supported protocols are:
 
 ## Configuration
 
-1. in Betaflight configurator, go to the 'Configuration' tab, in 'Receiver' box, select 'SPI RX support' for 'Receiver mode':
+1. in the Betaflight App, go to the 'Configuration' tab, in 'Receiver' box, select 'SPI RX support' for 'Receiver mode':
 
 ![FrSky SPI RX mode selection](assets/images/frsky_spi_rx_mode.png)
 

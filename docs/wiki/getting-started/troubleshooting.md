@@ -11,7 +11,7 @@ It is an unfortunate fact that sometimes things just go wrong. Be that on by a f
 ### No COM Port Appears
 
 - Make sure that you are plugging the USB cable into the flight controller. There may be parts that may have a USB port, so don't confuse it with your flight controller A DJI Air Unit is a video transmitter.  
-  Neither should you try to connect your radio to the configurator. Betaflight Configurator is not meant be used to set up your radio, use your radio's software for that (OpenTX companion, EdgeTX Buddy, etc.)
+  Neither should you try to connect your radio to the configurator. The Betaflight App is not meant be used to set up your radio, use your radio's software for that (OpenTX companion, EdgeTX Buddy, etc.)
 - Make sure you are using a USB cable that is capable of data transfer. Some USB cables are only for charging
 - You may need to install the drivers for your flight controller. There is a download link for the ImpulseRC Driver
   Fixer tool in the configurator, or you can download it from [here](https://impulserc.com/pages/downloads)
@@ -153,10 +153,10 @@ If the preset options don't work, you can try changing the channel map manually.
   - `CALIB` - The onboard sensors are still calibrating and are not ready to be used. Wait a little bit after powering on the drone
   - `RPMFILTER` - BiDirectional DShot is enabled on the FC side, but the ESC is not sending RPM telemetry
 
-  There are also some that should only appear when using some sort of configuration interface (ie. connected to the Betaflight Configurator):
+  There are also some that should only appear when using some sort of configuration interface (ie. connected to the Betaflight App):
 
-  - `MSP` - The drone is connected to mentioned configuration interface (Betaflight Configurator)
-  - `CLI` - You're in the CLI tab in the Betaflight Configurator
+  - `MSP` - The drone is connected to mentioned configuration interface (Betaflight App)
+  - `CLI` - You're in the CLI tab in the Betaflight App
   - `OSD` or `CMS` - You're connected using the CMS (Configuration Menu System), be that in the OSD menu, or the radio LUA script
 
 ### Motors Increase RPM Without Throttle Input

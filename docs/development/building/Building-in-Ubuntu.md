@@ -38,7 +38,7 @@ You'll see a set of files being compiled, and finally linked, yielding both an E
 You can use the Betaflight-Configurator to flash the `obj/betaflight_MATEKF405.hex` file.
 Make sure to remove `obj/` and `make clean`, before building again.
 
-### Building Betaflight Configurator
+### Building the Betaflight App
 
 Change to your project-folder if desired. (e.g. `cd ~/Git`)
 
@@ -56,11 +56,11 @@ yarn build
 yarn vite
 ```
 
-This will start a local server for Betaflight Configurator. Use a Web-Serial compatible web browser to visit `http://localhost:8000/`. Press `q`, then `Enter` in the terminal to quit. You may delete the `nohup.out` file if it remains after quitting. Please see https://github.com/betaflight/betaflight-configurator?tab=readme-ov-file#betaflight-configurator for further details.
+This will start a local server for the Betaflight App. Use a Web-Serial compatible web browser to visit `http://localhost:8000/`. Press `q`, then `Enter` in the terminal to quit. You may delete the `nohup.out` file if it remains after quitting. Please see https://github.com/betaflight/betaflight-configurator?tab=readme-ov-file#betaflight-configurator for further details.
 
-See [Betaflight Configurator Development](https://github.com/betaflight/betaflight-configurator#development) for how to build the Betaflight Configurator.
+See [Betaflight App Development](https://github.com/betaflight/betaflight-configurator#development) for how to build the Betaflight App.
 
-### Flashing a Target with Betaflight Configurator
+### Flashing a Target with the Betaflight App
 
 In most Linux distributions the user won't have access to serial interfaces by default. Flashing a target requires configuration of usb for dfu mode. To add this access right type the following command in a terminal:
 
@@ -77,6 +77,6 @@ ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="010
 EOF
 ```
 
-Please log out and log in to active the settings. You should now be able to flash your target using Betaflight Configurator.
+Please log out and log in to active the settings. You should now be able to flash your target using the Betaflight App.
 
 Credit goes to K.C. Budd, AKfreak for testing, and pulsar for doing the long legwork that yielded the original content of this document.
