@@ -6,7 +6,7 @@ sidebar_position: 1
 
 There are a few prerequisites to configure your craft running Betaflight. You will need to install the
 [Betaflight App](https://github.com/betaflight/betaflight-configurator/releases/latest) for
-your operating system. You will be using the configurator to configure your flight controller settings.
+your operating system. You will be using the app to configure your flight controller settings.
 
 ## Connecting to your Flight Controller
 

@@ -20,7 +20,7 @@ For the alignment process think of a frame mounted to your quad and a frame moun
 2. Pitch the already yawed frame around its new y axis
 3. Roll the already yawed and pitched frame around its new x axis
 
-To test your alignment process before you mount it to your frame use the FC only pointing towards your monitor and the the Setup page of the Betaflight App and simply start with:
+To test your alignment process before you mount it to your frame use the FC only pointing towards your monitor and the Setup page of the Betaflight App and simply start with:
 
 1. Yaw the FC, hit Reset Z axis, check the visualisation of the quad, if ok proceed
 2. Pitch the yawed FC, reset Z axis, check, if ok proceed

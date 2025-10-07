@@ -86,7 +86,7 @@ Then this guide might be for you.
 5. Navigate to the _Motors_ tab
 6. Click the checkbox verifying that you've taken off your props
 7. Raise each slider one by one
-8. The number on the slider should be the same as the motor that it is spinning, according the the reference image below (or the image in the configurator)
+8. The number on the slider should be the same as the motor that it is spinning, according to the reference image below (or the image in the configurator)
 9. If this is **NOT** correct
    - Grab a piece of paper and make a chart for any that differ
    - || Slider that's being moved ||VS|| The motor number that actually spins ||

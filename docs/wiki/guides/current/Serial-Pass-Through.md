@@ -38,7 +38,7 @@ ALSO, this works best if you know SmartPort is working, as you will use this UAR
 
 - Connect the copter to your computer via USB (if the Rx powers up, might as well stop - it should not power up), and note the COM port
 - Go to **Ports** tab and note the UART SmartPort is on, and subtract 1 (e.g., if SmartPort is on UART 3, then 2 is the number you want)
-- Open the Betaflight App, connect you copter, access CLI
+- Open the Betaflight App, connect your copter, access CLI
 - Enter and send command `serialpassthrough 2 57600` (where '2' is the UART ID; remember, UART 3 is actually ID 2, UART 2 would be 1, and UART 1 would be 0), then press **ENTER**.
 
 If all went well, you should see:
