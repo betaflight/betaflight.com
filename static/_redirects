@@ -1,8 +1,8 @@
-/about /docs/wiki/getting-started
-/baro /docs/wiki/guides/current/barometer
-/development /docs/development
-/failsafe /docs/wiki/guides/current/Failsafe
-/guides /docs/wiki/guides
-/releases /docs/category/release-notes
-/setup /docs/wiki/getting-started/setup-guide
-/wiki /docs/wiki
+/about /docs/wiki/getting-started 301
+/baro /docs/wiki/guides/current/barometer 301
+/development /docs/development 301
+/failsafe /docs/wiki/guides/current/failsafe 301
+/guides /docs/wiki/guides 301
+/releases /docs/category/release-notes 301
+/setup /docs/wiki/getting-started/setup-guide 301
+/wiki /docs/wiki 301
