@@ -107,7 +107,7 @@ As the Runaway Takeoff Prevention feature matures based on feedback from the use
 
 - Reactivate the feature after the pilot uses crash-flip to recover from a crash. Provides protection for the next arming and takeoff in case of broken props or other problems that might cause a runaway.
 - Disable the feature temporarily while crash-flip is active to prevent triggering while the pilot is attempting to flip over.
-- In coordination with Betaflight Configurator 10.2.0 or later, temporarily disable the feature when arming while connected to the configurator. This allows unrestricted bench testing without risk of triggering a disarm. Prevents any need to manually disable the feature which may result in forgetting to re-enable before flying.
+- In coordination with the Betaflight App 10.2.0 or later, temporarily disable the feature when arming while connected to the configurator. This allows unrestricted bench testing without risk of triggering a disarm. Prevents any need to manually disable the feature which may result in forgetting to re-enable before flying.
 
 **Betaflight 3.3RC1**
 

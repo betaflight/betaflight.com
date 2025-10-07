@@ -271,7 +271,7 @@ serialpassthrough 1
 
 If a baud rate is not specified, or is set to 0, then `serialpassthrough` supports changing of the baud rate over USB. This allows tools such as the MWOSD GUI to dynamically set the baud rate to, for example 57600 for reflashing the MWOSD firmware and then 115200 for adjusting settings without having to powercycle your flight control board between the two.
 
-_To use a tool such as the MWOSD GUI, it is necessary to disconnect or exit Betaflight configurator._
+_To use a tool such as the MWOSD GUI, it is necessary to disconnect or exit Betaflight App._
 
 **To exit serial passthrough mode, power cycle your flight control board.**
 

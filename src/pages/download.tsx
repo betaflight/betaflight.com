@@ -62,7 +62,7 @@ export default function Media() {
         <HomepageFeature blur title="Downloads">
           <div className="grid max-w-fit grid-cols-1 md:grid-cols-2 gap-x-4">
             <div className="flex flex-col space-y-4">
-              <IconElementFeature title="Betaflight Configurator" Icon={Cog6ToothIcon}>
+              <IconElementFeature title="Betaflight App" Icon={Cog6ToothIcon}>
                 <div className="flex flex-col">
                   <div className="flex flex-row space-x-1 mt-0">
                     <span>
@@ -132,10 +132,6 @@ export default function Media() {
                 description="Test the latest upcoming features and contribute to Betaflight's development by using the nightly builds:"
               >
                 <div className="flex flex-col">
-                  <a href="https://github.com/betaflight/betaflight-configurator-nightlies/releases" className="fancy-link no-underline">
-                    {' '}
-                    Betaflight Configurator Nightly builds
-                  </a>
                   <a href="https://github.com/betaflight/betaflight-tx-lua-scripts-nightlies/releases" className="fancy-link no-underline">
                     Betaflight TX Lua Scripts Nightly builds
                   </a>

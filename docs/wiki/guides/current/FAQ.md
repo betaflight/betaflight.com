@@ -1148,7 +1148,7 @@ On top of that there are rates what act as super rates where you tune mid stick 
 I prefer the last one. It is the mid stick what is most important. That is what you tune / configure and use mostly. The top rates are not a "regular" flying scenario.
 
 The configurator is the limit at the moment as it is not all clear.
-Eventually in betaflight configurator or next cleanflight configurator each axis will have 3 parameters. Rc rate, super rate and rc expo. That will make all scenarios possible for anyone.
+Eventually in the Betaflight App or next cleanflight configurator each axis will have 3 parameters. Rc rate, super rate and rc expo. That will make all scenarios possible for anyone.
 
 Quick summary:
 Rc rate: linear increase of rates

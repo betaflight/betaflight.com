@@ -15,7 +15,7 @@ This information is available via:
 - the CLI
 - Betaflight OSD
 - beep patterns
-- Betaflight Configurator
+- Betaflight App
 
 Several of these conditions are to assist in preventing accidental arming via bad radio system configuration, unreliable/poor quality receivers and user mistakes.
 
@@ -68,7 +68,7 @@ This list _should_ be kept up to date with the code in `master` (`armingDisableF
 <tr><td><code>CMS</code></td><td>CMS (config menu) is Active - over OSD or other display</td><td>13</td><td>14</td><td>14</td><td>14</td><td>15</td><td>15</td><td>Exit the CMS (or OSD menu).</td></tr>
 <tr><td><code>OSD</code></td><td>OSD menu is active</td><td>14</td><td>15</td><td>16</td><td></td><td></td><td></td><td>Exit OSD menu.</td></tr>
 <tr><td><code>BST</code></td><td>A Black Sheep Telemetry device (TBS Core Pro for example) disarmed and is preventing arming</td><td>15</td><td>16</td><td>16</td><td>15</td><td>16</td><td>16</td><td>Refer to the manual for your hardware.</td></tr>
-<tr><td><code>MSP</code> </td><td>MSP connection is active, probably via Betaflight Configurator</td><td>16</td><td>17</td><td>17</td><td>16</td><td>17</td><td>17</td><td>Terminate the Betaflight Configurator connection (disconnect).</td></tr>
+<tr><td><code>MSP</code> </td><td>MSP connection is active, probably via Betaflight App</td><td>16</td><td>17</td><td>17</td><td>16</td><td>17</td><td>17</td><td>Terminate the Betaflight App connection (disconnect).</td></tr>
 <tr><td><code>PARALYZE</code></td><td>Paralyze mode has been activated</td><td></td><td></td><td>18</td><td>17</td><td>18</td><td>18</td><td>Power cycle/reset FC board.</td></tr>
 <tr><td><code>GPS</code></td><td>GPS rescue mode is configured but required number of satellites has not been fixed</td><td></td><td></td><td>19</td><td>18</td><td>19</td><td>19</td><td>Wait for GPS fix, enable arming without GPS fix, or disable GPS rescue mode.</td></tr>
 <tr><td><code>RESCUE_SW</code></td><td>GPS Rescue switch is in an unsafe position</td><td></td><td></td><td></td><td>19</td><td>20</td><td>20</td><td>Turn off the GPS Rescue switch to arm.</td></tr>

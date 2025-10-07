@@ -4,7 +4,7 @@ Some newer boards with full USB support must be flashed in USB DFU mode. This is
 
 ### Charging-Only Cables
 
-If you see no signs of life on your host computer when you plug in your board, check your cable with your mobile phone or some other USB device - some charging cables have only the power pins connected. These will power up the board, so the leds light up, but the host computer will not react to the device at all. You need a proper USB cable to connect your board to the Betaflight Configurator.
+If you see no signs of life on your host computer when you plug in your board, check your cable with your mobile phone or some other USB device - some charging cables have only the power pins connected. These will power up the board, so the leds light up, but the host computer will not react to the device at all. You need a proper USB cable to connect your board to the Betaflight App.
 
 ### Entering DFU Mode
 
@@ -12,7 +12,7 @@ To force your board into DFU mode, simply hold the boot button pressed when plug
 
 ## Platform Specific: Linux
 
-In order for Betaflight configurator to be able to access serial ports, your account needs to be in the `dialout` group. You can add yourself to this group as below:
+In order for the Betaflight App to be able to access serial ports, your account needs to be in the `dialout` group. You can add yourself to this group as below:
 
 ```
 sudo usermod -a -G dialout <username>
@@ -57,7 +57,7 @@ sudo systemctl stop ModemManager.service
 
 If your system lacks the systemctl command, use any equivalent command that works on your system to disable services. You can likely add your device ID to a blacklist configuration file to stop ModemManager from touching the device, if you need it for cellural networking, but that is beyond the scope of betaflight documentation.
 
-If you see the ttyUSB device appear and immediately disappear from the list in Betaflight Configurator when you plug in your flight controller via USB, chances are that NetworkManager thinks your board is a GSM modem and hands it off to the ModemManager daemon as the flight controllers are not known to the blacklisted.
+If you see the ttyUSB device appear and immediately disappear from the list in the Betaflight App when you plug in your flight controller via USB, chances are that NetworkManager thinks your board is a GSM modem and hands it off to the ModemManager daemon as the flight controllers are not known to the blacklisted.
 
 ## Platform Specific: Windows
 

@@ -21,7 +21,7 @@ This document describes the current variables used to configure specific element
 | Flight Distance | Feet     | Metre  | Metre   |
 | OSD Efficiency  | Miles    | KM     | KM      |
 
-Note: Configuration is done in cli with `set osd_units = <UNIT>` or in the OSD tab in the Betaflight Configurator. For example `set osd_units = BRITISH`
+Note: Configuration is done in cli with `set osd_units = <UNIT>` or in the OSD tab in the Betaflight App. For example `set osd_units = BRITISH`
 
 ### Affected FrSky Hub Telemetry Elements
 

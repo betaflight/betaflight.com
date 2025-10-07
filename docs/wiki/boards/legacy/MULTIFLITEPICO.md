@@ -31,7 +31,7 @@ The features of the FC are detailed below:
 - Buzzer transistor either for physical buzzer or an LED
 - Connectors all around edge and on both sides with labels
 
-(\*) Spektrum Compatible DSM2 satellites are supported out of the box. DSMX sat will work with DSM2 protocol with default settings (DSM2, 11bit, 11ms is preset). This is chosen for maximum compatibility. For optimal connection it is recommended to adjust settings to match the capabilities of your transmitter and satellite receiver. If possible it is recommended to use the DSMX protocol since it is known as more reliable. Also to make use of additional channels you should adjust the following two parameters with the BetaFlight Configurator.
+(\*) Spektrum Compatible DSM2 satellites are supported out of the box. DSMX sat will work with DSM2 protocol with default settings (DSM2, 11bit, 11ms is preset). This is chosen for maximum compatibility. For optimal connection it is recommended to adjust settings to match the capabilities of your transmitter and satellite receiver. If possible it is recommended to use the DSMX protocol since it is known as more reliable. Also to make use of additional channels you should adjust the following two parameters with the Betaflight App.
 
 ```
 set serialrx_provider = 1   (0 for 1024bit, 1 for 2048bit)
@@ -46,4 +46,4 @@ The pin layout for the MULTIFLITEPICO is very similar to SPRACINGF3.
 
 ## Flashing the firmware
 
-The firmware can be updated with the BetaFlight configurator as for any other target. All multiFlite boards have a boot jumper which need to be closed for initial flashing or for recovery from a broken firmware.
+The firmware can be updated with the Betaflight App as for any other target. All multiFlite boards have a boot jumper which need to be closed for initial flashing or for recovery from a broken firmware.

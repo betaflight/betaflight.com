@@ -8,7 +8,7 @@ Profiles offer another way to perform PID or Filter tuning (currently only Dterm
 
 Profiles can be selected using the Betaflight App, CLI, OSD or stick combinations. Once selected, changes to settings can be made and saved to the active Profile. Also worth mentioning when selecting a Profile, that Profile will remain the active Profile even over power cycles.
 
-Betaflight Configurator (GUI): In the PID Tuning Tab > Select a Profile using the drop-down menu. Once a profile is chosen, that profile is activated for current use. Any modifications made are saved when pressing Save button.
+Betaflight App (GUI): In the PID Tuning Tab > Select a Profile using the drop-down menu. Once a profile is chosen, that profile is activated for current use. Any modifications made are saved when pressing Save button.
 
 OSD: Access CMS (Left Yaw + Pitch up) > Select `Profiles` > Change `PID Prof`.
 
@@ -44,12 +44,12 @@ BetaFlight 3.3 > the number of Rate Profiles increased from 3 to 6 Rate Profiles
 
 Rate Profiles can be selected using a GUI, CLI, OSD, or AUX channel. Once selected (just like Profiles), changes to settings can be made and saved to the active Rate Profile. Also, when changing our Rate Profile that profile will remain the active Profile even over power cycles, except when using the AUX channel option. When BetaFlight boots the active profile is selected by the position of the AUX channel.
 
-Betaflight Configurator (GUI): Click PID Tuning Tab > Select a Rate Profile using the drop-down menu. Once selected, any changes you make to your settings and click Save will be store to the selected Rate Profile. The action of selecting a Rate Profile also activates that rate profile for current use.
+Betaflight App (GUI): Click PID Tuning Tab > Select a Rate Profile using the drop-down menu. Once selected, any changes you make to your settings and click Save will be store to the selected Rate Profile. The action of selecting a Rate Profile also activates that rate profile for current use.
 
 OSD: Access CMS (Left Yaw + Pitch up) > Select `Profiles` > Change `Rate Prof`. Make sure to Save + Exit or Save + Reboot to save settings.
 
 Aux Channel (In-flight Adjustments): Adjustments need to be configured first using the Betaflight App. You must have an available AUX channel configured on your radio.  
-Enable Expert Mode in the Configurator > Click Adjustments
+Enable Expert Mode in the App > Click Adjustments
 Click the slider for If enable. Select the AUX # channel to use.
 For the Range, Select the whole Range from 900 to 2100. Select Rate Profile Selection from the drop-down menu. Via Channel is the same as the AUX channel used.
 

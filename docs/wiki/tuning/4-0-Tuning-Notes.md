@@ -505,13 +505,13 @@ OpenTx has a specialised way of filtering stick inputs, that only transmits chan
 If you have a FrSky radio with Hall gimbals:
 
 - In the hardware tab of the radio configuration menu, uncheck the `ADC filter` box. **Note:** The special edition radios often come with a firmware build that has the ADC filter off already.
-- In the BetaFlight Configurator `Receiver` tab, set `RC Deadband` and `Yaw Deadband` to `0`. This will keep quad control smooth as you cross through the deadband.
+- In the Betaflight App `Receiver` tab, set `RC Deadband` and `Yaw Deadband` to `0`. This will keep quad control smooth as you cross through the deadband.
 
 ## Bonus Section: For Filter Noobs
 
 Filters in BF4.0 have become quite complex, so for some less experienced users it's hard to really discriminate between all available options. Here is a little summary writeup on the available filters and how/where to configure them, including the new dynamic rpm notch filters:
 
-- DYNAMIC_FILTER feature in Betaflight Configurator (BFC) GUI switches dynamic NOTCH on or off, settings are configured via CLI dyn_notch... commands. No associated BFC GUI fields to edit values yet.
+- DYNAMIC_FILTER feature in the Betaflight App (BFC) GUI switches dynamic NOTCH on or off, settings are configured via CLI dyn_notch... commands. No associated BFC GUI fields to edit values yet.
 - Dynamic LOWPASS needs no further feature switch, it is enabled by entering numbers into the last screenshot's fields OR configuring via CLI dyn_lpf... commands
 - rpm filter (with its 36 filter banks) is completely independent of both dynamic notch and dynamic lowpass filters and is configured via CLI rpm_notch... commands. No associated BFC GUI edit fields yet.
 - Static glpf and dlpf and static gyro and dterm notches: Parametrized via BFC GUI edit fields OR CLI dterm_lowpass/notch..., gyro_lowpass/notch... commands

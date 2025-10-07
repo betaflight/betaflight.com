@@ -46,7 +46,7 @@ Your ESC must support DShot, and be running [a suitable firmware](/docs/wiki/get
 
 ### Motor Poles
 
-When running 8k8k, choose DShot600. The ESCs report eRPM. This must be converted to RPM using the number of magnets of the motors. The magnets to count are those on the bell of the motor. Do not count the stators where the windings are located. Typical 5" motors have 14 magnets, so that is the default setting. Smaller motors have fewer magnets, often 12. Count them or look up the motor specs. If you don't have 14 magnets, change the number of magnets using Betaflight Configurator on the Configuration tab.
+When running 8k8k, choose DShot600. The ESCs report eRPM. This must be converted to RPM using the number of magnets of the motors. The magnets to count are those on the bell of the motor. Do not count the stators where the windings are located. Typical 5" motors have 14 magnets, so that is the default setting. Smaller motors have fewer magnets, often 12. Count them or look up the motor specs. If you don't have 14 magnets, change the number of magnets using the Betaflight App on the Configuration tab.
 
 ### DShot150, DShot300 or DShot600?
 
@@ -58,14 +58,14 @@ With the older L ESCs (efm8bb1), DShot150 and a 2k PID loop time (8k2k) are stro
 
 ### Config Snippet
 
-With 4.1 and above it's no longer necessary to install a snippet. Instead just use Betaflight Configurator and enable bidirectional DShot on the Configuration tab.
+With 4.1 and above it's no longer necessary to install a snippet. Instead just use the Betaflight App and enable bidirectional DShot on the Configuration tab.
 
 ### Config Verification
 
-Your FC is now set up for bidirectional DShot - let's verify that it works. To do so power cycle FC and ESC. Connect the LIPO first to the ESC, then the USB cable. Now open the Motors tab in Betaflight Configurator. There should be no red line indicating significant errors on any motor. When you spin the motors you should see the reported rpm. The reported error percentage should not exceed 1%. All motors should report an RPM of 0 unless spun.
+Your FC is now set up for bidirectional DShot - let's verify that it works. To do so power cycle FC and ESC. Connect the LIPO first to the ESC, then the USB cable. Now open the Motors tab in the Betaflight App. There should be no red line indicating significant errors on any motor. When you spin the motors you should see the reported rpm. The reported error percentage should not exceed 1%. All motors should report an RPM of 0 unless spun.
 
 **Important:**
-If you connect your FC via USB cable without connecting your LIPO battery, then at the Motors tab in Betaflight Configurator you will notice an invalid indication "Error 100%" (E: 100%). Connect the LIPO and wait ESC to initialize, the indication will drop down to 0% (E: 0%). Disconnecting the battery will keep showing 0% errors afterwards.
+If you connect your FC via USB cable without connecting your LIPO battery, then at the Motors tab in the Betaflight App you will notice an invalid indication "Error 100%" (E: 100%). Connect the LIPO and wait ESC to initialize, the indication will drop down to 0% (E: 0%). Disconnecting the battery will keep showing 0% errors afterwards.
 
 ## Tuning
 
