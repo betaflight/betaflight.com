@@ -931,7 +931,7 @@ vtxtable powerlabels 25 200 500 800
 ### master
 
 ```text
-set vtx_power = 500
+set vtx_power = 3
 set vtx_band = 3
 set vtx_channel = 3
 set vtx_freq = 5665
