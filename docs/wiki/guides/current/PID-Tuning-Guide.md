@@ -752,29 +752,27 @@ Smart Port - TX
 
 ## Protocols
 
-https://drohnen360.com/was-bedeutet-pwm-ppm-sumd-sbus-f-port/
-
 # Radio Setup
 
 **1RSS** - Antenna 1 Signal Strength Uplink - received signal strength antenna 1 (RSSI)
 
 **2RSS** - Antenna 2 Signal Strength Uplink - received signal strength antenna 2 (RSSI)
 
-**TRSS** - TX Radio Signal Strength (Signalstärke Downlink)
+**TRSS** - TX Radio Signal Strength (downlink signal strength)
 
-**RQly** - Uplink - link quality (valid packets) (Empfangsqualität Empfänger)
+**RQly** - Uplink - link quality (valid packets) (receiver link quality)
 
 **RSNR** - Uplink - signal-to-noise ratio - RX Uplink SNR - Uplink - signal-to-noise ratio
 
-**TQly** - Downlink - Link Quality (Empfangsqualität Sender)
+**TQly** - Downlink - link quality (transmitter link quality)
 
-**TPWR** - TX Power Sendeleistung
+**TPWR** - TX Power (transmit power)
 
 **TSNR** - TX Downlink SNR - Downlink - signal-to-noise ratio
 
-**FM** - Flugmodus
+**FM** - Flight mode
 
-**RFMD** - Aktualisierungsrate 0= 4Hz; 1= 50Hz, 2= 150Hz
+**RFMD** - Update rate 0 = 4Hz; 1 = 50Hz; 2 = 150Hz
 
 **GPS** - GPS Coordinates
 
@@ -784,7 +782,7 @@ https://drohnen360.com/was-bedeutet-pwm-ppm-sumd-sbus-f-port/
 
 **Alt** - GPS Altitude
 
-**Sats** - # of Satellites
+**Sats** - Number of satellites
 
 **Ptch** - Pitch angle of MFD
 
@@ -792,13 +790,13 @@ https://drohnen360.com/was-bedeutet-pwm-ppm-sumd-sbus-f-port/
 
 **Yaw** - Yaw angle of MFD (relative to north?)
 
-**RXBt** - Receiver Battery voltage
+**RXBt** - Receiver battery voltage
 
-**Curr** - current Current 0.00 A Aktueller Strom
+**Curr** - Current (0.00 A)
 
-**Capa** - Capacity 0 mah Akkukapazität
+**Capa** - Capacity (0 mAh) (battery capacity)
 
-**VFAS** = Voltage of Flight Controller
+**VFAS** - Voltage of flight controller
 
 # BLHeli settings
 
@@ -819,19 +817,23 @@ type `resource`
 
 Example: Lets say 1 and 4 are wrong
 
+```
 resource MOTOR 1 B01
 resource MOTOR 2 A02
 resource MOTOR 3 A03
 resource MOTOR 4 B00
+```
 
 then unset 1 and 4
 and remap them by:
 
-`resource MOTOR 1 none
+```
+resource MOTOR 1 none
 resource MOTOR 4 none
 resource MOTOR 1 B00
 resource MOTOR 4 B01
-save`
+save
+```
 
 Done
 
@@ -913,7 +915,8 @@ See [VTX Tables](/docs/wiki/guides/current/VTX-Tables).
 
 ### vtx
 
-`vtxtable bands 5
+```
+vtxtable bands 5
 vtxtable channels 8
 vtxtable band 1 BOSCAM_A A FACTORY 5865 5845 5825 5805 5785 5765 5745 5725
 vtxtable band 2 BOSCAM_B B FACTORY 5733 5752 5771 5790 5809 5828 5847 5866
@@ -923,13 +926,16 @@ vtxtable band 5 RACEBAND R FACTORY 5658 5695 5732 5769 5806 5843 5880 5917
 vtxtable powerlevels 4
 vtxtable powervalues 0 1 2 3
 vtxtable powerlabels 25 200 500 800`
+```
 
 ### master
 
-`set vtx_power = 500
+```
+set vtx_power = 500
 set vtx_band = 3
 set vtx_channel = 3
 set vtx_freq = 5665`
+```
 
 # Personal PID Tunes
 
