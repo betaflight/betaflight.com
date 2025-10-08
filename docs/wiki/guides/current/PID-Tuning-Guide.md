@@ -817,7 +817,7 @@ type `resource`
 
 Example: Lets say 1 and 4 are wrong
 
-```
+```text
 resource MOTOR 1 B01
 resource MOTOR 2 A02
 resource MOTOR 3 A03
@@ -827,7 +827,7 @@ resource MOTOR 4 B00
 then unset 1 and 4
 and remap them by:
 
-```
+```text
 resource MOTOR 1 none
 resource MOTOR 4 none
 resource MOTOR 1 B00
@@ -841,7 +841,7 @@ Done
 
 ### Motor 1
 
-```
+```text
 Set Music On
 Set Gen. Length 5
 Set Gen. Interval 0
@@ -851,7 +851,7 @@ C6 8 G5 8 C6 8 E6 8 G6 8 C7 8 G6 8 G#5 8 C6 8 D#6 8 G#6 8 D#6 8 G#6 8 C7 8 D#7 8
 
 ### Motor 2
 
-```
+```text
 Set Music On
 Set Gen. Length 5
 Set Gen. Interval 0
@@ -861,7 +861,7 @@ C6 8 G5 8 C6 8 E6 8 G6 8 C7 8 G6 8 G#5 8 C6 8 D#6 8 G#6 8 D#6 8 G#6 8 C7 8 D#7 8
 
 ### Motor 3
 
-```
+```text
 Set Music On
 Set Gen. Length 5
 Set Gen. Interval 0
@@ -871,7 +871,7 @@ C6 8 G5 8 C6 8 E6 8 G6 8 C7 8 G6 8 G#5 8 C6 8 D#6 8 G#6 8 D#6 8 G#6 8 C7 8 D#7 8
 
 ### Motor 4
 
-```
+```text
 Set Music On
 Set Gen. Length 5
 Set Gen. Interval 0
@@ -915,7 +915,7 @@ See [VTX Tables](/docs/wiki/guides/current/VTX-Tables).
 
 ### vtx
 
-```
+```text
 vtxtable bands 5
 vtxtable channels 8
 vtxtable band 1 BOSCAM_A A FACTORY 5865 5845 5825 5805 5785 5765 5745 5725
@@ -930,7 +930,7 @@ vtxtable powerlabels 25 200 500 800
 
 ### master
 
-```
+```text
 set vtx_power = 500
 set vtx_band = 3
 set vtx_channel = 3
