@@ -925,7 +925,7 @@ vtxtable band 4 FATSHARK F FACTORY 5740 5760 5780 5800 5820 5840 5860 5880
 vtxtable band 5 RACEBAND R FACTORY 5658 5695 5732 5769 5806 5843 5880 5917
 vtxtable powerlevels 4
 vtxtable powervalues 0 1 2 3
-vtxtable powerlabels 25 200 500 800`
+vtxtable powerlabels 25 200 500 800
 ```
 
 ### master
@@ -934,7 +934,7 @@ vtxtable powerlabels 25 200 500 800`
 set vtx_power = 500
 set vtx_band = 3
 set vtx_channel = 3
-set vtx_freq = 5665`
+set vtx_freq = 5665
 ```
 
 # Personal PID Tunes
