@@ -20,7 +20,7 @@ Always remember there is a dedicated [Discord](https://discord.gg/n4E6ak4u3c) se
 ## 1. The App
 
 :::note
-IMPORTANT: use the new Progressive Web App (PWA) located [online](https://app.betaflight.com).
+Please use the new Progressive Web App (PWA) located [online](https://app.betaflight.com).
 :::
 
 Our app is now using the same release version as the compatible firmware, i.e. 2025.12, so the app and firmware are released together.
