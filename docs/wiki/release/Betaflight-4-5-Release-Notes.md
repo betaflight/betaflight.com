@@ -3,7 +3,7 @@ See [15. Changed Soft Serial pin assignment CLI command](#15-changed-soft-serial
 See the Blackbox and logging updates in section 19 below.
 See [19. Other Changes and fixes](#19-other-changes-and-fixes) for a summary.
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Betaflight 4.5 Release Notes
