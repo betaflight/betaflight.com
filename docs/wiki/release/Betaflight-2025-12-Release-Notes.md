@@ -72,7 +72,33 @@ All GPS informations have been grouped in four main blocks.
 
 ## 2. The Firmware
 
-... more to come. To see all the changes please checkout the **Full Changelog**: https://github.com/betaflight/betaflight/compare/4.5.0...2025.12.0-RC1
+### 2.1 🚀 Key New Features
+
+* **Autonomous & Safety Features:** New capabilities include **Altitude Hold**, **Position Hold**, **Collision Detection**, and an **auto-disarm** function that triggers on landing impact.
+* **Fixed-Wing Enhancements:** A major focus of this release, with many new tools for wings, such as an **S-term** for smoother flight, **Throttle and PID Attenuation (TPA)** modes based on airspeed, and specialized PID multiplier curves.
+* **Flight & User Experience:**
+    * **Updated Turtle/Crashflip Mode:** Improvements to the mode that helps you flip your drone back over after a crash.
+    * **Launch Timer:** A new timer specifically for launches.
+    * **LED Dimmer & Functions:** Added an LED dimmer and new LED bar indicators for GPS, battery, and altitude.
+
+### 2.2 ✨ Improvements & Optimizations
+
+* **Hardware Support:** Support has been added for new gyros (like IIM42653, ICM456xx), flash memory chips, rangefinders, and a CADDX camera gimbal.
+* **Protocols & Communication:** Enhancements have been made to various communication protocols, including CRSF (vario and barometer support), ELRS (FLRC F-modes, Model Match ID), and MAVLink. MSP has been expanded to support more commands and pass-through CLI commands.
+* **Blackbox & OSD:** Blackbox logging is now more comprehensive, with the ability to log servo data, GPS home altitude, IMU attitude, and MCU ID. The On-Screen Display (OSD) also gains new elements and display options.
+* **Code Refactoring:** A massive effort was undertaken to clean up and reorganize the codebase. This involves moving platform-specific code (for different microcontrollers) into dedicated directories, which simplifies future development and improves maintainability.
+
+### 2.3 🛠️ Bug Fixes
+
+This release addresses a vast number of bugs. Check the full [change log](https://github.com/betaflight/betaflight/compare/4.5.0...2025.12.0-RC1) for a comprehensive list.
+
+### 2.4 🎯 New Hardware Targets
+
+Support has been added for new microcontrollers, significantly expanding the range of compatible flight controllers. This release now includes support for:
+* **Raspberry Pi PICO (RP2350)**
+* **APM32F40X series**
+
+There has been significant refactoring of the code base to seperate platform specific code from the Betaflight core code, and this will allow faster adoption of new technologies in the future.
 
 # Thank you all
 
