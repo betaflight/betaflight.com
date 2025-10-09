@@ -1,8 +1,9 @@
 ---
 sidebar_position: 3
+sidebar_label: 4.4 Release Notes
 ---
 
-# Betaflight 4.4 Release Notes
+# 4.4 Release Notes
 
 **Cloud building, HD OSD, GPS Rescue, Presets and more...**
 

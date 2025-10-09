@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
+sidebar_label: 2025.12 Release Notes
 ---
 
-# Betaflight 2025.12 Release Notes
+# 2025.12 Release Notes
 
 :::warning
 IMPORTANT: Check your board alignment
