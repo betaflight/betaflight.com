@@ -27,7 +27,7 @@ Our app is now using the same release version as the compatible firmware, i.e. 2
 
 The app has received a huge lift-up in lots of modules. 
 
-It is now a Progressive Web App (PWA), meaning that will be changed and enhanced with the approved PR (Pull Request on Github) online. No hassle to download a new version, it will update automatically for you online (you will get a notification if it wants to update).
+It is now a Progressive Web App (PWA), meaning it will be changed and enhanced with the approved PR (Pull Request on Github) online. No hassle to download a new version, it will update automatically for you online (you will get a notification if it wants to update).
 
 ### 1.1 Top Bar
 		
@@ -36,10 +36,10 @@ Icons for: Battery Level(if connected) Arming warning, Failsafe Mode, Serial Lin
 ### 1.2 Main window tabs
 
 #### Welcome:
-A brief introduction to Betaflight, that includes links to BlackBox viewer, Lua script, device drivers to connect your board Facebook and Discord to post your question or get help WIKI and Github to follow Betaflight features and progress A simple clik to select your configurator preferred language.
+A brief introduction to Betaflight, including links to BlackBox viewer, Lua script, device drivers to connect your board Facebook and Discord to post your question or get help WIKI and Github to follow Betaflight features and progress A simple clik to select your configurator preferred language.
 		
 #### Privacy and Policy:
-Updated to 1 Sep 2025, just read it!
+Updated to 1 Sep 2025, please have a read of it.
 
 #### Documentation and Support:
 Links to Documentation online, release notes, Devs discord, Youtubers and great forums.
@@ -53,26 +53,24 @@ Once the most common flash drop down box are selected like Expert mode, Select R
 ### 1.3 Setup Tabs
 
 #### Setup: 
-Graphic enahanced for any type of end user device. Even old computers with low graphic card will show an enhanced image of your aircraft model(see option tab for rendering). On the right side a complete list of stylish boxes will identify and list features for your aircraft model. 
-- Instruments: position and direction windows
-- Sonar: if present indicating altitude
+Graphics enhanced for any type of end user device. Even older computers with low powered graphics card will now show an enhanced image of your aircraft model (see option tab for rendering). On the right side is a complete list of  boxes will identify and list features for your aircraft model. 
+- Instruments: position and direction windows.
+- Sonar: if present indicating altitude.
 - System Info: Arming disable flags, Battery voltage, capacity and current drawn, RSSI value, CPU temperature.
 - Sensor Info: Gyro, Accelerator, Magnetometer, Barometer, Sonar and Optical Flow, all elements listed if present on your aircraft model.
-- Firmware Info: MSP API (version), Build date, Build type, Build Info, Firmware with a press options button (to list option defined in the build)
+- Firmware Info: MSP API (version), Build date, Build type, Build Info, Firmware with a press options button (to list option defined in the build).
 				
 #### Configuration tab:
-Added selectable Sensors box like Sonar, Optical Flow, as well as an easy to read, editable box for board and gps alignment RPY (Roll, Pitch, Yaw). 
-Simplified reading on general setting. Features not present on the FC will be hided in view.
+Added selectable Sensors box like Sonar, Optical Flow, as well as an easy to read, editable box for board and gps alignment RPY (Roll, Pitch, Yaw). Simplified reading on general setting. Features not present on the FC will be hidden from view.
 		
 #### BlackBox:
-BlackbBox has been enhanced to reduce size on FC with small memory, thru selectable fields. You can now select with an easy on/off visual type switch, the features you need.
-Features not present on flight controller will be hided.
+Blackbox has been enhanced to reduce size on FCs with small memory, through selectable fields. You can now select with an easy on/off visual type switch, the features you need. Features not present on flight controller will be hidden.
 		
 #### GPS:
-All GPS informations have been grouped in four main blocks. 
-- GPS Configuration allow enable of GPS, protocol and switch type icon for autoconfig, use Galileo, Home point set up.
+All GPS information has now been grouped into four main blocks:
+- GPS Configuration allows the enablement of GPS, protocol and switch type icon for autoconfig, use Galileo, Home point set up.
 - GPS Info, enhanced style for easy read of 3Dfix, number of satellites, included now imu heading, positional PDOP, latitude and Longitude,distance from home and mag declination.
-- GPS Signal, a wonderful colored list for locaked satellites 
+- GPS Signal, a colored list for locked satellites 
 - GPS Location, implemented three map view satellite style, satellite with details and road map style.
 
 ## 2. The Firmware
