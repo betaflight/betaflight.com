@@ -2,7 +2,7 @@
 title: A New Challenger Enters the Ring - RP2350B Lands in Betaflight!
 date: 2025-10-10T17:00
 author:
-  name: blckmn
+  name: 'blckmn'
 ---
 
 # A New Challenger Enters the Ring: RP2350B Lands in Betaflight!
