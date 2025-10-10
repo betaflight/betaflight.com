@@ -271,7 +271,7 @@ const config = {
                 target: '_blank',
               },
               {
-                label: 'Json',
+                label: 'JSON',
                 href: '/blog/feed.json',
                 icon: 'blog',
                 target: '_blank',
