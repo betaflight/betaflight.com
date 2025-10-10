@@ -6,7 +6,7 @@ author: blckmn
 
 **A New Challenger Enters the Ring: RP2350 Lands in Betaflight!**
 
-Get ready for a game-changer! 🚀 The Betaflight **2025.12** release officially introduces support for a powerful new target: the **Raspberry Pi RP2350**. This impressive little chip is set to shake up the FPV world, offering a unique blend of smart features, solid performance, and incredible value.
+Get ready for a game-changer! 🚀 The Betaflight **2025.12** release officially introduces support for a powerful new target: the **Raspberry Pi RP2350** aka **PICO 2**. This impressive little chip is set to shake up the FPV world, offering a unique blend of smart features, solid performance, and incredible value.
 
 <!-- truncate -->
 
@@ -29,3 +29,5 @@ The **RP2350** is a dual-core beast. While this initial release lays the crucial
 Perhaps the most compelling aspect of the **RP2350** is its fantastic price point. This combination of smart performance, the PIO advantage, and future-proof multicore design makes it an incredibly attractive option for hardware manufacturers.
 
 Keep your eyes peeled! You can expect to see a new wave of innovative and affordable flight controllers featuring this great little chip hitting the market very soon. The future of flight controllers is looking bright and budget-friendly!
+
+For more details on the **RP2350** you can checkout the Raspberry Pi [Pico series](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html).
