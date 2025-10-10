@@ -13,7 +13,7 @@ If your quad does not respond correctly, i.e. flips or similar, after updating c
 
 Welcome to the Betaflight 2025.12 release. Please note we have a new calendar based release versioning convention. It will take the format YYYY.M.PATCH going forward, and we expect a release cadence of every 6 months. 
 
-We have tried to make this release as bug free as possible. If you still find a **bug**, please report it back to us by opening an **issue [here](https://github.com/betaflight/betaflight/issues)**.
+We have tried to make this release as bug free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
 Always remember there is a dedicated [Discord](https://discord.gg/n4E6ak4u3c) server for help, support and general community.
 
