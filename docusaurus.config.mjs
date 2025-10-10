@@ -72,9 +72,6 @@ const config = {
           language: 'en',
           copyright: `Copyright © ${new Date().getFullYear()} All rights reserved BetaFlight Team`,
         },
-        theme: {
-          customCss: [require.resolve('./src/css/mermaid.scss'), require.resolve('./src/css/custom.css'), require.resolve('./src/css/tailwind.scss')],
-        },
       }),
     ],
     'docusaurus-plugin-sass',

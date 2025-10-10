@@ -2,7 +2,11 @@
 module.exports = {
   important: true,
   darkMode: ['class', '[data-theme="dark"]'],
-  content: ['./src/**/*.{js,jsx,ts,tsx,mdx,md}', './docs/**/*.{js,jsx,ts,tsx,mdx,md}'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx,mdx,md}',
+    './docs/**/*.{js,jsx,ts,tsx,mdx,md}',
+    './blog/**/*.{js,jsx,ts,tsx,mdx,md}'
+  ],
   theme: {
     extend: {
       colors: {
