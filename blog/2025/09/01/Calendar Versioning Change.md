@@ -10,7 +10,7 @@ title: Calendar Versioning & Release Cadence
 
 To create a more predictable release schedule, we're moving to a new versioning system and development cycle, starting with the next release. The versioning scheme we will be moving to is known as [CalVer](https://calver.org/) or Calendar Versioning.
 
-This style of versioning works well when there is a predicatable release cadence, and that is something we are going to establish for the Betaflight project. Our release cadence will move to two major releases per year, with patch releases in between. Our target months for a major release will be June and December each year.
+This style of versioning works well when there is a predictable release cadence, and that is something we are going to establish for the Betaflight project. Our release cadence will move to two major releases per year, with patch releases in between. Our target months for a major release will be June and December each year.
 
 ### Our CalVer Format
 
@@ -18,7 +18,7 @@ The **New Format** will be: `YYYY.M.PATCH` (e.g., `2025.12.0`)
 
 This means the successor to our current `4.x` series will be Betaflight `2025.12.0`, followed by Betaflight `2026.6.0`. We will also align the Betaflight App and Firmware to the same `YYYY.M` releases (and cadence). 
 
-You can expect the major release version of the App and the Firmware to work together seemlessly and without issues.
+You can expect the major release version of the App and the Firmware to work together seamlessly and without issues.
 
 ### Our New Release Cycle
 
@@ -40,7 +40,7 @@ This will be available in the App firmware flasher tab when **Release and Releas
 
 This will be available in the App firmware flasher tab when the default of **Release** is selected.
 
-**Patch:** Periodically we will make a patch release (incrementing the patch number) for any notable bugs that need resolving. These will generally be placed into `master` and back ported to the `*-maintenance` branch.
+**Patch:** Periodically we will make a patch release (incrementing the patch number) for any notable bugs that need resolving. These will generally be placed into `master` and backported to the `*-maintenance` branch.
 
 These will be available in the App firmware flasher tab when the default of **Release** is selected.
 
