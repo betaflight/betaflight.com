@@ -29,50 +29,6 @@ The app has received a huge lift-up in lots of modules.
 
 It is now a Progressive Web App (PWA), meaning it will be changed and enhanced with the approved PR (Pull Request on Github) online. No hassle to download a new version, it will update automatically for you online (you will get a notification if it wants to update).
 
-### 1.1 Top Bar
-
-Icons for: Battery Level(if connected) Arming warning, Failsafe Mode, Serial Link Status, Gyro, Accelerometer, Magnetometer, Barometer, GPS, Sonar, Firmware, Connect/Disconnect. Each Icon is color based, changing on action, warning or simply if element is present and connected. Additional fields for Firmware version and an implemented drop down list box for "find my device" including usb, bluetooth, dfu, uart, network and more.
-
-### 1.2 Main window tabs
-
-#### Welcome:
-A brief introduction to Betaflight, including links to BlackBox viewer, Lua script, device drivers to connect your board Facebook and Discord to post your question or get help WIKI and Github to follow Betaflight features and progress A simple clik to select your configurator preferred language.
-
-#### Privacy and Policy:
-Updated to 1 Sep 2025, please have a read of it.
-
-#### Documentation and Support:
-Links to Documentation online, release notes, Devs discord, Youtubers and great forums.
-
-#### Options: 
-A complete setup options list for your app. Just as reminder there has been a huge implementation for the backup of configuration while flashing firmware, users will get a warning (unless disabled forcibly) to save a backup of the old configuration present on you flight controller.
-
-#### Firmware Flasher: 
-Once the most common flash drop down box are selected like Expert mode, Select Release Candidates or an easy detect version button, a complete new box for configuration, will allow you to select a wide range of protocols Radio, Telemetry, OSD, Motor and in other options a list of the latest features including Altitude and Position hold. Last not least a custom defines field for non-common features you may want to include in your build.
-
-### 1.3 Setup Tabs
-
-#### Setup: 
-Graphics enhanced for any type of end user device. Even older computers with low powered graphics card will now show an enhanced image of your aircraft model (see option tab for rendering). On the right side is a complete list of  boxes will identify and list features for your aircraft model. 
-- Instruments: position and direction windows.
-- Sonar: if present indicating altitude.
-- System Info: Arming disable flags, Battery voltage, capacity and current drawn, RSSI value, CPU temperature.
-- Sensor Info: Gyro, Accelerator, Magnetometer, Barometer, Sonar and Optical Flow, all elements listed if present on your aircraft model.
-- Firmware Info: MSP API (version), Build date, Build type, Build Info, Firmware with a press options button (to list option defined in the build).
-
-#### Configuration tab:
-Added selectable Sensors box like Sonar, Optical Flow, as well as an easy to read, editable box for board and gps alignment RPY (Roll, Pitch, Yaw). Simplified reading on general setting. Features not present on the FC will be hidden from view.
-
-#### BlackBox:
-Blackbox has been enhanced to reduce size on FCs with small memory, through selectable fields. You can now select with an easy on/off visual type switch, the features you need. Features not present on flight controller will be hidden.
-
-#### GPS:
-All GPS information has now been grouped into four main blocks:
-- GPS Configuration allows the enablement of GPS, protocol and switch type icon for autoconfig, use Galileo, Home point set up.
-- GPS Info, enhanced style for easy read of 3Dfix, number of satellites, included now imu heading, positional PDOP, latitude and Longitude,distance from home and mag declination.
-- GPS Signal, a colored list for locked satellites 
-- GPS Location, implemented three map view satellite style, satellite with details and road map style.
-
 ## 2. The Firmware
 
 ### 2.1 🚀 Key New Features
