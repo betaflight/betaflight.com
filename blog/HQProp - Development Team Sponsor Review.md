@@ -1,8 +1,7 @@
 ---
 title: HQProp - Betaflight Development Team Sponsor.
 date: 2025-01-01T17:00
-author:
-  name: blckmn
+author: blckmn
 ---
 
 # HQProp - Betaflight Development Team Sponsor.
