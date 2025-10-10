@@ -1,8 +1,9 @@
 ---
 sidebar_position: 12
+sidebar_label: 3.1 Release Notes
 ---
 
-# BetaFlight 3.1 Release Notes
+# 3.1 Release Notes
 
 ## Betaflight 3.1.7 Release Notes
 

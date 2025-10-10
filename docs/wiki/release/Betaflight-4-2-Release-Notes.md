@@ -1,8 +1,9 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
+sidebar_label: 4.2 Release Notes
 ---
 
-# Betaflight 4.2 Release Notes
+# 4.2 Release Notes
 
 **Just in time for summer...**
 

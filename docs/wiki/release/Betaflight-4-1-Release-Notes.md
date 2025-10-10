@@ -1,8 +1,9 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
+sidebar_label: 4.1 Release Notes
 ---
 
-# Betaflight 4.1 Release Notes
+# 4.1 Release Notes
 
 **We're already late, so let's keep this short!**
 

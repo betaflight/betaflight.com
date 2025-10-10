@@ -1,8 +1,8 @@
 {
-  "label": "Configurator",
+  "label": "App",
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "Learn all of the configurator tabs and options."
+    "description": "Learn all of the app tabs and options."
   }
 }
