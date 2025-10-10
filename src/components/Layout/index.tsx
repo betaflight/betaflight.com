@@ -10,7 +10,7 @@ export default function BetaflightLayout({ children }: Props) {
   const { siteConfig } = useDocusaurusContext();
 
   return (
-    <Layout title={`${siteConfig.title} - Pushing the Limits of UAV Performance`} description="Are you ready to fly?">
+    <Layout title={`${siteConfig.tagline}`} description="Are you ready to fly?">
       <div
         className="absolute w-full pointer-events-none -z-20 dark:brightness-50 dark:opacity-100 opacity-60"
         style={{

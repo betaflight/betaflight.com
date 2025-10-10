@@ -22,7 +22,7 @@ const sortDescending = new Set(['release']);
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Betaflight',
-  tagline: 'Pushing the Limits of UAV Performance',
+  tagline: 'Pushing the limits of UAV performance',
   url: process.env.URL,
   baseUrl: process.env.BASE_PATH,
   trailingSlash: false,
