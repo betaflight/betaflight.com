@@ -179,6 +179,11 @@ const config = {
             label: 'Sponsors',
           },
           {
+            to: '/blog',
+            label: 'Blog',
+            position: 'right',
+          },
+          {
             label: 'Apps',
             position: 'right',
             items: [
@@ -196,27 +201,6 @@ const config = {
             href: 'https://github.com/betaflight/betaflight',
             label: 'GitHub',
             position: 'right',
-          },
-          {
-            label: 'Feeds',
-            position: 'right',
-            items: [
-              {
-                label: 'RSS',
-                target: '_blank',
-                href: '/blog/rss.xml',
-              },
-              {
-                label: 'Atom',
-                target: '_blank',
-                href: '/blog/atom.xml',
-              },
-              {
-                label: 'Json',
-                target: '_blank',
-                href: '/blog/feed.json',
-              },
-            ],
           },
         ],
       },
@@ -272,17 +256,22 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'Feeds',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: 'RSS',
+                href: '/blog/rss.xml',
                 icon: 'blog',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/betaflight/betaflight',
-                icon: 'github',
+                label: 'Atom',
+                href: '/blog/atom.xml',
+                icon: 'blog',
+              },
+              {
+                label: 'Json',
+                href: '/blog/feed.json',
+                icon: 'blog',
               },
             ],
           },
