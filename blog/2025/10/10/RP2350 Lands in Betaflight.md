@@ -8,6 +8,8 @@ author: blckmn
 
 Get ready for a game-changer! 🚀 The Betaflight **2025.12** release officially introduces support for a powerful new target: the **Raspberry Pi RP2350** aka **PICO 2**. This impressive little chip is set to shake up the FPV world, offering a unique blend of smart features, solid performance, and incredible value.
 
+The Betaflight and Raspberry Pi team worked together to bring the **RP2350** to you.
+
 <!-- truncate -->
 
 ## Smart Performance Over Raw Speed
@@ -22,7 +24,9 @@ This is a massive advantage for Betaflight. It means that complex, timing-sensit
 
 ## Future-Proofed with Multicore Capability
 
-The **RP2350** is a dual-core beast. While this initial release lays the crucial groundwork for the new target, future Betaflight versions will be built to take full advantage of this multicore architecture. This opens up exciting possibilities for dividing tasks between cores, leading to even greater performance, lower latency, and the ability to run more complex features without breaking a sweat.
+The **RP2350** is a dual-core processor, with each core operating at 150mhz. While this initial release lays the crucial groundwork for the new target, future Betaflight versions will be built to take full advantage of this multicore architecture. This opens up exciting possibilities for dividing tasks between cores, leading to even greater performance, lower latency, and the ability to run more complex features without breaking a sweat.
+
+Previous versions of the PICO have seen overclocking be officially supported so we expect the possibility of the **RP2350** getting this speed boost in the future also.
 
 ## Watch This Space!
 
