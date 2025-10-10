@@ -1,6 +1,6 @@
 ---
 title: RP2350 Lands in Betaflight!
-date: 2025-10-10T17:00
+date: 2025-10-10
 author: blckmn
 ---
 

@@ -1,7 +1,5 @@
 ---
-title: New Speed Record for a Quad
-date: 2025-01-01T17:00
-author: blckmn
+date: 2023-10-30
 ---
 
 # New Speed Record for “Fastest ground speed by a battery-powered remote-controlled (RC) quadcopter.”
