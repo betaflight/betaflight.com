@@ -80,9 +80,9 @@ All GPS information has now been grouped into four main blocks:
 * **Autonomous & Safety Features:** New capabilities include **Altitude Hold**, **Position Hold**, **Collision Detection**, and an **auto-disarm** function that triggers on landing impact.
 * **Fixed-Wing Enhancements:** A major focus of this release, with many new tools for wings, such as an **S-term** for smoother flight, **Throttle and PID Attenuation (TPA)** modes based on airspeed, and specialized PID multiplier curves.
 * **Flight & User Experience:**
-    * **Updated Turtle/Crashflip Mode:** Improvements to the mode that helps you flip your drone back over after a crash.
-    * **Launch Timer:** A new timer specifically for launches.
-    * **LED Dimmer & Functions:** Added an LED dimmer and new LED bar indicators for GPS, battery, and altitude.
+  * **Updated Turtle/Crashflip Mode:** Improvements to the mode that helps you flip your drone back over after a crash.
+  * **Launch Timer:** A new timer specifically for launches.
+  * **LED Dimmer & Functions:** Added an LED dimmer and new LED bar indicators for GPS, battery, and altitude.
 
 ### 2.2 ✨ Improvements & Optimizations
 
@@ -101,7 +101,7 @@ Support has been added for new microcontrollers, significantly expanding the ran
 * **Raspberry Pi PICO (RP2350)**
 * **APM32F40X series**
 
-There has been significant refactoring of the code base to seperate platform specific code from the Betaflight core code, and this will allow faster adoption of new technologies in the future.
+There has been significant refactoring of the code base to separate platform specific code from the Betaflight core code, and this will allow faster adoption of new technologies in the future.
 
 # Thank you all
 
