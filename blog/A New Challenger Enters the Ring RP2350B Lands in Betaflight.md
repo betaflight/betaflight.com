@@ -1,5 +1,5 @@
 ---
-title: A New Challenger Enters the Ring: RP2350B Lands in Betaflight!
+title: A New Challenger Enters the Ring - RP2350B Lands in Betaflight!
 date: 2025-10-10T17:00
 author:
   name: blckmn
@@ -8,6 +8,8 @@ author:
 # A New Challenger Enters the Ring: RP2350B Lands in Betaflight!
 
 Get ready for a game-changer! 🚀 The Betaflight **2025.12** release officially introduces support for a powerful new target: the **Raspberry Pi RP2350**. This impressive little chip is set to shake up the FPV world, offering a unique blend of smart features, solid performance, and incredible value.
+
+<!-- truncate -->
 
 ## Smart Performance Over Raw Speed
 
