@@ -1,3 +1,10 @@
+---
+title: New Speed Record for a Quad
+date: 2025-01-01T17:00
+author:
+  name: blckmn
+---
+
 # New Speed Record for “Fastest ground speed by a battery-powered remote-controlled (RC) quadcopter.”
 
 Its simply a case of "ICYMI". Yes folks Betaflight, albeit an earlier version than current, was the firmware behind the most recent record breaking success story for the “Fastest ground speed by a battery-powered remote-controlled (RC) quadcopter.”.<!-- truncate -->
