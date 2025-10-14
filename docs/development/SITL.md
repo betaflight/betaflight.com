@@ -163,6 +163,6 @@ To running SITL, you may need to:
 
 ![](/img/sitl/SITL_RF.jpg)
 
-## Customize
+### Customize
 
-If you want to create your own model and extend the SITL, please refer to this [guide](http://www.knifeedge.com/KEmax/) and this [document](https://github.com/xuhao1/RealFlightBridge/blob/main/docs/realflight_protocol).
+If you want to create your own model and extend the SITL, please refer to this [guide](https://www.knifeedge.com/KEmax/) and this [document](https://github.com/xuhao1/RealFlightBridge/blob/main/docs/realflight_protocol.md).
