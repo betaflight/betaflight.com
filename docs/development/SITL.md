@@ -165,4 +165,4 @@ To running SITL, you may need to:
 
 ### Customize
 
-If you want to create your own model and extend the SITL, please refer to this this [document](https://github.com/xuhao1/RealFlightBridge/blob/main/docs/realflight_protocol.md).
+If you want to create your own model and extend the SITL, please refer to this [document](https://github.com/xuhao1/RealFlightBridge/blob/main/docs/realflight_protocol.md).
