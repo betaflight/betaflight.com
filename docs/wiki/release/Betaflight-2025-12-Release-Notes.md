@@ -44,7 +44,7 @@ It is now a Progressive Web App (PWA), meaning it will be changed and enhanced w
 
 * **Hardware Support:** Support has been added for new gyros (like IIM42653, ICM456xx), flash memory chips, rangefinders, and a CADDX camera gimbal.
 * **Protocols & Communication:** Enhancements have been made to various communication protocols, including CRSF (vario and barometer support), ELRS (FLRC F-modes, Model Match ID), and MAVLink. MSP has been expanded to support more commands and pass-through CLI commands.
-* **Mavlink v2, with a sinergy of ELRS DEV Team, will now include connection with GCS (Ground Control System), such as Mission Planner or QGround Control. Follow this link https://www.expresslrs.org/software/mavlink/#betaflight for more info.
+* **Mavlink v2, with a sinergy with ELRS DEV Team, will now include connection with GCS (Ground Control System), such as Mission Planner or QGround Control. Follow this link https://www.expresslrs.org/software/mavlink/#betaflight for more info.
 * **Blackbox & OSD:** Blackbox logging is now more comprehensive, with the ability to log servo data, GPS home altitude, IMU attitude, and MCU ID. The On-Screen Display (OSD) also gains new elements and display options.
 * **Code Refactoring:** A massive effort was undertaken to clean up and reorganize the codebase. This involves moving platform-specific code (for different microcontrollers) into dedicated directories, which simplifies future development and improves maintainability.
 
