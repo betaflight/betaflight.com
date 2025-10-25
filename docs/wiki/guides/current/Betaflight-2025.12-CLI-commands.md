@@ -115,7 +115,7 @@ vtxtable - vtx frequency table
 
 ## GET and SET Commands
 
-Type a `get` and part of a CLI parameter name (example: `get acc`). The CLI will return all commands that have the name part with the current value plus the valid value range or valid names. This is a very handy feature and allows you to easily find variable names that can then be copy/pasted from the CLI display to the command line entry box.
+Type a `get` and part of a CLI parameter name (example: `get acc`). The CLI will return all commands that have the name part with the current value plus the valid value range or valid names. This feature allows you to quickly find variable names that can then be copy/pasted from the CLI display to the command line entry box.
 
 Type `set` along with parameter names and values configure your settings. Be sure to enter a `save` command.
 
