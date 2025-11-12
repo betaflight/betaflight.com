@@ -461,7 +461,7 @@ Providing a CLI dump file that enables users to reset their flight controller to
 
 #### 3.3.2.1 General Recommendations and Documentation
 
-// A good example of properly documenting and supporting ready-to-fly craft would be the way EMAX makes entire CLI dumps of every craft which enables users to revert systems to the as-shipped software configuration
+A good example of properly documenting and supporting ready-to-fly craft would be the way EMAX makes entire CLI dumps of every craft which enables users to revert systems to the as-shipped software configuration.
 
 #### 3.3.2.2 Leveraging the Betaflight Preset System
 
@@ -476,29 +476,29 @@ Working with the Betaflight development team provides opportunities to develop p
 
 A significant amount of the added performance available in Betaflight 4.X and beyond is based on leveraging ESC RPM telemetry data in order to use RPM Notch Filters and Dynamic Idle features.
 
-### 3.4.1 For 32 Bit ESCs (BLHeli_32 and AM32)
+### 3.4.1 For 32 Bit ESCs (e.g. BLHeli_32 and AM32)
 
 Betaflight supports all 32-bit ESCs currently available, with BLHeli_32 and AM32 configurations, as well as APD configurations being capable of supporting bidirectional DShot, and user-configured operation with bidirectional DShot disabled.
 Additional DShot extended telemetry will be implemented over time as demonstrated stable, however current extended telemetry options will only be enabled by user selection.
 
-BLHeli_32 ceased operations in 2024. No new licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BL32 ESCs. There are several alternatives, including AM32 and ESCape32 that can be flashed to the same hardware and are fully supported by the open-source community. 
+BLHeli AS ceased operations in 2024. No new BLHeli_32 licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BLHeli_32 ESCs. There are several alternatives, including (AM32)[https://am32.ca/] and (ESCape32)[https://github.com/neoxic/ESCape32}]that can be flashed to the same hardware and are fully supported by the open-source community. 
 
-### 3.4.2 For 8 Bit ESCs (BLHeli_S)
+### 3.4.2 For 8 Bit ESCs (e.g. BLHeli_S, Bluejay)
 
-Betaflight will continue to support all current 8-bit ESC configurations, however these will rely on bidirectional DShot enabled by default.
+Betaflight will continue to support all current 8-bit ESC configurations, however these will rely on having bidirectional DShot enabled by default.
 
-For Betaflight 4.4 and subsequent releases, the Betaflight team will NO LONGER support BLHeli_S as a default configuration. The enhanced flight performance made possible by operating with Bidirectional DShot features enabled will become the default behavior for all Betaflight craft..
+For Betaflight 4.4 and subsequent releases, the Betaflight team will NO LONGER support BLHeli_S as a default configuration. The enhanced flight performance made possible by operating with Bidirectional DShot features enabled will become the default behavior for all Betaflight craft.
 
-8-bit ESCs can run **Bluejay**, **JESC**.
+8-bit ESCs with BLHeliS can be flashed with a modern ESC firmware such as (**Bluejay**)[https://github.com/bird-sanctuary/bluejay] to support bidirectional DShot.
 
-For hardware, such as AIO boards which incorporate ESC and FC, the expectation will be that hardware comes with installed firmware meeting these requirements. The preferred option in this case is **BlueJay**, due to the ability to adjust PWM frequencies and ease of end user support for other functionality across MCU layouts.
+For hardware, such as AIO boards, which incorporate an ESC and FC, the expectation will be that hardware comes with installed firmware meeting these requirements. The preferred option in this case is **Bluejay**, due to the ability to adjust PWM frequencies, bidirectional DShot support, and ease of end user support for other functionality across MCU layouts.
 
 Failure to comply with this requirement will require end users to perform firmware reflash of ESCs, and without reflashing craft will not arm due to the RPMFILTER error that will be present due to a lack of RPM Telemetry.
 The required solution will be disabling Bidirectional DShot (not recommended) or reflashing ESC (strongly recommended).
 
 ### 3.4.3 For Legacy ESCs
 
-For legacy ESCs that are only capable of OneShot and Multishot utilization, end users will be required to disable DShot in order to continue with operations. This situation only applies to pre-BLHeli_S ESC architectures, and is not anticipated to be an issue for the vast majority of users. The lack of DShot capability has been part of Betaflight operation since 3.2 (in 2017), therefore legacy support for this obsolescent hardware will require additional end user configuration, however these are still indirectly supported and may exhibit improved performance with the most recent Betaflight versions despite being unable to take advantage of bidirectional DShot features.
+For legacy ESCs that are only capable of OneShot and Multishot utilization, end users will be required to disable DShot in order to continue with operations. This situation only applies to pre-BLHeli_S ESC architectures, and is not anticipated to be an issue for the vast majority of users. DShot capability has been part of Betaflight since 3.2 (in 2017), therefore legacy support for this hardware will require additional end user configuration. However, these ESCs are still indirectly supported and may exhibit improved performance with the most recent Betaflight versions despite being unable to take advantage of bidirectional DShot features.
 
 # 4 Reference Tables
 
@@ -506,7 +506,7 @@ For legacy ESCs that are only capable of OneShot and Multishot utilization, end 
 
 Rated Performance of specific MCU, IMU, and ESC DShot Protocol Combinations
 
-These are the **strongly recommended** default configurations
+These are the **strongly recommended** default configurations.
 
 For stock configurations, and implementations of ready-to-fly craft, the following configurations are the officially recommended configurations.
 
