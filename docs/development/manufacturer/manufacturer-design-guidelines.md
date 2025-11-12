@@ -92,12 +92,12 @@ Achieving state of the art performance requires minimizing latency in craft resp
 
 - Manufacturer initiates contact with Betaflight developer(s) at hardware@betaflight.com
 
-- Betaflight team will establish a closed Discord channel for ongoing private discussion between key members of the development team and manufacturer designees
-  Work in progress schematics, PCB renders, and similar documentation prior to initial production provides opportunities for early feedback
+- Betaflight team will establish a closed Discord channel for ongoing private discussion between key members of the development team and manufacturer designees.
+  Work in progress schematics, PCB renders, and similar documentation prior to initial production provides opportunities for early feedback.
+  
+- **Before submitting a target design, you must carefully review and follow the manufacturer design guidelines. Failure to do so may result in automatic rejection of the target.**
 
 - Initial Submission
-
-  - **Before submitting a target design, you must carefully review and follow the manufacturer design guidelines. Failure to do so may result in automatic rejection of the target.**
 
   - This will require key information to be available, such as specific MCU arrangement (e.g. SPI Bus allocations) may be required in order to support complete feature sets.
 
