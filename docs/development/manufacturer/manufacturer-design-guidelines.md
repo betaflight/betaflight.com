@@ -289,7 +289,7 @@ Similarly, 3.3V, 5V, and 9-12V BEC power needs to provide consistent power at th
 Standard battery powered 5V rails should provide at least 1A, preferably 1.5A to 2A in order to provide higher current if anticipated to be used with a large number of peripherals (such as LED strips, 5V powered FPV Video Systems, or as source power to HD cameras).
 
 Providing a 10V 2A BEC is also strongly recommended with flight controller designs, as this supports high definition video systems, and even enables better analog video system power options.
-Each of these can be optionally connected to PINIO, pit switches, and/or jumper pad setups that enable end users to select constant-on or transistor switched behavior, particularly if located to support video transmission systems. This is most easily accomplished by connecting the BEC EN pin to a free GPIO configured as [PINIO](/docs/wiki/guides/current/Pinio-and-PinioBox).
+Each of these can be optionally connected to PINIO, pit switches, and/or jumper pad setups that enable end users to select constant-on or transistor-switched behavior, particularly if located to support video transmission systems. This is most easily accomplished by connecting the BEC EN pin to a free GPIO configured as [PINIO](/docs/wiki/guides/current/Pinio-and-PinioBox).
 
 Such 10V regulators should function at full rated current down to 10V input voltage to support the BEC output from some ESCs.
 
