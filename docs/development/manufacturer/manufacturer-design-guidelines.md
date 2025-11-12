@@ -109,7 +109,7 @@ Achieving state of the art performance requires minimizing latency in craft resp
 
 - Request for specific targets
 
-  - If the flight controller design is intended to have a dedicated Betaflight target, then a new target submission can accompany the process. For additional information, see [here](requirements-for-submission-of-targets).
+  - If the flight controller design is intended to have a dedicated Betaflight target, then a new target submission can accompany the process. For additional information, see [target submission requirements](requirements-for-submission-of-targets).
 
 - Production Representative Samples
 
