@@ -336,11 +336,11 @@ Pin PC13, PC14 and PC15 are supplied through the power switch. Since the switch 
 - The speed should not exceed 2 MHz with a maximum load of 30 pF
 - These GPIOs must not be used as current sources (e.g. to drive an LED).
 
+:::
+
 #### 3.1.5 Current Limiting Resistors
 
 Current limiting resistors on GPIOs, if used, should not exceed 100 ohms. This is especially true for motor and LED signal pins, where signal levels are marginal to begin with. 
-
-:::
 
 ## 3.2 Resource Selection Considerations
 
