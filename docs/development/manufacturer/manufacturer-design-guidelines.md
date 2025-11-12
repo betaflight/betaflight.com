@@ -37,6 +37,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 | Draft 1.7 | 27 March 2025     | Update FC review policy           |
 | Draft 1.8 | 01 April 2025     | Update I2C Device Info            |
 | Draft 1.9 | 12 September 2025 | Update motor requirements         |
+| Draft 2.0 | 12 November 2025  | GPIO usage clarifications         |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -96,6 +97,8 @@ Achieving state of the art performance requires minimizing latency in craft resp
 
 - Initial Submission
 
+  - **Before submitting a target design, you must carefully review and follow the manufacturer design guidelines. Failure to do so may result in automatic rejection of the target.**
+
   - This will require key information to be available, such as specific MCU arrangement (e.g. SPI Bus allocations) may be required in order to support complete feature sets.
 
   - Desired Target name, MCU type, and which target architecture to be used required.
@@ -106,8 +109,7 @@ Achieving state of the art performance requires minimizing latency in craft resp
 
 - Request for specific targets
 
-  - If the flight controller design is intended to have a dedicated Betaflight target, then a new target submission can accompany the process
-    - For additional information, see [here](requirements-for-submission-of-targets)
+  - If the flight controller design is intended to have a dedicated Betaflight target, then a new target submission can accompany the process. For additional information, see [here](requirements-for-submission-of-targets).
 
 - Production Representative Samples
 
@@ -141,7 +143,7 @@ These guidelines provide best practices for physical, electrical, and documentat
 
 ## 3.1 Best Practices for Flight Controller Design and Performance
 
-When asked to review hardware our first action will be to review schematics/layouts against the application notes for the applicable data sheets. The specifics of how the hardware is interconnected is of course going to be driven by a number of constraints, such as recommended pinouts, as outlined below, but is it essential that good design practices are followed with respect to providing good quality power regulation, appropriate use of ground/power planes, decoupling component positioning etc.
+When asked to review hardware our first action will be to review schematics/layouts against the application notes for the applicable data sheets. The specifics of how the hardware is interconnected is of course going to be driven by a number of constraints, such as recommended pinouts, as outlined below, but is it essential that good design practices are followed with respect to providing good quality power regulation, appropriate use of ground/power planes, decoupling component positioning etc. Manufacturers are expected to adhere to industry best practices and comply with manufacturer datasheets for components in the absence of any Betaflight-specific guidance below. 
 
 ### 3.1.1 Physical Configuration
 
@@ -287,7 +289,7 @@ Similarly, 3.3V, 5V, and 9-12V BEC power needs to provide consistent power at th
 Standard battery powered 5V rails should provide at least 1A, preferably 1.5A to 2A in order to provide higher current if anticipated to be used with a large number of peripherals (such as LED strips, 5V powered FPV Video Systems, or as source power to HD cameras).
 
 Providing a 10V 2A BEC is also strongly recommended with flight controller designs, as this supports high definition video systems, and even enables better analog video system power options.
-Each of these can be optionally connected to PINIO driven pit switches, and/or jumper pad setups that enable end users to select constant-on or transistor switched behavior, particularly if located to support video transmission systems.
+Each of these can be optionally connected to PINIO, pit switches, and/or jumper pad setups that enable end users to select constant-on or transistor switched behavior, particularly if located to support video transmission systems. This is most easily accomplished by connecting the BEC EN pin to a free GPIO configured as [PINIO](/docs/wiki/guides/current/Pinio-and-PinioBox).
 
 Such 10V regulators should function at full rated current down to 10V input voltage to support the BEC output from some ESCs.
 
@@ -334,6 +336,10 @@ Pin PC13, PC14 and PC15 are supplied through the power switch. Since the switch 
 - The speed should not exceed 2 MHz with a maximum load of 30 pF
 - These GPIOs must not be used as current sources (e.g. to drive an LED).
 
+#### 3.1.5 Current Limiting Resistors
+
+Current limiting resistors on GPIOs, if used, should not exceed 100 ohms. This is especially true for motor and LED signal pins, where signal levels are marginal to begin with. 
+
 :::
 
 ## 3.2 Resource Selection Considerations
@@ -353,11 +359,9 @@ Effective immediately, new flight controller designs that use the STM F4 and F7 
 BITBANG is the new default on non-F4 and FC designers should use as few GPIO PORTS as possible to avoid needing a DMA stream per GPIO port. i.e.
 
 - 8 motors on 1 GPIO port is optimal.
-- first 4 motors are required to use a 1 GPIO and one 4-channel timer.
-- 8 motors spread across 2 GPIO ports is OK where both use 4-channel timers.
+- M1-M4 are required to use 1 GPIO port, and preferably one 4-channel timer with DMA.
+- 8 motors spread across 2 GPIO ports is OK.
 - 8 motors spread across more than 2 GPIO ports is BAD practice and will be rejected.
-
-Similarly, it is optimal to use two 4-channel timers for 8 motors for when BITBANG is disabled.
 
 There is also a choice between using advanced timers or not, TIM1/TIM8 are advanced and get used by DSHOT BITBANG.
 
@@ -366,7 +370,7 @@ Or it may be optimal to use timers other than TIM1/TIM8 for motors so that TIM1/
 
 :::note
 
-When DSHOT BITBANG is used, the advanced timers (TIM1/TIM8 on H7) use DMA to drive the GPIO signals directly, the GPIO pins' timer AF modes are NOT used.  The timer(s) used by DSHOT BITBANG can drive GPIO signals on any GPIO pins, even if they do not have timer AF signals.
+When DSHOT BITBANG is used, the advanced timers (TIM1/TIM8) use DMA to drive the GPIO signals directly, the GPIO pins' timer AF modes are NOT used. The timer(s) used by DSHOT BITBANG can drive GPIO signals on any GPIO pins, even if they do not have timer AF signals.
 TIM1 has inter-peripheral connectivity that other timers do not have.
 
 :::
@@ -395,17 +399,15 @@ https://www.st.com/resource/en/errata_sheet/dm00037591-stm32f405407xx-and-stm32f
 Corruption may occur on DMA2 if AHB peripherals (e.g. GPIO ports) are accessed concurrently with APB peripherals (e.g. SPI busses).
 Practically, this means that all pins should be on the same port, or at most two ports, so that only one (or two) DMA streams are required for bitbanged operation.
 
-As an additional reference design, see the Fenix F405: https://oshwlab.com/jyesmith/fenix-f405
-
 #### 3.2.1.2 F7 Resource Selection
 
 F7 series MCUs provide greater flexibility in resource assignments and do not require hardware inverters in order to support inverted serial protocols. They also do not exhibit the SPI 1 DMA limitations of F4 processors.
 
-Bitbanged DShot communication protocol will always use Timer 1 and Timer 8 - Do NOT use these timers for any other functions.
+Bitbanged DShot communication protocol will always use TIM1 and/or TIM8 - At least one of these timers must be available for use. 
 
 #### 3.2.1.3 G4, H7, and AT32F435 Resource Selection
 
-G4 and H7 series MCUs include a DMAMUX, which allows for flexible DMA stream allocation. Therefore, only timer conflicts between motor outputs and other outputs need to be avoided.
+G4, H7, and F435 series MCUs include a DMAMUX, which allows for flexible DMA stream allocation. Therefore, only timer conflicts between motor outputs and other outputs need to be avoided.
 
 :::note
 
@@ -479,7 +481,7 @@ A significant amount of the added performance available in Betaflight 4.X and be
 Betaflight supports all 32-bit ESCs currently available, with BLHeli_32 and AM32 configurations, as well as APD configurations being capable of supporting bidirectional DShot, and user-configured operation with bidirectional DShot disabled.
 Additional DShot extended telemetry will be implemented over time as demonstrated stable, however current extended telemetry options will only be enabled by user selection.
 
-Providing 32b ESCs with firmware prior to 32.66 will require end users to reflash ESCs. Craft will not arm due to the RPMFILTER error that will be present due to a lack of RPM Telemetry. The required solution will be disabling Bidirectional DShot (not recommended) or reflashing ESC (strongly recommended).
+BLHeli_32 ceased operations in 2024. No new licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BL32 ESCs. There are several alternatives, including AM32 and ESCape32 that can be flashed to the same hardware and are fully supported by the open-source community. 
 
 ### 3.4.2 For 8 Bit ESCs (BLHeli_S)
 
@@ -487,7 +489,7 @@ Betaflight will continue to support all current 8-bit ESC configurations, howeve
 
 For Betaflight 4.4 and subsequent releases, the Betaflight team will NO LONGER support BLHeli_S as a default configuration. The enhanced flight performance made possible by operating with Bidirectional DShot features enabled will become the default behavior for all Betaflight craft..
 
-8-bit ESCs can run **BlueJay**, **JESC**.
+8-bit ESCs can run **Bluejay**, **JESC**.
 
 For hardware, such as AIO boards which incorporate ESC and FC, the expectation will be that hardware comes with installed firmware meeting these requirements. The preferred option in this case is **BlueJay**, due to the ability to adjust PWM frequencies and ease of end user support for other functionality across MCU layouts.
 
@@ -521,20 +523,19 @@ Looptime and Performance Recommendation Table:
 | F405                         | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
 |                              | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Disabled (not recommended) | 8 kHz         | DShot 600      |
 |                              | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
-| F411 UART Rx \*\*            | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
-|                              | MPU60X0, ICM2060X            | 8 kHz         | Disabled (not recommended) | 8 kHz         | DShot 600      |
+| F411 UART RX \*\*            | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
 |                              | BMI-270                      | 3.2 kHz       | Enabled                    | 3.2 kHz       | DShot 300      |
-| F411 SPI Rx \*\*\*           | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 2 kHz         | DShot 300      |
+| F411 SPI RX \*\*\*           | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 2 kHz         | DShot 300      |
 |                              | MPU60X0, ICM2060X            | 8 kHz         | Disabled (not recommended) | 4 kHz         | DShot 300      |
 |                              | BMI-270                      | 3.2 kHz       | Enabled                    | 1.6 kHz       | DShot 300      |
 |                              | BMI-270                      | 3.2 kHz       | Disabled (not recommended) | 3.2 kHz       | DShot 300      |
 
 \*\* For F411 UART Rx applications, using both available UARTs AND enabling SoftSerial, Accelerometer, large numbers of OSD elements, and using a larger number of filters, stability may require lowering looprate to 2kHz
 
-\*\*\* There are no SPI Rx solutions that are strongly recommended for future development due to challenges in resource allocation and scheduler inconsistency that consistently emerge with SPI Rx designs.
-Additionally, there are no RC ecosystems that are actively developing a supported SPI Rx solution (ExpressLRS 3.0 and later do not support SPI; FrSky does not support SPI Rx over any protocol, and other SPI Rx solutions have been fully deprecated).
+\*\*\* No new SPI RX solutions will be accepted due to challenges in resource allocation and scheduler inconsistency that consistently emerge with SPI RX designs.
+Additionally, there are no RC ecosystems that are actively developing a supported SPI RX solution (ExpressLRS 4.0 and later do not support SPI receivers; FrSky does not support SPI RX over any protocol, and other SPI RX solutions have been fully deprecated).
 
-Note that the use of gyros such as the BMI270 lowers the gyro loop rate from 8kHz to 3.2kHz and is therefore advantageous for F411 designs.
+Note that the use of gyros such as the BMI270 lowers the gyro loop rate from 8kHz to 3.2kHz and therefore may be advantageous for F411 designs.
 
 :::warning
 
@@ -589,7 +590,7 @@ Define correct flash driver(s) only if physical present on the board.
 
 ### 4.2.3 Defines for BARO
 
-Define a barometer only if physical present on the board.
+Define a barometer only if physical present on the board. Betaflight strongly recommends I2C for barometer connections.
 
 ```
 #define USE_BARO_MS5611
@@ -612,7 +613,7 @@ Define a barometer only if physical present on the board.
 
 ### 4.2.4 Defines for MAG
 
-Define a magnetometer only if physical present on the board.
+Define a magnetometer only if physical present on the board. Betaflight strongly recommends I2C for magnetometer connections.
 
 ```
 #define USE_MAG_DATA_READY_SIGNAL
