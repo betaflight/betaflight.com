@@ -47,7 +47,7 @@ In order to have hardware added to the Betaflight approved hardware list, hardwa
 
 Sharing schematics/layouts with the reviewers will also be beneficial and improve the quality of the review.
 
-This provides the Betaflight team with an opportunity to ensure that the hardware and firmware behave 100% as expected in the representative configuration, as well as support verification of custom defaults required for firmware operation. After-sales support to customers from members of the Betaflight team are also made possible for reproducing end user issues.
+This provides the Betaflight team with an opportunity to ensure that the hardware and firmware behave 100% as expected in the representative configuration, as well as support verification of custom defaults required for firmware operation. After-sales support to customers from members of the Betaflight team are also made possible for reproducing end-user issues.
 
 Additional benefits are also present in the form of allowing experienced active pilots with backgrounds in engineering of these systems to assist with aspects of the development process particularly in respect to real world use the products will be subjected to.
 
@@ -61,7 +61,7 @@ Finally, we will offer a ’Betaflight approved’ product list on the Betafligh
 
 The goal of achieving a certified hardware ecosystem for Betaflight Flight Controller hardware and firmware targets is to ensure that hardware design supports correct operation of Betaflight features and supports an improved user experience for ‘connecting’, flashing, programming, and flying.
 
-The cutting edge flight performance achieved by Betaflight relies on proper hardware design, microcontroller resource allocation, and the ability of end users to correctly configure the software with Betaflight.
+The cutting edge flight performance achieved by Betaflight relies on proper hardware design, microcontroller resource allocation, and the ability of end-users to correctly configure the software with Betaflight.
 
 Achieving state of the art performance requires minimizing latency in craft response to perturbations and command inputs, efficient filtering to remove oscillations from flight control calculations, and leveraging the capabilities of peripheral components to enhance the flight experience. For example, features such as advanced RPM filtering, RPM Dynamic Idle and Multi-Dynamic Notch rely on achieving microsecond scale timing jitter for best performance while simultaneously communicating with electronic speed controllers using bidirectional DShot, determining craft attitude and calculating optimal mixer outputs, as well as operating the myriad of desired user peripherals. This symphony of delicately scheduled operations can be achieved reliably with proper flight controller design.
 
@@ -127,7 +127,7 @@ Achieving state of the art performance requires minimizing latency in craft resp
     - If new target(s) and/or presets have been added, pull requests will be evaluated, completed, and merged for inclusion in subsequent Betaflight releases
 
 - Target Maintenance
-  - After approval and release, the designated contact is expected to provide any continuing support that may be required in order to keep the approved hardware working well for end users
+  - After approval and release, the designated contact is expected to provide any continuing support that may be required in order to keep the approved hardware working well for end-users
 
 ## 2.2 Adjacent Benefits and Opportunities
 
@@ -153,7 +153,7 @@ The commonly accepted and used board layouts include 16x16mm for M2 hardware (pe
 
 Boards with oversized holes (e.g. M4 holes and silicone inserts for M3 stack mounting) experience longer service life and experience fewer failures due to PCB deformation during impacts. For standalone flight controllers, integrated ‘AIO’ flight controllers, and even adjacent configurations provided as ‘stacks’ with additional PCBs, this architecture has been proven to be the most robust over time.
 
-Board layouts should provide redundancy for all critical functions. For example, solder locations with identical pin arrangements to JST connector located adjacent to the JST header mounting is strongly recommended, providing end users significant added value and opportunities to produce more robust craft.
+Board layouts should provide redundancy for all critical functions. For example, solder locations with identical pin arrangements to JST connector located adjacent to the JST header mounting is strongly recommended, providing end-users significant added value and opportunities to produce more robust craft.
 Castellations and use of mounting pads with through holes or edge continuity are also strongly recommended, especially with more compact flight controller designs.
 
 For board layouts implementing transistor PINIO functionality for ‘pit switch’ or similar behaviors, solder bridge options are strongly recommended to enable users to select output voltage, or physically bypass the switching functionality by connecting to voltage sources. Particularly for video systems, it is strongly recommended to avoid performing this switching on the ground, due to interference concerns demonstrated with inconsistent ground planes.
@@ -196,7 +196,7 @@ Using a single timer with 4 channels dedicated to dual gyro FSYNC/INT pins for s
 :::
 
 Future IMU selection should be carried out with close involvement of the Betaflight development group. Early hardware validation samples should be explored in collaboration with Betaflight developers to determine the suitability of these IMU units in relevant environments.
-The ability to customize IMU lowpass filtering and operate within the same GRMS/Shock environment allows for maximum portability of existing filtering and tune schemes, but this development must occur with complete hardware samples and flown in representative flight regimes in order to replicate the EMI environment end users will experience.
+The ability to customize IMU lowpass filtering and operate within the same GRMS/Shock environment allows for maximum portability of existing filtering and tune schemes, but this development must occur with complete hardware samples and flown in representative flight regimes in order to replicate the EMI environment end-users will experience.
 
 The IMU sensors, designed for applications outside of sUAS, are typically subjected to very harsh electromagnetic environments. Ensuring electromagnetic compatibility when using these immediately adjacent to ultrasonically switched power MOSFET devices, constantly operational radio frequency devices (such as remote control and FPV video systems), under thermal stresses of moving over 1kW through the complete flight stack, are a nontrivial operation. In order to minimize risks of flyaway and brownout behaviors which can be observed if IMU data filtering and power delivery are inadequate, proper circuit design and validation testing must be performed.
 
@@ -289,7 +289,7 @@ Similarly, 3.3V, 5V, and 9-12V BEC power needs to provide consistent power at th
 Standard battery powered 5V rails should provide at least 1A, preferably 1.5A to 2A in order to provide higher current if anticipated to be used with a large number of peripherals (such as LED strips, 5V powered FPV Video Systems, or as source power to HD cameras).
 
 Providing a 10V 2A BEC is also strongly recommended with flight controller designs, as this supports high definition video systems, and even enables better analog video system power options.
-Each of these can be optionally connected to PINIO, pit switches, and/or jumper pad setups that enable end users to select constant-on or transistor-switched behavior, particularly if located to support video transmission systems. This is most easily accomplished by connecting the BEC EN pin to a free GPIO configured as [PINIO](/docs/wiki/guides/current/Pinio-and-PinioBox).
+Each of these can be optionally connected to PINIO, pit switches, and/or jumper pad setups that enable end-users to select constant-on or transistor-switched behavior, particularly if located to support video transmission systems. This is most easily accomplished by connecting the BEC EN pin to a free GPIO configured as [PINIO](/docs/wiki/guides/current/Pinio-and-PinioBox).
 
 Such 10V regulators should function at full rated current down to 10V input voltage to support the BEC output from some ESCs.
 
@@ -340,7 +340,7 @@ Pin PC13, PC14 and PC15 are supplied through the power switch. Since the switch 
 
 #### 3.1.5 Current Limiting Resistors
 
-Current limiting resistors on GPIOs, if used, should not exceed 100 ohms. This is especially true for motor and LED signal pins, where signal levels are marginal to begin with. 
+Current-limiting resistors on GPIOs, if used, should not exceed 100 ohms. This is especially true for motor and LED signal pins, where signal levels are marginal to begin with, and UARTs, where low signal levels can cause issues with some digital VTX systems. 
 
 ## 3.2 Resource Selection Considerations
 
@@ -445,11 +445,11 @@ https://www.arterychip.com/download/DS/DS_AT32F435_437_V2.02-EN.pdf
 
 ## 3.3 Markings, Version Numbers, and Documentation
 
-It is highly recommended that the flight controller Manufacturer Name, Board Name, and Board Design Revision be marked clearly on the flight controller itself. Where possible, indicating the firmware target name, or selecting a firmware target name to minimize confusion reduces the likelihood of an end user attempting to configure the flight controller with an incorrect target.
+It is highly recommended that the flight controller Manufacturer Name, Board Name, and Board Design Revision be marked clearly on the flight controller itself. Where possible, indicating the firmware target name, or selecting a firmware target name to minimize confusion reduces the likelihood of an end-user attempting to configure the flight controller with an incorrect target.
 
 ### 3.3.1 Creating Design Revisions and Communicating Changes
 
-Providing sufficient marking and documentation will be required for hardware approval. Screen printing on the flight controller critical information - pin identifiers, board name, revision, and manufacturer will be necessary, with sufficient detail to enable end users to properly connect devices to the flight controller.
+Providing sufficient marking and documentation will be required for hardware approval. Screen printing on the flight controller critical information - pin identifiers, board name, revision, and manufacturer will be necessary, with sufficient detail to enable end-users to properly connect devices to the flight controller.
 
 When creating flight controller revisions and improvements, it is strongly recommended that indications and documentations are made available, particularly when pinout changes, output rating changes, or hardware bill of material changes. Any board configuration change requiring a user to change configuration behavior must have an accompanying change in marking to indicate (e.g. changing an IMU, or altering the pinout of solder pads).
 
@@ -465,10 +465,10 @@ A good example of properly documenting and supporting ready-to-fly craft would b
 
 #### 3.3.2.2 Leveraging the Betaflight Preset System
 
-One of the most powerful tools for end users that can save significant time and reduce the likelihood of misconfiguration is the Preset system. Developing an Official Betaflight preset and generating a pull request with the assistance of the Betaflight development team allows for end users to quickly and easily configure their craft. The versatility of selectable options, RC Link presets, and even Tune & Filter presets allow for diverse configurations of RTF craft products to be supported.
+One of the most powerful tools for end-users that can save significant time and reduce the likelihood of misconfiguration is the Preset system. Developing an Official Betaflight preset and generating a pull request with the assistance of the Betaflight development team allows for end-users to quickly and easily configure their craft. The versatility of selectable options, RC Link presets, and even Tune & Filter presets allow for diverse configurations of RTF craft products to be supported.
 Applying and using presets not only saves users significant time, but reduces the likelihood of data entry errors or incorrect configurations to be applied, which can be of particular importance for products aimed at less experienced users.
 
-For manufacturers providing configuration presets for flight controllers (strongly recommended), providing documentation of suggested locations to connect peripheral devices, match the provided preset menu selections can greatly assist end users with proper configuration of their craft. These should include selecting appropriate PID loop rates, DShot data rates, IMU-specific Gyro Lowpass Filtering, Receiver installation (including options with the correct Port, protocol, SerialRX_Inversion, and SerialRX_HalfDuplex), HD FPV MSP port installation, VTX control (including protocol(s), port, and optional pit mode states), GPS (port and protocols), LEDs, and any PINIO type peripheral connections where applicable.
+For manufacturers providing configuration presets for flight controllers (strongly recommended), providing documentation of suggested locations to connect peripheral devices, match the provided preset menu selections can greatly assist end-users with proper configuration of their craft. These should include selecting appropriate PID loop rates, DShot data rates, IMU-specific Gyro Lowpass Filtering, Receiver installation (including options with the correct Port, protocol, SerialRX_Inversion, and SerialRX_HalfDuplex), HD FPV MSP port installation, VTX control (including protocol(s), port, and optional pit mode states), GPS (port and protocols), LEDs, and any PINIO type peripheral connections where applicable.
 
 Working with the Betaflight development team provides opportunities to develop presets that can bring RTF craft back to stock configuration, enable users to rapidly configure ‘Plug & Play’ systems based on selected RC link hardware installed per documentation, and even permit Betaflight developers with extensive experience developing precise tunes for craft to generate a range of tunes for that specific product.
 
@@ -476,29 +476,29 @@ Working with the Betaflight development team provides opportunities to develop p
 
 A significant amount of the added performance available in Betaflight 4.X and beyond is based on leveraging ESC RPM telemetry data in order to use RPM Notch Filters and Dynamic Idle features.
 
-### 3.4.1 For 32 Bit ESCs (e.g. BLHeli_32 and AM32)
+### 3.4.1 For 32-Bit ESCs (e.g. BLHeli_32 and AM32)
 
 Betaflight supports all 32-bit ESCs currently available, with BLHeli_32 and AM32 configurations, as well as APD configurations being capable of supporting bidirectional DShot, and user-configured operation with bidirectional DShot disabled.
 Additional DShot extended telemetry will be implemented over time as demonstrated stable, however current extended telemetry options will only be enabled by user selection.
 
-BLHeli AS ceased operations in 2024. No new BLHeli_32 licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BLHeli_32 ESCs. There are several alternatives, including (AM32)[https://am32.ca/] and (ESCape32)[https://github.com/neoxic/ESCape32}]that can be flashed to the same hardware and are fully supported by the open-source community. 
+BLHeli AS ceased operations in 2024. No new BLHeli_32 licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BLHeli_32 ESCs. There are several alternatives, including [AM32](https://am32.ca/) and [ESCape32](https://github.com/neoxic/ESCape32) that can be flashed to the same hardware and are fully supported by the open-source community. 
 
-### 3.4.2 For 8 Bit ESCs (e.g. BLHeli_S, Bluejay)
+### 3.4.2 For 8-Bit ESCs (e.g. BLHeli_S, Bluejay)
 
 Betaflight will continue to support all current 8-bit ESC configurations, however these will rely on having bidirectional DShot enabled by default.
 
 For Betaflight 4.4 and subsequent releases, the Betaflight team will NO LONGER support BLHeli_S as a default configuration. The enhanced flight performance made possible by operating with Bidirectional DShot features enabled will become the default behavior for all Betaflight craft.
 
-8-bit ESCs with BLHeliS can be flashed with a modern ESC firmware such as (**Bluejay**)[https://github.com/bird-sanctuary/bluejay] to support bidirectional DShot.
+8-bit ESCs with BLHeliS can be flashed with a modern ESC firmware such as [**Bluejay**](https://github.com/bird-sanctuary/bluejay) to support bidirectional DShot.
 
-For hardware, such as AIO boards, which incorporate an ESC and FC, the expectation will be that hardware comes with installed firmware meeting these requirements. The preferred option in this case is **Bluejay**, due to the ability to adjust PWM frequencies, bidirectional DShot support, and ease of end user support for other functionality across MCU layouts.
+For hardware, such as AIO boards, which incorporate an ESC and FC, the expectation will be that hardware comes with installed firmware meeting these requirements. The preferred option in this case is **Bluejay**, due to the ability to adjust PWM frequencies, bidirectional DShot support, and ease of end-user support for other functionality across MCU layouts.
 
-Failure to comply with this requirement will require end users to perform firmware reflash of ESCs, and without reflashing craft will not arm due to the RPMFILTER error that will be present due to a lack of RPM Telemetry.
+Failure to comply with this requirement will require end-users to perform firmware reflash of ESCs, and without reflashing craft will not arm due to the RPMFILTER error that will be present due to a lack of RPM Telemetry.
 The required solution will be disabling Bidirectional DShot (not recommended) or reflashing ESC (strongly recommended).
 
 ### 3.4.3 For Legacy ESCs
 
-For legacy ESCs that are only capable of OneShot and Multishot utilization, end users will be required to disable DShot in order to continue with operations. This situation only applies to pre-BLHeli_S ESC architectures, and is not anticipated to be an issue for the vast majority of users. DShot capability has been part of Betaflight since 3.2 (in 2017), therefore legacy support for this hardware will require additional end user configuration. However, these ESCs are still indirectly supported and may exhibit improved performance with the most recent Betaflight versions despite being unable to take advantage of bidirectional DShot features.
+For legacy ESCs that are only capable of OneShot and Multishot utilization, end-users will be required to disable DShot in order to continue with operations. This situation only applies to pre-BLHeli_S ESC architectures, and is not anticipated to be an issue for the vast majority of users. DShot capability has been part of Betaflight since 3.2 (in 2017), therefore legacy support for this hardware will require additional end-user configuration. However, these ESCs are still indirectly supported and may exhibit improved performance with the most recent Betaflight versions despite being unable to take advantage of bidirectional DShot features.
 
 # 4 Reference Tables
 
