@@ -99,7 +99,7 @@ If, for instance, a `LED_STRIP 1` pin is assigned to `A15`, and there is a LedSt
 Then the pin can be assigned to the Softserial Port 1 Tx pin. The commands have changed:
 
 - in Betaflight 4.5 and higher: `RESOURCE SOFTSERIAL_TX 1 A15`
-- in Betaflight 4.4 and lower: `RESOURCE SERIALTX 11 A15`
+- in Betaflight 4.4 and lower: `RESOURCE SERIAL_TX 11 A15`
 
 If the resource reassignment is successful, a `diff` command in CLI for 4.5 will show:
 
