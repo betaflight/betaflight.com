@@ -1,7 +1,7 @@
 ---
 title: RP2350 Lands in Betaflight!
 date: 2025-10-10
-author: blckmn
+authors: ['blckmn']
 ---
 
 ## A New Challenger Enters the Ring: RP2350 Lands in Betaflight!
@@ -10,7 +10,7 @@ Get ready for a game-changer! 🚀 The Betaflight **2025.12** release officially
 
 The Betaflight and Raspberry Pi team worked together to bring the **RP2350** to you.
 
-<!-- truncate -->
+<!--truncate-->
 
 ## Smart Performance Over Raw Speed
 
@@ -34,4 +34,4 @@ Perhaps the most compelling aspect of the **RP2350** is its fantastic price poin
 
 Keep your eyes peeled! You can expect to see a new wave of innovative and affordable flight controllers featuring this great little chip hitting the market very soon. The future of flight controllers is looking bright and budget-friendly!
 
-For more details on the **RP2350** you can check out the Raspberry Pi [Pico series](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html).
+For more details on the **RP2350** you can check out the Raspberry Pi [**Pico series**](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html).
