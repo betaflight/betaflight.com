@@ -8,7 +8,7 @@ Its simply a case of "ICYMI". Yes folks **Betaflight**, albeit an earlier versio
 
 <!--truncate-->
 
-The Guinness World Records has granted the title to Ryan Lademann (USA), using his custom built drone called the XLR V3 Red. This drone powered its way to the record books by hitting 224mph (360kmh). Yes thats right folks this drone nearly hit 200knots (195knots). Many light aircraft would love to reach those speeds. The record attempt was made in Scottsdale, Arizona, USA, on 8 November 2022. What a way to finish out the year.
+The Guinness World Records has granted the title to Ryan Lademann (USA), using his custom built drone called the XLR V3 Red. This drone powered its way to the record books by hitting 224mph (360kmh). Yes that's right folks this drone nearly hit 200knots (195knots). Many light aircraft would love to reach those speeds. The record attempt was made in Scottsdale, Arizona, USA, on 8 November 2022. What a way to finish out the year.
 
 The team here at Betaflight congratulate Ryan on his successful attempt, and are very happy the firmware played a small part in that success. Now how can we get Ryan to update his firmware ;).
 

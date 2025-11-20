@@ -8,7 +8,7 @@ Founded in 2012, **HQProp** are devoted to supplying the RC community with High 
 
 <!--truncate-->
 
-We are therefore delighted to partner with them as an offical Betaflight Team Sponsor.
+We are therefore delighted to partner with them as an official Betaflight Team Sponsor.
 
 ## Some comments from developers
 
