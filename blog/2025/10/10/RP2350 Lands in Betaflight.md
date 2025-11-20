@@ -34,4 +34,4 @@ Perhaps the most compelling aspect of the **RP2350** is its fantastic price poin
 
 Keep your eyes peeled! You can expect to see a new wave of innovative and affordable flight controllers featuring this great little chip hitting the market very soon. The future of flight controllers is looking bright and budget-friendly!
 
-For more details on the **RP2350** you can check out the Raspberry Pi [Pico series](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html).
+For more details on the **RP2350** you can check out the Raspberry Pi [**Pico series**](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html).
