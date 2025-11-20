@@ -1,7 +1,7 @@
 ---
-date: 2025-09-01
-author: blckmn
 title: Calendar Versioning & Release Cadence
+date: 2025-09-01
+authors: ['blckmn']
 ---
 
 :mega: **Announcement: New Versioning Scheme & Release Cadence** :mega:
@@ -9,6 +9,8 @@ title: Calendar Versioning & Release Cadence
 ### Introduction
 
 To create a more predictable release schedule, we're moving to a new versioning system and development cycle, starting with the next release. The versioning scheme we will be moving to is known as [CalVer](https://calver.org/) or Calendar Versioning.
+
+<!--truncate-->
 
 This style of versioning works well when there is a predictable release cadence, and that is something we are going to establish for the Betaflight project. Our release cadence will move to two major releases per year, with patch releases in between. Our target months for a major release will be June and December each year.
 

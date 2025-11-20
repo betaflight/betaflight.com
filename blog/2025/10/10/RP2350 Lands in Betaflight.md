@@ -1,7 +1,7 @@
 ---
 title: RP2350 Lands in Betaflight!
 date: 2025-10-10
-author: blckmn
+authors: ['blckmn']
 ---
 
 ## A New Challenger Enters the Ring: RP2350 Lands in Betaflight!
@@ -10,7 +10,7 @@ Get ready for a game-changer! 🚀 The Betaflight **2025.12** release officially
 
 The Betaflight and Raspberry Pi team worked together to bring the **RP2350** to you.
 
-<!-- truncate -->
+<!--truncate-->
 
 ## Smart Performance Over Raw Speed
 
