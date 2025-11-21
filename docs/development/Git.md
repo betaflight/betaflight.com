@@ -346,4 +346,4 @@ git checkout -b new-feature master
 
 ## Links
 
-https://devconnected.com/how-to-remove-files-from-git-com
+[https://devconnected.com/how-to-remove-files-from-git-com](https://devconnected.com/how-to-remove-files-from-git-commit/)
