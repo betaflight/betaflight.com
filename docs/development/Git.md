@@ -297,7 +297,7 @@ You will build and test it, and tell git if the commit was good or bad.
 
 # Development branches
 
-When working on multiple development branches and your local repo is ahead of master a new PR will include these commits. To resolve the issue
+When working on multiple development branches, if your local repo is ahead of master, a new PR will include these commits. To resolve this issue:
 
 ## Solution
 
