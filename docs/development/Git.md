@@ -304,7 +304,7 @@ When working on multiple development branches and your local repo is ahead of ma
 ```bash
 git fetch upstream
 git checkout branch
-git rebase - i upstream/master
+git rebase -i upstream/master
 ```
 
 In the editor delete all commits not part of the PR and
