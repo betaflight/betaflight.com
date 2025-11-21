@@ -343,7 +343,6 @@ git push origin master --force-with-lease
 git checkout -b new-feature master
 ```
 
-
 ## Links
 
 [https://devconnected.com/how-to-remove-files-from-git-commit/](https://devconnected.com/how-to-remove-files-from-git-commit/)
