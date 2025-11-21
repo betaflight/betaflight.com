@@ -295,6 +295,55 @@ git bisect bad
 Then git will automatically bisects commits between the two versions, checks out a new bisecting commit.
 You will build and test it, and tell git if the commit was good or bad.
 
+# Development branches
+
+When working on multiple development braches and your local repo is ahead of master a new PR will include these commits. To resolve the issue
+
+## Solution
+
+```
+git fetch upstream
+git checkout branch
+git rebase - i upstream/master
+```
+
+In the editor delete all commits not part of the PR and
+
+```
+git push origin branch --force-with-lease
+```
+
+## Workflow for future PRs
+
+To prevent this issue in future PRs:
+
+```
+# Always create new feature branches from upstream master, not your local master
+git fetch upstream
+git checkout -b new-feature-branch upstream/master
+
+# Make your changes...
+git add .
+git commit -m "Your changes"
+
+# Push to your fork
+git push origin new-feature-branch
+```
+
+## Alternative approach if you want to keep your local master in sync:
+
+```
+# Update your local master to match upstream
+git checkout master
+git fetch upstream
+git reset --hard upstream/master
+git push origin master --force-with-lease
+
+# Now create feature branches from your synced local master
+git checkout -b new-feature master
+```
+
+
 ## Links
 
-https://devconnected.com/how-to-remove-files-from-git-commit/
+https://devconnected.com/how-to-remove-files-from-git-com
