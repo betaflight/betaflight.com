@@ -301,7 +301,7 @@ When working on multiple development branches and your local repo is ahead of ma
 
 ## Solution
 
-```
+```bash
 git fetch upstream
 git checkout branch
 git rebase - i upstream/master
@@ -309,7 +309,7 @@ git rebase - i upstream/master
 
 In the editor delete all commits not part of the PR and
 
-```
+```bash
 git push origin branch --force-with-lease
 ```
 
@@ -317,7 +317,7 @@ git push origin branch --force-with-lease
 
 To prevent this issue in future PRs:
 
-```
+```bash
 # Always create new feature branches from upstream master, not your local master
 git fetch upstream
 git checkout -b new-feature-branch upstream/master
@@ -332,7 +332,7 @@ git push origin new-feature-branch
 
 ## Alternative approach if you want to keep your local master in sync:
 
-```
+```bash
 # Update your local master to match upstream
 git checkout master
 git fetch upstream
