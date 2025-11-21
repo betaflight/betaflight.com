@@ -307,7 +307,7 @@ git checkout branch
 git rebase -i upstream/master
 ```
 
-In the editor delete all commits not part of the PR and
+In the editor, delete all commits not part of the PR and save the file.
 
 ```bash
 git push origin branch --force-with-lease
