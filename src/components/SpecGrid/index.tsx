@@ -25,7 +25,7 @@ export default function VersionInfo({ children }) {
 
   return (
     <div className="w-full flex 2xl:flex-row flex-col gap-2">
-      <div className="aspect-square w-fit rounded-lg overflow-clip">{children}</div>
+      <div className="aspect-square w-full items-center justify-center flex rounded-lg overflow-clip">{children}</div>
       <div className="2xl:aspect-square w-full h-fit grid grid-cols-3 grid-rows-3 gap-2">
         <SpecBox icon={<Crosshair size={24} />} title="Target:" color="primary" colSpan={2}>
           <div className="font-mono">{target}</div>
