@@ -34,8 +34,8 @@ export default function BetaflightLayout({ children }: Props) {
             </g>
           </g>
           <defs>
-            <filter id="filter0_d_1_8" x="-270" y="-1025.69" width="3248.68" height="3203.23" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <filter id="filter0_d_1_8" x="-270" y="-1025.69" width="3248.68" height="3203.23" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
               <feOffset dx="-70" dy="-70" />
               <feGaussianBlur stdDeviation="100" />
