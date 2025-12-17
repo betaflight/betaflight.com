@@ -60,10 +60,12 @@
 
   ul {
     @apply list-disc ml-8 mb-5;
+    @apply text-justify;
   }
 
   ol {
     @apply list-decimal ml-8 mb-5;
+    @apply text-justify;
   }
 }
 
