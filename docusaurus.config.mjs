@@ -66,6 +66,8 @@ const config = {
         id: 'blog',
         routeBasePath: 'blog',
         path: './blog',
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
         feedOptions: {
           type: 'all',
           title: 'Betaflight News',
