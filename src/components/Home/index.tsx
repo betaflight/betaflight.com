@@ -59,9 +59,9 @@ export default function Home({ recentPosts }: BlogProps) {
           <div className="backdrop-blur-md shadow-xl flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
             <div className="text-center text-md">
               <h2 className="text-primary-600 font-bold text-2xl md:text-3xl mb-4">Pushing the Limits of UAV Performance</h2>
-              <p className="xs:text-sm sm:text-lg xl:text-xl">
+              <p className="text-center xs:text-sm sm:text-lg xl:text-xl">
                 Betaflight is the world's leading multi-rotor flight control software.<br></br>
-                The global FPV drone racing and freestyle community choose Betaflight for its performance, precision, cutting edge features, reliability and hardware support.<br></br>
+                The global FPV drone racing and freestyle community choose Betaflight for its performance, precision, cutting edge features, reliability and hardware support.
               </p>
             </div>
           </div>
@@ -140,7 +140,7 @@ export default function Home({ recentPosts }: BlogProps) {
                   <FontAwesomeIcon icon={faPaypal} className="text-blue-600 mr-2" />
                   Paypal
                 </h1>
-                <p className="my-4">For a once off donation to the cause with no ongoing commitment.</p>
+                <p className="my-4 text-center">For a once off donation to the cause with no ongoing commitment.</p>
                 <Button onClick={onClickDonate('paypal')}>Donate</Button>
               </div>
               <div className="mt-4 md:mt-0 md:w-60 w-full text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between">
@@ -148,7 +148,7 @@ export default function Home({ recentPosts }: BlogProps) {
                   <FontAwesomeIcon icon={faPatreon} className="text-red-600 mr-2" />
                   Patreon
                 </h1>
-                <p className="my-4">To setup a monthly recurring donation for ongoing support, commitment and thanks.</p>
+                <p className="my-4 text-center">To setup a monthly recurring donation for ongoing support, commitment and thanks.</p>
                 <Button onClick={onClickDonate('patreon')}>Donate</Button>
               </div>
             </div>

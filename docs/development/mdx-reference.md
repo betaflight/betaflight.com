@@ -200,11 +200,11 @@ $$
 
 ## Images
 
-<p align="center">![Betaflight App](/img/MagOrientationDiagram.png)**Fig. 1** - centered image.</p>
- 
+<div align="center">![Betaflight App](/img/MagOrientationDiagram.png)**Fig. 1** - centered image.</div>
+
 ```md
-<p align="center">
+<div align="center">
   ![Betaflight App](/img/MagOrientationDiagram.png)
   **Fig. 1** - centered image.
-</p>
+</div>
 ```

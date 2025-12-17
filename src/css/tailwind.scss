@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  p {
+    @apply text-justify;
+  }
+}
+
 .theme-doc-markdown a:not(.no-effect), .fancy-link {
     @apply no-underline bg-gradient-to-r from-primary-600 to-primary-600 bg-no-repeat bg-left-bottom 
     bg-0w hover:bg-100w hover:text-primary-600 duration-300 w-fit dark:text-primary-600 text-primary-600 transition-all font-medium;
@@ -11,32 +17,32 @@
 
   h1,
   header h1 {
-    @apply text-3xl font-bold text-primary-600;
-    @apply mt-4 mb-4;
+    @apply text-5xl font-bold text-primary-600;
+    @apply mt-8 mb-5;
   }
 
   h2 {
-    @apply text-2xl font-bold text-primary-600;
-    @apply mt-8 mb-4;
+    @apply text-3xl font-bold text-primary-600;
+    @apply mt-14 mb-5;
   }
 
   h3 {
     @apply text-xl font-bold text-primary-600;
-    @apply mt-6 mb-4;
+    @apply mt-8 mb-3;
   }
 
   h4 {
-    @apply text-lg font-bold text-primary-600;
-    @apply mt-5 mb-4;
+    @apply font-bold text-lg text-primary-600;
+    @apply mt-6 mb-3;
   }
 
   h5 {
-    @apply  font-bold text-primary-600;
-    @apply mt-4 mb-4;
+    @apply font-bold text-primary-600;
+    @apply mt-4 mb-3;
   }
 
   h6 {
-    @apply text-primary-600;
+    @apply font-bold;
     @apply mt-4 mb-3;
   }
 
@@ -55,11 +61,11 @@
   }
 
   ul {
-    @apply list-disc ml-8;
+    @apply list-disc ml-8 mb-5;
   }
 
   ol {
-    @apply list-decimal ml-8;
+    @apply list-decimal ml-8 mb-5;
   }
 }
 
