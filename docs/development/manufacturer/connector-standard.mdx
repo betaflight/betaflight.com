@@ -4,14 +4,15 @@ import ConnectorLogo from '/img/betaflight/connector_logo.svg'
 
 ## Version Change Register
 
-| Version #   | Revision Date | Changes, Reasons, and Notes                                         |
-| :---------- | :------------ | :------------------------------------------------------------------ |
-| Draft 0.1   | 27 April 2023 | Initial Draft Format                                                |
-| Draft 0.2   | 08 May 2023   | Added Logo and pinout correction                                    |
-| Draft 0.3   | 16 June 2024  | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD |
-| Version 1.0 | 14 April 2025 | Formalize standard                                                  |
-| Version 1.1 | 24 April 2025 | Add option for 10P ESC socket                                       |
-| Version 1.2 | 08 May 2025   | Add reference schematic + board renders                             |
+| Version #   | Revision Date    | Changes, Reasons, and Notes                                                   |
+| :---------- | :--------------- | :---------------------------------------------------------------------------- |
+| Draft 0.1   | 27 April 2023    | Initial Draft Format                                                          |
+| Draft 0.2   | 08 May 2023      | Added Logo and pinout correction                                              |
+| Draft 0.3   | 16 June 2024     | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD           |
+| Version 1.0 | 14 April 2025    | Formalize standard                                                            |
+| Version 1.1 | 24 April 2025    | Add option for 10P ESC socket                                                 |
+| Version 1.2 | 08 May 2025      | Add reference schematic + board renders                                       |
+| Version 1.3 | 16 December 2025 | Add reference schematic + board renders for 4-pin and 3-pin camera connectors |
 
 ## Introduction
 
@@ -178,10 +179,12 @@ On STM devices pins are shared with PB10 and PB11 for TX3 and RX3 so please keep
 :::note
 It is no longer recommended to have an analogue OSD chip on the FC. The recommendation is to emulate the digital standard, and place the OSD chip on the VTX.
 
-This would render the Video (Signal 1) redundant.
+This would render these connectors redundant.
 :::
 
-The pin configuration for the JST SH connector is as follows:
+#### 5-pin Connector
+
+The pin configuration for the 5-pin JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
@@ -196,6 +199,43 @@ The pin configuration for the JST SH connector is as follows:
 ![Analog Camera Connector Schematic](/img/connector_standard/camera_connector_schematic.png)
 
 ![Analog Camera Connector Board Render](/img/connector_standard/camera_connector_render.png)
+
+</div>
+
+#### 4-pin Connector
+
+The pin configuration for the 4-pin JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | V+ (5v)     | Power       |
+| 2     | GND         | Ground      |
+| 3     | Signal 1    | Video       |
+| 4     | Signal 2    | TX          |
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![4-pin Analog Camera Connector Schematic](/img/connector_standard/4pin_camera_connector_schematic.png)
+
+![4-pin Analog Camera Connector Board Render](/img/connector_standard/4pin_camera_connector_render.png)
+
+</div>
+
+#### 3-pin Connector
+
+The pin configuration for the 3-pin JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | V+ (5v)     | Power       |
+| 2     | GND         | Ground      |
+| 3     | Signal 1    | Video       |
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![3-pin Analog Camera Connector Schematic](/img/connector_standard/3pin_camera_connector_schematic.png)
+
+![3-pin Analog Camera Connector Board Render](/img/connector_standard/3pin_camera_connector_render.png)
 
 </div>
 
