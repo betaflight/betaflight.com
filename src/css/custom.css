@@ -4,13 +4,16 @@
  * work well for content-centric websites.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
 
 /* You can override the default Infima variables here. */
 :root {
   --ifm-font-size-base: 100%;
-  --ifm-font-family-base: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  --ifm-heading-font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --ifm-font-family-base: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --ifm-heading-font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --ifm-color-primary: #ffbb00;
   --ifm-color-primary-dark: #eea600;
   --ifm-color-primary-darker: #dd9100;
@@ -37,12 +40,12 @@
 }
 
 body {
-  font-family: var(--ifm-font-family-base) !important;
+  font-family: var(--ifm-font-family-base);
 }
 
 p {
-  margin-top: 0rem !important;
-  margin-bottom: 1rem !important;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
 }
 
 :root[data-theme='dark'] {

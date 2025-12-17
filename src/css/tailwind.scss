@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  p {
-    @apply text-justify;
-  }
-}
-
 .theme-doc-markdown a:not(.no-effect), .fancy-link {
     @apply no-underline bg-gradient-to-r from-primary-600 to-primary-600 bg-no-repeat bg-left-bottom 
     bg-0w hover:bg-100w hover:text-primary-600 duration-300 w-fit dark:text-primary-600 text-primary-600 transition-all font-medium;
@@ -44,6 +38,10 @@
   h6 {
     @apply font-bold;
     @apply mt-4 mb-3;
+  }
+
+  p {
+    @apply text-justify;
   }
 
   pre {

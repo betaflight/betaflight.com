@@ -73,8 +73,8 @@ export default function Home({ recentPosts }: BlogProps) {
         </HomepageFeature>
         <HomepageFeature title="About" compact={true}>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
-            <FancyAboutCard title="Hardware" className="text-primary-600 text-justify" Icon={CpuChipIcon}>
-              <p>
+            <FancyAboutCard title="Hardware" className="text-primary-600" Icon={CpuChipIcon}>
+              <p className="text-justify">
                 Betaflight supports a wide range of flight controllers from a variety of manufacturers. The{' '}
                 <a className="fancy-link no-underline" href="/docs/sponsors/partners">
                   Betaflight Partner
@@ -83,8 +83,8 @@ export default function Home({ recentPosts }: BlogProps) {
               </p>
             </FancyAboutCard>
 
-            <FancyAboutCard title="Community" className="text-primary-600 text-justify" Icon={UsersIcon}>
-              <p>
+            <FancyAboutCard title="Community" className="text-primary-600" Icon={UsersIcon}>
+              <p className="text-justify">
                 The user community is active and helpful, with a Facebook group of over 30,000 members and a growing{' '}
                 <a className="fancy-link no-underline" href="https://discord.betaflight.com/invite">
                   Discord server
@@ -93,8 +93,8 @@ export default function Home({ recentPosts }: BlogProps) {
               </p>
             </FancyAboutCard>
 
-            <FancyAboutCard title="Open Source" className="text-primary-600 text-center" Icon={CodeBracketIcon}>
-              <p>
+            <FancyAboutCard title="Open Source" className="text-primary-600" Icon={CodeBracketIcon}>
+              <p className="text-justify">
                 Betaflight is 'Open Source', so you can look at the source code and contribute to the project on{' '}
                 <a className="fancy-link no-underline" href="https://github.com/betaflight/betaflight">
                   GitHub
@@ -103,16 +103,18 @@ export default function Home({ recentPosts }: BlogProps) {
               </p>
             </FancyAboutCard>
             <FancyAboutCard className="text-primary-600" title="OSD" Icon={CameraIcon}>
-              <p>
+              <p className="text-justify">
                 With the Betaflight On Screen Display you can use drag-and-drop to set up key flight metrics into your FPV video feed. This allows data such as battery metrics, speed, altitude and
                 home direction.
               </p>
             </FancyAboutCard>
             <FancyAboutCard className="text-primary-600" title="Safety Features" Icon={ShieldCheckIcon}>
-              <p>Alerts for and arming blocks for improper setup, and disarm mechanisms are built in to avoid accidents. A comprehensive failsafe mechanism is featured to assist in flight issues.</p>
+              <p className="text-justify">
+                Alerts for and arming blocks for improper setup, and disarm mechanisms are built in to avoid accidents. A comprehensive failsafe mechanism is featured to assist in flight issues.
+              </p>
             </FancyAboutCard>
             <FancyAboutCard className="text-primary-600" title="Flight Dynamics" Icon={JetIcon}>
-              <p>
+              <p className="text-justify">
                 Betaflight was created for cutting edge flight performance. This has been achieved by optimizing the reaction time to disturbances, the accuracy of stick tracking, and the processing
                 of digital signals.
               </p>
@@ -140,7 +142,7 @@ export default function Home({ recentPosts }: BlogProps) {
                   <FontAwesomeIcon icon={faPaypal} className="text-blue-600 mr-2" />
                   Paypal
                 </h1>
-                <p className="my-4 text-center">For a once off donation to the cause with no ongoing commitment.</p>
+                <p className="my-4">For a once off donation to the cause with no ongoing commitment.</p>
                 <Button onClick={onClickDonate('paypal')}>Donate</Button>
               </div>
               <div className="mt-4 md:mt-0 md:w-60 w-full text-center rounded-2xl bg-neutral-500/10 p-6 flex flex-col justify-between">
@@ -148,7 +150,7 @@ export default function Home({ recentPosts }: BlogProps) {
                   <FontAwesomeIcon icon={faPatreon} className="text-red-600 mr-2" />
                   Patreon
                 </h1>
-                <p className="my-4 text-center">To setup a monthly recurring donation for ongoing support, commitment and thanks.</p>
+                <p className="my-4">To setup a monthly recurring donation for ongoing support, commitment and thanks.</p>
                 <Button onClick={onClickDonate('patreon')}>Donate</Button>
               </div>
             </div>
