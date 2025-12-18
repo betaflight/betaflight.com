@@ -10,33 +10,32 @@
 .theme-doc-markdown {
 
   h1,
-  header h1 {
-    @apply text-5xl font-bold text-primary-600;
-    @apply mt-8 mb-5;
+  header {
+    @apply text-6xl font-bold text-primary-600;
+    @apply mt-8 mb-12;
   }
 
   h2 {
-    @apply text-3xl font-bold text-primary-600;
+    @apply text-4xl font-bold text-primary-600;
     @apply mt-14 mb-5;
   }
 
   h3 {
-    @apply text-xl font-bold text-primary-600;
+    @apply text-2xl font-bold text-primary-600;
     @apply mt-8 mb-3;
   }
 
   h4 {
-    @apply font-bold text-lg text-primary-600;
+    @apply font-bold text-primary-600;
     @apply mt-6 mb-3;
   }
 
   h5 {
-    @apply font-bold text-primary-600;
+    @apply font-bold;
     @apply mt-4 mb-3;
   }
 
   h6 {
-    @apply font-bold;
     @apply mt-4 mb-3;
   }
 
