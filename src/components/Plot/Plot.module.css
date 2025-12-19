@@ -1,0 +1,50 @@
+:root {
+  --plot-color-1: #ffbb00;
+  --plot-color-2: #d95319;
+  --plot-color-3: #a2142f;
+  --plot-color-4: #7e2f8e;
+  --plot-color-5: #0072bd;
+  --plot-color-6: #4dbeee;
+  --plot-color-7: #77ac30;
+}
+
+/* CSS for div container. For proper plot styling, see ./Config.tsx */
+.container {
+  width: 100%;
+  min-width: 200px;
+  min-height: 0px;
+  border: 0px solid var(--ifm-color-emphasis-300);
+  margin: 0 auto 30px auto;
+  color: var(--ifm-font-color-base);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  color: #c62828;
+  background: rgba(198, 40, 40, 0.08);
+  border: 1px solid rgba(198, 40, 40, 0.35);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 0 0 30px 0;
+  font-size: x-large;
+}
+
+.loading {
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px dashed var(--ifm-color-emphasis-300);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  gap: 8px;
+  margin: 0 0 30px 0;
+  font-size: x-large;
+}

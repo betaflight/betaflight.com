@@ -37,6 +37,8 @@
   --ifm-color-success-dark: #87cc52 !important;
 
   --ifm-background-color: #fff !important;
+
+  --plot-grid-fill: rgba(0, 0, 0, 0.025);
 }
 
 body {
@@ -50,6 +52,8 @@ p {
 
 :root[data-theme='dark'] {
   --ifm-background-color: #18181b !important;
+
+  --plot-grid-fill: rgba(255, 255, 255, 0.035);
 }
 
 html {
