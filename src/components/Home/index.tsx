@@ -129,10 +129,12 @@ export default function Home({ recentPosts }: BlogProps) {
             <div className="space-y-4">
               <div className="float-right">
                 <p className="text-lg text-center">
-                  Highly skilled developers lend their time for free in order to develop and maintain this project.<br></br>
-                  If you enjoy this firmware or use it for professional work we would really appreciate your support.<br></br>
-                  We use the donations to help with out of pocket costs, e.g. test hardware, hardware analysis equipment and running build servers.<br></br>
-                  For those who do donate either their time or funds, we are exceptionally grateful for.
+                  Highly skilled developers lend their time for free in order to develop and maintain this project.<br /><br />
+                  If you enjoy this firmware or use it for professional work we would really appreciate your support.<br /><br />
+                  We use the donations to help with out of pocket costs, e.g. test hardware, hardware analysis equipment and running build servers.
+                </p>
+                <p className="text-lg text-center">
+                  For those who do donate either their time or funds, we are exceptionally grateful for your contribution.
                 </p>
               </div>
             </div>
