@@ -17,17 +17,17 @@ This site is still new and is very much a work in progress. Pages going to be ad
 
 Contributions are welcome and encouraged. The best place to start is the [Discord server](https://discord.betaflight.com/invite), specifically in the [**Development section**](https://discord.com/channels/868013470023548938/1073533061330915328). You can contribute in many ways:
 
-- Implementation of a new feature in the firmware or in the configurator (see [below](#development));
+- Implementation of a new feature in the firmware or in the app (see [below](#development));
 - Documentation updates and corrections
 - How-To guides - received help? Help others!
 - Bug reporting & fixes;
 - New feature ideas & suggestions;
-- Providing a new translation for the configurator, or help us maintain the existing ones (see [below](#translators)).
+- Providing a new translation for the app, or help us maintain the existing ones (see [below](#translators)).
 
 Besides the Discord server, the next best place to look out for is the GitHub issue tracker:
 
 - [Firmware issues](https://github.com/betaflight/betaflight/issues)
-- [Configurator issues](https://github.com/betaflight/betaflight-configurator/issues)
+- [App issues](https://github.com/betaflight/betaflight-configurator/issues)
 - [Blackbox Log Viewer issues](https://github.com/betaflight/blackbox-log-viewer/issues)
 - [Documentation issues](https://github.com/betaflight/betaflight.com/issues)
 
@@ -42,9 +42,31 @@ If you want to contribute financially on an ongoing basis, you should consider b
 This document is primarily for developers.
 
 Contribution of bugfixes and new features is encouraged. Please be aware that we have a thorough review process for pull requests, and be prepared to explain what you want to achieve with your pull request.
+
 Before starting to write code, please read this document and the [coding style definition](development/CodingStyle).
 
-GitHub actions are used to run automatic builds
+GitHub actions are used to run automatic builds against a PR, and the action will indicate whether or not there is a build error. Note that the action runs under the latest Ubuntu release that is supported by the Betaflight team.
+
+### Supported Development Environments
+
+The Betaflight team relies heavily on contributors to get their own development environment working on their respective setups. So that we do not spend time catering for all different development environments, and of course personal preferences, we have nominated the following as officially supported:
+
+1. Ubuntu 24.04 LTS (Noble Numbat) [...](development/building/Building-in-Ubuntu)
+2. Windows - using WSL (with Ubuntu 24.04 LTS installed) [...](development/building/Building-in-Windows)
+3. MacOS 15 Sequoia [...](development/building/Building-in-Mac-OSX)
+
+For the IDE we recommend (and support):
+1. [VSCode](https://code.visualstudio.com/download)
+2. [Eclipse](https://www.eclipse.org/downloads/)
+
+Many other environments may work but they are not guaranteed (nor supported by the core team), i.e. your mileage may vary. This might manifest as errors when running certain commands etc.
+
+Tooling required:
+- make
+- curl
+- arm SDK (will install using `make arm_sdk_install`)
+- clang (not required unless executing unit tests with `make test`) NOTE: if it errors with a BlocksRuntime error, check `sudo apt install libblocksruntime-dev`
+- gcc (for `make SITL`)
 
 ## Translators
 
@@ -115,7 +137,7 @@ You can also step-debug the tests in eclipse and you can use the GoogleTest test
 
 The tests are currently always compiled with debugging information enabled, there may be additional warnings, if you see any warnings please attempt to fix them and submit pull requests with the fixes.
 
-Tests are verified and working with GCC 4.9.3
+Tests are verified and working with GCC 13.3.0
 
 ## Using Git and Github
 
@@ -181,7 +203,7 @@ When you `git config --global --get core.excludesfile` a second time, you should
 
 ### Building a Hex File Locally
 
-Given the roll out of the CLOUD BUILD platform, there is a need for those of you who want to build locally to add in the options for selecting the features you want. Surprisingly this has always been there in the form of the `EXTRA_FLAGS` command line parameter for `make`. The cloud building platform merely makes use of this parameter - extensively.
+Given the roll out of the CLOUD BUILD platform, there is a need for those of you who want to build locally to add in the options for selecting the features you want. Whilst this has always been there in the form of the `EXTRA_FLAGS` command line parameter for `make`. The cloud building platform makes use of this parameter extensively to apply the options you select in the Betaflight App. You can do the same locally.
 
 The best way to demonstrate this is to give an example:
 
@@ -193,11 +215,11 @@ The above would make a F411 target hex with GPS and LED_STRIP included. Happy co
 
 :::note
 
-Please note the use of `-D` and the `USE_`. This differs from the way in which the configurator displays theses options.
+Please note the use of `-D` and the `USE_`. This differs from the way in which the app displays theses options.
 
 :::
 
-These defines that we add, either on the command line or in the custom defines (in expert mode) in the configurator, are called `gates`, and include or exclude whole sections of code.
+These defines that we add, either on the command line or in the custom defines (in expert mode) in the app, are called `gates`, and include or exclude whole sections of code.
 
 If you want to locally compile the default compile time configuration for a given manufacturer you can do so by:
 
