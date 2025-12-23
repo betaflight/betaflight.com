@@ -63,15 +63,17 @@ export default function TeamFeature() {
         <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4">
           {userData.map((user) => (
             <div key={user.id}>
-              <div className="h-full overflow-hidden relative flex flex-col items-center rounded-2xl bg-neutral-400/10 hover:bg-neutral-300/10 duration-150 p-4 shadow-none hover:shadow-lg shadow-neutral-900/5">
+              <div className="h-full overflow-hidden relative flex flex-col items-center rounded-xl bg-neutral-400/10 hover:bg-neutral-300/10 duration-150 p-4 shadow-none hover:shadow-lg shadow-neutral-900/5">
                 <img src={user.avatar_url} alt={user.login} className="rounded-full w-16 h-16" />
-                <div className="mt-2 text-primary-600 font-semibold">{user.login}</div>
-                <div className="text-sm text-neutral-600 font-semibold">{user.name}</div>
-                {user.location && <div className="text-sm text-neutral-600">{truncateStr(user.location)}</div>}
+                <div className="mt-2 text-primary-600 text-sm font-semibold">{user.login}</div>
+                <div className="text-xs text-neutral-600 font-semibold">{user.name}</div>
+                {user.location && <div className="text-xs text-neutral-600">{truncateStr(user.location)}</div>}
                 {user.blog && (
+                <div className="text-xs text-neutral-600 font-semibold">
                   <a className="fancy-link no-underline" href={checkLink(user.blog)} target="_blank" rel="noreferrer">
                     {truncateStr(checkLink(user.blog, true))}
                   </a>
+                </div>
                 )}
               </div>
             </div>

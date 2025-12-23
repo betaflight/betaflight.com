@@ -11,7 +11,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-font-size-base: 80%;
+  --ifm-font-size-base: 100%;
   --ifm-font-family-base: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --ifm-heading-font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --ifm-color-primary: #ffbb00;
@@ -21,7 +21,7 @@
   --ifm-color-primary-light: #ffc622;
   --ifm-color-primary-lighter: #ffd044;
   --ifm-color-primary-lightest: #ffda66;
-  --ifm-code-font-size: 80%;
+  --ifm-code-font-size: 100%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
   --ifm-color-warning-contrast-background: #ffcc0030 !important;
@@ -46,6 +46,10 @@ body {
 p {
   margin-top: 0rem;
   margin-bottom: 1rem;
+}
+
+p, .markdown p {
+  font-size: 0.9rem;
 }
 
 :root[data-theme='dark'] {
