@@ -6,7 +6,7 @@ Look in [development/building](/docs/category/building) for installation notes f
 
 Please contribute to this article to help others make git easier to use.
 
-## Clone your fork to your development machine.
+## Clone your fork to your development machine
 
 First make a fork of the repository you want to work on from the github website.
 
@@ -30,21 +30,21 @@ git config --global --edit
 git commit --amend --reset-author
 ```
 
-## Recommended git global environment:
+## Recommended git global environment
 
-# Windows:
+### Windows
 
 ```bash
 git config --global core.autocrlf true
 ```
 
-# Linux/OSX:
+### Linux/OSX
 
 ```bash
 git config --global core.autocrlf input
 ```
 
-# Cross-platform:
+### Cross-platform
 
 ```bash
 git config --global core.safecrlf warn
@@ -140,7 +140,7 @@ git reset HEAD^
 git reset --hard HEAD
 ```
 
-## Unwanted commits in your latest push.
+## Unwanted commits in your latest push
 
 First try:
 
@@ -243,15 +243,15 @@ git fetch origin branch:branch --update-head-ok
 
 Now you can make more changes and commit again. (This should just work with git pull - have to check this)
 
-# Advanced
+## Advanced
 
-## How to sign your commits with PGP
+### How to sign your commits with PGP
 
 See https://docs.github.com/en/github/authenticating-to-github/managing-commit-signature-verification/generating-a-new-gpg-key
 
 When using commit just add the -S flag to verify the commit and enter the passphrase you have chosen before.
 
-## Bisection
+### Bisection
 
 Do bisection:
 
@@ -277,11 +277,11 @@ git bisect bad
 Then git will automatically bisects commits between the two versions, checks out a new bisecting commit.
 You will build and test it, and tell git if the commit was good or bad.
 
-# Development branches
+## Development branches
 
 When working on multiple development branches, if your local repo is ahead of master, a new PR will include these commits. To resolve this issue:
 
-## Solution
+### Solution
 
 ```bash
 git fetch upstream
@@ -295,7 +295,7 @@ In the editor, delete all commits not part of the PR and save the file.
 git push origin branch --force-with-lease
 ```
 
-## Workflow for future PRs
+### Workflow for future PRs
 
 To prevent this issue in future PRs:
 
@@ -312,7 +312,7 @@ git commit -m "Your changes"
 git push origin new-feature-branch
 ```
 
-## Alternative approach if you want to keep your local master in sync:
+### Alternative approach if you want to keep your local master in sync:
 
 ```bash
 # Update your local master to match upstream
@@ -325,6 +325,6 @@ git push origin master --force-with-lease
 git checkout -b new-feature master
 ```
 
-## Links
+### Links
 
 [https://devconnected.com/how-to-remove-files-from-git-commit/](https://devconnected.com/how-to-remove-files-from-git-commit/)
