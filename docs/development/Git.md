@@ -166,7 +166,7 @@ git push origin +branch
 
 ## Update submodules (config)
 
-Reset the config submodule to match the main branch
+When working on firmware sometimes we need to reset the config submodule to match the master branch as it should not be included in any PR.
 
 ```
 git checkout origin/master -- src/config
