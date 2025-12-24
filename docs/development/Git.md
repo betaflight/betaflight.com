@@ -166,11 +166,13 @@ git push origin +branch
 
 ## Update submodules (config)
 
-Any submodule updates should not be included in a PR. To update use:
+Reset the config submodule to match the main branch
 
+```
 git checkout origin/master -- src/config
 git submodule update src/config
 git commit -m "Reset src/config submodule pointer"
+```
 
 ## See general changes
 
