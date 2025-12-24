@@ -164,33 +164,13 @@ git commit -m "Make new commit"
 git push origin +branch
 ```
 
-## Reset src/config to latest git-bot automated submodule commit.
+## Update submodules (config)
 
-Note: Good for making/updating PR's.
+Any submodule updates should not be included in a PR. To update use:
 
-```
-git submodule update --init --recursive
-```
-
-Note: Please make certain to exclude `src/config` from any PR's
-
-## Update src/config to latest repository commit.
-
-Note: Good for testing builds or pulling up-to-date configs.
-
-```
-make configs  #Alias for `git submodule update --init --remote -- src/config`
-```
-
-## Fixing src/config when git-rebasing.
-
-Note: Only some or multiple of these may be required.
-
-```
-git submodule update
-git update-index --skip-worktree src/config
-git checkout master -- src/config/
-```
+git checkout origin/master -- src/config
+git submodule update src/config
+git commit -m "Reset src/config submodule pointer"
 
 ## See general changes
 
