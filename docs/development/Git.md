@@ -6,11 +6,11 @@ Look in [development/building](/docs/category/building) for installation notes f
 
 Please contribute to this article to help others make git easier to use.
 
-## Clone your fork to your development machine.
+## Clone your fork to your development machine
 
 First make a fork of the repository you want to work on from the github website.
 
-```
+```bash
 git clone https://github.com/yourname/betaflight.git
 ```
 
@@ -18,35 +18,35 @@ git clone https://github.com/yourname/betaflight.git
 
 Please configure this to have the correct author in your commits
 
-```
+```bash
 git config --global user.name "Your Name"
 git config --global user.email "your@email.domain"
 ```
 
 If you omit to configure this you get a warning and have to use the following commands to rectify:
 
-```
+```bash
 git config --global --edit
 git commit --amend --reset-author
 ```
 
-## Recommended git global environment:
+## Recommended git global environment
 
-# Windows:
+### Windows
 
-```
+```bash
 git config --global core.autocrlf true
 ```
 
-# Linux/OSX:
+### Linux/OSX
 
-```
+```bash
 git config --global core.autocrlf input
 ```
 
-# Cross-platform:
+### Cross-platform
 
-```
+```bash
 git config --global core.safecrlf warn
 git config --global core.whitespace cr-at-eol
 git config --global core.filemode false
@@ -55,14 +55,14 @@ git config --global help.autocorrect true
 
 ## Setup remotes
 
-```
+```bash
 git remote add upstream https://github.com/betaflight/betaflight.git
 git remote -v
 ```
 
 ## Create a branch and start making changes
 
-```
+```bash
 git checkout -b branch
 ```
 
@@ -70,7 +70,7 @@ git checkout -b branch
 
 Commit your changes after making initial changes:
 
-```
+```bash
 git add .
 git commit -m "message"
 git push origin branch
@@ -80,14 +80,14 @@ Note: `git commit -am` or specify the files.
 
 ## Make more changes and commit on top of last commit
 
-```
+```bash
 git commit --amend
 git push origin +branch
 ```
 
 ## Update master branch with upstream updates and update your fork
 
-```
+```bash
 git checkout master
 git pull --rebase upstream master
 git push origin +master
@@ -95,7 +95,7 @@ git push origin +master
 
 ## Update your local branch with upstream changes
 
-```
+```bash
 git checkout branch
 git branch --set-upstream-to=upstream/master branch
 git pull --rebase
@@ -103,14 +103,14 @@ git pull --rebase
 
 or
 
-```
+```bash
 git pull upstream master
 git rebase -i master
 ```
 
 If you look at `git reflog --oneline` you will see these lines:
 
-```
+```bash
 shacode HEAD@{0}: rebase (finish): returning to refs/head/branch
 shacode HEAD@{1}: rebase (pick): your branch commit description
 shacode (upstream/master, origin/master, origin/HEAD, master) HEAD@{2}: rebase (start): checkout longsha
@@ -118,102 +118,84 @@ shacode (upstream/master, origin/master, origin/HEAD, master) HEAD@{2}: rebase (
 
 ## Unstage file from working area
 
-```
+```bash
 git restore --staged \<file> to unstage a file from working area.
 ```
 
 or
 
-```
+```bash
 git checkout --\<filename>
 ```
 
 ## Recover from unwanted commit without push
 
-```
+```bash
 git reset HEAD^
 ```
 
 ## If you want to completely remove the unstaged changes run
 
-```
+```bash
 git reset --hard HEAD
 ```
 
-## Unwanted commits in your latest push.
+## Unwanted commits in your latest push
 
 First try:
 
-```
+```bash
 git rebase -i origin/branch~2 branch
 git push origin +branch
 ```
 
 If this fails, backup your changed files (maybe also could use git stash)
 
-```
+```bash
 git reset HEAD~ --hard
 git checkout branch
 ```
 
 And restore your saved files (or use git stash pop)
 
-```
+```bash
 git add .
 git commit -m "Make new commit"
 git push origin +branch
 ```
 
-## Reset src/config to latest git-bot automated submodule commit.
+## Update submodules (config)
 
-Note: Good for making/updating PR's.
+When working on firmware sometimes we need to reset the config submodule to match the master branch as it should not be included in any PR.
 
-```
-git submodule update --init --recursive
-```
-
-Note: Please make certain to exclude `src/config` from any PR's
-
-## Update src/config to latest repository commit.
-
-Note: Good for testing builds or pulling up-to-date configs.
-
-```
-make configs  #Alias for `git submodule update --init --remote -- src/config`
-```
-
-## Fixing src/config when git-rebasing.
-
-Note: Only some or multiple of these may be required.
-
-```
-git submodule update
-git update-index --skip-worktree src/config
-git checkout master -- src/config/
+```bash
+git checkout origin/master -- src/config
+git submodule update src/config
+git commit -m "Reset src/config submodule pointer"
 ```
 
 ## See general changes
 
-```
+```bash
 git diff
 ```
 
 ## See changes in particular file
 
-```
+```bash
 git log -- src/main/cms/cms` .c
 ```
 
 ## Checkout work on another machine
 
-```
+```bash
 git checkout origin/branch
 git switch -c branch
 ```
 
 ## Quickly testing a PR
 
-```
+```bash
 git fetch upstream pull/2500/head:2500
 git checkout 2500
 ```
@@ -223,7 +205,7 @@ git checkout 2500
 From the project folder you can use something like: https://www.scraggo.com/how-to-squash-commits.
 Note the number of commits in your PR.
 
-```
+```bash
 git rebase -i HEAD~17
 ```
 
@@ -236,7 +218,7 @@ git rebase -i HEAD~17
 
 Finally update with:
 
-```
+```bash
 git push origin +branch
 ```
 
@@ -246,7 +228,7 @@ Sometimes you want to make changes to an existing PR.
 Before doing so please ask permission from the contributor.
 In the example please substitute the contributor, betaflight_project and branch:
 
-```
+```bash
 git remote add contributor https://github.com/contributor/betaflight_project.git
 git remote -v
 git fetch contributor
@@ -255,25 +237,25 @@ git switch branch
 
 The original author now can pull the changes to the local branch with:
 
-```
+```bash
 git fetch origin branch:branch --update-head-ok
 ```
 
 Now you can make more changes and commit again. (This should just work with git pull - have to check this)
 
-# Advanced
+## Advanced
 
-## How to sign your commits with PGP
+### How to sign your commits with PGP
 
 See https://docs.github.com/en/github/authenticating-to-github/managing-commit-signature-verification/generating-a-new-gpg-key
 
 When using commit just add the -S flag to verify the commit and enter the passphrase you have chosen before.
 
-## Bisection
+### Bisection
 
 Do bisection:
 
-```
+```bash
 git bisect reset
 git bisect start
 git checkout 4.1.1
@@ -281,25 +263,25 @@ git checkout 4.1.1
 
 Build and make sure it works
 
-```
+```bash
 git bisect good
 git checkout 4.1.2
 ```
 
 Build and make sure it fails
 
-```
+```bash
 git bisect bad
 ```
 
 Then git will automatically bisects commits between the two versions, checks out a new bisecting commit.
 You will build and test it, and tell git if the commit was good or bad.
 
-# Development branches
+## Development branches
 
 When working on multiple development branches, if your local repo is ahead of master, a new PR will include these commits. To resolve this issue:
 
-## Solution
+### Solution
 
 ```bash
 git fetch upstream
@@ -313,7 +295,7 @@ In the editor, delete all commits not part of the PR and save the file.
 git push origin branch --force-with-lease
 ```
 
-## Workflow for future PRs
+### Workflow for future PRs
 
 To prevent this issue in future PRs:
 
@@ -330,7 +312,7 @@ git commit -m "Your changes"
 git push origin new-feature-branch
 ```
 
-## Alternative approach if you want to keep your local master in sync:
+### Alternative approach if you want to keep your local master in sync:
 
 ```bash
 # Update your local master to match upstream
@@ -343,6 +325,6 @@ git push origin master --force-with-lease
 git checkout -b new-feature master
 ```
 
-## Links
+### Links
 
 [https://devconnected.com/how-to-remove-files-from-git-commit/](https://devconnected.com/how-to-remove-files-from-git-commit/)
