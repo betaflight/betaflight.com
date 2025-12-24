@@ -58,9 +58,11 @@ export default function Home({ recentPosts }: BlogProps) {
         <div className="flex flex-col xl:w-4/5 m-4 space-y-4">
           <div className="backdrop-blur-md shadow-xl flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
             <div className="text-center text-md">
-              <h2 className="text-primary-600 font-bold text-2xl md:text-3xl mb-4">Pushing the Limits of UAV Performance</h2>
-              <p className="text-center xs:text-sm sm:text-lg xl:text-xl">
-                Betaflight is the world's leading multi-rotor flight control software.<br></br>
+              <h2 className="text-primary-600 font-bold text-2xl md:text-2xl mb-4">Pushing the Limits of UAV Performance</h2>
+              <p className="text-center xs:text-sm sm:text-lg xl:text-lg">
+                Betaflight is the world's leading multi-rotor flight control software.
+              </p>
+              <p className="text-center xs:text-sm sm:text-lg xl:text-lg">
                 The global FPV drone racing and freestyle community choose Betaflight for its performance, precision, cutting edge features, reliability and hardware support.
               </p>
             </div>
@@ -128,11 +130,10 @@ export default function Home({ recentPosts }: BlogProps) {
           <div className="flex flex-col xl:flex-row space-x-4 justify-center items-center gap-4">
             <div className="space-y-4">
               <div className="float-right">
-                <p className="text-lg text-center">
-                  Highly skilled developers lend their time for free in order to develop and maintain this project.<br></br>
-                  If you enjoy this firmware or use it for professional work we would really appreciate your support.<br></br>
-                  We use the donations to help with out of pocket costs, e.g. test hardware, hardware analysis equipment and running build servers.<br></br>
-                  For those who do donate either their time or funds, we are exceptionally grateful for.
+                <p className="text-md text-center">
+                  Highly skilled developers lend their time for free in order to develop and maintain this project. If you enjoy this firmware or use it for professional work we would really appreciate your support.
+                  We use the donations to help with out of pocket costs, e.g. test hardware, hardware analysis equipment and running build servers.<br /><br />
+                  For those who do donate either their time or funds, we are exceptionally grateful for your contribution.
                 </p>
               </div>
             </div>

@@ -48,6 +48,10 @@ p {
   margin-bottom: 1rem;
 }
 
+p, .markdown p {
+  font-size: 0.9rem;
+}
+
 :root[data-theme='dark'] {
   --ifm-background-color: #18181b !important;
 }
