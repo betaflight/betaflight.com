@@ -191,7 +191,17 @@ export default function Media() {
                 </div>
               </AboutCard>
             </div>
+
+            <div>
+              <AboutCard title="Betaflight 2025.12 Position Hold" className="text-primary-600" Icon={PlayIcon}>
+                <div>
+                  <YouTube videoId="Wk2uNRD8kNc" opts={videoSize} />
+                </div>
+              </AboutCard>
+            </div>
+
           </div>
+
         </HomepageFeature>
 
         {/* End Videos block */}
