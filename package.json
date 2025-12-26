@@ -48,6 +48,7 @@
     "react-slugify": "^3.0.0",
     "react-snap-carousel": "^0.0.3",
     "react-youtube": "^10.1.0",
+    "recharts": "^3.6.0",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
     "remark-mentions": "^1.1.0",
