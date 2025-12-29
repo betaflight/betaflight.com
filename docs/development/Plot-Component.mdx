@@ -202,11 +202,11 @@ export function g(x) {
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
   <div>
     <h6 className="text-center">Low Samples (10)</h6>
-    <Plot fn={(x) => g(x)} samples={10} dot={true} />
+    <Plot fn={g} samples={10} dot={true} />
   </div>
   <div>
     <h6 className="text-center">High Samples (50)</h6>
-    <Plot fn={(x) => g(x)} samples={50} dot={true} />
+    <Plot fn={g} samples={50} dot={true} />
   </div>
 </div>
 
@@ -222,11 +222,11 @@ export function g(x) {
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
   <div>
     <h6 className="text-center">Low Samples (10)</h6>
-    <Plot fn={(x) => g(x)} samples={10} dot={true} />
+    <Plot fn={g} samples={10} dot={true} />
   </div>
   <div>
     <h6 className="text-center">High Samples (50)</h6>
-    <Plot fn={(x) => g(x)} samples={50} dot={true} />
+    <Plot fn={g} samples={50} dot={true} />
   </div>
 </div>
 ```

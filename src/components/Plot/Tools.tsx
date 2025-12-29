@@ -37,6 +37,8 @@ export async function loadLookup(url: string): Promise<DataPoint[]> {
  * Samples a function across [xmin, xmax] with n points and returns datapoints.
  */
 export function sampleFunction(fn: (x: number) => number, xmin: number, xmax: number, n: number): DataPoint[] {
+  if (n <= 0) return [];
+  if (n === 1) return [{ x: xmin, y: fn(xmin) }];
   const data: DataPoint[] = [];
   const step = (xmax - xmin) / (n - 1);
   for (let i = 0; i < n; i++) {
