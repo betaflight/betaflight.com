@@ -1,0 +1,255 @@
+---
+title: Plot Component
+sidebar_label: Plot Component
+---
+
+import Plot, { Series } from '@site/src/components/Plot'
+
+The `<Plot>` component enables **high-quality data visualizations** within the Betaflight documentation.
+Built on [**Recharts**](https://recharts.github.io/), it supports plotting of analytical functions, experimental data and lookup tables from CSV/JSON files.
+In combination with our built-in $\LaTeX$ rendering, this component is **ideal for documenting** flight control algorithms, PID tuning curves, sensor characteristics and more.
+
+## Basic Functions
+
+Plot any function $f: \mathbb{R} \to \mathbb{R}$ with a simple inline definition.
+
+<Plot fn={(x) => x**2} />
+
+###### MDX Example:
+
+```tsx
+import Plot from '@site/src/components/Plot'
+
+<Plot fn={(x) => x**2} />
+```
+
+## Multiple Series
+
+To plot multiple data series, use `<Series>` as child components to overlay multiple functions or datasets. Use property `label` to drive the legend.
+Line colors automatically cycle through this color pattern:
+
+<span style={{ color: 'var(--plot-color-1)' }}>██</span>
+<span style={{ color: 'var(--plot-color-2)' }}>██</span>
+<span style={{ color: 'var(--plot-color-3)' }}>██</span>
+<span style={{ color: 'var(--plot-color-4)' }}>██</span>
+<span style={{ color: 'var(--plot-color-5)' }}>██</span>
+<span style={{ color: 'var(--plot-color-6)' }}>██</span>
+<span style={{ color: 'var(--plot-color-7)' }}>██</span>
+
+<Plot>
+  <Series label="sin(2πx)" fn={(x) => Math.sin(2 * Math.PI * x)} />
+  <Series label="cos(2πx)" fn={(x) => Math.cos(2 * Math.PI * x)} />
+</Plot>
+
+###### MDX Example:
+
+```tsx
+import Plot, { Series } from '@site/src/components/Plot'
+
+<Plot>
+  <Series label="sin(2πx)" fn={(x) => Math.sin(2 * Math.PI * x)} />
+  <Series label="cos(2πx)" fn={(x) => Math.cos(2 * Math.PI * x)} />
+</Plot>
+```
+
+## Styling
+
+You can override styling properties `color`, `strokeWidth` and `strokeDasharray` per-series.
+
+<Plot>
+  <Series label="sin(2πx)" fn={(x) => Math.sin(2 * Math.PI * x)} color="#919191ff" strokeDasharray="16 8" strokeWidth={2} />
+  <Series label="cos(2πx)" fn={(x) => Math.cos(2 * Math.PI * x)} color="#335e96ff" strokeWidth={8} />
+</Plot>
+
+###### MDX Example:
+
+```tsx
+import Plot, { Series } from '@site/src/components/Plot'
+
+<Plot>
+  <Series label="sin(2πx)" fn={(x) => Math.sin(2 * Math.PI * x)} color="#919191ff" strokeDasharray="16 8" strokeWidth={2} />
+  <Series label="cos(2πx)" fn={(x) => Math.cos(2 * Math.PI * x)} color="#335e96ff" strokeWidth={8} />
+</Plot>
+```
+
+## Domain
+
+Change the domain to highlight interesting ranges using `xmin` and `xmax`.
+
+<Plot xmin={-2} xmax={2}>
+  <Series label="sinc" fn={(x) => (x === 0 ? 1 : Math.sin(Math.PI * x) / (Math.PI * x))} />
+  <Series label="tanh" fn={(x) => Math.tanh(x)} />
+</Plot>
+
+###### MDX Example:
+
+```tsx
+import Plot, { Series } from '@site/src/components/Plot'
+
+<Plot xmin={-2} xmax={2}>
+  <Series label="sinc" fn={(x) => (x === 0 ? 1 : Math.sin(Math.PI * x) / (Math.PI * x))} />
+  <Series label="tanh" fn={(x) => Math.tanh(x)} />
+</Plot>
+```
+
+## Data from Files (JSON/CSV)
+
+You can also visualize data from **CSV** and **JSON** files.
+Perfect for displaying measurement data or lookup tables.
+Point property `lookup` to the file URL to load data.
+
+<Plot lookup="/data/example_noise.csv" label="Noisy Data" strokeWidth={1} />
+
+###### MDX Example:
+
+```tsx
+import Plot from '@site/src/components/Plot'
+
+<Plot lookup="/data/example_noise.csv" label="Noisy Data" strokeWidth={1} />
+```
+
+###### JSON File Structure:
+
+```tsx
+{
+  "x": [0, 0.25, 0.5, 0.75, 1.0],
+  "y": [0, 0.3, 0.6, 0.85, 1.0]
+}
+```
+
+###### CSV File Structure:
+
+```tsx
+0.0, 0.0
+0.25, 0.3
+0.5, 0.6
+0.75, 0.85
+1.0, 1.0
+```
+
+## Layout
+
+Combine `<Plot>` with standard HTML and $\LaTeX$ rendering to build neat side-by-side views. This grid uses two plots and keeps them responsive.
+
+export function f(x, k = 0) {
+  return x * (1 + k * (1 - x)**2)
+}
+
+export function df(x, k = 0) {
+  return 1 + k * (1 - x)**2 - 2 * x * k * (1 - x)
+}
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+  <div>
+    <h6 className="text-center">$f_k(x) = k x (1 - x)^2 + x$</h6>
+    <Plot>
+      <Series label="k=0.5" fn={(x) => f(x, 0.5)} />
+      <Series label="k=1.0" fn={(x) => f(x, 1.0)} />
+      <Series label="k=1.5" fn={(x) => f(x, 1.5)} />
+    </Plot>
+  </div>
+  <div>
+    <h6 className="text-center">$f'_k(x) = k (1-x)^2 - 2 k x (1-x) + 1$</h6>
+    <Plot>
+      <Series label="k=0.5" fn={(x) => df(x, 0.5)} />
+      <Series label="k=1.0" fn={(x) => df(x, 1.0)} />
+      <Series label="k=1.5" fn={(x) => df(x, 1.5)} />
+    </Plot>
+  </div>
+</div>
+
+###### MDX Example:
+
+```tsx
+import Plot, { Series } from '@site/src/components/Plot'
+
+export function f(x, k = 0) {
+  return x * (1 + k * (1 - x)**2)
+}
+
+export function df(x, k = 0) {
+  return 1 + k * (1 - x)**2 - 2 * x * k * (1 - x)
+}
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+  <div>
+    <h6 className="text-center">$f_k(x) = k x (1 - x)^2 + x$</h6>
+    <Plot>
+      <Series label="k=0.5" fn={(x) => f(x, 0.5)} />
+      <Series label="k=1.0" fn={(x) => f(x, 1.0)} />
+      <Series label="k=1.5" fn={(x) => f(x, 1.5)} />
+    </Plot>
+  </div>
+  <div>
+    <h6 className="text-center">$f'_k(x) = k (1-x)^2 - 2 k x (1-x) + 1$</h6>
+    <Plot>
+      <Series label="k=0.5" fn={(x) => df(x, 0.5)} />
+      <Series label="k=1.0" fn={(x) => df(x, 1.0)} />
+      <Series label="k=1.5" fn={(x) => df(x, 1.5)} />
+    </Plot>
+  </div>
+</div>
+```
+
+## Sampling Density
+
+Lower samples are jaggier, higher samples are smoother. Compare these Plots below. To visualize samples (data points), enable the `dot` property. It is great for sparse datasets but distracting on dense ones with many samples.
+
+export function g(x) {
+  return Math.exp(-4 * x) * Math.sin(16 * x)
+}
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+  <div>
+    <h6 className="text-center">Low Samples (10)</h6>
+    <Plot fn={g} samples={10} dot={true} />
+  </div>
+  <div>
+    <h6 className="text-center">High Samples (50)</h6>
+    <Plot fn={g} samples={50} dot={true} />
+  </div>
+</div>
+
+###### MDX Example:
+
+```tsx
+import Plot, { Series } from '@site/src/components/Plot'
+
+export function g(x) {
+  return Math.exp(-4 * x) * Math.sin(16 * x)
+}
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+  <div>
+    <h6 className="text-center">Low Samples (10)</h6>
+    <Plot fn={g} samples={10} dot={true} />
+  </div>
+  <div>
+    <h6 className="text-center">High Samples (50)</h6>
+    <Plot fn={g} samples={50} dot={true} />
+  </div>
+</div>
+```
+
+## Property Defaults
+
+| Property          | Default        | Description                                                      |
+| ----------------- | -------------- | ---------------------------------------------------------------- |
+| `fn`              | —              | `(x: number) => number` function to sample across `[xmin, xmax]` |
+| `lookup`          | —              | URL to JSON/CSV data file                                        |
+| `xmin`            | `0`            | Lower bound for sampling and axis domain                         |
+| `xmax`            | `1`            | Upper bound for sampling and axis domain                         |
+| `samples`         | `100`          | Number of sample points for `fn`                                 |
+| `label`           | `y-#`          | Legend text for the series                                       |
+| `color`           | cycles         | Line color (CSS color value)                                     |
+| `strokeWidth`     | `4`            | Line thickness in pixels                                         |
+| `strokeDasharray` | `"0"`          | Dash pattern (e.g., `"8 4"` or `"0"` for solid)                  |
+| `dot`             | `false`        | Show data points as dots                                         |
+| `id`              | auto-generated | Unique identifier for the series                                 |
+
+## Tips
+
+- Place data files under `static/` (e.g., `static/lut/test.csv`) so they are served at the same path in production.
+- Prefer `lookup` for measured data and `fn` for analytic expressions.
+- Keep `samples` modest for heavy pages; the default of 100 points is usually plenty.
+- Use `dot` sparingly; it is great for sparse datasets and distracting on dense ones.
