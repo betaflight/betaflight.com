@@ -1,8 +1,4 @@
 {
-  "label": "App",
-  "position": 5,
-  "link": {
-    "type": "generated-index",
-    "description": "Learn all of the app tabs and options."
-  }
+  "label": "Betaflight App",
+  "position": 5
 }
