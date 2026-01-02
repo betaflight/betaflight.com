@@ -9,7 +9,7 @@ export default function PartnerOverview(): React.JSX.Element {
   const { colorMode } = useColorMode();
 
   async function fetchData(mode: string): Promise<void> {
-    const response = await fetch(`https://build.betaflight.com/api/configurator/sponsors/${mode}/all`);
+    const response = await fetch(`https://build.betaflight.com/api/app/sponsors/${mode}/all`);
     setData(await response.text());
   }
 
