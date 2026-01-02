@@ -120,7 +120,7 @@ Many GPS modules are mounted with some pitch forward angle. This will put a forw
 
 Note that the sensor can be soldered to the board (GPS or Standalone) with it's X axis facing forward, or backwards, or left, or right, and you may have mounted the module facing forward, sideways or backwards on the quad. Hence the X axis can often point in the wrong direction with respect to the nose of the quad. This is why you should always check the X axis orientation before using the Mag.
 
-The `Mag alignment` setting in Configurator (`align_mag` in the [CLI](/docs/wiki/configurator/cli-tab) should be used to correct the orientation. Standard corrections (e.g. `CW90` to rotate the axes 90° clockwise) are provided for common alignment problems. If the module is tilted backwards, or at an unusual angle, a `custom` orientation correction will be required. See the `Magnetometer Orientation` section, below, for more information.
+The `Mag alignment` setting in Configurator (`align_mag` in the [CLI](/docs/wiki/app/cli-tab) should be used to correct the orientation. Standard corrections (e.g. `CW90` to rotate the axes 90° clockwise) are provided for common alignment problems. If the module is tilted backwards, or at an unusual angle, a `custom` orientation correction will be required. See the `Magnetometer Orientation` section, below, for more information.
 
 ## Hardware and Connection
 
@@ -207,7 +207,7 @@ The top three panels show the current raw X, Y and Z Mag field strength values, 
 Additionally, during calibration, the lower panels show the Cal values as they are being recalculated. You'll see a spike in these values right at the start of the Cal process. At the bottom of the screen, the lambda value approaches 2000 as the calibration is complete, and on completion it drops to zero. The X Y and Z cal values can be seen there once the cal is complete.
 
 :::note
-Before checking orientation, the sensor must first be 'quick' calibrated!  
+Before checking orientation, the sensor must first be 'quick' calibrated!
 This initial calibration does not have to be perfect, but it must be done.
 :::
 
@@ -437,7 +437,7 @@ If the code is built with GPS support, both the current Mag heading and the GPS 
 In the OSD, heading can be shown as numerical values in degrees, or indicated graphically.
 
 :::tip
-If everything is working properly, the quad's icon, as shown in the main page of Configurator, should move without sudden jumps, once Mag is enabled. Sudden jumps after quick movements usually mean that the orientation is not correct.  
+If everything is working properly, the quad's icon, as shown in the main page of Configurator, should move without sudden jumps, once Mag is enabled. Sudden jumps after quick movements usually mean that the orientation is not correct.
 :::
 
 If GPS working properly, and GPS Rescue enabled in the Failsafe tab, heading information from Mag can be logged in Debug 4 of the `GPS_RESCUE_HEADING` debug.

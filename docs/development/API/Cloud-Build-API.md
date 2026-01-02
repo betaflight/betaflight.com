@@ -31,7 +31,7 @@ When using the cloud build system (via the Configurator or API), you can customi
 4. **Build and flash**: Click the build or flash button. The cloud build system will generate firmware with your selected options included.
 
 :::info
-For more details, see the [wiki/Firmware Flasher page](/docs/wiki/configurator/firmware-flasher-tab) and the complete listing of [build options](/docs/development/Defines).
+For more details, see the [wiki/Firmware Flasher page](/docs/wiki/app/firmware-flasher-tab) and the complete listing of [build options](/docs/development/Defines).
 :::
 
 :::note

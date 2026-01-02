@@ -10,7 +10,7 @@ It is an unfortunate fact that sometimes things just go wrong. Be that on by a f
 
 ### No COM Port Appears
 
-- Make sure that you are plugging the USB cable into the flight controller. There may be parts that may have a USB port, so don't confuse it with your flight controller A DJI Air Unit is a video transmitter.  
+- Make sure that you are plugging the USB cable into the flight controller. There may be parts that may have a USB port, so don't confuse it with your flight controller A DJI Air Unit is a video transmitter.
   Neither should you try to connect your radio to the configurator. The Betaflight App is not meant be used to set up your radio, use your radio's software for that (OpenTX companion, EdgeTX Buddy, etc.)
 - Make sure you are using a USB cable that is capable of data transfer. Some USB cables are only for charging
 - You may need to install the drivers for your flight controller. There is a download link for the ImpulseRC Driver
@@ -78,9 +78,9 @@ Enabling BiDirectional DShot in Betaflight is often not enough. You may need to 
 
 - Make sure that your receiver is connected correctly - make sure that the signal wires connect as "TX to RX" and "RX to TX". If they're connected "TX to TX" and "RX to RX", it will not work
 
-- In the [Ports Tab](/docs/wiki/configurator/ports-tab), make sure that the `Serial Rx` option is enabled for the port that your receiver is connected to
+- In the [Ports Tab](/docs/wiki/app/ports-tab), make sure that the `Serial Rx` option is enabled for the port that your receiver is connected to
 
-- In the [Receiver Tab](/docs/wiki/configurator/receiver-tab), make sure that the `Serial Receiver Provider` is set to the correct protocol for your receiver
+- In the [Receiver Tab](/docs/wiki/app/receiver-tab), make sure that the `Serial Receiver Provider` is set to the correct protocol for your receiver
 
 - If you are using an external receiver but also have a DJI Air Unit connected, make sure that the Air Unit SBUS wire is removed from the plug
 
@@ -105,7 +105,7 @@ If the preset options don't work, you can try changing the channel map manually.
 
   - You need the video signal to pass through the FCs onboard OSD chip. If your camera is connected to the VTX directly, you won't get any OSD
 
-  - Make sure that the `OSD` option is enabled in the [Configuration Tab](/docs/wiki/configurator/configuration-tab)
+  - Make sure that the `OSD` option is enabled in the [Configuration Tab](/docs/wiki/app/configuration-tab)
 
   - The preview in the configurator may not be accurate to what you see on your goggles. Some elements on the edges may be cut off. Start by placing them near the center, then move them slowly to the edges to see when they get cut off
 
@@ -115,7 +115,7 @@ If the preset options don't work, you can try changing the channel map manually.
 
   As digital systems are still relatively new, and so is fully-customizable OSD, the setup process may change from version to version. If you're following an external tutorial, make sure that it's up to date
 
-  - In 4.3 and earlier, the setup was a little more convoluted, requiring a bit of CLI work. In 4.4 and later, the setup is much easier, and you can simply enable the `VTX (MSP + Displayport)` option in the [Ports Tab](/docs/wiki/configurator/ports-tab)
+  - In 4.3 and earlier, the setup was a little more convoluted, requiring a bit of CLI work. In 4.4 and later, the setup is much easier, and you can simply enable the `VTX (MSP + Displayport)` option in the [Ports Tab](/docs/wiki/app/ports-tab)
 
   - There are presets to make the following setup easier, pick the correct one for your system
 
@@ -129,7 +129,7 @@ If the preset options don't work, you can try changing the channel map manually.
 
 - The VTX may be in Pit Mode. Pit Mode is a feature that makes the VTX transmit at very low power, or even to not transmit at all. If you're using a VTX that supports Pit Mode, make sure that it's not enabled when you're flying
 
-- The VTX may be running at low power. Most VTXs have adjustable power outputs, but they may need to be changed to output at full power. Similar to Pit Mode, you need to change it in the [Video Transmitter Tab](/docs/wiki/configurator/vtx-tab)
+- The VTX may be running at low power. Most VTXs have adjustable power outputs, but they may need to be changed to output at full power. Similar to Pit Mode, you need to change it in the [Video Transmitter Tab](/docs/wiki/app/vtx-tab)
 
 ### Cannot Change Font
 
@@ -141,9 +141,9 @@ If the preset options don't work, you can try changing the channel map manually.
 
 ### Drone Won't Arm
 
-- You need to have an `ARM` mode set up, which can be done in the [Modes tab](/docs/wiki/configurator/auxiliary-tab) You can also arm using a stick command, but that is pretty dangerous and not recommended
+- You need to have an `ARM` mode set up, which can be done in the [Modes tab](/docs/wiki/app/auxiliary-tab) You can also arm using a stick command, but that is pretty dangerous and not recommended
 
-- There is a lot of checks that need to pass before the drone can arm. If any of them fail, the drone fail to do so. You can see the different arm prevention flags in the OSD, or in the [CLI tab](/docs/wiki/configurator/cli-tab) after sending a `status` command
+- There is a lot of checks that need to pass before the drone can arm. If any of them fail, the drone fail to do so. You can see the different arm prevention flags in the OSD, or in the [CLI tab](/docs/wiki/app/cli-tab) after sending a `status` command
 
   Some of the more common arm prevention flags are:
 
@@ -173,7 +173,7 @@ The "shut-off" part is an intended behavior, meant to protect against the drone 
 
 - If the props are spinning in the wrong direction, the thrust will not be equal on one side, and the drone will flip. Make sure that the motor direction is correct, and that the props are oriented correctly
 
-- The motor and prop orientation may be correct, but Betaflight may expect a different orientation entirely. Make sure that the `Motor direction is reversed` option is set correctly in the [Motors Tab](/docs/wiki/configurator/motors-tab)
+- The motor and prop orientation may be correct, but Betaflight may expect a different orientation entirely. Make sure that the `Motor direction is reversed` option is set correctly in the [Motors Tab](/docs/wiki/app/motors-tab)
 
 ![Betaflight Motor Direction](/img/betaflight_props_in_out.png)
 

@@ -12,7 +12,7 @@ An ESC is the Electronic Speed Controller which supplies power to the craft's mo
 
 ## Bidirectional DShot Firmware
 
-The Bidirectional DShot protocol can be enabled in the [Configurator Motors Tab](/docs/wiki/configurator/motors-tab#escmotor-features). Modern Bidirectional DShot is different (and more robust) in BetaFlight 4.5 than BetaFlight 4.0. The ESC firmware must be correct to ensure support for DShot Telemetry and provide the best Betaflight performance. We strongly recommend the use of DShot in conjunction with RPM filtering for the benefits in handling and smooth flight.
+The Bidirectional DShot protocol can be enabled in the [Configurator Motors Tab](/docs/wiki/app/motors-tab#escmotor-features). Modern Bidirectional DShot is different (and more robust) in BetaFlight 4.5 than BetaFlight 4.0. The ESC firmware must be correct to ensure support for DShot Telemetry and provide the best Betaflight performance. We strongly recommend the use of DShot in conjunction with RPM filtering for the benefits in handling and smooth flight.
 
 ### Bidirectional DShot Versions
 
@@ -90,7 +90,7 @@ BlueJay is easily flashed with an elegant online flashing tool [ESC Configurator
 | 0.20       | `N`         | Old testing version, withdrawn from release due to problems.                                           |
 | 0.20.1-RC2 | `N`\*       | Latest test code. Includes EDT v2 support. 3D mode working                                             |
 
-_\*Recommended if you fly 3D as this fixes 3D mode transitions. Please read [Configurator Guide notes on 3D Mode](/docs/wiki/configurator/motors-tab#3d-escmotor-features) before enabling._
+_\*Recommended if you fly 3D as this fixes 3D mode transitions. Please read [Configurator Guide notes on 3D Mode](/docs/wiki/app/motors-tab#3d-escmotor-features) before enabling._
 
 ### JFlight
 

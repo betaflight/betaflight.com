@@ -95,8 +95,8 @@ out of dives and decreased to avoid unwanted downward thrust during inverted man
 :::info
 
 Air mode does not work properly when using 3D mode, you should disable permanent Air Mode in the
-[Configuration Tab](/docs/wiki/configurator/configuration-tab#other-features) and configure Air
-Mode on a switch in the [Modes Tab](/docs/wiki/configurator/auxiliary-tab) so that Air Mode is
+[Configuration Tab](/docs/wiki/app/configuration-tab#other-features) and configure Air
+Mode on a switch in the [Modes Tab](/docs/wiki/app/auxiliary-tab) so that Air Mode is
 disabled when 3D mode is activated. Simply set the "Air Mode" mode range to be the same switch channel and values as
 the "Disable 3D Mode" mode range.
 
