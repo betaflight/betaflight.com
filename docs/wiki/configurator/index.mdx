@@ -8,6 +8,13 @@ The Betaflight App (formerly Betaflight Configurator) is used to configure setti
 
 The latest version of the Betaflight App is available on https://app.betaflight.com for PC, or as a native app for Android that can be downloaded from the most recent release on the [releases page](https://github.com/betaflight/betaflight-configurator/releases/latest).
 
+:::info
+
+- The 10.10.0 release of the Betaflight App is compatible with Betaflight Firmware from 4.5.3 down to 4.2.x
+- The 2025.12.1 release of the Betaflight App is compatible with Betaflight Firmware 2025.12.x, 4.5.x down to 4.3.x
+
+:::
+
 The web-based App (2025.12.1 and forward) requires a Chromium-based desktop browser with support for the [WebUSB API](https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API), [WebSerial API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API) and optionally the [Web Bluetooth API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API). You can use Chrome or Edge, those are the most common Chromium-based browsers that you'll most likely already have installed. For those who don't want to use proprietary versions of Chromium, you can use your own preferred open-source alternatives based on Chromium, such as [ungoogled-chromium](https://github.com/ungoogled-software/ungoogled-chromium), [Thorium](https://github.com/Alex313031/thorium/) or [Helium](https://github.com/imputnet/helium).
 
 :::warning
@@ -89,11 +96,11 @@ This feature is still "work-in-progress" as of the 2025.12.1 release. Please rep
 
 :::
 
-The latest (2025.12.1) version of the App supports connecting to flight controllers through ELRS receivers via Wifi TCP/IP on mobile devices.
+The latest (2025.12.1) version of the App supports connecting to flight controllers through ELRS receivers via Wi-Fi TCP/IP on mobile devices.
 
 1. Ensure that the `Enable manual connection mode` setting is enabled in the `Options` tab.
    ![Betaflight App - Enable manual connection mode](/img/betaflight_configurator_enable_manual_connection.png)
-2. Connect to your ELRS receiver via Wifi, or connect to the same network that the receiver is set up to use.
+2. Connect to your ELRS receiver via Wi-Fi, or connect to the same network that the receiver is set up to use.
 3. Select `Manual connection` from the port selection dropdown and enter in either `10.0.0.1` if you're connected to the receiver directly, or its local IP address if you're connected to the same network.
    ![Betaflight App - Manual connection](/img/betaflight_configurator_manual_connection.png)
 4. Click the `Connect` button to connect to the flight controller.
