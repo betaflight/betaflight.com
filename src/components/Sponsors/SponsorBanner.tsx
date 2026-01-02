@@ -30,7 +30,7 @@ export default function SponsorBanner(): React.JSX.Element {
   }, []);
 
   async function fetchData(mode: string, page: string): Promise<void> {
-    const response = await fetch(`https://build.betaflight.com/api/configurator/sponsors/${mode}/${page}`);
+    const response = await fetch(`https://build.betaflight.com/api/app/sponsors/${mode}/${page}`);
     setLoading(true);
     setTimeout(async () => {
       setData(await response.text());
