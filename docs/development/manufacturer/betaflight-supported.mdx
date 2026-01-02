@@ -1,0 +1,47 @@
+---
+sidebar_position: 3
+sidebar_label: Betaflight Supported
+title: Betaflight Supported
+---
+
+The Betaflight Supported option is available to manufacturers of new and existing Flight Controllers that meet the [Manufacturer Design Guidelines](manufacturer-design-guidelines). Please contact the [Betaflight team](mailto:cloudtargets@betaflight.com) to submit your targets and get supported key that can be added to your config file.
+
+## Benefits
+
+Betaflight Supported targets will receive:
+
+1. "Official" Status: The target is recognized as officially supported code.
+2. Priority Cloud Build: Access to the high-speed build server for faster firmware compilation.
+3. No Warnings: Users selecting this target in the Configurator will see a clean interface with no disclaimer warnings.
+4. Immediate Availability: Targets can be updated and backported. You do not have to wait for the next major release cycle to fix issues or add support.
+5. Public Recognition: Brand identified and thanked within the ecosystem.
+
+## Requirements
+
+Any targets being presented to the config repository wishing to receive **Betaflight Supported** status will be required to follow these conditions:
+
+1. Schematics need to be presented with the prospective config file. If your company requires these schematics to not be public they can be emailed to [cloudtargets@betaflight.com](mailto:cloudtargets@betaflight.com)
+
+2. Our team will assess the schematics. If the schematic has resource sharing, lack of DMA and or timers on critical functions, e.g. gyro, motors, sharing SPI bus lines or is a blatant clone of existing designs (especially so if we consider it to be poorly designed), it will be denied supported status until it is redesigned to both meet the expected performance of the betaflight firmware, and demonstrates it is not merely a clone of an existing design.
+
+3. There is a target fee for our team to go through the approval process and give **Betaflight Supported** status in the cloud build system. Please contact the team via cloudtargets@betaflight.com for details. Note if you are a hobbyist please contact us via our Discord or the above email as we will not be charging non-commercial users for target insertion.
+
+4. If a company wants to collaborate on the design with our team for performance testing, optimisation and official **Betaflight Supported** status to their flight controller we have a number of options available via the [Betaflight Partners Program](https://betaflight.com/docs/sponsors/partners) with details available by emailing the [team](mailto:partnersprogram@betaflight.com).
+
+5. We have developed the [Manufacturer Design Guidelines](https://betaflight.com/docs/development/manufacturer/manufacturer-design-guidelines) to give guidance to manufacturers in the design process.
+
+6. If your company is part of the [Betaflight Partners Program](https://betaflight.com/docs/sponsors/partners) you are exempt from the target fees for new targets released during your partnership term.
+
+## Community and / or Manufacturer Supported
+
+To maintain consistency and simplify the user experience we will continue to offer the ability to submit targets that are community or manufacturer supported. This is for legacy hardware that is no longer sold, community-submitted "homebrew" boards, or manufacturers who wish to provide direct support.
+
+The limitations include:
+
+1. "As-Is" Status: Included in the source code but flagged as non-official.
+2. Configurator Warnings: Users selecting these targets will see a disclaimer similar to: "This is not an official Betaflight target. Please contact the manufacturer for support. Your mileage may vary."
+3. Slower Cloud Build: allocated to a lower-priority build server queue, and subject to availability.
+4. Release Delays: No backporting or prior-version support. New targets are only included in the next major official release.
+5. Basic Review Only: PRs will only be checked for critical safety conflicts (e.g., timer conflicts, motor counts).
+
+Importantly these boards are not maintained by the Betaflight team and may stop working at any time. Why? Because as the Betaflight codebase continues to advance, these boards may not be maintained by the original submitter. If we receive reports that certain versions do not work, we will remove the board from that version (and any future versions) to avoid any user issues. Boards will remain available in known working versions.

@@ -50,7 +50,9 @@ p {
   margin-bottom: 1rem;
 }
 
-p, .markdown p {
+p,
+.markdown p,
+li {
   font-size: 0.9rem;
 }
 
