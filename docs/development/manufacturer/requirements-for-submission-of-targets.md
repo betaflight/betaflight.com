@@ -6,7 +6,7 @@ The following new requirements for pull requests adding new targets or modifying
 
 2. New manufacturers are required to be added to the [manufacturers list](https://github.com/betaflight/config/blob/master/Manufacturers.md).
 
-3. For any new targets, a definition file needs to be submitted to https://github.com/betaflight/config. See the [instructions](https://betaflight.com/docs/development/manufacturer/creating-configuration) for how to create a configuration file. Ensure you adhere to the [Config Target Guidance](config-target-guidance) also.
+3. For any new targets, a definition file needs to be submitted to [betaflight/config](https://github.com/betaflight/config). See the [instructions](https://betaflight.com/docs/development/manufacturer/creating-configuration) for how to create a configuration file. Ensure you adhere to the [Config Target Guidance](config-target-guidance) also.
 
 4. For changes to existing targets, the existing definition configuration file must be updated in the [Betaflight Config](https://github.com/betaflight/config) repository.
 
