@@ -38,22 +38,44 @@ import SpecGrid from '@site/src/components/SpecGrid'
 - WiFi: No
 - Onboard RGB LED: 28x
 
+## Information
+
+:::info
+
+[Airbot Documentation](https://store.myairbot.com)
+
+:::
+
 ## Input/Output
 
-- USB Connector: USB Type-C
-- Motor Outputs: 8x
-- UARTs: 8x
-- I2C: Yes
-- SWD: Yes
-- SPI: No (present on developer versions)
-- 3.3V Output: Yes
-- 4.5V (VBUS) Output: Yes
-- 5V Output: 3A
-- 10V Output: 3A
-- Current Sensor: Yes
-- Analog RSSI Input: No
-- LED Strip Output: Yes
-- Buzzer Output: Yes
+- USB Connector:
+  USB Type-C
+- Motor Outputs:
+  8x
+- UARTs:
+  8x
+- I2C:
+  Yes
+- SWD:
+  Yes
+- SPI:
+  No (present on developer versions)
+- 3.3V Output:
+  Yes
+- 4.5V (VBUS) Output:
+  Yes
+- 5V Output:
+  3A
+- 10V Output:
+  3A
+- Current Sensor:
+  Yes
+- Analog RSSI Input:
+  No
+- LED Strip Output:
+  Yes
+- Buzzer Output:
+  Yes
 
 ## Pads
 
@@ -143,48 +165,48 @@ import SpecGrid from '@site/src/components/SpecGrid'
 
 ### ESC 1-4
 
-| Pin | Name            | Label |
-| --- | --------------- | ----- |
-| 1   | Ground          | GND   |
-| 2   | Battery Voltage | VBAT  |
-| 3   | Current         | CURR  |
-| 4   | Telemetry       | RX2   |
-| 5   | Signal 1        | M1    |
-| 6   | Signal 2        | M2    |
-| 7   | Signal 3        | M3    |
-| 8   | Signal 4        | M4    |
+| Pin # | Name            | Label | Notes |
+| ----- | --------------- | ----- | ----- |
+| 1     | Ground          | GND   |       |
+| 2     | Battery Voltage | VBAT  |       |
+| 3     | Current         | CURR  |       |
+| 4     | Telemetry       | RX2   |       |
+| 5     | Signal 1        | M1    |       |
+| 6     | Signal 2        | M2    |       |
+| 7     | Signal 3        | M3    |       |
+| 8     | Signal 4        | M4    |       |
 
 ### ESC 5-8
 
-| Pin | Name            | Label |
-| --- | --------------- | ----- |
-| 1   | Ground          | GND   |
-| 2   | Battery Voltage | VBAT  |
-| 3   | Telemetry       | RX2   |
-| 4   | Signal 5        | M5    |
-| 5   | Signal 6        | M6    |
-| 6   | Signal 7        | M7    |
-| 7   | Signal 8        | M8    |
+| Pin # | Name            | Label | Notes |
+| ----- | --------------- | ----- | ----- |
+| 1     | Ground          | GND   |       |
+| 2     | Battery Voltage | VBAT  |       |
+| 3     | Telemetry       | RX2   |       |
+| 4     | Signal 5        | M5    |       |
+| 5     | Signal 6        | M6    |       |
+| 6     | Signal 7        | M7    |       |
+| 7     | Signal 8        | M8    |       |
 
 ### Camera
 
-| Pin | Name           | Label |
-| --- | -------------- | ----- |
-| 1   | Ground         | GND   |
-| 2   | 5V             | 5V    |
-| 3   | Video In       | CAM   |
-| 4   | Camera Control | CC    |
+| Pin # | Name           | Label | Notes |
+| ----- | -------------- | ----- | ----- |
+| 1     | Ground         | GND   |       |
+| 2     | 5V             | 5V    |       |
+| 3     | Video In       | CAM   |       |
+| 4     | Camera Control | CC    |       |
 
 ### Digital VTX
 
-| Pin | Name     | Label |
-| --- | -------- | ----- |
-| 1   | 10V      | 10V   |
-| 2   | Ground   | GND   |
-| 3   | UART5 TX | TX5   |
-| 4   | UART5 RX | RX5   |
-| 5   | Ground   | GND   |
-| 6   | SBUS     | RX3   |
+| Pin # | Name     | Label | Notes |
+| ----- | -------- | ----- | ----- |
+| 1     | 10V      | 10V   |       |
+| 2     | Ground   | GND   |       |
+| 3     | UART5 TX | TX5   |       |
+| 4     | UART5 RX | RX5   |       |
+| 5     | Ground   | GND   |       |
+| 6     | SBUS     | RX3   |       |
 
 </TabItem>
 
@@ -219,5 +241,5 @@ The AT32F435 MCUs are only supported in Betaflight versions 4.5 and newer. Older
 The flight controller has 28 RGB LEDs onboard, connected in parallel to the LED signal connection, and powered from the onboard regulator. Bridging the LED_EN pads will connect the signal line to the LEDs, enabling full control of the LEDs from the flight controller.
 
 </TabItem>
-	
+
 </Tabs>

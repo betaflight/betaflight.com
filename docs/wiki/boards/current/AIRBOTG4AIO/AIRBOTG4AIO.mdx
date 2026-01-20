@@ -46,22 +46,44 @@ import SpecGrid from '@site/src/components/SpecGrid'
 - Continuous Current: 35A
 - Burst Current: 45A
 
+## Information
+
+:::info
+
+[Airbot Documentation](https://store.myairbot.com)
+
+:::
+
 ## Input/Output
 
-- USB Connector: USB Type-C
-- ESC Outputs: 4x
-- UARTs: 4x
-- I2C: Yes
-- SWD: Yes
-- SPI: No
-- 3.3V Output: No
-- 4.5V (VBUS) Output: Yes
-- 5V Output: 2A
-- 10V Output: 2A
-- Current Sensor: Yes
-- Analog RSSI Input: No
-- LED Strip Output: Yes
-- Buzzer Output: Yes
+- USB Connector:
+  USB Type-C
+- ESC Outputs:
+  4x
+- UARTs:
+  4x
+- I2C:
+  Yes
+- SWD:
+  Yes
+- SPI:
+  No
+- 3.3V Output:
+  No
+- 4.5V (VBUS) Output:
+  Yes
+- 5V Output:
+  2A
+- 10V Output:
+  2A
+- Current Sensor:
+  Yes
+- Analog RSSI Input:
+  No
+- LED Strip Output:
+  Yes
+- Buzzer Output:
+  Yes
 
 ## Pads
 
@@ -123,14 +145,14 @@ import SpecGrid from '@site/src/components/SpecGrid'
 
 ### Digital VTX
 
-| Pin | Name     | Label |
-| --- | -------- | ----- |
-| 1   | 10V      | 10V   |
-| 2   | Ground   | GND   |
-| 3   | UART1 TX | TX1   |
-| 4   | UART1 RX | RX1   |
-| 5   | Ground   | GND   |
-| 6   | SBUS     | TX2   |
+| Pin # | Name     | Label | Notes |
+| ----- | -------- | ----- | ----- |
+| 1     | 10V      | 10V   |       |
+| 2     | Ground   | GND   |       |
+| 3     | UART1 TX | TX1   |       |
+| 4     | UART1 RX | RX1   |       |
+| 5     | Ground   | GND   |       |
+| 6     | SBUS     | TX2   |       |
 
 </TabItem>
 
@@ -166,5 +188,5 @@ The AIO features a multi-purpose connector for both digital and analog VTXs:
 The flight controller has 28 RGB LEDs onboard, connected in parallel to the LED signal connection, and powered from the onboard regulator. Bridging the LED_EN pads will connect the signal line to the LEDs, enabling full control of the LEDs from the flight controller.
 
 </TabItem>
-	
+
 </Tabs>
