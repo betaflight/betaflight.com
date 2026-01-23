@@ -14,7 +14,7 @@ It is an unfortunate fact that sometimes things just go wrong. Be that on by a f
   Neither should you try to connect your radio to the configurator. The Betaflight App is not meant be used to set up your radio, use your radio's software for that (OpenTX companion, EdgeTX Buddy, etc.)
 - Make sure you are using a USB cable that is capable of data transfer. Some USB cables are only for charging
 - You may need to install the drivers for your flight controller. There is a download link for the ImpulseRC Driver
-  Fixer tool in the configurator, or you can download it from [here](https://impulserc.com/pages/downloads)
+  Fixer tool in the configurator, or you can download it from [here](https://github.com/ImpulseRC/ImpulseRC_Driver_Fixer)
 - If you are still experiencing issues, try shutting down/uninstalling any other software that may be using the COM
   port. 3d printing software is a common culprit
 
