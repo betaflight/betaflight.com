@@ -200,9 +200,34 @@ const config = {
             ],
           },
           {
-            href: 'https://github.com/betaflight/betaflight',
             label: 'GitHub',
             position: 'right',
+            items: [
+              {
+                label: 'Firmware',
+                href: 'https://github.com/betaflight/betaflight',
+              },
+              {
+                label: 'App',
+                href: 'https://github.com/betaflight/betaflight-configurator',
+              },
+              {
+                label: 'Blackbox Explorer',
+                href: 'https://github.com/betaflight/blackbox-log-viewer',
+              },
+              {
+                label: 'Website',
+                href: 'https://github.com/betaflight/betaflight.com',
+              },
+              {
+                label: 'Support Explorer',
+                href: 'https://github.com/betaflight/betaflight-support-explorer',
+              },
+              {
+                label: 'Targets',
+                href: 'https://github.com/betaflight/config',
+              },
+            ],
           },
         ],
       },
