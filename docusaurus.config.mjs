@@ -199,11 +199,6 @@ const config = {
               },
             ],
           },
-          // {
-          //   href: 'https://github.com/betaflight/betaflight',
-          //   label: 'GitHub',
-          //   position: 'right',
-          // },
           {
             label: 'GitHub',
             position: 'right',
