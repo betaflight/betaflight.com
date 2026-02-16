@@ -86,6 +86,6 @@ transparent. Use Upload Font to save changes
 
 ### Upload Font
 
-Font upload max be required when upgrading from older versions of Betaflight as font symbols have been added and
+Font upload may be required when upgrading from older versions of Betaflight as font symbols have been added and
 changed over time. In particular if your crosshair looks wrong or if your display appears garbled or using incorrect
 characters you should try uploading the font again.
