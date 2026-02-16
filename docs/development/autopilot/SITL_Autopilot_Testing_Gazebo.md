@@ -16,7 +16,6 @@ This guide covers how to build, configure, and test the Betaflight autopilot way
 - [Step 7: Upload a Flight Plan and Test](#step-7-upload-a-flight-plan-and-test)
 - [Testing Scenarios](#testing-scenarios)
 - [Troubleshooting](#troubleshooting)
-- [Unit Tests](#unit-tests)
 - [Reference](#reference)
 
 ---
