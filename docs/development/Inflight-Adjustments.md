@@ -274,7 +274,6 @@ Starting with Betaflight Configurator PR #4863 and firmware API version 1.48, th
 - These values are only supported via MSP (Configurator/GUI), not via CLI commands (see [Betaflight PR #14920](https://github.com/betaflight/betaflight/pull/14920/changes)).
 - To use these features, ensure your firmware and configurator are updated to support API version 1.48 or newer.
 
-**Note:** CLI configuration for Center and Scale values is not available; use the Configurator for these settings.
 
 ## Configurator examples
 
