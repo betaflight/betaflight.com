@@ -132,6 +132,23 @@ The adjustment is made when the adjustment channel is in the high or low positio
 | 28    | YAW_F                  | Step / absolute setting                                               |
 | 29    | OSD_PROFILE            | Switch between 3 OSD profiles                                         |
 | 30    | LED_PROFILE            | Switch between the RACE / BEACON / STATUS LED strip profiles          |
+| 31    | SLIDER MASTER MULTIPLIER | Scales the simplified master multiplier for PID tuning. See below. |
+
+## Slider Master Multiplier (ADJUSTMENT_SIMPLIFIED_MASTER_MULTIPLIER)
+
+This inflight adjustment allows you to use a slider or potentiometer to scale the simplified master multiplier for PID tuning during flight.
+
+- When entering the adjustment range, the slider’s position and current multiplier are saved as the base.
+- Moving the slider adjusts the multiplier by a scaled delta from the base.
+- The value is constrained between 20 and 200, and updates are applied immediately.
+- The adjustment is applied instantly, and a beep signals a change.
+
+**Label:** "SLIDER MASTER MULTIPLIER"
+
+**Technical details:**
+- The adjustment function is ADJUSTMENT_SIMPLIFIED_MASTER_MULTIPLIER.
+- The value is scaled by adjustmentScale (default 1.25x if not set).
+- The multiplier is updated in the PID profile and applied with applySimplifiedTuningPids() and pidInitConfig().
 
 ## Examples
 
@@ -249,7 +266,17 @@ explained:
 
 This assigns pots aux 1, aux 2, and aux 3 respectively to control P, I and D settings with the pots at mid-position giving the default P/I/D values and providing a range of adjustment of +/- 50%. When the aux 5 switch is in one end position then roll P/I/D will be adjusted and when the aux 5 switch is in the other end position, pitch P/I/D will be adjusted. In the aux 5 switch middle position nether will be adjusted. Thus one could center the pots, select roll on aux 5 and then adjust the P/I/D values in flight. Then land, move the aux 5 switch to center, center the pots, select pitch on the switch and then again adjust P/I/D in flight.
 
-### Configurator examples
+### Configurator support for Center and Scale values
+
+Starting with Betaflight Configurator PR #4863 and firmware API version 1.48, the Adjustments Tab now allows you to set the Center (adjCenter) and Scale (adjScale) values for each adjustment range directly in the UI. This makes configuration of features like the Slider Master Multiplier easier and more accessible.
+
+- The Adjustments Tab includes new columns for "Center (val.)" and "Range|Scale (val.|%)".
+- These values are only supported via MSP (Configurator/GUI), not via CLI commands (see [Betaflight PR #14920](https://github.com/betaflight/betaflight/pull/14920/changes)).
+- To use these features, ensure your firmware and configurator are updated to support API version 1.48 or newer.
+
+**Note:** CLI configuration for Center and Scale values is not available; use the Configurator for these settings.
+
+## Configurator examples
 
 Note that the configurator does not currently support the Center/Scale values, however it may still be used to setup the ranges and then the CLI may be used to set the Center/Scale values.
 
