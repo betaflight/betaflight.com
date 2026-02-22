@@ -143,9 +143,8 @@ This inflight adjustment allows you to use a slider or potentiometer to scale th
 - The value is constrained between 20 and 200, updates are applied immediately, and a beep signals each change.
 
 
-**Label (OSD/Configurator display):** "SLIDER MASTER MULTIPLIER"
+**Label (OSD/Configurator display):** `SLIDER MASTER MULTIPLIER`
 **Table identifier:** `SLIDER_MASTER_MULTIPLIER`
-**Implementation enum/function:** `ADJUSTMENT_SIMPLIFIED_MASTER_MULTIPLIER`
 
 These all refer to the same setting, but are used in different contexts: the label is shown in the OSD and Configurator UI, the table identifier appears in the adjustment functions table above, and the implementation enum/function is used in the firmware source code and CLI.
 
