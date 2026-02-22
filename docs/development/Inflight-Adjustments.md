@@ -140,8 +140,7 @@ This inflight adjustment allows you to use a slider or potentiometer to scale th
 
 - When entering the adjustment range, the slider’s position and current multiplier are saved as the base.
 - Moving the slider adjusts the multiplier by a scaled delta from the base.
-- The value is constrained between 20 and 200, and updates are applied immediately.
-- The adjustment is applied instantly, and a beep signals a change.
+- The value is constrained between 20 and 200, updates are applied immediately, and a beep signals each change.
 
 **Label:** "SLIDER MASTER MULTIPLIER"
 
@@ -275,9 +274,6 @@ This assigns pots aux 1, aux 2, and aux 3 respectively to control P, I and D set
 
 
 ## Configurator examples
-
-
-**Note:** Starting with firmware API version 1.48, Center and Scale values (adjCenter/adjScale) can only be configured using the Configurator (MSP). CLI commands cannot set these values.
 
 The following 5 images show valid configurations. In all cases the entire usable range for the Range Channel is used.
 
