@@ -132,7 +132,7 @@ The adjustment is made when the adjustment channel is in the high or low positio
 | 28    | YAW_F                  | Step / absolute setting                                               |
 | 29    | OSD_PROFILE            | Switch between 3 OSD profiles                                         |
 | 30    | LED_PROFILE            | Switch between the RACE / BEACON / STATUS LED strip profiles          |
-| 31    | SLIDER MASTER MULTIPLIER | Scales the simplified master multiplier for PID tuning. See below. |
+| 31    | SLIDER_MASTER_MULTIPLIER | Scales the simplified master multiplier for PID tuning. See below.  |
 
 ## Slider Master Multiplier (ADJUSTMENT_SIMPLIFIED_MASTER_MULTIPLIER)
 
