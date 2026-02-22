@@ -278,7 +278,8 @@ Starting with Betaflight Configurator PR #4863 and firmware API version 1.48, th
 
 ## Configurator examples
 
-Note that the configurator does not currently support the Center/Scale values, however it may still be used to setup the ranges and then the CLI may be used to set the Center/Scale values.
+
+**Note:** Starting with firmware API version 1.48, Center and Scale values (adjCenter/adjScale) can only be configured using the Configurator (MSP). CLI commands cannot set these values.
 
 The following 5 images show valid configurations. In all cases the entire usable range for the Range Channel is used.
 
