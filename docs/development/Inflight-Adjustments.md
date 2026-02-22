@@ -268,9 +268,8 @@ This assigns pots aux 1, aux 2, and aux 3 respectively to control P, I and D set
 
 ### Configurator support for Center and Scale values
 
-Starting with Betaflight Configurator PR #4863 and firmware API version 1.48, the Adjustments Tab now allows you to set the Center (adjCenter) and Scale (adjScale) values for each adjustment range directly in the UI. This makes configuration of features like the Slider Master Multiplier easier and more accessible.
+ Starting with [Betaflight Configurator PR #4863](https://github.com/betaflight/betaflight-configurator/pull/4863) and firmware API version 1.48, the Adjustments Tab now allows you to set the Center (adjCenter) and Scale (adjScale) values for each adjustment range directly in the UI. This makes configuration of features like the Slider Master Multiplier easier and more accessible.
 
-- The Adjustments Tab includes new columns for "Center (val.)" and "Range|Scale (val.|%)".
 - These values are only supported via MSP (Configurator/GUI), not via CLI commands (see [Betaflight PR #14920](https://github.com/betaflight/betaflight/pull/14920/changes)).
 - To use these features, ensure your firmware and configurator are updated to support API version 1.48 or newer.
 
