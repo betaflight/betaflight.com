@@ -32,6 +32,15 @@ cd websockify-other/c
 make
 ./websockify 127.0.0.1:6761 127.0.0.1:5761
 ```
+Alternatively, you can use the Python implementation of websockify:
+
+```bash
+# Install websockify
+pip3 install websockify
+
+# Run the proxy (UART1 is at TCP port 5761)
+websockify 127.0.0.1:6761 127.0.0.1:5761 &
+```
 
 Open the Betaflight Online Configurator, and in Options enable "manual connection mode"
 
