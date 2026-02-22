@@ -147,7 +147,7 @@ This inflight adjustment allows you to use a slider or potentiometer to scale th
 
 **Technical details:**
 - The adjustment function is ADJUSTMENT_SIMPLIFIED_MASTER_MULTIPLIER.
-- The value is scaled by adjustmentScale (default 1.25x if not set).
+- The value is scaled by `adjustmentScale`, which is read from the configuration (see the Scale Value in the Configuration table above). If `adjustmentScale` is omitted or the adjrange Scale is set to 0, a default scale factor of 1.25× is used.
 - The multiplier is updated in the PID profile and applied with applySimplifiedTuningPids() and pidInitConfig().
 
 ## Examples
