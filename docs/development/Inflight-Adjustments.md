@@ -266,7 +266,7 @@ explained:
 
 This assigns pots aux 1, aux 2, and aux 3 respectively to control P, I and D settings with the pots at mid-position giving the default P/I/D values and providing a range of adjustment of +/- 50%. When the aux 5 switch is in one end position then roll P/I/D will be adjusted and when the aux 5 switch is in the other end position, pitch P/I/D will be adjusted. In the aux 5 switch middle position nether will be adjusted. Thus one could center the pots, select roll on aux 5 and then adjust the P/I/D values in flight. Then land, move the aux 5 switch to center, center the pots, select pitch on the switch and then again adjust P/I/D in flight.
 
-### Configurator support for Center and Scale values
+## Configurator support for Center and Scale values
 
  Starting with [Betaflight Configurator PR #4863](https://github.com/betaflight/betaflight-configurator/pull/4863) and firmware API version 1.48, the Adjustments Tab now allows you to set the Center (adjCenter) and Scale (adjScale) values for each adjustment range directly in the UI. This makes configuration of features like the Slider Master Multiplier easier and more accessible.
 
