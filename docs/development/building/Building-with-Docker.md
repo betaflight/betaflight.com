@@ -114,7 +114,7 @@ Set up udev rules on your host system for device access:
 
 1. Create `/etc/udev/rules.d/99-betaflight.rules`:
 
-   ```
+   ```bash
    SUBSYSTEM=="tty", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0666", TAG+="uaccess"
    SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="df11", MODE="0666"
    ```
