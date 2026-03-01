@@ -2,77 +2,42 @@
 
 Betaflight supports the use of addressable LED strips. Addressable LED strips allow each LED in the strip to be programmed with a unique and independent color. This is far more advanced than the normal RGB strips which require that all the LEDs in the strip show the same color.
 
-## LED Strip Profiles
+## Basics
 
-The LED strip feature supports 3 LED strip profiles, STATUS, RACE and BEACON. The selected profile can be changed from the CLI, OSD LED strip menu or from an adjustment channel, i.e. switch on your radio. Take note that the adjustment channel from your radio overrides all other LED strip profile selection options.
+IMPORTANT: The Flight Controller must be flashed with the `LED strip` option enabled!
 
-### STATUS Profile
+Every programmable LED strip has a digital control input marked `D in` at one end, and a digital control output marked `D out` at the other.
+The `Din` of the first strip should be connected the LED pad on the FC. One strip can be connected to another, in series, if the `Dout`of the first is connected to the `D in` of the next.
 
-The STATUS profile is used to display all the information mentioned below, i.e. warning indications, Larson scanner etc.
+Each LED in a strip gets an ID number, from 0 to however many there are along the digital line, when they are powered up. Betaflight commands each LED individually, by number.
 
-Addressable LED strips can be used to show information from the flight controller system, the current implementation supports the following:
+Strips can be connected in parallel, sharing a common `D in` connection, but then each LED in each strip will do the same thing.
 
-- Up to 32 LEDs. (Support for more than 32 LEDs is possible, it just requires additional development.)
-- Indicators showing pitch/roll stick positions.
-- Heading/Orientation lights.
-- Flight mode specific color schemes.
-- Low battery warning.
-- AUX operated on/off switch.
-- GPS state.
-- RSSI level.
-- Battery level.
+NOTE: Betaflight disables all LEDs on a strip by default, to conserve CPU usage.
 
-### RACE Profile
+Unless you first tell Betaflight how many LEDs you have on your strip, nothing will happen.
 
-The RACE profile is used to set ALL strip LEDs to the selected color for racing, i.e. to identify quads based on LED color. The LED color is fixed and no other information is displayed.
+That's why the first thing to do is to go to the `LED Strip` Tab in Betaflight's Configurator, and:
 
-### BEACON Profile
+1. Select `Wire Ordering Mode`
+2. Drag from the top left corner towards the right, selecting however many LED's you have in your strip. If there are only 4 LEDs in the strip, drag across the top left four of them. They will be numbered 0,1,2,3.
+3. Drag again across the same four, confirming they are numbered 0,1,2,3, and choose `Color` from the `Function` dropdown. Click on any colour, say Red.
+4. Click Save.
 
-The BEACON profile is used to find a lost quad, it flashes all LEDs white once per second. Again in this profile no other information is displayed on the LEDs.
+Now Betaflight knows you have 4 LEDs in your strip, and that they display solid red when the `STATUS`, or default, Led*strip* Profile is active.
 
-### LED Profile Configuration
+If you were to now choose the Beacon Profile, or the Race Profile (see below), their commands will be sent to the first four LEDs on the your strip, because they are now active.
+Note: To get back to the starting point, click the `clear All Wiring` and `Clear All` buttons, and save.
+Sometimes the wiring order you select doesn't get remembered. The key thing is to 'wire up' each LED and assign at least a basic colour function to it.
 
-###### OPTION 1: Configure an adjustment range to change the LED strip profile from your radio
+Pasting this snippet into the CLI should reliably set LEDs 0, 1, 2 and 3 to red:
 
-1. Turn on Expert mode - see top right of configurator screen "Enable Expert Mode".
-2. The LED strip profile selection is performed using an adjustment configured via the Adjustments tab.
-   - Enable an adjustment. ("If enabled")
-   - Select the AUX channel to be used to change the LED strip profile. ("when channel")
-   - Set the range to cover the entire range of the selected AUX channel. ("is in ranges")
-   - For the action select "RC Rate Adjustment". ("then apply") This will be configured in the CLI since LED strip profiles is not supported by Configurator 10.4.0 and earlier. "RC Rate Adjustment" is only selected to make the configuration in the CLI a little easier below.
-   - Select the "via channel" to match the selected AUX channel of above. ("when channel").
-   - Save
-3. Open the CLI and type `adjrange` followed by enter.
-4. Copy the adjrange configured in step 2. above and paste it in the command window. Change the '1' following the range of the channel to '30' and press enter. Type `save` and press enter. The configured adjrange will now be saved and the FC will reboot.
-5. Configure the AUX channel on your radio. When this channel is changed the selected LED strip profile will change between STATUS, RACE and BEACON, you should see the LED function change as you do this.
-
-###### OPTION 2: Use the CLI to select the LED strip profile (i.e. not selecting the LED strip profile with your radio)
-
-1. Open the CLI.
-2. Type `get ledstrip_profile` followed by enter to display the currently selected LED strip profile.
-3. Type `set ledstrip_profile=x` where x is the profile STATUS, RACE or BEACON and press enter.
-4. Type `save` followed by enter to save the selected LED strip profile.
-
-###### OPTION 3: By using the OSD
-
-1. Open the OSD menu by yawing left and pitching forward on your radio.
-2. Using the pitch stick, move down to the LED Strip menu and roll right to enter the menu.
-3. The profile and race color can be configured using the left stick to go back and the right stick to navigate up/down and to change the selected value.
-4. Use the left stick to go to the top level menu and select save & reboot to complete.
-
-###### RACE COLOR: The Race color can be configured using the CLI:
-
-1. Open the CLI.
-2. Type `get ledstrip_race_color` followed by enter to display the currently selected race color number.
-3. Type `set ledstrip_race_color=x` where x is the required color.
-4. Type `save` followed by enter to save the race color to be used.
-
-###### BRIGHTNESS: The brightness can be configured using the slider on the LED Strip tab or using the CLI:
-
-1. Open the CLI.
-2. Type `get ledstrip_brightness` followed by enter to display the current brightness.
-3. Type `set ledstrip_brightness=x` where x is the brightness in percentage between 5 and 100.
-4. Type `save` followed by enter to save the brightness level to be used.
+```
+led 0 0,0::C:2
+led 1 1,0::C:2
+led 2 2,0::C:2
+led 3 3,0::C:2
+```
 
 ## Supported hardware
 
@@ -106,18 +71,21 @@ It is thus possible, depending on the LED board/strip being used that either Red
 
 ```
 set ledstrip_grb_rgb = RGB
+
 ```
 
 or
 
 ```
 set ledstrip_grb_rgb = GRB
+
 ```
 
 or
 
 ```
 set ledstrip_grb_rgb = GRBW
+
 ```
 
 Then confirm the required setting by simply setting an LED to be green. If it lights up red, you have the wrong setting.
@@ -144,35 +112,153 @@ The datasheet can be found here: http://www.adafruit.com/datasheets/WS2812.pdf
 
 ## Configuration
 
-The LED strip feature can be configured via the Betaflight App.
+First, read the Basics above, and make sure your FC has been flashed with support for LED_STRip.
 
-GUI:
-Enable the Led Strip feature via the Betaflight App under setup.
+Then enable the LED strip feature, either by:
+
+checking LED Strip in the Configuration tab of Betaflight Configurator, or,
+by typing into the CLI:
+
+```
+feature LED_STRIP
+```
+
+If you try to enable LED_STRIP feature, but find that the feature keeps getting turned off again after a reboot, then check your config does not conflict with other features, as above.
+
+## Initial setup
+
+By default, all LEDs in the strip are 'disabled'. Before any of them will do anything, and before the RACE or BEACON profiles will work, Betaflight needs to know how many LEDs exist in your LED Strip
+
+## Betaflight LED strip Profiles
+
+Betaflight provides three LED strip 'Profiles', or operating modes: STATUS, RACE and BEACON.
+Only one of these may be active at a time.
+
+### Selecting the Profile to use
+
+The profile may be selected using the CLI, the OSD LED strip menu, or from an adjustment channel, i.e. switch on your radio. Note that the adjustment channel from your radio overrides all other LED strip profile selection options.
+
+###### OPTION 1: Use the CLI to select the LED strip profile.
+
+1. Open the CLI.
+2. Type `get ledstrip_profile` followed by enter to display the currently selected LED strip profile.
+3. Type `set ledstrip_profile=x` where x is the profile STATUS, RACE or BEACON and press enter.
+4. Type `save` followed by enter to save the selected LED strip profile.
+
+###### OPTION 2: By using the OSD
+
+1. Open the OSD menu by yawing left and pitching forward on your radio.
+2. Using the pitch stick, move down to the LED Strip menu and roll right to enter the menu.
+3. The profile and race color can be configured using the left stick to go back and the right stick to navigate up/down and to change the selected value.
+4. Use the left stick to go to the top level menu and select save & reboot to complete.
+
+###### OPTION 3: Choose the LED strip Profile from your radio using an adjustment range.
+
+1. Turn on Expert mode at the top right of Configurator, "Enable Expert Mode".
+2. Go to the Configurator Adjustments tab.
+   - Enable an adjustment. ("If enabled")
+   - Select the AUX channel to be used to change the LED strip profile. ("when channel")
+   - Set the range to cover the entire range of the selected AUX channel. ("is in ranges")
+   - For the action select "RC Rate Adjustment". ("then apply") This will be configured in the CLI since LED strip profiles is not supported by Configurator 10.4.0 and earlier. "RC Rate Adjustment" is only selected to make the configuration in the CLI a little easier below.
+   - Select the "via channel" to match the selected AUX channel of above. ("when channel").
+   - Save
+3. Open the CLI and type `adjrange` followed by enter.
+4. Copy the adjrange configured in step 2. above and paste it in the command window. Change the '1' following the range of the channel to '30' and press enter. Type `save` and press enter. The configured adjrange will now be saved and the FC will reboot.
+5. Configure the AUX channel on your radio. When this channel is changed the selected LED strip profile will change between STATUS, RACE and BEACON, you should see the LED function change as you do this.
+
+### The RACE Profile
+
+The RACE profile sets all LEDs to one single color, either the colour selected by the user, or to a colour that reflects the currently active VTx channel.
+
+While the RACE profile is active, no other information is displayed by the LEDs, and all settings in Configurator's LED Configuration Tab, other than the brightness of the whole strip, are ignored.
+It must be configured via the CLI:
+
+Type `get ledstrip_race_color` followed by enter to display the currently selected race color.
+
+Type `set ledstrip_race_color= abc` where abc is the name of the required color from the color table below. 4. Type `save` followed by enter to save.
+
+#### Setting LED color to the VTx Frequency
+
+The profile must be RACE, the race_color must be black, and the VTx must be communicating with the FC with SmartAudio or IRC Tramp.
+It can be activated with these CLI commands:
+
+```
+
+set ledstrip_profile = RACE
+set ledstrip_race_color = BLACK
+
+```
+
+The color will then be set according to VTx frequency, as per the following table:
+
+| Frequency range | Channels   | Color        | Color index |
+| --------------- | ---------- | ------------ | ----------- |
+| \<= 5672        | R1         | WHITE        | 1           |
+| > 5672 \<= 5711 | R2         | RED          | 2           |
+| > 5711 \<= 5750 | R3, F1     | ORANGE       | 3           |
+| > 5750 \<= 5789 | F2, F3     | YELLOW       | 4           |
+| > 5789 \<= 5829 | R5, F4, F5 | GREEN        | 6           |
+| > 5829 \<= 5867 | R6, F6, F7 | BLUE         | 10          |
+| > 5867 \<= 5906 | R7, F8     | DARK_VIOLET  | 11          |
+| > 5906          | R8         | DEEP_PINK 13 |
+
+The only way change the color assigned to a given frequency range is to edit the HSV values for the color itself, but this will change how that color appears in all modes and profiles.
+
+### The BEACON Profile
+
+This flashes all LEDs white once per second. It is typically enabled via the radio or OSD to help find a lost quad. When in this profile, no other information is displayed on the LEDs.
+
+### The STATUS Profile
+
+The STATUS profile is the default profile, and the most complex.
+
+It is used to configure LEDs individually, or in groups.
+Each LED must be set up via the LED strip tab in Configurator. Typically the user first numbers their LEDs in sequence, in 'wiring mode', and then applies their requested functions to each LED.
+
+The current implementation supports the following:
+
+- Up to 32 LEDs. (Support for more than 32 LEDs is possible, it just requires additional development.)
+- solid colours
+- Indicators showing pitch/roll/throttle stick positions.
+- Heading/Orientation lights.
+- Flight mode specific color schemes.
+- Low battery warning and other warnings
+- AUX operated on/off switch.
+- GPS state.
+- RSSI level.
+- Battery level.
+- Larson scanner, rainbow, and similar effects.
+
+#### BRIGHTNESS:
+
+The overall brightness of the LED Strip can be configured using the slider on the LED Strip tab or using the CLI:
+
+1. Open the CLI.
+2. Type `get ledstrip_brightness` followed by enter to display the current brightness.
+3. Type `set ledstrip_brightness=x` where x is the brightness in percentage between 5 and 100.
+4. Type `save` followed by enter to save the brightness level to be used.
 
 Configure the LEDs from the Led Strip tab in the Betaflight GUI.
 First setup how the LEDs are laid out so that you can visualize it later as you configure and so the flight controller knows how many LEDs there are available.
 
 There is a step by step guide on how to use the Betaflight App to configure the Led Strip feature using the Betaflight App https://oscarliang.com/setup-led-betaflight/ which was published early 2015 by Oscar Liang which may or may not be up-to-date by the time you read this.
 
-CLI:
-Enable the `LED_STRIP` feature via the cli:
+#### Advanced LED configuration
 
-```
-feature LED_STRIP
-```
+The configuration values for each LED can be displayed in the CLI using the `led` command.
 
-If you enable LED_STRIP feature and the feature is turned off again after a reboot then check your config does not conflict with other features, as above.
+The `led` command with no arguments prints out the current LED configuration, which can be copied for future reference.
 
-Configure the LEDs using the `led` command.
+Otherwise, `led` expects two arguments - a zero-based LED index number, a space, and then a sequence of parameters in the form:
+` index ,y:ddd:mmm:cc`, where:
 
-The `led` command takes either zero or two arguments - an zero-based LED number and a sequence which indicates pair of coordinates, direction flags and mode flags and a color.
+an `index` value of 0 refers to the first LED in the strip, 14 to the 1th LED, etc
+`x` and `y` are grid coordinates of a 0 based 16x16 grid,
+`ddd ` is the direction that the LED is pointing in
+`mmm` is the operating mode of the LED,
 
-If used with zero arguments it prints out the LED configuration which can be copied for future reference.
-
-Each LED is configured using the following template: `x,y:ddd:mmm:cc`
-
-`x` and `y` are grid coordinates of a 0 based 16x16 grid, north west is 0,0, south east is 15,15
-`ddd` specifies the directions, since an LED can face in any direction it can have multiple directions. Directions are:
+For the `x,y` grid directions, north west (top left) is 0,0; the next one to the right is 1,0; south east is 15,15
+`ddd` specifies the direction in which the LED is pointing; since an LED can face in any direction it can have multiple directions. Directions are:
 
 `N` - North
 `E` - East
@@ -181,13 +267,13 @@ Each LED is configured using the following template: `x,y:ddd:mmm:cc`
 `U` - Up
 `D` - Down
 
-For instance, an LED that faces South-east at a 45 degree downwards angle could be configured as `SED`.
+An LED that faces South-east at a 45 degree downwards angle could be configured as `SED`.
 
-Note: It is perfectly possible to configure an LED to have all directions `NESWUD` but probably doesn't make sense.
+Note: No direction, or direction of 0 is un-specified. It is possible to configure an LED to have all directions using `NESWUD` but probably doesn't make sense.
 
-`mmm` specifies the modes that should be applied an LED.
-
-Each LED has one base function:
+`mmm` specifies the functions to apply to the LED.
+Each LED may have up to three of the following base functions or overlays applied:
+Base functions:
 
 - `C` - `C`olor.
 - `F` - `F`light mode & Orientation
@@ -197,7 +283,7 @@ Each LED has one base function:
 - `S` - R`S`SSI level.
 - `L` - Battery `L`evel.
 
-And each LED has overlays:
+Overlays:
 
 - `W` - `W`arnings.
 - `I` - `I`ndicator.
@@ -209,7 +295,7 @@ And each LED has overlays:
 
 `cc` specifies the color number (0 based index).
 
-Example:
+Examples:
 
 ```
 led 0 0,15:SD:AWI:0
@@ -221,13 +307,26 @@ led 5 8,8::C:2
 led 6 8,9::B:1
 ```
 
+```
+led 0 0,0::CW:2
+# sets the first LED on the strip to a Red `C`olor with a `W`arnings overlay; it will be configured to the top left of the Configurator LED array, and has no direction information.
 To erase an led, and to mark the end of the chain, use `0,0::` as the second argument, like this:
 
 ```
-led 4 0,0:::
+
+It is best to erase all LEDs that you do not have connected. This can be done for LEDs 3-8 with
+
+```
+led 3 0,0::C:0
+led 4 0,0::C:0
+led 5 0,0::C:0
+led 6 0,0::C:0
+led 7 0,0::C:0
+led 8 0,0::C:0
+
 ```
 
-It is best to erase all LEDs that you do not have connected.
+It seems that the mode is always set to `C` for col
 
 ### Modes
 
@@ -258,12 +357,12 @@ This mode binds the LED color to RSSI level.
 
 | Color      | RSSI |
 | ---------- | ---- |
-| Green      | 100% |
-| Lime green | 80%  |
-| Yellow     | 60%  |
-| Orange     | 40%  |
-| Red        | 20%  |
-| Deep pink  | 0%   |
+| GREEN      | 100% |
+| LIME_GREEN | 80%  |
+| YELLOW     | 60%  |
+| ORANGE     | 40%  |
+| RED        | 20%  |
+| DEEP_PINK  | 0%   |
 
 When RSSI is below 50% is reached, LEDs will blink slowly, and they will blink fast when under 20%.
 
@@ -273,12 +372,12 @@ This mode binds the LED color to remaining battery capacity.
 
 | Color      | Capacity |
 | ---------- | -------- |
-| Green      | 100%     |
-| Lime green | 80%      |
-| Yellow     | 60%      |
-| Orange     | 40%      |
-| Red        | 20%      |
-| Deep pink  | 0%       |
+| GREEN      | 100%     |
+| LIME_GREEN | 80%      |
+| YELLOW     | 60%      |
+| ORANGE     | 40%      |
+| RED        | 20%      |
+| DEEP_PINK  | 0%       |
 
 When Warning or Critical voltage is reached, LEDs will blink slowly or fast.
 Note: this mode requires a current sensor. If you don't have the actual device you can set up a virtual current sensor (see [Battery](Battery)).
@@ -307,24 +406,6 @@ Can also be used with [Larson Scanner](#larson-scanner-cylon-effect) or [Blink](
 
 :::
 
-#### VTX Frequency
-
-This overlay makes the LED color dependent on the current channel of the VTX, in case it is equipped with SmartAudio or IRC Tramp.
-The color is selected according to the following table:
-
-| Frequency range | Default color | Color index |
-| --------------- | ------------- | ----------- |
-| \<= 5672        | White         | 1           |
-| > 5672 \<= 5711 | Red           | 2           |
-| > 5711 \<= 5750 | Orange        | 3           |
-| > 5750 \<= 5789 | Yellow        | 4           |
-| > 5789 \<= 5829 | Green         | 6           |
-| > 5829 \<= 5867 | Blue          | 10          |
-| > 5867 \<= 5906 | Dark violet   | 11          |
-| > 5906          | Deep pink     | 13          |
-
-The default color can be changed by double-clicking the color and moving the Hue slider or by using the color command in the CLI.
-
 #### Flight Mode & Orientation
 
 This mode shows the flight mode and orientation.
@@ -348,44 +429,44 @@ This mode flashes LEDs that correspond to roll and pitch stick positions. i.e. t
 | Mode        | Direction | LED Color   |
 | ----------- | --------- | ----------- |
 | Orientation | North     | WHITE       |
-| Orientation | East      | DARK VIOLET |
+| Orientation | East      | DARK_VIOLET |
 | Orientation | South     | RED         |
-| Orientation | West      | DEEP PINK   |
+| Orientation | West      | DEEP_PINK   |
 | Orientation | Up        | BLUE        |
 | Orientation | Down      | ORANGE      |
 |             |           |             |
-| Head Free   | North     | LIME GREEN  |
-| Head Free   | East      | DARK VIOLET |
+| Head Free   | North     | LIME_GREEN  |
+| Head Free   | East      | DARK_VIOLET |
 | Head Free   | South     | ORANGE      |
-| Head Free   | West      | DEEP PINK   |
+| Head Free   | West      | DEEP_PINK   |
 | Head Free   | Up        | BLUE        |
 | Head Free   | Down      | ORANGE      |
 |             |           |             |
 | Horizon     | North     | BLUE        |
-| Horizon     | East      | DARK VIOLET |
+| Horizon     | East      | DARK_VIOLET |
 | Horizon     | South     | YELLOW      |
-| Horizon     | West      | DEEP PINK   |
+| Horizon     | West      | DEEP_PINK   |
 | Horizon     | Up        | BLUE        |
 | Horizon     | Down      | ORANGE      |
 |             |           |             |
 | Angle       | North     | CYAN        |
-| Angle       | East      | DARK VIOLET |
+| Angle       | East      | DARK_VIOLET |
 | Angle       | South     | YELLOW      |
-| Angle       | West      | DEEP PINK   |
+| Angle       | West      | DEEP_PINK   |
 | Angle       | Up        | BLUE        |
 | Angle       | Down      | ORANGE      |
 |             |           |             |
-| Mag         | North     | MINT GREEN  |
-| Mag         | East      | DARK VIOLET |
+| Mag         | North     | MINT_GREEN  |
+| Mag         | East      | DARK_VIOLET |
 | Mag         | South     | ORANGE      |
-| Mag         | West      | DEEP PINK   |
+| Mag         | West      | DEEP_PINK   |
 | Mag         | Up        | BLUE        |
 | Mag         | Down      | ORANGE      |
 |             |           |             |
-| Baro        | North     | LIGHT BLUE  |
-| Baro        | East      | DARK VIOLET |
+| Baro        | North     | LIGHT_BLUE  |
+| Baro        | East      | DARK_VIOLET |
 | Baro        | South     | RED         |
-| Baro        | West      | DEEP PINK   |
+| Baro        | West      | DEEP_PINK   |
 | Baro        | Up        | BLUE        |
 | Baro        | Down      | ORANGE      |
 
@@ -435,32 +516,40 @@ led 0 0,0::C:10
 
 Colors can be configured using the cli `color` command.
 
-The `color` command takes either zero or two arguments - an zero-based color number and a sequence which indicates pair of hue, saturation and value (HSV).
+If no arguments are provided, `color` prints out the current
+color configuration, which can be copied for future reference.
 
-See http://en.wikipedia.org/wiki/HSL_and_HSV
+If two arguments are provided, they must be separated by a space.
+The first is a zero-based color identifier number between 0 and 14.
+The second contains the three HSV values that define that color, separated by commas.
+Hue is in the range 0-359 (degrees) where 0 is red, 60 is yellow, 120 is green, 180 is cyan, returning to red at 359.
+S is color saturation, from 0-255, where 0 means fully saturated and 255 means no saturation (no colour). This is the reverse of 'normal' HSV formats where 100 means fully saturated.
+V means Brightness Value. It is a value from 0-255, where 0 always means black, and 255 means 100% bright. Zero brightness always returns black.
 
-If used with zero arguments it prints out the color configuration which can be copied for future reference.
+See http://en.wikipedia.org/wiki/HSL_and_HSV, noting that Betaflight handles saturation differently.
 
 The default color configuration is as follows:
 
-| Index | Color       |
-| ----- | ----------- |
-| 0     | black       |
-| 1     | white       |
-| 2     | red         |
-| 3     | orange      |
-| 4     | yellow      |
-| 5     | lime green  |
-| 6     | green       |
-| 7     | mint green  |
-| 8     | cyan        |
-| 9     | light blue  |
-| 10    | blue        |
-| 11    | dark violet |
-| 12    | magenta     |
-| 13    | deep pink   |
-| 14    | black       |
-| 15    | black       |
+| Index | Color Name  | Betaflight HSV |
+| ----- | ----------- | -------------- |
+| 0     | BLACK       | 0,0,0          |
+| 1     | WHITE       | 0,255,255      |
+| 2     | RED         | 0,0,255        |
+| 3     | ORANGE      | 30,0,255       |
+| 4     | YELLOW      | 60,0,255       |
+| 5     | LIME_GREEN  | 90,0,255       |
+| 6     | GREEN       | 120,0,255      |
+| 7     | MINT GREEN  | 150,0,255      |
+| 8     | CYAN        | 180,0,255      |
+| 9     | LIGHT_BLUE  | 210,0,255      |
+| 10    | BLUE        | 240,0,255      |
+| 11    | DARK_VIOLET | 270,0,255      |
+| 12    | MAGENTA     | 300,0,255      |
+| 13    | DEEP_PINK   | 330,0,255      |
+| 14    | NOT USED    | -              |
+| 15    | NOT USED    | -              |
+
+The following snippet will reset colors to defaults"
 
 ```
 color 0 0,0,0
@@ -533,7 +622,7 @@ Examples (using the default colors):
 
 - set armed color to red: `mode_color 6 1 2`
 - set disarmed color to yellow: `mode_color 6 0 4`
-- set Headfree mode 'south' to Cyan: `mode_color 1 2 8`
+- set Headfree mode 'south' to CYAN: `mode_color 1 2 8`
 - set color dependent on AUX 1 in Thrust state: `mode_color 7 0 4`
 
 ## Positioning
@@ -695,15 +784,13 @@ led 27 2,9:S:FWT:0
 
 All LEDs should face outwards from the chassis in this configuration.
 
-Note:
-This configuration is specifically designed for the [Alien Spider AQ50D PRO 250mm frame](http://www.goodluckbuy.com/alien-spider-aq50d-pro-250mm-mini-quadcopter-carbon-fiber-micro-multicopter-frame.html).
-
 ## Troubleshooting
 
 On initial power up the LEDs on the strip will be set to WHITE. This means you can attach a current meter to verify the current draw if your measurement equipment is fast enough. Most 5050 LEDs will draw 0.3 Watts a piece.
 This also means that you can make sure that each R,G and B LED in each LED module on the strip is also functioning. After a short delay the LEDs will show the unarmed color sequence and or low-battery warning sequence.
 
 Also check that the feature `LED_STRIP` was correctly enabled and that it does not conflict with other features, as above.
+Some LED configurations can be CPU intensive, check 'TASKS' in CLI to review this. RACE mode uses very little CPU.
 
 ## Resource remapping
 
