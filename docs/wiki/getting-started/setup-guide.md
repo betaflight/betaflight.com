@@ -27,7 +27,7 @@ If you do not see a new COM port appear, or the configurator cannot connect, the
 
 - Make sure that you are plugging the USB cable into the flight controller, nothing else. Do not connect the Betaflight App to an HD system. Do not connect the Betaflight App to a radio transmitter. the Betaflight App is not meant be used with anything other than a flight controller
 - Make sure you are using a USB cable that is capable of data transfer. Some USB cables are only for charging
-- You may need to install the drivers for your flight controller. There is a download link for the ImpulseRC Driver Fixer tool in the configurator, or you can download it from [here](https://impulserc.com/pages/downloads)
+- You may need to install the drivers for your flight controller. There is a download link for the ImpulseRC Driver Fixer tool in the configurator, or you can download it from the [ImpulseRC Driver Fixer repository](https://github.com/ImpulseRC/ImpulseRC_Driver_Fixer)
 - If you are still experiencing issues, try shutting down/uninstalling any other software that may be using the COM port. 3d printing software is a common culprit
 
 :::
