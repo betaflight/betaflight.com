@@ -1,4 +1,4 @@
-# Betaflight CLI Reference
+# Command Line Interface (CLI)
 
 Betaflight has a command line interface (CLI) that can be used to change settings and configure the FC.
 
