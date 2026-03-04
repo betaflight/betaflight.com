@@ -1,10 +1,8 @@
 # Betaflight CLI Reference
 
-This document is the primary CLI variable reference for the Betaflight PID tuning skill. It covers all tuning-relevant variables with descriptions, organized by functional category.
+Betaflight has a command line interface (CLI) that can be used to change settings and configure the FC.
 
-For the full raw variable list with ranges and defaults (no descriptions), see the companion files:
-- `betaflight-2025.12-cli-commands.md` — authoritative 2025.12 parameter dump
-- `betaflight-4.5-cli-commands.md` — Betaflight 4.5 parameter dump
+This document is a comprehensive reference for **all flight tuning-relevant CLI variables** in Betaflight **2025.12**. It covers gyro/filter tuning, PID configuration, rates, failsafe, GPS, battery monitoring, and logging — everything needed for flight dynamics setup and optimization. All defaults and ranges below are accurate for **Betaflight 2025.12** only; they may differ in older versions.
 
 **Important version differences:**
 - Dynamic damping naming changed: in **4.5** `d_roll` is D_max and `d_min_roll` is D_min; in **2025.12** `d_roll` is the base D and `d_max_roll` is the peak — `d_min_roll` no longer exists.
@@ -59,6 +57,7 @@ Send `#` over the serial port (or use the CLI tab in Betaflight Configurator). E
 | `rc_smoothing_info` | Show computed RC smoothing cutoff frequencies |
 | `vtx_info` | Show VTX power configuration |
 | `flash_info` | Show onboard flash chip info |
+| `flash_read <address> <length>` | Read from flash at specified address and length |
 | `flash_erase` | Erase blackbox flash (also: `flash_scan`) |
 
 ### Backup and Restore
@@ -97,7 +96,7 @@ Scope annotations in the raw dump: `profile N` = per-PID-profile, `rateprofile N
 
 | `imu_dcm_kp` | 2500 | 0–20000 | Complementary filter proportional gain. Controls how aggressively acc data is blended with gyro integration. Default is suitable for all normal use. |
 | `imu_dcm_ki` | 0 | 0–20000 | Complementary filter integral gain. Non-zero allows slow acc-based yaw correction. Rarely changed. |
-| `imu_process_denom` | 1 | 1–4 | IMU attitude update rate divisor relative to gyro task rate. 1 = update every gyro cycle. Higher values reduce CPU load at the cost of attitude accuracy. |
+| `imu_process_denom` | 2 | 1–4 | IMU attitude update rate divisor relative to gyro task rate. 2 = update every second gyro cycle. Higher values reduce CPU load at the cost of attitude accuracy. |
 | `small_angle` | 25 | 0–180 | Maximum tilt angle (degrees) to permit arming. Set to 180 to arm at any angle (not recommended). During PID tuning set to 30 for safe angle-mode indoor flights. |
 | `pid_process_denom` | 1 | 1–16 | PID loop rate divisor relative to gyro rate. 1 = PID runs every gyro sample. For 8kHz gyro with denom=2 → 4kHz PID rate. Target: BMI270 → 3.2kHz (tune with denom accordingly); ICM-42688P/MPU-6000 → 8kHz. |
 | `gyro_cal_on_first_arm` | OFF | OFF, ON | Recalibrates gyro on first arm after power-up. Useful if the FC warms up and gyro drifts before the first arm. |
@@ -382,7 +381,7 @@ Prevents motor stall during flips/rolls and throttle chops. Any non-zero `dyn_id
 
 | Variable | Default | Range | Description |
 |----------|---------|-------|-------------|
-| `dyn_idle_min_rpm` | 0 | 0–200 (profile) | Minimum motor RPM maintained by dynamic idle. **Set non-zero to enable.** Target by prop size (see SKILL.md table): 5" prop → 25–40; 7" → 14–28. Start mid-range and adjust up for steep-pitch props, down for low-pitch. |
+| `dyn_idle_min_rpm` | 0 | 0–200 (profile) | Minimum motor RPM maintained by dynamic idle. **Set non-zero to enable.** Target by prop size. |
 | `dyn_idle_p_gain` | 50 | 1–250 (profile) | P gain of the dynamic idle RPM controller. Reduce if idle causes oscillation. |
 | `dyn_idle_i_gain` | 50 | 1–250 (profile) | I gain of the dynamic idle RPM controller. |
 | `dyn_idle_d_gain` | 50 | 0–250 (profile) | D gain of the dynamic idle RPM controller. |
@@ -477,7 +476,7 @@ Prevents motor stall during flips/rolls and throttle chops. Any non-zero `dyn_id
 
 ### Failsafe
 
-Always use FC-based failsafe (configure receiver to send **no data** on signal loss — not fixed values). Receiver-based failsafe is not recommended; the FC cannot detect it. See `guides-failsafe.md` for the complete explanation and testing procedure.
+Always use FC-based failsafe (configure receiver to send **no data** on signal loss — not fixed values). Receiver-based failsafe is not recommended; the FC cannot detect it.
 
 | Variable | Default (2025.12 / 4.5) | Range / Values | Description |
 |----------|------------------------|----------------|-------------|
@@ -495,7 +494,7 @@ Always use FC-based failsafe (configure receiver to send **no data** on signal l
 
 ### GPS Rescue (Betaflight 4.5)
 
-**Note:** `gps_rescue_*` variables exist in Betaflight 4.5. In 2025.12, GPS Rescue has been redesigned; the variables below apply to 4.5 only. See `guides-gps-rescue-v4.5.md` for the complete setup procedure.
+**Note:** `gps_rescue_*` variables exist in Betaflight 4.5. In 2025.12, GPS Rescue has been redesigned; the variables below apply to 4.5 only.
 
 Prerequisites: GPS module (UBlox M8N minimum, M10 recommended), calibrated accelerometer, verified angle mode leveling, minimum satellites before arming, home point established before flight.
 
@@ -585,7 +584,3 @@ Prerequisites: GPS module (UBlox M8N minimum, M10 recommended), calibrated accel
 | `adc_device` | 2 | 0–3 | ADC device used for voltage/current sensing. |
 | `altitude_source` | DEFAULT | DEFAULT, BARO_ONLY, GPS_ONLY | Override altitude data source for autopilot and OSD altitude display. |
 | `altitude_prefer_baro` | 100 | 0–100 | Weight given to barometer vs GPS altitude when both are available (0 = GPS only, 100 = baro only). |
-
----
-
-*For variables not listed here, use `get <varname>` in the CLI for the current value, or refer to `betaflight-2025.12-cli-commands.md` for the complete enumeration with ranges and defaults.*
