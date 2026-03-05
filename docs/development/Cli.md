@@ -4,7 +4,8 @@ Betaflight has a command line interface (CLI) that can be used to change setting
 
 This document is a comprehensive reference for **all flight tuning-relevant CLI variables** in Betaflight **2025.12**. It covers gyro/filter tuning, PID configuration, rates, failsafe, GPS, battery monitoring, and logging — everything needed for flight dynamics setup and optimization. All defaults and ranges below are accurate for **Betaflight 2025.12** only; they may differ in older versions.
 
-**Important version differences:**
+## Important version differences
+
 - Dynamic damping naming changed: in **4.5** `d_roll` is D_max and `d_min_roll` is D_min; in **2025.12** `d_roll` is the base D and `d_max_roll` is the peak — `d_min_roll` no longer exists.
 - GPS rescue: `gps_rescue_*` variables exist in **4.5** only; redesigned in 2025.12.
 - Failsafe landing duration: `failsafe_off_delay` (4.5) → `failsafe_landing_time` (2025.12).
