@@ -148,7 +148,7 @@ Tracks and eliminates frame resonances — visible as vertical stripes (fixed fr
 
 | Variable | Default | Range / Values | Description |
 |----------|---------|----------------|-------------|
-| `dyn_notch_count` | 3 | 0–7 | Number of independently tracked dynamic notches. **Set to 0 to disable** if no frame resonances are visible in the spectrum (eliminates delay). With RPM filtering active, 1–2 notches are sufficient for most frame resonances. Without RPM filtering, use 4–5. |
+| `dyn_notch_count` | 3 | 0–7 (2025.12) / 0–5 (4.5) | Number of independently tracked dynamic notches. **Set to 0 to disable** if no frame resonances are visible in the spectrum (eliminates delay). With RPM filtering active, 1–2 notches are sufficient for most frame resonances. Without RPM filtering, use 4–5 (or 4 in 4.5, where max is 5). Range increased to 7 in 2025.12. |
 | `dyn_notch_q` | 300 | 1–1000 | Q factor — narrowness of each notch. Increase until the resonance just stays within the notch, then stop. Max useful value ~1000. |
 | `dyn_notch_min_hz` | 100 | 20–250 | Minimum frequency any notch will track. Set ~25 Hz below the lowest resonance you need to catch. **Never set below 150 Hz** without reason (ideally ≥200 Hz) — tracking low frequencies causes unwanted filtering of PID-relevant signals. |
 | `dyn_notch_max_hz` | 600 | 200–1000 | Maximum frequency any notch will track. Default 600 is fine for most builds. Narrowing the range improves notch resolution. |
@@ -351,7 +351,7 @@ Betaflight 2025.12 defaults to the ACTUAL rates system. In ACTUAL: RC_Rate = deg
 | `motor_pwm_protocol` | DSHOT600 | PWM, ONESHOT125, ONESHOT42, MULTISHOT, BRUSHED, DSHOT150, DSHOT300, DSHOT600, PROSHOT1000, DISABLED | ESC communication protocol. DSHOT600 for ICM-42688P/MPU-6000 at 8kHz; **DSHOT300 for BMI270 at 3.2kHz** (DSHOT600 at 3.2kHz is marginal). |
 | `dshot_bidir` | OFF | OFF, ON | Enables bidirectional DSHOT for RPM telemetry. Required for RPM filtering. ESC firmware must support it. |
 | `dshot_burst` | AUTO | OFF, ON, AUTO | DSHOT burst transmission mode. AUTO selects based on hardware capability. |
-| `dshot_edt` | OFF | OFF, ON | Extended DSHOT Telemetry — provides additional ESC data beyond RPM. |
+| `dshot_edt` | OFF | OFF, ON, FORCE (2025.12) | Extended DSHOT Telemetry — provides additional ESC data beyond RPM. In 4.5: `OFF, ON`. In 2025.12: `OFF, ON, FORCE`. |
 | `dshot_bitbang` | AUTO | OFF, ON, AUTO | DSHOT bitbang implementation (software DSHOT). AUTO selects automatically. |
 | `dshot_bitbang_timer` | AUTO | AUTO, TIM1, TIM8 | Timer used for bitbang DSHOT. |
 | `motor_poles` | 14 | 4–255 | Number of magnetic poles on the motor bell (magnet count, **not** stator count). **Critical for RPM filter accuracy.** Most 5" motors have 14 magnets; verify on your specific motors. Wrong value → filters tracking wrong frequencies. |
@@ -487,7 +487,7 @@ Always use FC-based failsafe (configure receiver to send **no data** on signal l
 | `failsafe_off_delay` | 10 (1 s) | 0–200 (deciseconds) | Duration of Landing Mode Stage 2. Renamed to `failsafe_landing_time` in 2025.12. |
 | `failsafe_throttle` | 1000 | 750–2250 | Throttle value applied during Landing Mode Stage 2 AND used as the Stage 1 fallback throttle if configured. **Default 1000 = motors off.** For GPS Rescue: must be set to a hover throttle value, or the quad drops in Stage 1 before Rescue can activate. |
 | `failsafe_switch_mode` | STAGE1 | STAGE1, KILL, STAGE2 | Aux switch behavior: STAGE1 = simulates signal loss (useful for testing and as a panic switch), STAGE2 = skips Stage 1 (instant GPS rescue / drop), KILL = instant disarm (dangerous, any glitch crashes the quad). |
-| `failsafe_recovery_delay` | 5 (0.5 s) / — | 1–200 (deciseconds) | Duration the signal must be stable after Stage 2 before the pilot can re-arm or (for GPS Rescue) before stick inputs are assessed. |
+| `failsafe_recovery_delay` | 5 (0.5 s) | 1–200 (deciseconds) | Duration the signal must be stable after Stage 2 before the pilot can re-arm or (for GPS Rescue) before stick inputs are assessed. |
 | `failsafe_stick_threshold` | 30 | 0–50 | Stick deflection (degrees from center) required to exit GPS Rescue Stage 2 after signal recovery. Move sticks to this threshold once video returns and RXLOSS clears. |
 | `failsafe_throttle_low_delay` | 100 (10 s) | 0–300 (deciseconds) | If throttle has been low for this duration before Stage 2 triggers, the FC immediately disarms instead of activating Landing Mode (the "Just Drop" override). Protects pilots who power off their transmitter after landing without disarming. |
 
@@ -553,7 +553,7 @@ Prerequisites: GPS module (UBlox M8N minimum, M10 recommended), calibrated accel
 
 | Variable | Default | Range / Values | Description |
 |----------|---------|----------------|-------------|
-| `debug_mode` | NONE | NONE, GYRO_SCALED, FFT_FRQ, GYRO_FILTERED, D_MAX, DYN_IDLE, ITERM_RELAX, FEEDFORWARD, RC_SMOOTHING, DSHOT_RPM_TELEMETRY, RPM_FILTER, GPS_RESCUE_VELOCITY, GPS_RESCUE_HEADING, FAILSAFE, … (many more) | Select which internal signals are exposed in blackbox debug fields. Key modes: **FFT_FRQ** (BF 4.5+, filter frequency analysis), **GYRO_SCALED** (raw gyro, filter tuning), **D_MAX** (dynamic damping), **DYN_IDLE** (dynamic idle), **ITERM_RELAX** (I-term relax), **FEEDFORWARD** (FF signals), **FAILSAFE** (failsafe state). |
+| `debug_mode` | NONE | NONE, GYRO_SCALED, FFT, FFT_TIME, FFT_FREQ, GYRO_FILTERED, D_MAX, D_MIN (4.5 only), DYN_IDLE, ITERM_RELAX, FEEDFORWARD, RC_SMOOTHING, DSHOT_RPM_TELEMETRY, RPM_FILTER, GPS_RESCUE_VELOCITY, GPS_RESCUE_HEADING, FAILSAFE, … (many more) | Select which internal signals are exposed in blackbox debug fields. Key modes: **FFT_FREQ** (filter frequency analysis), **FFT_TIME** (FFT time-domain), **FFT** (general FFT), **GYRO_SCALED** (raw gyro, filter tuning), **D_MAX** (dynamic damping in 2025.12), **D_MIN** (dynamic damping in 4.5 only), **DYN_IDLE** (dynamic idle), **ITERM_RELAX** (I-term relax), **FEEDFORWARD** (FF signals), **FAILSAFE** (failsafe state). |
 | `task_statistics` | ON | OFF, ON | Enables CPU task profiling visible via `tasks` CLI command. Turn OFF to reduce overhead on heavily loaded systems. |
 | `cpu_overclock` | OFF | OFF, 192MHZ, 216MHZ, 240MHZ | Overclock the STM32 F7 processor. Use only if CPU load is too high and the board supports it. |
 | `pwr_on_arm_grace` | 5 | 0–30 s | Grace period after power-on during which arming is blocked (prevents arming before receiver binds). |
@@ -563,7 +563,7 @@ Prerequisites: GPS module (UBlox M8N minimum, M10 recommended), calibrated accel
 | `scheduler_relax_osd` | 25 | 0–250 μs | Scheduler relaxation time for OSD task. |
 | `align_board_roll` | 0 | −180–360 | Board rotation offset in roll (degrees). For non-standard FC mounting orientations. |
 | `align_board_pitch` | 0 | −180–360 | Board rotation offset in pitch. |
-| `align_board_yaw` | 45 | −180–360 | Board rotation offset in yaw. |
+| `align_board_yaw` | 45 / 0 | −180–360 | Board rotation offset in yaw (degrees). For non-standard FC mounting orientations. **2025.12 default is 45; 4.5 default is 0.** |
 | `mag_declination` | 0 | −18000–18000 (hundredths of degrees) | Magnetic declination correction for your location. Find at ngdc.noaa.gov/geomag/calculators. Removed in 2025.12. |
 | `rate_6pos_switch` | OFF | OFF, ON | Enable 6-position rate profile selection via an AUX channel. |
 | `enable_stick_arming` | OFF | OFF, ON | Enable stick-combination arming (throttle-down/yaw-right). Disable if using a dedicated arm switch. |
@@ -582,6 +582,6 @@ Prerequisites: GPS module (UBlox M8N minimum, M10 recommended), calibrated accel
 | `baro_bustype` | SPI | NONE, I2C, SPI, SLAVE | Barometer bus type. Not present in 4.5 dump. |
 | `mag_hardware` | NONE | NONE, AUTO, HMC5883, QMC5883, … | Magnetometer hardware selection. NONE = disabled. Removed in 2025.12. |
 | `align_mag` | DEFAULT | DEFAULT, CW0, CW90, CW180, CW270, CW0FLIP, … | Magnetometer orientation. Removed in 2025.12. |
-| `adc_device` | 2 | 0–3 | ADC device used for voltage/current sensing. |
+| `adc_device` | 2 / 1 | 0–3 | ADC device used for voltage/current sensing. 2025.12 default is 2; 4.5 default is 1. |
 | `altitude_source` | DEFAULT | DEFAULT, BARO_ONLY, GPS_ONLY | Override altitude data source for autopilot and OSD altitude display. |
 | `altitude_prefer_baro` | 100 | 0–100 | Weight given to barometer vs GPS altitude when both are available (0 = GPS only, 100 = baro only). |
