@@ -35,11 +35,20 @@ make
 Alternatively, you can use the Python implementation of websockify:
 
 # Install websockify (use --user to avoid needing sudo; ensure ~/.local/bin is in PATH)
+
+```
 pip3 install --user websockify
+```
 
 # Run the proxy (UART1 is at TCP port 5761)
-# If `websockify` is not found, use: python3 -m websockify 127.0.0.1:6761 127.0.0.1:5761
+
+```
 websockify 127.0.0.1:6761 127.0.0.1:5761 &
+```
+
+:::note
+If `websockify` is not found, use: python3 -m websockify 127.0.0.1:6761 127.0.0.1:5761
+:::
 
 Open the Betaflight Online Configurator, and in Options enable "manual connection mode"
 
