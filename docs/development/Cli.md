@@ -20,46 +20,65 @@ Send `#` over the serial port (or use the CLI tab in Betaflight Configurator). E
 
 ### Key CLI Commands
 
+Betaflight CLI displays useful commands when the `help` command is entered. Below is a curated list of the most important commands for tuning and configuration. For the full list, refer to the `help` output of your specific Betaflight version.
+
 | Command | Description |
 |---------|-------------|
+| `batch start\|end` | Start or end a batch of commands |
 | `get [name]` | Show current value of one or all variables (partial name works: `get acc`) |
 | `set name=value` | Set a variable. Must `save` afterward. |
 | `save` | Write settings to flash and reboot FC |
 | `save noreboot` | Write settings without rebooting (2025.12+) |
-| `diff` | Show all non-default settings for current profile/rateprofile |
-| `diff all` | Show non-default settings across all profiles |
-| `dump` | Full configuration dump (all values, including defaults) |
+| `exit` | Exit CLI without saving and reboot |
+| `exit noreboot` | Exit CLI without saving and without rebooting |
+| `diff [master\|profile\|rates\|hardware\|all] {defaults\|bare}` | List configuration changes from default |
+| `diff all` | Show all non-default settings across all profiles |
+| `dump [master\|profile\|rates\|hardware\|all] {defaults\|bare}` | Full configuration dump (all values, including defaults) |
 | `dump all` | Full dump across all profiles |
-| `defaults` | Factory reset and reboot |
+| `defaults` | Reset to defaults and reboot |
 | `defaults nosave` | Reset to defaults without rebooting |
 | `status` | Show FC status: gyro type, loop time, CPU load, arming flags |
 | `version` | Show firmware version string |
 | `tasks` | Show task scheduler stats (CPU usage per task) |
-| `profile [0-5]` | Switch active PID profile |
-| `rateprofile [0-5]` | Switch active rate profile |
+| [`profile [0-5]`](/docs/development/Profiles) | Change active PID profile |
+| [`rateprofile [0-5]`](/docs/development/Profiles) | Change active rate profile |
 | `feature list` | List all available features |
-| `feature FEATURE_NAME` | Enable a feature |
-| `feature -FEATURE_NAME` | Disable a feature |
-| `aux <index> <mode> <channel> <start> <end> <logic>` | Configure AUX mode switch |
-| `rxfail` | Show/set per-channel failsafe fallback values |
-| `resource` | Show/set pin assignments |
+| `feature <feature_name>` | Enable a feature |
+| `feature -<feature_name>` | Disable a feature |
+| [`aux <index> <mode> <channel> <start> <end> <logic>`](/docs/development/Modes) | Configure AUX mode switch |
+| [`mixer list\|<name>`](/docs/development/Mixer) | Mixer name or list |
+| [`mmix`](/docs/development/Mixer) | Design custom motor mixer |
+| [`smix`](/docs/development/Mixer) | Design custom servo mixer |
+| [`servo`](/docs/development/Mixer) | Configure servos |
+| [`led`](/docs/development/LedStrip) | Configure leds |
+| [`color`](/docs/development/LedStrip) | Configure colors |
+| [`mode_color`](/docs/development/LedStrip) | Configure mode and special colors |
+| [`play_sound [<index>]`](/docs/development/Buzzer) | Play a sound for given index, or none for next |
+| [`map`](/docs/development/Rx) | Show/set RC channel order mapping |
+| [`rxrange`](/docs/development/Rx) | configure rx channel ranges (end-points) |
+| [`rxfail`](/docs/development/Rx) | Show/set per-channel failsafe fallback values |
+| `resource <> \| <resource name> <index> [<pin>\|none] \| show [all]` | Show/set pin assignments |
 | `dma` | Show/set DMA channel assignments |
-| `serial` | Configure serial port functions and baud rates |
-| `map` | Show/set RC channel order mapping |
-| `adjrange` | Configure in-flight adjustment ranges |
+| [`serial`](/docs/development/Serial) | Configure serial ports and baud rates |
+| `serialpassthrough <id1> [<baud1>] [<mode1>] [none\|<dtr pinio>\|reset] [<id2>] [<baud2>] [<mode2>]` | Passthrough serial data data from port 1 to VCP / port 2 |
+| [`adjrange`](/docs/development/Inflight-Adjustments) | Configure in-flight adjustment ranges |
 | `motor <index> [value]` | Read or drive a motor (use with caution — props off) |
-| `dshot_telemetry_info` | Show DSHOT telemetry statistics |
-| `dshotprog <index> <cmd>` | Send DSHOT ESC programming commands |
+| `dshot_telemetry_info` | Show DSHOT telemetry info and statistics |
+| `dshotprog <index> <cmd>+` | Send DSHOT ESC programming commands |
+| `escprog <mode [sk/bl/ki/cc]> <index>` | Passthrough ESC to serial |
+| [`gpspassthrough`](/docs/development/Gps) | Passthrough GPS to serial |
 | `gyroregisters` | Dump raw gyro hardware register contents |
-| `simplified_tuning apply\| disable` | Apply or clear simplified tuning slider values |
+| `simplified_tuning apply\|disable` | Apply or clear simplified tuning slider values |
 | `bind_rx` | Initiate RX binding (SRXL2, CRSF, SPI RX) |
-| `bl` | Reboot into bootloader |
+| `bl [rom]` | Reboot into bootloader |
 | `msc` | Switch to USB mass-storage mode (SD card or flash) |
-| `rc_smoothing_info` | Show computed RC smoothing cutoff frequencies |
+| `rc_smoothing_info` | Show RC smoothing operational settings |
 | `vtx_info` | Show VTX power configuration |
-| `flash_info` | Show onboard flash chip info |
-| `flash_read <address> <length>` | Read from flash at specified address and length |
-| `flash_erase` | Erase blackbox flash (also: `flash_scan`) |
+| `flash_info` | Show flash chip info |
+| `flash_scan` | Scan flash device for errors |
+| `flash_erase` | Erase flash chip (deletes blackboxes) |
+| `tasks`                                              | Show task stats |
+| `timer <> \| <pin> list \| <pin> [af<alternate function>\|none\|<option(deprecated)>] \| list \| show` | Show/set timers |
 
 ### Backup and Restore
 
