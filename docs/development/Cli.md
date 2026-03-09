@@ -113,7 +113,6 @@ Scope annotations in the raw dump: `profile N` = per-PID-profile, `rateprofile N
 | `gyro_calib_noise_limit` | 48 | 0–200 | Noise threshold during calibration. If movement exceeds this, calibration restarts. Increase if it won't calibrate in a noisy environment. |
 | `gyro_offset_yaw` | 0 | −1000 – 1000 | Manual yaw gyro trim (tenths of degrees/s). Use to correct persistent yaw drift if trim sticks or acc trim are not sufficient. |
 | `gyro_overflow_detect` | ALL | OFF, YAW, ALL | Detects gyro ADC saturation (sensor hitting its limit) and disarms. Recommended: ALL. |
-
 | `imu_dcm_kp` | 2500 | 0–32000 | Complementary filter proportional gain. Controls how aggressively acc data is blended with gyro integration. Default is suitable for all normal use. |
 | `imu_dcm_ki` | 0 | 0–32000 | Complementary filter integral gain. Non-zero allows slow acc-based yaw correction. Rarely changed. |
 | `imu_process_denom` | 2 | 1–4 | IMU attitude update rate divisor relative to gyro task rate. 2 = update every second gyro cycle. Higher values reduce CPU load at the cost of attitude accuracy. |
