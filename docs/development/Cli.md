@@ -6,7 +6,7 @@ This document is a **complete reference for all CLI commands and variables** in 
 
 ## Important version differences
 
-- Dynamic damping naming changed: in **4.5** `d_roll` is D_max and `d_min_roll` is D_min; in **2025.12** `d_roll` is the base D and `d_max_roll` is the peak — `d_min_roll` no longer exists.
+- Dynamic damping naming and calculation have changed: in **4.5** `d_roll` is D_max and `d_min_roll` is base D; in **2025.12** `d_roll` is the base D and `d_max_roll` is the peak — `d_min_roll` no longer exists.
 - GPS rescue: `gps_rescue_*` variables exist in **4.5** only; redesigned in 2025.12.
 - Failsafe landing duration: `failsafe_off_delay` (4.5) → `failsafe_landing_time` (2025.12).
 
