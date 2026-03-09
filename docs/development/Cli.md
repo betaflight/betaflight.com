@@ -143,21 +143,9 @@ Gyro LPF1 is the main gyro low-pass. In most modern builds with RPM filtering, *
 | `gyro_notch2_hz` | 0 | 0–1000 | Centre frequency of static gyro notch 2. 0 = disabled. |
 | `gyro_notch2_cutoff` | 0 | 0–1000 | Bandwidth of gyro notch 2. |
 
-
----
-
-### RPM Filter (Bidirectional DSHOT)
-
-Requires bidirectional DSHOT (`dshot_bidir = ON`) and ESC firmware that supports it (BLHeli_32, AM32, BlueJay). Motor noise typically starts around 100 Hz and increases with throttle. Harmonics occur at 2× and 3× the fundamental.
-
-| Variable | Default | Range / Values | Description |
-|----------|---------|----------------|-------------|
-| `rpm_filter_harmonics` | 3 | 0–3 | Number of RPM harmonics to filter per motor. 3 = fundamental + 2nd + 3rd. 0 disables RPM filtering. |
-| `rpm_filter_weights` | 100,100,100 | Array of 3, 0–100 each | Per-harmonic notch depth percentage. Tri-blade props: try `100,0,80` (2nd harmonic absent). Bi-blade: `100,80,0` or `100,50,0`. Lower each as far as possible without motor noise appearing in filtered gyro. |
-| `rpm_filter_q` | 500 | 250–3000 | Q factor (notch sharpness). **Target 1000 on well-configured 5" builds** — default 500 is a starting point, not a goal. Higher Q = narrower notch = less phase delay. Back off only if motor noise bleeds through. |
-| `rpm_filter_min_hz` | 100 | 30–200 | Below this frequency, notches are not applied. Lower on larger quads with slower-spinning motors (7"+ reduce to 60–80 Hz). |
-| `rpm_filter_fade_range_hz` | 50 | 0–1000 | Frequency band over which notches fade in at low throttle, reducing delay at idle. |
-| `rpm_filter_lpf_hz` | 150 | 100–500 | Post-notch smoothing LPF applied to the RPM signal used for notch tracking. |
+Also see:
+- [PID tuning](/docs/development/PID-tuning)
+- [PID tuning guide](/docs/wiki/guides/current/PID-Tuning-Guide)
 
 ---
 
@@ -171,6 +159,10 @@ Tracks and eliminates frame resonances — visible as vertical stripes (fixed fr
 | `dyn_notch_q` | 300 | 1–1000 | Q factor — narrowness of each notch. Increase until the resonance just stays within the notch, then stop. Max useful value ~1000. |
 | `dyn_notch_min_hz` | 100 | 20–250 | Minimum frequency any notch will track. Set ~25 Hz below the lowest resonance you need to catch. **Never set below 150 Hz** without reason (ideally ≥200 Hz) — tracking low frequencies causes unwanted filtering of PID-relevant signals. |
 | `dyn_notch_max_hz` | 600 | 200–1000 | Maximum frequency any notch will track. Default 600 is fine for most builds. Narrowing the range improves notch resolution. |
+
+Also see:
+- [PID tuning](/docs/development/PID-tuning)
+- [PID tuning guide](/docs/wiki/guides/current/PID-Tuning-Guide)
 
 ---
 
@@ -189,6 +181,10 @@ Two-stage D-term filter chain reduces motor noise heating caused by high-frequen
 | `dterm_lpf2_static_hz` | 150 | 0–1000 (profile) | Cutoff for D-term LPF2 (always static). Use as a secondary anti-noise stage. |
 | `dterm_notch_hz` | 0 | 0–500 (profile) | Static D-term notch centre frequency. 0 = disabled. Rarely needed when dynamic notch is active. |
 | `dterm_notch_cutoff` | 0 | 0–500 (profile) | Static D-term notch bandwidth. |
+
+Also see:
+- [PID tuning](/docs/development/PID-tuning)
+- [PID tuning guide](/docs/wiki/guides/current/PID-Tuning-Guide)
 
 ---
 
@@ -237,6 +233,10 @@ All gains are per-profile. Scope shown in the raw dump as `profile N`. The simpl
 | `iterm_relax_cutoff` | 15 | 1–50 (profile) | Cutoff frequency for the I-term relax HP filter. Higher = reacts faster (better for racing). Lower = smoother (better for large/slow builds). Typical ranges: Racing: 30–40, Freestyle 5": 15, 7"+: 10, X-Class: 3–5. If bounce-back or post-flip oscillation persists, step this down: 15→10→7→5. |
 | `iterm_windup` | 80 | 20–100 (profile) | Suppresses I accumulation (in %) when motors are near saturation. Default 80 is sensible. **Note**: default changed to 80 in 2025.12 from 85 in 4.4/4.5. |
 
+Also see:
+- [PID tuning](/docs/development/PID-tuning)
+- [PID tuning guide](/docs/wiki/guides/current/PID-Tuning-Guide)
+
 ---
 
 ### Dynamic Damping (D-min / D-max)
@@ -251,6 +251,11 @@ Dynamically increases D on sharp moves while keeping it low during calm flight (
 **Setup (2025.12):** Set `d_roll` = floor D (e.g. 15), `d_max_roll` = ceiling D (e.g. 30). Calm flight uses `d_roll`; sharp moves boost toward `d_max_roll`. Debug with `set debug_mode = D_MAX`.
 
 **Setup (4.5):** Set `d_roll` = D_max (ceiling), `d_min_roll` = D_min (floor, ~50% of D_max). Same behaviour.
+
+Also see:
+- [PID tuning](/docs/development/PID-tuning)
+- [PID tuning guide](/docs/wiki/guides/current/PID-Tuning-Guide)
+- [D min](/docs/wiki/guides/current/DMIN)
 
 ---
 
@@ -270,6 +275,9 @@ Feed forward adds a stick-input derivative term — it anticipates moves rather 
 | `feedforward_max_rate_limit` | 90 | 0–200 (profile) | Reduces FF as sticks approach maximum deflection. 90 = cut FF when stick is at 90% travel. Raise to 92–95 for crisper move entry on responsive builds. |
 | `feedforward_yaw_hold_gain` | 15 | 0–100 (profile) | Sustains a residual FF signal in yaw after the stick is released, counteracting I-term under-yaw. |
 | `feedforward_yaw_hold_time` | 100 | 10–250 (profile) | Duration (ms) of the yaw FF hold after stick release. |
+
+Also see:
+- [Feed forward](/docs/wiki/guides/current/Feed-Forward-2-0)
 
 ---
 
@@ -292,6 +300,10 @@ When simplified tuning is active, these intermediate values drive the actual PID
 | `simplified_gyro_filter_multiplier` | 100 | 10–200 | Gyro filter cutoff scaling slider. 100 = current static values. Raise to reduce gyro filtering (faster). |
 | `simplified_dterm_filter` | ON | OFF, ON (profile) | Whether simplified slider controls D-term filter cutoffs. |
 | `simplified_dterm_filter_multiplier` | 100 | 10–200 (profile) | D-term filter cutoff scaling slider. |
+
+Also see:
+- [PID tuning](/docs/development/PID-tuning)
+- [PID tuning guide](/docs/wiki/guides/current/PID-Tuning-Guide)
 
 ---
 
@@ -342,6 +354,10 @@ Betaflight 2025.12 defaults to the ACTUAL rates system. In ACTUAL: RC_Rate = deg
 | `yaw_control_reversed` | OFF | OFF, ON | Reverses the direction of yaw stick. |
 | `fpv_mix_degrees` | 0 | 0–50 | FPV camera tilt angle for tilt-compensated yaw mixing. |
 
+Also see:
+- [Profiles](/docs/development/Profiles)
+- [Rate Calculator](/docs/wiki/guides/current/Rate-Calculator)
+
 ---
 
 ### Angle & Horizon Mode
@@ -360,6 +376,9 @@ Betaflight 2025.12 defaults to the ACTUAL rates system. In ACTUAL: RC_Rate = deg
 | `acc_trim_pitch` | 0 | −300–300 | Accelerometer pitch trim for level calibration. |
 | `acc_trim_roll` | 0 | −300–300 | Accelerometer roll trim for level calibration. |
 | `acc_lpf_hz` | 25 | 0–500 | Accelerometer low-pass filter cutoff. Smooths acc readings used for attitude estimation. |
+
+Also see:
+- [Modes](/docs/development/Modes)
 
 ---
 
@@ -393,6 +412,30 @@ Betaflight 2025.12 defaults to the ACTUAL rates system. In ACTUAL: RC_Rate = deg
 | `rpm_limit_i` | 10 | — | I gain for RPM limiter controller. |
 | `rpm_limit_d` | 8 | — | D gain for RPM limiter controller. |
 
+Also see:
+- [ESC telemetry](/docs/wiki/guides/current/ESC-Telemetry)
+- [DShot RPM Filtering](/docs/wiki/guides/current/DSHOT-RPM-Filtering)
+
+---
+
+### RPM Filter (Bidirectional DSHOT)
+
+Requires bidirectional DSHOT (`dshot_bidir = ON`) and ESC firmware that supports it (BLHeli_32, AM32, BlueJay). Motor noise typically starts around 100 Hz and increases with throttle. Harmonics occur at 2× and 3× the fundamental.
+
+| Variable | Default | Range / Values | Description |
+|----------|---------|----------------|-------------|
+| `rpm_filter_harmonics` | 3 | 0–3 | Number of RPM harmonics to filter per motor. 3 = fundamental + 2nd + 3rd. 0 disables RPM filtering. |
+| `rpm_filter_weights` | 100,100,100 | Array of 3, 0–100 each | Per-harmonic notch depth percentage. Tri-blade props: try `100,0,80` (2nd harmonic absent). Bi-blade: `100,80,0` or `100,50,0`. Lower each as far as possible without motor noise appearing in filtered gyro. |
+| `rpm_filter_q` | 500 | 250–3000 | Q factor (notch sharpness). **Target 1000 on well-configured 5" builds** — default 500 is a starting point, not a goal. Higher Q = narrower notch = less phase delay. Back off only if motor noise bleeds through. |
+| `rpm_filter_min_hz` | 100 | 30–200 | Below this frequency, notches are not applied. Lower on larger quads with slower-spinning motors (7"+ reduce to 60–80 Hz). |
+| `rpm_filter_fade_range_hz` | 50 | 0–1000 | Frequency band over which notches fade in at low throttle, reducing delay at idle. |
+| `rpm_filter_lpf_hz` | 150 | 100–500 | Post-notch smoothing LPF applied to the RPM signal used for notch tracking. |
+
+Also see:
+- [PID tuning](/docs/development/PID-tuning)
+- [PID tuning guide](/docs/wiki/guides/current/PID-Tuning-Guide)
+- [DShot RPM Filtering](/docs/wiki/guides/current/DSHOT-RPM-Filtering)
+
 ---
 
 ### Dynamic Idle
@@ -407,6 +450,9 @@ Prevents motor stall during flips/rolls and throttle chops. Any non-zero `dyn_id
 | `dyn_idle_d_gain` | 50 | 0–250 (profile) | D gain of the dynamic idle RPM controller. |
 | `dyn_idle_max_increase` | 150 | 10–255 (profile) | Maximum throttle increase (in motor units) the dynamic idle controller can command above the static idle value. |
 | `transient_throttle_limit` | 0 | 0–30 (profile) | Limits rapid throttle-up transients. **Must be set to 0 when dynamic idle is enabled.** Non-zero values were used before dynamic idle existed. |
+
+Also see:
+- [Dynamic Idle](/docs/wiki/guides/current/Dynamic-Idle)
 
 ---
 
@@ -436,6 +482,12 @@ Prevents motor stall during flips/rolls and throttle chops. Any non-zero `dyn_id
 | `rssi_offset` | 0 | −100–100 | Offsets the RSSI reading. |
 | `rssi_invert` | OFF | OFF, ON | Invert the RSSI signal (some receivers send inverted RSSI). |
 | `max_aux_channels` | 14 | 0–14 | Maximum number of AUX channels processed. |
+
+Also see:
+- [Controls](/docs/development/Controls)
+- [Receivers (RX)](/docs/development/Rx)
+- [RSSI](/docs/development/Rssi)
+- [Spektrum Bind Support](/docs/development/Spektrum-bind)
 
 ---
 
@@ -467,6 +519,10 @@ Prevents motor stall during flips/rolls and throttle chops. Any non-zero `dyn_id
 | `ibatv_offset` | 0 | −32000–32000 | Virtual current sensor offset. |
 | `report_cell_voltage` | OFF | OFF, ON | Report per-cell voltage (total / cell count) instead of pack voltage in telemetry. |
 
+Also see:
+- [Telemetry](/docs/development/Telemetry)
+- [Battery](/docs/development/Battery)
+
 ---
 
 ### Blackbox
@@ -492,6 +548,9 @@ Prevents motor stall during flips/rolls and throttle chops. Any non-zero `dyn_id
 | `blackbox_disable_rpm` | OFF | OFF, ON | Exclude RPM telemetry data. |
 | `blackbox_disable_gps` | OFF | OFF, ON | Exclude GPS data. |
 
+Also see:
+- [Blackbox](/docs/development/Blackbox)
+
 ---
 
 ### Failsafe
@@ -509,6 +568,9 @@ Always use FC-based failsafe (configure receiver to send **no data** on signal l
 | `failsafe_recovery_delay` | 5 (0.5 s) | 1–200 (deciseconds) | Duration the signal must be stable after Stage 2 before the pilot can re-arm or (for GPS Rescue) before stick inputs are assessed. |
 | `failsafe_stick_threshold` | 30 | 0–50 | Stick deflection (degrees from center) required to exit GPS Rescue Stage 2 after signal recovery. Move sticks to this threshold once video returns and RXLOSS clears. |
 | `failsafe_throttle_low_delay` | 100 (10 s) | 0–300 (deciseconds) | If throttle has been low for this duration before Stage 2 triggers, the FC immediately disarms instead of activating Landing Mode (the "Just Drop" override). Protects pilots who power off their transmitter after landing without disarming. |
+
+Also see:
+- [Failsafe](/docs/wiki/guides/current/Failsafe)
 
 ---
 
@@ -549,6 +611,10 @@ Prerequisites: GPS module (UBlox M8N minimum, M10 recommended), calibrated accel
 | `gps_rescue_disarm_threshold` | 20 | 0–100 | Impact detection threshold for auto-disarm on landing. Lower = more sensitive. |
 | `gps_rescue_landing_alt` | 4 | 0–15 m | Altitude below which impact detection is enabled for auto-disarm. |
 
+Also see:
+- [GPS](/docs/development/Gps)
+- [GPS Rescue in v4.5](/docs/wiki/guides/current/GPS-Rescue-v4-5)
+
 ---
 
 ### GPS Settings
@@ -565,6 +631,9 @@ Prerequisites: GPS module (UBlox M8N minimum, M10 recommended), calibrated accel
 | `gps_ublox_flight_model` | — | — | UBlox dynamic model used during flight. |
 | `gps_set_home_point_once` | OFF | OFF, ON | Only set the home point on the first arm after battery connect. Prevents home being reset if you disarm and re-arm mid-field. |
 | `gps_use_3d_speed` | OFF | OFF, ON | Use 3D speed (including vertical) for GPS speed display. |
+
+Also see:
+- [GPS](/docs/development/Gps)
 
 ---
 
