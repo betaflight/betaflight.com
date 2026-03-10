@@ -4,7 +4,7 @@ date: 2023-10-30
 authors: ['blckmn']
 ---
 
-Its simply a case of "ICYMI". Yes folks **Betaflight**, albeit an earlier version than current, was the firmware behind the most recent record breaking success story for the **“Fastest ground speed by a battery-powered remote-controlled (RC) quadcopter”**.
+It's simply a case of "ICYMI". Yes folks **Betaflight**, albeit an earlier version than current, was the firmware behind the most recent record breaking success story for the **“Fastest ground speed by a battery-powered remote-controlled (RC) quadcopter”**.
 
 <!--truncate-->
 
@@ -24,7 +24,7 @@ https://youtu.be/J3WwtByvSI0?t=21
 
 :::note[Blackbox Log]
 
-If your are so inclined the black box log of the attempt can be analysed here
+If you are so inclined the black box log of the attempt can be analysed here
 
 https://drive.google.com/file/d/1K1JLV_f3W0z1dRSP84hw3UEqv5Fc_b5P/view
 

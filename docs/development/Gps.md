@@ -63,7 +63,7 @@ The default is AUTO.
 | GAGAN             | India         |
 | SouthPAN (SPAN)\* | Australia     |
 
-\*NOTE: Currently being rolled out, usable in beta mode (safety-of-life certification planned in 2028). SBAS is region specific, make sure to check if your area is covered by an SBAS, and your receiver is capable of processing the area-sepcific signal (not all SBAS receivers can work with all SBAS satellites).
+\*NOTE: Currently being rolled out, usable in beta mode (safety-of-life certification planned in 2028). SBAS is region specific, make sure to check if your area is covered by an SBAS, and your receiver is capable of processing the area-specific signal (not all SBAS receivers can work with all SBAS satellites).
 
 If you use a regional specific setting you may achieve a faster GPS lock than using AUTO.
 
@@ -113,7 +113,7 @@ Navigate to PRT (Ports)
 Set `Target` to `1 - Uart 1`
 Set `Protocol In` to `0+1` (NMEA and UBX)
 Set `Protocol Out` to `0+1` (NMEA and UBX)
-Set `Buadrate` to `57600` `115200` (NOTE: 115200 will often have intermittent connection problems)
+Set `Baudrate` to `57600` `115200` (NOTE: 115200 will often have intermittent connection problems)
 Press `Send`
 
 This will immediately "break" communication to the GPS. Since you haven't saved the new baudrate setting to the non-volatile memory you need to change the baudrate you communicate to the GPS without resetting the GPS. So `Disconnect`, Change baud rate to match, then `Connect`.
