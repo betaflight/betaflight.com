@@ -8,7 +8,7 @@ There are 3 basic types of receivers:
 2. PPM Receivers
 3. Serial Receivers
 
-As of 2016 the recommendation for new purchases is a Serial or PPM based receiver. Avoid Parallel PWM recievers (1 wire per channel). This is due to the amount of IO pins parallel PWM based receivers use. Some new FC's do not support parallel PWM.
+As of 2016 the recommendation for new purchases is a Serial or PPM based receiver. Avoid Parallel PWM receivers (1 wire per channel). This is due to the amount of IO pins parallel PWM based receivers use. Some new FC's do not support parallel PWM.
 
 ## Parallel PWM Receivers
 

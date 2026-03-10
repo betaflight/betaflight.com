@@ -76,7 +76,7 @@ When using a MAX7456 chip the font glyphs are uploaded from the Font Manager
 
 ### Font Presets
 
-This can be used to select different font styles which heavier or lighter lettering and different styles. Use Upload
+This can be used to select different font styles with heavier or lighter lettering and different styles. Use Upload
 Font to save changes
 
 ### Boot Logo
