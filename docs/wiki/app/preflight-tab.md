@@ -70,8 +70,11 @@ Displays real-time weather conditions at your location:
 | **Precipitation** | Rain, snow, or drizzle. Any precipitation increases risk to electronics and optics |
 | **Dew Point** | Temperature at which condensation forms. When the air temperature is close to the dew point (within 2-4°C), expect fog and lens fogging |
 | **Cloud Cover** | Percentage of sky covered by clouds |
+| **Feels Like** | Apparent temperature accounting for wind chill and humidity — relevant for pilot comfort and equipment handling |
 | **Humidity** | Relative humidity — high values combined with temperature drops can cause condensation |
 | **Pressure** | Atmospheric pressure in hPa — rapid changes may indicate incoming weather fronts |
+| **Battery Risk** | LiPo temperature assessment. Below 10°C: reduced capacity; below 0°C: risk of damage. Above 40°C: risk of swelling |
+| **Fog Risk** | Fog probability based on dew point spread, humidity, and wind speed. Calm, humid conditions near the dew point indicate high fog risk |
 
 Color-coded values: **green** = good, **yellow** = moderate, **orange** = warning, **red** = dangerous.
 
@@ -86,6 +89,7 @@ Shows time-based conditions for planning your session:
 | Field | Description |
 |-------|-------------|
 | **Sunrise / Sunset** | Legal flight in most countries is restricted to daylight hours. These times help you plan |
+| **Legal Flight Window** | Civil twilight window (30 minutes before sunrise to 30 minutes after sunset). Green when you are currently within the window, red when outside. Note: regulations vary by country |
 | **Daylight Duration** | Total hours and minutes of daylight available |
 | **UV Index** | Solar UV intensity. High UV (6+) can make screens hard to read outdoors |
 | **Temperature Range** | Daily minimum and maximum temperature — extreme cold affects LiPo battery performance |
@@ -120,6 +124,29 @@ Data source: [Open-Meteo](https://open-meteo.com/) hourly forecast at multiple p
 
 ---
 
+## 5-Day Forecast
+
+A compact daily overview to help plan flight sessions ahead. Shows weather conditions, temperature range, wind, gusts, and precipitation probability for the next 5 days.
+
+| Column | Description |
+|--------|-------------|
+| **Day** | Weekday and date |
+| **Weather** | Weather condition with icon (clear, cloudy, rain, snow, etc.) |
+| **Temp** | Daily temperature range (min / max °C) |
+| **Wind** | Maximum wind speed for the day (m/s) |
+| **Gusts** | Maximum gust speed for the day (m/s) |
+| **Rain %** | Maximum precipitation probability for the day |
+
+Rows are color-coded by overall flyability:
+- **No highlight**: Good conditions for flying
+- **Light yellow**: Moderate — wind 8-11 m/s or rain chance above 30%
+- **Light orange**: Warning — wind 11-14 m/s or rain chance above 50%
+- **Light red**: Dangerous — wind above 14 m/s or rain chance above 80%
+
+Data source: [Open-Meteo](https://open-meteo.com/) daily forecast parameters.
+
+---
+
 ## Solar Activity
 
 Solar and geomagnetic activity directly affects GPS accuracy. The sun's activity disturbs Earth's ionosphere, which GPS signals pass through.
@@ -148,6 +175,21 @@ Data source: [NOAA Space Weather Prediction Center](https://www.swpc.noaa.gov/) 
 ---
 
 ## GNSS / GPS Status
+
+### Elevation
+
+Ground elevation at your location in meters above mean sea level (AMSL), fetched from the Open-Meteo Elevation API. Useful for calculating your absolute altitude ceiling (e.g., 120m AGL from 450m AMSL = 570m AMSL).
+
+### Density Altitude
+
+Density altitude indicates how "thin" the air feels to propellers, calculated from elevation, pressure, and temperature. Higher density altitude means less lift and higher power consumption. Included in the launch status checks.
+
+| Density Altitude | Status | Impact |
+|-----------------|--------|--------|
+| < 1000m | Good | Normal performance |
+| 1000–2000m | Moderate | Slightly reduced lift |
+| 2000–3000m | Warning | Noticeably reduced performance |
+| > 3000m | Danger | Significant lift reduction |
 
 ### Ionospheric Impact
 
@@ -205,5 +247,6 @@ An interactive map showing your selected flight location with a position marker.
 ## Data Attribution
 
 - Weather data: [Open-Meteo.com](https://open-meteo.com/) (CC BY 4.0)
+- Elevation data: [Open-Meteo Elevation API](https://open-meteo.com/en/docs/elevation-api)
 - Solar data: [NOAA Space Weather Prediction Center](https://www.swpc.noaa.gov/)
 - Magnetic model: World Magnetic Model (WMM) via [geomagnetism](https://github.com/naturalatlas/geomagnetism)
