@@ -131,7 +131,7 @@ A compact daily overview to help plan flight sessions ahead. Shows weather condi
 | Column | Description |
 |--------|-------------|
 | **Day** | Weekday and date |
-| **Weather** | Weather condition with icon (clear, cloudy, rain, snow, etc.) |
+| **Weather** | Weather condition with icon (clear, cloudy, rain, snow, etc) |
 | **Temp** | Daily temperature range (min / max °C) |
 | **Wind** | Maximum wind speed for the day (m/s) |
 | **Gusts** | Maximum gust speed for the day (m/s) |
