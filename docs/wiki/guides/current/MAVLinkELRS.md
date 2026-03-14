@@ -20,7 +20,7 @@ Use default telemetry baud rate.
 
 If you flashed MAVLink and CRSF protocol both, you can switch on CRSF serial RX and telemetry mode when it needs.
 Please pay attention!
-Do not save CRSF serial RX provider and uart MAVLink telemetry output settings together. There are uncompatible options and the all ports settings will reset!
+Do not save CRSF Serial RX and MAVLink telemetry output at the same time; these settings are incompatible and can reset port configuration.
 
 ## ExpressLRS setup
 
