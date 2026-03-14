@@ -56,3 +56,5 @@ The Betaflight telemetry prevents TX buffer overflow by using mavlink_min_txbuff
 The telemetries data are sent when free TX buffer space is more than mavlink_min_txbuff value.
 The default mavlink_min_txbuff value is 35%.
 ![image](/img/mavlink/mavlink_telem_work.jpg)
+Also, check actual RC data rate. It is 100Hz in my case.
+![image](/img/mavlink/mavlink_rc_data.jpg)
