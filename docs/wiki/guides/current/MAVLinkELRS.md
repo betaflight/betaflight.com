@@ -42,9 +42,9 @@ mavlink_extra2_rate - Heartbeat + VFR HUD data frame rate (default is 2Hz)
 
 mavlink_extra3_rate - Extended battery state data frame rate (default is 1Hz)
 
-## Checking MAVLink telemetry work
+## Verify MAVLink telemetry
 
-Set MAVLINK_TELEMETRY blackbox debug mode in configurator and use Blackbox Explorer.
+Set *MAVLINK_TELEMETRY* blackbox debug mode in the firmware app and use Blackbox Explorer.
 
 ![image](/img/mavlink/mavlink_bbe_debug.jpg)
 
