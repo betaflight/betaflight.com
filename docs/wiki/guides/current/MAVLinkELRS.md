@@ -1,4 +1,4 @@
-# MAVLink telemetry to connect Betaflight to Mission Planner ground control station
+# MAVLink telemetry to connect Betaflight to the Mission Planner ground control station.
 
 The Betaflight can be connected to Ground Control Stations by using ExpressLRS-MAVLink mode:
 https://www.expresslrs.org/software/mavlink/
