@@ -21,6 +21,16 @@ Enable the GPS from the CLI as follows:
 
 GPS packet loss has been observed at 115200. Try using 57600 if you experience this.
 
+:::note
+
+**The recommended PID loop rate while using GPS is 8k4k** (CLI: `set pid_process_denom = 2`).
+
+8k8k may simply not have enough CPU time available in the loop to support higher baud rates.
+
+GPS code requires almost as much time as the Rx or OSD code. It is quite expensive. 
+
+Check the `tasks` CLI command and the percentage CPU usage when using 8k8k.
+
 :::
 
 For the connections step check the Board documentation for pins and port numbers.
@@ -137,7 +147,7 @@ When changing message target and rates remember to click `Send` after changing e
 ~~NAV-POSLLH NAV-DOP NAV-SOL NAV-VELNED~~
 ~~With the rate of 10, enable NAV-SVINFO to see what satellites are in view~~
 
-Double check with the Packet View that you are only receiving the messages we wanted (if more, disable those you don't need; if less, make sure you enabled the ones above).
+Double-check with the Packet View that you are only receiving the messages we wanted (if more, disable those you don't need; if less, make sure you enabled the ones above).
 
 #### Rate of messages
 
