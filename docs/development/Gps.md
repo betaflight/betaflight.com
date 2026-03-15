@@ -21,6 +21,8 @@ Enable the GPS from the CLI as follows:
 
 GPS packet loss has been observed at 115200. Try using 57600 if you experience this.
 
+:::
+
 :::note
 
 **The recommended PID loop rate while using GPS is 8k4k** (CLI: `set pid_process_denom = 2`).
