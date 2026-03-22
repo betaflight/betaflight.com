@@ -168,7 +168,7 @@ Increasing D-gain can improve these problems, however, an excessive D-gain value
 
 Another side effect of **excessive D-term is the decrease in the quad’s response, this effect is often described as “mushy”**.
 
-`set debug_mode=d_min`
+`set debug_mode = D_MAX` _(see [Dynamic D guide](/docs/wiki/guides/current/Dynamic-D))_
 
 - Proportional to the _change in magnitude_ of error
 - Anticipates the _future state_ of the system based on its current movement
@@ -189,11 +189,11 @@ Another side effect of **excessive D-term is the decrease in the quad’s respon
 - always to raise D-gain in relatively small increments
 - **always do a short test flight and check for hot motors after raising D gain!**
 
-## d min
+## Dynamic D
 
-Set the lowest D-term, it then get dynamically increased (to PID's maximum D-term) on sharper stick movements
+Dynamic D varies the D-term between a lower base value (active in smooth flight) and a higher peak value (active during fast moves and propwash). This keeps motors cooler in cruise while still providing strong damping when needed.
 
-D Min provides a way to have a lower level of D in normal flight and a higher level for quick maneuvers that might cause overshoot, like flips and rolls. It also brings D up during prop wash. Gain adjusts how fast D gets up to its maximum value and is based on gyro to determine sharp moves and propwash events. Advance makes D go up earlier by using setpoint instead of gyro to determine sharp moves.
+See the [Dynamic D guide](/docs/wiki/guides/current/Dynamic-D) for full tuning guidance, CLI variable reference, debug logging, and version migration notes.
 
 ## PID-tuning in a nutshell
 
@@ -556,7 +556,7 @@ Anti Gravity boosts the I term when fast throttle changes are detected. Higher g
 - Throttle Mid 0.5
 - Throttle expo 0
 
-# TPA (Throttle PID Attenuation)
+## TPA (Throttle PID Attenuation)
 
 TPA is a setting to reduce the effectiveness of PD gains as throttle increases(only D-term by default).
 

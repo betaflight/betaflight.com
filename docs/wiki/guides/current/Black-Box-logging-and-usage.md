@@ -1,153 +1,233 @@
-# Blackbox Logging And Usage
+# Blackbox Flight Data Recorder
 
-### Black Box Logger
+![Rendered flight log frame](Screenshots/blackbox-screenshot-1.jpg)
 
-RCGroups Thread with links to OpenLogger and firmware:
-https://www.rcgroups.com/forums/showthread.php?2299805-Blackbox-flight-data-recorder-feature-for-Baseflight-Cleanflight
+## Introduction
 
-Notion: for 4.0 and later version, OpenLogger is not recommended.
+This feature transmits your flight data information on every control loop iteration over a serial port to an external logging device like an OpenLog to be recorded, to an onboard dataflash chip which is present on some flight controllers, or to an onboard SD card socket.
 
-### Black Box OpenLager
+After your flight, you can view the resulting logs using the interactive log viewer:
 
-This has an SPI interface for faster logging (same as when the SD card is integrated onto an FC board).
-https://github.com/d-ronin/openlager/wiki
-Available from: https://store.myairbot.com/accessory/openlager.html
-and: http://www.readytoflyquads.com/high-rate-f4-data-logger-openlager
-
-### BlackBox Viewer
-
-The Latest Viewer and source is here:
 https://github.com/betaflight/blackbox-log-viewer
 
-### Videos and tutorials
+You can also use the `blackbox_decode` tool to turn the logs into CSV files for analysis, or render your flight log as a video using the `blackbox_render` tool. Those tools can be found in this repository:
 
-Joshua Bardwell just started a new video series which he calls BlackBox 101:
-https://www.youtube.com/playlist?list=PLwoDb7WF6c8l0-ABsIcnJt1FyhX9MBoVW
+https://github.com/betaflight/blackbox-tools
 
-### RCG threads on learning to analyze BB logs:
+## Logged data
 
-[Joshua's Blackbox Log Video Responses](https://www.rcgroups.com/forums/showthread.php?2484202-Blackbox-Log-Video-Responses)
-[Blackbox log analyzation\help thread](https://www.rcgroups.com/forums/showthread.php?2386267-Blackbox-log-analyzation-help-thread)
+The blackbox records flight data on every iteration of the flight control loop. It records the current time in microseconds, P, I and D corrections for each axis, your RC command stick positions (after applying expo curves), gyroscope data, accelerometer data (after your configured low-pass filtering), barometer and sonar readings, 3-axis magnetometer readings, raw VBAT and current measurements, RSSI, and the command being sent to each motor speed controller. This is all stored without any approximation or loss of precision, so even quite subtle problems should be detectable from the flight data log.
 
-### Notes on new Black Box Viewer
+GPS data is logged whenever new GPS data is available. Although the CSV decoder will decode this data, the video renderer does not yet show any of the GPS information (this will be added later).
 
-- If you open a Betaflight Log, then the logo shown is the Betaflight Logo and the colour scheme is orange;
-- If you open an iNav log, then the logo changes to iNav and the colour scheme is blue;
-- If you open a Cleanflight log (or if it can't tell what kind of firmware you were running e.g. an old version of Betaflight perhaps) then the logo shows the Cleanflight logo and the colour scheme is green....
+## Supported configurations
 
-Some features are automatically disabled depending upon the firmware you are running that creates the log.
+The maximum data rate that can be recorded to the flight log is fairly restricted, so anything that increases the load can cause the flight log to drop frames and contain errors.
 
-Do click on all the buttons to learn what they do and '?' for the Keyboard Short cuts.
+The Blackbox is typically used on tricopters and quadcopters. Although it will work on hexacopters and octocopters, because these craft have more motors to record, they must transmit more data to the flight log. This can increase the number of dropped frames. Although the browser-based log viewer supports hexacopters and octocopters, the command-line `blackbox_render` tool currently only supports tri- and quadcopters.
 
-#### Betaflight blackbox explorer Version 3.7
+Betaflight's `looptime` setting decides how frequently an update is saved to the flight log. The default looptime on Betaflight is 3500. If you're using a looptime smaller than about 2400, you may experience some dropped frames due to the high required data rate. In that case you will need to reduce the sampling rate in the Blackbox settings, or increase your logger's baudrate to 250000. See the later section on configuring the Blackbox feature for details.
 
-[Blackbox Explorer MinMax control](/docs/wiki/guides/current/BBE-MinMax-control-manual)
-[Blackbox Explorer: Power spectral density spectrums charts](/docs/wiki/guides/current/BBE-Power-Spectral-Density-charts)
-[Blackbox Explorer: Power spectral density spectrums comparison](/docs/wiki/guides/current/BBE-Power-Spectral-Density-charts#blackbox-explorer-power-spectral-density-curves-comparison)
+## Setting up logging
 
-### How to obtain data to evaluate noise frequency for setting the Notch filter.
+First, you must enable the Blackbox feature. In the [Betaflight App](https://app.betaflight.com) enter the Configuration tab, tick the "BLACKBOX" feature at the bottom of the page, and click "Save and reboot"
 
-Super simple visual explanation of the gyro data sequence through the filters:
-raw gyro->(debug gyro here)->soft lpf->(debug notch here)->notch1->notch2
+Now you must decide which device to store your flight logs on. You can either transmit the log data over a serial port to an external logging device like the [OpenLog serial data logger][] to be recorded to a microSDHC card, or if you have a compatible flight controller you can store the logs on the onboard dataflash storage instead.
 
-#### Betaflight Version 3.4
+### OpenLog serial data logger
 
-As a part of the filtering overhaul, the names of the debug modes available to log filtering / tuning data have been improved NOTCH (gyro data after scaling, before filtering) is now GYRO_SCALED, GYRO (gyro data after all filtering has been applied) is now GYRO_FILTERED
+The OpenLog is a small logging device which attaches to your flight controller using a serial port and logs your flights to a MicroSD card.
 
-e.g `set debug_mode = gyro_scaled` or `set debug_mode = gyro_filtered`
+The OpenLog ships from SparkFun with standard "OpenLog 3" firmware installed. Although this original OpenLog firmware will work with the Blackbox, in order to reduce the number of dropped frames it should be reflashed with the higher performance [OpenLog Blackbox firmware][]. The special Blackbox variant of the OpenLog firmware also ensures that the OpenLog is using Betaflight compatible settings, and defaults to 115200 baud.
 
-#### Changes were made in BetaFlight 3.0 & 3.1 along with a newer BB Viewer (see debug_mode on the 3.1.x release notes).
+You can find the Blackbox version of the OpenLog firmware [here](https://github.com/betaflight/blackbox-firmware), along with instructions for installing it onto your OpenLog.
 
-1. CLI DEBUG_MODE now can be GYRO or NOTCH. This will log all three axis but only for Pre-LPF or Pre-Notch Filter.
-2. Still Add a Custom Graph then select the debug Pre-filter.
-3. Analysis is the same.
+[openlog serial data logger]: https://www.sparkfun.com/products/9530
+[openlog blackbox firmware]: https://github.com/betaflight/blackbox-firmware
 
-#### BetaFlight Ver2.X
+#### microSDHC
 
-1. Use this CLI setting: `set debug_mode = notch`
-   Make sure your blackbox logging rate is at least 1khz. The logging rate is based on pid-loop so 1/4 for 4k pid loop would be enough.
-2. Fly as usual
-3. Open your log in blackbox viewer
-4. Add all debug options to your graph setup
-5. Click on debug[0] Note: This action of clicking on the graph section traces to the right will show the analyzer screen :D
-6. Make the graph fullscreen (next to playback options)
-7. You can now see where your motor noise is most significant
+Your choice of microSDHC card is very important to the performance of the system. The OpenLog relies on being able to make many small writes to the card with minimal delay, which not every card is good at. A faster SD-card speed rating is not a guarantee of better performance.
 
-The debug setting will log additional data to debug[0]-debug[3]:
+##### microSDHC cards known to have poor performance
 
-- debug[0] is unfiltered and raw gyro data on roll axis.
-- debug[1] is only notch filtered gyro data on roll axis.
-- debug[2] is unfiltered and raw gyro data on pitch axis.
-- debug[3] is only notch filtered gyro data on pitch axis.
+- Generic 4GB Class 4 microSDHC card - the rate of missing frames is about 1%, and is concentrated around the most interesting parts of the log!
+- Sandisk Ultra 32GB (unlike the smaller 16GB version, this version has poor write latency)
 
-Two images showing how to view the spectrum and the result of the notch filter.
-![How to view Spectrum](https://cloud.githubusercontent.com/assets/17462561/17593758/43dbdefa-5fe7-11e6-9fa5-bd8e5f54e710.jpg)
-![Filter result](https://cloud.githubusercontent.com/assets/17462561/17593764/45ec1a84-5fe7-11e6-80fd-861efeb56827.jpg)
+##### microSDHC cards known to have good performance
 
-If the notch filter is disabled 0/1 and 2/3 will be identical. Otherwise you can directly see what the filter does.
-More details on phase shift for example can be found here: https://github.com/betaflight/betaflight/pull/668
+- Transcend 16GB Class 10 UHS-I microSDHC (typical error rate < 0.1%)
+- Sandisk Extreme 16GB Class 10 UHS-I microSDHC (typical error rate < 0.1%)
+- Sandisk Ultra 16GB (it performs only half as well as the Extreme in theory, but still very good)
 
-Post by r.a.v.
-You can view earlier BB logs (pre BF 3.0) but the analyzer won't know at which rate it was recorded. This will probably result in a correct looking spectrum but with incorrect frequency labels. Clicking on the traces on the Graph section to the right will show the analyzer screen.
+You should format any card you use with the [SD Association's special formatting tool][] , as it will give the OpenLog the best chance of writing at high speed. You must format it with either FAT, or with FAT32 (recommended).
 
-Post by ctzsnooze:
-Remember the spectrum is a _relative_ comparator of the frequencies in the noise spectrum. It won't tell you about the absolute amount of noise. It can only be compared to other traces, and even then only when
+[sd association's special formatting tool]: https://www.sdcard.org/downloads/formatter_4/
 
-- A fixed and comparable amount of vertical gain is set
-- The horizontal scale is set to be comparable to other traces
-- _most important_ the duration of the data to be analyzed is fixed. ie 30s. use the i and o keys to select a 30s realm for example.
+### Choosing a serial port for the OpenLog
 
-The most important thing is to scroll through and look at the motors traces for how big that noise is. The spectrum is useful for analyzing what you see there, but the motor trace and how it looks is what matters.
-See [Gyro and Filters](/docs/wiki/guides/archive/Gyro-And-Dterm-Filtering-Recommendations-3-1) for more info.
+First, tell the Blackbox to log using a serial port (rather than to an onboard dataflash chip). Go to the App's CLI tab, enter `set blackbox_device=SERIAL` to switch logging to serial, and save.
 
-### The Spectral data is accumulative which means the longer the time frame of a log the higher the noise in the spectra;l display will be. This makes it impossible to compare the noise from two logs if they are different lengths of time. Therefore, you must compare spectras of same length - say 30 sec on each log, else it has zero meaning. To do it use "I" and "O" keys to mark start and end for analysis.
+You need to let Betaflight know which of your serial ports you connect your OpenLog to (i.e. the Blackbox port), which you can do on the App's Ports tab.
 
-#### So by disabling all notches you mean, gyro_notch_1, gyro_notch_2, AND dterm_notch... correct?
+You should use a hardware serial port (such as UART1 on the Naze32, the two-pin Tx/Rx header in the center of the board). SoftSerial ports can be used for the Blackbox. However, because they are limited to 19200 baud, your logging rate will need to be severely reduced to compensate. Therefore the use of SoftSerial is not recommended.
 
-Won't set debug_mode=notch do the same thing or am I misunderstanding?
-Answer from ctzsnooze:
-The filtering sequence for P is gyro lpf -> gyro notch 1 -> gyro notch 2 -> P.
-For D it is gyro lpf -> gyro notch 1 -> gyro notch 2 -> Dterm LPF -> D notch -> D
+When using a hardware serial port, Blackbox should be set to at least 115200 baud on that port. When using fast looptimes (\<2500), a baud rate of 250000 should be used instead in order to reduce dropped frames.
 
-Disabling all three notch filters means that they are gone. The gyro data goes into the PID loop without any attenuation from the notches. Frequencies that might otherwise have been filtered out by the notches will now be amplified by the PID loop. What you see in the gyro, P, D and motor spectrums is how your quad actually behaves when they aren't there at all.
-Set debug_mode = notch keeps the notch filters active, but records a version of the gyro trace from just after the gyro LPF - before the notch filters are implemented. The P, D and motor traces will be affected by the notches, because they are still active. Because they remain active, PID related noise amplification at those frequencies will be attenuated, reducing the amount of noise in those regions even in the pre-notch gyro trace. It just doesn't show what it would be like with no notch filters.
-Disabling a notch filter completely is the only way to really know what the noise state of the machine is like without it. Set debug_mode = notch isn't nearly as useful, that's why I don't recommend using it for this purpose.
+The serial port used for Blackbox cannot be shared with any other function (e.g. GPS, telemetry) except the MSP protocol. If MSP is used on the same port as Blackbox, then MSP will be active when the board is disarmed, and Blackbox will be active when the board is armed. This will mean that you can't use the App or any other function that requires MSP, such as an OSD or a Bluetooth wireless configuration app, while the board is armed.
 
-### Tuning Tips using BB logs
+Connect the "TX" pin of the serial port you've chosen to the OpenLog's "RXI" pin. Don't connect the serial port's RX pin to the OpenLog, as this will cause the OpenLog to interfere with any shared functions on the serial port while disarmed.
 
-#### ctzsnooze:
+#### Naze32 serial port choices
 
-Clicking the little 'i' at top left of the blackbox viewer, shows all your settings. On that quad, both gyro and D lowpass are PT1 (not what you thought it was). I'm suggesting putting the D lowpass to BiQuad and cutting its low pass to 70Hz. You could, as R.A.V. suggests, leave it at 100, but I doubt you'd notice any difference, and lower would be better in your case.
+On the Naze32, the TX/RX pins on top of the board are connected to UART1, and are shared with the USB connector. Therefore, MSP must be enabled on UART1 in order to use the App over USB. If Blackbox is connected to the pins on top of the Naze32, the App will stop working once the board is armed. This configuration is usually a good choice if you don't already have an OSD installed which is using those pins while armed, and aren't using the FrSky telemetry pins.
 
-Flight performance generally does not deteriorate very much if you filter D more heavily; all that happens is that D sort of disappears from high frequencies. This is good. On the other hand, it's best to try and filter gyro/P the least possible.
+Pin RC3 on the side of the board is UART2's Tx pin. If Blackbox is configured on UART2, MSP can still be used on UART1 when the board is armed, which means that the App will continue to work simultaneously with Blackbox logging. Note that in `PARALLEL_PWM` mode this leaves the board with 6 input channels as RC3 and RC4 pins are used by UART2 as Tx and Rx. Betaflight automatically shifts logical channel mapping for you when UART2 is enabled in `Ports` tab so you'll have to shift receiver pins that are connected to Naze32 pins 3 to 6 by two.
 
-To get an idea of whether overall noise is a problem, look at the motor traces. Less than 1-2% noise is great, 5% marginal, any more than that is not so good.
+The OpenLog tolerates a power supply of between 3.3V and 12V. If you are powering your Naze32 with a standard 5V BEC, then you can use a spare motor header's +5V and GND pins to power the OpenLog with.
 
-To find out what your gyro filters are doing, set the spectrum to the P trace. P trace includes the effect of gyro lowpass and both gyro notches.
+#### Other flight controller hardware
 
-To find out what your D filters are doing, set the spectrum to the D trace. Remember that first the gyro low-pass and the gyro notch filters are applied to the gyro data, then D is calculated (amplifying the fast noise), then the D filters are applied. So if you apply a notch to gyro, you probably won't find anything useful by applying the same filter again to D.
+Boards other than the Naze32 may have more accessible hardware serial devices, in which case refer to their documentation to decide how to wire up the logger. The key criteria are:
 
-To directly compare the overall contribution of P compared to D, leave the spectrum scaling alone and click on P then D then P then D. The relative height of the peaks tells you which of P or D is contributing most tot he noise.
+- Should be a hardware serial port rather than SoftSerial.
+- Cannot be shared with any other function (GPS, telemetry) except MSP.
+- If MSP is used on the same UART, MSP will stop working when the board is armed.
 
-I don't change the slider positions from default.
+#### OpenLog configuration
 
-Note that the spectrum is calculated, by default, from the entire log. Longer logs will make a 'taller' spectrum than shorter logs because there is more data to build the spectrum from. To directly compare spectrums log to log, always select the same amount of time. To do that, scroll to a start point, press 'i', then scroll to an end point, press 'o'. Now the spectrum is created only from the data in the smaller selection. This allows direct comparison of equal time length bits of different logs. Very short selections can also look at small bits eg just a short full throttle period to analyze that period alone.
+Power up the OpenLog with a microSD card inside, wait 10 seconds or so, then power it down and plug the microSD card into your computer. You should find a "CONFIG.TXT" file on the card, open it up in a text editor. You should see the baud rate that the OpenLog has been configured for (usually 115200 or 9600 from the factory). Set the baud rate to match the rate you entered for the Blackbox in the App's Port tab (typically 115200 or 250000).
 
-Also in the graph setup, be sure to set smoothing to zero and expo to 100 on all traces.
+Save the file and put the card back into your OpenLog, it will use those settings from now on.
 
-After that, you can save the graph setup by pressing shift-1. Then pressing 1 will recall it. Same for all the number keys on your keyboard. This is very useful, you can save different setups for roll, pitch and yaw separately, and recall them quickly, with smoothing and expo as you set it.
+If your OpenLog didn't write a CONFIG.TXT file, create a CONFIG.TXT file with these contents and store it in the root of the MicroSD card:
 
-#### ctzsnooze comments on a log posted:
+```
+115200
+baud
+```
 
-PS seems to me like a bit more D on roll might be better. Also the log shows that the motors seem a bit slow to develop the requested amount of thrust. Lighter props might give better handling.
-mtfinger22:
-Can you explain what you are looking at in the logs that show that? I'm currently looking at different props for my recent build, and I would like to have an educated guess on what I should do without buying 10 different sets of props and trying them all out.
-ctzsnooze:
-The time taken between the RC input signal and the resulting gyro change when doing a fast roll or flip tells you how long it took your motors to turn the quad.
-In the log posted, the motors go to full 100% signal to turn it at the requested speed, but then it overshoots and the reverse pair have to speed up to slow down the overshoot. And there is a fair amount of delay, overall, between RC input and achieved actual roll.
-That kind of stuff implies either relatively weak motor power compared to rotational inertia, or over-propped motors for their kv, or battery current limitation, or heavy props, or any combination of those things.
-Light weight props allow motors to spool up faster and generate thrust more quickly, so the delay becomes less, and the amount of overshoot becomes less as well.
-Also if you look at the absolute height of your P and D traces (make sure you have no expo on the PID traces in blackbox), you can see that D is relatively small compared to P. That means it is relatively ineffective in controlling your P overshoot. As a very rough 'rule of thumb', a good 'ratio' is D about half the amplitude of P during roll stops. Ensure you don't have expo on the blackbox P and D traces, or comparing heights of P and D is meaningless!
-You could add more D, which most likely would allow more P, making for a crisper overall response without any more overshoot. Additionally, if your D setpoint weight was set above 1, D will drive the motors harder at the initial part of a stick input, which may help a little in scenarios like this.
-I have quite a few underpowered quads like this. They need a lot of P and a lot of D to handle as crisp as the more powerful ones, but with tuning they fly great, though they cannot control propwash nearly as well. With a more sensitive throttle they can actually feel much the same in ordinary flight, they just don't go so fast at the top end.
-These questions are really just basic P and D tuning questions not really betaflight related.
+If you are using the original OpenLog firmware, use this configuration instead:
+
+```
+115200,26,0,0,1,0,1
+baud,escape,esc#,mode,verb,echo,ignoreRX
+```
+
+#### OpenLog protection
+
+The OpenLog can be wrapped in black electrical tape or heat-shrink in order to insulate it from conductive frames (like carbon fiber), but this makes its status LEDs impossible to see. I recommend wrapping it with some clear heatshrink tubing instead.
+
+![OpenLog installed](Wiring/blackbox-installation-1.jpg 'OpenLog installed with double-sided tape, SDCard slot pointing outward')
+
+### Onboard dataflash storage
+
+Some flight controllers have an onboard SPI NOR dataflash chip which can be used to store flight logs instead of using an OpenLog.
+
+The full version of the Naze32 and the CC3D have an onboard "m25p16" 2 megabyte dataflash storage chip. This is a small chip with 8 fat legs, which can be found at the base of the Naze32's direction arrow. This chip is not present on the "Acro" version of the Naze32.
+
+The SPRacingF3 has a larger 8 megabyte dataflash chip onboard which allows for longer recording times.
+
+These chips are also supported:
+
+- Micron/ST M25P16 - 16 Mbit / 2 MByte ([datasheet](http://www.micron.com/~/media/Documents/Products/Data%20Sheet/NOR%20Flash/Serial%20NOR/M25P/M25P16.pdf))
+- Micron/ST N25Q064 - 64 Mbit / 8 MByte ([datasheet](http://www.micron.com/~/media/documents/products/data-sheet/nor-flash/serial-nor/n25q/n25q_64a_3v_65nm.pdf))
+- Winbond W25Q64 - 64 Mbit / 8 MByte ([datasheet](http://www.winbond.com/resource-files/w25q64fv_revl1_100713.pdf))
+- Macronix MX25L64 - 64 Mbit / 8 MByte ([datasheet](http://media.digikey.com/pdf/Data%20Sheets/Macronix/MX25L6406E.pdf))
+- Micron/ST N25Q128 - 128 Mbit / 16 MByte ([datasheet](http://www.micron.com/~/media/Documents/Products/Data%20Sheet/NOR%20Flash/Serial%20NOR/N25Q/n25q_128mb_3v_65nm.pdf))
+- Winbond W25Q128 - 128 Mbit / 16 MByte ([datasheet](http://www.winbond.com/resource-files/w25q128fv_revhh1_100913_website1.pdf))
+
+#### Enable recording to dataflash
+
+On the App's CLI tab, you must enter `set blackbox_device=SPIFLASH` to switch to logging to an onboard dataflash chip, then save.
+
+### Onboard SD card socket
+
+Some flight controllers have an SD or Micro SD card socket on their circuit boards. This allows for very high speed logging (1KHz or faster, which is a looptime of 1000 or lower) on suitable cards.
+
+The card can be either Standard (SDSC) or High capacity (SDHC), and must be formatted with the FAT16 or FAT32 filesystems. This covers a range of card capacities from 1 to 32GB. Extended capacity cards (SDXC) are not supported.
+
+The first time you power up Betaflight with a new card inserted, the flight controller will spend a few seconds scanning the disk for free space and collecting this space together into a file called "FREESPAC.E". During flight, Betaflight will carve chunks from this file to create new log files. You must not edit this file on your computer (i.e. open it in a program and save changes) because this may cause it to become fragmented. Don't run any defragmentation tools on the card either.
+
+You can delete the FREESPAC.E file if you want to free up space on the card to fit non-Blackbox files (Betaflight will recreate the FREESPAC.E file next time it starts, using whatever free space was left over).
+
+The maximum size of the FREESPAC.E file is currently 4GB. Once 4GB worth of logs have been recorded, the FREESPAC.E file will be nearly empty and no more logs will be able to be recorded. At this point you should either delete the FREESPAC.E file (and any logs left on the card to free up space), or just reformat the card. A new FREESPAC.E file will be created by Betaflight on its next boot.
+
+#### Enable recording to SD card
+
+On the App's CLI tab, you must enter `set blackbox_device=SDCARD` to switch to logging to an onboard SD card, then save.
+
+## Configuring the Blackbox
+
+The Blackbox currently provides two settings (`blackbox_rate_num` and `blackbox_rate_denom`) that allow you to control the rate at which data is logged. These two together form a fraction (`blackbox_rate_num / blackbox_rate_denom`) which decides what portion of the flight controller's control loop iterations should be logged. The default is 1/1 which logs every iteration.
+
+If you're using a slower MicroSD card, you may need to reduce your logging rate to reduce the number of corrupted logged frames that `blackbox_decode` complains about. A rate of 1/2 is likely to work for most craft.
+
+You can change the logging rate settings by entering the CLI tab In the [Betaflight App](https://app.betaflight.com) and using the `set` command, like so:
+
+```
+set blackbox_rate_num = 1
+set blackbox_rate_denom = 2
+```
+
+The data rate for my quadcopter using a looptime of 2400 and a rate of 1/1 is about 10.25kB/s. This allows about 18 days of flight logs to fit on my OpenLog's 16GB MicroSD card, which ought to be enough for anybody :).
+
+If you are logging using SoftSerial, you will almost certainly need to reduce your logging rate to 1/32. Even at that logging rate, looptimes faster than about 1000 cannot be successfully logged.
+
+If you're logging to an onboard dataflash chip instead of an OpenLog, be aware that the 2MB of storage space it offers is pretty small. At the default 1/1 logging rate, and a 2400 looptime, this is only enough for about 3 minutes of flight. This could be long enough for you to investigate some flying problem with your craft, but you may want to reduce the logging rate in order to extend your recording time.
+
+To maximize your recording time, you could drop the rate all the way down to 1/32 (the smallest possible rate) which would result in a logging rate of about 10-20Hz and about 650 bytes/second of data. At that logging rate, a 2MB dataflash chip can store around 50 minutes of flight data, though the level of detail is severely reduced and you could not diagnose flight problems like vibration or PID setting issues.
+
+## Usage
+
+The Blackbox starts recording data as soon as you arm your craft, and stops when you disarm.
+
+If your craft has a buzzer attached, you can use Betaflight's arming beep to synchronize your Blackbox log with your flight video. Betaflight's arming beep is a "long, short" pattern. The beginning of the first long beep will be shown as a blue line in the flight data log, which you can sync against your recorded audio track.
+
+You should wait a few seconds after disarming your craft to allow the Blackbox to finish saving its data.
+
+### Usage - OpenLog
+
+Each time the OpenLog is power-cycled, it begins a fresh new log file. If you arm and disarm several times without cycling the power (recording several flights), those logs will be combined together into one file. The command line tools will ask you to pick which one of these flights you want to display/decode.
+
+Don't insert or remove the SD card while the OpenLog is powered up.
+
+### Usage - Dataflash chip
+
+After your flights, you can use the [Betaflight App](https://app.betaflight.com) to download the contents of the dataflash to your computer. Go to the "dataflash" tab and click the "save flash to file..." button. Saving the log can take 2 or 3 minutes.
+
+![Dataflash tab in App](Screenshots/blackbox-dataflash.png)
+
+After downloading the log, be sure to erase the chip to make it ready for reuse by clicking the "erase flash" button.
+
+If you try to start recording a new flight when the dataflash is already full, Blackbox logging will be disabled and nothing will be recorded.
+
+### Usage - Onboard SD card socket
+
+You must insert your SD card before powering on your flight controller. You can remove the SD card while the board is powered up, but you must wait 5 seconds after disarming before you do so in order to give Betaflight a chance to finish saving your log (otherwise the filesystem may become corrupted).
+
+Betaflight will create a new log file in the "LOG" directory each time the craft is armed. If you are using a Blackbox logging switch and you keep it paused for the entire flight, the resulting empty log file will be deleted after disarming.
+
+To read your logs, you must remove the SD card and insert it into a card reader on your computer (Betaflight doesn't support reading these logs directly through the App).
+
+### Usage - Logging switch
+
+If you're recording to an onboard flash chip, you probably want to disable Blackbox recording when not required in order to save storage space. To do this, you can add a Blackbox flight mode to one of your AUX channels on the App's modes tab. Once you've added a mode, Blackbox will only log flight data when the mode is active.
+
+A log header will always be recorded at arming time, even if logging is paused. You can freely pause and resume logging while in flight.
+
+## Viewing recorded logs
+
+After your flights, you'll have a series of flight log files with a .TXT extension.
+
+You can view these .TXT flight log files interactively using your web browser with the Betaflight Blackbox Explorer:
+
+https://github.com/betaflight/blackbox-log-viewer
+
+This allows you to scroll around a graphed version of your log and examine your log in detail. You can also export a video of your log to share it with others!
+
+You can decode your logs with the `blackbox_decode` tool to create CSV (comma-separated values) files for analysis, or render them into a series of PNG frames with `blackbox_render` tool, which you could then convert into a video using another software package.
+
+You'll find those tools along with instructions for using them in this repository:
+
+https://github.com/betaflight/blackbox-tools

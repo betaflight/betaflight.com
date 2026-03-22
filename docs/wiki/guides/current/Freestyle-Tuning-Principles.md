@@ -158,21 +158,17 @@ Feed Forward is great to increase responsiveness by anticipating a soon expected
 | **Pitch** | 90-100           |
 | **Yaw**   | 90-100           |
 
-## D Min
+## Dynamic D
 
-D Min allows to run higher D gain on not so clean builds by dynamically
-increasing D on sharp moves.It has been introduced to run cooler motors,
-and have faster stick responsiveness.
+Dynamic D keeps base D lower during smooth flight (reducing motor heat and noise) and boosts it toward the ceiling on sharp moves and propwash. On noisy or not-perfectly-clean builds this lets you run a manageable base D without sacrificing damping when it matters.
 
-D Min can negatively affect consistency as D is no longer constant but
-varies depending on how quick the move is. Also, running a lower D
-during shallow flight will reduce smoothness.
+Dynamic D can negatively affect consistency, as D is no longer constant but varies with how quick the move is. Running lower D in calm flight may also reduce smoothness slightly.
 
-### Suggested setting: off
+### Suggested setting: disabled or conservative
 
-**If your quad allows it (clean build with low noise) disabling D Min
-increases the quad flight consistency by keeping D constant and at a
-generally higher value.**
+**For clean, low-noise builds, disabling Dynamic D (set / to 0 or equal to base D) keeps D constant and maximises flight consistency.**
+
+See the [Dynamic D guide](/docs/wiki/guides/current/Dynamic-D) for full details.
 
 ## TPA
 
@@ -180,9 +176,9 @@ TPA lowers the D and P gain after a certain throttle threshold. It has
 been introduced to address fast oscillations induced by high throttle
 motor noises on quads running high PID gains.
 
-Similar to D Min this settings could negatively affect consistency
+Similar to Dynamic D, this setting could negatively affect consistency
 leading to an increase of rotation rate when more throttle applied
-[BF doc ref](/docs/development/PID-tuning#tpa-and-tpa-breakpoint)
+[BF doc ref](/docs/wiki/guides/current/PID-Tuning-Guide#tpa-throttle-pid-attenuation)
 
 **Increasing the default breakpoint value allows to keep D constant also
 around mid throttle .**
