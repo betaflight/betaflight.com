@@ -32,7 +32,7 @@ The BEACON profile is used to find a lost quad, it flashes all LEDs white once p
 
 ### LED Profile Configuration
 
-###### OPTION 1: Configure an adjustment range to change the LED strip profile from your radio
+#### OPTION 1: Configure an adjustment range to change the LED strip profile from your radio
 
 1. Turn on Expert mode - see top right of configurator screen "Enable Expert Mode".
 2. The LED strip profile selection is performed using an adjustment configured via the Adjustments tab.
@@ -46,14 +46,14 @@ The BEACON profile is used to find a lost quad, it flashes all LEDs white once p
 4. Copy the adjrange configured in step 2. above and paste it in the command window. Change the '1' following the range of the channel to '30' and press enter. Type `save` and press enter. The configured adjrange will now be saved and the FC will reboot.
 5. Configure the AUX channel on your radio. When this channel is changed the selected LED strip profile will change between STATUS, RACE and BEACON, you should see the LED function change as you do this.
 
-###### OPTION 2: Use the CLI to select the LED strip profile (i.e. not selecting the LED strip profile with your radio)
+#### OPTION 2: Use the CLI to select the LED strip profile (i.e. not selecting the LED strip profile with your radio)
 
 1. Open the CLI.
 2. Type `get ledstrip_profile` followed by enter to display the currently selected LED strip profile.
 3. Type `set ledstrip_profile=x` where x is the profile STATUS, RACE or BEACON and press enter.
 4. Type `save` followed by enter to save the selected LED strip profile.
 
-###### OPTION 3: By using the OSD
+#### OPTION 3: By using the OSD
 
 1. Open the OSD menu by yawing left and pitching forward on your radio.
 2. Using the pitch stick, move down to the LED Strip menu and roll right to enter the menu.
@@ -138,7 +138,7 @@ WS2812 LEDs on full brightness can consume quite a bit of current. It is recomme
 
 Since RC5 is also used for SoftSerial on the Naze it means that you cannot use SoftSerial and LED strips at the same time. Additionally, since RC5 is also used for Parallel PWM RC input on both the Naze, Chebuzz and STM32F3Discovery targets, LED strips can not be used at the same time at Parallel PWM.
 
-If you have LEDs that are intermittent, flicker or show the wrong colors then drop the VIN to less than 4.7v, e.g. by using an inline diode on the VIN to the LED strip. The problem occurs because of the difference in voltage between the data signal and the power signal. The WS2811 LED's require the data signal (Din) to be between 0.3 _ Vin (Max) and 0.7 _ VIN (Min) to register valid logic low/high signals. The LED pin on the CPU will always be between 0v to ~3.3v, so the Vin should be 4.7v (3.3v / 0.7 = 4.71v). Some LEDs are more tolerant of this than others.
+If you have LEDs that are intermittent, flicker or show the wrong colors then drop the VIN to less than 4.7V, e.g. by using an inline diode on the VIN to the LED strip. The problem occurs because of the difference in voltage between the data signal and the power signal. The WS2811 LED's require the data signal (Din) to be between 0.3 × VIN (Max) and 0.7 × VIN (Min) to register valid logic low/high signals. The LED pin on the CPU will always be between 0V to ~3.3V, so the VIN should be 4.7V (3.3V / 0.7 = 4.71V). Some LEDs are more tolerant of this than others.
 
 The datasheet can be found here: http://www.adafruit.com/datasheets/WS2812.pdf
 
@@ -265,7 +265,7 @@ This mode binds the LED color to RSSI level.
 | Red        | 20%  |
 | Deep pink  | 0%   |
 
-When RSSI is below 50% is reached, LEDs will blink slowly, and they will blink fast when under 20%.
+When RSSI falls below 50%, LEDs will blink slowly; when RSSI falls below 20%, LEDs will blink rapidly.
 
 #### Battery level
 
@@ -401,7 +401,7 @@ This mode fades the current LED color to the previous/next color in the HSB colo
 
 #### Thrust ring state
 
-This mode is allows you to use one or multiple LED rings (e.g. NeoPixel ring) for an afterburner effect. LEDs with this mode will light up with their assigned color in a repeating sequence. Assigning the color black to an LED with the ring mode will prevent the LED from lighting up.
+This mode allows you to use one or multiple LED rings (e.g. NeoPixel ring) for an afterburner effect. LEDs with this mode will light up with their assigned color in a repeating sequence. Assigning the color black to an LED with the ring mode will prevent the LED from lighting up.
 
 A better effect is achieved when LEDs configured for thrust ring have no other functions.
 
