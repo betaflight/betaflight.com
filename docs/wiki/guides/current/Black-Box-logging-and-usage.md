@@ -102,14 +102,14 @@ Save the file and put the card back into your OpenLog, it will use those setting
 
 If your OpenLog didn't write a CONFIG.TXT file, create a CONFIG.TXT file with these contents and store it in the root of the MicroSD card:
 
-```
+```text
 115200
 baud
 ```
 
 If you are using the original OpenLog firmware, use this configuration instead:
 
-```
+```text
 115200,26,0,0,1,0,1
 baud,escape,esc#,mode,verb,echo,ignoreRX
 ```
@@ -165,7 +165,7 @@ If you're using a slower MicroSD card, you may need to reduce your logging rate 
 
 You can change the logging rate by entering the CLI tab in the [Betaflight App](https://app.betaflight.com) and using the `set` command, like so:
 
-```
+```text
 set blackbox_sample_rate = 1/2
 ```
 
