@@ -43,14 +43,14 @@ Pre-commit hooks (Husky) run ESLint, Prettier, title-case check, and file-name c
 
 **Tools** in `tools/`:
 
-- `check_title_case.mjs` — enforces Title Case on H1 headers in all `.mdx` files under `docs/`
+- `check_title_case.mjs` — enforces Title Case on H1 headers in `.md` and `.mdx` files under `docs/`
 - `check_file_names.mjs` — enforces `[a-zA-Z0-9-_.]` filenames everywhere in `docs/` **except** `docs/development/` and `docs/wiki/` (which are exempt)
 
 ## Conventions
 
 **Markdown/MDX:**
 
-- H1 headers (`# Title`) in `.mdx` files under `docs/` must be Title Case — enforced by pre-commit hook
+- H1 headers (`# Title`) in `.md` and `.mdx` files under `docs/` must be Title Case — enforced by pre-commit hook
 - New doc files outside `docs/development` and `docs/wiki` must use only alphanumeric characters, hyphens, underscores, and dots in filenames
 - Mermaid diagrams are supported; math via KaTeX (remark-math + rehype-katex)
 - `@mentions` in docs link to GitHub profiles automatically
@@ -66,7 +66,7 @@ Pre-commit hooks (Husky) run ESLint, Prettier, title-case check, and file-name c
 
 **Directory audiences:**
 
-- `docs/wiki/` — end-user guides and wiki content (`.md` files, no Title Case enforcement)
+- `docs/wiki/` — end-user guides and wiki content
 - `docs/development/` — firmware contributor docs only; exempt from filename checker
 - Docs misplaced in `docs/development/` for user audiences belong in `docs/wiki/guides/current/`
 

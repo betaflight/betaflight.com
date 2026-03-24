@@ -47,7 +47,7 @@ function processFiles(filePath) {
       const nestedFilePath = path.join(filePath, file);
       processFiles(nestedFilePath);
     });
-  } else if (filePath.endsWith('.mdx')) {
+  } else if (filePath.endsWith('.md') || filePath.endsWith('.mdx')) {
     checkTitleCase(filePath);
   }
 }
