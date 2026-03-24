@@ -7,9 +7,9 @@ const docsDir = path.join(__dirname, '../docs');
 
 // Regex patterns for markdown links - only match proper markdown syntax [text](url)
 // NOT angle bracket links like <https://...> or <placeholder>
-const linkPatterns = [ // NOSONAR
+const linkPatterns = [
   /\[([^\]\n]+)\]\(([^)\n]+)\)/g, // [text](url) - proper markdown links only
-];
+]; // NOSONAR
 
 function getAllMarkdownFiles(dir) {
   let files = [];
