@@ -143,7 +143,7 @@ On the App's CLI tab, you must enter `set blackbox_device=SPIFLASH` to switch to
 
 ### Onboard SD card socket
 
-Some flight controllers have an SD or Micro SD card socket on their circuit boards. This allows for very high speed logging (1KHz or faster, which is a looptime of 1000 or lower) on suitable cards.
+Some flight controllers have an SD or Micro SD card socket on their circuit boards. This allows for very high speed logging (1kHz or faster, which is a looptime of 1000 or lower) on suitable cards.
 
 The card can be either Standard (SDSC) or High capacity (SDHC), and must be formatted with the FAT16 or FAT32 filesystems. This covers a range of card capacities from 1 to 32GB. Extended capacity cards (SDXC) are not supported.
 
@@ -159,24 +159,19 @@ On the App's CLI tab, you must enter `set blackbox_device=SDCARD` to switch to l
 
 ## Configuring the Blackbox
 
-The Blackbox currently provides two settings (`blackbox_rate_num` and `blackbox_rate_denom`) that allow you to control the rate at which data is logged. These two together form a fraction (`blackbox_rate_num / blackbox_rate_denom`) which decides what portion of the flight controller's control loop iterations should be logged. The default is 1/1 which logs every iteration.
+The Blackbox sample rate is controlled by the `blackbox_sample_rate` setting, which defines what fraction of gyro samples are logged. Valid values are `1/1`, `1/2`, `1/4`, `1/8`, and `1/16`. The default is `1/4`.
 
-If you're using a slower MicroSD card, you may need to reduce your logging rate to reduce the number of corrupted logged frames that `blackbox_decode` complains about. A rate of 1/2 is likely to work for most craft.
+If you're using a slower MicroSD card, you may need to reduce your logging rate to reduce the number of corrupted logged frames that `blackbox_decode` complains about. A rate of `1/2` is a good starting point for most craft.
 
-You can change the logging rate settings by entering the CLI tab in the [Betaflight App](https://app.betaflight.com) and using the `set` command, like so:
+You can change the logging rate by entering the CLI tab in the [Betaflight App](https://app.betaflight.com) and using the `set` command, like so:
 
 ```
-set blackbox_rate_num = 1
-set blackbox_rate_denom = 2
+set blackbox_sample_rate = 1/2
 ```
 
-The data rate for my quadcopter using a looptime of 2400 and a rate of 1/1 is about 10.25kB/s. This allows about 18 days of flight logs to fit on my OpenLog's 16GB MicroSD card, which ought to be enough for anybody :).
+If you are logging using SoftSerial, you will almost certainly need to use a low sample rate such as `1/16`. Even at the lowest logging rate, SoftSerial's limited baud rate makes it unsuitable for fast loop times, and it is not recommended for Blackbox logging.
 
-If you are logging using SoftSerial, you will almost certainly need to reduce your logging rate to 1/32. Even at that logging rate, looptimes faster than about 1000 cannot be successfully logged.
-
-If you're logging to an onboard dataflash chip instead of an OpenLog, be aware that the 2MB of storage space it offers is pretty small. At the default 1/1 logging rate, and a 2400 looptime, this is only enough for about 3 minutes of flight. This could be long enough for you to investigate some flying problem with your craft, but you may want to reduce the logging rate in order to extend your recording time.
-
-To maximize your recording time, you could drop the rate all the way down to 1/32 (the smallest possible rate) which would result in a logging rate of about 10-20Hz and about 650 bytes/second of data. At that logging rate, a 2MB dataflash chip can store around 50 minutes of flight data, though the level of detail is severely reduced and you could not diagnose flight problems like vibration or PID setting issues.
+If you're logging to an onboard dataflash chip instead of an OpenLog, be aware that storage space is limited. At the default `1/4` logging rate this is typically enough for a few minutes of flight. Reducing the rate to `1/8` or `1/16` (the lowest available rate) extends recording time at the cost of log detail — at `1/16` you can detect gross problems but not subtle issues like vibration or PID tuning artifacts.
 
 ## Usage
 
