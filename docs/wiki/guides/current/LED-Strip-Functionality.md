@@ -60,14 +60,14 @@ The BEACON profile is used to find a lost quad, it flashes all LEDs white once p
 3. The profile and race color can be configured using the left stick to go back and the right stick to navigate up/down and to change the selected value.
 4. Use the left stick to go to the top level menu and select save & reboot to complete.
 
-###### RACE COLOR: The Race color can be configured using the CLI:
+#### RACE COLOR: The Race color can be configured using the CLI:
 
 1. Open the CLI.
-2. Type `get ledstrip_race_color` followed by enter to display the currently selected race color number.
-3. Type `set ledstrip_race_color=x` where x is the required color.
+2. Type `get ledstrip_race_color` followed by enter to display the currently selected race color name.
+3. Type `set ledstrip_race_color=x` where x is a color name (e.g. `ORANGE`, `RED`, `WHITE`).
 4. Type `save` followed by enter to save the race color to be used.
 
-###### BRIGHTNESS: The brightness can be configured using the slider on the LED Strip tab or using the CLI:
+#### BRIGHTNESS: The brightness can be configured using the slider on the LED Strip tab or using the CLI:
 
 1. Open the CLI.
 2. Type `get ledstrip_brightness` followed by enter to display the current brightness.
@@ -78,7 +78,7 @@ The BEACON profile is used to find a lost quad, it flashes all LEDs white once p
 
 Only strips of 32 WS2811/WS2812 LEDs are supported currently. If the strip is longer than 32 LEDs it does not matter, but only the first 32 are used.
 
-WS2812 LEDs require an 800khz signal and precise timings and thus requires the use of a dedicated hardware timer.
+WS2812 LEDs require an 800kHz signal and precise timings and thus requires the use of a dedicated hardware timer.
 
 Note: Not all WS2812 ICs use the same timings, some batches use different timings.
 
@@ -157,7 +157,7 @@ There is a step by step guide on how to use the Betaflight App to configure the 
 CLI:
 Enable the `LED_STRIP` feature via the cli:
 
-```
+```text
 feature LED_STRIP
 ```
 
@@ -194,7 +194,7 @@ Each LED has one base function:
 - `A` - `A`rmed state.
 - `R` - `R`ing thrust state.
 - `G` - `G`PS state.
-- `S` - R`S`SSI level.
+- `S` - RSSI level.
 - `L` - Battery `L`evel.
 
 And each LED has overlays:
@@ -211,7 +211,7 @@ And each LED has overlays:
 
 Example:
 
-```
+```text
 led 0 0,15:SD:AWI:0
 led 1 15,0:ND:AWI:0
 led 2 0,0:ND:AWI:0
@@ -223,7 +223,7 @@ led 6 8,9::B:1
 
 To erase an led, and to mark the end of the chain, use `0,0::` as the second argument, like this:
 
-```
+```text
 led 4 0,0:::
 ```
 
@@ -411,7 +411,7 @@ Each LED of the ring can be a different color. The color can be selected between
 
 For example, LED 0 is set as a `R`ing thrust state LED in color 13 as follow.
 
-```
+```text
 led 0 2,2::R:13
 ```
 
@@ -427,7 +427,7 @@ Other modes will override or combine with the color mode.
 
 For example, to set LED 0 to always use color 10 you would issue this command.
 
-```
+```text
 led 0 0,0::C:10
 ```
 
@@ -462,7 +462,7 @@ The default color configuration is as follows:
 | 14    | black       |
 | 15    | black       |
 
-```
+```text
 color 0 0,0,0
 color 1 0,255,255
 color 2 0,0,255
@@ -546,7 +546,7 @@ Orientation is when viewed with the front of the aircraft facing away from you a
 
 The default configuration is as follows
 
-```
+```text
 led 0 15,15:ES:IA:0
 led 1 15,8:E:WF:0
 led 2 15,7:E:WF:0
@@ -583,7 +583,7 @@ led 31 0,0:::0
 
 Which translates into the following positions:
 
-```
+```text
      6             3
       \           /
        \   5-4   /
@@ -606,7 +606,7 @@ This is the default so that if you don't want to place LEDs top and bottom in th
 
 ### Example 16 LED config
 
-```
+```text
 led 0 15,15:SD:IA:0
 led 1 8,8:E:FW:0
 led 2 8,7:E:FW:0
@@ -627,7 +627,7 @@ led 15 8,7:U:FW:0
 
 Which translates into the following positions:
 
-```
+```text
      6             3
       \           /
        \   5-4   /
@@ -646,7 +646,7 @@ LEDs 14-15 should be placed facing up, in the middle
 
 ### Example 28 LED config
 
-```
+```text
 #right rear cluster
 led 0 9,9:S:FWT:0
 led 1 10,10:S:FWT:0
@@ -682,7 +682,7 @@ led 26 1,10:S:FWT:0
 led 27 2,9:S:FWT:0
 ```
 
-```
+```text
        16-18  9-11
 19-21 \           / 6-8
        \  12-15  /
@@ -711,7 +711,7 @@ If your board does not have a physical LED_STRIP pin you still can use this feat
 
 An example for a Foxeer F745V3_AIO board using SERIAL_RX 1 as LED_STRIP:
 
-```
+```text
 resource SERIAL_RX 1 A10
 resource SERIAL_RX 1 NONE
 resource LED_STRIP 1 A10
