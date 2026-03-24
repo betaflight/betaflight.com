@@ -51,7 +51,7 @@ If more than 8 SBus or FPort channels are needed in FrSky X mode, it's best to s
 
 If the number of channels is set to a number between 8 and 16, for example, 11, data will be received at 9ms intervals on 13 channels, and 18ms intervals on 3. Logging is needed to identify which are fast and which are slow. If all dynamic control signals are put on the fast channels, and switches are only set on the slow channels, the default values for smoothing and interpolation are fine and will optimise performance.
 
-### Why use filter based RC smoothing over the older interpolation method?
+### Why use filter-based RC smoothing over the older interpolation method?
 
 It's faster, has less delay, keeps motor traces smoother, is much less badly affected by looptime jitter, and handles packet loss in the Rx link better.
 
