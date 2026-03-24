@@ -3,6 +3,23 @@ import path from 'path';
 import { titleCase } from 'title-case';
 import chalk from 'chalk';
 
+function reportHeaderError(headerText, filePath, lineNumber, hasError) {
+  if (titleCase(headerText) === headerText) {
+    return hasError;
+  }
+  if (!hasError) {
+    console.log("This commit would fail because some headings were not properly capitalized following the title case format. Use the proposed changes or make your own, and then try again. Or, commit with the --no-verify flag to bypass this check entirely:\n");
+  }
+  console.log(
+    `${chalk.red(headerText)
+    } -> ${
+      chalk.green(titleCase(headerText))
+    }\n${
+      chalk.white(`${filePath  }:${  lineNumber}`)}\n`,
+  );
+  return true;
+}
+
 function checkTitleCase(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
   const lines = content.split('\n');
@@ -34,24 +51,7 @@ function checkTitleCase(filePath) {
 
     // Check if the line is a first level header (starts with '#' followed by a space)
     if (line.match(/^#\s/)) {
-      const headerText = line.replace(/^#\s/, '');
-
-      // Check if the header is in title case
-      if (titleCase(headerText) !== headerText) {
-        // If this is the first error, print the message
-        if (!hasError) {
-          console.log("This commit would fail because some headings were not properly capitalized following the title case format. Use the proposed changes or make your own, and then try again. Or, commit with the --no-verify flag to bypass this check entirely:\n");
-        }
-
-        console.log(
-          `${chalk.red(headerText) 
-          } -> ${ 
-            chalk.green(titleCase(headerText)) 
-          }\n${ 
-            chalk.white(`${filePath  }:${  i + 1}`)}\n`,
-        );
-        hasError = true;
-      }
+      hasError = reportHeaderError(line.replace(/^#\s/, ''), filePath, i + 1, hasError);
     }
   }
 
