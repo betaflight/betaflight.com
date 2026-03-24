@@ -1,7 +1,3 @@
----
-slug: /development/VTX
----
-
 # VTX
 
 Betaflight supports control of VTX modules.

@@ -199,7 +199,8 @@ The flight modes of 1G, 2G, 4G control the amount and type of filtering the modu
 - 4G has a lot more filtering. Opposite plus/minus, more accurate at high speeds or rapid position changes. More resistent to position changing all over the place, like when doing acrobatics. Less accurate at smooth flight.
 
 - If 1G is the desired default to accommodate the probably more common long range use case with less dynamic flight, users should be advised to try 2G then 4G if they fly more dynamic as described.
-  :::
+
+:::
 
 #### Satellite-Based Augmentation System (SBAS) settings
 

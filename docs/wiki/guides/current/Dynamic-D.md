@@ -58,7 +58,7 @@ If your build is noisy (bent props, loose hardware, dirty motors), a high `d_max
 
 To inspect Dynamic D in real time:
 
-```
+```text
 set debug_mode = D_MAX
 ```
 

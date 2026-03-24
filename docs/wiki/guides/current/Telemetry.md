@@ -8,8 +8,6 @@ Telemetry can be either always on, or enabled when armed. If a serial port for t
 
 Here is the set of telemetry fields sent via the Crossfire protocol.
 
-Here is the set of telemetry fields send via the Crossfire protocol.
-
 | Datapoint | Description                                           | Data unit                     | Data Source Id | SubId |
 | --------- | ----------------------------------------------------- | ----------------------------- | -------------- | ----- |
 | 1RSS      | Uplink - received signal strength antenna 1 (RSSI)    | db                            | LINK ID        | 0     |

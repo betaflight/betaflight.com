@@ -565,7 +565,7 @@ Also see:
 
 - [Telemetry](/docs/wiki/guides/current/Telemetry)
 - [ESC telemetry](/docs/wiki/guides/current/ESC-Telemetry)
-- [Battery](/docs/development/Battery)
+- [Battery](/docs/wiki/guides/current/Battery)
 
 ---
 

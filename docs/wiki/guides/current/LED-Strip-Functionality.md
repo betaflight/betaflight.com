@@ -91,7 +91,7 @@ It could be possible to be able to specify the timings required via CLI if users
   - Fits well under motors on mini 250 quads.
 - [Adafruit NeoPixel Stick](https://www.adafruit.com/products/1426) (works well)
   - Measured current consumption in all white mode ~ 350 mA.
-- [Aliexpress SK6812 RBGWW strip](https://www.aliexpress.com/wholesale?SearchText=rgbw+sk6812) (works well)
+- [Aliexpress SK6812 RGBWW strip](https://www.aliexpress.com/wholesale?SearchText=rgbw+sk6812) (works well)
   - Alternative [Adafruit NeoPixel Stick RGBW](https://www.adafruit.com/product/2869)
 
 ### WS2811 vs WS2812
@@ -104,19 +104,19 @@ With the [SK6812](https://cdn-shop.adafruit.com/product-files/1138/SK6812+LED+da
 
 It is thus possible, depending on the LED board/strip being used that either Red-Green-Blue or Green-Red-Blue encoding may be required. This may be controlled by setting the following.
 
-```
+```text
 set ledstrip_grb_rgb = RGB
 ```
 
 or
 
-```
+```text
 set ledstrip_grb_rgb = GRB
 ```
 
 or
 
-```
+```text
 set ledstrip_grb_rgb = GRBW
 ```
 
@@ -281,7 +281,7 @@ This mode binds the LED color to remaining battery capacity.
 | Deep pink  | 0%       |
 
 When Warning or Critical voltage is reached, LEDs will blink slowly or fast.
-Note: this mode requires a current sensor. If you don't have the actual device you can set up a virtual current sensor (see [Battery](/docs/development/Battery)).
+Note: this mode requires a current sensor. If you don't have the actual device you can set up a virtual current sensor (see [Battery](/docs/wiki/guides/current/Battery)).
 
 #### Blink
 
@@ -597,7 +597,7 @@ Which translates into the following positions:
 ```
 
 LEDs 0,3,6 and 9 should be placed underneath the quad, facing downwards.
-LEDs 1-2, 4-5, 7-8 and 10-11 should be positioned so the face east/north/west/south, respectively.
+LEDs 1-2, 4-5, 7-8 and 10-11 should be positioned so they face east/north/west/south, respectively.
 LEDs 12-13 should be placed facing down, in the middle
 LEDs 14-15 should be placed facing up, in the middle
 LEDs 16-27 should be placed in a ring and positioned at the rear facing south.
@@ -640,7 +640,7 @@ Which translates into the following positions:
 ```
 
 LEDs 0,3,6 and 9 should be placed underneath the quad, facing downwards.
-LEDs 1-2, 4-5, 7-8 and 10-11 should be positioned so the face east/north/west/south, respectively.
+LEDs 1-2, 4-5, 7-8 and 10-11 should be positioned so they face east/north/west/south, respectively.
 LEDs 12-13 should be placed facing down, in the middle
 LEDs 14-15 should be placed facing up, in the middle
 

@@ -166,7 +166,7 @@ Dynamic D can negatively affect consistency, as D is no longer constant but vari
 
 ### Suggested setting: disabled or conservative
 
-**For clean, low-noise builds, disabling Dynamic D (set / to 0 or equal to base D) keeps D constant and maximises flight consistency.**
+**For clean, low-noise builds, disabling Dynamic D (set `d_max_roll` and `d_max_pitch` to 0, or equal to the base D) keeps D constant and maximises flight consistency.**
 
 See the [Dynamic D guide](/docs/wiki/guides/current/Dynamic-D) for full details.
 

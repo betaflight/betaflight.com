@@ -163,7 +163,7 @@ The Blackbox currently provides two settings (`blackbox_rate_num` and `blackbox_
 
 If you're using a slower MicroSD card, you may need to reduce your logging rate to reduce the number of corrupted logged frames that `blackbox_decode` complains about. A rate of 1/2 is likely to work for most craft.
 
-You can change the logging rate settings by entering the CLI tab In the [Betaflight App](https://app.betaflight.com) and using the `set` command, like so:
+You can change the logging rate settings by entering the CLI tab in the [Betaflight App](https://app.betaflight.com) and using the `set` command, like so:
 
 ```
 set blackbox_rate_num = 1
