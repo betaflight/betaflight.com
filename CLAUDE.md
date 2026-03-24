@@ -17,7 +17,7 @@ npm run lint           # ESLint on src/ (.js, .tsx)
 npm run lint:fix       # ESLint with auto-fix
 npm run format         # Prettier on src/
 npm run typecheck      # TypeScript type check
-npm run check          # Run both title-case and file-name checks
+npm run check          # Run title-case, file-name, and link checks
 ```
 
 Pre-commit hooks (Husky) run ESLint, Prettier, title-case check, and file-name check automatically. Use `--no-verify` to bypass when needed.

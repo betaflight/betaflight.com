@@ -8,7 +8,7 @@ The Spektrum bind code is enabled for most targets, some boards may not work due
 
 The following parameters can be used to enable and configure this in the related target.h file:
 
-```
+```text
 SPEKTRUM_BIND          Enables the Spektrum bind code
 BIND_PORT  GPIOA       Defines the port for the bind pin
 BIND_PIN   Pin_3       Defines the bind pin (the satellite receiver is connected to)
@@ -16,7 +16,7 @@ BIND_PIN   Pin_3       Defines the bind pin (the satellite receiver is connected
 
 This is to activate the hardware bind plug feature
 
-```
+```text
 HARDWARE_BIND_PLUG     Enables the hardware bind plug feature
 BINDPLUG_PORT  GPIOB   Defines the port for the hardware bind plug
 BINDPLUG_PIN   Pin_5   Defines the hardware bind plug pin

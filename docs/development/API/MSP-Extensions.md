@@ -180,5 +180,5 @@ Betaflight.
 
 ## See Also
 
-[Modes](/docs/wiki/guides/current/Modes) describes the user visible implementation for the Betaflight
+[Modes](/docs/wiki/guides/current/Modes) describes the user-visible implementation for the Betaflight
 modes extension.

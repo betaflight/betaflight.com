@@ -142,7 +142,7 @@ These guidelines provide best practices for physical, electrical, and documentat
 
 ## 3.1 Best Practices for Flight Controller Design and Performance
 
-When asked to review hardware our first action will be to review schematics/layouts against the application notes for the applicable data sheets. The specifics of how the hardware is interconnected is of course going to be driven by a number of constraints, such as recommended pinouts, as outlined below, but is it essential that good design practices are followed with respect to providing good quality power regulation, appropriate use of ground/power planes, decoupling component positioning etc. Manufacturers are expected to adhere to industry best practices and comply with manufacturer datasheets for components in the absence of any Betaflight-specific guidance below.
+When asked to review hardware our first action will be to review schematics/layouts against the application notes for the applicable data sheets. The specifics of how the hardware is interconnected is of course going to be driven by a number of constraints, such as recommended pinouts, as outlined below, but it is essential that good design practices are followed with respect to providing good quality power regulation, appropriate use of ground/power planes, decoupling component positioning etc. Manufacturers are expected to adhere to industry best practices and comply with manufacturer datasheets for components in the absence of any Betaflight-specific guidance below.
 
 ### 3.1.1 Physical Configuration
 

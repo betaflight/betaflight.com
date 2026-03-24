@@ -152,7 +152,7 @@ Enable the Led Strip feature via the Betaflight App under setup.
 Configure the LEDs from the Led Strip tab in the Betaflight GUI.
 First setup how the LEDs are laid out so that you can visualize it later as you configure and so the flight controller knows how many LEDs there are available.
 
-There is a step by step guide on how to use the Betaflight App to configure the Led Strip feature using the Betaflight App https://oscarliang.com/setup-led-betaflight/ which was published early 2015 by Oscar Liang which may or may not be up-to-date by the time you read this.
+There is a step by step guide on how to use the Betaflight App to configure the Led Strip feature at https://oscarliang.com/setup-led-betaflight/ (published 2015 by Oscar Liang — content may be outdated).
 
 CLI:
 Enable the `LED_STRIP` feature via the cli:
@@ -221,7 +221,7 @@ led 5 8,8::C:2
 led 6 8,9::B:1
 ```
 
-To erase an led, and to mark the end of the chain, use `0,0::` as the second argument, like this:
+To erase an led, and to mark the end of the chain, use `0,0:::` as the second argument (optionally followed by a color like `0`), like this:
 
 ```text
 led 4 0,0:::
@@ -542,7 +542,7 @@ Cut the strip into sections as per diagrams below. When the strips are cut ensur
 
 Orientation is when viewed with the front of the aircraft facing away from you and viewed from above.
 
-### Example 12 LED config
+### Example 32 LED config
 
 The default configuration is as follows
 

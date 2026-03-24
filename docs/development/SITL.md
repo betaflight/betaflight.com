@@ -39,7 +39,7 @@ Alternatively, you can use the Python implementation of websockify:
 
 use `--user` to avoid needing `sudo`; ensure `~/.local/bin` is in PATH.
 
-```
+```shell
 pip3 install --user websockify
 ```
 

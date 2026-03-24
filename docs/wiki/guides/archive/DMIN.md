@@ -9,7 +9,7 @@ The `d_min_*` CLI variables described in this document no longer exist in curren
 - **`d_min_boost_gain`** → **`d_max_gain`**
 - **`d_min_advance`** → **`d_max_advance`**
 
-For current tuning guidance, see the [PID Tuning Guide](/docs/wiki/guides/current/PID-Tuning-Guide).
+For current tuning guidance, see the [Dynamic D](/docs/wiki/guides/current/Dynamic-D) guide (or the [PID Tuning Guide](/docs/wiki/guides/current/PID-Tuning-Guide) for broader tuning context).
 
 :::
 

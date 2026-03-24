@@ -33,7 +33,7 @@ We strongly recommend enabling RPM based filtering. This is now easier than ever
 
 In most cases 4.1 should be a flash and fly upgrade, the defaults are seriously good in all respects.
 
-For a VTX to be controlled by betaflight, [a suitable VTX table must be configured by the user](/docs/wiki/guides/current/VTX#vtx-table) in a way that complies with local regulations.
+For a VTX to be controlled by Betaflight, [a suitable VTX table must be configured by the user](/docs/wiki/guides/current/VTX#vtx-table) in a way that complies with local regulations.
 
 Bitbanged DShot is very new; please report bugs during the RC phase to GitHub. If you have an issue with your ESC, try `set dshot_bitbang = OFF` rather than AUTO. For more information see the [rpm telemetry page](/docs/wiki/guides/current/DSHOT-RPM-Filtering)
 

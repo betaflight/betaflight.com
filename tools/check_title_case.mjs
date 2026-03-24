@@ -15,7 +15,7 @@ function reportHeaderError(headerText, filePath, lineNumber, hasError) {
     } -> ${
       chalk.green(titleCase(headerText))
     }\n${
-      chalk.white(`${filePath  }:${  lineNumber}`)}\n`,
+      chalk.white(`${filePath}:${lineNumber}`)}\n`,
   );
   return true;
 }

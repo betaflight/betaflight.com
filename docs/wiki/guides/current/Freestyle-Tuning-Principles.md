@@ -176,9 +176,7 @@ TPA lowers the D and P gain after a certain throttle threshold. It has
 been introduced to address fast oscillations induced by high throttle
 motor noises on quads running high PID gains.
 
-Similar to Dynamic D, this setting could negatively affect consistency
-leading to an increase of rotation rate when more throttle applied
-[BF doc ref](/docs/wiki/guides/current/PID-Tuning-Guide#tpa-throttle-pid-attenuation)
+Similar to Dynamic D, this setting can negatively affect consistency, leading to an increased rotation rate when more throttle is applied. [BF doc ref](/docs/wiki/guides/current/PID-Tuning-Guide#tpa-throttle-pid-attenuation)
 
 **Increasing the default breakpoint value allows to keep D constant also
 around mid throttle .**

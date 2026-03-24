@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const docsDir = path.join(__dirname, '../docs');
@@ -108,7 +108,28 @@ function checkFile(filePath) {
   const lines = content.split('\n');
   const errors = [];
 
+  let inCodeBlock = false;
+  let fenceChar = '';
+
   lines.forEach((line, lineIndex) => {
+    const trimmed = line.trim();
+    const fenceMatch = trimmed.match(/^(`{3,}|~{3,})/);
+    if (fenceMatch) {
+      const delimiter = fenceMatch[1][0];
+      if (!inCodeBlock) {
+        inCodeBlock = true;
+        fenceChar = delimiter;
+      } else if (delimiter === fenceChar) {
+        inCodeBlock = false;
+        fenceChar = '';
+      }
+      return;
+    }
+
+    if (inCodeBlock) {
+      return;
+    }
+
     let match;
     while ((match = linkPatterns[0].exec(line)) !== null) {
       // Strip optional inline title (e.g. 'title' or "title" after the URL)
@@ -125,7 +146,7 @@ function checkFile(filePath) {
           line: lineIndex + 1,
           link: linkUrl,
           reason: `File not found: ${resolvedPath}`,
-        })
+        });
       }
     }
   });

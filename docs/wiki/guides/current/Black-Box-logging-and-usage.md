@@ -26,13 +26,13 @@ The maximum data rate that can be recorded to the flight log is fairly restricte
 
 The Blackbox is typically used on tricopters and quadcopters. Although it will work on hexacopters and octocopters, because these craft have more motors to record, they must transmit more data to the flight log. This can increase the number of dropped frames. Although the browser-based log viewer supports hexacopters and octocopters, the command-line `blackbox_render` tool currently only supports tri- and quadcopters.
 
-Betaflight's `looptime` setting decides how frequently an update is saved to the flight log. The default looptime on Betaflight is 3500. If you're using a looptime smaller than about 2400, you may experience some dropped frames due to the high required data rate. In that case you will need to reduce the sampling rate in the Blackbox settings, or increase your logger's baudrate to 250000. See the later section on configuring the Blackbox feature for details.
+The PID loop frequency determines how frequently flight data can be captured. Modern Betaflight runs an 8 kHz PID loop (125 µs per iteration) by default. Rather than logging every loop iteration, Blackbox records at a fraction of the PID loop rate — for example, 1/4 gives approximately 2 kHz logging and 1/8 gives approximately 1 kHz. A rate of 2 kHz is recommended for detailed tuning analysis; 1 kHz is sufficient for general use and reduces storage requirements. If you are logging at high rates over a serial port you may need to increase the logger's baudrate to 250000 to reduce dropped frames. See the later section on configuring the Blackbox feature for details.
 
 ## Setting up logging
 
 First, you must enable the Blackbox feature. In the [Betaflight App](https://app.betaflight.com) enter the Configuration tab, tick the "BLACKBOX" feature at the bottom of the page, and click "Save and reboot"
 
-Now you must decide which device to store your flight logs on. You can either transmit the log data over a serial port to an external logging device like the [OpenLog serial data logger][] to be recorded to a microSDHC card, or if you have a compatible flight controller you can store the logs on the onboard dataflash storage instead.
+Now you must decide which device to store your flight logs on. You can transmit the log data over a serial port to an external logging device like the [OpenLog serial data logger][] to be recorded to a microSDHC card, store the logs on the onboard dataflash chip which is present on some flight controllers, or save the logs to an onboard SD card (SD/microSD) socket if your flight controller has one.
 
 ### OpenLog serial data logger
 
@@ -40,7 +40,7 @@ The OpenLog is a small logging device which attaches to your flight controller u
 
 The OpenLog ships from SparkFun with standard "OpenLog 3" firmware installed. Although this original OpenLog firmware will work with the Blackbox, in order to reduce the number of dropped frames it should be reflashed with the higher performance [OpenLog Blackbox firmware][]. The special Blackbox variant of the OpenLog firmware also ensures that the OpenLog is using Betaflight compatible settings, and defaults to 115200 baud.
 
-You can find the Blackbox version of the OpenLog firmware [here](https://github.com/betaflight/blackbox-firmware), along with instructions for installing it onto your OpenLog.
+You can find the Blackbox version of the OpenLog firmware, along with installation instructions, at the [Blackbox firmware on GitHub](https://github.com/betaflight/blackbox-firmware).
 
 [openlog serial data logger]: https://www.sparkfun.com/products/9530
 [openlog blackbox firmware]: https://github.com/betaflight/blackbox-firmware
@@ -77,6 +77,14 @@ When using a hardware serial port, Blackbox should be set to at least 115200 bau
 The serial port used for Blackbox cannot be shared with any other function (e.g. GPS, telemetry) except the MSP protocol. If MSP is used on the same port as Blackbox, then MSP will be active when the board is disarmed, and Blackbox will be active when the board is armed. This will mean that you can't use the App or any other function that requires MSP, such as an OSD or a Bluetooth wireless configuration app, while the board is armed.
 
 Connect the "TX" pin of the serial port you've chosen to the OpenLog's "RXI" pin. Don't connect the serial port's RX pin to the OpenLog, as this will cause the OpenLog to interfere with any shared functions on the serial port while disarmed.
+
+#### Naze32 Serial Port Choices (Legacy Hardware)
+
+:::caution Legacy Hardware
+
+The Naze32 and CC3D are deprecated flight controllers. The guidance in this section applies to those boards only and is not relevant to current hardware.
+
+:::
 
 #### Naze32 serial port choices
 
