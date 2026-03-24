@@ -9,17 +9,28 @@ function checkTitleCase(filePath) {
 
   let hasError = false;
   let inCodeBlock = false;
+  let fenceChar = '';
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
 
-    // Track fenced code blocks (``` or ~~~) to skip their contents
-    if (line.match(/\s*(`{3}|~{3})/)) {
-      inCodeBlock = !inCodeBlock;
+    // Track fenced code blocks (``` or ~~~) to skip their contents.
+    // Only match at the start of the line; track the opening delimiter so that
+    // a ~~~ fence cannot accidentally close a ``` block (and vice-versa).
+    const fenceMatch = line.match(/^(`{3,}|~{3,})/);
+    if (fenceMatch) {
+      const delimiter = fenceMatch[1][0];
+      if (!inCodeBlock) {
+        inCodeBlock = true;
+        fenceChar = delimiter;
+      } else if (delimiter === fenceChar) {
+        inCodeBlock = false;
+        fenceChar = '';
+      }
       continue;
     }
 
-    if (inCodeBlock) continue;
+    if (inCodeBlock) { continue; }
 
     // Check if the line is a first level header (starts with '#' followed by a space)
     if (line.match(/^#\s/)) {
