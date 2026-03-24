@@ -8,7 +8,7 @@ const docsDir = path.join(__dirname, '../docs')
 // Regex patterns for markdown links - only match proper markdown syntax [text](url)
 // NOT angle bracket links like <https://...> or <placeholder>
 const linkPatterns = [
-  /\[([^\]]+)\]\(([^)]+)\)/g, // [text](url) - proper markdown links only
+  /\[([^\]\n]+)\]\(([^)\n]+)\)/g, // [text](url) - proper markdown links only
 ]
 
 function getAllMarkdownFiles(dir) {
@@ -39,7 +39,7 @@ function resolveLink(link, fromFile) {
   }
 
   // Remove hash/anchor
-  const [pathname, hash] = link.split('#')
+  const [pathname] = link.split('#')
 
   if (!pathname) {
     return null // anchor-only link
@@ -111,9 +111,8 @@ function checkFile(filePath) {
   lines.forEach((line, lineIndex) => {
     let match
     while ((match = linkPatterns[0].exec(line)) !== null) {
-      const linkText = match[1]
       // Strip optional inline title (e.g. 'title' or "title" after the URL)
-      const linkUrl = match[2].replace(/\s+(['"])[^'"]*\1\s*$/, '').trim()
+      const linkUrl = match[2].replace(/\s+(?:"[^"]*"|'[^']*')\s*$/, '').trim()
       // Strip query string before resolving (e.g. ?fbclid=...)
       const linkUrlNoQuery = linkUrl.split('?')[0]
       // URL-decode so %20 etc. resolve to actual filenames
@@ -162,7 +161,7 @@ function main() {
     groupedByFile[error.file].push(error)
   }
 
-  for (const file of Object.keys(groupedByFile).sort()) {
+  for (const file of Object.keys(groupedByFile).sort((a, b) => a.localeCompare(b))) {
     console.error(`${file}:`)
     for (const error of groupedByFile[file]) {
       console.error(`  Line ${error.line}: [${error.link}] — ${error.reason}`)
