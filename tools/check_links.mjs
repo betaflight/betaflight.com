@@ -112,7 +112,7 @@ function checkFile(filePath) {
     let match;
     while ((match = linkPatterns[0].exec(line)) !== null) {
       // Strip optional inline title (e.g. 'title' or "title" after the URL)
-      const linkUrl = match[2].replace(/\s+(?:"[^"]{0,2000}"|'[^']{0,2000}')\s*$/, '').trim();
+      const linkUrl = match[2].replace(/[ \t]{1,100}(?:"[^"]{0,2000}"|'[^']{0,2000}')[ \t]{0,100}$/, '').trim();
       // Strip query string before resolving (e.g. ?fbclid=...)
       const linkUrlNoQuery = linkUrl.split('?')[0];
       // URL-decode so %20 etc. resolve to actual filenames
