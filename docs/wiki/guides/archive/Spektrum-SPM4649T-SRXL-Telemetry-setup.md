@@ -1,4 +1,4 @@
-# Howto setup Spektrum SPM4649T SRXL Telemetry
+# Howto Setup Spektrum SPM4649T SRXL Telemetry
 
 It's easy:
 

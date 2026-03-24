@@ -3,7 +3,7 @@ sidebar_position: 0
 sidebar_label: Guides
 ---
 
-# Information for Betaflight pilots
+# Information for Betaflight Pilots
 
 Our **[Current guides](/docs/category/current)** apply to recent versions of Betaflight. Some need updating, but most should be relevant and helpful.
 

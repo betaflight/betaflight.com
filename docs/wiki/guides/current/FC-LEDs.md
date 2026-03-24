@@ -2,7 +2,7 @@
 slug: /development/FC-LEDs
 ---
 
-# Betaflight Flight Controller LED usage
+# Betaflight Flight Controller LED Usage
 
 Betaflight Flight Controllers typically have two LEDs, possibly three which indicate the conditions below.
 

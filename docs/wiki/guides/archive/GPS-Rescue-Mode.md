@@ -1,4 +1,4 @@
-# GPS Rescue before V4.1
+# GPS Rescue Before V4.1
 
 **WHAT THIS IS:**
 

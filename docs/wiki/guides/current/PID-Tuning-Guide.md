@@ -43,7 +43,7 @@ I am a **freestyle pilot**, so keep in mind, that these settings are in this sco
 | Pitch | 50  | 50  | 27  | 100 | 1.55 | 0.73 | 0.3    |
 | yawD  | 65  | 45  | 0   | 100 | 1.0  | 0.73 | 0.3    |
 
-# Batteries / Lipo values
+# Batteries / Lipo Values
 
 Here are some suggested ranges based on tests.
 
@@ -387,11 +387,11 @@ These sudden movements cause the prop's spin to create turbulence, causing insta
 - Derivative CutoffType = AUTO
 - Derivative FilterType = BIQUAD
 
-# Throttle boost
+# Throttle Boost
 
 Boosts throttle faster than you command
 
-# Absolute control
+# Absolute Control
 
 Good for windy days
 1-5 (10) may best experience
@@ -619,7 +619,7 @@ https://drive.google.com/drive/folders/1hWgcADCI3Aa4XLUiGsGQbPHxdkE94taP
 
 - noise trails
 
-# Debug mode (to log filter on logger)
+# Debug Mode (to Log Filter on Logger)
 
 Mostly `set debug_mode = GYRO_SCALED` could be used.
 
@@ -658,7 +658,7 @@ Mostly `set debug_mode = GYRO_SCALED` could be used.
 
 - is the Setpoint minus Gyro
 
-# Tuning tricks
+# Tuning Tricks
 
 TL;TR from https://oscarliang.com/quadcopter-pid-explained-tuning/
 
@@ -715,9 +715,7 @@ PID-error = Setpoint - Gyro
 - `set camera_control_key_delay = 125`
 - `save`
 
-# Listing your settings
-
-# Difference to regular settings
+# List Difference to Default Settings
 
 `diff`
 
@@ -798,7 +796,7 @@ Smart Port - TX
 
 **VFAS** - Voltage of flight controller
 
-# BLHeli settings
+# BLHeli Settings
 
 Basically, this is it!
 
@@ -975,7 +973,7 @@ _Expedited Shipping_ parcel service that charges a fairly high service charge fo
 
 set ff_interpolate_sp = AVERAGED_3 for Freestyle
 
-# in a nutshell
+# In a Nutshell
 
 1 - Bounce back on rolls or flip. If the quad overshoot and then bounce back, Increases D for the affect axis.
 

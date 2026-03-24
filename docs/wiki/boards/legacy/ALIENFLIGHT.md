@@ -1,4 +1,4 @@
-# AlienFlight (ALIENFLIGHTF1 and ALIENFLIGHTF3 target)
+# AlienFlight (ALIENFLIGHTF1 and ALIENFLIGHTF3 Target)
 
 AlienWii is now AlienFlight. This target supports various variants of brushed and brusless flight controllers. The designs for them are released for public use at:
 

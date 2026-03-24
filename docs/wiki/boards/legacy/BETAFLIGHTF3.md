@@ -1,4 +1,4 @@
-# AIO Betaflight F3 Flight controller
+# AIO Betaflight F3 Flight Controller
 
 ## Updates
 

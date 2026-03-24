@@ -32,15 +32,20 @@ cd websockify-other/c
 make
 ./websockify 127.0.0.1:6761 127.0.0.1:5761
 ```
+
 Alternatively, you can use the Python implementation of websockify:
 
-# Install websockify (use --user to avoid needing sudo; ensure ~/.local/bin is in PATH)
+# Install Websockify
+
+use `--user` to avoid needing `sudo`; ensure `~/.local/bin` is in PATH.
 
 ```
 pip3 install --user websockify
 ```
 
-# Run the proxy (UART1 is at TCP port 5761)
+# Run the Proxy
+
+UART1 is at TCP port 5761.
 
 ```
 websockify 127.0.0.1:6761 127.0.0.1:5761 &

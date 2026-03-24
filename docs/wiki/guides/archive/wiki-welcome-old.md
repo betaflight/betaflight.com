@@ -1,4 +1,4 @@
-# Wiki welcome (Old)
+# Wiki Welcome (Old)
 
 :::warning
 **This document is deprecated, and is not being updated**

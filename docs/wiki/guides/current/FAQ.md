@@ -132,7 +132,7 @@ Reading the MultiWii WIKI and even the MultiWii code config.h file will help to 
 In CF and ßF the expected stick end point values are set with (I don't know in what versions these came about but were not in the original port of MW to BF code):
 Code:
 
-# rxrange
+## rxrange
 
 rxrange 0 1000 2000
 rxrange 1 1000 2000

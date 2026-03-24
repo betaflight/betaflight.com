@@ -1,4 +1,4 @@
-# Blackbox Explorer MinMax control
+# Blackbox Explorer MinMax Control
 
 The MinMax control feature can control curves scale and placement quickly and full.
 The current MinMax curves settings are showed at 'Configure graphs' dialog box in the "Minimum" and "Maximum" columns.

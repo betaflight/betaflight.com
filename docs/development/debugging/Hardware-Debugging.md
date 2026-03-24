@@ -1,4 +1,4 @@
-# Hardware debugging
+# Hardware Debugging
 
 The code can be compiled with debugging information, you can then upload a debug version to a board via a JLink/St-Link debug adapter and step through the code in your IDE.
 

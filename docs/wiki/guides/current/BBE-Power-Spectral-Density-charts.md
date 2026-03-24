@@ -1,4 +1,4 @@
-# Blackbox Explorer Power spectral density charts
+# Blackbox Explorer Power Spectral Density Charts
 
 The Blackbox Explorers spectrum analyser can show power spectral density (PSD) charts
 ![image](/img/blackbox/psd_1.jpg)

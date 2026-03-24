@@ -6,10 +6,20 @@ import chalk from 'chalk';
 function checkTitleCase(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
   const lines = content.split('\n');
+
   let hasError = false;
+  let inCodeBlock = false;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
+
+    // Track fenced code blocks (``` or ~~~) to skip their contents
+    if (line.match(/\s*(`{3}|~{3})/)) {
+      inCodeBlock = !inCodeBlock;
+      continue;
+    }
+
+    if (inCodeBlock) continue;
 
     // Check if the line is a first level header (starts with '#' followed by a space)
     if (line.match(/^#\s/)) {

@@ -7,7 +7,7 @@ For this reason, in order to get the performance that the FrSky hardware is capa
 - [Ersky9x](http://www.er9x.com/);
 - [Fork of OpenTX supporting 16 channels at 9 ms](https://github.com/mikeller/opentx/releases).
 
-# When using OpenTX despite its shortcomings: Set RF channels to 8 for 9ms
+## When using OpenTX despite its shortcomings: Set RF channels to 8 for 9ms
 
 SBus and FPort, in FrSky X mode (called 'D16 mode' by OpenTX), send data packets every 9ms, but the maximum number of channels per packet is 8.
 
@@ -17,11 +17,11 @@ If you only need 8 data channels - four control channels (roll, pitch, yaw and t
 
 This will ensure each channel of data is sent every 9ms and ensure proper RC smoothing performance.
 
-## Why is setting the number of channels important?
+### Why is setting the number of channels important?
 
 If a FrSky X link is set to more than 8 channels, some channels will only get sent every second packet, i.e. will have a latency of 18ms. Other channels will be sent every 9ms. It's not clear which channels will be affected, and which won't. This delay is noticeable and has a negative impact on flight control. It will also cause unwanted ripples in the motor signals when sticks are moved.
 
-## Why is this relevant to RC smoothing settings in Betaflight?
+### Why is this relevant to RC smoothing settings in Betaflight?
 
 Derivative or feed-forward components in the PIDs, such as D setpoint weight or throttle boost, require smooth changes in the RC signal. Without any smoothing, the signal going to the motors will be sharp and spiky. Lots of stick movement will then then make motors unnecessarily hot and waste battery power, without achieving anything useful. By appropriately smoothing the RC setpoint changes, these spikes can be rounded off, so the motors sound smoother and don't get so hot.
 
@@ -31,7 +31,7 @@ When automatically determining the RC smoothing configuration, Betaflight measur
 
 If users have configured more than 8 channels, they should manually configure the RC smoothing settings and not use the automatic values.
 
-## Can I just use the automatic / default settings if I limit the channel count to 8?
+### Can I just use the automatic / default settings if I limit the channel count to 8?
 
 Yes. Everything will work fine like that.
 
@@ -39,19 +39,19 @@ Betaflight 3.4 sets the optimal filter values automatically if interpolation is 
 
 `set rc_interp = AUTO`
 
-## When should I override the default settings?
+### When should I override the default settings?
 
 In auto mode, Betaflight assumes the user has limited the FrSky X mode channel count to 8 or less, and that the incoming data interval is 9ms. On that basis it will typically set the filter frequency to 50Hz and the older interpolation window to 11ms.
 
 Manually setting a lower filter frequency will smooth out the RC input ripple that goes to the motor. Usually this is not necessary. If the user runs a lot of D weight or throttle boost, greater than normal smoothing can make the motor traces smoother. Unfortunately this smoothing will add latency, delay, and diminish the feed forward effect, which isn't a good thing. Usually it is better to accept some degree of noise in the motor signal and keep using the defaults. If SBus data is at 9ms intervals, the automatic settings are at 50Hz. The lowest I would recommend overriding to, when attempting to reduce RC ripple, would be 30Hz.
 
-## What if I need more than 8 channels of data?
+### What if I need more than 8 channels of data?
 
 If more than 8 SBus or FPort channels are needed in FrSky X mode, it's best to set the number of channels to 16 so that all will have the same 18ms step interval, and manually configure both smoothing filters to 25Hz, and set the interpolation time to 19ms.
 
 If the number of channels is set to a number between 8 and 16, for example, 11, data will be received at 9ms intervals on 13 channels, and 18ms intervals on 3. Logging is needed to identify which are fast and which are slow. If all dynamic control signals are put on the fast channels, and switches are only set on the slow channels, the default values for smoothing and interpolation are fine and will optimise performance.
 
-## Why use filter based RC smoothing over the older interpolation method?
+### Why use filter based RC smoothing over the older interpolation method?
 
 It's faster, has less delay, keeps motor traces smoother, is much less badly affected by looptime jitter, and handles packet loss in the Rx link better.
 
