@@ -1,7 +1,3 @@
----
-slug: /development/Profiles
----
-
 # Profiles (Aka PID Profiles)
 
 A Profile is a set of performance-related configuration settings. PID values, Filter settings, Anti Gravity, Crash Recovery, and more. Currently, 3 Profiles are supported. The default Profile is profile 1 (`profile 0` in CLI).

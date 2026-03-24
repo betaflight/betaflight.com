@@ -1,7 +1,3 @@
----
-slug: /development/Rx
----
-
 # Receivers (RX)
 
 A receiver is used to receive radio control signals from your transmitter and convert them into signals that the flight controller can understand.

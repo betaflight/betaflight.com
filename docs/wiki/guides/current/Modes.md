@@ -1,7 +1,3 @@
----
-slug: /development/Modes
----
-
 # Modes
 
 There are various modes that can be toggled on or off. Modes can be enabled/disabled by stick positions, auxiliary receiver channels and other events such as failsafe detection.

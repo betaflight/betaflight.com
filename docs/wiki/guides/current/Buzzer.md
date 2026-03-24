@@ -1,7 +1,3 @@
----
-slug: /development/Buzzer
----
-
 # Buzzer
 
 Betaflight supports a buzzer which is used for the following purposes:

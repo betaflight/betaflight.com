@@ -1,7 +1,3 @@
----
-slug: /development/Units
----
-
 # Units
 
 This document describes the current variables used to configure specific elements depending on the measurement unit applied.

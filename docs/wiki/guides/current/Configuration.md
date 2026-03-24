@@ -1,7 +1,3 @@
----
-slug: /development/Configuration
----
-
 # Configuration
 
 Betaflight is configured primarily using the [Betaflight App](https://app.betaflight.com).

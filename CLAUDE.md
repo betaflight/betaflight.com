@@ -70,12 +70,6 @@ Pre-commit hooks (Husky) run ESLint, Prettier, title-case check, and file-name c
 - `docs/development/` — firmware contributor docs only; exempt from filename checker
 - Docs misplaced in `docs/development/` for user audiences belong in `docs/wiki/guides/current/`
 
-**Slug / URL preservation when moving docs:**
-
-- Add `slug: /development/<OriginalName>` frontmatter to moved files to preserve old dev URLs
-- Do NOT use `slug: /docs/development/...` — Docusaurus prepends `routeBasePath: 'docs'` to absolute slugs, producing `/docs/docs/...`
-- Wiki-native files (already at a canonical wiki URL) must NOT receive a slug — adding one replaces their established URL with the dev URL
-
 **Asset moves:**
 
 - Always use `git rm` on the source after copying, so git detects a rename — never `cp` without cleaning up the original

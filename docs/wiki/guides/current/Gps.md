@@ -1,7 +1,3 @@
----
-slug: /development/Gps
----
-
 # GPS
 
 GPS works best if the GPS receiver is mounted above and away from other sources of interference.

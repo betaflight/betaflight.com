@@ -94,7 +94,6 @@ Achieving state of the art performance requires minimizing latency in craft resp
 
 - Betaflight team will establish a closed Discord channel for ongoing private discussion between key members of the development team and manufacturer designees.
   Work in progress schematics, PCB renders, and similar documentation prior to initial production provides opportunities for early feedback.
-  
 - **Before submitting a target design, you must carefully review and follow the manufacturer design guidelines. Failure to do so may result in automatic rejection of the target.**
 
 - Initial Submission
@@ -143,7 +142,7 @@ These guidelines provide best practices for physical, electrical, and documentat
 
 ## 3.1 Best Practices for Flight Controller Design and Performance
 
-When asked to review hardware our first action will be to review schematics/layouts against the application notes for the applicable data sheets. The specifics of how the hardware is interconnected is of course going to be driven by a number of constraints, such as recommended pinouts, as outlined below, but is it essential that good design practices are followed with respect to providing good quality power regulation, appropriate use of ground/power planes, decoupling component positioning etc. Manufacturers are expected to adhere to industry best practices and comply with manufacturer datasheets for components in the absence of any Betaflight-specific guidance below. 
+When asked to review hardware our first action will be to review schematics/layouts against the application notes for the applicable data sheets. The specifics of how the hardware is interconnected is of course going to be driven by a number of constraints, such as recommended pinouts, as outlined below, but is it essential that good design practices are followed with respect to providing good quality power regulation, appropriate use of ground/power planes, decoupling component positioning etc. Manufacturers are expected to adhere to industry best practices and comply with manufacturer datasheets for components in the absence of any Betaflight-specific guidance below.
 
 ### 3.1.1 Physical Configuration
 
@@ -191,7 +190,7 @@ The ICM-42688-P also supports an external clock input, which can yield increased
 
 :::note
 
-Using a single timer with 4 channels dedicated to dual gyro FSYNC/INT pins for such a timer would be ideal 
+Using a single timer with 4 channels dedicated to dual gyro FSYNC/INT pins for such a timer would be ideal
 
 :::
 
@@ -327,7 +326,7 @@ Each LED should be connected to a GPIO line. Polarity of the output does not mat
 | 1          | Green | Preferably |
 | 2          | Amber | No         |
 
-For details of the use of these LEDs, please see the [FC LEDs](/docs/development/FC-LEDs) documentation
+For details of the use of these LEDs, please see the [FC LEDs](/docs/wiki/guides/current/FC-LEDs) documentation
 
 :::warning
 
@@ -340,7 +339,7 @@ Pin PC13, PC14 and PC15 are supplied through the power switch. Since the switch 
 
 #### 3.1.5 Current Limiting Resistors
 
-Current-limiting resistors on GPIOs, if used, should not exceed 100 ohms. This is especially true for motor and LED signal pins, where signal levels are marginal to begin with, and UARTs, where low signal levels can cause issues with some digital VTX systems. 
+Current-limiting resistors on GPIOs, if used, should not exceed 100 ohms. This is especially true for motor and LED signal pins, where signal levels are marginal to begin with, and UARTs, where low signal levels can cause issues with some digital VTX systems.
 
 ## 3.2 Resource Selection Considerations
 
@@ -403,7 +402,7 @@ Practically, this means that all pins should be on the same port, or at most two
 
 F7 series MCUs provide greater flexibility in resource assignments and do not require hardware inverters in order to support inverted serial protocols. They also do not exhibit the SPI 1 DMA limitations of F4 processors.
 
-Bitbanged DShot communication protocol will always use TIM1 and/or TIM8 - At least one of these timers must be available for use. 
+Bitbanged DShot communication protocol will always use TIM1 and/or TIM8 - At least one of these timers must be available for use.
 
 #### 3.2.1.3 G4, H7, and AT32F435 Resource Selection
 
@@ -481,7 +480,7 @@ A significant amount of the added performance available in Betaflight 4.X and be
 Betaflight supports all 32-bit ESCs currently available, with BLHeli_32 and AM32 configurations, as well as APD configurations being capable of supporting bidirectional DShot, and user-configured operation with bidirectional DShot disabled.
 Additional DShot extended telemetry will be implemented over time as demonstrated stable, however current extended telemetry options will only be enabled by user selection.
 
-BLHeli AS ceased operations in 2024. No new BLHeli_32 licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BLHeli_32 ESCs. There are several alternatives, including [AM32](https://am32.ca/) and [ESCape32](https://github.com/neoxic/ESCape32) that can be flashed to the same hardware and are fully supported by the open-source community. 
+BLHeli AS ceased operations in 2024. No new BLHeli_32 licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BLHeli_32 ESCs. There are several alternatives, including [AM32](https://am32.ca/) and [ESCape32](https://github.com/neoxic/ESCape32) that can be flashed to the same hardware and are fully supported by the open-source community.
 
 ### 3.4.2 For 8-Bit ESCs (e.g. BLHeli_S, Bluejay)
 

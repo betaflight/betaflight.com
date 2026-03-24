@@ -204,7 +204,7 @@ Betaflight firmware has undergone some major changes under the hood. Hardware dr
 
 - Added F7 support with already few supported targets - @sambas
 - Dynamic IO / pin allocation - @blckmn
-- [DSHOT Support](DSHOT ESC Protocol) for F3 and F4. DSHOT150, 300, 600, and 1200 supported (see board section in support for supported hardware) - @blckmn
+- [DSHOT Support](/docs/wiki/guides/current/Dshot) for F3 and F4. DSHOT150, 300, 600, and 1200 supported (see board section in support for supported hardware) - @blckmn
 - Full Floating Point Logic for flight behavior - @borisbstyle
 - Many new dynamic configurations (filters, setpoint weights etc.) - @borisbstyle
 - Many code optimizations (faster pid speeds possible on F3 and F4) - @martinbudden and @borisbstyle
@@ -366,7 +366,7 @@ From betaflight v3.1 there is a new command to map resources. No more custom mot
 #### set digital_idle_percent = 3.000
 *[0..20]*
 Only used when a DSHOT ESC protocol is selected.
-See [Setting Min Throttle with DShot](DSHOT ESC Protocol)
+See [Setting Min Throttle with DShot](/docs/wiki/guides/current/Dshot)
 
 #### set anti_gravity_threshold = 350   - per Profile
 *[20..1000]*

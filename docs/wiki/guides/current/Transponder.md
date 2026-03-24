@@ -1,7 +1,3 @@
----
-slug: /development/Transponder
----
-
 # Transponder
 
 Betaflight supports the generation of race transponder signals on compatible targets.

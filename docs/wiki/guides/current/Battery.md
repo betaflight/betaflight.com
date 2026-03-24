@@ -1,7 +1,3 @@
----
-slug: /development/Battery
----
-
 # Battery Monitoring
 
 Betaflight has a battery monitoring feature. The voltage of the main battery can be measured by the system and used to trigger a low-battery warning [buzzer](Buzzer), on-board status LED flashing and LED strip patterns.

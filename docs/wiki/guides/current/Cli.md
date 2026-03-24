@@ -1,7 +1,3 @@
----
-slug: /development/Cli
----
-
 # Command Line Interface (CLI)
 
 Betaflight has a command line interface (CLI) that can be used to change settings and configure the FC.
@@ -44,12 +40,12 @@ Betaflight CLI displays useful commands when the `help` command is entered. Belo
 | `status`                                                                                               | Show FC status: gyro type, loop time, CPU load, arming flags               |
 | `version`                                                                                              | Show firmware version string                                               |
 | `tasks`                                                                                                | Show task scheduler stats (CPU usage per task)                             |
-| [`profile [0-5]`](/docs/development/Profiles)                                                          | Change active PID profile                                                  |
-| [`rateprofile [0-5]`](/docs/development/Profiles)                                                      | Change active rate profile                                                 |
+| [`profile [0-5]`](/docs/wiki/guides/current/Profiles)                                                  | Change active PID profile                                                  |
+| [`rateprofile [0-5]`](/docs/wiki/guides/current/Profiles)                                              | Change active rate profile                                                 |
 | `feature list`                                                                                         | List all available features                                                |
 | `feature <feature_name>`                                                                               | Enable a feature                                                           |
 | `feature -<feature_name>`                                                                              | Disable a feature                                                          |
-| [`aux <index> <mode> <channel> <start> <end> <logic>`](/docs/development/Modes)                        | Configure AUX mode switch                                                  |
+| [`aux <index> <mode> <channel> <start> <end> <logic>`](/docs/wiki/guides/current/Modes)                | Configure AUX mode switch                                                  |
 | [`mixer list\|<name>`](/docs/development/Mixer)                                                        | Mixer name or list                                                         |
 | [`mmix`](/docs/development/Mixer)                                                                      | Design custom motor mixer                                                  |
 | [`smix`](/docs/development/Mixer)                                                                      | Design custom servo mixer                                                  |
@@ -57,20 +53,20 @@ Betaflight CLI displays useful commands when the `help` command is entered. Belo
 | [`led`](/docs/wiki/guides/current/LED-Strip-Functionality)                                             | Configure leds                                                             |
 | [`color`](/docs/wiki/guides/current/LED-Strip-Functionality)                                           | Configure colors                                                           |
 | [`mode_color`](/docs/wiki/guides/current/LED-Strip-Functionality)                                      | Configure mode and special colors                                          |
-| [`play_sound [<index>]`](/docs/development/Buzzer)                                                     | Play a sound for given index, or none for next                             |
-| [`map`](/docs/development/Rx)                                                                          | Show/set RC channel order mapping                                          |
-| [`rxrange`](/docs/development/Rx)                                                                      | configure rx channel ranges (end-points)                                   |
-| [`rxfail`](/docs/development/Rx)                                                                       | Show/set per-channel failsafe fallback values                              |
+| [`play_sound [<index>]`](/docs/wiki/guides/current/Buzzer)                                             | Play a sound for given index, or none for next                             |
+| [`map`](/docs/wiki/guides/current/Rx)                                                                  | Show/set RC channel order mapping                                          |
+| [`rxrange`](/docs/wiki/guides/current/Rx)                                                              | configure rx channel ranges (end-points)                                   |
+| [`rxfail`](/docs/wiki/guides/current/Rx)                                                               | Show/set per-channel failsafe fallback values                              |
 | `resource <> \| <resource name> <index> [<pin>\|none] \| show [all]`                                   | Show/set pin assignments                                                   |
 | `dma`                                                                                                  | Show/set DMA channel assignments                                           |
-| [`serial`](/docs/development/Serial)                                                                   | Configure serial ports and baud rates                                      |
+| [`serial`](/docs/wiki/guides/current/Serial)                                                           | Configure serial ports and baud rates                                      |
 | `serialpassthrough <id1> [<baud1>] [<mode1>] [none\|<dtr pinio>\|reset] [<id2>] [<baud2>] [<mode2>]`   | Passthrough serial data data from port 1 to VCP / port 2                   |
-| [`adjrange`](/docs/development/Inflight-Adjustments)                                                   | Configure in-flight adjustment ranges                                      |
+| [`adjrange`](/docs/wiki/guides/current/Inflight-Adjustments)                                           | Configure in-flight adjustment ranges                                      |
 | `motor <index> [value]`                                                                                | Read or drive a motor (use with caution — props off)                       |
 | `dshot_telemetry_info`                                                                                 | Show DSHOT telemetry info and statistics                                   |
 | `dshotprog <index> <cmd>+`                                                                             | Send DSHOT ESC programming commands                                        |
 | `escprog <mode [sk/bl/ki/cc]> <index>`                                                                 | Passthrough ESC to serial                                                  |
-| [`gpspassthrough`](/docs/development/Gps)                                                              | Passthrough GPS to serial                                                  |
+| [`gpspassthrough`](/docs/wiki/guides/current/Gps)                                                      | Passthrough GPS to serial                                                  |
 | `gyroregisters`                                                                                        | Dump raw gyro hardware register contents                                   |
 | `simplified_tuning apply\|disable`                                                                     | Apply or clear simplified tuning slider values                             |
 | `bind_rx`                                                                                              | Initiate RX binding (SRXL2, CRSF, SPI RX)                                  |
@@ -370,7 +366,7 @@ Betaflight 2025.12 defaults to the ACTUAL rates system. In ACTUAL: RC_Rate = deg
 
 Also see:
 
-- [Profiles](/docs/development/Profiles)
+- [Profiles](/docs/wiki/guides/current/Profiles)
 - [Rate Calculator](/docs/wiki/guides/current/Rate-Calculator)
 
 ---
@@ -398,7 +394,7 @@ Also see:
 
 Also see:
 
-- [Modes](/docs/development/Modes)
+- [Modes](/docs/wiki/guides/current/Modes)
 
 ---
 
@@ -520,10 +516,10 @@ Also see:
 
 Also see:
 
-- [Controls](/docs/development/Controls)
-- [Receivers (RX)](/docs/development/Rx)
-- [RSSI](/docs/development/Rssi)
-- [Spektrum Bind Support](/docs/development/Spektrum-bind)
+- [Controls](/docs/wiki/guides/current/Controls)
+- [Receivers (RX)](/docs/wiki/guides/current/Rx)
+- [RSSI](/docs/wiki/guides/current/Rssi)
+- [Spektrum Bind Support](/docs/wiki/guides/current/Spektrum-bind)
 
 ---
 
@@ -650,7 +646,7 @@ Prerequisites: GPS module (UBlox M8N minimum, M10 recommended), calibrated accel
 
 Also see:
 
-- [GPS](/docs/development/Gps)
+- [GPS](/docs/wiki/guides/current/Gps)
 - [GPS Rescue](/docs/wiki/guides/current/GPS-Rescue-v4-5)
 
 ---
@@ -675,7 +671,7 @@ Also see:
 
 Also see:
 
-- [GPS](/docs/development/Gps)
+- [GPS](/docs/wiki/guides/current/Gps)
 
 ---
 

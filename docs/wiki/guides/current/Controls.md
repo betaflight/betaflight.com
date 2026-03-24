@@ -1,7 +1,3 @@
----
-slug: /development/Controls
----
-
 # Controls
 
 ## Arming

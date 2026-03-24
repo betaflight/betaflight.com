@@ -4,7 +4,7 @@
 
 Oneshot125 is a legacy ESC communication protocol associated with Naze32, CC3D, and early BLHeli hardware. It has been superseded by **DShot**, which is the universal standard on all modern flight controllers and ESCs.
 
-If you are setting up a current build, see [DShot](/docs/development/Dshot) to learn about the DShot protocol.
+If you are setting up a current build, see [DShot](/docs/wiki/guides/current/Dshot) to learn about the DShot protocol.
 
 :::
 

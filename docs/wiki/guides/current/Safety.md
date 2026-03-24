@@ -1,7 +1,3 @@
----
-slug: /development/Safety
----
-
 # Safety
 
 As many can attest, multirotors and RC models in general can be very dangerous, particularly on the test bench. Here are some simple golden rules to save you a trip to the local ER:

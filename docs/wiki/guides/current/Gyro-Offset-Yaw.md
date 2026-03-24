@@ -1,7 +1,3 @@
----
-slug: /development/Gyro-Offset-Yaw
----
-
 # Gyro Offset Yaw
 
 ## Introduction

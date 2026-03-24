@@ -1,7 +1,3 @@
----
-slug: /development/Display
----
-
 # Display
 
 Betaflight supports displays to provide information to you about your aircraft and Betaflight state.

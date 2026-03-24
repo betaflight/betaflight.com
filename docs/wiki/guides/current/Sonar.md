@@ -1,7 +1,3 @@
----
-slug: /development/Sonar
----
-
 # Sonar
 
 A sonar sensor can be used to measure altitude for use with BARO and SONAR altitude

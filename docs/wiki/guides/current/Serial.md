@@ -1,7 +1,3 @@
----
-slug: /development/Serial
----
-
 # Serial
 
 Betaflight has enhanced serial port flexibility but configuration is slightly more complex as a result.

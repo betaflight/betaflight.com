@@ -1,7 +1,3 @@
----
-slug: /development/Spektrum-bind
----
-
 # Spektrum Bind Support
 
 Spektrum bind with hardware bind plug support.

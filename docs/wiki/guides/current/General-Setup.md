@@ -1,7 +1,3 @@
----
-slug: /development/Getting-Started
----
-
 # Getting Started
 
 This is a step-by-step guide that can help a person that has never used Betaflight before set up a flight controller and the aircraft around it for flight. Basic RC knowledge is required, though. A total beginner should first familiarize themselves with concepts and techniques of RC before using this (e.g. basic controls, soldering, transmitter operation etc). One could use [RCGroups](http://www.rcgroups.com/forums/index.php) and/or [the Youtube show FliteTest](https://www.youtube.com/user/flitetest) for this.
@@ -16,7 +12,7 @@ For an overview of supported hardware, see the board-specific documentation.
 
 - Assuming that you have a flight controller board (hereby FC) in hand, you should first read through the manual that it came with. You can skip the details about software setup, as we'll cover that here.
 
-- Decide how you'll connect your receiver by reading the [receiver](Rx) chapter, and how many pins you need on the outputs (to connect ESCs and servos) by reading about [Mixers](Mixer).
+- Decide how you'll connect your receiver by reading the [receiver](Rx) chapter, and how many pins you need on the outputs (to connect ESCs and servos) by reading about [Mixers](/docs/development/Mixer).
 
 - If you're interested in monitoring your flight battery with Betaflight, see [Battery Monitoring](Battery).
 

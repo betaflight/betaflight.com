@@ -1,7 +1,3 @@
----
-slug: /development/OSD-Profiles
----
-
 # OSD Profiles
 
 An OSD Profile is a screen or page of OSD elements. Three OSD Profiles are supported, i.e. you can configure 3 different OSD Profiles or pages each with their own OSD elements. Elements may also be on all 3 profiles. The OSD can still be turned on or off as before via an AUX channel. Hence users who don't want this feature are not affected by its availability. With no profiles are configured for elements, all elements are visible, i.e. OSD Profile 1 is the default profile. Keep in mind that if an element is used, it must be in the same position on all OSD Profiles in which it is visible. It is not possible to configure an element to be in a different location on a different profile.

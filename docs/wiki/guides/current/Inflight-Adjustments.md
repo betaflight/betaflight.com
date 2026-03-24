@@ -1,7 +1,3 @@
----
-slug: /development/Inflight-Adjustments
----
-
 # In-Flight Adjustments
 
 With Betaflight it's possible to make adjustments to various settings by using AUX channels from your transmitter while the aircraft is flying.

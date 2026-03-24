@@ -1,7 +1,3 @@
----
-slug: /development/FrSky-SPI-RX
----
-
 # The FrSky SPI RX
 
 ## Basics

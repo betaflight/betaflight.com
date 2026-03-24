@@ -55,7 +55,7 @@ SmartAudio Debug[0] key:
 
 ## Setting up VTX Tables in CLI
 
-See the [developer VTX page](/docs/development/VTX#vtx-table)
+See the [developer VTX page](/docs/wiki/guides/current/VTX#vtx-table)
 
 ## VTX Button Usage
 

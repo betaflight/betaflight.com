@@ -1,7 +1,3 @@
----
-slug: /development/Dshot
----
-
 # DSHOT
 
 DShot is the name coined for a new digital ESC protocol by Felix (KISS) who is working in collaboration with Boris and the rest of the betaflight team, and Steffen (BLHeli) is also playing his part and introducing this protocol to BLHeli_S.
