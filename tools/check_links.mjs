@@ -8,8 +8,8 @@ const docsDir = path.join(__dirname, '../docs');
 // Regex patterns for markdown links - only match proper markdown syntax [text](url)
 // NOT angle bracket links like <https://...> or <placeholder>
 const linkPatterns = [
-  /\[([^\]\n]+)\]\(([^)\n]+)\)/g, // [text](url) - proper markdown links only
-]; // NOSONAR
+  /\[([^\]\n]{1,2000})\]\(([^)\n]{1,2000})\)/g, // [text](url) - proper markdown links only
+];
 
 function getAllMarkdownFiles(dir) {
   let files = [];
@@ -112,7 +112,7 @@ function checkFile(filePath) {
     let match;
     while ((match = linkPatterns[0].exec(line)) !== null) {
       // Strip optional inline title (e.g. 'title' or "title" after the URL)
-      const linkUrl = match[2].replace(/\s+(?:"[^"]*"|'[^']*')\s*$/, '').trim() // NOSONAR
+      const linkUrl = match[2].replace(/\s+(?:"[^"]{0,2000}"|'[^']{0,2000}')\s*$/, '').trim();
       // Strip query string before resolving (e.g. ?fbclid=...)
       const linkUrlNoQuery = linkUrl.split('?')[0];
       // URL-decode so %20 etc. resolve to actual filenames
