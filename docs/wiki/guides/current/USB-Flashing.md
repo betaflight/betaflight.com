@@ -75,6 +75,6 @@ With the board connected and in bootloader mode (reset it by sending the charact
 
 ## See Also
 
-- [Installing Betaflight](/docs/wiki/guides/current/Installing-Betaflight) — standard firmware flashing procedure
+- [Firmware Installation](/docs/wiki/getting-started/Firmware-Installation) — standard firmware flashing procedure
 - [Broken USB Rescue](/docs/wiki/guides/current/Broken-USB-Rescue) — recovering a board that won't connect via USB
 - [DFU Hijacking](/docs/wiki/guides/current/DFU-Hijacking) — advanced DFU mode recovery techniques

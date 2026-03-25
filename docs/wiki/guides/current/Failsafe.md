@@ -349,8 +349,7 @@ Always perform true emulated Rx loss testing before relying on GPS Rescue.
 
 See the GPS Rescue Wiki page for your firmware:
 
-- [GPS Rescue 4.5](GPS-Rescue-v4-5)
-- [GPS Rescue 4.4](GPS-Rescue-v4-4)
+- [GPS Rescue 4.4+](GPS-Rescue)
 - [GPS Rescue 4.1-4.3](GPS-Rescue-Mode-v4-1-to-v4-3)
 - [GPS Rescue before 4.1](/docs/wiki/guides/archive/GPS-Rescue-Mode)
 

@@ -112,7 +112,7 @@ Here’s the revised table with the sublists formatted in one row:
 | **Allow arming without fix**            | Allows arming without a GPS fix. If this option is enabled, the quad may be armed without a GPS Home location being determined. If there is no GPS Home location, and a GPS Rescue is initiated, the quad will immediately disarm and crash. The (much safer) default is for this option to be off, so that if GPS Rescue is set for Failsafe, arming is not possible until a Home location has been acquired.                                          |
 | **Sanity checks**                       | <li>**On (highly recommended)**: The craft will perform sanity checks before starting the rescue; if the checks fail, the craft will disarm.</li><li>**Off**: The craft will not perform sanity checks before starting the rescue, potentially leading to flying away or crashing.</li><li>**Failsafe only**: Sanity checks will only be performed on an actual loss of signal, not triggered if GPS Rescue is activated using the Aux mode.</li>       |
 
-For more information about GPS Rescue on 4.5+, see this [Wiki document](/docs/wiki/guides/current/GPS-Rescue-v4-5).
+For more information about GPS Rescue, see the [GPS Rescue guide](/docs/wiki/guides/current/GPS-Rescue).
 
 ## Testing Failsafe
 

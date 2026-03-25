@@ -1,6 +1,16 @@
-# Installing Betaflight
+---
+sidebar_position: 2
+---
 
-## How to install Betaflight firmware on your FC:
+# Firmware Installation
+
+## How to Install Betaflight Firmware on Your FC
+
+:::caution
+
+Resist the urge to flash your flight controller with the latest firmware right away. If it is a pre-built drone, the manufacturer has likely pre-configured it with the correct settings, and flashing will wipe all of that. Even for a self-built drone, the FC may ship with a default configuration needed for certain features. Connect and inspect first.
+
+:::
 
 Using the Betaflight App, select the Firmware Flasher tab and select what firmware to flash in one of two different ways, online or local firmware.
 

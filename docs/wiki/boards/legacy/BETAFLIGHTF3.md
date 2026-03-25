@@ -108,7 +108,7 @@ Zadig http://zadig.akeo.ie/
 impulserc driver fixer https://impulserc.blob.core.windows.net/utilities/ImpulseRC_Driver_Fixer.exe (link to official irc site)
 In normal mode, the STM VCP driver needs to be installed. http://www.st.com/en/development-tools/stsw-stm32102.html
 
-This is in no way special or specific for this board. All FC's with a STM USB-VCP port behave like this. Read Installing-Betaflight
+This is in no way special or specific for this board. All FC's with a STM USB-VCP port behave like this. Read [Firmware Installation](/docs/wiki/getting-started/Firmware-Installation) for more details.
 
 ### remapping for motors
 

@@ -647,7 +647,7 @@ Prerequisites: GPS module (UBlox M8N minimum, M10 recommended), calibrated accel
 Also see:
 
 - [GPS](/docs/wiki/guides/current/Gps)
-- [GPS Rescue](/docs/wiki/guides/current/GPS-Rescue-v4-5)
+- [GPS Rescue](/docs/wiki/guides/current/GPS-Rescue)
 
 ---
 

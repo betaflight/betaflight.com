@@ -84,3 +84,70 @@ After completing the above configuration, you should be able to select the activ
 `get osd_profile {enter}` >> displays the currently selected OSD Profile in the CLI.
 
 `set osd_profile= {number, 1-3}` selects the OSD Profile.
+
+## Screen and Display Adjustment
+
+Different display devices have different characteristics, so you may experience inconvenience such as displayed items truncated at the right edge, the top-most line only partially visible, and similar issues.
+
+There are CLI variables that you can tweak to fit the content inside your screen.
+
+### MAX7456 / AB7456 FC-Integrated OSD (SPI)
+
+`vcd_v_offset`
+Adjust the vertical position of the first row.
+
+`vcd_h_offset`
+Adjust the horizontal position of the left edge.
+
+`displayport_max7456_col_adjust`
+Adjust number of characters in a line.
+
+`displayport_max7456_row_adjust`
+Adjust number of rows on the screen.
+
+### External OSD (DisplayPort-Capable MWOSD and Others)
+
+`displayport_msp_col_adjust`
+Adjust number of characters in a line.
+
+`displayport_msp_row_adjust`
+Adjust number of rows on the screen.
+
+### Example
+
+![MAX7456 Before](https://cloud.githubusercontent.com/assets/14850998/21984495/9068762e-dc39-11e6-94e5-fde94f0a47d2.jpg)
+Original screen.
+
+![Adjusted Screen](https://cloud.githubusercontent.com/assets/14850998/21984498/9237de54-dc39-11e6-9ee5-94fa6bab2d07.jpg)
+Screen with `displayport_max7456_col_adjust = -2`.
+
+## OSD Font Upload Problem
+
+### Description
+
+Betaflight Configurator's font upload function via USB doesn't work on some flight controllers. No matter how many times you upload the font, the OSD still displays the default font.
+
+![OSD Font Manager](https://oscarliang.com/ctt/uploads/2017/07/betaflight-osd-font-manager.jpg)
+
+### Resolution
+
+You need the battery to be **plugged in** so the function works properly (**PROPS REMOVED!**). Plug the battery in **first**, then connect to USB.
+
+### Most Probable Cause
+
+Some flight controller designs don't power the OSD chip properly (or at all) when connected only to USB. The OSD font is stored inside the OSD chip, so it must be powered and communicating with the rest of the flight controller for the font to be updated.
+
+### Concerned Boards
+
+The following boards/FCs are known to have the font upload problem:
+
+| Board Name                 | Target        | OSD Chip | LiPo-In Fix Works? | Product URL                                                                                                                                       |
+| -------------------------- | ------------- | -------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DAL RC F405 AIO            | DALRCF405     | N/A      | Yes                | [dalrc](http://www.dalrc.cn/DALRC/plus/view.php?aid=186)                                                                                          |
+| DAL RC F722Dual            | DALRCF722DUAL | N/A      | Yes                |                                                                                                                                                   |
+| Speedy Bee F7 AIO          | SPEEDYBEEF7   | N/A      | Yes                | [Speedy Bee F7](https://www.speedybee.com/f7-aio-flight-controller/)                                                                              |
+| Diatone Mamba F405 Mini FC | FURYF4OSD     | N/A      | Yes                | [diatone](https://www.diatoneusa.com/store/p574/MAMBA_F405_Mini_Betaflight_Flight_Controller_F25_25A_2_4S_DSHOT600_FPV_Racing_Brushless_ESC.html) |
+
+### Source
+
+[GitHub Issue #1301](https://github.com/betaflight/betaflight-configurator/issues/1301)

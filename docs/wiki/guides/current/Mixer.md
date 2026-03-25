@@ -1,14 +1,58 @@
-# Mixer Support
+# Mixer
 
-- Beginning with 3.1.7, some rarely used mixers have being dropped from F1 and F3 firmwares due to flash space limitation.
-- In addition, some mixers are not supported from the beginning (or at least I couldn't find any remains of the code).
-- On 3.2 and later, unsupported mixer is detected and reset to default (mixers without servos to "Custom" and mixers with servos to "Custom Airplane").
+## Mixer Types
 
-### The future
+All graphs below are representing AIRMODE enabled scenarios. When AIRMODE is disabled, regular mixer clipping on low throttle range will happen.
 
-Ultimately, motor and servo mixes will be dynamically loaded by configurator, and rarely used mixers are likely to resurrect (if devs find them useful enough).
+Added in this PR: https://github.com/betaflight/betaflight/pull/10370
 
-### The support matrix (x = not included, o = included)
+### Mixer Type: LEGACY (Current Mixer)
+
+**set mixer_type = LEGACY** \<--- enabled by default
+
+![image](https://user-images.githubusercontent.com/10757508/100614257-294ad800-3316-11eb-9ccf-d260d03e541e.png)
+
+### Mixer Type: LINEAR
+
+**set mixer_type = LINEAR** \<--- to enable
+
+![image](https://user-images.githubusercontent.com/10757508/100615013-49c76200-3317-11eb-877d-f0f181dcb204.png)
+
+### Mixer Type: DYNAMIC
+
+**set mixer_type = DYNAMIC** \<--- to enable
+
+![image](https://user-images.githubusercontent.com/10757508/100614211-120bea80-3316-11eb-8510-8d58d0c69c38.png)
+
+_Note: The above graph is the ideal scenario of dynamic mixer, but the actual result depends of PIDsum contribution from other axes. If only 1 axis asks for full authority the result will be exactly same like with LINEAR mixer. The optimal results are achieved, when multiple axes are requesting authority._
+
+### Mixer Type: EZLANDING
+
+**set mixer_type = EZLANDING** \<--- to enable
+
+Please reference Betaflight 4.5 Release Notes for [EzLanding settings](https://betaflight.com/docs/wiki/release/betaflight-4-5-release-notes#12-ezlanding).
+
+### Summary
+
+| Type        | Behavior                                                                                                                                                                                           |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **LEGACY**  | Keeps requested throttle position as long as possible, then drastically changes throttle to maintain authority. Causes a sharper transition at the limit.                                          |
+| **LINEAR**  | Starts changing throttle earlier to prevent steep transitions at the end, smoothing out thrust increase/decrease for the desired correction.                                                       |
+| **DYNAMIC** | Similar to LINEAR but adaptive. When PIDsum comes from a single axis it behaves like LINEAR; when PIDsum is combined from multiple axes, it adapts to stay closer to the requested throttle level. |
+
+---
+
+## Mixer Support
+
+- Beginning with 3.1.7, some rarely used mixers have been dropped from F1 and F3 firmwares due to flash space limitations.
+- In addition, some mixers are not supported from the beginning (or at least there are no remains of the code).
+- On 3.2 and later, an unsupported mixer is detected and reset to default (mixers without servos reset to "Custom" and mixers with servos reset to "Custom Airplane").
+
+### The Future
+
+Ultimately, motor and servo mixes will be dynamically loaded by configurator, and rarely used mixers are likely to resurface (if devs find them useful enough).
+
+### Support Matrix (x = not included, o = included)
 
 | Mixer            | F1 (\*1) | F3  | F4 & F7 | Note                                         |
 | ---------------- | -------- | --- | ------- | -------------------------------------------- |
@@ -41,7 +85,7 @@ Ultimately, motor and servo mixes will be dynamically loaded by configurator, an
 
 \*1: CJMCU and MICROSCISKY only supports QUAD mixer.
 
-#### Octo X8 emulation
+### Octo X8 Emulation
 
 ```
 mixer custom
@@ -56,7 +100,7 @@ mmix 6  1.000  1.000  1.000 -1.000
 mmix 7  1.000  1.000 -1.000  1.000
 ```
 
-#### PPM to SERVO emulation
+### PPM to SERVO Emulation
 
 An example of direct channel mapping.
 
@@ -73,6 +117,6 @@ smix 6 6 10 100 0 0 100 0
 smix 7 7 11 100 0 0 100 0
 ```
 
-#### Other emulations
+### Other Emulations
 
 It is easy to create a set of mmix/smix for a given mixer configuration; take corresponding lines from the source `src/main/flight/{mixer,servos}.c` and convert them to CLI format.

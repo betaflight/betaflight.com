@@ -89,3 +89,21 @@ Then set these values via CLI:
 set rssi_offset = -10
 set rssi_scale = 125
 ```
+
+## Crossfire (CRSF) LQ and RSSI
+
+Betaflight can display Crossfire LQ (Link Quality) on the OSD. LQ is a ratio of successful packets transmitted and received, and is the recommended signal indicator for Crossfire hardware over RSSI due to its overall high signal strength.
+
+### Betaflight 4.1 and Later (Native CRSF LQ and RSSI dBm Support)
+
+1. Configure your flight controller to use the CRSF protocol.
+2. On the Configuration tab, select Serial-based receiver and the CRSF protocol; ensure RSSI_ADC is disabled.
+3. On the Receiver tab, ensure RSSI Channel is disabled.
+4. Enable and place the LQ element in the OSD menu.
+
+### Betaflight 4.0 and Earlier
+
+1. Configure your Crossfire RX to transmit LQ on an unused RC channel via the Crossfire OLED menu or Lua script.
+2. On the Configuration tab, select Serial-based receiver and the CRSF protocol; ensure RSSI_ADC is disabled.
+3. On the Receiver tab, set RSSI Channel to the correct AUX (channel number − 4).
+4. Enable and place the RSSI element in the OSD.
