@@ -52,4 +52,4 @@ This section shows a map with the current GPS location of the craft.
 
 ## Setting up GPS Rescue for Betaflight 4.5+
 
-For more information about GPS changes in 4.5, see the [Wiki document](/docs/wiki/guides/current/Failsafe).
+For more information about GPS Rescue, see the [GPS Rescue guide](/docs/wiki/guides/current/GPS-Rescue).

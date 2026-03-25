@@ -89,3 +89,5 @@ transparent. Use Upload Font to save changes
 Font upload may be required when upgrading from older versions of Betaflight as font symbols have been added and
 changed over time. In particular if your crosshair looks wrong or if your display appears garbled or using incorrect
 characters you should try uploading the font again.
+
+For more information about OSD profiles and switching between them, see the [OSD Profiles guide](/docs/wiki/guides/current/OSD-Profiles).
