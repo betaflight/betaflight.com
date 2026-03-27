@@ -129,6 +129,12 @@ WS2812 LED strips generally require a single data line, 5V and GND.
 
 WS2812 LEDs on full brightness can consume quite a bit of current. It is recommended to verify the current draw and ensure your supply can cope with the load. On a multirotor that uses multiple BEC ESC's you can try use a different BEC to the one the FC uses. e.g. ESC1/BEC1 -> FC, ESC2/BEC2 -> LED strip. It's also possible to power one half of the strip from one BEC and the other half from another BEC. Just ensure that the GROUND is the same for all BEC outputs and LEDs.
 
+:::caution Legacy Hardware
+
+The pin assignments below apply to Naze/CC3D-era boards only and are not current recommendations. Modern boards use different pins and may support simultaneous SoftSerial and Parallel PWM.
+
+:::
+
 | Target                | Pin  | LED Strip | Signal |
 | --------------------- | ---- | --------- | ------ |
 | Naze                  | RC5  | Data In   | PA6    |
@@ -140,7 +146,7 @@ Since RC5 is also used for SoftSerial on the Naze it means that you cannot use S
 
 If you have LEDs that are intermittent, flicker or show the wrong colors then drop the VIN to less than 4.7V, e.g. by using an inline diode on the VIN to the LED strip. The problem occurs because of the difference in voltage between the data signal and the power signal. The WS2811 LED's require the data signal (Din) to be between 0.3 × VIN (Max) and 0.7 × VIN (Min) to register valid logic low/high signals. The LED pin on the CPU will always be between 0V to ~3.3V, so the VIN should be 4.7V (3.3V / 0.7 = 4.71V). Some LEDs are more tolerant of this than others.
 
-The datasheet can be found here: http://www.adafruit.com/datasheets/WS2812.pdf
+The datasheet can be found here: https://www.adafruit.com/datasheets/WS2812.pdf
 
 ## Configuration
 
@@ -151,8 +157,6 @@ Enable the Led Strip feature via the Betaflight App under setup.
 
 Configure the LEDs from the Led Strip tab in the Betaflight GUI.
 First setup how the LEDs are laid out so that you can visualize it later as you configure and so the flight controller knows how many LEDs there are available.
-
-There is a step by step guide on how to use the Betaflight App to configure the Led Strip feature at https://oscarliang.com/setup-led-betaflight/ (published 2015 by Oscar Liang — content may be outdated).
 
 CLI:
 Enable the `LED_STRIP` feature via the cli:
@@ -696,7 +700,7 @@ led 27 2,9:S:FWT:0
 All LEDs should face outwards from the chassis in this configuration.
 
 Note:
-This configuration is specifically designed for the [Alien Spider AQ50D PRO 250mm frame](http://www.goodluckbuy.com/alien-spider-aq50d-pro-250mm-mini-quadcopter-carbon-fiber-micro-multicopter-frame.html).
+This configuration is specifically designed for the Alien Spider AQ50D PRO 250mm frame.
 
 ## Troubleshooting
 

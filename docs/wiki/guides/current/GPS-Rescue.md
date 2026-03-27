@@ -286,7 +286,7 @@ Notes:
 - During `DESCEND` phase, the craft tries to stay on the edge of a cylinder that is 2m away from the estimated landing point. It will point towards home while attempting to stay 2m out. The 2m distance is intended to minimise the risk of overshooting home. In windy situations the craft will typically descend on the down-wind side of the 2m cylinder.
 - During landing mode, the quad can rotate, and will pitch forward and backward to try to land 2m out from the home point. If the GPS has drifted, the final distance to home and direction to home indicate where the GPS thinks 'home' is at the time of landing.
 - Auto-Disarm is triggered by the accelerometer spike associated with touch-down with the ground. It is only active after the altitude falls below the `GPS_RESCUE_LANDING_ALT` value in `DESCEND` mode. If the altitude has drifted high so that the craft hits the ground but the GPS thinks it is still high in the sky, it will not disarm on impact. If that happens, the landing sanity check should disarm the craft after about 10s.
-- A `DO_NOTHING` phase, which is flat Level Mode with throttle 100 steps below the GPS Rescue hover throttle value, with a 20s limit, is applied in switch-induced rescues that experience a fatal sanity check error. This gives time for the pilot to reverse the switch rather than immediately disarming. Should a pilot notice a failure to follow the above sequence during a stick-induced Rescue, they should immediately recover control by reversing the switch.
+- A `DO_NOTHING` phase, which is flat Level Mode with throttle 100 steps below the GPS Rescue hover throttle value, with a 20s limit, is applied in switch-induced rescues that experience a fatal sanity check error. This gives time for the pilot to reverse the switch rather than immediately disarming. Should a pilot notice a failure to follow the above sequence during a switch-induced Rescue, they should immediately recover control by reversing the switch.
 
 ## Altitude Control Options
 
@@ -303,7 +303,7 @@ The `GPS_RESCUE_ALT_MODE` setting, in association with the `GPS_RESCUE_RETURN_AL
 | Item                                  | Notes                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `GPS_RESCUE_MIN_START_DIST`           | The minimum distance from home required before a "normal" GPS Rescue can be initiated, in metres. Inside this distance, the rescue may not be as well-controlled as usual.                                                                                                                                                                                                                                                   |
-| `GPS_RESCUE_ALT_MODE`                 | The return altitude mode. `FIXED` returns at the set `RETURN_ALT` value, `MAX` returns just above the maximum height attained during the flight, and `CURRENT` returns at the height the rescue started plus the initial climb amount.                                                                                                                                                                                       |
+| `GPS_RESCUE_ALT_MODE`                 | The return altitude mode. `FIXED_ALT` returns at the set `RETURN_ALT` value, `MAX_ALT` returns just above the maximum height attained during the flight, and `CURRENT_ALT` returns at the height the rescue started plus the initial climb amount.                                                                                                                                                                           |
 | `GPS_RESCUE_INITIAL_CLIMB`            | The amount of height to climb, above either current or max altitude (as set by `GPS_RESCUE_ALT_MODE`), in metres.                                                                                                                                                                                                                                                                                                            |
 | `GPS_RESCUE_ASCEND_RATE`              | Target climb rate in cm/s during the `ASCEND` phase. Can be increased to speed up the climb if desired.                                                                                                                                                                                                                                                                                                                      |
 | `GPS_RESCUE_RETURN_ALT`               | When in `FIXED_ALT` mode, the altitude to return at, in metres above take-off altitude.                                                                                                                                                                                                                                                                                                                                      |
@@ -465,7 +465,7 @@ Notes:
 
 **Rescue Phase Codes**
 
-```
+```text
 0    RESCUE_IDLE
 1    RESCUE_INITIALIZE
 2    RESCUE_ATTAIN_ALT
@@ -480,7 +480,7 @@ Notes:
 
 **Rescue Failure Codes**
 
-```
+```text
 0    RESCUE_HEALTHY
 1    RESCUE_FLYAWAY
 2    RESCUE_GPSLOST

@@ -17,9 +17,7 @@ It is very important to set up your failsafe correctly to prevent your craft fro
 
 There are two stages of failsafe:
 
-- **Stage 1** - entered when a flight channel has an invalid pulse length, the receiver reports failsafe mode or
-  there is no signal from the receiver for more than 100ms, the channel fallback settings are applied. If valid data is received,
-  Stage 1 failsafe will terminate automatically. Stage 1 duration is configured using the `failsafe_delay` duration, and defaults to 1.5s.
+- **Stage 1** - entered when a flight channel has an invalid pulse length, the receiver reports failsafe mode, or there is no signal from the receiver for 100ms or more; at that point the channel fallback settings are applied. Stage 1 failsafe will terminate automatically if valid data is received. Stage 1 duration is configured using the `failsafe_delay` setting, which defaults to 1.5s.
 
 - **Stage 2** - entered when radio link is lost for more than the configured Stage 1 duration, and the quad is armed.
   Stage 2 Failsafe Mode will be activated. Channels that are not controlled by the failsafe mode remain at their fallback setting.

@@ -32,7 +32,7 @@ then release as appropriate.
 
 Example to cycle VTX power:
 
-```
+```text
 | 0 seconds      | 1 second      | 2 seconds    | 3 seconds     | 4 seconds     | 5 seconds     | 6 seconds or more |
 |-HOLD BUTTON-----------------------------------|-RELEASE BUTTON-NOW------------|-RELEASED TOO LATE TO CHANGE POWER-|
 | 4 Flashes      | 3 flashes     | 3 flashes    | 2 flashes     | 2 flashes     | 1 flash       | 1 flash           |
@@ -107,7 +107,7 @@ well as user preferences.
 The contents of the table can be examined by typing the command `vtxtable` into the CLI.
 Example:
 
-```
+```text
 # vtxtable
 vtxtable bands 5
 vtxtable channels 8
@@ -143,7 +143,7 @@ German laws. Additionally, the Fatshark band was replaced with a new custom one.
 
 As a starting point, the following table contains the commonly used frequencies:
 
-```
+```text
 # This table should not be used as-is, but trimmed down according to local laws and regulations.
 vtxtable band 1 BOSCAM_A A FACTORY 5865 5845 5825 5805 5785 5765 5745 5725
 vtxtable band 2 BOSCAM_B B FACTORY 5733 5752 5771 5790 5809 5828 5847 5866
@@ -162,7 +162,7 @@ Power levels should be set up to match the hardware in use.
 
 ##### IRC Tramp devices should use:
 
-```
+```text
 vtxtable powerlevels 5
 vtxtable powervalues 25 100 200 400 600
 vtxtable powerlabels 25 100 200 400 600
@@ -170,7 +170,7 @@ vtxtable powerlabels 25 100 200 400 600
 
 ##### rtc6705 should use:
 
-```
+```text
 vtxtable powerlevels 2
 vtxtable powervalues 1 2
 vtxtable powerlabels MIN MAX
@@ -180,7 +180,7 @@ Please note that turning off rtc6705 devices is not possible using powervalues. 
 
 ##### SmartAudio V1.0 devices should use:
 
-```
+```text
 vtxtable powerlevels 4
 vtxtable powervalues 7 16 25 40
 vtxtable powerlabels 25 200 500 800
@@ -188,7 +188,7 @@ vtxtable powerlabels 25 200 500 800
 
 ##### SmartAudio V2.0 devices should use:
 
-```
+```text
 vtxtable powerlevels 4
 vtxtable powervalues 0 1 2 3
 vtxtable powerlabels 25 200 500 800
@@ -200,7 +200,7 @@ For these devices the `powervalues` are the output power in dBm.
 
 To query the available power levels from a SmartAudio 2.1 VTX enter the `vtx_info` command with no parameters. This will report the available power settings:
 
-```
+```text
 # vtx_info
 level 14 dBm, power 25 mW
 level 20 dBm, power 100 mW
@@ -211,7 +211,7 @@ For example:
 
 [TBS Unify Pro32 Nano 5G8](https://www.team-blacksheep.com/products/prod:unifypro32_nano):
 
-```
+```text
 vtxtable powerlevels 3
 vtxtable powervalues 14 20 26
 vtxtable powerlabels 25 100 400
@@ -219,7 +219,7 @@ vtxtable powerlabels 25 100 400
 
 [TBS Unify Pro 5G8 HV - Race 2 (MMCX)](https://www.team-blacksheep.com/products/prod:unify_pro_hv_race2_m):
 
-```
+```text
 vtxtable powerlevels 3
 vtxtable powervalues 13 20 26
 vtxtable powerlabels 25 100 400
@@ -227,7 +227,7 @@ vtxtable powerlabels 25 100 400
 
 [TBS Unify Pro32 HV (MMCX)](https://www.team-blacksheep.com/products/prod:unifypro32_hv):
 
-```
+```text
 vtxtable powerlevels 4
 vtxtable powervalues 14 20 26 30
 vtxtable powerlabels 25 100 400 1W
@@ -235,7 +235,7 @@ vtxtable powerlabels 25 100 400 1W
 
 [TBS Unify EVO](https://www.team-blacksheep.com/products/prod:tbs_unify_evo):
 
-```
+```text
 vtxtable powerlevels 4
 vtxtable powervalues 14 20 26 29
 vtxtable powerlabels 25 100 400 800
@@ -245,7 +245,7 @@ Power levels may be omitted. This is useful for compliance with local laws and r
 Additionally, powerlabels (but not values!) can be set to anything three characters long.
 For example a TBS Unify EVO will also work with this config:
 
-```
+```text
 vtxtable powerlevels 2
 vtxtable powervalues 20 26
 vtxtable powerlabels .1W .4W
@@ -255,7 +255,7 @@ vtxtable powerlabels .1W .4W
 
 ##### IRC Tramp device
 
-```
+```text
 # This example enables a lot of power levels and channels.
 # Almost nobody will be able to legally use this without modification.
 # Check your local laws and regulations before use!
@@ -273,7 +273,7 @@ vtxtable powerlabels 25 100 200 400 600
 
 ##### SmartAudio 1.0 device
 
-```
+```text
 # This example enables a lot of power levels and channels.
 # Almost nobody will be able to legally use this without modification.
 # Check your local laws and regulations before use!
@@ -291,7 +291,7 @@ vtxtable powerlabels 25 200 500 800
 
 ##### SmartAudio 2.0 device
 
-```
+```text
 # This example enables a lot of power levels and channels.
 # Almost nobody will be able to legally use this without modification.
 # Check your local laws and regulations before use!
@@ -309,7 +309,7 @@ vtxtable powerlabels 25 200 500 800
 
 ##### SmartAudio 2.1 device
 
-```
+```text
 # This example enables a lot of power levels and channels.
 # Almost nobody will be able to legally use this without modification.
 # Check your local laws and regulations before use!
@@ -327,7 +327,7 @@ vtxtable powerlabels 25 100 400 1W
 
 ##### rtc6705
 
-```
+```text
 # This example enables a lot of power levels and channels.
 # Almost nobody will be able to legally use this without modification.
 # Check your local laws and regulations before use!
@@ -400,7 +400,7 @@ if `vtx_band==0` and `vtx_freq==0`, the settings will not be sent to the VTX
 
 For example, to configure the VTX to use band F and channel 6 (5840 MHz), enter the CLI and input:
 
-```
+```text
 set vtx_band = 4
 set vtx_channel = 6
 save
@@ -422,7 +422,7 @@ The VTX configuration will not be changed until after the `save` and restart. If
 
 The `vtx` CLI command maps AUX channels to VTX band, channel, and power settings:
 
-```
+```text
 vtx <index> <aux_channel> <vtx_band> <vtx_channel> <vtx_power> <start_range> <end_range>
 ```
 
@@ -430,7 +430,7 @@ The `aux_channel` value is zero-based (0 = Aux1, 1 = Aux2, etc.).
 
 For example, the following configures a 3-position switch on Aux3 to switch between power levels 1, 2, and 3:
 
-```
+```text
 vtx 0 2 0 0 1 900 1200
 vtx 1 2 0 0 2 1300 1700
 vtx 2 2 0 0 3 1800 2100

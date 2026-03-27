@@ -20,7 +20,7 @@ Before connecting your FC to a computer, plan how you intend to use it. This det
 
 - Read the manual that came with your FC. You can skip the vendor software setup sections — this guide covers that.
 - Decide how you will connect your receiver. See the [Receiver documentation](/docs/wiki/guides/current/Rx) for the available options.
-- Determine how many output pins you need (for ESCs and servos) by reading about [Mixers](/docs/development/Mixer).
+- Determine how many output pins you need (for ESCs and servos) by reading about [Mixers](/docs/wiki/guides/current/Mixer).
 - If you want to monitor battery voltage, see [Battery Monitoring](/docs/wiki/guides/current/Battery).
 - If you want audible feedback from a buzzer, see the [Buzzer documentation](/docs/wiki/guides/current/Buzzer).
 - If you want your receiver's RSSI forwarded to the FC, see the [RSSI documentation](/docs/wiki/guides/current/Rssi).
@@ -120,7 +120,7 @@ You may need a VTX Table for your specific VTX, which can be in two formats:
 
 - **CLI Code** — Paste directly into the CLI:
 
-```bfcli
+```text
 # vtxtable
 vtxtable bands 5
 vtxtable channels 8
@@ -151,7 +151,6 @@ vtxtable powerlabels 25 200 500 1.5 2.5
         "is_factory_band": true,
         "frequencies": [5865, 5845, 5825, 5805, 5785, 5765, 5745, 5725]
       }
-      // ... more bands
     ],
     "powerlevels_list": [
       {
@@ -162,7 +161,6 @@ vtxtable powerlabels 25 200 500 1.5 2.5
         "value": 1,
         "label": "200"
       }
-      // ... more power levels
     ]
   }
 }

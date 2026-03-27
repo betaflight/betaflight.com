@@ -72,7 +72,7 @@ You need to let Betaflight know which of your serial ports you connect your Open
 
 You should use a hardware serial port (such as UART1 on the Naze32, the two-pin Tx/Rx header in the center of the board). SoftSerial ports can be used for the Blackbox. However, because they are limited to 19200 baud, your logging rate will need to be severely reduced to compensate. Therefore the use of SoftSerial is not recommended.
 
-When using a hardware serial port, Blackbox should be set to at least 115200 baud on that port. When using fast looptimes (\<2500), a baud rate of 250000 should be used instead in order to reduce dropped frames.
+When using a hardware serial port, Blackbox should be set to at least 115200 baud on that port. On modern hardware running at 3.2 kHz or 8 kHz loop rates, a baud rate of 250000 is recommended to reduce dropped frames.
 
 The serial port used for Blackbox cannot be shared with any other function (e.g. GPS, telemetry) except the MSP protocol. If MSP is used on the same port as Blackbox, then MSP will be active when the board is disarmed, and Blackbox will be active when the board is armed. This will mean that you can't use the App or any other function that requires MSP, such as an OSD or a Bluetooth wireless configuration app, while the board is armed.
 
@@ -169,12 +169,12 @@ On the App's CLI tab, you must enter `set blackbox_device=SDCARD` to switch to l
 
 The Blackbox sample rate is controlled by the `blackbox_sample_rate` setting, which defines what fraction of gyro samples are logged. Valid values are `1/1`, `1/2`, `1/4`, `1/8`, and `1/16`. The default is `1/4`.
 
-If you're using a slower MicroSD card, you may need to reduce your logging rate to reduce the number of corrupted logged frames that `blackbox_decode` complains about. A rate of `1/2` is a good starting point for most craft.
+The default `1/4` rate is a good starting point for most craft. If you're using a slower MicroSD card, decrease the logging rate to `1/8` or `1/16` to reduce the number of corrupted logged frames that `blackbox_decode` complains about.
 
 You can change the logging rate by entering the CLI tab in the [Betaflight App](https://app.betaflight.com) and using the `set` command, like so:
 
 ```text
-set blackbox_sample_rate = 1/2
+set blackbox_sample_rate = 1/8
 ```
 
 If you are logging using SoftSerial, you will almost certainly need to use a low sample rate such as `1/16`. Even at the lowest logging rate, SoftSerial's limited baud rate makes it unsuitable for fast loop times, and it is not recommended for Blackbox logging.
