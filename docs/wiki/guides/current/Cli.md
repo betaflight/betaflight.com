@@ -46,10 +46,10 @@ Betaflight CLI displays useful commands when the `help` command is entered. Belo
 | `feature <feature_name>`                                                                               | Enable a feature                                                           |
 | `feature -<feature_name>`                                                                              | Disable a feature                                                          |
 | [`aux <index> <mode> <channel> <start> <end> <logic>`](/docs/wiki/guides/current/Modes)                | Configure AUX mode switch                                                  |
-| [`mixer list\|<name>`](/docs/development/Mixer)                                                        | Mixer name or list                                                         |
-| [`mmix`](/docs/development/Mixer)                                                                      | Design custom motor mixer                                                  |
-| [`smix`](/docs/development/Mixer)                                                                      | Design custom servo mixer                                                  |
-| [`servo`](/docs/development/Mixer)                                                                     | Configure servos                                                           |
+| [`mixer list\|<name>`](/docs/wiki/guides/current/Mixer)                                                | Mixer name or list                                                         |
+| [`mmix`](/docs/wiki/guides/current/Mixer)                                                              | Design custom motor mixer                                                  |
+| [`smix`](/docs/wiki/guides/current/Mixer)                                                              | Design custom servo mixer                                                  |
+| [`servo`](/docs/wiki/guides/current/Mixer)                                                             | Configure servos                                                           |
 | [`led`](/docs/wiki/guides/current/LED-Strip-Functionality)                                             | Configure leds                                                             |
 | [`color`](/docs/wiki/guides/current/LED-Strip-Functionality)                                           | Configure colors                                                           |
 | [`mode_color`](/docs/wiki/guides/current/LED-Strip-Functionality)                                      | Configure mode and special colors                                          |
