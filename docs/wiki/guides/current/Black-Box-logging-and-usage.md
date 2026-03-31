@@ -167,7 +167,7 @@ On the App's CLI tab, you must enter `set blackbox_device=SDCARD` to switch to l
 
 ## Configuring the Blackbox
 
-The Blackbox sample rate is controlled by the `blackbox_sample_rate` setting, which defines what fraction of gyro samples are logged. Valid values are `1/1`, `1/2`, `1/4`, `1/8`, and `1/16`. The default is `1/4`.
+The Blackbox sample rate is controlled by the `blackbox_sample_rate` setting, which defines what fraction of PID loop iterations are logged. Valid values are `1/1`, `1/2`, `1/4`, `1/8`, and `1/16`. The default is `1/4`.
 
 The default `1/4` rate is a good starting point for most craft. If you're using a slower MicroSD card, decrease the logging rate to `1/8` or `1/16` to reduce the number of corrupted logged frames that `blackbox_decode` complains about.
 
