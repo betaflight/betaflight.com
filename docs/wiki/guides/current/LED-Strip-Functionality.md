@@ -169,7 +169,7 @@ If you enable LED_STRIP feature and the feature is turned off again after a rebo
 
 Configure the LEDs using the `led` command.
 
-The `led` command takes either zero or two arguments - an zero-based LED number and a sequence which indicates pair of coordinates, direction flags and mode flags and a color.
+The `led` command takes either zero or two arguments - a zero-based LED number and a sequence which indicates pair of coordinates, direction flags and mode flags and a color.
 
 If used with zero arguments it prints out the LED configuration which can be copied for future reference.
 
@@ -439,7 +439,7 @@ led 0 0,0::C:10
 
 Colors can be configured using the cli `color` command.
 
-The `color` command takes either zero or two arguments - an zero-based color number and a sequence which indicates pair of hue, saturation and value (HSV).
+The `color` command takes either zero or two arguments - a zero-based color number and a sequence which indicates pair of hue, saturation and value (HSV).
 
 See http://en.wikipedia.org/wiki/HSL_and_HSV
 
