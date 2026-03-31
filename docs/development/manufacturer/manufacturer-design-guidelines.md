@@ -38,6 +38,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 | Draft 1.8 | 01 April 2025     | Update I2C Device Info            |
 | Draft 1.9 | 12 September 2025 | Update motor requirements         |
 | Draft 2.0 | 12 November 2025  | GPIO usage clarifications         |
+| Draft 2.1 | 29 March 2026     | Update sensors                    |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -564,12 +565,20 @@ Define at least one gyro and one accelerometer.
 #define USE_GYRO_SPI_ICM20689
 #define USE_ACC_SPI_ICM20689
 #define USE_ACCGYRO_BMI270
+#define USE_ACCGYRO_ICM40609D
 #define USE_GYRO_SPI_ICM42605
 #define USE_ACC_SPI_ICM42605
+#define USE_ACCGYRO_ICM42622P
+#define USE_ACCGYRO_ICM42686P
 #define USE_GYRO_SPI_ICM42688P
 #define USE_ACC_SPI_ICM42688P
+#define USE_ACCGYRO_ICM45686
+#define USE_ACCGYRO_ICM45605
 #define USE_ACCGYRO_LSM6DSO
 #define USE_ACCGYRO_LSM6DSV16X
+#define USE_ACCGYRO_LSM6DSK320X
+#define USE_ACCGYRO_IIM42652
+#define USE_ACCGYRO_IIM42653
 ```
 
 ### 4.2.2 Defines for FLASH
@@ -598,7 +607,6 @@ Define a barometer only if physical present on the board. Betaflight strongly re
 #define USE_BARO_SPI_BMP280
 #define USE_BARO_BMP388
 #define USE_BARO_SPI_BMP388
-#define USE_BARO_LPS
 #define USE_BARO_SPI_LPS
 #define USE_BARO_QMP6988
 #define USE_BARO_SPI_QMP6988
@@ -619,12 +627,14 @@ Define a magnetometer only if physical present on the board. Betaflight strongly
 #define USE_MAG_HMC5883
 #define USE_MAG_SPI_HMC5883
 #define USE_MAG_QMC5883
+#define USE_MAG_LIS2MDL
 #define USE_MAG_LIS3MDL
 #define USE_MAG_AK8963
 #define USE_MAG_MPU925X_AK8963
 #define USE_MAG_SPI_AK8963
 #define USE_MAG_AK8975
 #define USE_MAG_IST8310
+#define USE_MAG_MMC560X
 ```
 
 ### 4.2.5 Defines for SX1280
