@@ -7,7 +7,7 @@ sidebar_label: 2026.6 Release Notes
 
 Welcome to Betaflight 2026.6! This release introduces autonomous flight planning, new platform support for ESP32 and STM32H5/N6 processors, switchable battery profiles, optical flow position hold, a fully modernised app, and a wide range of sensor, protocol, and hardware additions.
 
-We have tried to make this release as bug free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
+We have tried to make this release as bug-free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
 Always remember there is a dedicated [Discord](https://discord.gg/n4E6ak4u3c) server for help, support and general community.
 
@@ -25,7 +25,7 @@ The entire app has been rebuilt on **Vue 3** with **Pinia** state management, re
 
 ### 1.2 Flight Planning UI (Experimental)
 
-A new **Flight Plan** tab lets you visually plan autonomous missions on an interactive map. You can add, edit, and reorder waypoints, view elevation profiles, and save or load flight plans directly from the flight controller. Note that the underlying autopilot firmware is experimental and currently only tested in SITL simulation -- it is not yet flight ready.
+A new **Flight Plan** tab lets you visually plan autonomous missions on an interactive map. You can add, edit, and reorder waypoints, view elevation profiles, and save or load flight plans directly from the flight controller. Note that the underlying autopilot firmware is experimental and currently only tested in SITL simulation -- it is not yet flight-ready.
 
 ### 1.3 Battery Profile Support
 
@@ -35,7 +35,7 @@ The app now supports switching between **multiple battery profiles** configured 
 
 A new **WebAuthn-based login** system lets you securely save and manage configuration backups in the cloud, organised by aircraft. Backups can be downloaded, edited, and deleted. Includes avatar editing and automatic backup functionality.
 
-### 1.5 Color Themes
+### 1.5 Colour Themes
 
 Three new colour themes are available in the Options tab: **Yellow** (default), **Amber**, and **High Contrast**, giving you more control over the app's appearance.
 
