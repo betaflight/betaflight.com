@@ -60,4 +60,4 @@ If you are building your own Betaflight FC firmware:
 - Build FC firmware with added options. E.g. make `OPTIONS=USE_OSD USE_OSD_OVER_MSP_DISPLAYPORT REVOLT`
 - This will enable the OSD tab and full DISPLAYPORT support from the FC.
 
-See also: [CMS adjustment](OSD-and-CMS-Adjusting-Screen)
+See also: [CMS adjustment](OSD-Profiles#screen-and-display-adjustment)

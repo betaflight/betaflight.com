@@ -62,3 +62,5 @@ Multiple Ranges, Links can be matched, combined using boolean AND or OR operator
 | BEEPER MUTE              | Disables/enables beeper, including warning, status, and beeper mode.                                                                                     |
 | READY                    | Shows 'READY' in the OSD using a switch.                                                                                                                 |
 | LAP TIMER RESET          | Resets the lap timer.                                                                                                                                    |
+
+For more information about flight modes and arming, see the [Modes guide](/docs/wiki/guides/current/Modes) and the [Arming Sequence and Safety guide](/docs/wiki/guides/current/Arming-Sequence-And-Safety).

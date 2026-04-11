@@ -95,10 +95,10 @@ RPM_FILTER:
 
 ## PIDs
 
-D_MIN:
+D_MAX:
 
-- [0] = gyro factor (percent, scaled by `d_min_gain`)
-- [1] = setpoint factor (percent, scaled by `d_min_advance`). The larger of _gyro_ and _setpoint_ factors takes effect.
+- [0] = gyro factor (percent, scaled by `d_max_gain`)
+- [1] = setpoint factor (percent, scaled by `d_max_advance`). The larger of _gyro_ and _setpoint_ factors takes effect.
 - [2] = roll: active D-term gain
 - [3] = pitch: active D-term gain
 
@@ -430,7 +430,7 @@ Not all debug options are available in some firmware builds.
 | DEBUG_RX_SPEKTRUM_SPI |
 | DEBUG_DSHOT_RPM_TELEMETRY |
 | DEBUG_RPM_FILTER |
-| DEBUG_D_MIN |
+| DEBUG_D_MAX |
 | DEBUG_AC_CORRECTION |
 | DEBUG_AC_ERROR |
 | DEBUG_DUAL_GYRO_SCALED |

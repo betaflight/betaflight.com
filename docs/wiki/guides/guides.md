@@ -3,14 +3,14 @@ sidebar_position: 0
 sidebar_label: Guides
 ---
 
-# Information for Betaflight pilots
+# Information for Betaflight Pilots
 
 Our **[Current guides](/docs/category/current)** apply to recent versions of Betaflight. Some need updating, but most should be relevant and helpful.
 
 4.5 users may want to check out:
 
 - [Betaflight 4.5 release notes](/docs/wiki/release/Betaflight-4-5-Release-Notes)
-- [Betaflight 4.5 GPS Rescue notes](/docs/wiki/guides/current/GPS-Rescue-v4-5)
+- [GPS Rescue guide](/docs/wiki/guides/current/GPS-Rescue)
 - [Updated Failsafe notes](/docs/wiki/guides/current/Failsafe)
 - [Magnetometer information](/docs/wiki/guides/current/Magnetometer)
 

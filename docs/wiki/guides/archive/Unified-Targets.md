@@ -53,7 +53,7 @@ If you are having an issue with the unified target, try the legacy target for no
 
 Todo: which target for example?, also needs some images.
 
-# Tips for working with Unified targets
+# Tips for Working with Unified Targets
 
 ## Working on firmware
 

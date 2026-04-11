@@ -1,4 +1,4 @@
-# Coding style
+# Coding Style
 
 ## General
 
@@ -8,7 +8,7 @@ This document has taken inspiration from that style, from Eclipse defaults and f
 
 There are not so many changes from the old style, if you managed to find it.
 
-# Formatting style
+# Formatting Style
 
 ## Indentation
 
@@ -145,7 +145,7 @@ and no space around the '.' and "->" structure member operators.
 
 '\*' and '&', when used for pointer and reference, shall have no space between it and the following variable name.
 
-# typedef
+## typedef
 
 enums that do not have a count or some other form of terminator element shall have a comma after their last element:
 
@@ -342,7 +342,7 @@ Do not include things you are not using.
 
 `#pragma once` ([see wiki](https://en.wikipedia.org/wiki/Pragma_once)) is preferred over `#include guards` to avoid multiple includes.
 
-# Documentation comments
+# Documentation Comments
 
 All new code files, structs, enums, and functions should include a comment at its top describing its purpose.
 All PRs that modify existing items should add a comment if not already present, and update it if applicable due
@@ -370,7 +370,7 @@ typedef enum {
     // ..
 ```
 
-# Other details
+# Other Details
 
 No trailing whitespace at the end of lines or at blank lines.
 

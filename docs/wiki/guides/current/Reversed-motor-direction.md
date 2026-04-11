@@ -1,4 +1,4 @@
-# Running with reversed motors
+# Running with Reversed Motors
 
 ### Spinning outwards at the front and back
 

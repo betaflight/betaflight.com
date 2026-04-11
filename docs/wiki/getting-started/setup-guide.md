@@ -4,135 +4,123 @@ sidebar_position: 1
 
 # Setup Guide
 
-There are a few prerequisites to configure your craft running Betaflight. You will need to install the
-[Betaflight App](https://github.com/betaflight/betaflight-configurator/releases/latest) for
-your operating system. You will be using the app to configure your flight controller settings.
+This is a step-by-step guide to help you configure a flight controller running Betaflight from scratch. Some basic RC knowledge is assumed — if you are completely new to RC aircraft, consider familiarising yourself with fundamentals such as basic controls, soldering, and transmitter operation first. [RCGroups](http://www.rcgroups.com/forums/index.php) and [FliteTest](https://www.youtube.com/user/flitetest) are good starting points.
 
-## Connecting to your Flight Controller
+:::caution Disclaimer
+This document is intended as a practical guide, not an authoritative safety checklist. Always exercise common sense, critical thinking, and caution when building and flying RC aircraft.
+:::
 
-Once you have the configurator installed and opened, you will be presented with the following screen:
+## Hardware
+
+:::info Accelerometer Care
+Flight controllers are equipped with accelerometers that are sensitive to shock. Before the FC is mounted on a frame, the bare board has very little mass — a drop or sharp bump applies significant force to the accelerometer and can damage it. Handle the board carefully until it is securely installed on an aircraft.
+:::
+
+Before connecting your FC to a computer, plan how you intend to use it. This determines which pads to solder and which features to configure later:
+
+- Read the manual that came with your FC. You can skip the vendor software setup sections — this guide covers that.
+- Decide how you will connect your receiver. See the [Receiver documentation](/docs/wiki/guides/current/Rx) for the available options.
+- Determine how many output pins you need (for ESCs and servos) by reading about [Mixers](/docs/wiki/guides/current/Mixer).
+- If you want to monitor battery voltage, see [Battery Monitoring](/docs/wiki/guides/current/Battery).
+- If you want audible feedback from a buzzer, see the [Buzzer documentation](/docs/wiki/guides/current/Buzzer).
+- If you want your receiver's RSSI forwarded to the FC, see the [RSSI documentation](/docs/wiki/guides/current/Rssi).
+- If you want GPS-assisted flight (such as GPS Rescue), see the [GPS documentation](/docs/wiki/guides/current/Gps).
+- If you plan to use a Blackbox logger, OSD, or telemetry, see the [Serial documentation](/docs/wiki/guides/current/Serial).
+
+Once you know which features and pins you need, solder only what is required to keep the build tidy. Practice on scrap material before soldering the FC itself.
+
+## Software Setup
+
+You need the [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases/latest) installed on your PC. This is the application used to connect to, configure, and update your flight controller.
+
+## Connecting to Your Flight Controller
+
+Once the configurator is installed and open, you will see the welcome screen:
 ![Betaflight App](/img/betaflight_configurator_welcome.png)
 
-You will need to connect your flight controller to your computer, usually via USB. If all goes well, you will see a
-new COM port appear in the top right dropdown
+Connect your flight controller to your computer via USB. If successful, a new COM port will appear in the top-right dropdown:
 ![Betaflight App](/img/betaflight_configurator_com_ports.png)
 
-When you have a COM port selected, click the "Connect" button.
+Select the COM port and click **Connect**.
 
-### Not Showing up/Connecting?
+### Not Showing Up/Connecting?
 
 :::info
 
-If you do not see a new COM port appear, or the configurator cannot connect, there are a few ways to solve it:
+If no new COM port appears, or the configurator cannot connect, try the following:
 
-- Make sure that you are plugging the USB cable into the flight controller, nothing else. Do not connect the Betaflight App to an HD system. Do not connect the Betaflight App to a radio transmitter. the Betaflight App is not meant be used with anything other than a flight controller
-- Make sure you are using a USB cable that is capable of data transfer. Some USB cables are only for charging
-- You may need to install the drivers for your flight controller. There is a download link for the ImpulseRC Driver Fixer tool in the configurator, or you can download it from the [ImpulseRC Driver Fixer repository](https://github.com/ImpulseRC/ImpulseRC_Driver_Fixer)
-- If you are still experiencing issues, try shutting down/uninstalling any other software that may be using the COM port. 3d printing software is a common culprit
+- Make sure you are plugging the USB cable into the flight controller, not an HD video system or radio transmitter. The configurator is only for flight controllers.
+- Use a USB cable capable of data transfer — some cables are charge-only.
+- Install the drivers for your flight controller. There is a download link for the ImpulseRC Driver Fixer in the configurator, or download it from the [ImpulseRC Driver Fixer repository](https://github.com/ImpulseRC/ImpulseRC_Driver_Fixer).
+- If still not working, close or uninstall software that may be holding the COM port open — 3D printing software is a common culprit.
 
 :::
 
-### Don't Immediately Flash
+:::tip
 
-Resist the urge to flash your flight controller with the latest firmware. If it's a pre-built drone, it is more than
-likely that your flight controller has already been pre-configured with most of the necessary settings by the
-manufacturer, and flashing it will bring you back to a completely non-configured state. Even if you are building your own
-drone, the flight controller may have been set up with a default configuration that is possibly needed for some
-features. Just connect for now.
+If you do need to install or reinstall firmware, see the [Firmware Installation](/docs/wiki/getting-started/firmware-installation) guide. Otherwise, connect and inspect the existing configuration first — especially on pre-built drones, which are often already configured correctly by the manufacturer.
 
-## Basic Settings
+:::
 
-Now that you've connected to your flight controller, you will need to follow some basic setup steps to get your drone
-in the Air. We'll go through setting up each part of a drone, and by the end you should be ready to fly with Betaflight
-and hopefully a deeper understanding of how it all works.
+## First Connection and Backup
 
-Once you have connected to your flight controller, you will land on the [Setup Tab](/docs/wiki/app/setup-tab).
-When you move the flight controller, you should see the 3d model move in the configurator. That is a basic good sign
-that the flight controller is alive and working. While you are there, you can calibrate the gyroscope and accelerometer
-with the buttons and following the instructions. You can also calibrate the magnetometer, but that is not necessary for
-flight, and you may not even have one.
+Once connected, you will land on the [Setup Tab](/docs/wiki/app/setup-tab). Move the flight controller and confirm the 3D model in the configurator moves accordingly — a good sign that the board is alive and working. From here you can calibrate the gyroscope and accelerometer using the on-screen buttons. Magnetometer calibration is optional and only relevant if your FC has one.
 
-### Backup Your config
+### Backup Your Configuration
 
-Before making any changes, it's important to back up your current configuration. This will protect you in case of any
-mistakes, and let you return to the original settings if needed. To do this, go to the [CLI Tab](/docs/wiki/app/cli-tab) tab and send either the
-`diff all` or `dump` command. Then copy the output or save it to a file for later use.
+Before making any changes, back up your current configuration. In the [CLI Tab](/docs/wiki/app/cli-tab), send either the `diff all` or `dump` command, then copy or save the output. This lets you restore the original settings if anything goes wrong.
 
 ## Receiver Settings
 
-The first setup step is to set up your receiver. If you are using a pre-built drone, you will need to figure out where the
-receiver is connected to the flight controller. If you are building your own drone, you hopefully already know where
-it is. A receiver with its signal wires connected to a (for example) RX1/TX1 pair of pads on the flight controller is
-going to be on UART1. RX2/TX2 is UART2, etc. You need this info for setting up the receiver in the
-[Ports Tab](/docs/wiki/app/ports-tab). Enable `Serial RX` on the UART that your receiver is connected to.
+Find which UART your receiver is connected to. A receiver connected to the `RX1`/`TX1` pads is on UART1, `RX2`/`TX2` is UART2, and so on. In the [Ports Tab](/docs/wiki/app/ports-tab), enable `Serial RX` on the correct UART.
 
 :::caution
 
-The MSP switch is not to be used as a "toggle" for the current UART when setting it (for example) for Serial RX.
-It's a relatively common mistake to make, and then cause your config to not save to prevent unwanted behavior
-when conflicting options are set
+Do not use the MSP toggle as a general on/off switch for the current UART. Enabling both MSP and Serial RX on the same UART causes a conflict, and the configurator will refuse to save those settings to prevent unintended behaviour.
 
 :::
 
 :::info
 
-If your flight controller has a built-in SPI receiver, you don't need to set up a UART for it. You can just set it up in the [Receiver Tab](/docs/wiki/app/receiver-tab).
+If your flight controller has a built-in SPI receiver, no UART configuration is needed. Proceed directly to the [Receiver Tab](/docs/wiki/app/receiver-tab) setup below.
 
 :::
 
-Now that you have the `Serial RX` option enabled, you will need to set your receiver-specific settings in the
-[Receiver Tab](/docs/wiki/app/receiver-tab). Whether you are using a pre-built drone or building your own,
-you hopefully know what receiver you are using. From there, you can follow the instructions below for your receiver:
+With `Serial RX` enabled, open the [Receiver Tab](/docs/wiki/app/receiver-tab) and configure the receiver-specific settings:
 
-### UART-based Receivers
+### UART-Based Receivers
 
-In case you're using a UART-based receiver, you'll need to set the `Receiver Mode` dropdown to the
-`Serial (via UART)` option, and set the `Serial Receiver Provider` dropdown to the appropriate protocol
-based on your receiver. Here are the commonly used options:
+Set the `Receiver Mode` to `Serial (via UART)` and select the `Serial Receiver Provider` matching your protocol:
 
-- **ELRS/Crossfire/Tracer** - CRSF
-- **FrSky** - SBUS/FPort
-- **Spektrum** - Spektrum1024/2048, Spektrum SRXL2
-- **FlySky** - IBUS
+- **ELRS / Crossfire / Tracer** — CRSF
+- **FrSky** — SBUS or FPort
+- **Spektrum** — Spektrum1024/2048 or Spektrum SRXL2
+- **FlySky** — IBUS
 
-### SPI-based Receivers
+### SPI-Based Receivers
 
-If you are using a SPI-based receiver, you'll need to set the `Receiver Mode` dropdown to
-`SPI Rx (e.g. built-in Rx)`, and the `SPI Bus Receiver Provider` dropdown to the appropriate protocol
-based on your receiver, similar to the UART-based receivers. Here are the commonly used options:
+Set the `Receiver Mode` to `SPI Rx (e.g. built-in Rx)` and select the `SPI Bus Receiver Provider`:
 
-- **ELRS** - EXPRESSLRS
-- **FrSky** - FrSky_D for D8, FrSky_X(\_LBT) for ACCST D16, FrSky_X_V2(\_LBT) for ACCST V2 D16
-- **Spektrum** - SPEKTRUM
-- **FlySky** - A7105_FLYSKY(\_2A)
+- **ELRS** — EXPRESSLRS
+- **FrSky** — FrSky_D (D8), FrSky_X(\_LBT) (ACCST D16), FrSky_X_V2(\_LBT) (ACCST V2 D16)
+- **Spektrum** — SPEKTRUM
+- **FlySky** — A7105_FLYSKY(\_2A)
 
-Once configured properly, you should see the channel values change and the 3D model move in response to stick
-movements. If your channels are not properly aligned, adjust the
-[Channel Map](/docs/wiki/app/receiver-tab#channel-map) option accordingly.
+Once configured, confirm that moving the sticks causes the channel values to update and the 3D model to respond. If channels are misaligned, adjust the [Channel Map](/docs/wiki/app/receiver-tab#channel-map) option.
 
 ## VTX Settings
 
-In most video systems, you don't strictly need to do anything in Betaflight to get video working. However, to get
-anything other than basic video output (VTX control, OSD info for digital systems) you will need to set up your VTX
-settings.
+In most systems you do not need to configure anything in Betaflight to get basic video working. However, VTX control and HD OSD require additional setup.
 
 ### Analog VTXs
 
-Analog is more or less the most common video system, even though it's as old as it is. It's a simple system that tends
-to "just work" without any configuration. However, if you want to change the channel, power, or other settings, you
-will need to set up SmartAudio or Tramp in the [Ports Tab](/docs/wiki/app/ports-tab).
+Analog is the most common video system and generally works without any configuration. If you need to control channel or power level via Betaflight, you need to set up SmartAudio or Tramp. In the [Ports Tab](/docs/wiki/app/ports-tab), enable `SmartAudio` or `Tramp` as a peripheral on the UART your VTX is connected to. Then configure the VTX in the [VTX Tab](/docs/wiki/app/vtx-tab).
 
-Enable `SmartAudio` or `Tramp` as a peripheral on the UART that your VTX is connected to, which you should hopefully
-know. Then you can set up the VTX in the [VTX Tab](/docs/wiki/app/vtx-tab). It may seem overwhelming, but if
-you're using a decently common VTX, you should be able to find a VTX Table for it somewhere on the internet, or even
-find a preset for it in the configurator.
+You may need a VTX Table for your specific VTX, which can be in two formats:
 
-When you find a VTX Table online, it can be in two formats:
+- **CLI Code** — Paste directly into the CLI:
 
-- **CLI Code** - This is the format that you can copy and paste into the CLI in the configurator, usually just found
-  as text. It will look something like this:
-
-```bfcli
+```text
 # vtxtable
 vtxtable bands 5
 vtxtable channels 8
@@ -146,9 +134,7 @@ vtxtable powervalues 25 100 200 400 600
 vtxtable powerlabels 25 200 500 1.5 2.5
 ```
 
-- **JSON** - This is the format that you can copy and paste or load into the VTX Table section of the configurator.
-  It will usually be a file to download, but can be found as plain text to copy and paste as well. It will look
-  something like so:
+- **JSON** — Load or paste into the VTX Table section of the configurator:
 
 <details>
 	<summary>Click to expand</summary>
@@ -165,7 +151,6 @@ vtxtable powerlabels 25 200 500 1.5 2.5
         "is_factory_band": true,
         "frequencies": [5865, 5845, 5825, 5805, 5785, 5765, 5745, 5725]
       }
-      // ... more bands
     ],
     "powerlevels_list": [
       {
@@ -176,7 +161,6 @@ vtxtable powerlabels 25 200 500 1.5 2.5
         "value": 1,
         "label": "200"
       }
-      // ... more power levels
     ]
   }
 }
@@ -184,133 +168,118 @@ vtxtable powerlabels 25 200 500 1.5 2.5
 
 </details>
 
-If you can't find a preset, nor a VTX Table, you can look through the manual for your VTX to find the settings you
-need to set up.
+If you cannot find a preset or a VTX Table, consult your VTX's manual.
 
 :::tip
 
-If your VTX is not able to be set to certain channels, or you are unable to set the power level higher, you may need
-to unlock the VTX manually. There are tutorials for that online, but it's usually as simple as holding down the
-button on the VTX for a few seconds on power up.
+If your VTX cannot be set to certain channels or power levels, it may need to be unlocked first. This is usually done by holding the button on the VTX during power-up — tutorials are available online for specific models.
 
 :::
 
 ### Digital VTXs
 
-Digital VTXs are a newer form of video system that is becoming more and more common. It's a bit more complicated than
-analog, and needs setup to get OSD and VTX control working.
+Digital VTXs need setup to enable OSD and VTX control. In the [Ports Tab](/docs/wiki/app/ports-tab), enable `VTX (MSP + Displayport)` on the UART your VTX is connected to — MSP will be enabled automatically. On versions older than 4.4, enable only MSP and follow the relevant guide.
 
-Start in the [Ports Tab](/docs/wiki/app/ports-tab) by enabling `VTX (MSP + Displayport)` as a peripheral on
-the UART that your VTX is connected to. It should automatically enable `MSP` as well. If you're on a version older than 4.4, you will only need to enable MSP and then follow further.
-
-Then in the [Preset Tab](/docs/wiki/app/presets-tab), there are a few system-specific presets that you can use to make the setup easier:
+In the [Presets Tab](/docs/wiki/app/presets-tab), there are system-specific presets to simplify setup:
 
 - HDZero for 4.2/4.3 and 4.4
 - Avatar 4.2/4.3
 - FPV.WTF MSP OSD 4.2/4.3
 - FPV.WTF + O3 + Avatar for 4.4
 
-For further information on the newest firmware (4.4), please read the [Release Notes](/docs/wiki/release/Betaflight-4-4-Release-Notes#2-hd-osd)
+For more detail on 4.4 and newer, see the [Release Notes](/docs/wiki/release/Betaflight-4-4-Release-Notes#2-hd-osd).
 
 ## Motor Settings
 
-Compared to the other settings, motor settings are pretty simple. In the [Motors Tab](/docs/wiki/app/motors-tab),
-start by setting the `ESC/Motor Output` dropdown to the correct protocol. This is usually `DShot300` or `DShot600` for
-most ESCs available nowadays.
+In the [Motors Tab](/docs/wiki/app/motors-tab), set the `ESC/Motor Output` dropdown to the correct protocol. This is usually `DShot300` or `DShot600` for most modern ESCs.
 
-:::info
+:::info Choosing the Correct DShot Speed
 
-Choosing the correct DShot speed:
+- **DShot300** is better for slower processors (e.g. F411 boards) and gyros running at 3.2 kHz (e.g. BMI270).
+- **DShot600** is better for faster processors (e.g. F7 family). Gyros running at 8 kHz (e.g. MPU6000) can take full advantage of this speed.
 
-- DShot300 is better for FCs with slower processors, like F411 boards. DShot600 is better for faster processors, like
-  anything from the F7 family. F405 may work too, but it can cause too high of a CPI load when a lot of peripherals are
-  in use
-
-- The DShot speed also depends on the gyro (and thus also the PID loop) speed. If you have a gyro that runs at 8kHz
-  (MPU6000), you can use DShot600. If you have a gyro that runs at 3.2KHz (BMI270), you should use DShot300. Using higher
-  DShot speeds on slower gyros shouldn't cause any issues, but it also won't give you any benefits
+Using a higher DShot speed than the gyro supports won't cause issues, but won't provide any benefit either.
 
 :::
 
-Once you have that set, you will have to remove the propellors (if you haven't already) and plug in a battery. Click
-the checkbox to confirm that you have done so, and then you can slowly raise the `Master` slider to see the motors
-spin up. They may stutter a bit at low slider values, but should spin up smoothly at slightly higher values. Check
-that the motors all spin in the correct direction as set by the `Motor direction is reversed` toggle (also known as
-Props in or Props out, see image below).
+**Remove propellers before testing motors.** Plug in a battery, tick the confirmation checkbox, and slowly raise the `Master` slider. The motors may stutter slightly at very low values but should spin smoothly at slightly higher values. Verify that all motors spin in the correct direction as set by the `Motor direction is reversed` toggle (Props In vs. Props Out):
 ![Motor Direction](/img/betaflight_props_in_out.png)
 
-If they are spinning in the wrong direction, you can reverse them in the `Motor direction` sub-menu. If the motors
-do not match up with the motor numbers, you will have to remap them
+If a motor spins in the wrong direction, reverse it in the `Motor direction` sub-menu. If the motor numbers do not match the diagram, remap them.
 
 ## Mode Settings
 
-Modes serve as a way to change the behavior or action of your quadcopter in flight by using AUX channels as inputs.
-In the [Modes Tab](/docs/wiki/app/auxiliary-tab), you will see a list of all the modes that are available.
+Modes let you change quadcopter behaviour in flight by assigning AUX channel switches as inputs. In the [Modes Tab](/docs/wiki/app/auxiliary-tab) you will find all available modes.
 
-Let's start with the only one you theoretically need:
+The only mode you strictly need is **ARM**:
 ![ARM Mode](/img/betaflight_configurator_modes_arm.png)
 
-The `ARM` mode serves as a way to activate the PID loop and allow the motors to spin. It is usually set to a switch.
+`ARM` activates the PID loop and allows the motors to spin. To assign it:
 
-1. Click on `Add Range`. This will add a slider to the mode, which you can use to set the range of the mode. It's
-   a range of two values, and when the value of the assigned AUX channel is between those two values, the mode will be
-   active. By default the range will be in the middle, so it will be active when the AUX channel is between 1300 and 1700
-2. The dropdown that says `AUTO` is for the AUX channel selection. When set to `AUTO`, it will automatically select
-   the AUX channel you change. So flip the switch you want to use to arm the quad, and the dropdown will change to that
-   channel. If you want to use a different channel, you can select it manually
-3. The little indicator on the bottom of the slider will show you the value of the AUX channel. Flip the switch into
-   the position you want to arm the quad, and move the range over the indicator
+1. Click **Add Range** — this creates a range slider tied to an AUX channel. The mode is active when the channel value falls within the range.
+2. The `AUTO` dropdown auto-selects the AUX channel when you flip the switch you want to use. Flip it now and the dropdown updates automatically. You can also select the channel manually.
+3. Move the range slider so it covers the indicator when the switch is in the arm position.
 
-Once you have the range set, then repeat the process for the other modes. You will likely also want:
+Recommended additional modes:
 
-- `BEEPER` - Makes the beeper (and the motors, when set up) beep
-- `ANGLE`
+- `BEEPER` — Activates the beeper and/or motor beeping to help locate a downed quad.
+- `ANGLE` — A self-levelling mode useful for beginners or as a recovery aid.
   :::tip
 
-  The default flight mode is called acro (sometimes called rate mode). As the name suggests, it's a mode where the
-  position of the sticks controls the rate of rotation of the quad. This is the mode you will want to use for most
-  of your flying. Activating any other flight mode overrides acro.
+  The default flight mode is **Acro** (also called Rate mode): stick position controls the rate of rotation of the quad. This is the standard mode for most flying, and any other flight mode overrides it.
 
-  Angle mode is a mode where the position of the
-  sticks controls the angle of the quad. This is useful for emergency situations, or for beginners who are not
-  comfortable with acro mode yet
+  Angle mode holds the aircraft at the angle commanded by the sticks rather than rotating it, and is useful for beginners or structured practice.
 
   :::
 
-- `FLIP OVER AFTER CRASH` - Reverses the motors to flip the quad over if upside down
+- `FLIP OVER AFTER CRASH` — Reverses the motors to flip the quad upright after a crash.
   :::danger
 
-  This can be very demanding on the motors and the ESC if the motors are stuck after crashing, and can cause the ESC
-  or motors to go up in smoke. It's recommended to only use this mode if you know it's more or less safe to do so
+  This puts extreme stress on motors and ESCs when the motors are obstructed after a crash. Only use it when you are confident it is safe to do so.
 
   :::
 
 ## OSD Settings
 
-The OSD allows you to display information in the video feed from your quadcopter. In the [OSD Tab](/docs/wiki/app/osd-tab),
-you can set up the different elements that will be displayed.
+The OSD overlays flight information on your video feed. In the [OSD Tab](/docs/wiki/app/osd-tab), you have a list of elements on the left and three checkbox columns — one per OSD profile. OSD profiles let you switch between different layouts in flight.
 
-You have a list of all the elements on the left, and three columns of checkboxes next to it. Each column is for one
-OSD profile. OSD profiles are a way to have different layouts for different situations and be able to easily switch
-between them. Enabling the checkbox for an element in the first column will enable it for the first OSD profile, the
-second column for the second OSD profile, and so on.
+Enable an element's checkbox to add it to the corresponding profile. Enabled elements appear in the preview and can be dragged to reposition them. Some elements have additional settings such as units, timer source, or warning thresholds.
 
-When you enable an element, it will show up in the preview, and you can drag it around to move it as you like. There
-are also some settings for specific elements, such as selecting units of measurement, the source for the timers to
-time, and different warnings to display or ignore
+At minimum, enable:
 
-You should have at least the following elements enabled:
+- `Warnings` — Alerts for low battery, low RSSI, and other critical conditions.
+- `Battery average cell voltage` — Shows per-cell voltage regardless of pack size.
+- One of `Link quality`, `RSNR Value`, `RSSI Value`, or `RSSI dBm Value` — Choose the metric your radio system supports (check the manufacturer's documentation).
 
-- `Warnings` - Displays warnings for low battery, low RSSI, and other things
-- `Battery average cell voltage` - Displays the average cell voltage of the battery, regardless of the number of cells
-- `Link quality`, `RSNR Value`, `RSSI Value`, `RSSI dBm Value` - Different ways of measuring the strength and/or quality of the radio
-  link. Choose the one that works best for your radio system, can usually be found in the manufacturer documentation
+## Final Testing and Safety
+
+Before flying, verify that your aircraft is correctly configured. Do not skip these steps — a misconfigured quad can fly away or cause harm to people and property.
+
+1. Read the [Safety documentation](/docs/wiki/guides/current/Safety) before doing anything else.
+2. Learn how to arm and disarm the FC, and review the [Controls documentation](/docs/wiki/guides/current/Controls).
+3. Set up [Failsafe](/docs/wiki/guides/current/Failsafe) properly. Take your time and do it right.
+4. **On the bench, without propellers**: confirm that Failsafe triggers as configured.
+5. Test aileron and elevator input on the transmitter: does the aircraft respond in the correct direction?
+6. **Without propellers, throttle at approximately 30%**: tilt the aircraft — do the motors momentarily compensate for the tilt, simulating a wind gust correction?
+7. **In ANGLE mode, without propellers, throttle at approximately 30%**: tilt the aircraft so one motor points toward the ground — does that motor spin up and stay at high RPM until the craft is levelled again?
+
+If any of these tests fail, do not attempt to fly. Return to the relevant configuration steps, check for reversed channels, and verify that the board orientation is set correctly.
 
 ## Ready to Fly!
 
-With all the settings done, you should be ready to fly! Do a final check to make sure that everything is as it should
-be, and do a quick hover test to make sure that everything is working as it should.
+With everything configured and tested, do a final check that all settings look correct, then do a quick hover test to confirm everything works as expected.
 
-If something is not working, go through this page, some of the more common mistakes should've been listed.
-If not here, you can read the [troubleshooting](/docs/wiki/getting-started/troubleshooting) page to see if you can find a solution. If
-you can't find one, ask in the [Discord server](https://discord.betaflight.com/invite)
+If something is not working, review this guide for common mistakes. You can also check the [troubleshooting page](/docs/wiki/getting-started/troubleshooting) for additional solutions. If you are still stuck, ask in the [Betaflight Discord](https://discord.betaflight.com/invite).
+
+## Advanced Topics
+
+Once you are comfortable with the basics, explore these additional features and guides:
+
+- [Profiles](/docs/wiki/guides/current/Profiles)
+- [PID Tuning](/docs/wiki/guides/current/PID-Tuning-Guide)
+- [In-flight Adjustments](/docs/wiki/guides/current/Inflight-Adjustments)
+- [Blackbox Logging](/docs/wiki/guides/current/Black-Box-logging-and-usage)
+- [GPS and GPS Rescue](/docs/wiki/guides/current/Gps)
+- [Spektrum Bind](/docs/wiki/guides/current/Spektrum-bind)
+- [Telemetry](/docs/wiki/guides/current/Telemetry)
+- [LED Strip](/docs/wiki/guides/current/LED-Strip-Functionality)

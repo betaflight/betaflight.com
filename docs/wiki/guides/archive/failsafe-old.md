@@ -1,4 +1,4 @@
-# Failsafe notes (Old)
+# Failsafe Notes (Old)
 
 :::warning
 **This document is deprecated, and is not being updated**

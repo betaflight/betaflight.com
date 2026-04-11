@@ -15,9 +15,9 @@ Then this guide might be for you.
 
 ---
 
-# 4 main items to check:
+## 4 main items to check
 
-## Flight Controller Orientation.
+### Flight Controller Orientation
 
 1. **Remove your props!**
 2. Plug your multirotor into your computer
@@ -35,7 +35,7 @@ Then this guide might be for you.
 - Board alignment should be indicated by an silkscreen arrow, but always use BF for reference.
 - There is no need to plug in the battery for this check, and if you do, make sure to remove props
 
-## Prop Direction.
+### Prop Direction
 
 1. According to the motor direction reference image at the bottom, look at each individual prop
 2. If you spin the appropriate motor in the correct direction, the higher (leading edge) of the prop should be forwards in the direction of travel.
@@ -51,9 +51,13 @@ Then this guide might be for you.
 
 ---
 
-##### YOU MUST REMOVE PROPELLERS BEFORE FOLLOWING ANY OF THE INSTRUCTIONS BELOW!
+:::danger
 
-## Motor Direction.
+**You must remove propellers before following any of the instructions below!**
+
+:::
+
+### Motor Direction
 
 1. **Remove your props!**
 1. Plug your multirotor into your computer
@@ -77,7 +81,7 @@ Then this guide might be for you.
 
 - If you are running reversed props, everything should spin in the opposite direction and you must have turned it on in the configuration tab)
 
-## Motor Order.
+### Motor Order
 
 1. **Remove your props**
 2. Plug your multirotor into your computer

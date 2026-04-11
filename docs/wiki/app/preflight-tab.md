@@ -34,12 +34,12 @@ Saved locations are stored in your browser's local storage and persist across se
 
 A prominent banner at the top shows an overall flight recommendation:
 
-| Status | Meaning |
-|--------|---------|
-| **GO** (green) | All conditions are favorable for flight |
+| Status               | Meaning                                                     |
+| -------------------- | ----------------------------------------------------------- |
+| **GO** (green)       | All conditions are favorable for flight                     |
 | **CAUTION** (yellow) | Some conditions are marginal — review details before flying |
-| **WARNING** (orange) | Significant concerns — fly with extra caution or postpone |
-| **NO-GO** (red) | Conditions are unsafe for flight |
+| **WARNING** (orange) | Significant concerns — fly with extra caution or postpone   |
+| **NO-GO** (red)      | Conditions are unsafe for flight                            |
 
 The status is computed from wind speed, visibility, precipitation, and solar activity. It updates when you click **Refresh**.
 
@@ -47,12 +47,12 @@ The status is computed from wind speed, visibility, precipitation, and solar act
 
 Below the banner, a breakdown shows each check with its own status icon:
 
-| Check | Source | What It Evaluates |
-|-------|--------|-------------------|
-| **Wind** | Open-Meteo | Wind speed and gusts at ground level |
-| **Visibility** | Open-Meteo | Horizontal visibility distance |
-| **Precipitation** | Open-Meteo | Current rain, snow, or drizzle |
-| **Solar** | NOAA SWPC | Kp index / geomagnetic disturbance |
+| Check             | Source     | What It Evaluates                    |
+| ----------------- | ---------- | ------------------------------------ |
+| **Wind**          | Open-Meteo | Wind speed and gusts at ground level |
+| **Visibility**    | Open-Meteo | Horizontal visibility distance       |
+| **Precipitation** | Open-Meteo | Current rain, snow, or drizzle       |
+| **Solar**         | NOAA SWPC  | Kp index / geomagnetic disturbance   |
 
 Each check displays a colored icon — green check (good), yellow/orange exclamation (caution/warning), or red cross (danger) — so you can quickly see which specific condition is driving the overall status.
 
@@ -62,19 +62,19 @@ Each check displays a colored icon — green check (good), yellow/orange exclama
 
 Displays real-time weather conditions at your location:
 
-| Field | What It Means for Flying |
-|-------|-------------------------|
-| **Wind Speed** | Ground-level wind. Values above 11 m/s are strong; above 14 m/s is dangerous for most drones |
-| **Wind Gusts** | Peak wind speeds — sudden gusts can cause loss of control |
-| **Visibility** | How far you can see. Below 1 km is poor; VLOS (Visual Line of Sight) rules typically require clear visibility |
-| **Precipitation** | Rain, snow, or drizzle. Any precipitation increases risk to electronics and optics |
-| **Dew Point** | Temperature at which condensation forms. When the air temperature is close to the dew point (within 2-4°C), expect fog and lens fogging |
-| **Cloud Cover** | Percentage of sky covered by clouds |
-| **Feels Like** | Apparent temperature accounting for wind chill and humidity — relevant for pilot comfort and equipment handling |
-| **Humidity** | Relative humidity — high values combined with temperature drops can cause condensation |
-| **Pressure** | Atmospheric pressure in hPa — rapid changes may indicate incoming weather fronts |
-| **Battery Risk** | LiPo temperature assessment. Below 10°C: reduced capacity; below 0°C: risk of damage. Above 40°C: risk of swelling |
-| **Fog Risk** | Fog probability based on dew point spread, humidity, and wind speed. Calm, humid conditions near the dew point indicate high fog risk |
+| Field             | What It Means for Flying                                                                                                                |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **Wind Speed**    | Ground-level wind. Values above 11 m/s are strong; above 14 m/s is dangerous for most drones                                            |
+| **Wind Gusts**    | Peak wind speeds — sudden gusts can cause loss of control                                                                               |
+| **Visibility**    | How far you can see. Below 1 km is poor; VLOS (Visual Line of Sight) rules typically require clear visibility                           |
+| **Precipitation** | Rain, snow, or drizzle. Any precipitation increases risk to electronics and optics                                                      |
+| **Dew Point**     | Temperature at which condensation forms. When the air temperature is close to the dew point (within 2-4°C), expect fog and lens fogging |
+| **Cloud Cover**   | Percentage of sky covered by clouds                                                                                                     |
+| **Feels Like**    | Apparent temperature accounting for wind chill and humidity — relevant for pilot comfort and equipment handling                         |
+| **Humidity**      | Relative humidity — high values combined with temperature drops can cause condensation                                                  |
+| **Pressure**      | Atmospheric pressure in hPa — rapid changes may indicate incoming weather fronts                                                        |
+| **Battery Risk**  | LiPo temperature assessment. Below 10°C: reduced capacity; below 0°C: risk of damage. Above 40°C: risk of swelling                      |
+| **Fog Risk**      | Fog probability based on dew point spread, humidity, and wind speed. Calm, humid conditions near the dew point indicate high fog risk   |
 
 Color-coded values: **green** = good, **yellow** = moderate, **orange** = warning, **red** = dangerous.
 
@@ -86,14 +86,14 @@ Data source: [Open-Meteo](https://open-meteo.com/) (free, open-source, no API ke
 
 Shows time-based conditions for planning your session:
 
-| Field | Description |
-|-------|-------------|
-| **Sunrise / Sunset** | Legal flight in most countries is restricted to daylight hours. These times help you plan |
+| Field                   | Description                                                                                                                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Sunrise / Sunset**    | Legal flight in most countries is restricted to daylight hours. These times help you plan                                                                                         |
 | **Legal Flight Window** | Civil twilight window (30 minutes before sunrise to 30 minutes after sunset). Green when you are currently within the window, red when outside. Note: regulations vary by country |
-| **Daylight Duration** | Total hours and minutes of daylight available |
-| **UV Index** | Solar UV intensity. High UV (6+) can make screens hard to read outdoors |
-| **Temperature Range** | Daily minimum and maximum temperature — extreme cold affects LiPo battery performance |
-| **Currently** | Whether it is currently daytime or nighttime at the location |
+| **Daylight Duration**   | Total hours and minutes of daylight available                                                                                                                                     |
+| **UV Index**            | Solar UV intensity. High UV (6+) can make screens hard to read outdoors                                                                                                           |
+| **Temperature Range**   | Daily minimum and maximum temperature — extreme cold affects LiPo battery performance                                                                                             |
+| **Currently**           | Whether it is currently daytime or nighttime at the location                                                                                                                      |
 
 Data source: [Open-Meteo](https://open-meteo.com/) daily forecast parameters.
 
@@ -103,15 +103,16 @@ Data source: [Open-Meteo](https://open-meteo.com/) daily forecast parameters.
 
 A 12-hour hourly table showing wind conditions at three altitudes above ground level (AGL):
 
-| Column | Description |
-|--------|-------------|
-| **10m** | Ground-level wind (what you feel on the ground) |
-| **80m** | Mid-altitude wind — relevant for most FPV and commercial flights |
-| **120m** | High-altitude wind — important for long-range flights (120m is the legal ceiling in many countries) |
-| **Gusts** | Peak gust speed at ground level |
-| **Rain %** | Probability of precipitation for that hour |
+| Column     | Description                                                                                         |
+| ---------- | --------------------------------------------------------------------------------------------------- |
+| **10m**    | Ground-level wind (what you feel on the ground)                                                     |
+| **80m**    | Mid-altitude wind — relevant for most FPV and commercial flights                                    |
+| **120m**   | High-altitude wind — important for long-range flights (120m is the legal ceiling in many countries) |
+| **Gusts**  | Peak gust speed at ground level                                                                     |
+| **Rain %** | Probability of precipitation for that hour                                                          |
 
 Wind speeds are in **meters per second (m/s)**. As a rule of thumb:
+
 - Below 5 m/s: Calm conditions, ideal for flying
 - 5-8 m/s: Light wind, suitable for most drones
 - 8-11 m/s: Moderate — smaller drones may struggle
@@ -128,16 +129,17 @@ Data source: [Open-Meteo](https://open-meteo.com/) hourly forecast at multiple p
 
 A compact daily overview to help plan flight sessions ahead. Shows weather conditions, temperature range, wind, gusts, and precipitation probability for the next 5 days.
 
-| Column | Description |
-|--------|-------------|
-| **Day** | Weekday and date |
+| Column      | Description                                                  |
+| ----------- | ------------------------------------------------------------ |
+| **Day**     | Weekday and date                                             |
 | **Weather** | Weather condition with icon (clear, cloudy, rain, snow, etc) |
-| **Temp** | Daily temperature range (min / max °C) |
-| **Wind** | Maximum wind speed for the day (m/s) |
-| **Gusts** | Maximum gust speed for the day (m/s) |
-| **Rain %** | Maximum precipitation probability for the day |
+| **Temp**    | Daily temperature range (min / max °C)                       |
+| **Wind**    | Maximum wind speed for the day (m/s)                         |
+| **Gusts**   | Maximum gust speed for the day (m/s)                         |
+| **Rain %**  | Maximum precipitation probability for the day                |
 
 Rows are color-coded by overall flyability:
+
 - **No highlight**: Good conditions for flying
 - **Light yellow**: Moderate — wind 8-11 m/s or rain chance above 30%
 - **Light orange**: Warning — wind 11-14 m/s or rain chance above 50%
@@ -155,12 +157,12 @@ Solar and geomagnetic activity directly affects GPS accuracy. The sun's activity
 
 The **Planetary K-index (Kp)** measures geomagnetic disturbance on a 0-9 scale:
 
-| Kp Value | Level | Effect on GPS |
-|----------|-------|---------------|
-| 0-2 | Low (green) | Minimal impact — GPS Rescue reliable |
-| 3-4 | Moderate (yellow) | Slight degradation possible |
-| 5 | Elevated (orange) | GPS accuracy may be noticeably reduced |
-| 6-9 | Storm (red) | Significant GPS interference — GPS Rescue NOT recommended |
+| Kp Value | Level             | Effect on GPS                                             |
+| -------- | ----------------- | --------------------------------------------------------- |
+| 0-2      | Low (green)       | Minimal impact — GPS Rescue reliable                      |
+| 3-4      | Moderate (yellow) | Slight degradation possible                               |
+| 5        | Elevated (orange) | GPS accuracy may be noticeably reduced                    |
+| 6-9      | Storm (red)       | Significant GPS interference — GPS Rescue NOT recommended |
 
 ### NOAA Storm Scales
 
@@ -184,12 +186,12 @@ Ground elevation at your location in meters above mean sea level (AMSL), fetched
 
 Density altitude indicates how "thin" the air feels to propellers, calculated from elevation, pressure, and temperature. Higher density altitude means less lift and higher power consumption. Included in the launch status checks.
 
-| Density Altitude | Status | Impact |
-|-----------------|--------|--------|
-| < 1000m | Good | Normal performance |
-| 1000–2000m | Moderate | Slightly reduced lift |
-| 2000–3000m | Warning | Noticeably reduced performance |
-| > 3000m | Danger | Significant lift reduction |
+| Density Altitude | Status   | Impact                         |
+| ---------------- | -------- | ------------------------------ |
+| < 1000m          | Good     | Normal performance             |
+| 1000–2000m       | Moderate | Slightly reduced lift          |
+| 2000–3000m       | Warning  | Noticeably reduced performance |
+| > 3000m          | Danger   | Significant lift reduction     |
 
 ### Ionospheric Impact
 
@@ -219,12 +221,12 @@ Magnetic data: Calculated client-side using the [geomagnetism](https://github.co
 
 Direct links to external airspace information services, pre-filled with your location where supported:
 
-| Link | Coverage | Description |
-|------|----------|-------------|
-| **Drone Safety Map** | Global (155+ countries) | Free map by Altitude Angel showing airspace restrictions, ground hazards, and controlled zones |
-| **SkyVector Airspace Chart** | Global | Aeronautical VFR/IFR sectional charts showing controlled airspace, airports, and restricted areas |
-| **FAA NOTAMs (US)** | United States | Official FAA Notice to Airmen search — check for temporary flight restrictions (TFRs) |
-| **EUROCONTROL NOTAMs (EU)** | Europe | Official European NOTAM database for temporary airspace restrictions |
+| Link                         | Coverage                | Description                                                                                       |
+| ---------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------- |
+| **Drone Safety Map**         | Global (155+ countries) | Free map by Altitude Angel showing airspace restrictions, ground hazards, and controlled zones    |
+| **SkyVector Airspace Chart** | Global                  | Aeronautical VFR/IFR sectional charts showing controlled airspace, airports, and restricted areas |
+| **FAA NOTAMs (US)**          | United States           | Official FAA Notice to Airmen search — check for temporary flight restrictions (TFRs)             |
+| **EUROCONTROL NOTAMs (EU)**  | Europe                  | Official European NOTAM database for temporary airspace restrictions                              |
 
 **Important:** Always check your local aviation authority's rules before flying. Drone regulations vary significantly by country and region.
 
@@ -234,13 +236,13 @@ Direct links to external airspace information services, pre-filled with your loc
 
 An interactive map showing your selected flight location with a position marker. Controls:
 
-| Button | Action |
-|--------|--------|
-| **S** | Satellite imagery layer |
-| **H** | Hybrid (satellite + road labels) layer |
-| **R** | Road/street map layer |
-| **+** / **−** | Zoom in / zoom out |
-| **⛶** | Toggle fullscreen map view |
+| Button        | Action                                 |
+| ------------- | -------------------------------------- |
+| **S**         | Satellite imagery layer                |
+| **H**         | Hybrid (satellite + road labels) layer |
+| **R**         | Road/street map layer                  |
+| **+** / **−** | Zoom in / zoom out                     |
+| **⛶**         | Toggle fullscreen map view             |
 
 ---
 

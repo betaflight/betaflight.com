@@ -1,4 +1,4 @@
-# Wiki welcome (Old)
+# Wiki Welcome (Old)
 
 :::warning
 **This document is deprecated, and is not being updated**
@@ -10,7 +10,7 @@ Do not rely on any information presented here.
 
 ![BetaFlight](/img/bf_logo.png)
 
-**New to Betaflight and just want to get started? See the [installation](/docs/wiki/guides/current/Installing-Betaflight) section.**
+**New to Betaflight and just want to get started? See the [Firmware Installation](/docs/wiki/getting-started/Firmware-Installation) section.**
 
 This Wiki is available in other languages: [简体中文](https://pitronic.gitbook.io/betaflight/)
 

@@ -1,4 +1,4 @@
-# Atomic Barrier implementation
+# Atomic Barrier Implementation
 
 ```
 static int markme_bar = 0;

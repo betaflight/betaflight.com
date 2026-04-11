@@ -1,4 +1,4 @@
-# AlienFlight (ALIENFLIGHTF1 and ALIENFLIGHTF3 target)
+# AlienFlight (ALIENFLIGHTF1 and ALIENFLIGHTF3 Target)
 
 AlienWii is now AlienFlight. This target supports various variants of brushed and brusless flight controllers. The designs for them are released for public use at:
 
@@ -34,7 +34,7 @@ set serialrx_provider = 1   (0 for 1024bit, 1 for 2048bit)
 set spektrum_sat_bind = 5
 ```
 
-For more detail of the different bind modes please refer the [Spektrum Bind](/docs/development/Spektrum-bind) document
+For more details on the different bind modes, please refer to the [Spektrum Bind](/docs/wiki/guides/current/Spektrum-bind) document
 
 Deltang receivers in serial mode will work like any other Spektrum satellite receiver (10bit, 22ms) only the bind process will be different.
 

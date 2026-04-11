@@ -1,4 +1,4 @@
-# Flytower F4 v2
+# Flytower F4 V2
 
 ## Description
 

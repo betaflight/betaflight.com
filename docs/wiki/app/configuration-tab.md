@@ -64,7 +64,8 @@ the craft in any position, useful for flip over after crash
 
 ## Board and Sensor Alignment
 
-Allows you to virtually offset the FC and other sensors if they're mounted in a non-standard way
+Allows you to virtually offset the FC and other sensors if they're mounted in a non-standard way.
+For a full explanation of orientation conventions, see the [Flight Controller Orientation guide](/docs/wiki/guides/current/Flight-Controller-Orientation).
 
 :::tip
 

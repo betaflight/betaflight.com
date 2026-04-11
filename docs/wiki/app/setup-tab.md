@@ -67,8 +67,8 @@ Shows some basic data from the flight controller. This includes:
 - **Arming Disable Flags** - Shows all of the "errors" that prevent the flight controller from arming.
   This is useful to check if you're having issues arming
 - **Battery Voltage** - Shows the current battery voltage if the settings for it are set correctly
-- **Current Drawn** - Shows the current drawn from the battery if the settings for it are set correctly
-- **Current Draw** - Shows the current that the drone is drawing from the battery if the settings for it are set correctly
+- **Current Draw** - Shows the current draw from the battery if the settings for it are set correctly
+- **mAh Used** - Shows the mAh consumed from the battery if the settings for it are set correctly
 - **RSSI** - Shows the current RSSI value (used as a rough estimate of the signal strength) if the settings for it are set correctly
 
 ### GPS
