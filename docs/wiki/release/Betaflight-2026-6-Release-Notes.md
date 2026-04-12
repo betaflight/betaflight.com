@@ -86,7 +86,7 @@ The Firmware Flasher now shows **board qualification status** -- whether a targe
 #### Autopilot Mode and Flight Plans (Experimental -- SITL Only)
 
 :::danger
-Autopilot is **experimental** and currently only tested in SITL (Software In The Loop) simulation. It is **not flight ready** and must not be used on real aircraft. This feature is included for development and testing purposes only.
+Autopilot is **experimental** and currently only tested in SITL (Software In The Loop) simulation. It is **not flight-ready** and must not be used on real aircraft. This feature is included for development and testing purposes only.
 :::
 
 Betaflight now includes an experimental **autopilot with GPS waypoint navigation** for both multirotors and fixed-wing aircraft. Define flight plans with up to 30 waypoints, and the craft will autonomously navigate between them with configurable speed, altitude, and hold behaviour.
