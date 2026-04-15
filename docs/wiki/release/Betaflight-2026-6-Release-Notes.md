@@ -5,7 +5,7 @@ sidebar_label: 2026.6 Release Notes
 
 # 2026.6 Release Notes
 
-Welcome to Betaflight 2026.6! This release introduces autonomous flight planning, new platform support for ESP32 and STM32H5/N6 processors, switchable battery profiles, optical flow position hold, a fully modernised app, and a wide range of sensor, protocol, and hardware additions.
+Welcome to Betaflight 2026.6! This release introduces autonomous flight planning, new platform support for ESP32 and STM32H5/N6/C5 processors, switchable battery profiles, optical flow position hold, a fully modernised app with progressive adoption of the Nuxt UI component library, foundational CAN peripheral support, and a wide range of sensor, protocol, and hardware additions.
 
 We have tried to make this release as bug-free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
@@ -23,48 +23,74 @@ The app continues to use the same release version as the compatible firmware (20
 
 The entire app has been rebuilt on **Vue 3** with **Pinia** state management, replacing the legacy jQuery framework. Every tab has been rewritten as a modern Vue Single File Component. This delivers faster load times, smoother interactions, and a more consistent experience across the app. jQuery and all legacy plugins have been fully removed.
 
-### 1.2 Flight Planning UI (Experimental)
+### 1.2 Nuxt UI Component Library Migration
+
+Building on the Vue 3 migration, the app is progressively adopting the **Nuxt UI** component library for a more consistent, modern, and accessible interface. Nuxt UI's theming is synchronised with the app's light/dark themes, and responsive breakpoints are improved throughout.
+
+The following tabs and components have been converted so far:
+
+* **App shell** -- connection/flasher buttons, port selection, and firmware virtual options
+* **Options** tab
+* **Documentation & Support** tab
+* **Blackbox** tab (with improved search)
+* **Firmware Flasher** tab
+* **Power** tab
+* **Flight Plan** tab
+* **Autotune** tab
+* **Login** dialog
+* PID Tuning number inputs
+
+Additional tabs will continue to be migrated to Nuxt UI in follow-up releases.
+
+### 1.3 Flight Planning UI (Experimental)
 
 A new **Flight Plan** tab lets you visually plan autonomous missions on an interactive map. You can add, edit, and reorder waypoints, view elevation profiles, and save or load flight plans directly from the flight controller. Note that the underlying autopilot firmware is experimental and currently only tested in SITL simulation -- it is not yet flight-ready.
 
-### 1.3 Battery Profile Support
+### 1.4 Battery Profile Support
 
 The app now supports switching between **multiple battery profiles** configured on the flight controller, making it easy to swap between different battery types without reconfiguring.
 
-### 1.4 User Accounts, Backups, and Cloud Sync
+### 1.5 Autotune Tab (Experimental)
+
+A new **Autotune** tab provides a file-based workflow for analysing flight-controller tuning from a blackbox log. It imports a log containing chirp sweep data, computes the closed-loop frequency response using Welch's method, and recommends **Simplified Tuning** slider values based on bandwidth, phase margin, resonant peak, and noise floor.
+
+The tab works without a flight controller connected. When connected, the **Apply Gains** button writes the recommended simplified-tuning values back via MSP. Segmentation of chirp data is driven by the `BOXCHIRP` flight-mode bit.
+
+### 1.6 User Accounts, Backups, and Cloud Sync
 
 A new **WebAuthn-based login** system lets you securely save and manage configuration backups in the cloud, organised by aircraft. Backups can be downloaded, edited, and deleted. Includes avatar editing and automatic backup functionality.
 
-### 1.5 Colour Themes
+An **email-code login** option is also available as an alternative to passkeys, for browsers where WebAuthn is unreliable (for example, Safari). The redesigned login dialog offers a primary passkey button, a passkey-setup link, and a toggle to switch into email request/verify steps.
+
+### 1.7 Colour Themes
 
 Three new colour themes are available in the Options tab: **Yellow** (default), **Amber**, and **High Contrast**, giving you more control over the app's appearance.
 
-### 1.6 Preflight Environment Check
+### 1.8 Preflight Environment Check
 
 A new **Preflight** tab displays real-time conditions critical for safe flying: weather (temperature, wind, visibility, precipitation), solar activity (Kp index), battery status, density altitude, civil twilight window, fog probability, and location elevation. Supports geolocation and saved favourite flying spots.
 
-### 1.7 Board Qualification
+### 1.9 Board Qualification
 
 The Firmware Flasher now shows **board qualification status** -- whether a target is officially verified (Verified Partner), community-supported (Vendor/Community), or legacy -- helping you understand support levels before flashing.
 
-### 1.8 Responsive and Mobile Improvements
+### 1.10 Responsive and Mobile Improvements
 
 * Responsive header bar that adapts to different screen sizes
 * Improved landscape mobile layouts
 * Responsive GPS tab with flexible grid layout
 * Overall better usability on tablets and phones
 
-### 1.9 Other App Changes
+### 1.11 Other App Changes
 
 * **Sensor hardware display** separated from GPS protocols in the Sensors tab
 * **Simplified Master Slider** and **adjCenter/adjScale** added to the Adjustments tab
 * **OSD time variant** element support
 * **sslip.io** support for local network development with Android devices
-* **Nuxt UI** component library integration (app shell and connection buttons)
 * Adaptive launcher icons for Android (light/dark mode support)
 * Updated to Capacitor 8.0.2 for improved Android compatibility
 
-### 1.10 App Bug Fixes
+### 1.12 App Bug Fixes
 
 * Fixed DFU flashing stalling after Vue migration
 * Fixed motor testing not working
@@ -119,6 +145,16 @@ Support for the **Upixel UP-T1-001-Plus** combined optical flow and laser rangef
 * Tune thresholds with `poshold_opticalflow_quality_min` and `poshold_opticalflow_max_range`
 * Range: 2.5 cm to 12 m
 
+#### CAN Peripheral Support (Foundation)
+
+A foundational **FDCAN peripheral driver** has been added for STM32G4 targets, gated by the new `ENABLE_CAN` build option. Built on direct register access (no HAL), the driver provides a message-oriented TX/RX API (`canInit`, `canTransmit`, `canRegisterRxCallback`) over FDCAN1/2/3 with RX dispatch via FIFO 0 and interrupt callbacks, plus pin configuration via a parameter group.
+
+This is infrastructure on which higher-level protocols such as **DroneCAN** can be built in future releases. STM32H7 support is planned to follow.
+
+:::note
+CAN support is foundational in this release. No DroneCAN or other higher-level CAN protocols are shipped yet; the driver is currently available to developers integrating custom CAN functionality.
+:::
+
 ### 2.2 New Platform Support
 
 #### ESP32 (Experimental)
@@ -150,6 +186,14 @@ Initial support for **STM32N657** with most core peripherals working: UART, SPI,
 
 :::warning
 STM32N6 is suitable for developers and early adopters only.
+:::
+
+#### STM32C591 (Developer Preview)
+
+Initial build infrastructure and target support for the **STM32C5** series (Cortex-M33 @ 144 MHz, 1 MB flash, 256 KB SRAM, LPDMA). The build system, linker script, startup code, and HAL2 compatibility layer are in place, and the binary links and boots to `main()`. Peripheral drivers (timer, UART, SPI, I2C, ADC, DMA reqmap, DShot, USB VCP, LED strip) are currently stubbed and will be filled in over subsequent releases. The STM32C591 target is excluded from CI until driver implementations land.
+
+:::warning
+STM32C591 support is an experimental developer preview. No peripheral functionality is available yet -- the target is intended for platform bring-up work only.
 :::
 
 #### RP2350 / PICO Improvements
