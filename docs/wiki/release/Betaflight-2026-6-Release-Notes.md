@@ -35,6 +35,8 @@ The following tabs and components have been converted so far:
 * **Blackbox** tab (with improved search)
 * **Firmware Flasher** tab
 * **Power** tab
+* **Configuration** tab
+* **GPS** tab
 * **Flight Plan** tab
 * **Autotune** tab
 * **Login** dialog
@@ -86,6 +88,7 @@ The Firmware Flasher now shows **board qualification status** -- whether a targe
 * **Sensor hardware display** separated from GPS protocols in the Sensors tab
 * **Simplified Master Slider** and **adjCenter/adjScale** added to the Adjustments tab
 * **OSD time variant** element support
+* **POSHOLD_FAILED OSD warning** element for indicating position-hold failures
 * **sslip.io** support for local network development with Android devices
 * Adaptive launcher icons for Android (light/dark mode support)
 * Updated to Capacitor 8.0.2 for improved Android compatibility
@@ -103,7 +106,7 @@ The Firmware Flasher now shows **board qualification status** -- whether a targe
 * Fixed reconnection progress and DFU waiting issues
 * Fixed race conditions in reboot timestamp tracking and compass availability
 * Fixed GPS and blackbox tabs not loading due to undefined references
-* Security fix for CVE-2026-39315
+* Security fix for [CVE-2026-39315](https://github.com/advisories/GHSA-95h2-gj7x-gx9w)
 
 ## 2. The Firmware
 
@@ -285,7 +288,7 @@ Betaflight 2026.6 is the work of a passionate community. We want to thank every 
 
 ### Firmware Contributors
 
-Andy Piper, A. Pelicho, blckmn, Bryan Mayland, Dominic Clifton, gintaris, Hannes Kaufler, HGLRC, Jim Florrick, Jozef Woloch, Jury D'Ambros, katerica, ke deng, Kevin Plaizier, Manwe, Mark Haslinghuis, Michael De Backer, mjs1441, nerdCopter, Osiris Inferi, PD45-46, qqqlab, Radu, Remenby31, Robolightning, Sergey Tsypanov, Steve Evans, Thomas Stibor, UAV Tech, VoodooChild99, zebulon-86
+Andy Piper, A. Pelicho, blckmn, Bryan Mayland, Dominic Clifton, gintaris, Hannes Kaufler, HGLRC, Jim Florrick, Jozef Woloch, Jury D'Ambros, katerica, ke deng, Kevin Plaizier, luckk, Manwe, Mark Haslinghuis, Michael De Backer, mjs1441, nerdCopter, Osiris Inferi, Oskars Selis, PD45-46, qqqlab, Radu, Remenby31, Robolightning, Sergey Tsypanov, Steve Evans, Thomas Stibor, UAV Tech, VoodooChild99, zebulon-86
 
 ### App Contributors
 
