@@ -1,3 +1,5 @@
+# BlueJay F4
+
 ## Description
 
 Beautifully simple STM32F4 based flightcontroller. An F4 replacement for the Naze.
@@ -97,7 +99,7 @@ The rev2 onboard regulator is limited in current capacity, and has been replaced
 
 Rcgroups Thread: http://www.rcgroups.com/forums/showthread.php?t=2593106
 
-# Configuring 4th UART (3.2 and later)
+# Configuring 4th UART (3.2 and Later)
 
 - 4th hardware UART (UART4) is supported on motor outputs 1 and 2, but it is hidden until explicitly turned on by resource commands.
 - Motor outputs 1 and 2 must be remapped to avoid collision with UART4.

@@ -1,4 +1,4 @@
-# Blackbox logging internals
+# Blackbox Logging Internals
 
 The Blackbox is designed to record the raw internal state of the flight controller at near-maximum rate. By logging the
 raw inputs and outputs of key flight systems, the Blackbox log aims to allow the offline bench-top simulation, debugging,

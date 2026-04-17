@@ -1,4 +1,4 @@
-# AlienFlight (ALIENFLIGHTF1, ALIENFLIGHTF3, ALIENFLIGHTF4 and ALIENFLIGHTNGF7 target)
+# AlienFlight (ALIENFLIGHTF1, ALIENFLIGHTF3, ALIENFLIGHTF4 and ALIENFLIGHTNGF7 Target)
 
 AlienWii is now AlienFlight. This designs are released partially for public (CC BY-SA 4.0) and some for noncommercial use (CC BY-NC-SA 4.0) at:
 

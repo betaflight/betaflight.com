@@ -60,3 +60,5 @@ Shows the same info as the result preview, along with detailed information about
 - **Apply** - Apply the preset to your configuration
 
 ![Preset preview](/img/betaflight_configurator_preset_2.png)
+
+For more information about community presets and how to create your own, see the [Community Presets guide](/docs/wiki/guides/current/Community-Presets).

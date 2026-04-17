@@ -126,7 +126,7 @@ For example, if Softserial is configured for SmartAudio on Softserial port 1 Tx 
 serial 30 2048 115200 57600 0 115200
 ```
 
-For more information, see the [Serial page](/docs/development/Serial) in the Development section.
+For more information, see the [Serial page](/docs/wiki/guides/current/Serial).
 
 ### Historical notes:
 

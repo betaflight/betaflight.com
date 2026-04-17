@@ -93,7 +93,7 @@ See the next FAQ topic ("How do I install Betaflight") when you are ready.
 
 ## How do I install Betaflight ?
 
-Read the [Installing BetaFlight ](Installing-Betaflight) support page.
+Read the [Firmware Installation](/docs/wiki/getting-started/Firmware-Installation) support page.
 
 ## What's the history of Betaflight and it's relationship to Cleanflight ?
 
@@ -132,7 +132,7 @@ Reading the MultiWii WIKI and even the MultiWii code config.h file will help to 
 In CF and ßF the expected stick end point values are set with (I don't know in what versions these came about but were not in the original port of MW to BF code):
 Code:
 
-# rxrange
+## rxrange
 
 rxrange 0 1000 2000
 rxrange 1 1000 2000
@@ -647,7 +647,7 @@ http://www.youtube.com/watch?v=b8fMsazyxDw
 
 Within this FAQ, check the answer to "What Flight Controllers are recommended to get the best out of BetaFlight" for more details on which FC has VCP ports.
 
-The [Installing Betaflight](Installing-Betaflight) has more details on USB Drivers, etc.
+The [Firmware Installation](/docs/wiki/getting-started/Firmware-Installation) has more details on USB Drivers, etc.
 
 ## Will Betaflight code be merged back into Cleanflight ?
 

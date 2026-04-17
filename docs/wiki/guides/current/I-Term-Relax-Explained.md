@@ -1,4 +1,4 @@
-# Iterm Relax explained
+# Iterm Relax Explained
 
 I term relax aims to inhibit **I** during fast manoeuvres by preventing it to further accumulate. Simply put I term relax will keep **I** constant during fast manoeuvres.
 

@@ -1,8 +1,8 @@
 # Integrated Yaw
 
-### Overview
+## Overview
 
-Integrated Yaw is a feature which corrects a fundamental issue with quad control: while the pitch and roll axis are controlled by the thrust differentials the props generate yaw is different. Yaw gyro changes happen primarily due to inertia when the rpm of the motors change. A constant acceleration of yaw requires a constant rate of increase/decrease in the rpm of the yaw motor pairs.
+Integrated Yaw is a feature which corrects a fundamental issue with quad control: while the pitch and roll axis are controlled by the thrust differentials the props generate yaw is different. Yaw gyro changes happen primarily due to inertia when the RPM of the motors change. A constant acceleration of yaw requires a constant rate of increase/decrease in the RPM of the yaw motor pairs.
 
 This means that on Yaw I has the effect of P and P the effect of D. FF is a control element that adds impetus based on the acceleration in setpoint rate.
 
@@ -10,9 +10,11 @@ This results in several issues on yaw. Typically yaw will react very fast initia
 
 Integrated Yaw fixes this by integrating the output of the yaw pid before applying them to the mixer. This normalizes the way the pids work. You can now tune as any other axis. It requires use of absolute control since no I is needed with Integrated Yaw.
 
-### Setup
+## Setup
 
-Here are the CLI commands to enable it:
+From Betaflight 4.1.0 / Betaflight App 10.6.0 onwards, Integrated Yaw can be enabled in the App, in the **PID Tuning** tab.
+
+As a fallback, these are the CLI commands to enable it:
 
 ```
 set use_integrated_yaw=on
@@ -26,17 +28,8 @@ set f_yaw=60
 
 The yaw pids serve as starting point and might need adjustment. Make sure I is low or zero since significant I leads to strong oscillations. Pitch and roll might require slight retuning - primarily reducing I a bit since absolute control acts similar to a second I term.
 
----
-
-To be noted:
-
-There is no more I and maybe it doesn't make sense anymore, but in the past the CLI Command
+**Note:** If `i_yaw` is not set to `0`, then the following additional command is needed:
 
 ```
 set iterm_relax=RPY
-
 ```
-
-was mandatory.
-
-Hopefully someone will edit it, if it is relevant or not...

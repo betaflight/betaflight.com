@@ -149,7 +149,7 @@ https://youtu.be/DpmqeoRGwgA
 
 ---
 
-# Betaflight-compatible FC on an EPP Foam Plane
+# Betaflight-Compatible FC on an EPP Foam Plane
 
 #### by etheli
 
@@ -204,7 +204,7 @@ For the self-leveling flight mode to work well, the plane should be in a somewha
 
 ---
 
-# Betaflight for a **Flying Delta Wing** (using a Betaflight F3)
+# Betaflight for a **Flying Delta Wing** (Using a Betaflight F3)
 
 #### by DangerFlite
 
@@ -241,7 +241,7 @@ So far I have the flight controller working great in passthrough mode (manual fl
 - Modes tab > Set your arm switch
 - Modes tab > Set up passthrough mode for manual flight (no stabilisation) and Angle mode for self levelling (useful once you get the trim right). I recommend having passthrough mode set in case of any strange tuning issues so you can take control.
 
-# Betaflight for a **Flying Delta Wing** (using a Matek f405 and Matek FCHUB-W PDB)
+# Betaflight for a **Flying Delta Wing** (Using a Matek F405 and Matek FCHUB-W PDB)
 
 #### by druckgott
 

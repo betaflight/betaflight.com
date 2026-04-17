@@ -43,7 +43,7 @@ I am a **freestyle pilot**, so keep in mind, that these settings are in this sco
 | Pitch | 50  | 50  | 27  | 100 | 1.55 | 0.73 | 0.3    |
 | yawD  | 65  | 45  | 0   | 100 | 1.0  | 0.73 | 0.3    |
 
-# Batteries / Lipo values
+# Batteries / Lipo Values
 
 Here are some suggested ranges based on tests.
 
@@ -168,7 +168,7 @@ Increasing D-gain can improve these problems, however, an excessive D-gain value
 
 Another side effect of **excessive D-term is the decrease in the quad’s response, this effect is often described as “mushy”**.
 
-`set debug_mode=d_min`
+`set debug_mode = D_MAX` _(see [Dynamic D guide](/docs/wiki/guides/current/Dynamic-D))_
 
 - Proportional to the _change in magnitude_ of error
 - Anticipates the _future state_ of the system based on its current movement
@@ -189,11 +189,11 @@ Another side effect of **excessive D-term is the decrease in the quad’s respon
 - always to raise D-gain in relatively small increments
 - **always do a short test flight and check for hot motors after raising D gain!**
 
-## d min
+## Dynamic D
 
-Set the lowest D-term, it then get dynamically increased (to PID's maximum D-term) on sharper stick movements
+Dynamic D varies the D-term between a lower base value (active in smooth flight) and a higher peak value (active during fast moves and propwash). This keeps motors cooler in cruise while still providing strong damping when needed.
 
-D Min provides a way to have a lower level of D in normal flight and a higher level for quick maneuvers that might cause overshoot, like flips and rolls. It also brings D up during prop wash. Gain adjusts how fast D gets up to its maximum value and is based on gyro to determine sharp moves and propwash events. Advance makes D go up earlier by using setpoint instead of gyro to determine sharp moves.
+See the [Dynamic D guide](/docs/wiki/guides/current/Dynamic-D) for full tuning guidance, CLI variable reference, debug logging, and version migration notes.
 
 ## PID-tuning in a nutshell
 
@@ -387,11 +387,11 @@ These sudden movements cause the prop's spin to create turbulence, causing insta
 - Derivative CutoffType = AUTO
 - Derivative FilterType = BIQUAD
 
-# Throttle boost
+# Throttle Boost
 
 Boosts throttle faster than you command
 
-# Absolute control
+# Absolute Control
 
 Good for windy days
 1-5 (10) may best experience
@@ -556,7 +556,7 @@ Anti Gravity boosts the I term when fast throttle changes are detected. Higher g
 - Throttle Mid 0.5
 - Throttle expo 0
 
-# TPA (Throttle PID Attenuation)
+## TPA (Throttle PID Attenuation)
 
 TPA is a setting to reduce the effectiveness of PD gains as throttle increases(only D-term by default).
 
@@ -619,7 +619,7 @@ https://drive.google.com/drive/folders/1hWgcADCI3Aa4XLUiGsGQbPHxdkE94taP
 
 - noise trails
 
-# Debug mode (to log filter on logger)
+# Debug Mode (to Log Filter on Logger)
 
 Mostly `set debug_mode = GYRO_SCALED` could be used.
 
@@ -658,7 +658,7 @@ Mostly `set debug_mode = GYRO_SCALED` could be used.
 
 - is the Setpoint minus Gyro
 
-# Tuning tricks
+# Tuning Tricks
 
 TL;TR from https://oscarliang.com/quadcopter-pid-explained-tuning/
 
@@ -715,9 +715,7 @@ PID-error = Setpoint - Gyro
 - `set camera_control_key_delay = 125`
 - `save`
 
-# Listing your settings
-
-# Difference to regular settings
+# List Difference to Default Settings
 
 `diff`
 
@@ -798,7 +796,7 @@ Smart Port - TX
 
 **VFAS** - Voltage of flight controller
 
-# BLHeli settings
+# BLHeli Settings
 
 Basically, this is it!
 
@@ -909,7 +907,7 @@ Another thing to take into account is the tuning of your transmitter antenna and
 
 # VTX TABLES
 
-See [VTX Tables](/docs/wiki/guides/current/VTX-Tables).
+See [VTX Tables](/docs/wiki/guides/current/VTX#vtx-tables).
 
 ### TBS UNIFY PRO 5G8 HV
 
@@ -975,7 +973,7 @@ _Expedited Shipping_ parcel service that charges a fairly high service charge fo
 
 set ff_interpolate_sp = AVERAGED_3 for Freestyle
 
-# in a nutshell
+# In a Nutshell
 
 1 - Bounce back on rolls or flip. If the quad overshoot and then bounce back, Increases D for the affect axis.
 

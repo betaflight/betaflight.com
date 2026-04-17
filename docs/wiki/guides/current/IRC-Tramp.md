@@ -73,4 +73,4 @@ If you are using telemetry and a SPM4649T receiver, you can also see the current
 
 ## Modify VTX Configuration (TBS Unify / TrampHV) using CLI Settings
 
-As of Betaflight version 3.3.0, CLI settings to modify the VTX configuration are supported. See the [VTX CLI Settings](VTX-CLI-Settings) page for more information.
+As of Betaflight version 3.3.0, CLI settings to modify the VTX configuration are supported. See the [VTX CLI Settings](/docs/wiki/guides/current/VTX#vtx-cli-settings) page for more information.

@@ -59,7 +59,7 @@ Support has been added for new microcontrollers, significantly expanding the ran
 
 There has been significant refactoring of the code base to separate platform specific code from the Betaflight core code, and this will allow faster adoption of new technologies in the future.
 
-# Thank you all
+# Thank You All
 
 With the launch of Betaflight 2025.12, we want to extend our deepest gratitude to every contributor, both past and present.
 

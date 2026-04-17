@@ -1,4 +1,4 @@
-# OMNIBUS Fireworks v2
+# OMNIBUS Fireworks V2
 
 ![Flight Controller](https://image.ibb.co/gxmWGd/fireworksv2_1.jpg)
 
