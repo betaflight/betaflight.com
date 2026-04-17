@@ -17,9 +17,7 @@ It is very important to set up your failsafe correctly to prevent your craft fro
 
 There are two stages of failsafe:
 
-- **Stage 1** - entered when a flight channel has an invalid pulse length, the receiver reports failsafe mode or
-  there is no signal from the receiver for 150ms, the channel fallback settings are applied. If valid data is received,
-  Stage 1 failsafe will terminate automatically. Stage 1 duration is configured using the `failsafe_delay` duration, and defaults to 1.5s.
+- **Stage 1** - entered when a flight channel has an invalid pulse length, the receiver reports failsafe mode, or there is no signal from the receiver for 100ms or more; at that point the channel fallback settings are applied. Stage 1 failsafe will terminate automatically if valid data is received. Stage 1 duration is configured using the `failsafe_delay` setting, which defaults to 1.5s.
 
 - **Stage 2** - entered when radio link is lost for more than the configured Stage 1 duration, and the quad is armed.
   Stage 2 Failsafe Mode will be activated. Channels that are not controlled by the failsafe mode remain at their fallback setting.
@@ -112,7 +110,7 @@ Here’s the revised table with the sublists formatted in one row:
 | **Allow arming without fix**            | Allows arming without a GPS fix. If this option is enabled, the quad may be armed without a GPS Home location being determined. If there is no GPS Home location, and a GPS Rescue is initiated, the quad will immediately disarm and crash. The (much safer) default is for this option to be off, so that if GPS Rescue is set for Failsafe, arming is not possible until a Home location has been acquired.                                           |
 | **Sanity checks**                       | <li>**On (highly recommended)**: The craft will perform sanity checks before starting the rescue; if the checks fail, the craft will disarm.</li><li>**Off**: The craft will not perform sanity checks before starting the rescue, potentially leading to flying away or crashing.</li><li>**Failsafe only**: Sanity checks will only be performed on an actual loss of signal, not triggered if GPS Rescue is activated using the Aux mode.</li>        |
 
-For more information about GPS Rescue on 4.5+, see this [Wiki document](/docs/wiki/guides/current/GPS-Rescue-v4-5).
+For more information about GPS Rescue, see the [GPS Rescue guide](/docs/wiki/guides/current/GPS-Rescue).
 
 ## Testing Failsafe
 

@@ -26,7 +26,7 @@ Select the source for the current measurements
 
 - **None** - No current measurements will be available
 - **ESC Sensor** - Use the ESC telemetry to get the current measurements
-- **MSP Sensor/OSD Slave** - _NEEDS REVIEW, FOR ONCE I HAVE NO IDEA WHAT THIS MEANS_
+- **MSP Sensor/OSD Slave** - Use an external device connected via MSP (such as an OSD module or ESC telemetry aggregator) to provide current measurements
 - **Onboard ADC** - Use the ADC on the flight controller to get the current measurements
 
 ### Min/Max/Warning Cell Voltage

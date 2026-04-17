@@ -93,3 +93,5 @@ and 3d mode throttle
 ### RC Smoothing
 
 Toggle the RC smoothing filter on or off
+
+For more information about RSSI and receiver configuration, see the [RSSI guide](/docs/wiki/guides/current/Rssi) and the [Rx guide](/docs/wiki/guides/current/Rx).

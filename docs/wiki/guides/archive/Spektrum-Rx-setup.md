@@ -1,4 +1,4 @@
-# How to setup Spektrum Serial Receivers
+# How to Setup Spektrum Serial Receivers
 
 ## Binding
 

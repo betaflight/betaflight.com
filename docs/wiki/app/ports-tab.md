@@ -54,3 +54,6 @@ or GPS. To get GPS working, you may need to manually assign a baud rate as well
 Multiple options to allow the FC to control peripherals like VTXs, cameras, external OSDs, or even digital VTXs
 along with MSP. Similar to `Telemetry Output` and `Sensor Input`, you may need to set a baud rate for your
 device although common devices like SmartAudio, Tramp and MSP VTXs should work well with the default baud rates
+
+For more information about serial port configuration, see the [Serial guide](/docs/wiki/guides/current/Serial).
+For using software-emulated serial ports, see the [SoftSerial guide](/docs/wiki/guides/current/SoftSerial).

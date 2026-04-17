@@ -1,4 +1,4 @@
-# MAVLink telemetry to connect Betaflight to the Mission Planner ground control station.
+# MAVLink Telemetry to Connect Betaflight to the Mission Planner Ground Control Station.
 
 The Betaflight can be connected to Ground Control Stations by using ExpressLRS-MAVLink mode:
 https://www.expresslrs.org/software/mavlink/
@@ -44,7 +44,7 @@ mavlink_extra3_rate - Extended battery state data frame rate (default is 1Hz)
 
 ## Verify MAVLink telemetry
 
-Set *MAVLINK_TELEMETRY* blackbox debug mode in the firmware app and use Blackbox Explorer.
+Set _MAVLINK_TELEMETRY_ blackbox debug mode in the firmware app and use Blackbox Explorer.
 
 ![image](/img/mavlink/mavlink_bbe_debug.jpg)
 

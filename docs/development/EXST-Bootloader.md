@@ -1,4 +1,4 @@
-# EXST bootloader
+# EXST Bootloader
 
 The EXST (External Storage) system requires that the targets' CPU has a small program, called a bootloader, that provides functionality to load firmware from an external storage into the CPU's RAM so that the firmware can be executed.
 

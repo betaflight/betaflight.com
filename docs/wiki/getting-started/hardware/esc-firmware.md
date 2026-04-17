@@ -1,4 +1,4 @@
-# ESC firmware
+# ESC Firmware
 
 An ESC is the Electronic Speed Controller which supplies power to the craft's motors.
 

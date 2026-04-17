@@ -8,7 +8,7 @@ title: Building in Windows
 You can also build using **[Docker/Devcontainers](Building-with-Docker)**, which provides a containerized build environment.
 :::
 
-# Building on Windows 11 using the Linux Subsystem
+# Building on Windows 11 Using the Linux Subsystem
 
 Since Windows 10, there is a new feature that allows any developer to quickly and easily run a complete Linux subsystem in Windows (WSL) and access it via a `bash` terminal. This gives developers full use of the entire Linux OS and all of the great existing Linux tools and programs. When Bash for Windows is up and running it feels like you ssh'd into a full Linux box, except the Linux distro is actually running alongside Windows locally.
 

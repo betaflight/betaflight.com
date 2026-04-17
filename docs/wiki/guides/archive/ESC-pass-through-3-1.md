@@ -1,4 +1,4 @@
-# ESC pass-through
+# ESC Pass-Through
 
 ## Betaflight BLHeli ESC pass-through
 

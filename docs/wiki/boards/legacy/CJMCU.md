@@ -5,7 +5,7 @@ and an Accelerometer/Gyro (MPU6050).
 
 This board does not have an onboard USB-Serial converter, so an external adapter is needed.
 
-# Hardware revisions
+# Hardware Revisions
 
 | Revision | Notes                                                                                 |
 | -------- | ------------------------------------------------------------------------------------- |
