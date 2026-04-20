@@ -137,21 +137,21 @@ Only one of these may be active at a time.
 
 The profile may be selected using the CLI, the OSD LED strip menu, or from an adjustment channel, i.e. switch on your radio. Note that the adjustment channel from your radio overrides all other LED strip profile selection options.
 
-###### OPTION 1: Use the CLI to select the LED strip profile.
+#### OPTION 1: Use the CLI to select the LED strip profile.
 
 1. Open the CLI.
 2. Type `get ledstrip_profile` followed by enter to display the currently selected LED strip profile.
 3. Type `set ledstrip_profile=x` where x is the profile STATUS, RACE or BEACON and press enter.
 4. Type `save` followed by enter to save the selected LED strip profile.
 
-###### OPTION 2: By using the OSD
+#### OPTION 2: By using the OSD
 
 1. Open the OSD menu by yawing left and pitching forward on your radio.
 2. Using the pitch stick, move down to the LED Strip menu and roll right to enter the menu.
 3. The profile and race color can be configured using the left stick to go back and the right stick to navigate up/down and to change the selected value.
 4. Use the left stick to go to the top level menu and select save & reboot to complete.
 
-###### OPTION 3: Choose the LED strip Profile from your radio using an adjustment range.
+#### OPTION 3: Choose the LED strip Profile from your radio using an adjustment range.
 
 1. Turn on Expert mode at the top right of Configurator, "Enable Expert Mode".
 2. Go to the Configurator Adjustments tab.
