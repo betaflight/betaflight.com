@@ -326,7 +326,7 @@ led 8 0,0::C:0
 
 ```
 
-It seems that the mode is always set to `C` for col
+It seems that the mode is always set to `C` for color-only entries.
 
 ### Modes
 
