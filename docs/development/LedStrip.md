@@ -20,7 +20,7 @@ Unless you first tell Betaflight how many LEDs you have on your strip, nothing w
 That's why the first thing to do is to go to the `LED Strip` Tab in Betaflight's Configurator, and:
 
 1. Select `Wire Ordering Mode`
-Now Betaflight knows you have 4 LEDs in your strip, and that they display solid red when the `STATUS`, or default, LED strip profile is active.
+   Now Betaflight knows you have 4 LEDs in your strip, and that they display solid red when the `STATUS`, or default, LED strip profile is active.
 
 If you were to now choose the Beacon Profile, or the Race Profile (see below), their commands will be sent to the first four LEDs on your strip, because they are now active.
 Note: To get back to the starting point, click the `clear All Wiring` and `Clear All` buttons, and save.
@@ -250,7 +250,7 @@ Otherwise, `led` expects two arguments - a zero-based LED index number, a space,
 
 an `index` value of 0 refers to the first LED in the strip, 14 to the 15th LED, etc
 `x` and `y` are grid coordinates of a 0 based 16x16 grid,
-`ddd ` is the direction that the LED is pointing in
+`ddd` is the direction that the LED is pointing in
 `mmm` is the operating mode of the LED,
 
 For the `x,y` grid directions, north west (top left) is 0,0; the next one to the right is 1,0; south east is 15,15
@@ -293,7 +293,7 @@ Overlays:
 
 Examples:
 
-```
+```text
 led 0 0,15:SD:AWI:0
 led 1 15,0:ND:AWI:0
 led 2 0,0:ND:AWI:0
@@ -303,23 +303,21 @@ led 5 8,8::C:2
 led 6 8,9::B:1
 ```
 
-```
+```text
 led 0 0,0::CW:2
 # sets the first LED on the strip to a Red `C`olor with a `W`arnings overlay; it will be configured to the top left of the Configurator LED array, and has no direction information.
 To erase an led, and to mark the end of the chain, use `0,0::` as the second argument, like this:
-
 ```
 
 It is best to erase all LEDs that you do not have connected. This can be done for LEDs 3-8 with
 
-```
+```text
 led 3 0,0::C:0
 led 4 0,0::C:0
 led 5 0,0::C:0
 led 6 0,0::C:0
 led 7 0,0::C:0
 led 8 0,0::C:0
-
 ```
 
 It seems that the mode is always set to `C` for color-only entries.
@@ -488,7 +486,7 @@ Each LED of the ring can be a different color. The color can be selected between
 
 For example, LED 0 is set as a `R`ing thrust state LED in color 13 as follow.
 
-```
+```text
 led 0 2,2::R:13
 ```
 
@@ -504,7 +502,7 @@ Other modes will override or combine with the color mode.
 
 For example, to set LED 0 to always use color 10 you would issue this command.
 
-```
+```text
 led 0 0,0::C:10
 ```
 
@@ -547,7 +545,7 @@ The default color configuration is as follows:
 
 The following snippet will reset colors to defaults.
 
-```
+```text
 color 0 0,0,0
 color 1 0,255,255
 color 2 0,0,255
@@ -631,7 +629,7 @@ Orientation is when viewed with the front of the aircraft facing away from you a
 
 The default configuration is as follows
 
-```
+```text
 led 0 15,15:ES:IA:0
 led 1 15,8:E:WF:0
 led 2 15,7:E:WF:0
@@ -668,7 +666,7 @@ led 31 0,0:::0
 
 Which translates into the following positions:
 
-```
+```text
      6             3
       \           /
        \   5-4   /
@@ -691,7 +689,7 @@ This is the default so that if you don't want to place LEDs top and bottom in th
 
 ### Example 16 LED config
 
-```
+```text
 led 0 15,15:SD:IA:0
 led 1 8,8:E:FW:0
 led 2 8,7:E:FW:0
@@ -712,7 +710,7 @@ led 15 8,7:U:FW:0
 
 Which translates into the following positions:
 
-```
+```text
      6             3
       \           /
        \   5-4   /
@@ -731,7 +729,7 @@ LEDs 14-15 should be placed facing up, in the middle
 
 ### Example 28 LED config
 
-```
+```text
 #right rear cluster
 led 0 9,9:S:FWT:0
 led 1 10,10:S:FWT:0
@@ -767,7 +765,7 @@ led 26 1,10:S:FWT:0
 led 27 2,9:S:FWT:0
 ```
 
-```
+```text
        16-18  9-11
 19-21 \           / 6-8
        \  12-15  /
@@ -794,7 +792,7 @@ If your board does not have a physical LED_STRIP pin you still can use this feat
 
 An example for a Foxeer F745V3_AIO board using SERIAL_RX 1 as LED_STRIP:
 
-```
+```text
 resource SERIAL_RX 1 A10
 resource SERIAL_RX 1 NONE
 resource LED_STRIP 1 A10
