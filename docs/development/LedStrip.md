@@ -37,7 +37,7 @@ led 0 0,0::C:2
 led 1 1,0::C:2
 led 2 2,0::C:2
 led 3 3,0::C:2
-```
+```text
 
 ## Supported hardware
 
