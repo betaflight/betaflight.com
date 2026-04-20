@@ -250,7 +250,7 @@ The configuration values for each LED can be displayed in the CLI using the `led
 The `led` command with no arguments prints out the current LED configuration, which can be copied for future reference.
 
 Otherwise, `led` expects two arguments - a zero-based LED index number, a space, and then a sequence of parameters in the form:
-` index ,y:ddd:mmm:cc`, where:
+` index x,y:ddd:mmm:cc`, where:
 
 an `index` value of 0 refers to the first LED in the strip, 14 to the 1th LED, etc
 `x` and `y` are grid coordinates of a 0 based 16x16 grid,
