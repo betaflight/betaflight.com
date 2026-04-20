@@ -252,7 +252,7 @@ The `led` command with no arguments prints out the current LED configuration, wh
 Otherwise, `led` expects two arguments - a zero-based LED index number, a space, and then a sequence of parameters in the form:
 ` index x,y:ddd:mmm:cc`, where:
 
-an `index` value of 0 refers to the first LED in the strip, 14 to the 1th LED, etc
+an `index` value of 0 refers to the first LED in the strip, 14 to the 15th LED, etc
 `x` and `y` are grid coordinates of a 0 based 16x16 grid,
 `ddd ` is the direction that the LED is pointing in
 `mmm` is the operating mode of the LED,
