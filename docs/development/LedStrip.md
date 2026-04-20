@@ -32,7 +32,7 @@ Sometimes the wiring order you select doesn't get remembered. The key thing is t
 
 Pasting this snippet into the CLI should reliably set LEDs 0, 1, 2 and 3 to red:
 
-```
+```text
 led 0 0,0::C:2
 led 1 1,0::C:2
 led 2 2,0::C:2
