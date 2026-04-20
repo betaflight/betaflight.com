@@ -20,13 +20,9 @@ Unless you first tell Betaflight how many LEDs you have on your strip, nothing w
 That's why the first thing to do is to go to the `LED Strip` Tab in Betaflight's Configurator, and:
 
 1. Select `Wire Ordering Mode`
-2. Drag from the top left corner towards the right, selecting however many LED's you have in your strip. If there are only 4 LEDs in the strip, drag across the top left four of them. They will be numbered 0,1,2,3.
-3. Drag again across the same four, confirming they are numbered 0,1,2,3, and choose `Color` from the `Function` dropdown. Click on any colour, say Red.
-4. Click Save.
+Now Betaflight knows you have 4 LEDs in your strip, and that they display solid red when the `STATUS`, or default, LED strip profile is active.
 
-Now Betaflight knows you have 4 LEDs in your strip, and that they display solid red when the `STATUS`, or default, Led*strip* Profile is active.
-
-If you were to now choose the Beacon Profile, or the Race Profile (see below), their commands will be sent to the first four LEDs on the your strip, because they are now active.
+If you were to now choose the Beacon Profile, or the Race Profile (see below), their commands will be sent to the first four LEDs on your strip, because they are now active.
 Note: To get back to the starting point, click the `clear All Wiring` and `Clear All` buttons, and save.
 Sometimes the wiring order you select doesn't get remembered. The key thing is to 'wire up' each LED and assign at least a basic colour function to it.
 
