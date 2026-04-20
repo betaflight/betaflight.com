@@ -7,7 +7,7 @@ Betaflight supports the use of addressable LED strips. Addressable LED strips al
 IMPORTANT: The Flight Controller must be flashed with the `LED strip` option enabled!
 
 Every programmable LED strip has a digital control input marked `D in` at one end, and a digital control output marked `D out` at the other.
-The `Din` of the first strip should be connected the LED pad on the FC. One strip can be connected to another, in series, if the `Dout`of the first is connected to the `D in` of the next.
+The `DIN` of the first strip should be connected to the LED pad on the FC. One strip can be connected to another, in series, if the `DOUT` of the first is connected to the `DIN` of the next.
 
 Each LED in a strip gets an ID number, from 0 to however many there are along the digital line, when they are powered up. Betaflight commands each LED individually, by number.
 
