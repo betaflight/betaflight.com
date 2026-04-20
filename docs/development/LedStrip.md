@@ -112,8 +112,7 @@ The datasheet can be found here: http://www.adafruit.com/datasheets/WS2812.pdf
 
 ## Configuration
 
-First, read the Basics above, and make sure your FC has been flashed with support for LED_STRip.
-
+First, read the Basics above, and make sure your FC has been flashed with support for LED_STRIP.
 Then enable the LED strip feature, either by:
 
 checking LED Strip in the Configuration tab of Betaflight Configurator, or,
