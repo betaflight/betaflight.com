@@ -191,16 +191,16 @@ set ledstrip_race_color = BLACK
 
 The color will then be set according to VTx frequency, as per the following table:
 
-| Frequency range | Channels   | Color        | Color index |
-| --------------- | ---------- | ------------ | ----------- |
-| \<= 5672        | R1         | WHITE        | 1           |
-| > 5672 \<= 5711 | R2         | RED          | 2           |
-| > 5711 \<= 5750 | R3, F1     | ORANGE       | 3           |
-| > 5750 \<= 5789 | F2, F3     | YELLOW       | 4           |
-| > 5789 \<= 5829 | R5, F4, F5 | GREEN        | 6           |
-| > 5829 \<= 5867 | R6, F6, F7 | BLUE         | 10          |
-| > 5867 \<= 5906 | R7, F8     | DARK_VIOLET  | 11          |
-| > 5906          | R8         | DEEP_PINK 13 |
+| Frequency range | Channels   | Color       | Color index |
+| --------------- | ---------- | ----------- | ----------- |
+| \<= 5672        | R1         | WHITE       | 1           |
+| > 5672 \<= 5711 | R2         | RED         | 2           |
+| > 5711 \<= 5750 | R3, F1     | ORANGE      | 3           |
+| > 5750 \<= 5789 | F2, F3     | YELLOW      | 4           |
+| > 5789 \<= 5829 | R5, F4, F5 | GREEN       | 6           |
+| > 5829 \<= 5867 | R6, F6, F7 | BLUE        | 10          |
+| > 5867 \<= 5906 | R7, F8     | DARK_VIOLET | 11          |
+| > 5906          | R8         | DEEP_PINK   | 13          |
 
 The only way change the color assigned to a given frequency range is to edit the HSV values for the color itself, but this will change how that color appears in all modes and profiles.
 
