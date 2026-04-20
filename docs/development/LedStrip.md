@@ -549,7 +549,7 @@ The default color configuration is as follows:
 | 14    | NOT USED    | -              |
 | 15    | NOT USED    | -              |
 
-The following snippet will reset colors to defaults"
+The following snippet will reset colors to defaults.
 
 ```
 color 0 0,0,0
