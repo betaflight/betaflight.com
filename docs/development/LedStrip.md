@@ -174,7 +174,8 @@ It must be configured via the CLI:
 
 Type `get ledstrip_race_color` followed by enter to display the currently selected race color.
 
-Type `set ledstrip_race_color= abc` where abc is the name of the required color from the color table below. 4. Type `save` followed by enter to save.
+Type `set ledstrip_race_color= abc` where abc is the name of the required color from the color table below.
+Type `save` followed by enter to save.
 
 #### Setting LED color to the VTx Frequency
 
