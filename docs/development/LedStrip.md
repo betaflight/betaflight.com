@@ -305,11 +305,11 @@ led 6 8,9::B:1
 
 ```text
 led 0 0,0::CW:2
-# sets the first LED on the strip to a Red `C`olor with a `W`arnings overlay; it will be configured to the top left of the Configurator LED array, and has no direction information.
-To erase an led, and to mark the end of the chain, use `0,0::` as the second argument, like this:
 ```
 
-It is best to erase all LEDs that you do not have connected. This can be done for LEDs 3-8 with
+Sets the first LED on the strip to a Red `C`olor with a `W`arnings overlay; it will be configured to the top left of the Configurator LED array, and has no direction information.
+
+To erase an LED, and to mark the end of the chain, use `0,0::` as the second argument. It is best to erase all LEDs that you do not have connected. This can be done for LEDs 3–8 with:
 
 ```text
 led 3 0,0::C:0
