@@ -5,7 +5,7 @@ sidebar_label: 2026.6 Release Notes
 
 # 2026.6 Release Notes
 
-Welcome to Betaflight 2026.6! This release introduces autonomous flight planning, new platform support for ESP32 and STM32H5/N6/C5 processors, switchable battery profiles, optical flow position hold, a fully modernised app with progressive adoption of the Nuxt UI component library, foundational CAN peripheral support, and a wide range of sensor, protocol, and hardware additions.
+Welcome to Betaflight 2026.6! This release introduces autonomous flight planning, new platform support for ESP32 and STM32H5/N6/C5 processors, switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, foundational CAN peripheral support across STM32G4/H7/C5, native Android DFU over USB, and a wide range of sensor, protocol, and hardware additions.
 
 We have tried to make this release as bug-free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
@@ -27,64 +27,90 @@ The entire app has been rebuilt on **Vue 3** with **Pinia** state management, re
 
 Building on the Vue 3 migration, the app is progressively adopting the **Nuxt UI** component library for a more consistent, modern, and accessible interface. Nuxt UI's theming is synchronised with the app's light/dark themes, and responsive breakpoints are improved throughout.
 
-The following tabs and components have been converted so far:
+Almost every tab has now been converted. Landed in this release:
 
 * **App shell** -- connection/flasher buttons, port selection, and firmware virtual options
+* **Sidebar** navigation (Nuxt UI `UNavigationMenu`)
 * **Options** tab
 * **Documentation & Support** tab
-* **Blackbox** tab (with improved search)
-* **Firmware Flasher** tab
-* **Power** tab
+* **Setup** tab
+* **Ports** tab
 * **Configuration** tab
+* **Receiver** tab
+* **PID Tuning** tab
+* **Adjustments** tab
+* **FailSafe** tab
+* **OSD** tab
+* **Motors** tab
+* **Sensors** tab
 * **GPS** tab
+* **Modes** tab
+* **Presets** tab
+* **LED Strip** tab
+* **CLI** tab
+* **Blackbox** tab (with improved search)
 * **Flight Plan** tab
 * **Autotune** tab
-* **Login** dialog
-* PID Tuning number inputs
+* **Firmware Flasher** tab (with a refreshed facelift)
+* **Power** tab
+* **User Profile** tab
+* **Backups** tab (plus cloud backup/user-profile tables and the login modal)
 
-Additional tabs will continue to be migrated to Nuxt UI in follow-up releases.
+Any remaining legacy tabs will follow in subsequent releases.
 
-### 1.3 Flight Planning UI (Experimental)
+### 1.3 Layout Overhaul
+
+The top header bar has been retired; connection status, firmware/virtual options and utility actions now live in the sidebar and each tab's own toolbar. This gives every tab more vertical space and makes the overall layout more consistent across desktop and mobile.
+
+### 1.4 Flight Planning UI (Experimental)
 
 A new **Flight Plan** tab lets you visually plan autonomous missions on an interactive map. You can add, edit, and reorder waypoints, view elevation profiles, and save or load flight plans directly from the flight controller. Note that the underlying autopilot firmware is experimental and currently only tested in SITL simulation -- it is not yet flight-ready.
 
-### 1.4 Battery Profile Support
+### 1.5 Battery Profile Support
 
 The app now supports switching between **multiple battery profiles** configured on the flight controller, making it easy to swap between different battery types without reconfiguring.
 
-### 1.5 Autotune Tab (Experimental)
+### 1.6 Autotune Tab (Experimental)
 
 A new **Autotune** tab provides a file-based workflow for analysing flight-controller tuning from a blackbox log. It imports a log containing chirp sweep data, computes the closed-loop frequency response using Welch's method, and recommends **Simplified Tuning** slider values based on bandwidth, phase margin, resonant peak, and noise floor.
 
 The tab works without a flight controller connected. When connected, the **Apply Gains** button writes the recommended simplified-tuning values back via MSP. Segmentation of chirp data is driven by the `BOXCHIRP` flight-mode bit.
 
-### 1.6 User Accounts, Backups, and Cloud Sync
+### 1.7 User Accounts, Backups, and Cloud Sync
 
 A new **WebAuthn-based login** system lets you securely save and manage configuration backups in the cloud, organised by aircraft. Backups can be downloaded, edited, and deleted. Includes avatar editing and automatic backup functionality.
 
 An **email-code login** option is also available as an alternative to passkeys, for browsers where WebAuthn is unreliable (for example, Safari). The redesigned login dialog offers a primary passkey button, a passkey-setup link, and a toggle to switch into email request/verify steps.
 
-### 1.7 Colour Themes
+### 1.8 Colour Themes
 
 Three new colour themes are available in the Options tab: **Yellow** (default), **Amber**, and **High Contrast**, giving you more control over the app's appearance.
 
-### 1.8 Preflight Environment Check
+### 1.9 Preflight Environment Check
 
 A new **Preflight** tab displays real-time conditions critical for safe flying: weather (temperature, wind, visibility, precipitation), solar activity (Kp index), battery status, density altitude, civil twilight window, fog probability, and location elevation. Supports geolocation and saved favourite flying spots.
 
-### 1.9 Board Qualification
+### 1.10 Board Qualification
 
 The Firmware Flasher now shows **board qualification status** -- whether a target is officially verified (Verified Partner), community-supported (Vendor/Community), or legacy -- helping you understand support levels before flashing.
 
-### 1.10 Responsive and Mobile Improvements
+### 1.11 Responsive and Mobile Improvements
 
 * Responsive header bar that adapts to different screen sizes
 * Improved landscape mobile layouts
 * Responsive GPS tab with flexible grid layout
 * Overall better usability on tablets and phones
 
-### 1.11 Other App Changes
+### 1.12 Android and Desktop
 
+* **DFU over USB on Android** -- native firmware flashing directly from the Android build, no extra tooling required
+* **Android file access** -- full file-picker support for opening and saving configuration backups and logs on-device
+* **Tauri desktop scaffold** -- initial groundwork for a lightweight Tauri-based desktop build alongside the PWA
+* **Embedded WebSocket deployments** -- the compatibility gate and service worker are skipped when the app is served from an embedded WebSocket (e.g. running directly off a flight controller or companion device), avoiding reload loops in that mode
+
+### 1.13 Other App Changes
+
+* **Transponder tab removed** -- the feature has been retired in the configurator; transponder provider and data are now managed via CLI on the firmware side
 * **Sensor hardware display** separated from GPS protocols in the Sensors tab
 * **Simplified Master Slider** and **adjCenter/adjScale** added to the Adjustments tab
 * **OSD time variant** element support
@@ -93,7 +119,7 @@ The Firmware Flasher now shows **board qualification status** -- whether a targe
 * Adaptive launcher icons for Android (light/dark mode support)
 * Updated to Capacitor 8.0.2 for improved Android compatibility
 
-### 1.12 App Bug Fixes
+### 1.14 App Bug Fixes
 
 * Fixed DFU flashing stalling after Vue migration
 * Fixed motor testing not working
@@ -106,6 +132,9 @@ The Firmware Flasher now shows **board qualification status** -- whether a targe
 * Fixed reconnection progress and DFU waiting issues
 * Fixed race conditions in reboot timestamp tracking and compass availability
 * Fixed GPS and blackbox tabs not loading due to undefined references
+* Fixed throttle curve preview not updating
+* Fixed OSD tab losing its dirty state after edits
+* Fixed number inputs and numeric formatting across the new Nuxt UI tabs
 * Security fix for [CVE-2026-39315](https://github.com/advisories/GHSA-95h2-gj7x-gx9w)
 
 ## 2. The Firmware
@@ -127,6 +156,8 @@ Betaflight now includes an experimental **autopilot with GPS waypoint navigation
 * Set an RX loss policy: disable autopilot, continue the mission, or land
 
 The system supports velocity-based position control, spiral landing descent, configurable waypoint arrival and hold radii, and multiple yaw modes (velocity, bearing, hybrid, fixed, or dampener for wings).
+
+The underlying navigation stack is driven by a **3D sensor-fusion position estimator** with Kalman filtering, persistent position-navigation state, and accel/braking limits. New tunables cover rangefinder max range, optical-flow quality min/max, position II gain, and hover-throttle capture. The **Upixel UP-T1** rangefinder is now handled natively by the optical-flow path.
 
 #### Switchable Battery Profiles
 
@@ -150,9 +181,11 @@ Support for the **Upixel UP-T1-001-Plus** combined optical flow and laser rangef
 
 #### CAN Peripheral Support (Foundation)
 
-A foundational **FDCAN peripheral driver** has been added for STM32G4 targets, gated by the new `ENABLE_CAN` build option. Built on direct register access (no HAL), the driver provides a message-oriented TX/RX API (`canInit`, `canTransmit`, `canRegisterRxCallback`) over FDCAN1/2/3 with RX dispatch via FIFO 0 and interrupt callbacks, plus pin configuration via a parameter group.
+A foundational **FDCAN peripheral driver** has been added, gated by the new `ENABLE_CAN` build option. Supported on **STM32G4** (FDCAN1/2/3), **STM32H7** (FDCAN1/2 on H74x/H75x, FDCAN1/2/3 on H72x/H73x), and **STM32C593** scaffolding. Built on direct register access (no HAL), the driver provides a message-oriented TX/RX API (`canInit`, `canTransmit`, `canRegisterRxCallback`) with RX dispatch via FIFO 0 and interrupt callbacks, plus pin configuration via a parameter group.
 
-This is infrastructure on which higher-level protocols such as **DroneCAN** can be built in future releases. STM32H7 support is planned to follow.
+A matching CLI surface is also available: `resource CAN_TX / CAN_RX <n> <pin>` for pin assignment, and `set can_bitrate` for the nominal bus bit rate (default 1 Mbit/s, classic CAN).
+
+This is infrastructure on which higher-level protocols such as **DroneCAN** can be built in future releases. STM32H5 and STM32N6 support is planned to follow.
 
 :::note
 CAN support is foundational in this release. No DroneCAN or other higher-level CAN protocols are shipped yet; the driver is currently available to developers integrating custom CAN functionality.
@@ -202,7 +235,10 @@ STM32C591 support is an experimental developer preview. No peripheral functional
 #### RP2350 / PICO Improvements
 
 * **Bidirectional DShot telemetry** now fully working with GCR-encoded edge detection, enabling RPM filtering, dynamic idle, and dynamic notch filters
+* **Framebuffer OSD (FB_OSD)** -- new pixel-based displayport device that overlays on PAL and NTSC composite video, driven by DMA with double-buffered rendering. Ships with the Betaflight font by default, and custom fonts can be uploaded from the app. Introduces pixel-defined OSD elements alongside the existing character-based ones
+* **SBUS serial RX** enabled on RP2350A/B targets
 * Fixed erratic motor movement when disarmed due to DShot timing issues
+* UART reliability fixes, plus `SERIAL_CHECK_TX` option implemented on the platform
 * Enabled magnetometer, MSP/UART, and VTX support
 * Both RP2350A and RP2350B targets supported
 
@@ -222,8 +258,8 @@ STM32C591 support is an experimental developer preview. No peripheral functional
 
 #### Flash Chips
 
-* GD25Q16E (16 Mbit), GD25Q128 (128 Mbit), Zetta ZD25WQ32CE (32 Mbit) NOR flash
-* **MT29F NAND flash** (MT29F1G01ABAFDWB, 1 Gbit) -- significantly more blackbox storage capacity
+* GD25Q16E (16 Mbit), GD25Q128 (128 Mbit), BY25Q128ES (128 Mbit), Zetta ZD25WQ32CE (32 Mbit) NOR flash
+* **MT29F NAND flash** (MT29F1G01ABAFDWB, 1 Gbit) with improved block management -- significantly more blackbox storage capacity
 
 ### 2.4 Protocol and Connectivity
 
@@ -266,6 +302,9 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * New `sensor_hardware` command replaces the deprecated `gyro_hardware` command
 * New `waypoint` command for flight plan management
 * New `battery_profile` command for switching battery profiles
+* New `resource CAN_TX / CAN_RX` and `set can_bitrate` for configuring the FDCAN peripheral on supported MCUs
+* **Transponder** provider and data are now exposed via the CLI (replacing the removed app tab)
+* Expanded **chirp debug channels** for offline system identification workflows used by the new Autotune tab
 * `GYRO_CLKIN` now constrained to supported IMU sensors only
 
 ### 2.8 Bug Fixes
@@ -281,6 +320,8 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * **RX_MSP** missing CLI feature name and RX rate always showing 0
 * **CLI help** NULL pointer crash when searching commands without descriptions
 * **Post-flight statistics** max current now displayed with decimal precision
+* **escprog `ki 255` (KISSALL)** no longer broken on DShot builds
+* **Altitude** is now displayed in the sensors tab even when not armed
 
 ## Thank You
 
@@ -288,11 +329,11 @@ Betaflight 2026.6 is the work of a passionate community. We want to thank every 
 
 ### Firmware Contributors
 
-Andy Piper, A. Pelicho, blckmn, Bryan Mayland, Dominic Clifton, gintaris, Hannes Kaufler, HGLRC, Jim Florrick, Jozef Woloch, Jury D'Ambros, katerica, ke deng, Kevin Plaizier, luckk, Manwe, Mark Haslinghuis, Michael De Backer, mjs1441, nerdCopter, Osiris Inferi, Oskars Selis, PD45-46, qqqlab, Radu, Remenby31, Robolightning, Sergey Tsypanov, Steve Evans, Thomas Stibor, UAV Tech, VoodooChild99, zebulon-86
+Andy Piper, A. Pelicho, blckmn, Bryan Mayland, Dominic Clifton, gintaris, Hannes Kaufler, HGLRC, Jim Florrick, Jozef Woloch, Jury D'Ambros, katerica, ke deng, Kevin Plaizier, luckk, Manwe, Mark Haslinghuis, MatviiG, Michael De Backer, mjs1441, nerdCopter, Osiris Inferi, Oskars Selis, PD45-46, qqqlab, Radu, Remenby31, Robolightning, Sergey Tsypanov, Steve Evans, Thomas Stibor, UAV Tech, VoodooChild99, zebulon-86
 
 ### App Contributors
 
-blckmn, Eric, Hannes Kaufler, jikanos, Jury D'Ambros, ke deng, Mark Haslinghuis, nerdCopter, ot0tot, UAV Tech, Vitroid, Vlad, Yaros
+blckmn, Eric, Hannes Kaufler, jikanos, Jury D'Ambros, ke deng, Mark Haslinghuis, nerdCopter, Nicholas Young, ot0tot, UAV Tech, Vitroid, Vlad, Yaros
 
 ### And Everyone Else
 
