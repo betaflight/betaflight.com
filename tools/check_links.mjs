@@ -130,6 +130,7 @@ function checkFile(filePath) {
       return;
     }
 
+    linkPatterns[0].lastIndex = 0;
     let match;
     while ((match = linkPatterns[0].exec(line)) !== null) {
       // Strip optional inline title (e.g. 'title' or "title" after the URL)
