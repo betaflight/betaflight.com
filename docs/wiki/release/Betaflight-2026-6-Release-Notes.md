@@ -5,7 +5,7 @@ sidebar_label: 2026.6 Release Notes
 
 # 2026.6 Release Notes
 
-Welcome to Betaflight 2026.6! This release introduces autonomous flight planning, new platform support for ESP32 and STM32H5/N6/C5 processors, switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, foundational CAN peripheral support across STM32G4/H7/C5, native Android DFU over USB, and a wide range of sensor, protocol, and hardware additions.
+Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE), switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, native Android firmware flashing over USB, and a wide range of sensor, protocol, and hardware additions.
 
 We have tried to make this release as bug-free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
@@ -55,6 +55,9 @@ Almost every tab has now been converted. Landed in this release:
 * **Power** tab
 * **User Profile** tab
 * **Backups** tab (plus cloud backup/user-profile tables and the login modal)
+* **Servo** tab
+* **Tethered Logging** tab
+* **VTX** tab
 
 Any remaining legacy tabs will follow in subsequent releases.
 
@@ -62,9 +65,15 @@ Any remaining legacy tabs will follow in subsequent releases.
 
 The top header bar has been retired; connection status, firmware/virtual options and utility actions now live in the sidebar and each tab's own toolbar. This gives every tab more vertical space and makes the overall layout more consistent across desktop and mobile.
 
-### 1.4 Flight Planning UI (Experimental)
+### 1.4 Flight Planning UI (First Steps)
 
-A new **Flight Plan** tab lets you visually plan autonomous missions on an interactive map. You can add, edit, and reorder waypoints, view elevation profiles, and save or load flight plans directly from the flight controller. Note that the underlying autopilot firmware is experimental and currently only tested in SITL simulation -- it is not yet flight-ready.
+This release introduces the **first version** of a new **Flight Plan** tab -- the user-facing groundwork for autonomous missions in Betaflight. You can lay out waypoints visually on an interactive map, edit and reorder them, view their elevation profile, and save or load plans directly from the flight controller.
+
+Think of this as the **foundation**: the tab is in place, the workflow is wired through, and we'll be steadily filling in functionality release after release.
+
+:::warning
+The underlying autopilot firmware is **experimental and not flight-ready**. It is currently only tested in simulation (SITL). Do not arm a real aircraft with autopilot enabled. The Flight Plan tab is intended for early experimentation in simulation while the feature matures in future releases.
+:::
 
 ### 1.5 Battery Profile Support
 
@@ -108,7 +117,27 @@ The Firmware Flasher now shows **board qualification status** -- whether a targe
 * **Tauri desktop scaffold** -- initial groundwork for a lightweight Tauri-based desktop build alongside the PWA
 * **Embedded WebSocket deployments** -- the compatibility gate and service worker are skipped when the app is served from an embedded WebSocket (e.g. running directly off a flight controller or companion device), avoiding reload loops in that mode
 
-### 1.13 Other App Changes
+### 1.13 Restore Backups Directly to Your Aircraft
+
+The **Backups** tab now has a **Restore** button that writes a backup straight back to a connected flight controller. Under the hood, the app no longer needs to open an interactive CLI session to apply a backup -- it sends each setting one at a time and shows live progress in the dialog. The classic CLI tab is unchanged and remains available as a manual fallback.
+
+### 1.14 Desktop App and Nightly Downloads
+
+Desktop installers for the new Tauri-based Betaflight app -- Windows, macOS, and Linux -- are now published at **[downloads.betaflight.com](https://downloads.betaflight.com)**, alongside the Android APK. The same site also hosts **nightly builds** of the desktop app and the Android APK, making it easy to try the very latest changes between releases without waiting for a tagged release.
+
+The desktop bundles are now named `betaflight-app` for consistency across platforms.
+
+### 1.15 Expert Mode for Advanced Connections
+
+The **Virtual Connect** and **Manual Connect** options are now hidden unless **Expert Mode** is enabled in the Options tab, reducing clutter for everyday users while still keeping these tools available to power users and developers.
+
+### 1.16 Tuning UI Refinements
+
+* The **Yaw Low-Pass Filter** switch on the PID Filters page has been restored, alongside on/off switches built directly into each filter slider (Low / Default / High labels)
+* The **PID tab** has been rearranged and the active profile names now sit in the tab header, making it clearer which profile you are editing
+* The `dyn_notch_q` slider tooltip now states clearly that the value shown is divided by 100
+
+### 1.17 Other App Changes
 
 * **Transponder tab removed** -- the feature has been retired in the configurator; transponder provider and data are now managed via CLI on the firmware side
 * **Sensor hardware display** separated from GPS protocols in the Sensors tab
@@ -118,8 +147,9 @@ The Firmware Flasher now shows **board qualification status** -- whether a targe
 * **sslip.io** support for local network development with Android devices
 * Adaptive launcher icons for Android (light/dark mode support)
 * Updated to Capacitor 8.0.2 for improved Android compatibility
+* Status bar restored on mobile
 
-### 1.14 App Bug Fixes
+### 1.18 App Bug Fixes
 
 * Fixed DFU flashing stalling after Vue migration
 * Fixed motor testing not working
@@ -135,29 +165,34 @@ The Firmware Flasher now shows **board qualification status** -- whether a targe
 * Fixed throttle curve preview not updating
 * Fixed OSD tab losing its dirty state after edits
 * Fixed number inputs and numeric formatting across the new Nuxt UI tabs
+* Fixed CLI tab copy-and-paste behaviour
+* Fixed semver comparison for `itermThrottleThreshold` and `antiGravity`
+* Fixed a forced-reflow performance issue in the UI
 * Security fix for [CVE-2026-39315](https://github.com/advisories/GHSA-95h2-gj7x-gx9w)
 
 ## 2. The Firmware
 
 ### 2.1 Key New Features
 
-#### Autopilot Mode and Flight Plans (Experimental -- SITL Only)
+#### Autopilot and Waypoint Missions (First Steps -- Simulation Only)
+
+This release lays the **foundation** for autonomous flight in Betaflight. The first version of an autopilot with **GPS waypoint navigation** for both multirotors and fixed-wing aircraft is included, supporting up to 30 waypoints with configurable speed, altitude, and hold behaviour at each.
+
+What's in place today: the flight-mode plumbing, the in-firmware waypoint store, an `AUTOPILOT` mode bit, the navigation maths (waypoint following, spiral landing, multiple yaw modes for multirotors and wings), and the RX-loss policy. The underlying **3D position estimator** that drives it all -- fusing GPS, accelerometer, optical flow, and rangefinder data into a single smooth position fix -- is also new in this release, and is what makes both the autopilot and the GPS-free Position Hold feature possible.
+
+The intention is to keep building on this foundation across the next few releases until the feature is **fully ready for real-world use**.
 
 :::danger
-Autopilot is **experimental** and currently only tested in SITL (Software In The Loop) simulation. It is **not flight-ready** and must not be used on real aircraft. This feature is included for development and testing purposes only.
+Autopilot is **experimental and only tested in simulation (SITL)**. It is **not flight-ready** and must not be armed on a real aircraft. This first version is included so developers and early testers can start exercising the workflow end-to-end while the feature matures.
 :::
 
-Betaflight now includes an experimental **autopilot with GPS waypoint navigation** for both multirotors and fixed-wing aircraft. Define flight plans with up to 30 waypoints, and the craft will autonomously navigate between them with configurable speed, altitude, and hold behaviour.
-
-**Setup (SITL testing only):**
+**Trying it (in simulation):**
 * Assign the `AUTOPILOT` flight mode to a switch in the Modes tab
 * Use the `waypoint` CLI command to add, edit, or dump waypoints
 * Configure behaviour with `set ap_hover_throttle`, `set ap_landing_altitude_m`, velocity PID terms, and geofence limits
-* Set an RX loss policy: disable autopilot, continue the mission, or land
+* Set an RX-loss policy (disable autopilot, continue the mission, or land)
 
-The system supports velocity-based position control, spiral landing descent, configurable waypoint arrival and hold radii, and multiple yaw modes (velocity, bearing, hybrid, fixed, or dampener for wings).
-
-The underlying navigation stack is driven by a **3D sensor-fusion position estimator** with Kalman filtering, persistent position-navigation state, and accel/braking limits. New tunables cover rangefinder max range, optical-flow quality min/max, position II gain, and hover-throttle capture. The **Upixel UP-T1** rangefinder is now handled natively by the optical-flow path.
+The **Upixel UP-T1** rangefinder is now handled directly by the optical-flow code path, removing the need for a separate driver.
 
 #### Switchable Battery Profiles
 
@@ -179,16 +214,39 @@ Support for the **Upixel UP-T1-001-Plus** combined optical flow and laser rangef
 * Tune thresholds with `poshold_opticalflow_quality_min` and `poshold_opticalflow_max_range`
 * Range: 2.5 cm to 12 m
 
-#### CAN Peripheral Support (Foundation)
+#### CAN Bus Support and First DroneCAN GPS
 
-A foundational **FDCAN peripheral driver** has been added, gated by the new `ENABLE_CAN` build option. Supported on **STM32G4** (FDCAN1/2/3), **STM32H7** (FDCAN1/2 on H74x/H75x, FDCAN1/2/3 on H72x/H73x), and **STM32C593** scaffolding. Built on direct register access (no HAL), the driver provides a message-oriented TX/RX API (`canInit`, `canTransmit`, `canRegisterRxCallback`) with RX dispatch via FIFO 0 and interrupt callbacks, plus pin configuration via a parameter group.
+Betaflight now supports the **CAN bus** -- a long-distance, noise-resistant communication standard widely used for connecting peripherals such as GPS modules, electronic speed controllers, gimbals, and airspeed sensors. Hardware support is enabled on **STM32G4**, **STM32H7**, and the new **STM32C5** family.
 
-A matching CLI surface is also available: `resource CAN_TX / CAN_RX <n> <pin>` for pin assignment, and `set can_bitrate` for the nominal bus bit rate (default 1 Mbit/s, classic CAN).
+Built on top of the CAN driver, this release also ships the first piece of **DroneCAN** -- the open-standard protocol used by many modern UAV peripherals:
 
-This is infrastructure on which higher-level protocols such as **DroneCAN** can be built in future releases. STM32H5 and STM32N6 support is planned to follow.
+* A core **DroneCAN protocol stack** with node-status announcements and node-info responses, so a DroneCAN GPS or other device can see the flight controller on the bus and identify it
+* A **DroneCAN GPS provider** that consumes the standard `Fix2` GPS message and feeds it into Betaflight's normal GPS pipeline -- meaning GPS Rescue, position hold, OSD coordinates, and blackbox logs all work with a DroneCAN GPS just like they do with a serial GPS
+
+Configure the CAN pins with `resource CAN_TX <n> <pin>` and `resource CAN_RX <n> <pin>`, and set the bus speed with `set can_bitrate` (default 1 Mbit/s).
 
 :::note
-CAN support is foundational in this release. No DroneCAN or other higher-level CAN protocols are shipped yet; the driver is currently available to developers integrating custom CAN functionality.
+DroneCAN support is initial. Many peripheral types are not yet supported, and only a subset of common GPS modules has been tested. STM32H5 and STM32N6 CAN support is planned for a future release.
+:::
+
+#### Pixel OSD for Raspberry Pi Pico 2 (RP2350)
+
+Betaflight 2026.6 introduces a **brand-new on-screen display system** for flight controllers built around the Raspberry Pi Pico 2 (RP2350). Where every previous Betaflight OSD has relied on a separate dedicated chip (such as the MAX7456) to overlay text and symbols on a video signal, **Pico 2 boards now do this entirely inside the main microcontroller** -- no extra OSD chip required.
+
+This is what makes it different:
+
+* **Native analogue video output** -- the OSD is overlaid directly onto a standard analogue video signal, ready to be sent to any FPV video transmitter that accepts composite video. Both **PAL and NTSC** are supported.
+* **Auto-detects PAL or NTSC** -- when the flight controller boots, it samples the incoming video sync and chooses the right mode automatically. If you have a video format set in the OSD profile that does not match the camera, you'll see a warning and the OSD will follow what's actually on the wire.
+* **Pixel-defined OSD elements** -- alongside the classic character-grid elements, the **artificial horizon, horizon sidebars, and stick-overlay graphics** are now drawn pixel-by-pixel. The result is much smoother lines, finer angles, and graphics that aren't restricted to a 12 × 18 pixel character cell.
+* **Custom font upload** -- the standard Betaflight OSD font is built in by default, and you can upload your own fonts from the configurator app's OSD tab, exactly as you would on a MAX7456-based flight controller.
+* **Standard SD layout** -- the screen still uses the familiar 30-column layout (16 rows on PAL, 13 rows on NTSC), so existing OSD layouts and warnings move across without changes.
+* **Smooth, tear-free updates** -- the OSD draws into a back buffer and swaps it onto the screen between video frames, so the picture never tears or flickers, even with busy elements like the artificial horizon.
+* **Doesn't slow down the flight loop** -- rendering uses the Pico 2's specialised on-chip hardware to push pixel data out independently of the processor, leaving the gyro loop unaffected.
+
+To use it, your flight controller needs three signal pins wired to the video circuit: a **white pin**, a **black pin**, and a **sync-detect input**. Hardware vendors will publish board-specific wiring as their Pico 2 designs become available.
+
+:::note
+The Pixel OSD is only available on RP2350 (Raspberry Pi Pico 2) flight controllers. MAX7456 and other character-based OSD hardware continues to work as before on every other supported platform.
 :::
 
 ### 2.2 New Platform Support
@@ -198,13 +256,12 @@ CAN support is foundational in this release. No DroneCAN or other higher-level C
 Betaflight now runs on ESP32 microcontrollers. Both the **ESP32-S3** and the original **ESP32-WROOM** are supported as build targets.
 
 **ESP32-S3 features:**
-* DShot 150/300 with command support and frame overlap prevention
-* GDMA-backed SPI transfers
-* Serial RX (CRSF, S.BUS, GHST, IBUS, FPORT), telemetry, and MSP over UART
-* I2C with error recovery, ADC, USB VCP with connection detection
-* SD card blackbox via SPI
+* DShot 150/300 motor output with command support
+* All major receiver protocols (CRSF, S.BUS, GHST, IBUS, FPORT), telemetry, and MSP over USB or serial
+* I2C with automatic error recovery, ADC, and USB with connection detection
+* SD card blackbox
 
-**ESP32-WROOM** runs in polled mode (no DMA) with serial RX, telemetry, I2C, SPI, ADC, and SD card blackbox.
+**ESP32-WROOM** (the original ESP32) is also supported, with all of the above except higher-speed bulk transfers; suitable for lower-end use cases.
 
 :::warning
 ESP32 support is experimental. Expect ongoing development and possible breaking changes.
@@ -212,35 +269,41 @@ ESP32 support is experimental. Expect ongoing development and possible breaking 
 
 #### STM32H5
 
-Full support for **STM32H562** and **STM32H563** processors, bringing a modern Cortex-M33 (ARMv8-M) option to Betaflight.
+Full support for **STM32H562** and **STM32H563** processors, opening up another modern, mid-range option for flight controller manufacturers.
 
-**Supported peripherals:** UART, SPI (GPDMA-backed), I2C, ADC with DMA, USB VCP, SDIO/SD card, DShot, PWM output, LED strip, transponder, camera control, config flash storage, and hardware MPU memory protection.
+Working peripherals include: serial ports (UART), SPI, I2C, ADC, USB, SD card via SDIO, DShot motor output, regular PWM output, LED strips, transponder, camera control, on-chip config storage, and hardware memory protection.
 
 #### STM32N6 (Developer Preview)
 
-Initial support for **STM32N657** with most core peripherals working: UART, SPI, I2C, ADC, USB VCP, DShot bitbang, and PWM output. SDIO/SD card support is pending hardware validation.
+Initial support for **STM32N657** with most core peripherals working: UART, SPI, I2C, ADC, USB, DShot, PWM output, and SD card via SDIO. Flash storage and execution from external memory is also supported.
 
 :::warning
 STM32N6 is suitable for developers and early adopters only.
 :::
 
-#### STM32C591 (Developer Preview)
+#### STM32C5 with NUCLEOC562RE Development Board (Developer Preview)
 
-Initial build infrastructure and target support for the **STM32C5** series (Cortex-M33 @ 144 MHz, 1 MB flash, 256 KB SRAM, LPDMA). The build system, linker script, startup code, and HAL2 compatibility layer are in place, and the binary links and boots to `main()`. Peripheral drivers (timer, UART, SPI, I2C, ADC, DMA reqmap, DShot, USB VCP, LED strip) are currently stubbed and will be filled in over subsequent releases. The STM32C591 target is excluded from CI until driver implementations land.
+The new **STM32C5 family** is a low-cost Cortex-M33 line from ST that runs at 144 MHz. Betaflight 2026.6 introduces support for three members of the family:
+
+* **STM32C591** -- the original C5 chip (1 MB flash, 256 KB SRAM)
+* **STM32C562** -- a smaller variant (512 KB flash, 128 KB SRAM); the **NUCLEOC562RE** development board from ST is the **first viable Betaflight target** on the C5 family and a great low-cost board for developers and early adopters wanting to bring their own hardware up
+* **STM32C593** -- the variant with built-in CAN bus
+
+What's working on NUCLEOC562RE today: serial ports (UART), SPI, I2C, ADC, USB, DShot motor output (bit-banged), WS2811 LED strips, on-chip config storage, EXTI interrupts, and a 144 MHz system clock. SD card is not yet implemented.
 
 :::warning
-STM32C591 support is an experimental developer preview. No peripheral functionality is available yet -- the target is intended for platform bring-up work only.
+STM32C5 support is a developer preview intended for platform bring-up. The NUCLEOC562RE makes a good development board, but no production STM32C5 flight controllers are available yet. Some peripheral types are still being filled in and the targets are currently excluded from CI.
 :::
 
-#### RP2350 / PICO Improvements
+#### RP2350 (Raspberry Pi Pico 2) Improvements
 
-* **Bidirectional DShot telemetry** now fully working with GCR-encoded edge detection, enabling RPM filtering, dynamic idle, and dynamic notch filters
-* **Framebuffer OSD (FB_OSD)** -- new pixel-based displayport device that overlays on PAL and NTSC composite video, driven by DMA with double-buffered rendering. Ships with the Betaflight font by default, and custom fonts can be uploaded from the app. Introduces pixel-defined OSD elements alongside the existing character-based ones
-* **SBUS serial RX** enabled on RP2350A/B targets
-* Fixed erratic motor movement when disarmed due to DShot timing issues
-* UART reliability fixes, plus `SERIAL_CHECK_TX` option implemented on the platform
-* Enabled magnetometer, MSP/UART, and VTX support
-* Both RP2350A and RP2350B targets supported
+* **Pixel OSD** -- a brand-new on-screen display that overlays directly onto an analogue video signal, with no separate OSD chip. See [Pixel OSD for Raspberry Pi Pico 2](#pixel-osd-for-raspberry-pi-pico-2-rp2350) above for details
+* **Bidirectional DShot telemetry** is now fully working, which means **RPM filtering, dynamic idle, and dynamic notch filters** are all available on Pico 2 boards
+* **SBUS receiver protocol** is now supported on RP2350A and RP2350B
+* **Magnetometer**, **MSP over UART**, and **VTX** support added
+* Fixed erratic motor twitching while disarmed, caused by motor-timing issues
+* Various serial-port reliability fixes
+* Both RP2350A and RP2350B variants are supported
 
 ### 2.3 New Hardware Support
 
@@ -258,8 +321,17 @@ STM32C591 support is an experimental developer preview. No peripheral functional
 
 #### Flash Chips
 
-* GD25Q16E (16 Mbit), GD25Q128 (128 Mbit), BY25Q128ES (128 Mbit), Zetta ZD25WQ32CE (32 Mbit) NOR flash
+New blackbox / config storage flash chips supported in this release:
+
+* GD25Q16E (16 Mbit), GD25Q128 (128 Mbit), BY25Q64 (64 Mbit), BY25Q128ES (128 Mbit), Zetta ZD25WQ32CE (32 Mbit), Macronix MX25L12845G (128 Mbit) NOR flash
 * **MT29F NAND flash** (MT29F1G01ABAFDWB, 1 Gbit) with improved block management -- significantly more blackbox storage capacity
+
+#### Additional Microcontroller Families
+
+Beyond the new STM32 platforms above, manufacturers also have access to:
+
+* **GD32H7** -- GigaDevice's H7 family is now supported, broadening the range of high-performance flight controllers that can run Betaflight
+* **APM32F4** (F425/F427) -- additional APM32 variants alongside existing F4 support, giving manufacturers more sourcing flexibility
 
 ### 2.4 Protocol and Connectivity
 
@@ -269,14 +341,14 @@ Full SPI-based **ExpressLRS V4** protocol support with automatic version detecti
 
 #### CRSF AHRS Telemetry
 
-CRSF telemetry now includes full-resolution IMU data (accelerometer and gyroscope), barometric altitude and vertical speed, magnetic heading, and GPS NED velocity vectors. This provides richer real-time data on CRSFv3-capable transmitters.
+CRSF telemetry has been expanded to include full-resolution motion data (accelerometer and gyroscope), barometric altitude and vertical speed, magnetic heading, and 3-axis GPS velocity. The result is much richer real-time data on the screen of CRSF-capable transmitters.
 
 #### MSP Enhancements
 
-* **MSP2_CLI_SETTING** (0x3010): Get and set any CLI setting by name over MSP, enabling full remote configuration without a serial terminal
-* **MSP2_CLI_SETTING_INFO** (0x3011): Query setting metadata including type, min/max, options, and defaults
-* **Attitude quaternions**: Attitude data now available as quaternions over MSP for 3D applications
-* **OSD custom text**: Send up to 4 custom text messages to the OSD via `MSP2_SET_TEXT` and `MSP2_GET_TEXT`
+* **Read and write any CLI setting over MSP**: the configurator app (and any third-party tool) can now read and change any CLI setting by name, without needing to open an interactive CLI session. This is what enables the new direct-restore in the Backups tab
+* **Setting metadata**: tools can also query a setting's type, allowed range, options, and default
+* **Attitude as quaternions**: aircraft attitude is now also available in quaternion form for 3D and external visualisation tools
+* **OSD custom text**: external apps can push up to four custom messages onto the OSD
 
 #### Strengthened MSP/CRSF Packet Validation
 
@@ -284,28 +356,31 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 
 ### 2.5 Flight Controller Changes
 
-* **Servo channel forwarding**: Individual servo channels can forward RC input directly, bypassing the servo mixer. Configure per-servo with `set servo_<N>_forward_from_channel = <1-16>` (0 = disabled)
-* **Simplified Master Slider**: New `ADJUSTMENT_SIMPLIFIED_MASTER_MULTIPLIER` scales all PID values simultaneously from a single potentiometer or switch
-* **Airmode LPF removed**: Low-pass filter on airmode removed for more direct control response
-* **Faster trigonometry**: Optimised sine and cosine calculations improve scheduler headroom
+* **Servo channel forwarding**: any individual servo can be set to follow a chosen RC channel directly, bypassing the servo mixer -- handy for plain pass-through outputs like flaps or gimbal control. Configure per-servo with `set servo_<N>_forward_from_channel = <1-16>` (0 = disabled)
+* **Simplified Master Slider**: a new in-flight adjustment that scales all PID values together from a single switch or knob, so you can tune all axes up or down at once
+* **Airmode response**: the small filter on airmode has been removed, giving a more direct feel
+* **Faster maths**: sine and cosine calculations have been sped up, freeing a little headroom in the flight loop
 
 ### 2.6 GPS Improvements
 
 * **AssistNow Autonomous**: Enable with `set gps_ublox_enable_ana = ON` for faster GPS fix acquisition using UBLOX predicted satellite data
-* **Blackbox GPS timestamps**: GPS epoch time now logged in H-frames and milliseconds-to-week in G-frames for precise post-flight time correlation
-* **UBLOX message priority**: NAV_PVT and NAV_SAT messages processed first for faster position updates
+* **DroneCAN GPS support**: GPS modules connected via DroneCAN now work end-to-end -- see the new CAN section above
+* **Faster serial GPS decoding**: The serial GPS message parser has been sped up, freeing scheduler headroom on slower flight controllers
+* **Blackbox GPS timestamps**: precise time information is now written to blackbox logs so flight tracks can be lined up exactly with external data
+* **UBLOX message priority**: position-update messages are processed first for faster position updates
 * Improved GPS message handling and deduplication
 
 ### 2.7 CLI Changes
 
-* New `options` command displays build configuration (equivalent to MSP_BUILD_INFO)
+* New `options` command displays the firmware build configuration
 * New `sensor_hardware` command replaces the deprecated `gyro_hardware` command
 * New `waypoint` command for flight plan management
 * New `battery_profile` command for switching battery profiles
-* New `resource CAN_TX / CAN_RX` and `set can_bitrate` for configuring the FDCAN peripheral on supported MCUs
+* New `resource CAN_TX / CAN_RX` and `set can_bitrate` for configuring the CAN bus on supported processors
+* New `env` command for inspecting the runtime build environment, replacing the older compiled-in MCU type identifier
 * **Transponder** provider and data are now exposed via the CLI (replacing the removed app tab)
-* Expanded **chirp debug channels** for offline system identification workflows used by the new Autotune tab
-* `GYRO_CLKIN` now constrained to supported IMU sensors only
+* Expanded **chirp debug channels** for the analysis workflow used by the new Autotune tab
+* The external gyro clock-input feature (`GYRO_CLKIN`) is now restricted to gyro sensors that actually support it
 
 ### 2.8 Bug Fixes
 
@@ -329,11 +404,11 @@ Betaflight 2026.6 is the work of a passionate community. We want to thank every 
 
 ### Firmware Contributors
 
-Andy Piper, A. Pelicho, blckmn, Bryan Mayland, Dominic Clifton, gintaris, Hannes Kaufler, HGLRC, Jim Florrick, Jozef Woloch, Jury D'Ambros, katerica, ke deng, Kevin Plaizier, luckk, Manwe, Mark Haslinghuis, MatviiG, Michael De Backer, mjs1441, nerdCopter, Osiris Inferi, Oskars Selis, PD45-46, qqqlab, Radu, Remenby31, Robolightning, Sergey Tsypanov, Steve Evans, Thomas Stibor, UAV Tech, VoodooChild99, zebulon-86
+Andy Piper, A. Pelicho, blckmn, Bryan Mayland, ctzsnooze, Dominic Clifton, gintaris, Hannes Kaufler, HGLRC, Jacob Dahl, jianpingwu1, Jim Florrick, Jozef Woloch, Jury D'Ambros, katerica, ke deng, Kevin Plaizier, luckk, LYNHQQ, Manwe, Mark Haslinghuis, MatviiG, Michael De Backer, mjs1441, nerdCopter, Osiris Inferi, Oskars Selis, PD45-46, qqqlab, Radu, Remenby31, Robolightning, Sergey Tsypanov, Steve Evans, Thomas Stibor, UAV Tech, Vladimir Demidov, VoodooChild99, zebulon-86
 
 ### App Contributors
 
-blckmn, Eric, Hannes Kaufler, jikanos, Jury D'Ambros, ke deng, Mark Haslinghuis, nerdCopter, Nicholas Young, ot0tot, UAV Tech, Vitroid, Vlad, Yaros
+blckmn, ChrisRosser, Eric, Hannes Kaufler, jikanos, Jury D'Ambros, ke deng, Mark Haslinghuis, MikeNomatter, nerdCopter, Nicholas Young, ot0tot, UAV Tech, Vitroid, Vlad, Yaros
 
 ### And Everyone Else
 
