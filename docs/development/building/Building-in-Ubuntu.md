@@ -7,7 +7,7 @@ title: Building in Ubuntu
 # Building in Ubuntu
 
 Building for Ubuntu platform is remarkably easy.
-This document is tested and based on Ubuntu 24.04 LTS release and can also be used for WSL.
+This document is tested and based on Ubuntu 26.04 LTS release and can also be used for WSL.
 
 ### Clone Betaflight Repository and Install Toolchain
 
@@ -31,8 +31,8 @@ git pull
 make MATEKF405 [EXTRA_FLAGS="-DUSE_RANGEFINDER"] [DEBUG=DBG]
 ```
 
-Using the optional EXTRA_FLAGS parameters you can specify options like USE_RANGEFINDER.
-Using the optional DEBUG parameter you can specify the debugger.
+- Using the optional EXTRA_FLAGS parameters you can specify options like `USE_RANGEFINDER`.
+- Using the optional DEBUG parameter you can specify the debugger.
 
 You'll see a set of files being compiled, and finally linked, yielding both an ELF and then a HEX.
 You can use the Betaflight-Configurator to flash the `obj/betaflight_MATEKF405.hex` file.
@@ -45,18 +45,20 @@ Change to your project-folder if desired. (e.g. `cd ~/Git`)
 ```
 sudo apt update && sudo apt upgrade
 sudo apt install libatomic1 npm
-sudo npm install -g gulp-cli yarn
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 source ~/.bashrc
 git clone https://github.com/betaflight/betaflight-configurator.git
 cd betaflight-configurator
-nvm install
-yarn install
-yarn build
-yarn vite
+nvm install 24 --lts
+npm install
+npm run build
+npm run dev
 ```
 
-This will start a local server for the Betaflight App. Use a Web-Serial compatible web browser to visit `http://localhost:8000/`. Press `q`, then `Enter` in the terminal to quit. You may delete the `nohup.out` file if it remains after quitting. Please see https://github.com/betaflight/betaflight-configurator?tab=readme-ov-file#betaflight-configurator for further details.
+This will start a local server for the Betaflight App.
+- Use a Web-Serial compatible web browser to visit `http://localhost:8080/`. 
+- Press `Ctrl+C` in the terminal to quit.
+- Please see https://github.com/betaflight/betaflight-configurator?tab=readme-ov-file#betaflight-configurator for further details.
 
 See [Betaflight App Development](https://github.com/betaflight/betaflight-configurator#development) for how to build the Betaflight App.
 
@@ -69,14 +71,16 @@ sudo usermod -a -G dialout $USER
 sudo usermod -a -G plugdev $USER
 sudo apt-get remove modemmanager
 sudo tee -a /etc/udev/rules.d/46-stdfu-permissions.rules <<EOF
-# DFU (Internal bootloader for STM32, AT32 and APM32 MCUs)
+# DFU (Internal bootloader for STM32, GD32, AT32, APM32 and RP2040 MCUs)
 
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="28e9", ATTRS{idProduct}=="0189", MODE="0664", GROUP="plugdev"
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0664", GROUP="plugdev"
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", MODE="0664", GROUP="plugdev"
 EOF
 ```
 
-Please log out and log in to active the settings. You should now be able to flash your target using the Betaflight App.
+Please log out and log in to activate the settings. You should now be able to flash your target using the Betaflight App.
 
 Credit goes to K.C. Budd, AKfreak for testing, and pulsar for doing the long legwork that yielded the original content of this document.
