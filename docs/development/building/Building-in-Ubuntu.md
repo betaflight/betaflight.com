@@ -58,7 +58,7 @@ npm run dev
 This will start a local server for the Betaflight App.
 - Use a Web-Serial compatible web browser to visit `http://localhost:8080/`. 
 - Press `Ctrl+C` in the terminal to quit.
-- Please see https://github.com/betaflight/betaflight-configurator?tab=readme-ov-file#betaflight-configurator for further details.
+- Check https://github.com/betaflight/betaflight-configurator?tab=readme-ov-file#betaflight-configurator for further details.
 
 See [Betaflight App Development](https://github.com/betaflight/betaflight-configurator#development) for how to build the Betaflight App.
 
