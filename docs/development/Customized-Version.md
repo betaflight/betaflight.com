@@ -27,7 +27,7 @@ The 'text + data' gives you the flash size, and the 'data + bss' is the (static)
 
 Each flight controller has its own file to specify what features are enabled or disabled only for it. Sometimes they have been disabled by space limitations, but other times it's for limited computing capacity or a bug, so enable them at your own risk. These are located in a sub-module within the betaflight repository. The [config repository](https://github.com/betaflight/config) is also available for pull requests (encouraged from both manufacturers or users).
 
-This file is located in `./src/main/configs/config/[FLIGHT_CONTROLLER_NAME]/config.h`.
+In the main Betaflight repository, this file is located in `./src/config/configs/[FLIGHT_CONTROLLER_NAME]/config.h`.
 
 Cloud build allows you to specify a variety of options to be enabled within the firmware you are flashing.
 
