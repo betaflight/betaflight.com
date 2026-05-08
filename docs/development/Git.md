@@ -111,7 +111,7 @@ A clear commit message helps reviewers and makes the project history useful. Fol
 
 Example:
 
-```
+```text
 Add deadband support for RC channels
 
 Without a deadband, small stick noise causes unnecessary PID updates.
@@ -293,14 +293,15 @@ This is safer than rewriting history on shared branches because it preserves the
 Use interactive rebase to remove or edit specific commits:
 
 ```bash
-git rebase -i origin/<branch-name>~2 <branch-name>
+git checkout <branch-name>
+git rebase -i origin/<branch-name>~2
 git push origin <branch-name> --force-with-lease
 ```
 
 If this fails, back up your changed files (or use `git stash`), then reset and recommit:
 
 ```bash
-git reset HEAD~ --hard
+git reset --hard HEAD~
 git stash pop
 git add .
 git commit -m "Make new commit"
