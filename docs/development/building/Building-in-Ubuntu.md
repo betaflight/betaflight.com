@@ -66,7 +66,7 @@ See [Betaflight App Development](https://github.com/betaflight/betaflight-config
 
 The Betaflight App can also be built for Android using [Capacitor](https://capacitorjs.com/) and the Android SDK. First, install [Android Studio](https://developer.android.com/studio) and then set up the environment variables:
 
-```
+```bash
 echo '
 # Android development (Betaflight Configurator)
 export JAVA_HOME=/opt/android-studio/jbr
@@ -77,16 +77,16 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools:$NDK_HOME"
 source ~/.bashrc
 ```
 
-You can now build and run the Android app:
+You can now build and run the Android app from the [betaflight-configurator](https://github.com/betaflight/betaflight-configurator) repository:
 
-```
+```bash
 cd betaflight-configurator
 npm run android:dev
 ```
 
 To open the project in Android Studio for debugging:
 
-```
+```bash
 npm run android:open
 ```
 
@@ -94,7 +94,7 @@ npm run android:open
 
 The [GitHub CLI](https://cli.github.com/) (`gh`) is the official command-line tool from GitHub. While `git` handles version control, `gh` handles everything on the GitHub side — creating PRs, reviewing diffs, checking CI status, managing issues, and triggering workflows — all without leaving the terminal. It authenticates via OAuth so you don't need to manage personal access tokens manually.
 
-```
+```bash
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 sudo apt update && sudo apt install gh
@@ -103,7 +103,7 @@ gh auth login
 
 Common usage examples:
 
-```
+```bash
 gh pr create --title "fix: description" --body "summary of changes"
 gh pr list
 gh pr checks
