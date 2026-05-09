@@ -62,6 +62,55 @@ This will start a local server for the Betaflight App.
 
 See [Betaflight App Development](https://github.com/betaflight/betaflight-configurator#development) for how to build the Betaflight App.
 
+### Building the Betaflight App for Android
+
+The Betaflight App can also be built for Android using [Capacitor](https://capacitorjs.com/) and the Android SDK. First, install [Android Studio](https://developer.android.com/studio) and then set up the environment variables:
+
+```
+echo '
+# Android development (Betaflight Configurator)
+export JAVA_HOME=/opt/android-studio/jbr
+export ANDROID_HOME="$HOME/Android/Sdk"
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk 2>/dev/null | head -1)"
+export PATH="$PATH:$ANDROID_HOME/platform-tools:$NDK_HOME"
+' >> ~/.bashrc
+source ~/.bashrc
+```
+
+You can now build and run the Android app:
+
+```
+cd betaflight-configurator
+npm run android:dev
+```
+
+To open the project in Android Studio for debugging:
+
+```
+npm run android:open
+```
+
+### Installing GitHub CLI
+
+The [GitHub CLI](https://cli.github.com/) (`gh`) is the official command-line tool from GitHub. While `git` handles version control, `gh` handles everything on the GitHub side — creating PRs, reviewing diffs, checking CI status, managing issues, and triggering workflows — all without leaving the terminal. It authenticates via OAuth so you don't need to manage personal access tokens manually.
+
+```
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update && sudo apt install gh
+gh auth login
+```
+
+Common usage examples:
+
+```
+gh pr create --title "fix: description" --body "summary of changes"
+gh pr list
+gh pr checks
+gh issue list --repo betaflight/betaflight
+gh run list
+```
+
 ### Flashing a Target with the Betaflight App
 
 In most Linux distributions the user won't have access to serial interfaces by default. Flashing a target requires configuration of usb for dfu mode. To add this access right type the following command in a terminal:
@@ -73,11 +122,18 @@ sudo apt-get remove modemmanager
 sudo tee -a /etc/udev/rules.d/46-stdfu-permissions.rules <<EOF
 # DFU (Internal bootloader for STM32, GD32, AT32, APM32 and RP2040 MCUs)
 
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="28e9", ATTRS{idProduct}=="0189", MODE="0664", GROUP="plugdev"
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0664", GROUP="plugdev"
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", MODE="0664", GROUP="plugdev"
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev" # STM32
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="28e9", ATTRS{idProduct}=="0189", MODE="0664", GROUP="plugdev" # GD32
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev" # AT32
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0664", GROUP="plugdev" # RP2040
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", MODE="0664", GROUP="plugdev" # APM32
+
+# WCH CH340/CH341 USB-to-Serial
+
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5523", MODE="0664", GROUP="plugdev" # CH341
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7522", MODE="0664", GROUP="plugdev" # CH340 (variant)
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="0664", GROUP="plugdev" # CH340
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7584", MODE="0664", GROUP="plugdev" # CH340S
 EOF
 ```
 
