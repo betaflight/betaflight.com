@@ -5,7 +5,7 @@ sidebar_label: 2026.6 Release Notes
 
 # 2026.6 Release Notes
 
-Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE), switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, native Android firmware flashing over USB, and a wide range of sensor, protocol, and hardware additions.
+Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE), switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, expanded MAVLink telemetry, native Android firmware flashing over USB, and a wide range of sensor, protocol, and hardware additions.
 
 We have tried to make this release as bug-free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
@@ -136,14 +136,18 @@ The **Virtual Connect** and **Manual Connect** options are now hidden unless **E
 * The **Yaw Low-Pass Filter** switch on the PID Filters page has been restored, alongside on/off switches built directly into each filter slider (Low / Default / High labels)
 * The **PID tab** has been rearranged and the active profile names now sit in the tab header, making it clearer which profile you are editing
 * The `dyn_notch_q` slider tooltip now states clearly that the value shown is divided by 100
+* **RPM filter settings** are now exposed in the PID Filters page, so the harmonic count, Q factor, and minimum frequency can be tweaked directly from the app instead of via CLI
 
 ### 1.17 Other App Changes
 
 * **Transponder tab removed** -- the feature has been retired in the configurator; transponder provider and data are now managed via CLI on the firmware side
 * **Sensor hardware display** separated from GPS protocols in the Sensors tab
+* **Magnetometer calibration tools** added to the Sensors tab, with a guided alignment dialog and a calibration progress workflow that survives component unmounts cleanly
 * **Simplified Master Slider** and **adjCenter/adjScale** added to the Adjustments tab
+* **Relative drag-and-drop on OSD elements** -- elements now move by the actual cursor delta instead of snapping to the drop cell, making fine adjustments much more predictable, including for large elements
 * **OSD time variant** element support
 * **POSHOLD_FAILED OSD warning** element for indicating position-hold failures
+* **Only one UART can be assigned as the Serial RX input** in the Ports tab, preventing an invalid multi-port configuration that previously had to be untangled by hand
 * **sslip.io** support for local network development with Android devices
 * Adaptive launcher icons for Android (light/dark mode support)
 * Updated to Capacitor 8.0.2 for improved Android compatibility
@@ -168,6 +172,11 @@ The **Virtual Connect** and **Manual Connect** options are now hidden unless **E
 * Fixed CLI tab copy-and-paste behaviour
 * Fixed semver comparison for `itermThrottleThreshold` and `antiGravity`
 * Fixed a forced-reflow performance issue in the UI
+* Fixed Adjustments tab tooltip being clipped under the sticky page header
+* Fixed firmware-upgrade-required prompt not using the modern dialog store, so the warning now renders consistently with the rest of the app
+* Fixed OSD alarm ranges and dirty-state tracking so changes are accurately reflected in the Save state
+* Fixed Motors tab ESC sensor handling, dirty-state propagation, and numeric formatting
+* Fixed Receiver tab dirty-state and stale reboot-state handling on refresh
 * Security fix for [CVE-2026-39315](https://github.com/advisories/GHSA-95h2-gj7x-gx9w)
 
 ## 2. The Firmware
@@ -178,7 +187,9 @@ The **Virtual Connect** and **Manual Connect** options are now hidden unless **E
 
 This release lays the **foundation** for autonomous flight in Betaflight. The first version of an autopilot with **GPS waypoint navigation** for both multirotors and fixed-wing aircraft is included, supporting up to 30 waypoints with configurable speed, altitude, and hold behaviour at each.
 
-What's in place today: the flight-mode plumbing, the in-firmware waypoint store, an `AUTOPILOT` mode bit, the navigation maths (waypoint following, spiral landing, multiple yaw modes for multirotors and wings), and the RX-loss policy. The underlying **3D position estimator** that drives it all -- fusing GPS, accelerometer, optical flow, and rangefinder data into a single smooth position fix -- is also new in this release, and is what makes both the autopilot and the GPS-free Position Hold feature possible.
+What's in place today: the flight-mode plumbing, the in-firmware waypoint store, an `AUTOPILOT` mode bit, the navigation maths (waypoint following, spiral landing, multiple yaw modes for multirotors and wings), and the RX-loss policy. A thin **flight-plan guidance executor** sits on top of this, driving the position-navigation outer loop directly from the stored flight plan when `AUTOPILOT` is engaged -- `FLYOVER`, `FLYBY`, and `HOLD` (with duration) waypoint behaviours are wired through, with `LAND`, `ORBIT`, and `FIGURE8` patterns still to come.
+
+The underlying **3D position estimator** that drives it all -- fusing GPS, accelerometer, optical flow, and rangefinder data into a single smooth position fix -- is also new in this release, and is what makes both the autopilot and the GPS-free Position Hold feature possible.
 
 The intention is to keep building on this foundation across the next few releases until the feature is **fully ready for real-world use**.
 
@@ -269,13 +280,13 @@ ESP32 support is experimental. Expect ongoing development and possible breaking 
 
 #### STM32H5
 
-Full support for **STM32H562** and **STM32H563** processors, opening up another modern, mid-range option for flight controller manufacturers.
+Full support for **STM32H562** and **STM32H563** processors, opening up another modern, mid-range option for flight controller manufacturers. ST's **NUCLEO-H563ZI** development board is brought up as a reference target, making it easy for developers to start working with the H5 family.
 
 Working peripherals include: serial ports (UART), SPI, I2C, ADC, USB, SD card via SDIO, DShot motor output, regular PWM output, LED strips, transponder, camera control, on-chip config storage, and hardware memory protection.
 
 #### STM32N6 (Developer Preview)
 
-Initial support for **STM32N657** with most core peripherals working: UART, SPI, I2C, ADC, USB, DShot, PWM output, and SD card via SDIO. Flash storage and execution from external memory is also supported.
+Initial support for **STM32N657** with most core peripherals working: UART, SPI, I2C, ADC, USB, DShot, PWM output, and SD card via SDIO. Flash storage and execution from external memory is also supported. ST's **STM32N6570-DK** development board has been brought up as the reference target, with an **LTDC** display backend, an **SSD1306** I2C OLED backend, and a CLI `dump` command for inspecting on-board state.
 
 :::warning
 STM32N6 is suitable for developers and early adopters only.
@@ -323,7 +334,8 @@ STM32C5 support is a developer preview intended for platform bring-up. The NUCLE
 
 New blackbox / config storage flash chips supported in this release:
 
-* GD25Q16E (16 Mbit), GD25Q128 (128 Mbit), BY25Q64 (64 Mbit), BY25Q128ES (128 Mbit), Zetta ZD25WQ32CE (32 Mbit), Macronix MX25L12845G (128 Mbit) NOR flash
+* GD25Q16E (16 Mbit), GD25Q128 (128 Mbit), BY25Q64 (64 Mbit), BY25Q128ES (128 Mbit), Zetta ZD25WQ32CE (32 Mbit), Macronix MX25L12845G (128 Mbit), XTX XT25F128F (128 Mbit) NOR flash
+* **OctoSPI multichip support** with the **Macronix MX66UW1G45G** (1 Gbit) OctoSPI NOR flash driver -- a much higher-capacity, higher-bandwidth option for blackbox storage on platforms with an OctoSPI bus
 * **MT29F NAND flash** (MT29F1G01ABAFDWB, 1 Gbit) with improved block management -- significantly more blackbox storage capacity
 
 #### Additional Microcontroller Families
@@ -343,12 +355,26 @@ Full SPI-based **ExpressLRS V4** protocol support with automatic version detecti
 
 CRSF telemetry has been expanded to include full-resolution motion data (accelerometer and gyroscope), barometric altitude and vertical speed, magnetic heading, and 3-axis GPS velocity. The result is much richer real-time data on the screen of CRSF-capable transmitters.
 
+A dedicated **CRSF GPS Time message (0x03)** is also now emitted, allowing CRSF transmitters and downstream tools to align logs and overlays with precise GPS time.
+
+#### MAVLink Telemetry -- QGroundControl Compatibility
+
+The MAVLink telemetry path has been expanded with the specific goal of making Betaflight aircraft behave correctly in **[QGroundControl](https://qgroundcontrol.com/)** -- the open-source MAVLink ground control station. Previous releases sent enough MAVLink to be detected by a GCS, but the heading arrow misbehaved, there was no home position, no time sync, no human-readable arming feedback, and no way for QGC to identify or unlock the vehicle. 2026.6 closes those gaps:
+
+* **Correct heading arrow** -- `GLOBAL_POSITION_INT.hdg` is now sent in centidegrees as required by the MAVLink common dialect, fixing a 100x under-scale that previously confined QGC's heading arrow to the first ~3.6 degrees of compass
+* **Home position on the map** -- `HOME_POSITION` is sent alongside `GPS_GLOBAL_ORIGIN` whenever a home fix is set, so QGC can draw the home marker with lat/lon/AMSL altitude
+* **Time sync** -- `SYSTEM_TIME` is sent at the extended-status stream rate, populated from RTC when available so QGC can line wall time up with the aircraft
+* **Arming feedback** -- `STATUSTEXT` is emitted whenever the arming-disable flags change, giving QGC a human-readable reason on screen whenever the aircraft refuses to arm
+
+To enable two-way conversation with QGC, the telemetry port now opens in `MODE_RXTX` with a MAVLink **receive dispatcher** -- the groundwork for GCS-initiated traffic in later releases. Three handshake responders ship today so QGC's standard connection sequence completes cleanly: **HEARTBEAT** (stub), **PING** (echoes time/seq back), and **TIMESYNC** (replies with the firmware's time in nanoseconds). The MAVLink **vehicle-setup unlock** flow and `custom_mode` discovery are also wired up so QGC can identify the vehicle and unlock it for configuration. RX drain is bounded per call so a flooded link cannot starve the telemetry task.
+
 #### MSP Enhancements
 
 * **Read and write any CLI setting over MSP**: the configurator app (and any third-party tool) can now read and change any CLI setting by name, without needing to open an interactive CLI session. This is what enables the new direct-restore in the Backups tab
 * **Setting metadata**: tools can also query a setting's type, allowed range, options, and default
 * **Attitude as quaternions**: aircraft attitude is now also available in quaternion form for 3D and external visualisation tools
 * **OSD custom text**: external apps can push up to four custom messages onto the OSD
+* **Additional RPM fields**: motor RPM telemetry is now exposed over MSP with extra per-motor fields for richer external monitoring
 
 #### Strengthened MSP/CRSF Packet Validation
 
@@ -358,6 +384,8 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 
 * **Servo channel forwarding**: any individual servo can be set to follow a chosen RC channel directly, bypassing the servo mixer -- handy for plain pass-through outputs like flaps or gimbal control. Configure per-servo with `set servo_<N>_forward_from_channel = <1-16>` (0 = disabled)
 * **Simplified Master Slider**: a new in-flight adjustment that scales all PID values together from a single switch or knob, so you can tune all axes up or down at once
+* **Absolute control removed**: the experimental Absolute Control feature and its `abs_control_*` settings have been retired -- the iterm-relax / iterm-rotation path is the long-term direction for yaw/roll handling
+* **OSD VTX status on non-factory bands**: when an MSP-controlled VTX (e.g. HDZERO) is on a non-factory band, the OSD now displays its current band/channel/power status correctly; SmartAudio behaviour is unchanged
 * **Airmode response**: the small filter on airmode has been removed, giving a more direct feel
 * **Faster maths**: sine and cosine calculations have been sped up, freeing a little headroom in the flight loop
 
@@ -397,6 +425,10 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * **Post-flight statistics** max current now displayed with decimal precision
 * **escprog `ki 255` (KISSALL)** no longer broken on DShot builds
 * **Altitude** is now displayed in the sensors tab even when not armed
+* **QMC5883P magnetometer** initialisation fixed so the sensor is detected and read correctly
+* **Failsafe procedure** is now unconditionally clamped to the valid range on load, preventing an invalid stored value from putting the aircraft in an undefined failsafe state
+* **MSP serial processing** race condition fixed where an MSP frame arriving exactly as the CLI was being entered could leave the port in an inconsistent state
+* **busBusy()** now NULL-checks `dev->bus`, removing a crash path when a driver queries a partially initialised bus device
 
 ## Thank You
 
