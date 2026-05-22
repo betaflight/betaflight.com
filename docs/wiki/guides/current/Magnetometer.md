@@ -159,7 +159,7 @@ When connected by i2C, the following CLI settings usually work:
 If the mag is not detected:
 
 - it could be that the FC is using i2c device 2, not device 1, for external i2c mag or baro chips. Check the data sheet for the FC. You can try using `set mag_i2c_device = 2` to see if it will connect.
-- the IST8310 may not be connected on its default address 14. If it is not detected with `set mag_i2c_address = 0`, try `mag_i2c_address` values 12, 13 or 15..
+- the IST8310 may not be connected on its default address 14. If it is not detected with `set mag_i2c_address = 0`, try `mag_i2c_address` values 12, 13 or 15.
 
 When the firmware is built with Mag support, the Accelerometer enabled, and a supported Magnetometer is wired up properly, Mag can be enabled in the Configurator's System Configuration tab, and saved. From that point:
 
