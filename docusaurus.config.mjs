@@ -175,6 +175,11 @@ const config = {
             position: 'left',
           },
           {
+            to: '/stats',
+            label: 'Stats',
+            position: 'left',
+          },
+          {
             type: 'docSidebar',
             sidebarId: 'sponsors',
             position: 'left',
