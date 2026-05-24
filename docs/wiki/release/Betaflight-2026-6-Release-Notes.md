@@ -5,7 +5,7 @@ sidebar_label: 2026.6 Release Notes
 
 # 2026.6 Release Notes
 
-Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE), switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, expanded MAVLink telemetry, native Android firmware flashing over USB, and a wide range of sensor, protocol, and hardware additions.
+Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE) and STM32H757 dual-core MCUs, switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, expanded MAVLink telemetry for QGroundControl compatibility, native Android firmware flashing over USB, and a wide range of sensor, protocol, and hardware additions.
 
 We have tried to make this release as bug-free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
@@ -67,7 +67,7 @@ The top header bar has been retired; connection status, firmware/virtual options
 
 ### 1.4 Flight Planning UI (First Steps)
 
-This release introduces the **first version** of a new **Flight Plan** tab -- the user-facing groundwork for autonomous missions in Betaflight. You can lay out waypoints visually on an interactive map, edit and reorder them, view their elevation profile, and save or load plans directly from the flight controller.
+This release introduces the **first version** of a new **Flight Plan** tab -- the user-facing groundwork for autonomous missions in Betaflight. You can lay out waypoints visually on an interactive map, edit and reorder them, view their elevation profile, and save or load plans directly from the flight controller. Alongside basic position waypoints, the editor now supports **TAKEOFF** waypoints and **modifier** waypoint types so that take-off behaviour and per-segment modifiers can be expressed directly in the plan.
 
 Think of this as the **foundation**: the tab is in place, the workflow is wired through, and we'll be steadily filling in functionality release after release.
 
@@ -83,7 +83,7 @@ The app now supports switching between **multiple battery profiles** configured 
 
 A new **Autotune** tab provides a file-based workflow for analysing flight-controller tuning from a blackbox log. It imports a log containing chirp sweep data, computes the closed-loop frequency response using Welch's method, and recommends **Simplified Tuning** slider values based on bandwidth, phase margin, resonant peak, and noise floor.
 
-The tab works without a flight controller connected. When connected, the **Apply Gains** button writes the recommended simplified-tuning values back via MSP. Segmentation of chirp data is driven by the `BOXCHIRP` flight-mode bit.
+The tab works without a flight controller connected. When connected, the **Apply Gains** button writes the recommended simplified-tuning values back via MSP. Segmentation of chirp data is driven by the `BOXCHIRP` flight-mode bit. Autotune is now **gated behind Expert Mode** in the Options tab and lives in the sidebar alongside Blackbox, keeping the standard sidebar uncluttered for everyday users.
 
 ### 1.7 User Accounts, Backups, and Cloud Sync
 
@@ -102,6 +102,8 @@ A new **Preflight** tab displays real-time conditions critical for safe flying: 
 ### 1.10 Board Qualification
 
 The Firmware Flasher now shows **board qualification status** -- whether a target is officially verified (Verified Partner), community-supported (Vendor/Community), or legacy -- helping you understand support levels before flashing.
+
+The Flasher has also been restructured: the previous four sub-tabs are consolidated into just two -- **Board & Build** (board selection plus build configuration) and **Flash** (release/build info plus the flashing terminal) -- with a tab-style layout, sidebar icons, and collapsible info boxes. Cloud-build and flashing status are surfaced with a persistent **progress ring**, and the flash outcome stays visible after completion so you can review results without rerunning the flow.
 
 ### 1.11 Responsive and Mobile Improvements
 
@@ -141,13 +143,18 @@ The **Virtual Connect** and **Manual Connect** options are now hidden unless **E
 ### 1.17 Other App Changes
 
 * **Transponder tab removed** -- the feature has been retired in the configurator; transponder provider and data are now managed via CLI on the firmware side
+* **Firefox 151+ supported** -- now that Firefox 151 ships WebSerial, the Chromium-only browser check has been removed and the app runs natively on Firefox
+* **CH340 USB-to-Serial adapters** are now recognised by the connection list, including CH340 variants, CH341, and CH340S; the Android USB filter includes the WCH vendor entries so adapters work on mobile as well
 * **Sensor hardware display** separated from GPS protocols in the Sensors tab
-* **Magnetometer calibration tools** added to the Sensors tab, with a guided alignment dialog and a calibration progress workflow that survives component unmounts cleanly
+* **Magnetometer calibration tools** added to the Sensors tab, with a guided alignment dialog and a calibration progress workflow that survives component unmounts cleanly; the compass cardinal markers in the mag sphere view have been enlarged for clarity
+* **Sidebar and UserSession redesign** -- the log moves into its own modal, user-session UI is rebuilt on Nuxt UI, and the sidebar restores click-outside dismissal and improves mobile/accessibility behaviour
+* **Absolute Control hidden** in the PID tab when connected to firmware on MSP API >= 1.48 (which no longer supports the feature)
 * **Simplified Master Slider** and **adjCenter/adjScale** added to the Adjustments tab
 * **Relative drag-and-drop on OSD elements** -- elements now move by the actual cursor delta instead of snapping to the drop cell, making fine adjustments much more predictable, including for large elements
 * **OSD time variant** element support
 * **POSHOLD_FAILED OSD warning** element for indicating position-hold failures
 * **Only one UART can be assigned as the Serial RX input** in the Ports tab, preventing an invalid multi-port configuration that previously had to be untangled by hand
+* **Icon set migrated** from Font Awesome to **Lucide** (via `UIcon`), removing the Font Awesome dependency entirely
 * **sslip.io** support for local network development with Android devices
 * Adaptive launcher icons for Android (light/dark mode support)
 * Updated to Capacitor 8.0.2 for improved Android compatibility
@@ -177,6 +184,12 @@ The **Virtual Connect** and **Manual Connect** options are now hidden unless **E
 * Fixed OSD alarm ranges and dirty-state tracking so changes are accurately reflected in the Save state
 * Fixed Motors tab ESC sensor handling, dirty-state propagation, and numeric formatting
 * Fixed Receiver tab dirty-state and stale reboot-state handling on refresh
+* Fixed DFU flashing crash when flashing without a full chip erase
+* Fixed Options-dialog `USelect` dropdowns being unclickable, and resynced theme/expert/colour state when the dialog opens so it no longer shows stale values
+* Fixed the Presets tab sticky filter bar overlaying the Options dialog
+* Fixed the Failsafe tab not loading mode data on first visit, and replaced raw-HTML badges with `UBadge`
+* Fixed the WebSerial port not being closed on page unload, which had been causing replug-required errors on reload
+* Fixed CLI paste slowdown, forced reflow on large pastes, and unreliable autoscroll
 * Security fix for [CVE-2026-39315](https://github.com/advisories/GHSA-95h2-gj7x-gx9w)
 
 ## 2. The Firmware
@@ -201,6 +214,7 @@ Autopilot is **experimental and only tested in simulation (SITL)**. It is **not 
 * Assign the `AUTOPILOT` flight mode to a switch in the Modes tab
 * Use the `waypoint` CLI command to add, edit, or dump waypoints
 * Configure behaviour with `set ap_hover_throttle`, `set ap_landing_altitude_m`, velocity PID terms, and geofence limits
+* Tune approach/stop behaviour with the new `ap_stop_threshold` setting -- the autopilot now brakes more cleanly into the next waypoint, and the legacy `ap_position_a` term has been removed in favour of the new braking math
 * Set an RX-loss policy (disable autopilot, continue the mission, or land)
 
 The **Upixel UP-T1** rangefinder is now handled directly by the optical-flow code path, removing the need for a separate driver.
@@ -286,7 +300,9 @@ Working peripherals include: serial ports (UART), SPI, I2C, ADC, USB, SD card vi
 
 #### STM32N6 (Developer Preview)
 
-Initial support for **STM32N657** with most core peripherals working: UART, SPI, I2C, ADC, USB, DShot, PWM output, and SD card via SDIO. Flash storage and execution from external memory is also supported. ST's **STM32N6570-DK** development board has been brought up as the reference target, with an **LTDC** display backend, an **SSD1306** I2C OLED backend, and a CLI `dump` command for inspecting on-board state.
+Initial support for **STM32N657** with most core peripherals working: UART, SPI, I2C, ADC, USB, DShot, PWM output, and SD card via SDIO. Flash storage and execution from external memory is also supported. ST's **STM32N6570-DK** development board has been brought up as the reference target, with an **LTDC** display backend, an **SSD1306** I2C OLED backend, and a CLI `dump` command for inspecting on-board state. A second N6 board, **OPENN657V1**, now runs Betaflight execute-in-place from XSPI flash with persistent on-chip configuration (eeprom save/load, VCP enumeration, and reboot all working end-to-end).
+
+Follow-up N6 work in this release also corrects a large number of pin/AF table entries that had been carried over verbatim from H7 -- the timer, SPI, I2C, UART, and ADC tables are now audited against ST's N6 datasheet, RIFSC/GPDMA secure-alias paths have been fixed, and **DShot motor output** is now functional on N6.
 
 :::warning
 STM32N6 is suitable for developers and early adopters only.
@@ -342,6 +358,7 @@ New blackbox / config storage flash chips supported in this release:
 
 Beyond the new STM32 platforms above, manufacturers also have access to:
 
+* **STM32H757** -- a new **dual-core** member of the H7 family (Cortex-M7 + Cortex-M4); Betaflight runs on the M7 core, while the M4 is only released from reset if a valid M4 image is flashed at `0x08180000` (otherwise it stays halted). USB clock setup races have also been tightened so OTG enumerates reliably on H757 boards
 * **GD32H7** -- GigaDevice's H7 family is now supported, broadening the range of high-performance flight controllers that can run Betaflight
 * **APM32F4** (F425/F427) -- additional APM32 variants alongside existing F4 support, giving manufacturers more sourcing flexibility
 
@@ -350,6 +367,8 @@ Beyond the new STM32 platforms above, manufacturers also have access to:
 #### ExpressLRS 4.0 SPI Support
 
 Full SPI-based **ExpressLRS V4** protocol support with automatic version detection (V3/V4), updated channel mapping, and telemetry nonce handling. Binding and FHSS hop tables are compatible across versions.
+
+ELRS V3 is now the **default protocol** in the build system -- targets get V3 with no extra flags. V4 is enabled by opting in with `USE_ELRSV4`, which lets manufacturers ship V3-only firmware images that fit on smaller targets without dragging in the V4 code path.
 
 #### CRSF AHRS Telemetry
 
@@ -386,6 +405,7 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * **Simplified Master Slider**: a new in-flight adjustment that scales all PID values together from a single switch or knob, so you can tune all axes up or down at once
 * **Absolute control removed**: the experimental Absolute Control feature and its `abs_control_*` settings have been retired -- the iterm-relax / iterm-rotation path is the long-term direction for yaw/roll handling
 * **OSD VTX status on non-factory bands**: when an MSP-controlled VTX (e.g. HDZERO) is on a non-factory band, the OSD now displays its current band/channel/power status correctly; SmartAudio behaviour is unchanged
+* **LED strip colour by VTX frequency**: a new LED-strip overlay colours the strip according to the current VTX channel -- white below R1, sweeping red through magenta up to R8, and off when no channel is set -- making it easy to identify the VTX channel at a glance
 * **Airmode response**: the small filter on airmode has been removed, giving a more direct feel
 * **Faster maths**: sine and cosine calculations have been sped up, freeing a little headroom in the flight loop
 
