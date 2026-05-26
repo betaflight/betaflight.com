@@ -270,7 +270,7 @@ If any of these tests fail, do not attempt to fly. Return to the relevant config
 
 With everything configured and tested, do a final check that all settings look correct, then do a quick hover test to confirm everything works as expected.
 
-If something is not working, review this guide for common mistakes. You can also check the [troubleshooting page](/docs/wiki/getting-started/troubleshooting) for additional solutions. If you are still stuck, ask in the [Betaflight Discord](https://discord.betaflight.com/invite).
+If something is not working, review this guide for common mistakes. You can also check the [troubleshooting page](/docs/wiki/getting-started/troubleshooting) for additional solutions. If you are still stuck, ask in the [Betaflight Discord](https://discord.gg/betaflight).
 
 ## Advanced Topics
 

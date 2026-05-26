@@ -277,7 +277,7 @@ const config = {
             items: [
               {
                 label: 'Discord',
-                href: 'https://discord.betaflight.com/invite',
+                href: 'https://discord.gg/betaflight',
                 icon: 'discord',
               },
               {

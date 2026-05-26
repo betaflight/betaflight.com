@@ -29,5 +29,5 @@ If something is missing, please be patient. It will come!
 
 :::note
 To contribute to this resource, or provide feedback, please join the `#documentation` channel on our
-[Discord server](https://discord.betaflight.com/invite) for more info.
+[Discord server](https://discord.gg/betaflight) for more info.
 :::

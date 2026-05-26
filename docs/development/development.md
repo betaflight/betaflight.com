@@ -9,13 +9,13 @@ sidebar_label: Development
 
 :::caution Work in progress
 
-This site is still new and is very much a work in progress. Pages going to be added, updated and improved pretty every day in the weeks to come. So if you're missing something, please be patient. It will come! You can also help us out, check out the `#documentation` channel on the [Discord server](https://discord.betaflight.com/invite) for more info.
+This site is still new and is very much a work in progress. Pages going to be added, updated and improved pretty every day in the weeks to come. So if you're missing something, please be patient. It will come! You can also help us out, check out the `#documentation` channel on the [Discord server](https://discord.gg/betaflight) for more info.
 
 :::
 
 ## Contributing
 
-Contributions are welcome and encouraged. The best place to start is the [Discord server](https://discord.betaflight.com/invite), specifically in the [**Development section**](https://discord.com/channels/868013470023548938/1073533061330915328). You can contribute in many ways:
+Contributions are welcome and encouraged. The best place to start is the [Discord server](https://discord.gg/betaflight), specifically in the [**Development section**](https://discord.com/channels/868013470023548938/1073533061330915328). You can contribute in many ways:
 
 - Implementation of a new feature in the firmware or in the app (see [below](#development));
 - Documentation updates and corrections
@@ -76,7 +76,7 @@ We want to make Betaflight accessible for pilots who are not fluent in English, 
 We have got a team of volunteer translators who do this work, but additional translators are always welcome to share the workload, and we are keen to add additional languages. If you would like to help us with translations, you have got the following options:
 
 - If you would like to help by suggesting some updates or improvements to translations in a language you are familiar with, head to [crowdin](https://crowdin.com/project/betaflight-configurator) and add your suggested translations there
-- If you would like to start working on the translation for a new language, or take on responsibility for proof-reading the translation for a language you are very familiar with, please head over to the Betaflight [Discord server](https://discord.betaflight.com/invite), and join the translation channel in the [Development section](https://discord.com/channels/868013470023548938/1073533061330915328) - the people in there can help you to get a new language added, or set you up as a proof reader
+- If you would like to start working on the translation for a new language, or take on responsibility for proof-reading the translation for a language you are very familiar with, please head over to the Betaflight [Discord server](https://discord.gg/betaflight), and join the translation channel in the [Development section](https://discord.com/channels/868013470023548938/1073533061330915328) - the people in there can help you to get a new language added, or set you up as a proof reader
 
 ## General Principles
 
