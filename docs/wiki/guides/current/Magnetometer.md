@@ -428,6 +428,155 @@ For a well-calibrated Mag, the highest and lowest values, for any individual axi
 
 Using the sensors tab to check max and min values for each axis can also validate the accuracy of the existing calibration when flying in a new location. If max and min are very similar, when the other two axes are zero, you don't need to recalibrate.
 
+## Client-side Calibration (Firmware 2025.12+) {#client-calibration}
+
+:::note
+The client-side calibration methods described in this section require Betaflight firmware 2025.12 or later (MSP API >= 1.47). The firmware provides CLI-over-MSP support, which the configurator uses to read and write `mag_calibration` offsets. On older firmware, only the firmware-based calibration method (described above) is available.
+:::
+
+Starting with Configurator 2026.6, magnetometer calibration can be performed _client-side_ — meaning the configurator itself collects raw magnetometer samples, computes calibration offsets using a least-squares sphere fit algorithm, and writes the result to the flight controller via the CLI `set mag_calibration` command. This is fundamentally different from the firmware-based calibration (described above), where the flight controller's firmware collects samples and computes offsets internally. Client-side calibration provides real-time 3D sphere visualization, quality assessment, and full control over when to accept or discard the result.
+
+All client-side calibration features are accessed from the **Magnetometer** section of the [Sensors Tab](/docs/wiki/app/sensors-tab).
+
+### Magnetic Declination Auto-detection
+
+Before calibrating, you can auto-detect the local magnetic declination, inclination, and field strength by clicking the **Detect** button next to the Magnetic Declination field. This fetches values from online geomagnetic models based on your GPS or browser location. The declination is written to the `mag_declination` CLI parameter. Inclination and field strength are displayed for reference and used by the 3D visualization to show the local magnetic field direction.
+
+### Alignment Auto-detection
+
+The **Detect** button next to the Magnetometer Alignment dropdown automatically determines the mounting orientation of the magnetometer. It collects samples while you slowly rotate the quad, analyzes the sensor data, and proposes the most likely alignment (e.g. CW90, CW180FLIP). A confidence level is shown. You can apply or discard the result.
+
+This replaces the manual process of testing each axis individually against the magnetic field direction.
+
+### Cal Values Editor
+
+Three editable number fields show the current `mag_calibration` offsets (X, Y, Z). You can manually enter values and click **Save Values** to write them to the flight controller. These values are stored via the CLI `set mag_calibration` command, which is separate from the global "Save and Reboot" action.
+
+### Check Mode {#check-mode}
+
+Click the **Check** button (eye icon) to enter Check mode. This opens the 3D sphere visualization and begins plotting live magnetometer readings as dots, using the current calibration values. Check mode does not trigger calibration and does not modify any values.
+
+**What the 3D visualization shows:**
+
+- **Compass ring** with cardinal labels (N, S, E, W) on the horizontal plane
+- **Axis lines**: red (N-S), green (E-W), and blue (up-down), drawn through the origin to the edges of the celestial sphere
+- **Orange field reference arrow** showing the direction and inclination of the local magnetic field, with small "N" and "S" labels at the tips and the inclination angle displayed
+- **Quad icon** showing the current attitude of the craft, with green front props and red rear props
+- **Body-frame axis vectors** (red X, green Y, blue Z) attached to the quad icon, showing the live field strength measured on each axis. The vector exiting the positive direction of each axis is bold; the negative direction is thin
+- **White nose-direction line** extending from the quad's nose to the white live-sample dot
+- **White dot** at the end of the quad's X axis at a distance equal to the total field strength, scaled to fit within the celestial sphere
+- **Accumulated sample dots** forming a sphere as you rotate the quad, color-graded from blue (oldest) to red (newest)
+- **Green dot** showing the current firmware calibration offset position
+- **Grey dot** showing the computed sphere center (when enough samples exist for a sphere fit)
+
+**How to use Check mode:**
+
+1. Open Check mode and place the quad flat on the bench
+2. Point the nose towards a known compass direction (use a phone compass set to True North)
+3. Confirm that dots appear at the expected location in the 3D display -- if the nose points North, dots should appear near the "N" label
+4. Slowly rotate the quad in all orientations to build up a sphere of dots
+5. A well-calibrated magnetometer produces dots that form a sphere centered on the origin (0,0,0)
+6. If the sphere is visibly offset from center, recalibration is needed
+7. If dots appear at completely wrong locations, the magnetometer orientation is likely incorrect
+
+Check mode is also useful for detecting magnetic interference -- if dots jump or scatter when motors are turned slowly, the magnetometer is too close to motor magnetic fields.
+
+### Client Cal (Guided) {#guided-calibration}
+
+The guided calibration mode walks you through 6 orientations with auto-advancing prompts every 10 seconds over a 60-second window. This is the recommended calibration method for most users.
+
+**To start:** Click **Calibrate**, or select **Client Cal (Guided)** from the dropdown.
+
+**The 6 orientation steps:**
+
+| Step | Prompt                       | Purpose                   |
+| ---- | ---------------------------- | ------------------------- |
+| 1/6  | Hold flat, yaw 360°          | Equatorial ring           |
+| 2/6  | Flip inverted, yaw 360°      | Opposite equatorial ring  |
+| 3/6  | Nose straight up, yaw 360°   | North polar region        |
+| 4/6  | Nose straight down, yaw 360° | South polar region        |
+| 5/6  | Left side up, yaw 360°       | Mid-latitude fill (left)  |
+| 6/6  | Right side up, yaw 360°      | Mid-latitude fill (right) |
+
+**During calibration:**
+
+- A countdown timer shows the remaining time
+- Prompts auto-advance every 10 seconds -- do not pause between steps, keep the quad moving continuously
+- The 3D visualization shows accumulated dots forming a sphere
+- The sphere fit runs every 10 samples, updating the computed offsets and quality score
+- Quality is displayed as Good, Fair, or Poor with a percentage score combining fit accuracy (60%) and angular coverage uniformity (40%)
+
+**After 60 seconds:**
+
+- Data collection stops and "Data collection complete -- review and save" is shown
+- Review the sphere visualization -- look for good coverage with no large gaps
+- Review the computed offsets and quality score
+- Click **Save Calibration** to write the offsets to the flight controller
+- Click **Cancel** to discard the result
+
+**Tips for good guided calibration:**
+
+- Rotate smoothly and continuously -- do not stop between orientations
+- During each "yaw 360°" step, complete at least one full rotation
+- Keep well away from metallic objects and motor magnets
+- If using USB power, use a long cable or a portable USB battery
+
+### Client Cal (Free) {#free-calibration}
+
+Free calibration is similar to guided calibration but without timed prompts. You rotate the quad freely in all directions at your own pace until coverage is sufficient.
+
+**To start:** Select **Client Cal (Free)** from the Calibrate dropdown.
+
+**How to use:**
+
+1. Pick up the quad and begin rotating it in all directions
+2. Watch the 3D visualization -- aim to fill the sphere uniformly with dots
+3. The quality indicator updates in real time as coverage improves
+4. Continue until the quality reaches "Good" and there are no visible gaps in the sphere
+5. Click **Save Calibration** to accept, or **Cancel** to discard
+
+Free mode has no time limit. You can take as long as needed to achieve good coverage. The **Clear** button resets collected samples if you want to start over without leaving calibration mode.
+
+**When to use Free mode instead of Guided:**
+
+- When you are experienced and can judge coverage visually
+- When you want to spend extra time filling in specific gaps
+- When the quad's mounting makes certain guided orientations difficult
+
+### Firmware Cal (Legacy) {#firmware-calibration-legacy}
+
+The legacy firmware calibration mode is the same as the firmware-based calibration described in the [Calibration Initiation](#calibration-initiation) section above. It triggers the firmware's built-in 30-second calibration via `MSP_MAG_CALIBRATION`. The firmware computes and auto-saves the offsets.
+
+When initiated from the Sensors tab, the 3D visualization is shown alongside the firmware's 30-second countdown, so you can see the sphere of dots forming in real time. However, the offsets are computed and saved by the firmware, not the configurator.
+
+This mode is provided for backwards compatibility. The client-side methods (Guided or Free) are recommended because they give you visual feedback, quality assessment, and the ability to review before saving.
+
+### Verifying Calibration with Check Mode
+
+After calibrating with any method, use [Check mode](#check-mode) to verify the result:
+
+1. Click **Check** to enter Check mode with the new calibration values active
+2. Slowly rotate the quad in all directions
+3. The dots should form a sphere centered on the origin
+4. The green dot (firmware offset) should be close to the origin
+5. If the sphere is noticeably off-center, the calibration may need to be repeated with better angular coverage
+
+You can also manually adjust the Cal Values fields and click **Save Values**, then re-enter Check mode to see the effect of the change.
+
+### Comparison of Calibration Methods
+
+| Feature                     | Firmware Cal (Legacy) | Client Cal (Guided)         | Client Cal (Free)           |
+| --------------------------- | --------------------- | --------------------------- | --------------------------- |
+| Firmware version            | All                   | 2025.12+                    | 2025.12+                    |
+| Duration                    | 30s (fixed)           | 60s (countdown)             | Unlimited                   |
+| Orientation guidance        | None                  | 6 auto-advancing prompts    | None                        |
+| 3D visualization            | Yes (view only)       | Yes                         | Yes                         |
+| Who computes offsets        | Firmware              | Configurator (sphere fit)   | Configurator (sphere fit)   |
+| Auto-saves                  | Yes                   | No (manual Save)            | No (manual Save)            |
+| Quality feedback            | None                  | Good/Fair/Poor + percentage | Good/Fair/Poor + percentage |
+| Can review before saving    | No                    | Yes                         | Yes                         |
+| Requires physical tap/shake | Yes (15s window)      | No                          | No                          |
+
 ## Where is heading information displayed?
 
 Heading information is provided to the quad by the GPS unit (course over ground), the IMU (gyro information while turning quickly), and the Mag unit. The IMU code uses 'sensor fusion' methods to integrate the available data to a final 'attitude' or 'heading' value for the quad.
