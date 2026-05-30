@@ -1,5 +1,5 @@
 ---
-sidebar_position: 18
+sidebar_position: 1.5
 ---
 
 # Sensors Tab
