@@ -431,10 +431,10 @@ Using the sensors tab to check max and min values for each axis can also validat
 ## Client-side Calibration (Firmware 2025.12+) {#client-calibration}
 
 :::note
-The client-side calibration methods described in this section require Betaflight firmware 2025.12 or later (MSP API >= 1.47) and Betaflight Configurator 2026.6 or later. On older firmware, only the firmware-based calibration method (described above) is available.
+The client-side calibration methods described in this section require Betaflight firmware 2025.12 or later (MSP API >= 1.47). The firmware provides CLI-over-MSP support, which the configurator uses to read and write `mag_calibration` offsets. On older firmware, only the firmware-based calibration method (described above) is available.
 :::
 
-Betaflight Configurator 2026.6 introduces client-side magnetometer calibration with a real-time 3D sphere visualization. Instead of relying on the firmware's built-in calibration algorithm, the configurator collects raw magnetometer samples, performs a sphere fit, and writes the resulting offsets via CLI. This gives you visual feedback during calibration and full control over when to accept or discard the result.
+Starting with Configurator 2026.6, magnetometer calibration can be performed _client-side_ — meaning the configurator itself collects raw magnetometer samples, computes calibration offsets using a least-squares sphere fit algorithm, and writes the result to the flight controller via the CLI `set mag_calibration` command. This is fundamentally different from the firmware-based calibration (described above), where the flight controller's firmware collects samples and computes offsets internally. Client-side calibration provides real-time 3D sphere visualization, quality assessment, and full control over when to accept or discard the result.
 
 All client-side calibration features are accessed from the **Magnetometer** section of the [Sensors Tab](/docs/wiki/app/sensors-tab).
 
