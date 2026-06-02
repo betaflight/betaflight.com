@@ -7,13 +7,15 @@ There are various modes that can be toggled on or off. Modes can be enabled/disa
 | 0   | ARM                      | Enables motors and flight stabilisation                                              |
 | 1   | ANGLE                    | Legacy auto-level flight mode                                                        |
 | 2   | HORIZON                  | Auto-level flight mode                                                               |
+| 3   | ALTHOLD                  | Altitude hold mode (requires accelerometer)                                          |
 | 4   | ANTI GRAVITY             | Prevents dips and rolls on fast throttle changes                                     |
 | 5   | MAG                      | Heading lock                                                                         |
 | 6   | HEADFREE                 | Head Free - When enabled yaw has no effect on pitch/roll inputs                      |
 | 7   | HEADADJ                  | Heading Adjust - Sets a new yaw origin for HEADFREE mode                             |
 | 8   | CAMSTAB                  | Camera Stabilisation                                                                 |
+| 11  | POS HOLD                 | Position hold mode (requires accelerometer and GPS)                                  |
 | 12  | PASSTHRU                 | Pass roll, yaw, and pitch directly from rx to servos in airplane mix                 |
-| 13  | BEEPERON                 | Enable beeping - useful for locating a crashed aircraft                              |
+| 13  | BEEPER ON                | Enable beeping - useful for locating a crashed aircraft                              |
 | 15  | LEDLOW                   | Switch off LED_STRIP output                                                          |
 | 17  | CALIB                    | Start in-flight calibration                                                          |
 | 19  | OSD                      | Enable/Disable On-Screen-Display (OSD)                                               |
@@ -24,14 +26,14 @@ There are various modes that can be toggled on or off. Modes can be enabled/disa
 | 26  | BLACKBOX                 | Enable BlackBox logging                                                              |
 | 27  | FAILSAFE                 | Enter failsafe stage 2 manually                                                      |
 | 28  | AIRMODE                  | Alternative mixer and additional PID logic for more stable copter                    |
-| 29  | 3D                       | Enable 3D mode                                                                       |
+| 29  | 3D MODE                  | Enable 3D mode                                                                       |
 | 30  | FPV ANGLE MIX            | Apply yaw rotation relative to a FPV camera mounted at a preset angle                |
 | 31  | BLACKBOX ERASE           | Erase the contents of the onboard flash log chip (takes > 30 s)                      |
 | 32  | CAMERA CONTROL 1         | Control function 1 of the onboard camera (if supported)                              |
 | 33  | CAMERA CONTROL 2         | Control function 2 of the onboard camera (if supported)                              |
 | 34  | CAMERA CONTROL 3         | Control function 3 of the onboard camera (if supported)                              |
 | 35  | FLIP OVER AFTER CRASH    | Reverse the motors to flip over an upside down craft after a crash (DShot required)  |
-| 36  | BOXPREARM                | When arming, wait for this switch to be activated before actually arming             |
+| 36  | PREARM                   | When arming, wait for this switch to be activated before actually arming             |
 | 37  | BEEP GPS SATELLITE COUNT | Use a number of beeps to indicate the number of GPS satellites found                 |
 | 39  | VTX PIT MODE             | Switch the VTX into pit mode (low output power, if supported)                        |
 | 40  | USER1                    | User defined switch 1. Intended to be used to control an arbitrary output with PINIO |
@@ -49,6 +51,8 @@ There are various modes that can be toggled on or off. Modes can be enabled/disa
 | 52  | BEEPER MUTE              | Disable/enable beeper including warning, status and BEEPER mode                      |
 | 53  | READY                    | Show 'READY' in the OSD using a switch                                               |
 | 54  | LAP TIMER RESET          | Reset lap timer                                                                      |
+| 55  | CHIRP                    | Enable chirp mode                                                                    |
+| 56  | AUTOPILOT                | Enable autopilot mode (requires GPS)                                                 |
 
 ## Auto-leveled flight
 
