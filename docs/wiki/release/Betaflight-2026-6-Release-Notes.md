@@ -5,7 +5,7 @@ sidebar_label: 2026.6 Release Notes
 
 # 2026.6 Release Notes
 
-Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE) and STM32H757 dual-core MCUs, switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, expanded MAVLink telemetry for QGroundControl compatibility, native Android firmware flashing over USB, a brand-new **Betaflight Host** companion bridge that lets iOS and other Wi-Fi-only devices connect to a flight controller wirelessly, and a wide range of sensor, protocol, and hardware additions.
+Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE) and STM32H757 dual-core MCUs, switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, expanded MAVLink telemetry for QGroundControl compatibility, native Android firmware flashing over USB, a brand-new **Betaflight Bridge** companion that lets iOS and other Wi-Fi-only devices connect to a flight controller wirelessly, and a wide range of sensor, protocol, and hardware additions.
 
 We have tried to make this release as bug-free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
@@ -450,23 +450,23 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * **MSP serial processing** race condition fixed where an MSP frame arriving exactly as the CLI was being entered could leave the port in an inconsistent state
 * **busBusy()** now NULL-checks `dev->bus`, removing a crash path when a driver queries a partially initialised bus device
 
-## 3. Betaflight Host (Experimental)
+## 3. Betaflight Bridge (Experimental)
 
-Betaflight 2026.6 introduces **[Betaflight Host](https://github.com/betaflight/betaflight-host)**, a brand-new companion product that turns an inexpensive **ESP32-S3** board into a **USB-host-to-Wi-Fi bridge**. The ESP32-S3 acts as a USB host, connects to a flight controller's USB **virtual COM port (VCP)**, and bridges that serial link over **TCP/IP** -- so any Wi-Fi-capable device can talk to the flight controller wirelessly.
+Betaflight 2026.6 introduces **[Betaflight Bridge](https://github.com/betaflight/betaflight-bridge)**, a brand-new companion product that turns an inexpensive **ESP32-S3** board into a **USB-host-to-Wi-Fi bridge**. The ESP32-S3 acts as a USB host, connects to a flight controller's USB **virtual COM port (VCP)**, and bridges that serial link over **TCP/IP** -- so any Wi-Fi-capable device can talk to the flight controller wirelessly.
 
-The main motivation is **iOS and other devices that cannot use USB serial**. iPhones and iPads (and many other platforms) have no practical way to open a flight controller's USB VCP directly, which has long kept them away from the configurator. Betaflight Host removes that barrier: the bridge handles the USB side, and the device connects over the network instead.
+The main motivation is **iOS and other devices that cannot use USB serial**. iPhones and iPads (and many other platforms) have no practical way to open a flight controller's USB VCP directly, which has long kept them away from the Betaflight App. Betaflight Bridge removes that barrier: the bridge handles the USB side, and the device connects over the network instead.
 
 How it works:
 
 * **Plug the flight controller into the ESP32-S3** -- the bridge enumerates the FC's VCP as a USB host
 * **Connect over Wi-Fi** -- the bridge can either host its **own access point (AP)** or join an **existing Wi-Fi network (station/STA)** mode, so it fits both field use (no infrastructure) and bench use (your home network)
-* **The Betaflight app connects over TCP/IP** -- the bridge listens on **port 5761**, the same TCP port the app already uses to connect to SITL today, so no new app support is required. Point the app's TCP connection at the bridge's address and the flight controller's VCP is presented transparently, exactly as if it were connected by cable. The bridge serves **one Configurator client at a time**
+* **The Betaflight app connects over TCP/IP** -- the bridge listens on **port 5761**, the same TCP port the app already uses to connect to SITL today, so no new app support is required. Point the app's TCP connection at the bridge's address and the flight controller's VCP is presented transparently, exactly as if it were connected by cable. The bridge serves **one app client at a time**
 * **Built-in web UI** -- the bridge also hosts a small web interface on **port 80** for checking status, scanning for and joining a Wi-Fi network, and uploading bridge firmware
 
 Because the bridge is fully transparent, everything that normally runs over the VCP -- such as MSP and the CLI -- works through it.
 
 :::warning
-Betaflight Host is **experimental** and new in this release. Expect ongoing development and possible breaking changes. See the **[betaflight-host repository](https://github.com/betaflight/betaflight-host)** for supported boards, build/flash instructions, and setup.
+Betaflight Bridge is **experimental** and new in this release. Expect ongoing development and possible breaking changes. See the **[betaflight-bridge repository](https://github.com/betaflight/betaflight-bridge)** for supported boards, build/flash instructions, and setup.
 :::
 
 ## Thank You
