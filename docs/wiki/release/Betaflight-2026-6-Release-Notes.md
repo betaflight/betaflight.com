@@ -452,7 +452,7 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 
 ## 3. Betaflight Bridge (Experimental)
 
-Betaflight 2026.6 introduces **[Betaflight Bridge](https://github.com/betaflight/betaflight-bridge)**, a brand-new companion product that turns an inexpensive **ESP32-S3** board into a **USB-host-to-Wi-Fi bridge**. The ESP32-S3 acts as a USB host, connects to a flight controller's USB **virtual COM port (VCP)**, and bridges that serial link over **TCP/IP** -- so any Wi-Fi-capable device can talk to the flight controller wirelessly.
+Betaflight 2026.6 introduces **[Betaflight Bridge](https://github.com/betaflight/bridge)**, a brand-new companion product that turns an inexpensive **ESP32-S3** board into a **USB-host-to-Wi-Fi bridge**. The ESP32-S3 acts as a USB host, connects to a flight controller's USB **virtual COM port (VCP)**, and bridges that serial link over **TCP/IP** -- so any Wi-Fi-capable device can talk to the flight controller wirelessly.
 
 The main motivation is **iOS and other devices that cannot use USB serial**. iPhones and iPads (and many other platforms) have no practical way to open a flight controller's USB VCP directly, which has long kept them away from the Betaflight App. Betaflight Bridge removes that barrier: the bridge handles the USB side, and the device connects over the network instead.
 
@@ -466,7 +466,7 @@ How it works:
 Because the bridge is fully transparent, everything that normally runs over the VCP -- such as MSP and the CLI -- works through it.
 
 :::warning
-Betaflight Bridge is **experimental** and new in this release. Expect ongoing development and possible breaking changes. See the **[betaflight-bridge repository](https://github.com/betaflight/betaflight-bridge)** for supported boards, build/flash instructions, and setup.
+Betaflight Bridge is **experimental** and new in this release. Expect ongoing development and possible breaking changes. See the **[Betaflight Bridge repository](https://github.com/betaflight/bridge)** for supported boards, build/flash instructions, and setup.
 :::
 
 ## Thank You
