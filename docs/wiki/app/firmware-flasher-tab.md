@@ -213,7 +213,7 @@ It is also possible to make a build from any previous point in time by entering 
 If your board peripherals are not recognized after flashing, please help us add the required configuration details. Some boards have inadequate file definitions, or the manufacturer has changed something on the board.
 
 <br/>
-Reach out to us on our [Discord server](https://discord.betaflight.com/invite) or create an issue in the Betaflight unified targets repo.
+Reach out to us on our [Discord server](https://discord.gg/betaflight) or create an issue in the Betaflight unified targets repo.
 <br/>
 To get the required information follow this procedure:
 1. Flash your board with the <b>Core Only</b> switch enabled

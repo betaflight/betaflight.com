@@ -16,7 +16,7 @@ upgrade it to a new, more modern support section, which you're currently reading
 This support section is still new and is very much a work in progress. Pages going to be added, updated and improved
 pretty every day in the weeks to come. So if you're missing something, please be patient. It will come!
 You can also help us out, check out the `#documentation` channel on the
-[Discord server](https://discord.betaflight.com/invite) for more info.
+[Discord server](https://discord.gg/betaflight) for more info.
 
 :::
 
@@ -39,5 +39,5 @@ page to search for a specific word or phrase
 
 If you want to help out, you can do so by creating a pull request on the [GitHub repo](https://github.com/betaflight/betaflight.com). You can find a reference
 page for writing MDX with the features we use, and if you're still not sure how to do something, you can
-ask in the `#documentation` channel on the [Discord server](https://discord.betaflight.com/invite) as we
+ask in the `#documentation` channel on the [Discord server](https://discord.gg/betaflight) as we
 mentioned above

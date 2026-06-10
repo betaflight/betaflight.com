@@ -59,9 +59,7 @@ export default function Home({ recentPosts }: BlogProps) {
           <div className="backdrop-blur-md shadow-xl flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
             <div className="text-center text-md">
               <h2 className="text-primary-600 font-bold text-2xl md:text-2xl mb-4">Pushing the Limits of UAV Performance</h2>
-              <p className="text-center xs:text-sm sm:text-lg xl:text-lg">
-                Betaflight is the world's leading multi-rotor flight control software.
-              </p>
+              <p className="text-center xs:text-sm sm:text-lg xl:text-lg">Betaflight is the world's leading multi-rotor flight control software.</p>
               <p className="text-center xs:text-sm sm:text-lg xl:text-lg">
                 The global FPV drone racing and freestyle community choose Betaflight for its performance, precision, cutting edge features, reliability and hardware support.
               </p>
@@ -88,7 +86,7 @@ export default function Home({ recentPosts }: BlogProps) {
             <FancyAboutCard title="Community" className="text-primary-600" Icon={UsersIcon}>
               <p className="text-justify">
                 The user community is active and helpful, with a Facebook group of over 30,000 members and a growing{' '}
-                <a className="fancy-link no-underline" href="https://discord.betaflight.com/invite">
+                <a className="fancy-link no-underline" href="https://discord.gg/betaflight">
                   Discord server
                 </a>
                 . Considerable support resources also exist on Youtube, made by third parties.
@@ -131,8 +129,10 @@ export default function Home({ recentPosts }: BlogProps) {
             <div className="space-y-4">
               <div className="float-right">
                 <p className="text-md text-center">
-                  Highly skilled developers lend their time for free in order to develop and maintain this project. If you enjoy this firmware or use it for professional work we would really appreciate your support.
-                  We use the donations to help with out of pocket costs, e.g. test hardware, hardware analysis equipment and running build servers.<br /><br />
+                  Highly skilled developers lend their time for free in order to develop and maintain this project. If you enjoy this firmware or use it for professional work we would really
+                  appreciate your support. We use the donations to help with out of pocket costs, e.g. test hardware, hardware analysis equipment and running build servers.
+                  <br />
+                  <br />
                   For those who do donate either their time or funds, we are exceptionally grateful for your contribution.
                 </p>
               </div>

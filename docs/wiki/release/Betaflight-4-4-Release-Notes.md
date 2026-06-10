@@ -11,7 +11,7 @@ sidebar_label: 4.4 Release Notes
 
 This is predominantly brought to you for convenience, and to ensure we can keep the 512kb flash targets (STM32F411 and STM32F722) alive and well for years to come. The cloud build system will allow you, the flyer, to select the features you want, and a **custom firmware** will be created for you.
 
-For any issues with the cloud build process please check out the #cloud-build-issues channel on the [Discord server](https://discord.betaflight.com/invite). Help us to help you, buy taking advantage of the new `Support` button in the Command Line Interface (CLI) tab in Configurator 10.9.0. This will give us valuable information in trying to diagnose your issue.
+For any issues with the cloud build process please check out the #cloud-build-issues channel on the [Discord server](https://discord.gg/betaflight). Help us to help you, buy taking advantage of the new `Support` button in the Command Line Interface (CLI) tab in Configurator 10.9.0. This will give us valuable information in trying to diagnose your issue.
 
 **NOTE:** If you have something missing from your cloud build that you would normally expect to be present, e.g. a flash chip or barometer, the reason is because the board configuration (in unified targets) has not been updated with this information (either by the community, or the manufacturer).
 
