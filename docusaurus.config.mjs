@@ -27,7 +27,6 @@ const config = {
   baseUrl: process.env.BASE_PATH,
   trailingSlash: false,
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
   favicon: '/img/betaflight/icon_light.svg',
 
   // GitHub pages deployment config.
@@ -46,6 +45,9 @@ const config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
 
   themes: ['@docusaurus/theme-mermaid'],
