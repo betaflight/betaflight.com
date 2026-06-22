@@ -34,6 +34,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@heroicons/react": "^2.0.13",
     "@mdx-js/react": "^3.0.0",
+    "@mermaid-js/layout-elk": "^0.1.9",
     "@nivo/core": "^0.84.0",
     "@nivo/line": "^0.84.0",
     "classnames": "^2.3.2",
