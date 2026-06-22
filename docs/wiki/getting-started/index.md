@@ -85,7 +85,7 @@ The next step was to move to more powerful microcontrollers, and the flight cont
 
 Due to some disagreements, the Baseflight project was forked into Cleanflight. Cleanflight was a norm for a pretty good while.
 
-For even further experimentation, Betaflight was forked from Cleanflight as a way to have more cutting edge features in a separate firmware option (thus the name, coined by community member Grimreach in a [July 2015 RCGroups discussion](https://www.rcgroups.com/forums/showthread.php?p=32240128)). You also see a lot of the support section having Cleanflight mentioned, but we're working on getting everything up to date. Betaflight has since overtaken Cleanflight in popularity, and is now the most popular flight controller software out there, with a lot of features and very active development.
+For even further experimentation, Betaflight was forked from Cleanflight as a way to have more cutting edge features in a separate firmware option (thus the name, coined by [Grimreach July 2015](https://www.rcgroups.com/forums/showthread.php?p=32240128)). You also see a lot of the support section having Cleanflight mentioned, but we're working on getting everything up to date. Betaflight has since overtaken Cleanflight in popularity, and is now the most popular flight controller software out there, with a lot of features and very active development.
 
 ## Betaflight Features
 
