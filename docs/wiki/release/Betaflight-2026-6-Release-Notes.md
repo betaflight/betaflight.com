@@ -5,7 +5,7 @@ sidebar_label: 2026.6 Release Notes
 
 # 2026.6 Release Notes
 
-Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE) and STM32H757 dual-core MCUs, switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, expanded MAVLink telemetry for QGroundControl compatibility, native Android firmware flashing over USB, a brand-new **Betaflight Bridge** companion that lets iOS and other Wi-Fi-only devices connect to a flight controller wirelessly, and a wide range of sensor, protocol, and hardware additions.
+Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE), STM32H757 dual-core MCUs, and the new X-CORE Labs X32M7 platform, switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, expanded MAVLink telemetry for QGroundControl compatibility (now including waypoint mission transfer), native Android firmware flashing over USB, a new in-app Blackbox log viewer, a dedicated iOS app, and a brand-new **Betaflight Bridge** companion that lets iOS and other Wi-Fi-only devices connect to a flight controller wirelessly, plus a wide range of sensor, protocol, and hardware additions.
 
 We have tried to make this release as bug-free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
@@ -59,6 +59,8 @@ Almost every tab has now been converted. Landed in this release:
 * **Tethered Logging** tab
 * **VTX** tab
 
+The shared dialogs across the app (copy-profile, reboot, problem-report, profile-selection, wait, yes/no, and the per-tab dialogs in Backups, CLI, Flasher, Motors, OSD, Presets, Setup, and User Profile) have also been migrated to Nuxt UI's `UModal`, for consistent look-and-feel and behaviour.
+
 Any remaining legacy tabs will follow in subsequent releases.
 
 ### 1.3 Layout Overhaul
@@ -99,11 +101,18 @@ Three new colour themes are available in the Options tab: **Yellow** (default), 
 
 A new **Preflight** tab displays real-time conditions critical for safe flying: weather (temperature, wind, visibility, precipitation), solar activity (Kp index), battery status, density altitude, civil twilight window, fog probability, and location elevation. Supports geolocation and saved favourite flying spots.
 
+The tab also includes an **Airspace & No-Fly Zones** section that fetches NOTAMs and airspace data for your location, parsing NOTAM, TFR, special-use-airspace, SNOWTAM, and ASHTAM entries with their active windows and altitude limits, plus a SkyVector airspace-chart link. The NOTAM source is selectable -- the **FAA NOTAM API** (US) or **OpenAIP** (global), each requiring a user-supplied API key, alongside EUROCONTROL NOTAMs for Europe.
+
 ### 1.10 Board Qualification
 
 The Firmware Flasher now shows **board qualification status** -- whether a target is officially verified (Verified Partner), community-supported (Vendor/Community), or legacy -- helping you understand support levels before flashing.
 
 The Flasher has also been restructured: the previous four sub-tabs are consolidated into just two -- **Board & Build** (board selection plus build configuration) and **Flash** (release/build info plus the flashing terminal) -- with a tab-style layout, sidebar icons, and collapsible info boxes. Cloud-build and flashing status are surfaced with a persistent **progress ring**, and the flash outcome stays visible after completion so you can review results without rerunning the flow.
+
+Two further flasher additions in this release:
+
+* **ESP32 firmware flashing** -- the flasher can now write a merged ESP32 `.bin` directly over the serial bootloader (chip auto-detection and reset handling included), complementing the new firmware-side ESP32 platform support. This path is **Web Serial only** for now (it relies on DTR/RTS control that the desktop and mobile serial layers don't yet expose)
+* **Post-flash backup restore** -- when a backup was captured before flashing, the flasher can now restore it in place straight after a successful flash, without reconnecting and visiting the Backups or Presets tab. The backup-on-flash option has moved into the flasher's advanced settings
 
 ### 1.11 Responsive and Mobile Improvements
 
@@ -117,6 +126,8 @@ The Flasher has also been restructured: the previous four sub-tabs are consolida
 * **DFU over USB on Android** -- native firmware flashing directly from the Android build, no extra tooling required
 * **Android file access** -- full file-picker support for opening and saving configuration backups and logs on-device
 * **Tauri desktop scaffold** -- initial groundwork for a lightweight Tauri-based desktop build alongside the PWA
+* **iOS app (TestFlight)** -- a native **Tauri-based iOS app** is now built and signed in CI and distributed via **TestFlight**. Because iOS has no USB serial, the iOS app connects over **TCP to the [Betaflight Bridge](#3-betaflight-bridge-experimental)** -- making it the first practical way to use the Betaflight app on an iPhone or iPad
+* **Tauri Android build** -- in addition to the existing Capacitor Android build, a Tauri-based Android target with a Google Play CI pipeline has been added
 * **Embedded WebSocket deployments** -- the compatibility gate and service worker are skipped when the app is served from an embedded WebSocket (e.g. running directly off a flight controller or companion device), avoiding reload loops in that mode
 
 ### 1.13 Restore Backups Directly to Your Aircraft
@@ -140,16 +151,27 @@ The **Virtual Connect** and **Manual Connect** options are now hidden unless **E
 * The `dyn_notch_q` slider tooltip now states clearly that the value shown is divided by 100
 * **RPM filter settings** are now exposed in the PID Filters page, so the harmonic count, Q factor, and minimum frequency can be tweaked directly from the app instead of via CLI
 
-### 1.17 Other App Changes
+### 1.17 Blackbox Log Viewer
+
+A full **Blackbox log viewer and analyser** is now built into the app as its own **Blackbox Viewer** tab -- the standalone Blackbox Explorer brought directly into the Betaflight app. Open a recorded blackbox log and inspect it with configurable graphs, a spectrum analyser, a 2D/3D craft attitude view, a GPS map, time-line playback, and CSV export, all without leaving the app. Multi-log files let you pick which log's header to view, and graph panels can be reordered by drag-and-drop.
+
+This is distinct from the existing tabs that share the "blackbox" name: the **Blackbox** tab configures on-board logging and downloads logs from the flight controller, **Tethered Logging** captures a live log over the connection, and the new **Blackbox Viewer** is for analysing recorded logs offline.
+
+### 1.18 Other App Changes
 
 * **Transponder tab removed** -- the feature has been retired in the configurator; transponder provider and data are now managed via CLI on the firmware side
 * **Firefox 151+ supported** -- now that Firefox 151 ships WebSerial, the Chromium-only browser check has been removed and the app runs natively on Firefox
 * **CH340 USB-to-Serial adapters** are now recognised by the connection list, including CH340 variants, CH341, and CH340S; the Android USB filter includes the WCH vendor entries so adapters work on mobile as well
 * **Sensor hardware display** separated from GPS protocols in the Sensors tab
-* **Magnetometer calibration tools** added to the Sensors tab, with a guided alignment dialog and a calibration progress workflow that survives component unmounts cleanly; the compass cardinal markers in the mag sphere view have been enlarged for clarity
+* **Magnetometer calibration overhaul** in the Sensors tab. Beyond the basic guided calibration, two new modes are available: a **Guided (Client)** mode that fits the calibration sphere on the client side, and a one-pass **Full Cal (auto-align)** tumble that solves hard-iron and soft-iron correction *and* the sensor-to-flight-controller mounting alignment from a single tumble. Coverage is tracked across 20 icosahedral zones with an 8-step guided choreography, the craft icon and field-vector arrow are drawn from a **quaternion attitude** feed (`MSP_ATTITUDE_QUATERNION`) so the sphere view never gimbal-locks, and the compass cardinal markers have been enlarged for clarity
 * **Sidebar and UserSession redesign** -- the log moves into its own modal, user-session UI is rebuilt on Nuxt UI, and the sidebar restores click-outside dismissal and improves mobile/accessibility behaviour
 * **Absolute Control hidden** in the PID tab when connected to firmware on MSP API >= 1.48 (which no longer supports the feature)
-* **Simplified Master Slider** and **adjCenter/adjScale** added to the Adjustments tab
+* **Simplified Master Slider** and **adjCenter/adjScale** added to the Adjustments tab, now with an explicit **Step / Absolute mode selector** per adjustment -- the Center and Scale inputs are shown only when the selected mode uses them, instead of being inferred from non-zero values
+* **Power tab battery state** now shows live **power draw** (watts) and **voltage drop** alongside the existing battery readings
+* **Receiver failsafe warning** -- when the flight controller is in failsafe, the Receiver tab shows a banner and tints the channel bars, so failsafe output values are not mistaken for a broken receiver
+* **Virtual Mode quality-of-life** -- sensible default PID/Rate/Filter values, CRSF and SBUS added as virtual-mode receiver options, simplified-tuning support ported from firmware, and Virtual Mode now shown as a device in the status bar
+* **X32M7 boards recognised** -- USB serial and DFU filters added for the new X-CORE Labs X32M7 platform, on both desktop and Android
+* **Georgian** added to the UI language list
 * **Relative drag-and-drop on OSD elements** -- elements now move by the actual cursor delta instead of snapping to the drop cell, making fine adjustments much more predictable, including for large elements
 * **OSD time variant** element support
 * **POSHOLD_FAILED OSD warning** element for indicating position-hold failures
@@ -160,7 +182,7 @@ The **Virtual Connect** and **Manual Connect** options are now hidden unless **E
 * Updated to Capacitor 8.0.2 for improved Android compatibility
 * Status bar restored on mobile
 
-### 1.18 App Bug Fixes
+### 1.19 App Bug Fixes
 
 * Fixed DFU flashing stalling after Vue migration
 * Fixed motor testing not working
@@ -190,6 +212,7 @@ The **Virtual Connect** and **Manual Connect** options are now hidden unless **E
 * Fixed the Failsafe tab not loading mode data on first visit, and replaced raw-HTML badges with `UBadge`
 * Fixed the WebSerial port not being closed on page unload, which had been causing replug-required errors on reload
 * Fixed CLI paste slowdown, forced reflow on large pastes, and unreliable autoscroll
+* Fixed the D-Term Lowpass 1 dynamic max-cutoff slider constraints, which disagreed with the firmware range and caused default values to snap upward
 * Security fix for [CVE-2026-39315](https://github.com/advisories/GHSA-95h2-gj7x-gx9w)
 
 ## 2. The Firmware
@@ -288,6 +311,8 @@ Betaflight now runs on ESP32 microcontrollers. Both the **ESP32-S3** and the ori
 
 **ESP32-WROOM** (the original ESP32) is also supported, with all of the above except higher-speed bulk transfers; suitable for lower-end use cases.
 
+Build-target skeletons for the **ESP32-C5** and **ESP32-P4** have also been added (alongside an update to ESP-IDF 5.4), laying the groundwork for future support on those parts.
+
 :::warning
 ESP32 support is experimental. Expect ongoing development and possible breaking changes.
 :::
@@ -320,6 +345,16 @@ What's working on NUCLEOC562RE today: serial ports (UART), SPI, I2C, ADC, USB, D
 
 :::warning
 STM32C5 support is a developer preview intended for platform bring-up. The NUCLEOC562RE makes a good development board, but no production STM32C5 flight controllers are available yet. Some peripheral types are still being filled in and the targets are currently excluded from CI.
+:::
+
+#### Xcore32m7 (X-CORE Labs, Experimental)
+
+Betaflight now runs on the **X32M7**, a Cortex-M7 microcontroller from **X-CORE Labs**. The reference target is the **X32M7B** board, brought up against the vendor's X32M7 SDK.
+
+Working peripherals include: serial ports (UART), SPI, I2C, ADC, DAC, USB (high-speed VCP plus USB mass-storage), SD card via SDMMC/SDIO blackbox, DShot motor output (bit-banged), WS2811 LED strips, FDCAN, EXTI interrupts, RTC, external gyro clock input (`GYRO_CLKIN`), execute-in-place from XSPI flash, and persistent on-chip config storage.
+
+:::warning
+X32M7 support is experimental and new in this release. Expect ongoing development and possible breaking changes.
 :::
 
 #### RP2350 (Raspberry Pi Pico 2) Improvements
@@ -385,7 +420,16 @@ The MAVLink telemetry path has been expanded with the specific goal of making Be
 * **Time sync** -- `SYSTEM_TIME` is sent at the extended-status stream rate, populated from RTC when available so QGC can line wall time up with the aircraft
 * **Arming feedback** -- `STATUSTEXT` is emitted whenever the arming-disable flags change, giving QGC a human-readable reason on screen whenever the aircraft refuses to arm
 
-To enable two-way conversation with QGC, the telemetry port now opens in `MODE_RXTX` with a MAVLink **receive dispatcher** -- the groundwork for GCS-initiated traffic in later releases. Three handshake responders ship today so QGC's standard connection sequence completes cleanly: **HEARTBEAT** (stub), **PING** (echoes time/seq back), and **TIMESYNC** (replies with the firmware's time in nanoseconds). The MAVLink **vehicle-setup unlock** flow and `custom_mode` discovery are also wired up so QGC can identify the vehicle and unlock it for configuration. RX drain is bounded per call so a flooded link cannot starve the telemetry task.
+To enable two-way conversation with QGC, the telemetry port now opens in `MODE_RXTX` with a MAVLink **receive dispatcher**. Three handshake responders ship today so QGC's standard connection sequence completes cleanly: **HEARTBEAT** (stub), **PING** (echoes time/seq back), and **TIMESYNC** (replies with the firmware's time in nanoseconds). The MAVLink **vehicle-setup unlock** flow and `custom_mode` discovery are also wired up so QGC can identify the vehicle and unlock it for configuration. RX drain is bounded per call so a flooded link cannot starve the telemetry task.
+
+Building on that dispatcher, GCS-initiated traffic now lands in this release rather than being deferred:
+
+* **Waypoint mission transfer** -- the full MAVLink **MISSION protocol** is implemented, so QGC can **upload and download missions** to and from the flight controller's in-firmware flight-plan store. Missions planned in QGC can be written to the aircraft, and the stored plan read back, over the standard mission-transfer sequence
+* **GCS-controlled message rates** -- handlers for `MAV_CMD_SET_MESSAGE_INTERVAL` and the `MESSAGE_INTERVAL` message let the ground station set, disable, or reset the send interval of individual telemetry messages; each message is now streamed independently with its requested interval validated
+
+:::note
+MAVLink mission transfer and GCS message-rate control are new and primarily exercised against QGroundControl. They share the same simulation-first maturity caveat as the autopilot and Flight Plan workflow they feed into.
+:::
 
 #### MSP Enhancements
 
@@ -403,10 +447,13 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 
 * **Servo channel forwarding**: any individual servo can be set to follow a chosen RC channel directly, bypassing the servo mixer -- handy for plain pass-through outputs like flaps or gimbal control. Configure per-servo with `set servo_<N>_forward_from_channel = <1-16>` (0 = disabled)
 * **Simplified Master Slider**: a new in-flight adjustment that scales all PID values together from a single switch or knob, so you can tune all axes up or down at once
+* **Altitude hold rework**: the altitude-hold controller has been simplified, with corrected feed-forward scaling and vertical-acceleration sign handling for steadier altitude tracking. The `altitude_lpf` and `altitude_d_lpf` filter ranges have been widened (maximum raised from 1000 to 5000)
 * **Absolute control removed**: the experimental Absolute Control feature and its `abs_control_*` settings have been retired -- the iterm-relax / iterm-rotation path is the long-term direction for yaw/roll handling
 * **OSD VTX status on non-factory bands**: when an MSP-controlled VTX (e.g. HDZERO) is on a non-factory band, the OSD now displays its current band/channel/power status correctly; SmartAudio behaviour is unchanged
 * **LED strip colour by VTX frequency**: a new LED-strip overlay colours the strip according to the current VTX channel -- white below R1, sweeping red through magenta up to R8, and off when no channel is set -- making it easy to identify the VTX channel at a glance
 * **Airmode response**: the small filter on airmode has been removed, giving a more direct feel
+* **State Variable Filters**: the internal biquad (Direct Form 1) filter implementation has been replaced throughout the gyro, PID, RPM, dynamic-notch, and servo paths with **State Variable Filters (SVF)** -- a more numerically stable, lower-overhead topology. Functionally the filtering behaves as before; the practical change is that the filter-type option that previously read `BIQUAD` now reads `SVF`
+* **Thrust linearization rescaled**: the thrust-linearization curve has been re-derived to match ArduPilot's `MOT_THST_EXPO` model, so per-propeller recommendations port across directly (roughly 55 for 5", 65 for 10", 75 for 20"+). Existing `thrust_linear` values will produce a slightly different curve shape after upgrading
 * **Faster maths**: sine and cosine calculations have been sped up, freeing a little headroom in the flight loop
 
 ### 2.6 GPS Improvements
@@ -416,6 +463,7 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * **Faster serial GPS decoding**: The serial GPS message parser has been sped up, freeing scheduler headroom on slower flight controllers
 * **Blackbox GPS timestamps**: precise time information is now written to blackbox logs so flight tracks can be lined up exactly with external data
 * **UBLOX message priority**: position-update messages are processed first for faster position updates
+* **Heading required before GPS position hold**: GPS-based position hold now waits until a valid heading is known before engaging, and the `poshold_without_mag` setting has been removed (any saved diff referencing it will be rejected on load)
 * Improved GPS message handling and deduplication
 
 ### 2.7 CLI Changes
@@ -431,6 +479,10 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * The external gyro clock-input feature (`GYRO_CLKIN`) is now restricted to gyro sensors that actually support it
 
 ### 2.8 Bug Fixes
+
+:::warning
+**IIM-42652 gyro full-scale-range fix (breaking).** The IIM-42652 was previously mis-configured at ±4000 DPS and has been corrected to its silicon-correct ±2000 DPS. This effectively doubles your existing PID gains, so if you fly an IIM-42652-equipped board you **must reset and re-tune your PIDs** after upgrading -- do not arm on your old tune. (The related IIM-42653 anti-alias filter placement has also been corrected.)
+:::
 
 * **ICM-40609D accelerometer** reading 0.5g instead of 1.0g due to incorrect full-scale register values
 * **LSM6DSV16X** FS_G_4000DPS register encoding corrected
@@ -449,6 +501,9 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * **Failsafe procedure** is now unconditionally clamped to the valid range on load, preventing an invalid stored value from putting the aircraft in an undefined failsafe state
 * **MSP serial processing** race condition fixed where an MSP frame arriving exactly as the CLI was being entered could leave the port in an inconsistent state
 * **busBusy()** now NULL-checks `dev->bus`, removing a crash path when a driver queries a partially initialised bus device
+* **Position estimator** GPS distance calculation and the sign of the east acceleration term corrected (including an east-west inversion in the linear-acceleration computation), improving position-hold and autopilot accuracy
+* **OSD clock** RTC date/time elements now apply the configured timezone offset and show local time instead of UTC
+* **Bidirectional DShot telemetry** reads on the bit-bang path no longer busy-wait -- the DMA is aborted asynchronously, reducing flight-loop stalls on STM32, AT32, and APM32
 
 ## 3. Betaflight Bridge (Experimental)
 
