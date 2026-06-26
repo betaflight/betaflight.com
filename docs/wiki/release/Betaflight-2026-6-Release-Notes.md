@@ -505,6 +505,22 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * **OSD clock** RTC date/time elements now apply the configured timezone offset and show local time instead of UTC
 * **Bidirectional DShot telemetry** reads on the bit-bang path no longer busy-wait -- the DMA is aborted asynchronously, reducing flight-loop stalls on STM32, AT32, and APM32
 
+### 2.9 Build System and Developer Notes
+
+This section is for anyone **building Betaflight from source**; it does not affect flashing released firmware.
+
+#### Vendor MCU SDKs Moved to Submodules (`lib/modules/`)
+
+The submodule-backed **vendor MCU/SDK source** -- APM32F4, GD32H7, STM32C5, STM32H5, STM32N6, X32M7, ESP-IDF, pico-sdk, and DroneCAN's libcanard -- has moved out of `lib/main/` into a dedicated **`lib/modules/`** directory. The embedded (in-tree) vendor sources that are *not* submodules stay under `lib/main/` as before.
+
+The motivation is to cleanly separate hydrated git submodules from embedded vendor trees. Previously a path could be embedded files on one branch and a populated submodule on another, which caused collisions and stray files when switching branches.
+
+What this means for contributors:
+
+* After pulling this change (or switching branches across it), refresh your submodules -- e.g. `git submodule update --init --recursive --checkout`. The `--recursive` flag matters because some SDKs (pico-sdk, STM32Cube H5/N6) contain nested submodules of their own
+* A new **`check-stale-submodule-paths`** target is wired into the `checks` goal, so CI (and `make checks` locally) flags any submodule path left holding stray files -- the usual symptom of crossing the move without cleaning the worktree. The check output includes the recovery command
+* If you build a platform from a clean checkout, the platform SDK cache key now includes the submodule path, so the move correctly invalidates any pre-existing build caches rooted at the old `lib/main/` location
+
 ## 3. Betaflight Bridge (Experimental)
 
 Betaflight 2026.6 introduces **[Betaflight Bridge](https://github.com/betaflight/bridge)**, a brand-new companion product that turns an inexpensive **ESP32-S3** board into a **USB-host-to-Wi-Fi bridge**. The ESP32-S3 acts as a USB host, connects to a flight controller's USB **virtual COM port (VCP)**, and bridges that serial link over **TCP/IP** -- so any Wi-Fi-capable device can talk to the flight controller wirelessly.
