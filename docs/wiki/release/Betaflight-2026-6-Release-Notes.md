@@ -401,9 +401,9 @@ Beyond the new STM32 platforms above, manufacturers also have access to:
 
 #### ExpressLRS 4.0 SPI Support
 
-Full SPI-based **ExpressLRS V4** protocol support with automatic version detection (V3/V4), updated channel mapping, and telemetry nonce handling. Binding and FHSS hop tables are compatible across versions.
+ExpressLRS V4 compatible protocol support for SPI-based receivers, with more robust packet sync, and higher telemetry bandwidth.
 
-ELRS V3 is now the **default protocol** in the build system -- targets get V3 with no extra flags. V4 is enabled by opting in with `USE_ELRSV4`, which lets manufacturers ship V3-only firmware images that fit on smaller targets without dragging in the V4 code path.
+ELRS V3 is the default protocol when flashing new firmware, and is not compatible with ELRS V4 transmitters. V4 is enabled by setting ELRSV4 in the build flags in the firmware flasher, which would then be incompatible with ELRS V3 transmitters.
 
 #### CRSF AHRS Telemetry
 
