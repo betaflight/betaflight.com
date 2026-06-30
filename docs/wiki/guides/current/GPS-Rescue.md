@@ -33,7 +33,7 @@ Typical applications include:
 
 - Test GPS Rescue **very carefully** before relying on it. Initial testing should be done at close range, with defaults, over soft grass.
 
-- **Remember: During a real failsafe, after the link is restored, the sticks MUST be wobbled by more than 30% before you can regain control over the quad.** Control does not return to the pilot automatically! If you touch the sticks before video is returned, you may terminate the rescue. Hence, **during a real failsafe, DO NOT TOUCH THE STICKS**, at least not until:
+- **Remember: During a real failsafe, after the link is restored, either the roll or pitch stick MUST be moved beyond the configured failsafe stick threshold (30% by default) before you can regain control over the quad.** Control does not return to the pilot automatically! If you touch the sticks before video is returned, you may terminate the rescue. Hence, **during a real failsafe, DO NOT TOUCH THE STICKS**, at least not until:
 
   - your video has returned and is solid,
   - the `RXLOSS` indicator has gone,
@@ -157,10 +157,10 @@ Otherwise, read all the software settings below and make sure they are suitable 
 
 ### 1. RC Link Loss
 
-Here we want the quad to enter Stage 1 Failsafe for the Stage 1 duration — long enough to confirm the link really is lost — then enter Stage 2 failsafe, which should be set to GPS Rescue and fly home. Once the link is restored, control can be restored by wiggling the sticks more than 30 degrees out from center.
+Here we want the quad to enter Stage 1 Failsafe for the Stage 1 duration — long enough to confirm the link really is lost — then enter Stage 2 failsafe, which should be set to GPS Rescue and fly home. Once the link is restored, control can be regained by moving either the roll or pitch stick beyond the configured failsafe stick threshold, which is 30% by default.
 
 :::danger
-Do NOT wiggle the sticks until you've got an FPV video signal back, otherwise you may regain control but not know where you're going! Wait until your signal strength indicator is good and you have a decent FPV feed, **then** wiggle the sticks.
+Do NOT wiggle the sticks until you've got an FPV video signal back, otherwise you may regain control but not know where you're going! Wait until your signal strength indicator is good and you have a decent FPV feed, **then** move either the roll or pitch stick beyond the failsafe stick threshold.
 :::
 
 If the radio or FPV link never recover, let it fly home and it will land itself.
@@ -184,7 +184,7 @@ DO NOT use or share the Failsafe Mode switch with any other mode!
 - Finally, in the Failsafe tab, set failsafe mode to `GPS Rescue`
 - If you have a Baro, check it using the `ALTITUDE` debug and enable it only if it works well and improves altitude control
 - Do initial tests using switch-induced failsafe (below), confirming that it reliably flies home and lands. Cancel the test any time you think the rescue is failing.
-- Only when you are 100% sure it will fly home reliably, test with a hard radio link loss. **Don't power down the radio to test this!** Most radios require all switches to be 'off' before they power up, which would lead to a disarm on re-connection. Instead, disable the Tx module in the radio's setup menu. **Remember to wiggle the sticks to regain control after the link is restored.**
+- Only when you are 100% sure it will fly home reliably, test with a hard radio link loss. **Don't power down the radio to test this!** Most radios require all switches to be 'off' before they power up, which would lead to a disarm on re-connection. Instead, disable the Tx module in the radio's setup menu. **Remember to move either the roll or pitch stick beyond the failsafe stick threshold to regain control after the link is restored.**
 
 ### 2. Switch-Initiated Failsafe Emulation
 
@@ -223,7 +223,7 @@ The main benefit over the failsafe switch approach is that Failsafe itself can b
 
 - **Do a LOT of GPS Rescue tests with switch initiation at close range over soft grass!** You need to be 100% confident that every rescue works properly before relying on it.
 
-- **Test for loss and restoration of signal by disabling the Rx module, not by powering the radio off!** Most radios require all switches to be 'off' before they power up — if you power the radio off and back on during a test, the arming switch position would trigger an immediate disarm and crash. Use the radio's internal Tx module enable/disable. You should see `RXLOSS` in the OSD when the signal is lost. **Remember to wiggle the sticks to regain control after a signal loss episode!**
+- **Test for loss and restoration of signal by disabling the Rx module, not by powering the radio off!** Most radios require all switches to be 'off' before they power up — if you power the radio off and back on during a test, the arming switch position would trigger an immediate disarm and crash. Use the radio's internal Tx module enable/disable. You should see `RXLOSS` in the OSD when the signal is lost. **Remember to move either the roll or pitch stick beyond the failsafe stick threshold to regain control after a signal loss episode!**
 
 - **Remember to set the GPS Rescue Hover throttle value accurately!** The GPS Rescue Hover value is the starting point for throttle once the rescue starts. The GPS Rescue PIDs adjust throttle either side of the Hover value within the min and max limits. If set too low, the quad may lose altitude right at the start while the PIDs 'catch up'. It is better to err slightly on the high side — climbing too fast is usually less of a problem than dropping like a stone.
 
