@@ -1,0 +1,147 @@
+---
+description: GEPRC GEP-F722-HD
+sidebar_custom_props:
+  specs:
+    target: GEPRCF722
+    mcu: STM32F722
+    imu: MPU6000 / ICM42688P / LSM6DSK320X
+    osd: AT7456E
+    barometer: BMP280 / DPS310
+    blackbox: 16MB
+    dimensions: 36.85 x 36.85 mm
+    mounting: 30.5 x 30.5 mm
+    weight: 8.1 g
+  last_updated: "2026-07-06"
+  support_url: "https://geprc.com/product/gep-f722-hd-flight-controller/"
+  betaflight_supported: true
+  connector_standard: false
+  doc_status: partial
+  confidence: 79
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import SpecGrid from '@site/src/components/SpecGrid'
+
+# GEPRC GEP-F722-HD
+
+{/* The GEPRCF722 firmware target serves the non-Bluetooth GEP-F722-HD flight controller (V1 shipped an MPU6000 gyro; V2 shipped an ICM42688-P). The Bluetooth variants use separate targets (GEPRCF722BT, GEPRCF722_BT_HD, GEPRCF722_BT_HD_V3). */}
+
+<Tabs>
+
+<TabItem value="specifications" label="Specifications" default>
+
+<SpecGrid>
+
+{/* TODO(image): add a 1:1 square cover photo (top view), supplied by the manufacturer. e.g. ![GEPRCF722](./GEPRCF722-images/GEPRCF722-top.png) */}
+
+</SpecGrid>
+
+## Other Features
+
+- SD Card Slot: No (blackbox uses onboard 16MB SPI flash)
+- Onboard Receiver: No
+- Hardware Inverter: No
+- Bluetooth: No {/* the GEPRCF722 target is the non-BT variant; the BT variants use the GEPRCF722BT / GEPRCF722_BT_HD targets */}
+- WiFi: No
+- Onboard RGB LED: No (two status LEDs only)
+
+## Input/Output
+
+- USB Connector: USB Type-C
+- Motor Outputs: 6 (firmware); the ESC connector breaks out M1–M4 {/* config defines MOTOR1–6, but the GEP-F722-HD ESC connector exposes only M1–M4 */}
+- UARTs: 5x (UART1, 2, 3, 4, 6)
+- I2C: Yes (I2C1, SDA/SCL pads for external compass/GPS)
+- SWD: No (the SWDIO/SWCLK pins PA13/PA14 are repurposed as the board status LEDs)
+- SPI: No (three internal buses only — SPI1 OSD, SPI2 flash, SPI3 gyro)
+- 3.3V Output: Yes (3V3 pad) {/* TODO(verify): max current — not in config.h */}
+- 4.5V (VBUS) Output: No
+- 5V Output: Yes, 5V @ 3A
+- 9V Output: Yes, 9V @ 2.5A
+- Current Sensor: Via ESC (current signal on the CUR pad; default current-meter scale 179 for the bundled 50A 4-in-1 ESC)
+- Analog RSSI Input: Yes (RSI pad)
+- LED Strip Output: Yes (LEDS pad)
+- Buzzer Output: Yes (BZ+/BZ- pads)
+
+## Pads
+
+Silkscreen labels are from the GEP-F722-HD manual; MCU pins are from `config.h`.
+
+### UARTs
+
+| Name   | Label   | Notes |
+| ------ | ------- | ----- |
+| UART 1 | T1 / R1 | TX1 = PA9, RX1 = PA10; on the VTX / DJI Air Unit connector |
+| UART 2 | T2 / R2 | TX2 = PA2, RX2 = PA3; receiver pads (RX2 also carries the PPM input) |
+| UART 3 | TX3 / RX3 | TX3 = PB10, RX3 = PB11 |
+| UART 4 | RX4     | RX4 = PA1 (TX4 = PA0); ESC telemetry on the ESC connector |
+| UART 6 | TX6 / RX6 | TX6 = PC6, RX6 = PC7 |
+
+### Power
+
+{/* TODO(verify): pad counts per rail are not in config.h and could not be read reliably from the manual diagram. */}
+
+| Name            | Label     | Count | Notes |
+| --------------- | --------- | ----- | ----- |
+| Battery Voltage | BAT / VB  | TODO  | 3–6S LiPo input; VBAT sense = PC0 |
+| 9V Output       | 9V        | TODO  | VTX / camera BEC, 9V @ 2.5A |
+| 5V Output       | 5V        | TODO  | 5V @ 3A |
+| 3.3V Output     | 3V3       | TODO  | receiver power |
+| Ground          | GND / G   | TODO  | — |
+
+### Signal
+
+| Name            | Label     | Notes |
+| --------------- | --------- | ----- |
+| Current signal  | CUR       | Analog current from the 4-in-1 ESC; ADC_CURR = PC1 |
+| RSSI            | RSI       | Analog RSSI input; ADC_RSSI = PC2 |
+| LED strip       | LEDS      | PA8 |
+| Buzzer          | BZ+ / BZ- | PC13 (inverted) |
+| I2C             | SDA / SCL | I2C1; SDA = PB9, SCL = PB8 (external compass / GPS) |
+| Video out       | VO        | Analog video output to VTX {/* TODO(verify): camera-in / video pad labels C1/C2/S5 on the manual could not be mapped with confidence */}|
+
+## Connectors
+
+### ESC connector (30.5 x 30.5 mm, 8-pin)
+
+Mates with the bundled BLHeli_32 50A 4-in-1 ESC.
+
+| Pin | Function |
+| --- | -------- |
+| GND | Ground |
+| BAT | Battery voltage in (3–6S) |
+| M1  | Motor 1 signal (PB4) |
+| M2  | Motor 2 signal (PB5) |
+| M3  | Motor 3 signal (PB0) |
+| M4  | Motor 4 signal (PB1) |
+| CUR | Current sensor signal |
+| RX4 | ESC telemetry (UART4 RX = PA1) |
+
+{/* TODO(verify): the VTX / DJI Air Unit connector pinout (labels 9V, GND, VO, T1, R1 read from the manual) could not be confirmed pin-order from the source material. */}
+
+</TabItem>
+
+<TabItem value="wiring" label="Wiring Diagrams">
+
+{/* TODO(image): add wiring / pinout diagram to ./GEPRCF722-images/, supplied by the manufacturer. */}
+
+</TabItem>
+
+<TabItem value="photos" label="Photos">
+
+{/* TODO(image): add clean top/bottom photos to ./GEPRCF722-images/, supplied by the manufacturer. */}
+
+</TabItem>
+
+<TabItem value="notes" label="Notes">
+
+- Manufacturer: [GEPRC](https://geprc.com/) — product page: [GEP-F722-HD Flight Controller](https://geprc.com/product/gep-f722-hd-flight-controller/) (see also the [V2 page](https://geprc.com/product/gep-f722-hd-v2-flight-controller/)).
+- The GEPRCF722 target covers the non-Bluetooth GEP-F722-HD. Hardware revisions differ in gyro (V1: MPU6000; V2: ICM42688-P) and barometer (BMP280 / DPS310); the firmware auto-detects the fitted part, which is why `config.h` lists several drivers.
+- The OSD chip is an AT7456E (MAX7456-compatible); Betaflight uses the `MAX7456` driver.
+- The board pairs with a 30.5 x 30.5 mm BLHeli_32 50A 4-in-1 ESC and supports the DJI FPV Air Unit via the VTX connector.
+- SWD debugging is not available: the SWDIO/SWCLK pins (PA13/PA14) are used to drive the board status LEDs.
+- MCU: `config.h` declares `FC_TARGET_MCU STM32F7X2`, which is a family alias (rule 9), not a literal part number. The exact `STM32F722` was confirmed independently against the GEPRC product spec — not from config.h.
+
+</TabItem>
+
+</Tabs>

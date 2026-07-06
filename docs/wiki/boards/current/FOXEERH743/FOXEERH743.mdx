@@ -1,0 +1,121 @@
+---
+description: Foxeer H7 MPU6000 8S flight controller (target FOXEERH743)
+sidebar_custom_props:
+  specs:
+    target: FOXEERH743
+    mcu: STM32H743
+    imu: MPU6000 # ships MPU6000; target also auto-detects MPU6500 / ICM42688P
+    osd: AT7456E # inferred MAX7456-compatible clone (rule 6); config only defines USE_MAX7456, Foxeer lists "BF OSD"
+    barometer: DPS310
+    blackbox: 16MB
+    dimensions: 37 x 37 mm # full-size version; a 30 x 31 mm Mini variant shares the product name
+    mounting: 30.5 x 30.5 mm (Φ4mm)
+    weight: 7.8 g
+  last_updated: "2026-07-06"
+  support_url: "https://www.foxeer.com/foxeer-h7-mpu6000-fc-8s-dual-bec-barometer-x8-g-503"
+  betaflight_supported: true
+  connector_standard: false
+  doc_status: partial # electricals verified vs config.h; UART default functions removed (were ArduPilot-sourced); images and some pad labels pending
+  confidence: 80
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import SpecGrid from '@site/src/components/SpecGrid'
+
+# Foxeer H7 MPU6000
+
+<Tabs>
+
+<TabItem value="specifications" label="Specifications" default>
+
+<SpecGrid>
+
+{/* TODO(image): add a 1:1 square cover photo (top view), supplied by the manufacturer. e.g. ![FOXEERH743](./FOXEERH743-images/FOXEERH743-top.png) */}
+
+</SpecGrid>
+
+## Other Features
+
+- SD Card Slot: No (uses 16MB onboard flash for Blackbox)
+- Onboard Receiver: None (external receiver via UART)
+- Hardware Inverter: No
+- Bluetooth: No
+- WiFi: No
+- Onboard RGB LED: None onboard (one WS2812 addressable LED strip output pad provided)
+
+## Input/Output
+
+- USB Connector: USB Type-C
+- Input Voltage: 4S–8S LiPo
+- Motor Outputs: 8x (X8 capable)
+- Servo Outputs: 2x (S1, S2 — target `SERVO1_PIN`/`SERVO2_PIN`; Foxeer lists Servo S1, S2)
+- UARTs: 7 defined in target (UART1, 2, 3, 4, 6, 7, 8) — Foxeer lists 6 full RX/TX sets plus an `Rx8` ESC-telemetry pad; the target still defines a TX pin for UART8 (rule 2)
+- I2C: Yes (broken out for external compass / peripherals)
+- SWD: TODO {/* verify: normally Yes on this MCU, but SWD pad presence not confirmed */}
+- SPI: TODO {/* verify: config defines SPI1/2/3 for gyro, OSD and flash; whether any SPI bus is broken out to user pads is not confirmed from a layout diagram */}
+- 3.3V Output: 0.5A
+- 4.5V (VBUS) Output: TODO {/* verify: not stated by manufacturer */}
+- 5V Output: 2A (BEC, for internal + peripherals)
+- 10V Output: 2A (BEC, for video transmitter)
+- Current Sensor: Current input pad present; typically fed by the 4-in-1 ESC current signal (default current scale 100)
+- Analog RSSI Input: Yes
+- LED Strip Output: Yes
+- Buzzer Output: Yes
+
+## Pads
+
+Pads are silkscreened `Rn` (UARTn RX) and `Tn` (UARTn TX). The Notes column shows the manufacturer/default recommended function; any UART can be reassigned in Betaflight.
+
+### UARTs
+
+| Name   | Label   | Notes                                                                                    |
+| ------ | ------- | ---------------------------------------------------------------------------------------- |
+| UART 1 | R1 / T1 | Default serial RC / receiver input (target `SERIALRX_UART`)                              |
+| UART 2 | R2 / T2 | Spare / user                                                                             |
+| UART 3 | R3 / T3 | Spare / user                                                                             |
+| UART 4 | R4 / T4 | Spare / user                                                                             |
+| UART 6 | R6 / T6 | Spare / user                                                                             |
+| UART 7 | R7 / T7 | Spare / user                                                                             |
+| UART 8 | R8 / T8 | ESC telemetry (Foxeer `Rx8`); manufacturer breaks out only the RX pad, but the target defines a TX pin (rule 2) |
+
+### Power
+
+{/* TODO(verify): pad counts and exact silkscreen labels not confirmed from a layout diagram — confirm counts before stating them (rule 5). */}
+
+| Name            | Label | Notes                                        |
+| --------------- | ----- | -------------------------------------------- |
+| Battery Voltage | —     | 4S–8S LiPo input with onboard voltage sensing |
+| 5V BEC          | 5V    | 2A — internal + peripherals                  |
+| 10V BEC         | 10V   | 2A — video transmitter                       |
+| 3.3V            | 3V3   | 0.5A                                         |
+
+## Connectors
+
+{/* TODO(verify): connector/JST pinouts not confirmed from the manufacturer manual (manuals.plus and the Foxeer product page could not be retrieved in this environment). */}
+
+</TabItem>
+
+<TabItem value="wiring" label="Wiring Diagrams">
+
+{/* TODO(image): add wiring / pinout diagram to ./FOXEERH743-images/, supplied by the manufacturer. */}
+
+</TabItem>
+
+<TabItem value="photos" label="Photos">
+
+{/* TODO(image): add clean top/bottom photos to ./FOXEERH743-images/, supplied by the manufacturer. */}
+
+</TabItem>
+
+<TabItem value="notes" label="Notes">
+
+- Manufacturer: [Foxeer](https://www.foxeer.com/) — [product page](https://www.foxeer.com/foxeer-h7-mpu6000-fc-8s-dual-bec-barometer-x8-g-503).
+- This page documents the **full-size** Foxeer H7 MPU6000 (37 x 37 mm, 30.5 x 30.5 mm mounting). Foxeer also sells a [**Mini** version](https://www.foxeer.com/foxeer-h7-mini-mpu6000-fc-8s-dual-bec-barometer-g-504) (approx. 30 x 31 mm, 20 x 20 mm mounting, ~5.6 g) under the same product name — verify which variant you have before relying on the physical dimensions above.
+- The gyro ships as an MPU6000; the `FOXEERH743` target also builds in MPU6500 and ICM42688P drivers for auto-detection across hardware revisions.
+- The OSD chip is an inferred MAX7456-compatible clone (commonly an AT7456E): config only defines `USE_MAX7456` and Foxeer's spec lists it simply as "BF OSD". The exact part is not confirmed from a marking.
+- Dual BEC: 5V/2A for the flight controller and peripherals, 10V/2A for the video transmitter, plus a 3.3V/0.5A rail.
+
+</TabItem>
+
+</Tabs>
