@@ -16,29 +16,30 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 ## Version Change Register
 
-| Version # | Revision Date     | Changes, Reasons, and Notes       |
-| :-------- | :---------------- | :-------------------------------- |
-| Draft 0.1 | 14 May 2022       | Initial Draft Format              |
-| Draft 0.2 | 04 June 2022      | Revise format to Final Format     |
-| Draft 0.3 | 12 June 2022      | Update Visual Media and Tables    |
-| Draft 0.4 | 21 October 2022   | Update format, add information    |
-| Draft 0.5 | 24 October 2022   | Add additional information        |
-| Draft 0.6 | 06 November 2022  | Add cloud build information       |
-| Draft 0.7 | 17 November 2022  | Remove off-board hardware defines |
-| Draft 0.8 | 01 January 2023   | Update Baro and CC2500            |
-| Draft 0.9 | 14 January 2023   | Add FC LEDs                       |
-| Draft 1.0 | 26 January 2023   | Add Signal Rules                  |
-| Draft 1.1 | 10 December 2023  | Add LSM6DSV16X and LPS22DF        |
-| Draft 1.2 | 13 January 2024   | Add Mag and Baro hardware note    |
-| Draft 1.3 | 23 October 2024   | Update MCU recommendations        |
-| Draft 1.4 | 06 November 2024  | Add LED pin resource warning      |
-| Draft 1.5 | 13 January 2025   | Update ADC/gyro recommendations   |
-| Draft 1.6 | 18 February 2025  | Add W25N02K flash define          |
-| Draft 1.7 | 27 March 2025     | Update FC review policy           |
-| Draft 1.8 | 01 April 2025     | Update I2C Device Info            |
-| Draft 1.9 | 12 September 2025 | Update motor requirements         |
-| Draft 2.0 | 12 November 2025  | GPIO usage clarifications         |
-| Draft 2.1 | 29 March 2026     | Update sensors                    |
+| Version # | Revision Date     | Changes, Reasons, and Notes                               |
+| :-------- | :---------------- | :-------------------------------------------------------- |
+| Draft 0.1 | 14 May 2022       | Initial Draft Format                                      |
+| Draft 0.2 | 04 June 2022      | Revise format to Final Format                             |
+| Draft 0.3 | 12 June 2022      | Update Visual Media and Tables                            |
+| Draft 0.4 | 21 October 2022   | Update format, add information                            |
+| Draft 0.5 | 24 October 2022   | Add additional information                                |
+| Draft 0.6 | 06 November 2022  | Add cloud build information                               |
+| Draft 0.7 | 17 November 2022  | Remove off-board hardware defines                         |
+| Draft 0.8 | 01 January 2023   | Update Baro and CC2500                                    |
+| Draft 0.9 | 14 January 2023   | Add FC LEDs                                               |
+| Draft 1.0 | 26 January 2023   | Add Signal Rules                                          |
+| Draft 1.1 | 10 December 2023  | Add LSM6DSV16X and LPS22DF                                |
+| Draft 1.2 | 13 January 2024   | Add Mag and Baro hardware note                            |
+| Draft 1.3 | 23 October 2024   | Update MCU recommendations                                |
+| Draft 1.4 | 06 November 2024  | Add LED pin resource warning                              |
+| Draft 1.5 | 13 January 2025   | Update ADC/gyro recommendations                           |
+| Draft 1.6 | 18 February 2025  | Add W25N02K flash define                                  |
+| Draft 1.7 | 27 March 2025     | Update FC review policy                                   |
+| Draft 1.8 | 01 April 2025     | Update I2C Device Info                                    |
+| Draft 1.9 | 12 September 2025 | Update motor requirements                                 |
+| Draft 2.0 | 12 November 2025  | GPIO usage clarifications                                 |
+| Draft 2.1 | 29 March 2026     | Update sensors                                            |
+| Draft 2.2 | 05 July 2026      | Sync sensor defines with firmware master; add LSM6DSK320X |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -175,7 +176,7 @@ For connector pinout please refer to the [Betaflight Connector Standard](connect
 
 ### 3.1.2 Inertial Measurement Unit (IMU) Selection
 
-Selecting the right IMU for a flight controller is crucial for optimal flight performance. The InvenSense MPU-6000, the long-time standard, has reached end-of-life. As a replacement, we strongly recommend the ICM-42688-P (see below). Note that gyroscopes must communicate via SPI; I2C gyros are not supported. Legacy models such as the MPU-6500 will not be accepted.
+Selecting the right IMU for a flight controller is crucial for optimal flight performance. The InvenSense MPU-6000, the long-time standard, has reached end-of-life. As a replacement, we strongly recommend the ICM-42688-P (see below). Where the ICM-42688-P cannot be sourced, the STMicroelectronics LSM6DSK320X is a Betaflight-supported alternative (see below). Note that gyroscopes must communicate via SPI; I2C gyros are not supported. Legacy models such as the MPU-6500 will not be accepted.
 
 :::note
 
@@ -194,6 +195,10 @@ The ICM-42688-P also supports an external clock input, which can yield increased
 Using a single timer with 4 channels dedicated to dual gyro FSYNC/INT pins for such a timer would be ideal
 
 :::
+
+#### Alternative IMU: STMicroelectronics LSM6DSK320X
+
+Where the ICM-42688-P is unavailable, the STMicroelectronics LSM6DSK320X is a Betaflight-supported alternative (define `USE_ACCGYRO_LSM6DSK320X`, which shares the LSM6DSV16X driver). It is a modern 6-axis SPI IMU with a high gyro output data rate and a dual accelerometer that adds a ±320 g high-g range. As with any IMU, it must be powered from its own LDO and validated in a representative flight environment in collaboration with the Betaflight development team. The ICM-42688-P remains the reference gyro for maximum flight performance — its lower gyro noise, native 8 kHz sampling, and external-clock input are what the current Betaflight filtering and tuning pipeline is built around — so the LSM6DSK320X is best treated as a second-source / availability-driven option rather than a performance upgrade.
 
 Future IMU selection should be carried out with close involvement of the Betaflight development group. Early hardware validation samples should be explored in collaboration with Betaflight developers to determine the suitability of these IMU units in relevant environments.
 The ability to customize IMU lowpass filtering and operate within the same GRMS/Shock environment allows for maximum portability of existing filtering and tune schemes, but this development must occur with complete hardware samples and flown in representative flight regimes in order to replicate the EMI environment end-users will experience.
@@ -551,20 +556,22 @@ As reference please choose the defines for your target from this list as applica
 
 ### 4.2.1 Defines for GYRO and ACC
 
-Define at least one gyro and one accelerometer.
+Define at least one gyro and one accelerometer. Gyroscopes must communicate via SPI. Legacy I2C-only parts (e.g. MPU6050), the obsolete L3GD20, and the SITL/virtual sensors are intentionally omitted below, as they are not accepted for new designs.
 
-```
+```c
+// InvenSense / TDK
 #define USE_GYRO_SPI_MPU6000
 #define USE_ACC_SPI_MPU6000
 #define USE_GYRO_SPI_MPU6500
 #define USE_ACC_SPI_MPU6500
 #define USE_GYRO_SPI_MPU9250
 #define USE_ACC_SPI_MPU9250
-#define USE_GYRO_SPI_ICM20602
-#define USE_ACC_SPI_ICM20602
+#define USE_GYRO_SPI_ICM20602      // ICM20601 / ICM20602 / ICM20608G — alias handled by the MPU6500 driver (common_post.h)
+#define USE_ACC_SPI_ICM20602       // ICM20601 / ICM20602 / ICM20608G — alias handled by the MPU6500 driver (common_post.h)
+#define USE_GYRO_SPI_ICM20649
+#define USE_ACC_SPI_ICM20649
 #define USE_GYRO_SPI_ICM20689
 #define USE_ACC_SPI_ICM20689
-#define USE_ACCGYRO_BMI270
 #define USE_ACCGYRO_ICM40609D
 #define USE_GYRO_SPI_ICM42605
 #define USE_ACC_SPI_ICM42605
@@ -572,35 +579,47 @@ Define at least one gyro and one accelerometer.
 #define USE_ACCGYRO_ICM42686P
 #define USE_GYRO_SPI_ICM42688P
 #define USE_ACC_SPI_ICM42688P
-#define USE_ACCGYRO_ICM45686
+#define USE_ACCGYRO_IIM42652
+#define USE_ACCGYRO_IIM42653
 #define USE_ACCGYRO_ICM45605
+#define USE_ACCGYRO_ICM45686
+// Bosch
+#define USE_ACCGYRO_BMI160
+#define USE_ACCGYRO_BMI270
+// STMicroelectronics
 #define USE_ACCGYRO_LSM6DSO
 #define USE_ACCGYRO_LSM6DSV16X
 #define USE_ACCGYRO_LSM6DSK320X
-#define USE_ACCGYRO_IIM42652
-#define USE_ACCGYRO_IIM42653
 ```
 
 ### 4.2.2 Defines for FLASH
 
 Define correct flash driver(s) only if physical present on the board.
 
+```c
+#define USE_FLASH_M25P16           // NOR SPI: Micron M25P16 (16Mb/2MB) plus a large JEDEC-ID table of compatible NOR chips incl. Winbond W25Qxx, Macronix, GigaDevice, etc. (https://github.com/betaflight/betaflight/blob/master/src/main/drivers/flash/flash_m25p16.c)
+#define USE_FLASH_PY25Q128HA       // 128Mb (16MB) PUYA PY25Q128; alias that enables the M25P16 driver (see common_post.h)
+#define USE_FLASH_W25Q128FV        // 128Mb (16MB) Winbond 25Q128 / 16Mb (2MB) 25Q16 (use for QuadSPI / OctoSPI; for standard SPI use USE_FLASH_M25P16)
+#define USE_FLASH_W25N             // Winbond W25N NAND family driver (also enable the specific chip define below)
+#define USE_FLASH_W25N01G          // 1Gb (128MB) Winbond W25N01G NAND
+#define USE_FLASH_W25N02K          // 2Gb (256MB) Winbond W25N02K NAND
+#define USE_FLASH_W25M             // Winbond W25M stacked-die driver
+#define USE_FLASH_W25M512          // 512Mb (64MB, 256Mb x 2 stacked) NOR
+#define USE_FLASH_W25M02G          // 2Gb (256MB, 1Gb x 2 stacked) NAND
+#define USE_FLASH_MT29F            // Micron MT29F NAND (1 / 2 / 4Gb, 3.3V and 1.8V variants)
+#define USE_FLASH_MX66UW1G45G      // 1Gb (128MB) Macronix MX66UW1G45G OctoSPI NOR (see OctoSPI note below)
 ```
-#define USE_FLASH_M25P16           // 16Mb (2MB) Micron M25P16 and many others (https://github.com/betaflight/betaflight/blob/master/src/main/drivers/flash/flash_m25p16.c#L68)
-#define USE_FLASH_PY25Q128HA       // 128Mb (16MB) PUYA semi 25Q128
-#define USE_FLASH_W25N01G          // 1Gb (128MB) NAND flash support
-#define USE_FLASH_W25N02K          // 2Gb (256MB) NAND flash support
-#define USE_FLASH_W25M             // 16, 32, 64 or 128MB Winbond stacked die support
-#define USE_FLASH_W25M512          // 512Mb (64 MB, 256Mb x 2 stacked) NOR flash support
-#define USE_FLASH_W25M02G          // 2Gb (256MB, 1Gb x 2 stacked) NAND flash support
-#define USE_FLASH_W25Q128FV        // 128Mb (16MB) Winbond 25Q128 and 16 Mb (2MB) 25Q16 support (for quad and octo SPI support, for standard SPI use USE_FLASH_M25P16)
-```
+
+The bus interface (`USE_FLASH_SPI`, `USE_FLASH_QUADSPI`, `USE_FLASH_OCTOSPI`) is normally provided by the target platform — enable the per-chip driver above that matches the fitted part.
+
+OctoSPI/XSPI boot-flash chips (e.g. the Macronix `MX66UW1G45G`) are not selected with a `config.h` `#define`. Instead, set `OCTOSPI_FLASH_CHIP := MX66UW1G45G` in the target's `config.mk`; the build emits the matching `USE_FLASH_*` define automatically (needed for chips that cannot be probed via JEDEC RDID at runtime).
 
 ### 4.2.3 Defines for BARO
 
 Define a barometer only if physical present on the board. Betaflight strongly recommends I2C for barometer connections.
 
-```
+```c
+#define USE_BARO_BMP085            // legacy, I2C only (not recommended for new designs)
 #define USE_BARO_MS5611
 #define USE_BARO_SPI_MS5611
 #define USE_BARO_BMP280
@@ -610,23 +629,29 @@ Define a barometer only if physical present on the board. Betaflight strongly re
 #define USE_BARO_SPI_LPS
 #define USE_BARO_QMP6988
 #define USE_BARO_SPI_QMP6988
-#define USE_BARO_DPS310
+#define USE_BARO_DPS310            // one driver covers DPS310, DPS368 and SPL07-003 (no separate DPS368 define)
 #define USE_BARO_SPI_DPS310
 #define USE_BARO_2SMBP_02B
 #define USE_BARO_SPI_2SMBP_02B
 #define USE_BARO_LPS22DF
 #define USE_BARO_SPI_LPS22DF
+#define USE_BARO_BMP580
+#define USE_BARO_SPI_BMP580
+#define USE_BARO_BMP581
+#define USE_BARO_SPI_BMP581
 ```
 
 ### 4.2.4 Defines for MAG
 
 Define a magnetometer only if physical present on the board. Betaflight strongly recommends I2C for magnetometer connections.
 
-```
+```c
 #define USE_MAG_DATA_READY_SIGNAL
 #define USE_MAG_HMC5883
 #define USE_MAG_SPI_HMC5883
-#define USE_MAG_QMC5883
+#define USE_MAG_QMC5883            // hybrid, kept for backwards compatibility (enables both QMC5883L and QMC5883P)
+#define USE_MAG_QMC5883L
+#define USE_MAG_QMC5883P
 #define USE_MAG_LIS2MDL
 #define USE_MAG_LIS3MDL
 #define USE_MAG_AK8963
@@ -637,26 +662,29 @@ Define a magnetometer only if physical present on the board. Betaflight strongly
 #define USE_MAG_MMC560X
 ```
 
+For the QMC5883, prefer the chip-specific `USE_MAG_QMC5883L` or `USE_MAG_QMC5883P` for the part actually fitted. `USE_MAG_QMC5883` is a hybrid define retained for backwards compatibility — the firmware expands it to enable both drivers (see `common_post.h`) — so existing configs that use it continue to build.
+
 ### 4.2.5 Defines for SX1280
 
-For SPI based SX1280 target designs add the following defines:
+For SPI based SX1280 target designs add the following defines. For 900 MHz ExpressLRS hardware based on the SX127x, add `USE_RX_SX127X` as well (both may be defined for dual-band designs):
 
-```
+```c
 #define USE_RX_EXPRESSLRS
 #define USE_RX_EXPRESSLRS_TELEMETRY
 #define USE_RX_SX1280
+#define USE_RX_SX127X
 #define RX_CHANNELS_AETR
 ```
 
 ### 4.2.6 Defines for OSD
 
-```
+```c
 #define USE_MAX7456
 ```
 
 ### 4.2.7 Defines for SDCARD
 
-```
+```c
 #define USE_SDCARD
 ```
 
@@ -664,8 +692,24 @@ For SPI based SX1280 target designs add the following defines:
 
 For SPI based CC2500 target designs add the following define:
 
-```
+```c
 #define USE_RX_CC2500
+```
+
+### 4.2.9 Defines for Rangefinder and Optical Flow
+
+Define these only if the corresponding sensor is physically present on the board.
+
+```c
+#define USE_RANGEFINDER
+#define USE_RANGEFINDER_HCSR04     // HC-SR04 ultrasonic (GPIO trigger/echo)
+#define USE_RANGEFINDER_TF         // Benewake TFmini / TF02 / TFnova (UART)
+#define USE_RANGEFINDER_MT         // Micoair MTF-01 / MTF-02 (also provides optical flow)
+#define USE_RANGEFINDER_NOOPLOOP   // Nooploop TOFSense
+#define USE_RANGEFINDER_UPT1       // UPT1 (also provides optical flow)
+#define USE_OPTICALFLOW
+#define USE_OPTICALFLOW_MT         // Micoair MTF-01 / MTF-02 optical flow (pair with USE_RANGEFINDER_MT)
+#define USE_OPTICALFLOW_UPT1       // UPT1 optical flow (pair with USE_RANGEFINDER_UPT1)
 ```
 
 ## 4.3 Usage of the Cloud Build API
