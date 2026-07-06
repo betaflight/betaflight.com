@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useDoc } from '@docusaurus/plugin-content-docs/client';
-import React from 'react';
-import { Save, Cpu, Crosshair, MonitorStop, Rotate3D, Ruler, Thermometer, CircleCheck, LifeBuoy, Clock } from 'lucide-react';
-import SpecBox from '../SpecGrid/SpecBox';
-import ConnectorLogo from '@site/static/img/betaflight/connector_logo.svg';
+import { useDoc } from '@docusaurus/plugin-content-docs/client'
+import React from 'react'
+import { Save, Cpu, Crosshair, MonitorStop, Rotate3D, Ruler, Thermometer, CircleCheck, LifeBuoy, Clock } from 'lucide-react'
+import SpecBox from '../SpecGrid/SpecBox'
+import ConnectorLogo from '@site/static/img/betaflight/connector_logo.svg'
 
 export default function VersionInfo({ children }) {
-  const { frontMatter } = useDoc();
+  const { frontMatter } = useDoc()
 
   type Specs = {
     target: string
@@ -29,23 +29,23 @@ export default function VersionInfo({ children }) {
     confidence?: number
   }
 
-  const customProps = (frontMatter.sidebar_custom_props ?? {}) as any;
-  const specs = (customProps.specs ?? {}) as Specs;
-  const meta = customProps as Meta;
+  const customProps = (frontMatter.sidebar_custom_props ?? {}) as any
+  const specs = (customProps.specs ?? {}) as Specs
+  const meta = customProps as Meta
 
-  const dash = (v: string) => (v && String(v).trim() ? v : '—');
-  const { target = '', mcu = '', imu = '', osd = '', barometer = '', blackbox: flash = '', dimensions = '', mounting = '', weight = '' } = specs;
-  const { last_updated: lastUpdated = '', support_url: supportUrl = '', betaflight_supported: bfSupported = false, connector_standard: connectorStandard = false, doc_status: docStatus = '', confidence } = meta;
+  const dash = (v: string) => (v && String(v).trim() ? v : '—')
+  const { target = '', mcu = '', imu = '', osd = '', barometer = '', blackbox: flash = '', dimensions = '', mounting = '', weight = '' } = specs
+  const { last_updated: lastUpdated = '', support_url: supportUrl = '', betaflight_supported: bfSupported = false, connector_standard: connectorStandard = false, doc_status: docStatus = '', confidence } = meta
 
   const statusMeta: Record<string, { label: string; cls: string }> = {
     complete: { label: 'Complete', cls: 'bg-green-500/15 text-green-600 dark:text-green-400' },
     partial: { label: 'Partial', cls: 'bg-amber-500/15 text-amber-600 dark:text-amber-400' },
     'config-only': { label: 'Config-only', cls: 'bg-blue-500/15 text-blue-600 dark:text-blue-400' },
     blocked: { label: 'Needs verification', cls: 'bg-red-500/15 text-red-600 dark:text-red-400' },
-  };
-  const status = statusMeta[docStatus];
+  }
+  const status = statusMeta[docStatus]
 
-  const hasFooter = status || bfSupported || connectorStandard || supportUrl || lastUpdated;
+  const hasFooter = status || bfSupported || connectorStandard || supportUrl || lastUpdated
 
   return (
     <div className="w-full flex flex-col gap-2">
@@ -111,5 +111,5 @@ export default function VersionInfo({ children }) {
         </div>
       )}
     </div>
-  );
+  )
 }
