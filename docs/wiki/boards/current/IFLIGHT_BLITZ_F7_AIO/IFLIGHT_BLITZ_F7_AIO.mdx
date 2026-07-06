@@ -1,0 +1,125 @@
+---
+description: iFlight BLITZ Whoop F7 AIO
+sidebar_custom_props:
+  specs:
+    target: IFLIGHT_BLITZ_F7_AIO
+    mcu: STM32F745 # BGA-STM32F745, 216 MHz (verified — manufacturer)
+    imu: ICM42688P / BMI270 # config carries both SPI gyro drivers; production batches ship either part (retailers list ICM42688 or BMI270)
+    osd: AT7456E # config USE_MAX7456; iFlight markets an AT7456E, a MAX7456-compatible part
+    barometer: DPS310 # config USE_BARO_DPS310 + manufacturer spec (verified)
+    blackbox: 2MB # M25P16 = 16 Mbit = 2 MB (config); iFlight's "16MB" marketing figure is 16 Mbit
+    dimensions: TODO # verify: retailers disagree (32.5 x 32.5 mm vs 35 x 35 mm) — board outline unconfirmed
+    mounting: 25.5 x 25.5 mm # φ3 mm (M3), consistent across manufacturer + retailers
+    weight: 10.5 g # verified — manufacturer/retailers
+  last_updated: "2026-07-06"
+  support_url: "https://shop.iflight.com/BLITZ-Whoop-F7-AIO-Pro1927"
+  betaflight_supported: true
+  connector_standard: false # AIO with integrated 4-in-1 ESC; motors solder directly to the board, not the Betaflight ESC connector standard
+  doc_status: partial # identity + core electricals verified against manufacturer/retailer specs; pad labels, pinouts, exact dimensions and USB type still flagged
+  confidence: 72 # raise once a manufacturer wiring/pinout diagram confirms pad labels, connector pinouts, USB type and exact board dimensions
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import SpecGrid from '@site/src/components/SpecGrid'
+
+# iFlight BLITZ Whoop F7 AIO
+
+{/* Identity: the `IFLIGHT_BLITZ_F7_AIO` firmware target is the iFlight BLITZ Whoop F7 (2-6S, 55A) AIO — a 25.5 x 25.5 mm-mount flight controller with an integrated 55A 4-in-1 ESC (also sold as "BLITZ F7 55A AIO"). Distinguish it from the standalone BLITZ F745 FC (6 UARTs, 32 MB flash, no onboard ESC, target IFLIGHT_BLITZ_F745) and from the F722-based BLITZ F7 / BLITZ Mini F7. A later V2 board revision ships a BLHeli_S ESC in place of the V1.1 Bluejay ESC. */}
+
+<Tabs>
+
+<TabItem value="specifications" label="Specifications" default>
+
+<SpecGrid>
+
+{/* TODO(image): add a 1:1 square cover photo (top view), supplied by the manufacturer. e.g. ![IFLIGHT_BLITZ_F7_AIO](./IFLIGHT_BLITZ_F7_AIO-images/IFLIGHT_BLITZ_F7_AIO-top.png) */}
+
+</SpecGrid>
+
+## Other Features
+
+- SD Card Slot: No
+- Onboard Receiver: No {/* external receiver; no SPI/onboard RX in config.h */}
+- Hardware Inverter: No
+- Bluetooth: No {/* not listed by the manufacturer */}
+- WiFi: No {/* not listed by the manufacturer */}
+- Onboard RGB LED: Yes {/* bottom-mounted WS2812 RGB; Betaflight-controlled LED count not published — TODO(verify) */}
+
+## Input/Output
+
+- USB Connector: Micro-USB {/* TODO(verify): iFlight and most retailer spec sheets list Micro-USB, but one retailer lists USB-C — confirm from the manual */}
+- Motor Outputs: 4x {/* integrated 55A 4-in-1 ESC (M1–M4); config defines 8 motor timers (STM32F745), but the AIO only drives 4 motors */}
+- UARTs: 8x {/* config defines UART1–8 (F745 hardware); the AIO breaks out only a subset as solder pads — TODO(verify) pad count */}
+- I2C: Yes
+- SWD: TODO {/* verify: normally Yes */}
+- SPI: TODO {/* verify: config has internal SPI buses; state whether SPI is broken out to user pads */}
+- 3.3V Output: TODO {/* verify: max current — not in config.h */}
+- 4.5V (VBUS) Output: TODO {/* verify: not in config.h */}
+- 5V Output: Yes {/* onboard BEC, 5V 2.5A (some listings state 5V 2A/3A) */}
+- 10V Output: No {/* verify: the AIO publishes only a 5V BEC; no 9V/10V rail listed */}
+- Current Sensor: Yes {/* onboard, integrated in the 4-in-1 ESC; ratio 200 (1/10 mV/A) matches config DEFAULT_CURRENT_METER_SCALE 200 */}
+- Analog RSSI Input: Yes
+- LED Strip Output: Yes
+- Buzzer Output: Yes
+
+## Pads
+
+{/* TODO(verify): pad Label (silkscreen) and Notes columns are not in config.h and no manufacturer pinout diagram was available at time of writing — fill from the board/product page. Typical usage: UART1 = VTX (analog/HD), UART2 = receiver (SBUS/DJI), additional UARTs = GPS/peripherals; one UART is wired internally to the ESC for telemetry. */}
+
+### UARTs
+
+| Name   | Label | Notes |
+| ------ | ----- | ----- |
+| UART 1 | TODO | TODO |
+| UART 2 | TODO | TODO |
+| UART 3 | TODO | TODO |
+| UART 4 | TODO | TODO |
+| UART 5 | TODO | TODO |
+| UART 6 | TODO | TODO |
+| UART 7 | TODO | TODO |
+| UART 8 | TODO | TODO |
+
+### Power
+
+{/* TODO(verify): fill from manufacturer — pad labels, counts and current ratings. Confirmed: onboard 5V 2.5A BEC; battery input 2-6S (LiPo/LiHV). */}
+
+| Name            | Label | Count | Notes |
+| --------------- | ----- | ----- | ----- |
+| Battery Voltage | TODO  | TODO  | TODO  |
+
+{/* TODO(verify): document ESC signal pads, video pads, buzzer pads, I2C pads, SWD pads, etc. — see the example doc. */}
+
+## Connectors
+
+{/* TODO(verify): JST/connector pinouts are highly board-specific and not in config.h, and no pinout diagram was available at time of writing. Document each connector from the manufacturer material. */}
+
+</TabItem>
+
+<TabItem value="wiring" label="Wiring Diagrams">
+
+{/* TODO(image): add wiring / pinout diagram to ./IFLIGHT_BLITZ_F7_AIO-images/, supplied by the manufacturer. */}
+
+</TabItem>
+
+<TabItem value="photos" label="Photos">
+
+{/* TODO(image): add clean top/bottom photos to ./IFLIGHT_BLITZ_F7_AIO-images/, supplied by the manufacturer. */}
+
+</TabItem>
+
+<TabItem value="notes" label="Notes">
+
+- Manufacturer: iFlight Innovation Technology Ltd. — https://www.iflight-rc.com/
+- Product: iFlight BLITZ Whoop F7 AIO (2-6S, 55A) — flight controller with an integrated 4-in-1 ESC (also marketed as "BLITZ F7 55A AIO").
+- Integrated ESC: 55A continuous / 65A peak (10 s), BB21 ESC MCU, FD6288 gate driver, ships with Bluejay (Q-H-40) firmware and supports bidirectional DShot (DShot150/300/600). A later V2 board revision ships a BLHeli_S ESC.
+- Battery input: 2-6S LiPo / LiHV.
+- Power: onboard 5V 2.5A BEC for the FC and peripherals (VTX/camera).
+- Onboard current sensor (scale 200, i.e. 1/10 mV/A) — matches the firmware default.
+- Board orientation is rotated: config sets `DEFAULT_ALIGN_BOARD_YAW 135`.
+
+{/* TODO(verify): confirm exact board dimensions (retailer listings disagree: 32.5 x 32.5 mm vs 35 x 35 mm), USB connector type, RGB LED count, and add the board-specific manual/pinout link and cautions. */}
+
+</TabItem>
+
+</Tabs>

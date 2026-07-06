@@ -1,0 +1,161 @@
+---
+description: SpeedyBee F405 V4
+sidebar_custom_props:
+  specs:
+    target: SPEEDYBEEF405V4
+    mcu: STM32F405
+    imu: ICM42688P
+    osd: AT7456E
+    barometer: DPS310
+    blackbox: SD Card
+    dimensions: 41.6 x 39.4 x 7.8 mm
+    mounting: 30.5 x 30.5 mm (4 mm holes)
+    weight: 10.5 g
+  last_updated: "2026-07-06"
+  support_url: "https://www.speedybee.com/speedybee-f405-v4-bls-55a-30x30-fc-esc-stack/"
+  betaflight_supported: true
+  connector_standard: false
+  doc_status: complete
+  confidence: 90
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import SpecGrid from '@site/src/components/SpecGrid'
+
+# SpeedyBee F405 V4
+
+The SpeedyBee F405 V4 is a 30x30 (30.5 x 30.5 mm, 4 mm holes) STM32F405 flight controller. It is sold on its own and as the SpeedyBee F405 V4 BLS 55A 30x30 Stack together with the SpeedyBee BLS 55A 4-in-1 ESC. It has an onboard Bluetooth chip (for FC/ESC configuration via the SpeedyBee app), a MAX7456-compatible AT7456E analog OSD, a barometer, a microSD-card slot for Blackbox, and a 6-pin plug-and-play connector for DJI air units. The firmware target name is `SPEEDYBEEF405V4`.
+
+<Tabs>
+
+<TabItem value="specifications" label="Specifications" default>
+
+<SpecGrid>
+
+{/* TODO(image): add a 1:1 square cover photo (top view), supplied by the manufacturer. e.g. ![SpeedyBee F405 V4](./SPEEDYBEEF405V4-images/SPEEDYBEEF405V4-top.png) */}
+
+</SpecGrid>
+
+## Other Features
+
+- SD Card Slot: Yes — SDSC/SDHC cards up to 32 GB, formatted FAT16/FAT32 (SDXC not supported)
+- Onboard Receiver: None
+- Hardware Inverter: No
+- Bluetooth: Yes (BLE) — used for FC/ESC configuration via the SpeedyBee app; MSP on UART4 at 115200 baud
+- WiFi: No
+- Onboard RGB LED: None (4 corner WS2812 pads LED1–LED4, plus a status/battery LED array)
+
+## Input/Output
+
+- USB Connector: USB Type-C
+- Motor Outputs: 8x (M1–M4 via the 8-pin ESC connector / bottom pads, M5–M8 on front-side pads)
+- UARTs: 6x (UART4 is dedicated to the onboard Bluetooth chip; UART5 is dedicated to ESC telemetry)
+- I2C: Yes (for magnetometer, sonar, etc.)
+- SWD: Yes
+- SPI: Internal only (gyro on SPI1, OSD on SPI2, SD card on SPI3) — not broken out to user pads
+- 3.3V Output: Yes — up to 500 mA (for 3.3V-input receivers)
+- 4.5V (VBUS) Output: Yes — up to 1 A; powered even when running from USB (for RX/GPS)
+- 5V Output: Yes — 3 A total across 9 groups (4x front 5V pads, BZ+, and 4x LED 5V pads)
+- 9V Output: Yes — 3 A total across 2 groups (front 9V pad and the bottom DJI connector)
+- Current Sensor: Yes (ESC-supplied) — reads current from the ESC via the 8-pin connector; for the SpeedyBee BLS 55A ESC use scale 400, offset 0
+- Analog RSSI Input: Yes (RS pad)
+- LED Strip Output: Yes (WS2812, LED pad)
+- Buzzer Output: Yes (5V buzzer, BZ+ / BZ- pads)
+
+## Pads
+
+### UARTs
+
+| Name   | Label      | Notes                                                                                                        |
+| ------ | ---------- | ------------------------------------------------------------------------------------------------------------ |
+| UART 1 | T1 / R1    | Bottom edge; grouped with the analog VTX pads and used by the DJI 6-pin connector for OSD/air-unit MSP.       |
+| UART 2 | T2 / R2    | Top edge; also broken out as the SBUS pad (SBUS internally uses UART2). Default serial-RX / receiver UART.    |
+| UART 3 | T3 / R3    | Top edge.                                                                                                    |
+| UART 4 | —          | No pads; dedicated to the onboard Bluetooth chip (MSP, 115200 baud).                                          |
+| UART 5 | R5 (TEL)   | Only the RX pad (labelled TEL) is broken out; dedicated to ESC telemetry. The target defines only UART5 RX.   |
+| UART 6 | T6 / R6    | Bottom edge; grouped with 4V5 / SDA / SCL for GPS + compass.                                                  |
+
+### Power
+
+| Name            | Label     | Notes                                                                                          |
+| --------------- | --------- | ---------------------------------------------------------------------------------------------- |
+| Battery Voltage | BAT       | 3-6S LiPo input (also supplied via the 8-pin ESC connector).                                   |
+| 5V Output       | 5V        | 5V BEC, 3 A total across 9 groups.                                                             |
+| 9V Output       | 9V / VTX  | 9V BEC, 3 A total; the VTX 9V rail is switchable via PINIO (Betaflight USER1).                  |
+| 4.5V Output     | 4V5       | 4.5V output, up to 1 A; live even over USB.                                                     |
+| 3.3V Output     | 3V3       | 3.3V output, up to 500 mA.                                                                      |
+
+### Other
+
+| Name             | Label     | Notes                                                          |
+| ---------------- | --------- | -------------------------------------------------------------- |
+| Motors (front)   | M5 – M8   | Front-side motor output pads (M5–M8).                          |
+| Camera Video In  | CAM       | Analog FPV camera video input.                                 |
+| Camera Control   | CC        | Betaflight camera control.                                     |
+| RSSI             | RS        | Analog RSSI input.                                             |
+| Servo            | S9        | Servo / extra PWM output.                                      |
+| LED Strip        | LED       | WS2812 addressable LED data.                                   |
+| I2C              | SDA / SCL | Magnetometer, sonar, etc.                                      |
+| Buzzer           | BZ+ / BZ- | 5V buzzer.                                                     |
+
+## Connectors
+
+### 8-Pin ESC Connector (SH 1.0 mm)
+
+Connects the FC to the ESC. Either end of the supplied cable can be used. FC-side pad definition (top to bottom):
+
+| Pin | FC Label | ESC Label |
+| --- | -------- | --------- |
+| 1   | GND      | N/A       |
+| 2   | BAT      | CURRENT   |
+| 3   | M1       | S4        |
+| 4   | M2       | S3        |
+| 5   | M3       | S2        |
+| 6   | M4       | S1        |
+| 7   | CUR      | VBAT      |
+| 8   | TEL      | GND       |
+
+### DJI 6-Pin Air Unit Connector
+
+Plug-and-play with DJI O3 / RunCam Link / Caddx Vista / DJI Air Unit V1. Board-side silkscreen labels:
+
+| Pin | Label     | Notes                                                                 |
+| --- | --------- | --------------------------------------------------------------------- |
+| 1   | 9V        | VTX power (manufacturer cable diagrams label this pin 7.4-26.4V).     |
+| 2   | G         | Ground.                                                               |
+| 3   | T1        | UART1 TX (air-unit / OSD MSP).                                        |
+| 4   | R1        | UART1 RX (air-unit / OSD MSP).                                        |
+| 5   | G         | Ground.                                                               |
+| 6   | SBUS (R2) | Receiver SBUS passthrough (UART2 RX).                                  |
+
+</TabItem>
+
+<TabItem value="wiring" label="Wiring Diagrams">
+
+{/* TODO(image): add wiring / pinout diagram to ./SPEEDYBEEF405V4-images/, supplied by the manufacturer. */}
+
+</TabItem>
+
+<TabItem value="photos" label="Photos">
+
+{/* TODO(image): add clean top/bottom photos to ./SPEEDYBEEF405V4-images/, supplied by the manufacturer. */}
+
+</TabItem>
+
+<TabItem value="notes" label="Notes">
+
+- Manufacturer: SpeedyBee (LangTian Technology (Shenzhen) Co.) — [speedybee.com](https://www.speedybee.com/).
+- Product page: [SpeedyBee F405 V4 BLS 55A 30x30 FC & ESC Stack](https://www.speedybee.com/speedybee-f405-v4-bls-55a-30x30-fc-esc-stack/).
+- The OSD chip is an AT7456E, a MAX7456-compatible clone (the Betaflight target uses the `USE_MAX7456` driver).
+- UART4 is not broken out to pads — it is wired to the onboard Bluetooth chip. Bluetooth configuration requires MSP enabled on UART4 at 115200 baud (the default).
+- When using an SBUS receiver, connect its signal wire to the SBUS pad (UART2). If a DJI air unit is also connected via the 6-pin cable, remove/insulate the SBUS wire from the air-unit harness so the external SBUS receiver is recognised.
+- ESC telemetry is on UART5 (RX-only, TEL pad).
+- Blackbox: use SDSC or SDHC microSD cards up to 32 GB, formatted FAT16 or FAT32. SDXC cards are not supported.
+- The four corner WS2812 pads (LED1–LED4) can be switched between Betaflight control (BF_LED) and SpeedyBee control (SB_LED) using the onboard BOOT button; default is BF_LED.
+- To recover a bricked board, hold the BOOT button while plugging in USB to force DFU, then flash the `SPEEDYBEEF405V4` target.
+- Firmware target: `SPEEDYBEEF405V4` (Betaflight, INAV).
+
+</TabItem>
+
+</Tabs>

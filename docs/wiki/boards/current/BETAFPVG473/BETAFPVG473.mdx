@@ -1,0 +1,122 @@
+---
+description: BETAFPV Air Brushless Flight Controller (G4)
+sidebar_custom_props:
+  specs:
+    target: BETAFPVG473
+    mcu: STM32G473 # STM32G473CEU6 (verified — manufacturer)
+    imu: ICM42688P # ships with ICM42688P; config also carries BMI270 as an alternate driver
+    osd: MAX7456 # config USE_MAX7456; BETAFPV markets a "custom OSD chip" — likely a MAX7456-compatible part
+    barometer: "" # TODO(verify): config enables BMP280/DPS310 drivers only; no baro in the marketing spec — unconfirmed populated (1S whoop AIOs usually omit it)
+    blackbox: 2MB # M25P16 = 16 Mbit = 2 MB (config); BETAFPV's "16MB" marketing figure is 16 Mbit
+    dimensions: TODO # verify from manufacturer (board outline)
+    mounting: 26 x 26 mm # mounting-hole pattern (manufacturer); board outline still TODO
+    weight: 2.9 g (4IN1) / 3.6 g (5IN1) # verified — manufacturer
+  last_updated: "2026-07-06"
+  support_url: "https://betafpv.com/products/air-brushless-flight-controller"
+  betaflight_supported: true
+  connector_standard: false # 1S AIO with SH1.0 connectors; does not follow the Betaflight Connector Standard
+  doc_status: partial # core identity + electricals verified against manufacturer; pad labels, pinouts, dimensions and some rails still flagged
+  confidence: 80 # identity locked by the manufacturer firmware-target string; VTX/ESC/weight/BEC/mounting confirmed by BETAFPV/GetFPV/Amazon. Remaining TODOs: board outline, pad labels, pinouts, images
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import SpecGrid from '@site/src/components/SpecGrid'
+
+# BETAFPV Air Brushless Flight Controller (G4)
+
+{/* Identity: the `BETAFPVG473` firmware target is BETAFPV's first STM32G473-based 1S AIO — the Air Brushless FC, sold in 4IN1 (FC + ESC + VTX + OSD) and 5IN1 (adds onboard Serial ELRS 2.4GHz RX) versions. BETAFPV's Matrix 1S line also uses the G473 MCU and may flash a different/revision target. */}
+
+<Tabs>
+
+<TabItem value="specifications" label="Specifications" default>
+
+<SpecGrid>
+
+{/* TODO(image): add a 1:1 square cover photo (top view), supplied by the manufacturer. e.g. ![BETAFPVG473](./BETAFPVG473-images/BETAFPVG473-top.png) */}
+
+</SpecGrid>
+
+## Other Features
+
+- Integrated ESC: Yes — integrated 1S ESC driving 4 motors (config defines MOTOR1–4), up to ~5A continuous, BB51 running Bluejay (96kHz); supports DShot300/600. Motors solder directly to the board. (The "4IN1" in the product name counts integrated subsystems — FC + ESC + VTX + OSD — not ESC channels.)
+- Onboard VTX: Yes — 5.8GHz analog, 48 channels, 25/100/200/400mW + PIT, SmartAudio 2.0 (controlled on UART2 by default)
+- SD Card Slot: No
+- Onboard Receiver: Version-dependent — 4IN1: none; 5IN1: onboard Serial ELRS 2.4GHz RX (CRSF on UART3). External CRSF/SBUS receivers are supported on the free UARTs.
+- Hardware Inverter: No
+- Bluetooth: No {/* TODO(verify): not stated in the manufacturer spec; not in config.h */}
+- WiFi: No {/* TODO(verify): not stated in the manufacturer spec; not in config.h */}
+- Onboard RGB LED: TODO {/* verify: count of Betaflight-controlled LEDs — config exposes an addressable LED strip pad (PB2), not confirmed as an onboard RGB LED */}
+
+## Input/Output
+
+- USB Connector: External USB adapter port via an SH1.0 4-Pin connector (no onboard USB socket)
+- Motor Outputs: 4x (integrated 4-in-1 ESC; solder directly)
+- UARTs: 4x (UART2 is dedicated to the onboard VTX by default; the other 3 are free for external use)
+- I2C: Yes (I2C1)
+- SWD: TODO {/* verify: normally Yes on STM32G473; SWD pad exposure not confirmed from manufacturer material */}
+- SPI: Internal only {/* config defines SPI1 (gyro), SPI2 (OSD), SPI3 (flash); TODO(verify) whether any SPI is broken out to user pads */}
+- 5V Output: Yes — 5V 3A BEC (manufacturer) {/* pad count/exposure still TODO from a cited wiring diagram */}
+- Current Sensor: Yes — onboard, from the integrated 4-in-1 ESC (config: CURRENT_METER_ADC on PA1, scale 750)
+- Analog RSSI Input: No
+- LED Strip Output: Yes (PB2)
+- Buzzer Output: Yes (config: PA8, inverted — external buzzer pad)
+
+## Pads
+
+{/* Function column below is config-derived (default assignments); silkscreen Label and physical pad exposure are TODO(verify) from a manufacturer wiring diagram. */}
+
+### UARTs
+
+| Name   | TX / RX pins | Label | Default function |
+| ------ | ------------ | ----- | ---------------- |
+| UART 1 | PA9 / PA10   | TODO  | Free (general purpose) |
+| UART 2 | PA2 / PA3    | TODO  | Onboard VTX — SmartAudio (VTX_SMARTAUDIO_UART) |
+| UART 3 | PB10 / PB11  | TODO  | Serial RX — CRSF (onboard ELRS on 5IN1 / external RX) |
+| UART 4 | PC10 / PC11  | TODO  | Free (general purpose) |
+
+### Power
+
+{/* Pad counts and current ratings are not in config.h — TODO(verify) from a manufacturer wiring/pinout diagram. */}
+
+| Name            | Label | Count | Notes |
+| --------------- | ----- | ----- | ----- |
+| Battery Voltage | TODO  | TODO  | 1S input; voltage sensing on PA0 (config: VOLTAGE_METER_ADC) |
+| 5V (BEC)        | TODO  | TODO  | 5V 3A BEC (manufacturer); pad count/label TODO(verify) from a wiring diagram |
+
+{/* TODO(verify): document ESC signal pads, video pads, buzzer pads, I2C pads, SWD pads, etc. — see the example doc. */}
+
+## Connectors
+
+The board uses BETAFPV SH1.0 connectors, including a 4-pin SH1.0 port for the external USB adapter.
+
+{/* TODO(verify): document each SH1.0 connector's pinout (USB adapter port, and any RX/serial port) from the manufacturer wiring diagram — pinouts are not in config.h. */}
+
+</TabItem>
+
+<TabItem value="wiring" label="Wiring Diagrams">
+
+{/* TODO(image): add wiring / pinout diagram to ./BETAFPVG473-images/, supplied by the manufacturer. */}
+
+</TabItem>
+
+<TabItem value="photos" label="Photos">
+
+{/* TODO(image): add clean top/bottom photos to ./BETAFPVG473-images/, supplied by the manufacturer. */}
+
+</TabItem>
+
+<TabItem value="notes" label="Notes">
+
+- Manufacturer: [BETAFPV Hobby](https://betafpv.com/) — product page: [Air Brushless Flight Controller](https://betafpv.com/products/air-brushless-flight-controller)
+- This is a 1S all-in-one (AIO) board for ultralight FPV whoops: integrated 4-in-1 ESC, analog VTX and OSD on an ultra-thin (0.8mm) PCB. Motors solder directly to the board.
+- **Blackbox capacity:** the config declares an M25P16 flash (16 Mbit = **2 MB**). BETAFPV's marketing "16MB Blackbox" is a Mbit/MB mix-up and refers to the same 16 Mbit part.
+- **OSD:** the firmware uses the MAX7456 driver; BETAFPV describes a "custom miniature OSD chip", which is most likely a MAX7456-compatible part (exact marking unverified).
+- **Gyro:** ships with the ICM42688P; the target also carries a BMI270 driver as an alternate.
+- **Barometer:** the target enables BMP280 and DPS310 drivers, but no barometer appears in the manufacturer spec — treat this as firmware driver support / pin reservation, not a confirmed onboard sensor.
+- Versions: **4IN1** (FC + ESC + VTX + OSD, ~2.9g) and **5IN1** (adds onboard Serial ELRS 2.4GHz RX, ~3.6g).
+- Related: BETAFPV's **Matrix 1S** line also uses the STM32G473 MCU; confirm the exact firmware target before applying this page to a Matrix board.
+
+</TabItem>
+
+</Tabs>
