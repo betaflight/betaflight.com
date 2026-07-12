@@ -157,7 +157,12 @@ A full **Blackbox log viewer and analyser** is now built into the app as its own
 
 This is distinct from the existing tabs that share the "blackbox" name: the **Blackbox** tab configures on-board logging and downloads logs from the flight controller, **Tethered Logging** captures a live log over the connection, and the new **Blackbox Viewer** is for analysing recorded logs offline.
 
-### 1.18 Other App Changes
+### 1.18 Board Alignment Wizard
+
+A new **Board Alignment Wizard** has been added to the Sensors tab to help correctly align the flight controller's orientation.
+It provides clear, step-by-step guidance for interactively setting the correct board orientation by calculating it on the fly from the accelerometer and gyroscope readings.
+
+### 1.19 Other App Changes
 
 * **Transponder tab removed** -- the feature has been retired in the configurator; transponder provider and data are now managed via CLI on the firmware side
 * **Firefox 151+ supported** -- now that Firefox 151 ships WebSerial, the Chromium-only browser check has been removed and the app runs natively on Firefox
@@ -182,7 +187,7 @@ This is distinct from the existing tabs that share the "blackbox" name: the **Bl
 * Updated to Capacitor 8.0.2 for improved Android compatibility
 * Status bar restored on mobile
 
-### 1.19 App Bug Fixes
+### 1.20 App Bug Fixes
 
 * Fixed DFU flashing stalling after Vue migration
 * Fixed motor testing not working
