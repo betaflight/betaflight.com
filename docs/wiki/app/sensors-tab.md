@@ -25,6 +25,11 @@ The Sensor Hardware section shows detected sensors and lets you enable or disabl
 
 Compensates for a flight controller that is not mounted flat or square to the frame. Enter roll, pitch, and yaw correction angles in degrees (decidegrees in CLI). These corrections apply to the gyro, accelerometer, and any sensors that share the FC's coordinate frame.
 
+#### Board Alignment Wizard
+
+On firmware with API >= 1.48, a new **Board Alignment Wizard** is available to assist with setting the correct board orientation.
+It provides step-by-step guidance for interactively determining the correct roll, pitch, and yaw angles by analyzing accelerometer and gyroscope readings while the flight controller is tilted as instructed.
+
 ### Sensor Alignment (Legacy)
 
 On firmware with API < 1.47, separate alignment dropdowns for Gyro 1, Gyro 2, and Accelerometer appear here. On newer firmware, sensor alignment is handled automatically or via the Board Alignment fields.
