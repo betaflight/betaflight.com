@@ -88,7 +88,27 @@ All are profile-specific and show up in `diff`/`dump`.
 
 ## Tuning
 
-There's no dedicated Configurator screen yet — set values via CLI. A sensible starting order, adapted from the community procedure on danusha2345's fork:
+There's no dedicated Configurator screen yet — set values via CLI.
+
+### If you're coming from classic PID
+
+Classic PID gives you three independently adjustable knobs. ADRC's three CLI fields don't map onto them one-to-one, but here's the closest correspondence, useful for building intuition rather than as an exact rule:
+
+| Classic PID concept                                                        | Closest ADRC field                      | Raising it                                                            | Too high                                               | Too low                               |
+| -------------------------------------------------------------------------- | --------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------- |
+| P and D, raised together (locked ratio, can't trade one against the other) | `adrc_wc` — controller bandwidth        | Crisper, faster correction, shorter settling time                     | Oscillation/overshoot, motors "singing" on throttle-up | Floaty, sluggish                      |
+| I (continuous, non-integrating) fused with the D-term filter cutoff        | `adrc_wo` — observer bandwidth          | Faster rejection of wind/prop-wash/CG-offset disturbance              | Gyro noise amplification — hover chatter/heat          | Laggy, "soft" recovery from bumps     |
+| No classic equivalent — a model-calibration input, not a feel knob         | `adrc_b0` — control-input gain estimate | N/A (calibrates assumed motor authority, doesn't shape response feel) | Comparatively harmless: soft/underwhelming correction  | Can fight the loop toward instability |
+
+_(Compare with [danusha2345's own P/I/D table](https://github.com/danusha2345/ADRC-betaflight/blob/master/README.md#how-it-works-repurposing-the-pid-fields) — that fork repurposes the classic `p`/`i`/`d` CLI fields directly to carry `wc`/`wo`/`b0`. **This implementation does not** — `adrc_wc`/`adrc_wo`/`adrc_b0` are dedicated fields, and the classic P/I/D cells stay inert zombies on an ADRC profile (see [Enabling ADRC](#enabling-adrc) above) — don't type ADRC values into them here.)_
+
+Two mechanisms behind that table worth understanding, not just memorizing: the `wc` lock is a direct consequence of the control law `kp = wc²`, `kd = 2·wc` placing both closed-loop poles at the same repeated location `-wc` — the standard "critically damped" bandwidth simplification, not a coincidence. And `b0`'s asymmetry follows from the ESO's disturbance state `z3` silently absorbing whatever `b0` gets wrong: underestimating it makes the observer misattribute your own control action as "disturbance" (can fight the loop toward instability, like accidentally-too-high P); overestimating just leaves the correction slightly weak (like slightly-too-low P) — stable, just underwhelming. That's why "round up if unsure" is the safe default direction, not superstition.
+
+One structural consequence worth internalizing: because `wc` locks P:D together and `wo` fuses I-and-filter into one number, ADRC has one fewer independently-tunable "feel" degree of freedom than classic 3-term PID, for a given axis. That's an intentional simplification (Gao's standard bandwidth-parameterized ADRC), not an oversight — the tradeoff for fewer, less-interacting knobs.
+
+### Tuning procedure
+
+A sensible starting order, adapted from the community procedure on danusha2345's fork:
 
 1. **`adrc_b0`** — raise until the craft takes off stably and responds crisply; keep raising until you hear stuttering/chatter in hover, then back off ~20%. Over-estimating is fairly harmless; under-estimating causes instability.
 2. **`adrc_wo`** — raise until chatter appears in hover (the observer starting to track gyro noise), then back off ~20%.
