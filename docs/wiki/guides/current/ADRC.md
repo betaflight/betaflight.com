@@ -3,7 +3,7 @@
 ADRC is an experimental, opt-in alternative to classic PID rate control, selected per PID profile via `pid_type`. Instead of proportional/integral/derivative gains acting on error, ADRC runs a second-order **Extended State Observer (ESO)** that continuously estimates the craft's rotation rate, its derivative, and a lumped "everything else" disturbance term (motor/prop mismatch, wind, payload imbalance, CG offset), then drives a virtual PD law to cancel it. In principle this rejects disturbances faster and needs less per-craft tuning than classic PID.
 
 :::info
-**Not yet in an official Betaflight release.** This page documents an open pull request, [betaflight/betaflight#15400](https://github.com/betaflight/betaflight/pull/15400) — `pid_type = ADRC` does not exist in any stock Betaflight build (Configurator releases, official `master`) until that PR merges; `set pid_type = ADRC` will simply error out as an unknown value on a normal build. To try it now, flash one of the PR's [prebuilt hex releases](https://github.com/danusha2345/ADRC-betaflight/releases) or cloud-build it yourself by entering `#15400` in the Configurator's _Select commit_ field (visible only when a pre-release firmware version is selected in the version dropdown).
+**Not yet in an official Betaflight release.** This page documents an open pull request, [betaflight/betaflight#15400](https://github.com/betaflight/betaflight/pull/15400) — `pid_type = ADRC` does not exist in any stock Betaflight build (Configurator releases, official `master`) until that PR merges; `set pid_type = ADRC` will simply error out as an unknown value on a normal build. To try it now, flash one of the PR's [prebuilt hex releases](https://github.com/danusha2345/ADRC-betaflight/releases).
 :::
 
 :::caution
