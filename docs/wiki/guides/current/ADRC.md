@@ -2,8 +2,16 @@
 
 ADRC is an experimental, opt-in alternative to classic PID rate control, selected per PID profile via `pid_type`. Instead of proportional/integral/derivative gains acting on error, ADRC runs a second-order **Extended State Observer (ESO)** that continuously estimates the craft's rotation rate, its derivative, and a lumped "everything else" disturbance term (motor/prop mismatch, wind, payload imbalance, CG offset), then drives a virtual PD law to cancel it. In principle this rejects disturbances faster and needs less per-craft tuning than classic PID.
 
+:::info
+**Not yet in an official Betaflight release.** This page documents an open pull request, [betaflight/betaflight#15400](https://github.com/betaflight/betaflight/pull/15400) — `pid_type = ADRC` does not exist in any stock Betaflight build (Configurator releases, official `master`) until that PR merges; `set pid_type = ADRC` will simply error out as an unknown value on a normal build. To try it now, flash one of the PR's [prebuilt hex releases](https://github.com/danusha2345/ADRC-betaflight/releases) or cloud-build it yourself by entering `#15400` in the Configurator's _Select commit_ field (visible only when a pre-release firmware version is selected in the version dropdown).
+:::
+
 :::caution
 Experimental. Classic PID is untouched and remains the default (`pid_type = CLASSIC`) — ADRC is opt-in per profile, so you can keep a known-good classic tune on one profile and try ADRC on another without risk to the first. Read the [Testing Notes](#testing-notes-read-before-flying) section before flying it.
+:::
+
+:::tip Test pilots welcome
+Progress here depends on real flight-test data across a spread of typical builds, not just the handful of crafts validated so far — the shipped defaults and several open items (`ADRC-021`, `ADRC-022` in the [remediation tracker](https://github.com/danusha2345/ADRC-betaflight/blob/master/docs/ADRC_REMEDIATION_TRACKER.md#open-items)) are explicitly waiting on more of it. This is why this guide is published now, ahead of the PR merging. If you fly it, enable `debug_mode = ADRC` and blackbox logging — a log from a normal flight or a few matched maneuvers is useful, good or bad result alike. Read [Testing Notes](#testing-notes-read-before-flying) first, then share logs on [PR #15400](https://github.com/betaflight/betaflight/pull/15400) or danusha2345's [flight-testing thread](https://github.com/danusha2345/ADRC-betaflight/issues/2).
 :::
 
 ## Origins
