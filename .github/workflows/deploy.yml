@@ -9,12 +9,10 @@ on:
 
 jobs:
   # Job 1: Build the code (no secrets here)
+  # Runs untrusted PR code on pull_request_target; keep the token read-only.
   build:
     permissions:
-      actions: read
       contents: read
-      deployments: write
-      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
