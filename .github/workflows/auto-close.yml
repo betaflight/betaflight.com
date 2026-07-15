@@ -13,9 +13,6 @@ jobs:
   close-pr:
     runs-on: ubuntu-22.04
     steps:
-      - name: Code Checkout
-        uses: actions/checkout@v4
-
       - name: autoclose
         shell: bash
         if: github.head_ref == 'master'
