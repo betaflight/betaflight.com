@@ -485,7 +485,7 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 :::
 
 :::warning
-**IST8310 compass default I2C address (changed in 2025.12).** The default I2C address for the **IST8310** magnetometer changed from `0x0C` (12) to `0x0E` (14) ([#13995](https://github.com/betaflight/betaflight/pull/13995)) to match most IST8310 modules. If you upgrade from 4.5 (skipping 2025.12) and your IST8310 compass is no longer detected, restore the previous address from the CLI with `set mag_i2c_address = 12` (then `save`), or set it in the Magnetometer configuration in the app.
+**IST8310 compass default I2C address (changed in 2025.12).** The default I2C address for the **IST8310** magnetometer changed from `0x0C` (12) to `0x0E` (14) ([#13995](https://github.com/betaflight/betaflight/pull/13995)) to match most IST8310 modules. If you upgrade from 4.5 (skipping 2025.12) and your IST8310 compass is no longer detected, restore the previous address from the CLI with `set mag_i2c_address = 12` (then `save`), or set the I2C address to `12` in the Magnetometer configuration in the app. Some IST8310 modules sit at a different address, so if `12` does not work try `13` or `15`.
 :::
 
 * **ICM-40609D accelerometer** reading 0.5g instead of 1.0g due to incorrect full-scale register values

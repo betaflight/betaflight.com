@@ -14,7 +14,7 @@ If your quad does not respond correctly, i.e. flips or similar, after updating c
 :::warning
 IST8310 compass no longer detected? Its default I2C address changed.
 
-The default I2C address for the **IST8310** magnetometer changed from `0x0C` (12) to `0x0E` (14) ([#13995](https://github.com/betaflight/betaflight/pull/13995)), matching the address used by most IST8310 modules. If your IST8310 compass stopped being detected after upgrading, restore the previous address from the CLI with `set mag_i2c_address = 12` (then `save`), or set it in the Magnetometer configuration in the app.
+The default I2C address for the **IST8310** magnetometer changed from `0x0C` (12) to `0x0E` (14) ([#13995](https://github.com/betaflight/betaflight/pull/13995)), matching the address used by most IST8310 modules. If your IST8310 compass stopped being detected after upgrading, restore the previous address from the CLI with `set mag_i2c_address = 12` (then `save`), or set the I2C address to `12` in the Magnetometer configuration in the app. Some IST8310 modules sit at a different address, so if `12` does not work try `13` or `15`.
 :::
 
 Welcome to the Betaflight 2025.12 release. Please note we have a new calendar based release versioning convention. It will take the format YYYY.M.PATCH going forward, and we expect a release cadence of every 6 months. 
