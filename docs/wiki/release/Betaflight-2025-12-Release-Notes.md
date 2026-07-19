@@ -11,6 +11,12 @@ IMPORTANT: Check your board alignment
 If your quad does not respond correctly, i.e. flips or similar, after updating check your board alignment is correct. This version removes the "non-user serviceable" gyro alignment in favour of simplifying the board alignment. Gyro alignment is the placement of the IMU on the flight controller PCB, and cannot be changed by you, so ensure the board alignment is correct for your setup. There should be an arrow on your PCB indicating the forward position on the board. If that is facing forward (to the front of the quad) then your board alignment should be 0 (ZERO). 
 :::
 
+:::warning
+IST8310 compass no longer detected? Its default I2C address changed.
+
+The default I2C address for the **IST8310** magnetometer changed from `0x0C` (12) to `0x0E` (14) ([#13995](https://github.com/betaflight/betaflight/pull/13995)), matching the address used by most IST8310 modules. If your IST8310 compass stopped being detected after upgrading, restore the previous address from the CLI with `set mag_i2c_address = 12` (then `save`), or set it in the Magnetometer configuration in the app.
+:::
+
 Welcome to the Betaflight 2025.12 release. Please note we have a new calendar based release versioning convention. It will take the format YYYY.M.PATCH going forward, and we expect a release cadence of every 6 months. 
 
 We have tried to make this release as bug free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
