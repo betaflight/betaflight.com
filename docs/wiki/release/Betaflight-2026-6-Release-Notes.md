@@ -489,6 +489,10 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 **IIM-42652 gyro full-scale-range fix (breaking).** The IIM-42652 was previously mis-configured at ±4000 DPS and has been corrected to its silicon-correct ±2000 DPS. This effectively doubles your existing PID gains, so if you fly an IIM-42652-equipped board you **must reset and re-tune your PIDs** after upgrading -- do not arm on your old tune. (The related IIM-42653 anti-alias filter placement has also been corrected.)
 :::
 
+:::warning
+**IST8310 compass default I2C address (changed in 2025.12).** The default I2C address for the **IST8310** magnetometer changed from `0x0C` (12) to `0x0E` (14) ([#13995](https://github.com/betaflight/betaflight/pull/13995)) to match most IST8310 modules. If you upgrade from 4.5 (skipping 2025.12) and your IST8310 compass is no longer detected, restore the previous address from the CLI with `set mag_i2c_address = 12` (then `save`), or set the I2C address to `12` in the Magnetometer configuration in the app. Some IST8310 modules sit at a different address, so if `12` does not work try `13` or `15`.
+:::
+
 * **ICM-40609D accelerometer** reading 0.5g instead of 1.0g due to incorrect full-scale register values
 * **LSM6DSV16X** FS_G_4000DPS register encoding corrected
 * **DShot beacon** no longer sounds when the configurator is connected, and a 35-minute arming lockout from timestamp overflow is fixed
