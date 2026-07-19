@@ -113,13 +113,13 @@ One structural consequence worth internalizing: because `wc` locks P:D together 
 
 ### Tuning procedure
 
-A sensible starting order, adapted from the community procedure on @danusha2345's fork:
+A sensible starting order, adapted from [@jmsweng's community tuning procedure](https://github.com/danusha2345/ADRC-betaflight/blob/master/README.md#tuning-procedure-community-from-jmsweng) on @danusha2345's fork:
 
 1. **`adrc_b0`** — raise until the craft takes off stably and responds crisply; keep raising until you hear stuttering/chatter in hover, then back off ~20%. Over-estimating is fairly harmless; under-estimating causes instability.
 2. **`adrc_wo`** — raise until chatter appears in hover (the observer starting to track gyro noise), then back off ~20%.
 3. **`adrc_wc`** — if picking values from scratch, start around `wo ÷ 3` to `wo ÷ 5`, then treat it as a master responsiveness knob. Raise for a crisper feel until motors "sing" on throttle-up (chatter that gets _louder_ with RPM) — that's the noise ceiling, back off from there. Too low feels floaty/sluggish.
 
-The shipped defaults (`60/100/2000`, yaw `wo=80`) trace to a real 5" control-bandwidth sweep on @danusha2345's fork — see `ADRC_FIXES.md` there for the full derivation — and deliberately don't follow the `wo ≈ 3–5× wc` rule of thumb above (`100/60 ≈ 1.7×` for roll/pitch, `80/60 ≈ 1.3×` for yaw). That ratio is a starting point for picking a fresh pair when you have no other data; the shipped numbers came directly from the flight-tested sweep instead, which is a stronger anchor than the general heuristic where the two disagree. Still airframe-dependent, especially `b0` (motor/prop/weight response). A 65 mm whoop on the same fork's testing landed around `wc=33` / `wo=65` / `b0=3200` (`wo/wc ≈ 2.0×`, also below the 3–5× range) — a second real data point if your craft is nothing like a 5".
+The shipped defaults (`60/100/2000`, yaw `wo=80`) trace to a real 5" control-bandwidth sweep **flown and logged by @jmsweng** on @danusha2345's fork — see `ADRC_FIXES.md` there for the full derivation — and deliberately don't follow the `wo ≈ 3–5× wc` rule of thumb above (`100/60 ≈ 1.7×` for roll/pitch, `80/60 ≈ 1.3×` for yaw). That ratio is a starting point for picking a fresh pair when you have no other data; the shipped numbers came directly from the flight-tested sweep instead, which is a stronger anchor than the general heuristic where the two disagree. Still airframe-dependent, especially `b0` (motor/prop/weight response). A 65 mm whoop, also @jmsweng's, on the same fork's testing landed around `wc=33` / `wo=65` / `b0=3200` (`wo/wc ≈ 2.0×`, also below the 3–5× range) — a second real data point if your craft is nothing like a 5".
 
 **Treat these as a starting point, not a guaranteed-safe default for every airframe.** The goal, mirroring classic PID's own deliberately conservative 5" stock tune, is a default that sits on the conservative/safe edge of a _typical_ 5" freestyle quad's tuning range — but as with any new tune, verify calm hover and idle behavior cautiously before pushing further, especially on a craft very different from a typical 5".
 
