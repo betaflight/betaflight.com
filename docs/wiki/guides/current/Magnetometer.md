@@ -607,7 +607,7 @@ _Drafted by **ctzsnooze** in 2023-09 for Betaflight 4.5. Huge shout out to **led
 [^6]: [AK8975 datasheet (discontinued)](https://www.alldatasheet.com/datasheet-pdf/pdf/535562/AKM/AK8975.html)
 [^7]: [HMC5883L datasheet](https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf)
 [^8]: [QMC5883L datasheet](https://www.qstcorp.com/upload/pdf/202512/13-52-04%20QMC5883L%20Datasheet%20Rev.%20B.pdf)
-[^9]: [IST8310 datasheet](https://intofpv.com/attachment.php?aid=8104)
+[^9]: [IST8310 datasheet]([https://intofpv.com/attachment.php?aid=8104](https://www.isentek.com/api/download?url=https%3A%2F%2Fassets.isentek.com%2Fpublic%2Fdocuments%2Fdatasheet%2FHFH0n8I7hQ-IST8310_Datasheet_V1.8_Web.pdf&filename=IST8310_Datasheet_V1.8_Web.pdf&action=view))
 [^10]: [LIS3MDL datasheet](https://www.st.com/resource/en/datasheet/lis3mdl.pdf)
 [^11]: [HMC5883L/QMC5883L cheat sheet](https://intofpv.com/t-betaflight-internals-coordinate-system?pid=55575#pid55575)
 [^12]: [LIS2MDL datasheet](https://www.st.com/resource/en/datasheet/lis2mdl.pdf)
