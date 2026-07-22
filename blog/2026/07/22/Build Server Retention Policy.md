@@ -15,7 +15,7 @@ To keep our build server sustainable, we're introducing retention limits on the 
 
 ## What Stays Available
 
-The **latest point release of every major version from 4.3 onwards** will always remain available, regardless of age. Even once the 2-year window has passed, you'll still be able to download the final build of each major release (4.3.x, 4.4.x, 4.5.x, and so on).
+The **latest point release of every major version from 4.3 onwards** will always remain available, regardless of age. Even once the 2-year window has passed, you'll still be able to download the final build of each major release (4.3.x, 4.4.x, 4.5.x, 2025.12.x, and so on).
 
 ## Please Note
 
