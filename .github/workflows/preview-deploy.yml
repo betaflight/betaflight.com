@@ -1,0 +1,59 @@
+# Deploys PR preview builds produced by the fork-safe 'Preview Build' workflow.
+# Runs trusted code from the default branch; the artifact is untrusted content
+# that is only ever uploaded to Cloudflare, never executed.
+name: 'Preview Deployment'
+on:
+  workflow_run:
+    workflows: ['Preview Build']
+    types:
+      - completed
+
+permissions: {}
+
+jobs:
+  deploy:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request'
+    permissions:
+      actions: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: build
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      # Resolved from the head SHA via the API rather than trusting anything
+      # the PR build wrote, so a fork cannot point the deploy at another PR.
+      - name: Resolve PR number
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          pr=$(gh api "repos/${GITHUB_REPOSITORY}/commits/${HEAD_SHA}/pulls" --jq '.[0].number')
+          case "$pr" in
+            ''|*[!0-9]*) echo "No pull request found for ${HEAD_SHA}"; exit 1 ;;
+          esac
+          echo "number=$pr" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy to Cloudflare
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy build --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=PR${{ steps.pr.outputs.number }} --commit-dirty=true
+
+      - name: Add deployment comment
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          pr-number: ${{ steps.pr.outputs.number }}
+          message: |
+            Preview URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+          comment-tag: 'Preview URL'
+          mode: recreate

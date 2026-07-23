@@ -1,14 +1,14 @@
-name: 'Deployment'
+name: 'Preview Build'
 on:
-  push:
+  pull_request:
     branches:
       - master
 
+permissions:
+  contents: read
+
 jobs:
-  deploy:
-    permissions:
-      contents: read
-      deployments: write
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -34,9 +34,8 @@ jobs:
           URL: https://betaflight.com
           ORG: betaflight
 
-      - name: Deploy to Cloudflare
-        uses: cloudflare/wrangler-action@v3
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy build --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.ref_name }} --commit-dirty=true
+          name: build-files
+          path: build
