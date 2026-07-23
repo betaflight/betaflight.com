@@ -5,7 +5,7 @@ sidebar_label: 2026.6 Release Notes
 
 # 2026.6 Release Notes
 
-Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE), STM32H757 dual-core MCUs, and the new X-CORE Labs X32M7 platform, switchable battery profiles, optical flow position hold, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, expanded MAVLink telemetry for QGroundControl compatibility (now including waypoint mission transfer), native Android firmware flashing over USB, a new in-app Blackbox log viewer, a dedicated iOS app, and a brand-new **Betaflight Bridge** companion that lets iOS and other Wi-Fi-only devices connect to a flight controller wirelessly, plus a wide range of sensor, protocol, and hardware additions.
+Welcome to Betaflight 2026.6! This release lays the **first foundations for autonomous flight** -- a brand-new Flight Plan tab and the underlying autopilot, both currently simulation-only and intended to mature over the coming releases. Alongside that, 2026.6 brings new platform support for ESP32 and STM32H5/N6/C5 processors (including the first viable C5 development board, NUCLEOC562RE), STM32H757 dual-core MCUs, and the new X-CORE Labs X32M7 platform, switchable battery profiles, optical flow position hold, a rebuilt and considerably more precise GPS Rescue, a fully modernised app now built almost entirely on the Nuxt UI component library, a brand-new pixel-based OSD for Raspberry Pi Pico 2 (RP2350) flight controllers, the first DroneCAN GPS support, expanded MAVLink telemetry for QGroundControl compatibility (now including waypoint mission transfer), native Android firmware flashing over USB, a new in-app Blackbox log viewer, a dedicated iOS app, and a brand-new **Betaflight Bridge** companion that lets iOS and other Wi-Fi-only devices connect to a flight controller wirelessly, plus a wide range of sensor, protocol, and hardware additions.
 
 We have tried to make this release as bug-free as possible. If you still find a **bug**, please report it by opening an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
@@ -180,6 +180,7 @@ It provides clear, step-by-step guidance for interactively setting the correct b
 * **Relative drag-and-drop on OSD elements** -- elements now move by the actual cursor delta instead of snapping to the drop cell, making fine adjustments much more predictable, including for large elements
 * **OSD time variant** element support
 * **POSHOLD_FAILED OSD warning** element for indicating position-hold failures
+* **Autopilot safety surfaced** -- the app recognises the firmware's new `AUTOPILOT` arming-disable flag and the mission-abort OSD warning element
 * **Only one UART can be assigned as the Serial RX input** in the Ports tab, preventing an invalid multi-port configuration that previously had to be untangled by hand
 * **Icon set migrated** from Font Awesome to **Lucide** (via `UIcon`), removing the Font Awesome dependency entirely
 * **sslip.io** support for local network development with Android devices
@@ -218,6 +219,15 @@ It provides clear, step-by-step guidance for interactively setting the correct b
 * Fixed the WebSerial port not being closed on page unload, which had been causing replug-required errors on reload
 * Fixed CLI paste slowdown, forced reflow on large pastes, and unreliable autoscroll
 * Fixed the D-Term Lowpass 1 dynamic max-cutoff slider constraints, which disagreed with the firmware range and caused default values to snap upward
+* Fixed the rates preview not rendering correctly
+* Fixed reconnection after save, reboot, and preset apply -- including keeping BLE connections alive through a flight controller reboot -- and stabilised device identities so the right port is re-opened
+* Fixed waypoint type and pattern dropdowns being unselectable in the flight plan editor
+* Fixed Backups tab access while connected, and spurious CLI errors during a backup restore
+* Fixed an East/West inversion in the magnetometer calibration attitude fallback
+* Fixed OSD virtual-anchor elements jumping when dragged to the grid edges
+* Fixed the PID tab not reflecting profile changes made from the transmitter
+* Fixed Autotune so it can never recommend *less* D-term filtering than currently configured (flyaway safety), alongside more robust chirp-log parsing
+* Fixed MSP requests hanging on timeout, disconnect, or CRC failure -- they now settle cleanly so tabs cannot get stuck waiting
 * Security fix for [CVE-2026-39315](https://github.com/advisories/GHSA-95h2-gj7x-gx9w)
 
 ## 2. The Firmware
@@ -228,7 +238,11 @@ It provides clear, step-by-step guidance for interactively setting the correct b
 
 This release lays the **foundation** for autonomous flight in Betaflight. The first version of an autopilot with **GPS waypoint navigation** for both multirotors and fixed-wing aircraft is included, supporting up to 30 waypoints with configurable speed, altitude, and hold behaviour at each.
 
-What's in place today: the flight-mode plumbing, the in-firmware waypoint store, an `AUTOPILOT` mode bit, the navigation maths (waypoint following, spiral landing, multiple yaw modes for multirotors and wings), and the RX-loss policy. A thin **flight-plan guidance executor** sits on top of this, driving the position-navigation outer loop directly from the stored flight plan when `AUTOPILOT` is engaged -- `FLYOVER`, `FLYBY`, and `HOLD` (with duration) waypoint behaviours are wired through, with `LAND`, `ORBIT`, and `FIGURE8` patterns still to come.
+What's in place today: the flight-mode plumbing, the in-firmware waypoint store, an `AUTOPILOT` mode bit, the navigation maths (waypoint following, spiral landing, multiple yaw modes for multirotors and wings), and the RX-loss policy. A thin **flight-plan guidance executor** sits on top of this, driving the position-navigation outer loop directly from the stored flight plan when `AUTOPILOT` is engaged -- `FLYOVER`, `FLYBY`, `HOLD` (with duration), and `LAND` waypoint behaviours are wired through, with `ORBIT` and `FIGURE8` patterns still to come. A `LAND` waypoint flies to the commanded location, descends with touchdown detection, and disarms -- so a mission can now end with an autonomous landing.
+
+Mission **yaw control** is also in place: the autopilot steers the nose to the ground course (`ap_yaw_mode` = `VELOCITY`, the default), the bearing to the active waypoint (`BEARING`), or course-with-bearing-fallback (`HYBRID`), clamped to `ap_max_yaw_rate`; deflecting the yaw stick hands yaw back to the pilot.
+
+A round of **safety groundwork** backs the executor: arming is blocked while the `AUTOPILOT` switch is on, missions abort into position hold (with an OSD warning) on estimator loss, stalled progress, or flyaway, and a configurable **geofence** (`ap_max_distance_from_home` / `ap_geofence_action`) can force a landing or a return-to-home when the mission strays too far.
 
 The underlying **3D position estimator** that drives it all -- fusing GPS, accelerometer, optical flow, and rangefinder data into a single smooth position fix -- is also new in this release, and is what makes both the autopilot and the GPS-free Position Hold feature possible.
 
@@ -243,9 +257,24 @@ Autopilot is **experimental and only tested in simulation (SITL)**. It is **not 
 * Use the `waypoint` CLI command to add, edit, or dump waypoints
 * Configure behaviour with `set ap_hover_throttle`, `set ap_landing_altitude_m`, velocity PID terms, and geofence limits
 * Tune approach/stop behaviour with the new `ap_stop_threshold` setting -- the autopilot now brakes more cleanly into the next waypoint, and the legacy `ap_position_a` term has been removed in favour of the new braking math
-* Set an RX-loss policy (disable autopilot, continue the mission, or land)
+* Set an RX-loss policy with `ap_rx_loss_policy` (hand over to failsafe, continue the mission, or land)
 
-The **Upixel UP-T1** rangefinder is now handled directly by the optical-flow code path, removing the need for a separate driver.
+The **Upixel UP-T1-001-Plus** rangefinder is now handled directly by the optical-flow code path, removing the need for a separate driver.
+
+#### GPS Rescue Rebuilt on the Position Estimator
+
+**GPS Rescue has been rebuilt** on top of the new 3D position estimator and the position-hold control code, replacing the legacy velocity-to-home and direct pitch/roll angle manipulation. The result is a much more precise rescue: the craft comes home straight, corrects for wind on both pitch and roll, and descends smoothly onto the landing point.
+
+What this means in practice:
+
+* **Shared tuning with position hold** -- the rescue now flies on the same `ap_position_` PID terms as position hold, so it can be tuned while hovering in position hold. The legacy rescue-specific settings (`gps_rescue_velocity_p/i/d`, `gps_rescue_max_angle`, `gps_rescue_roll_mix`, `gps_rescue_pitch_cutoff`, `gps_rescue_imu_yaw_gain`, and `gps_rescue_use_mag`) have been **removed**
+* **Smoother repositioning in position hold** -- stick inputs while in position hold now request a target velocity instead of dropping the craft out into angle mode, so you can nudge the craft around precisely without losing the hold
+* **Lower minimum distances** -- `gps_rescue_min_start_dist` and `gps_rescue_descent_dist` can now be set as low as 5 m
+* **Revised sanity checks** -- if a rescue goes wrong, the firmware now attempts a controlled descent, and new **RESCUE FAIL** and **HEADING N/A** OSD warnings report why
+
+:::warning
+**Compass users must opt in with `set trust_mag = ON`.** A new `trust_mag` setting (default `OFF`) controls whether the magnetometer is accepted as a heading source for position hold and GPS Rescue. Only enable it once you have verified that your compass is correctly oriented and calibrated. Without a trusted compass, the craft needs a period of clean nose-forward flight so the IMU heading can be calibrated from the GPS course over ground before a rescue or position hold can work -- a compass is strongly recommended on any craft where a reliable rescue matters.
+:::
 
 #### Switchable Battery Profiles
 
@@ -330,7 +359,7 @@ Working peripherals include: serial ports (UART), SPI, I2C, ADC, USB, SD card vi
 
 #### STM32N6 (Developer Preview)
 
-Initial support for **STM32N657** with most core peripherals working: UART, SPI, I2C, ADC, USB, DShot, PWM output, and SD card via SDIO. Flash storage and execution from external memory is also supported. ST's **STM32N6570-DK** development board has been brought up as the reference target, with an **LTDC** display backend, an **SSD1306** I2C OLED backend, and a CLI `dump` command for inspecting on-board state. A second N6 board, **OPENN657V1**, now runs Betaflight execute-in-place from XSPI flash with persistent on-chip configuration (eeprom save/load, VCP enumeration, and reboot all working end-to-end).
+Initial support for **STM32N657** with most core peripherals working: UART, SPI, I2C, ADC, USB, DShot, PWM output, and SD card via SDIO. Flash storage and execution from external memory is also supported. ST's **STM32N6570-DK** development board has been brought up as the reference target, with an **LTDC** display backend, an **SSD1306** I2C OLED backend, and a CLI `dump` command for inspecting on-board state. Betaflight also runs execute-in-place from XSPI flash on N6 boards with persistent on-chip configuration (eeprom save/load, VCP enumeration, and reboot all working end-to-end).
 
 Follow-up N6 work in this release also corrects a large number of pin/AF table entries that had been carried over verbatim from H7 -- the timer, SPI, I2C, UART, and ADC tables are now audited against ST's N6 datasheet, RIFSC/GPDMA secure-alias paths have been fixed, and **DShot motor output** is now functional on N6.
 
@@ -390,7 +419,7 @@ X32M7 support is experimental and new in this release. Expect ongoing developmen
 
 New blackbox / config storage flash chips supported in this release:
 
-* GD25Q16E (16 Mbit), GD25Q128 (128 Mbit), BY25Q64 (64 Mbit), BY25Q128ES (128 Mbit), Zetta ZD25WQ32CE (32 Mbit), Macronix MX25L12845G (128 Mbit), XTX XT25F128F (128 Mbit) NOR flash
+* GD25Q16E (16 Mbit), GD25Q128 (128 Mbit), BY25Q64 (64 Mbit), BY25Q128ES (128 Mbit), Zetta ZD25WQ32CE (32 Mbit), Macronix MX25L12845G (128 Mbit), XTX XT25F128F (128 Mbit), Giantec GT25Q80A/GT25Q16A/GT25Q32A (8/16/32 Mbit), FMSH FM25Q64A/FM25Q128A/FM25Q256 (64/128/256 Mbit) NOR flash
 * **OctoSPI multichip support** with the **Macronix MX66UW1G45G** (1 Gbit) OctoSPI NOR flash driver -- a much higher-capacity, higher-bandwidth option for blackbox storage on platforms with an OctoSPI bus
 * **MT29F NAND flash** (MT29F1G01ABAFDWB, 1 Gbit) with improved block management -- significantly more blackbox storage capacity
 
@@ -446,7 +475,7 @@ MAVLink mission transfer and GCS message-rate control are new and primarily exer
 
 #### Strengthened MSP/CRSF Packet Validation
 
-Improved input validation for MSP and CRSF packets to guard against malformed data.
+Improved input validation for MSP and CRSF packets to guard against malformed data, including bounding MSP stream reads against the declared payload length and stricter CRSF frame-length validation. The project has also published a formal [security policy](https://github.com/betaflight/betaflight/blob/master/SECURITY.md) covering supported versions and how to report vulnerabilities.
 
 ### 2.5 Flight Controller Changes
 
@@ -460,6 +489,8 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * **State Variable Filters**: the internal biquad (Direct Form 1) filter implementation has been replaced throughout the gyro, PID, RPM, dynamic-notch, and servo paths with **State Variable Filters (SVF)** -- a more numerically stable, lower-overhead topology. Functionally the filtering behaves as before; the practical change is that the filter-type option that previously read `BIQUAD` now reads `SVF`
 * **Thrust linearization rescaled**: the thrust-linearization curve has been re-derived to match ArduPilot's `MOT_THST_EXPO` model, so per-propeller recommendations port across directly (roughly 55 for 5", 65 for 10", 75 for 20"+). Existing `thrust_linear` values will produce a slightly different curve shape after upgrading
 * **Faster maths**: sine and cosine calculations have been sped up, freeing a little headroom in the flight loop
+* **D Gain / D Advance defaults revised**: following the decoupling of D Gain from D Advance, the defaults for both have been set to sensible values, and `d_max_advance` now defaults to 0 to match the configurator's guidance
+* **Serial passthrough escape**: typing `+++` now exits serial passthrough on links without DTR control (for example a plain telemetry radio), so the flight controller no longer needs a power cycle to get the CLI back
 
 ### 2.6 GPS Improvements
 
@@ -513,6 +544,13 @@ Improved input validation for MSP and CRSF packets to guard against malformed da
 * **Position estimator** GPS distance calculation and the sign of the east acceleration term corrected (including an east-west inversion in the linear-acceleration computation), improving position-hold and autopilot accuracy
 * **OSD clock** RTC date/time elements now apply the configured timezone offset and show local time instead of UTC
 * **Bidirectional DShot telemetry** reads on the bit-bang path no longer busy-wait -- the DMA is aborted asynchronously, reducing flight-loop stalls on STM32, AT32, and APM32
+* **SBUS frame synchronisation** now detects frame boundaries via an inter-byte timeout instead of fixed timing, fixing dropped frames with receivers running fast (1 ms) refresh rates
+* **CRSF telemetry** update checks are now rate-limited, preventing a flood of telemetry work from starving the scheduler
+* **VTX activation conditions** are now all applied when multiple conditions match, instead of only the first
+* **Bidirectional DShot decoding** guards against a spurious pull-up edge at the start of the telemetry packet, improving RPM telemetry reliability
+* **Blackbox erase** no longer triggers spuriously before the RX link is up, and a full NOR chip erase no longer blocks MSP -- the app stays responsive while the flash is erased
+* **USB beeper suppression** -- the ON_USB beeper-off condition now reliably silences the beeper (including the boot beep) whenever the USB cable is plugged in, even with a battery connected
+* **OSD battery usage** estimation is now shown when the battery capacity is set to 0
 
 ### 2.9 Build System and Developer Notes
 
