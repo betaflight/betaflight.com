@@ -259,7 +259,7 @@ Autopilot is **experimental and only tested in simulation (SITL)**. It is **not 
 * Tune approach/stop behaviour with the new `ap_stop_threshold` setting -- the autopilot now brakes more cleanly into the next waypoint, and the legacy `ap_position_a` term has been removed in favour of the new braking math
 * Set an RX-loss policy with `ap_rx_loss_policy` (hand over to failsafe, continue the mission, or land)
 
-The **Upixel UP-T1** rangefinder is now handled directly by the optical-flow code path, removing the need for a separate driver.
+The **Upixel UP-T1-001-Plus** rangefinder is now handled directly by the optical-flow code path, removing the need for a separate driver.
 
 #### GPS Rescue Rebuilt on the Position Estimator
 
