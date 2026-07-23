@@ -27,17 +27,22 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ github.token }}
 
-      # Resolved from the head SHA via the API rather than trusting anything
-      # the PR build wrote, so a fork cannot point the deploy at another PR.
+      # Resolved from the workflow_run head ref via the API rather than trusting
+      # anything the PR build wrote, so a fork cannot point the deploy at
+      # another PR. The commits/{sha}/pulls endpoint can't be used here: it
+      # returns nothing for head commits that only exist in a fork.
       - name: Resolve PR number
         id: pr
         env:
           GH_TOKEN: ${{ github.token }}
+          HEAD_OWNER: ${{ github.event.workflow_run.head_repository.owner.login }}
+          HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
           HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
-          pr=$(gh api "repos/${GITHUB_REPOSITORY}/commits/${HEAD_SHA}/pulls" --jq '.[0].number')
+          pr=$(gh api -X GET "repos/${GITHUB_REPOSITORY}/pulls" -f head="${HEAD_OWNER}:${HEAD_BRANCH}" -f state=open \
+            --jq ".[] | select(.head.sha == \"${HEAD_SHA}\") | .number" | head -n1)
           case "$pr" in
-            ''|*[!0-9]*) echo "No pull request found for ${HEAD_SHA}"; exit 1 ;;
+            ''|*[!0-9]*) echo "No open pull request found for ${HEAD_OWNER}:${HEAD_BRANCH} at ${HEAD_SHA}"; exit 1 ;;
           esac
           echo "number=$pr" >> "$GITHUB_OUTPUT"
 
