@@ -110,6 +110,8 @@ ATTRS{idVendor}=="28e9", ATTRS{idProduct}=="0189", ENV{ID_MM_DEVICE_IGNORE}="1"
 ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", ENV{ID_MM_DEVICE_IGNORE}="1"
 # APM32 DFU
 ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", ENV{ID_MM_DEVICE_IGNORE}="1"
+# X32 DFU
+ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", ENV{ID_MM_DEVICE_IGNORE}="1"
 # RP2350 (Raspberry Pi Pico) Bootloader
 ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", ENV{ID_MM_DEVICE_IGNORE}="1"
 
@@ -123,6 +125,8 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="28e9", ATTRS{idProduct}=="0189", TAG+="uacce
 SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", TAG+="uaccess"
 # APM32 DFU Access
 SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", TAG+="uaccess"
+# X32 DFU Access
+SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", TAG+="uaccess"
 # RP2350 (Raspberry Pi Pico) Bootloader Access
 SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", TAG+="uaccess"
 ```
