@@ -21,6 +21,7 @@ They store the following settings:
 - Battery Profile Name
 - Minimum Cell Voltage
 - Maximum Cell Voltage
+- Full Cell Voltage
 - Warning Cell Voltage
 - Battery Capacity
 - Force Battery Cell Count
