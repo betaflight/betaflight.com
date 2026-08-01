@@ -12,6 +12,20 @@ power measurements
 
 ## Battery
 
+### Battery Profile
+
+Starting from Betaflight 2026.6, multiple battery profiles are supported (up to 3).
+
+They store the following settings:
+
+- Battery Profile Name
+- Minimum Cell Voltage
+- Maximum Cell Voltage
+- Warning Cell Voltage
+- Battery Capacity
+- Force Battery Cell Count
+- Current Battery Alert Percent
+
 ### Voltage Meter Source
 
 Select the source for the voltage measurements
