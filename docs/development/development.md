@@ -51,9 +51,9 @@ GitHub actions are used to run automatic builds against a PR, and the action wil
 
 The Betaflight team relies heavily on contributors to get their own development environment working on their respective setups. So that we do not spend time catering for all different development environments, and of course personal preferences, we have nominated the following as officially supported:
 
-1. Ubuntu 24.04 LTS (Noble Numbat) [...](building/Building-in-Ubuntu)
-2. Windows - using WSL (with Ubuntu 24.04 LTS installed) [...](building/Building-in-Windows)
-3. MacOS 15 Sequoia [...](building/Building-in-Mac-OSX)
+1. Ubuntu 24.04 LTS (Noble Numbat) [...](development/building/Building-in-Ubuntu)
+2. Windows - using WSL (with Ubuntu 24.04 LTS installed) [...](development/building/Building-in-Windows)
+3. MacOS 15 Sequoia [...](development/building/Building-in-Mac-OSX)
 
 For the IDE we recommend (and support):
 
