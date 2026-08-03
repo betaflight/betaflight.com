@@ -18,13 +18,6 @@ module.exports = {
     'no-var': 'error',
     'prefer-template': 'error',
     'comma-dangle': ['error', 'always-multiline'],
-    indent: [
-      'error',
-      2,
-      {
-        SwitchCase: 1,
-      },
-    ],
     semi: ['error', 'always'],
   },
 };
