@@ -13,7 +13,7 @@ import ConnectorLogo from '/img/betaflight/connector_logo.svg'
 | Version 1.1 | 24 April 2025    | Add option for 10P ESC socket                                                 |
 | Version 1.2 | 08 May 2025      | Add reference schematic + board renders                                       |
 | Version 1.3 | 16 December 2025 | Add reference schematic + board renders for 4-pin and 3-pin camera connectors |
-| Version 2.0 | 3 August 2026    | Remove the 6-pin UART+I2C (GPS) connector; GPS now uses the 4-pin serial connector. The 6-pin option is deprecated due to the risk of a GPS being plugged into the physically identical 6-pin digital VTX connector, whose 8-26V supply will damage or destroy the GPS |
+| Version 2.0 | 03 August 2026   | Remove the 6-pin UART+I2C (GPS) connector; GPS now uses the 4-pin serial connector. The 6-pin option is deprecated due to the risk of a GPS being plugged into the physically identical 6-pin digital VTX connector, whose 8-26V supply will damage or destroy the GPS |
 
 ## Introduction
 
@@ -124,7 +124,7 @@ The pin configuration for the 4 pin JST SH connector is as follows:
 :::note
 This connector could also be used for any number of serial devices.
 
-Where a GPS module uses a 6 pin cable, e.g. due to a magnetometer and requires I2C, then the requirement will be make use of a Y cable, and consume both a 4 pin serial connector and an I2C connector. Noting that it is not recommended to mount the magnetometer and GPS together.
+Where a GPS module uses a 6 pin cable, e.g. a combined GPS and magnetometer that requires I2C, use a Y cable that splits across a 4 pin serial connector and a separate I2C connector. Note that mounting the magnetometer and GPS together is not recommended.
 :::
 
 :::danger[Deprecated in v2.0: 6-pin GPS (UART+I2C) connector]
