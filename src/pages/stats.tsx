@@ -111,6 +111,22 @@ async function getStats(): Promise<StatsData> {
   };
 }
 
+function useStats() {
+  const [stats, setStats] = useState<StatsData | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getStats()
+      .then(setStats)
+      .catch((fetchError: unknown) => {
+        console.error(fetchError);
+        setError(fetchError instanceof Error ? fetchError.message : 'Unable to load build statistics');
+      });
+  }, []);
+
+  return { stats, error };
+}
+
 interface TooltipProps {
   point: Point;
   children: React.ReactNode;
@@ -130,13 +146,16 @@ const Tooltip = ({ point, children }: TooltipProps) => {
 interface MajorChartProps {
   data: ChartPoint[] | null;
   maxY: number | null;
+  error: string | null;
 }
 
-const MajorChart = ({ data, maxY }: MajorChartProps) => {
+const MajorChart = ({ data, maxY, error }: MajorChartProps) => {
   const isDark = useColorMode().isDarkTheme;
   return (
     <div className="h-96 w-full flex">
-      {data && maxY !== null ? (
+      {error ? (
+        <div>{error}</div>
+      ) : data && maxY !== null ? (
         <ResponsiveLine
           data={[
             {
@@ -193,38 +212,26 @@ const MajorChart = ({ data, maxY }: MajorChartProps) => {
   );
 };
 
-const MajorChartWrapper = () => {
-  const [data, setData] = useState<ChartPoint[] | null>(null);
-  const [maxY, setMaxY] = useState<number | null>(null);
+const MajorChartWrapper = ({ stats, error }: { stats: StatsData | null; error: string | null }) => {
+  const data = stats?.total ?? null;
+  const maxY = data && data.length > 0 ? Math.max(...data.map((dataPoint) => dataPoint.y)) : null;
 
-  useEffect(() => {
-    getStats()
-      .then((stats) => {
-        const totalData = stats.total;
-        if (totalData.length > 0) {
-          const yValues = totalData.map((dataPoint) => dataPoint.y);
-          const maxBuildCount = Math.max(...yValues);
-
-          setData(totalData);
-          setMaxY(maxBuildCount);
-        }
-      })
-      .catch((error: unknown) => console.error(error));
-  }, []);
-
-  return <MajorChart data={data} maxY={maxY} />;
+  return <MajorChart data={data} maxY={maxY} error={error} />;
 };
 
 interface MinorChartProps {
   data: ChartSeries[] | null;
   maxY: number | null;
+  error: string | null;
 }
 
-const MinorChart = ({ data, maxY }: MinorChartProps) => {
+const MinorChart = ({ data, maxY, error }: MinorChartProps) => {
   const isDark = useColorMode().isDarkTheme;
   return (
     <div className="h-96 w-full flex">
-      {data && maxY !== null ? (
+      {error ? (
+        <div>{error}</div>
+      ) : data && maxY !== null ? (
         <ResponsiveLine
           data={data.map((target) => ({
             id: target.id,
@@ -303,45 +310,31 @@ const MinorChart = ({ data, maxY }: MinorChartProps) => {
   );
 };
 
-interface MinorChartWrapperProps {
-  type: MinorChartType;
-}
+const MinorChartWrapper = ({ stats, error, type }: { stats: StatsData | null; error: string | null; type: MinorChartType }) => {
+  const data = stats ? stats[type] : null;
+  const maxY = data ? Math.max(0, ...data.flatMap((series) => series.data.map((dataPoint) => dataPoint.y))) : null;
 
-const MinorChartWrapper = ({ type }: MinorChartWrapperProps) => {
-  const [data, setData] = useState<ChartSeries[] | null>(null);
-  const [maxY, setMaxY] = useState<number | null>(null);
-
-  useEffect(() => {
-    getStats()
-      .then((stats) => {
-        const filteredData = stats[type];
-        const maxCount = Math.max(0, ...filteredData.flatMap((series) => series.data.map((dataPoint) => dataPoint.y)));
-
-        setData(filteredData);
-        setMaxY(maxCount);
-      })
-      .catch((error: unknown) => console.error(error));
-  }, [type]);
-
-  return <MinorChart data={data} maxY={maxY} />;
+  return <MinorChart data={data} maxY={maxY} error={error} />;
 };
 
 export default function Stats() {
+  const { stats, error } = useStats();
+
   return (
     <BetaflightLayout>
       <div className="xl:max-w-[1920px] w-full p-6 mt-0 xl:mt-16">
         <HomepageFeature blur title="Cloud Build Statistics">
           <div className="flex flex-col w-full h-full">
             <h2 className="text-primary-600 text-xl md:text-2xl font-bold">Total Builds</h2>
-            <MajorChartWrapper />
+            <MajorChartWrapper stats={stats} error={error} />
             <div className="flex xl:flex-row flex-col mt-12">
               <div className="xl:w-1/2 w-full">
                 <h2 className="text-primary-600 text-xl md:text-2xl font-bold">Top 5 Targets</h2>
-                <MinorChartWrapper type="targets" />
+                <MinorChartWrapper stats={stats} error={error} type="targets" />
               </div>
               <div className="xl:w-1/2 w-full xl:mt-0 mt-12">
                 <h2 className="text-primary-600 text-xl md:text-2xl font-bold">Top 3 Releases</h2>
-                <MinorChartWrapper type="releases" />
+                <MinorChartWrapper stats={stats} error={error} type="releases" />
               </div>
             </div>
           </div>
