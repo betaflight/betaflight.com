@@ -45,6 +45,10 @@ export default function VersionInfo() {
         throw new Error('The latest Betaflight release has an invalid response format');
       }
 
+      if (abortController.signal.aborted) {
+        return;
+      }
+
       setVersionLatest(release.tag_name);
       setUpToDate(isUpToDate(applicableVersion, release.tag_name));
     }
