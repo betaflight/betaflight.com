@@ -43,22 +43,9 @@ To support this schedule, our development phases will be structured as follows:
 
   :::
 
-- **Beta:**
-  
-  A one-month feature freeze for bug fixes only, starting approximately two months before a major release. This will be the beginning of the `*-maintenance` branch. Fixes placed into the `master` branch will be periodically merged to the `*-maintenance` branch during this period.
-
-  This will be available in the App Firmware Flasher tab when **Development** is selected.
-  <br></br>
-
-  :::info
-
-  _"**Expert mode**"_ must be activated in the [Betaflight App](https://app.betaflight.com/).
-
-  :::
-
 - **Release Candidate (RC):**
   
-  A one-month period (still feature frozen) for final stabilization and testing before the official release. Fixes placed into the `master` branch will continue to be periodically merged to the `*-maintenance` branch during this period.
+  A one-month feature freeze for final stabilization and testing before the official release, starting approximately one month before a major release. This will be the beginning of the `*-maintenance` branch. Fixes placed into the `master` branch will be periodically merged to the `*-maintenance` branch during this period.
 
   This will be available in the App Firmware Flasher tab when **Release and Release Candidates** is selected.
   <br></br>
