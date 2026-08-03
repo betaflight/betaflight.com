@@ -34,6 +34,47 @@
 		(45 "User.4" user)
 	)
 	(setup
+		(stackup
+			(layer "F.SilkS"
+				(type "Top Silk Screen")
+			)
+			(layer "F.Paste"
+				(type "Top Solder Paste")
+			)
+			(layer "F.Mask"
+				(type "Top Solder Mask")
+				(color "Black")
+				(thickness 0.01)
+			)
+			(layer "F.Cu"
+				(type "copper")
+				(thickness 0.035)
+			)
+			(layer "dielectric 1"
+				(type "core")
+				(thickness 1.51)
+				(material "FR4")
+				(epsilon_r 4.5)
+				(loss_tangent 0.02)
+			)
+			(layer "B.Cu"
+				(type "copper")
+				(thickness 0.035)
+			)
+			(layer "B.Mask"
+				(type "Bottom Solder Mask")
+				(color "Black")
+				(thickness 0.01)
+			)
+			(layer "B.Paste"
+				(type "Bottom Solder Paste")
+			)
+			(layer "B.SilkS"
+				(type "Bottom Silk Screen")
+			)
+			(copper_finish "None")
+			(dielectric_constraints no)
+		)
 		(pad_to_mask_clearance 0)
 		(allow_soldermask_bridges_in_footprints no)
 		(tenting
@@ -96,6 +137,7 @@
 		(property "Reference" "J2"
 			(at 0 -3.98 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "a84b8744-af85-444c-bb6c-3a46554737a6")
 			(effects
 				(font
@@ -534,6 +576,7 @@
 		(property "Reference" "J1"
 			(at 0 -3.98 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "6e5ea03b-aae3-4c1f-909e-93868e63d09f")
 			(effects
 				(font
@@ -1033,8 +1076,10 @@
 		(uuid "d47cafcd-6dac-4bb1-a8e0-f65b0a2cbdf8")
 		(effects
 			(font
+				(face "Geist")
 				(size 0.63 0.63)
 				(thickness 0.125)
+				(bold yes)
 			)
 		)
 	)
@@ -1044,8 +1089,10 @@
 		(uuid "5e916c10-e2b2-4670-bba0-4e582296b6c7")
 		(effects
 			(font
+				(face "Geist")
 				(size 0.63 0.63)
 				(thickness 0.125)
+				(bold yes)
 			)
 		)
 	)
@@ -1055,8 +1102,10 @@
 		(uuid "c6572602-9467-4911-ab40-c4255ca496af")
 		(effects
 			(font
+				(face "Geist")
 				(size 0.63 0.63)
 				(thickness 0.125)
+				(bold yes)
 			)
 			(justify left)
 		)
@@ -1067,8 +1116,10 @@
 		(uuid "de3eff58-a999-4279-bca3-390fcb0f5df1")
 		(effects
 			(font
+				(face "Geist")
 				(size 0.63 0.63)
 				(thickness 0.125)
+				(bold yes)
 			)
 			(justify left)
 		)
@@ -1076,7 +1127,7 @@
 	(zone
 		(layer "Edge.Cuts")
 		(uuid "0531a366-ff99-4e77-ad4d-b0275f29cce8")
-		(name "esc-connector")
+		(name "uart-connector")
 		(hatch edge 0.5)
 		(connect_pads
 			(clearance 0)

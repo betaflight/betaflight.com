@@ -20,7 +20,10 @@
     "prepare": "husky install",
     "check:title-case": "node tools/check_title_case.mjs",
     "check:file-names": "node tools/check_file_names.mjs",
-    "check:links": "node tools/check_links.mjs"
+    "check:links": "node tools/check_links.mjs",
+    "validate:connector-standard": "node tools/render_connector_standard.mjs --validate",
+    "render:connector-standard": "node tools/render_connector_standard.mjs",
+    "check:connector-standard": "node tools/render_connector_standard.mjs --check"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.2",
@@ -74,6 +77,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "husky": "^8.0.2",
     "prettier": "2.8.1",
+    "sharp": "0.35.3",
     "simple-git": "^3.36.0",
     "tailwindcss": "^3.2.4",
     "title-case": "^3.0.3",

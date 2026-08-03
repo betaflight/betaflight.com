@@ -20,3 +20,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /.vscode/
+
+# KiCad local state and automatic backups
+/src/hardware/connector-standard/kicad/*.kicad_prl
+/src/hardware/connector-standard/kicad/~*.lck
+/src/hardware/connector-standard/kicad/*-backups/
+/src/hardware/connector-standard/kicad/.history/
