@@ -73,7 +73,7 @@ class DocSearch {
 
     // Ctrl/Cmd + K should focus the search bar, emulating the Algolia search UI
     document.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key == 'k') {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         this.input.focus();
 
         // By default, using Ctrl + K in Chrome will open the location bar, so disable this
@@ -134,7 +134,7 @@ class DocSearch {
         query = queryHook(query) || query;
       }
       this.client.search(query).then((hits) => {
-        if (this.queryDataCallback && typeof this.queryDataCallback == 'function') {
+        if (this.queryDataCallback && typeof this.queryDataCallback === 'function') {
           this.queryDataCallback(hits);
         }
         if (transformData) {
@@ -215,7 +215,7 @@ class DocSearch {
       return url;
     } else if (anchor) return `#${hit.anchor}`;
     /* eslint-disable */
-    console.warn('no anchor nor url for : ', JSON.stringify(hit))
+    console.warn('no anchor nor url for : ', JSON.stringify(hit));
     /* eslint-enable */
     return null;
   }

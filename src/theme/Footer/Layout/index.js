@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../../icons/logo.svg';
 
-export default function FooterLayout({ style, links, logo, copyright }) {
+export default function FooterLayout({ links, copyright }) {
   return (
     <footer className="p-16 w-full bg-neutral-500/5 shadow-[0_20px_30px_0] shadow-black">
       <div className="text-center">{links}</div>

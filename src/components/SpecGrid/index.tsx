@@ -1,23 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import React from 'react';
 import { Save, Cpu, Crosshair, MonitorStop, Rotate3D, Ruler, Thermometer, CircleCheck, LifeBuoy, Clock } from 'lucide-react';
 import SpecBox from '../SpecGrid/SpecBox';
 import ConnectorLogo from '@site/static/img/betaflight/connector_logo.svg';
 
-export default function VersionInfo({ children }) {
+export default function VersionInfo({ children }: { children: React.ReactNode }) {
   const { frontMatter } = useDoc();
 
   type Specs = {
-    target: string;
-    mcu: string;
-    imu: string;
-    osd: string;
-    barometer: string;
-    blackbox: string;
-    dimensions: string;
-    mounting: string;
-    weight: string;
+    target?: string;
+    mcu?: string;
+    imu?: string;
+    osd?: string;
+    barometer?: string;
+    blackbox?: string;
+    dimensions?: string;
+    mounting?: string;
+    weight?: string;
   };
 
   type Meta = {
@@ -29,9 +28,9 @@ export default function VersionInfo({ children }) {
     confidence?: number;
   };
 
-  const customProps = (frontMatter.sidebar_custom_props ?? {}) as any;
-  const specs = (customProps.specs ?? {}) as Specs;
-  const meta = customProps as Meta;
+  const customProps = (frontMatter.sidebar_custom_props ?? {}) as Meta & { specs?: Specs };
+  const specs = customProps.specs ?? {};
+  const meta: Meta = customProps;
 
   const dash = (v: string) => (v && String(v).trim() ? v : '—');
   const { target = '', mcu = '', imu = '', osd = '', barometer = '', blackbox: flash = '', dimensions = '', mounting = '', weight = '' } = specs;

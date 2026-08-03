@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Cog6ToothIcon, Cog8ToothIcon, DocumentTextIcon, ExclamationCircleIcon, FolderIcon, PresentationChartLineIcon, PlayIcon } from '@heroicons/react/24/solid';
+import { Cog6ToothIcon, DocumentTextIcon, ExclamationCircleIcon, PresentationChartLineIcon, PlayIcon } from '@heroicons/react/24/solid';
 import { useMediaQuery } from 'react-responsive';
 import YouTube from 'react-youtube';
 import HomepageFeature from '../components/HomepageFeature';
@@ -7,16 +7,16 @@ import BetaflightLayout from '../components/Layout';
 import AboutCard from '../components/AboutCard';
 
 type IconElementFeatureProps = {
-  Icon: React.ComponentType<React.ComponentProps<'svg'>>
-  title: string
-  description?: string
+  Icon: React.ComponentType<React.ComponentProps<'svg'>>;
+  title: string;
+  description?: string;
   link?: {
-    text: string
-    href: string
-    icon?: React.ComponentType<React.ComponentProps<'svg'>>
-  }
-  children?: React.ReactNode
-}
+    text: string;
+    href: string;
+    icon?: React.ComponentType<React.ComponentProps<'svg'>>;
+  };
+  children?: React.ReactNode;
+};
 
 function IconElementFeature({ Icon, title, description, link, children }: IconElementFeatureProps): JSX.Element {
   return (
@@ -70,8 +70,12 @@ export default function Media() {
                       <a href="https://github.com/betaflight/betaflight-configurator/releases/latest" className="fancy-link no-underline">
                         {' '}
                         latest release
-                      </a>
-                      {' '}or run the <a href="https://app.betaflight.com" target="_top" className="fancy-link no-underline">latest version</a> directly in your browser.
+                      </a>{' '}
+                      or run the{' '}
+                      <a href="https://app.betaflight.com" target="_top" className="fancy-link no-underline">
+                        latest version
+                      </a>{' '}
+                      directly in your browser.
                     </span>
                   </div>
                 </div>
@@ -115,8 +119,12 @@ export default function Media() {
                       <a href="https://github.com/betaflight/blackbox-log-viewer/releases" className="fancy-link no-underline">
                         {' '}
                         Betaflight Blackbox Log Viewer
-                      </a>
-                      {' '}or run the <a href="https://blackbox.betaflight.com" target="_top" className="fancy-link no-underline">latest version</a> directly in your browser.
+                      </a>{' '}
+                      or run the{' '}
+                      <a href="https://blackbox.betaflight.com" target="_top" className="fancy-link no-underline">
+                        latest version
+                      </a>{' '}
+                      directly in your browser.
                     </span>
                   </div>
                 </div>
@@ -199,9 +207,7 @@ export default function Media() {
                 </div>
               </AboutCard>
             </div>
-
           </div>
-
         </HomepageFeature>
 
         {/* End Videos block */}
