@@ -4,7 +4,7 @@ import { Save, Cpu, Crosshair, MonitorStop, Rotate3D, Ruler, Thermometer, Circle
 import SpecBox from '../SpecGrid/SpecBox';
 import ConnectorLogo from '@site/static/img/betaflight/connector_logo.svg';
 
-export default function VersionInfo({ children }: { children: React.ReactNode }) {
+export default function VersionInfo({ children }: { children?: React.ReactNode }) {
   const { frontMatter } = useDoc();
 
   type Specs = {
