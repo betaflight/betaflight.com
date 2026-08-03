@@ -138,7 +138,9 @@ function checkFile(filePath) {
     while (remaining) {
       if (inMdxComment) {
         const commentEnd = remaining.indexOf('*/}');
-        if (commentEnd === -1) return;
+        if (commentEnd === -1) {
+          return;
+        }
         remaining = remaining.slice(commentEnd + 3);
         inMdxComment = false;
         continue;
@@ -146,7 +148,9 @@ function checkFile(filePath) {
 
       if (inHtmlComment) {
         const commentEnd = remaining.indexOf('-->');
-        if (commentEnd === -1) return;
+        if (commentEnd === -1) {
+          return;
+        }
         remaining = remaining.slice(commentEnd + 3);
         inHtmlComment = false;
         continue;
