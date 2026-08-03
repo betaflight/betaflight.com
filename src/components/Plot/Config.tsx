@@ -102,7 +102,7 @@ const LINE = {
  */
 const TOOLTIP = {
   labelFormatter: (l: number | string) => `x : ${formatSignificant(l)}`,
-  formatter: (v: number | string) => formatSignificant(v),
+  formatter: (v: number | string | undefined) => (v === undefined ? '' : formatSignificant(v)),
   isAnimationActive: false,
   contentStyle: {
     backgroundColor: 'var(--ifm-background-surface-color)',

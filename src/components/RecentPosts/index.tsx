@@ -3,7 +3,10 @@ import { BlogProps } from '@site/src/types';
 import { NewspaperIcon } from '@heroicons/react/24/solid';
 
 export default function RecentPosts({ recentPosts }: BlogProps) {
-  function clampAndFormatMinutes(minutes: number) {
+  function clampAndFormatMinutes(minutes?: number) {
+    if (minutes === undefined) {
+      return 'Reading time unavailable';
+    }
     if (minutes < 1) {
       return 'One minute read';
     }

@@ -23,8 +23,8 @@ const sortDescending = new Set(['release']);
 const config = {
   title: 'Betaflight',
   tagline: 'Pushing the limits of UAV performance',
-  url: process.env.URL,
-  baseUrl: process.env.BASE_PATH,
+  url: process.env.URL ?? 'http://localhost:3000',
+  baseUrl: process.env.BASE_PATH ?? '/',
   trailingSlash: false,
   onBrokenLinks: 'warn',
   favicon: '/img/betaflight/icon_light.svg',
@@ -108,7 +108,7 @@ const config = {
             [
               remarkMentions,
               {
-                usernameLink: (username) => `https://github.com/${username}`,
+                usernameLink: (/** @type {string} */ username) => `https://github.com/${username}`,
               },
             ],
           ],

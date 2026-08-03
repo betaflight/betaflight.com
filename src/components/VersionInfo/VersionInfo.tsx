@@ -1,9 +1,9 @@
 import { useDoc } from '@docusaurus/plugin-content-docs/client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import semver from 'semver';
 
-function isUpToDate(currentVersion, latestVersion) {
-  const currentSemver = semver.parse(currentVersion);
+function isUpToDate(currentVersion: string | number, latestVersion: string) {
+  const currentSemver = semver.parse(String(currentVersion));
   const latestSemver = semver.parse(latestVersion);
 
   if (!currentSemver || !latestSemver) {
@@ -22,18 +22,37 @@ export default function VersionInfo() {
   const [upToDate, setUpToDate] = useState(true);
   const [versionLatest, setVersionLatest] = useState('');
 
-  fetch('https://api.github.com/repos/betaflight/betaflight/releases/latest', {
-    headers: {
-      Authorization: 'TODO',
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => {
-      setVersionLatest(json.tag_name);
-      if (versionLte) {
-        setUpToDate(isUpToDate(versionLte, json.tag_name));
+  useEffect(() => {
+    if (versionLte === undefined) return;
+
+    const abortController = new AbortController();
+    const applicableVersion = versionLte;
+
+    async function loadLatestVersion() {
+      const response = await fetch('https://api.github.com/repos/betaflight/betaflight/releases/latest', {
+        signal: abortController.signal,
+      });
+      if (!response.ok) {
+        throw new Error(`Unable to load the latest Betaflight release (${response.status})`);
+      }
+
+      const release: unknown = await response.json();
+      if (!release || typeof release !== 'object' || !('tag_name' in release) || typeof release.tag_name !== 'string') {
+        throw new Error('The latest Betaflight release has an invalid response format');
+      }
+
+      setVersionLatest(release.tag_name);
+      setUpToDate(isUpToDate(applicableVersion, release.tag_name));
+    }
+
+    loadLatestVersion().catch((error: unknown) => {
+      if (!(error instanceof DOMException && error.name === 'AbortError')) {
+        console.error(error);
       }
     });
+
+    return () => abortController.abort();
+  }, [versionLte]);
 
   return (
     <div className={`${versionGte || versionLte ? 'pt-4 pb-8' : ''} gap-2 flex flex-col`}>

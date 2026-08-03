@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSnapCarousel } from 'react-snap-carousel';
 
-const styles = {
+const styles: Record<string, React.CSSProperties> = {
   root: {},
   scroll: {
     position: 'relative',

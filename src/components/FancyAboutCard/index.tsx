@@ -12,7 +12,7 @@ export default function FancyAboutCard({
 }: {
   title: string;
   className: string;
-  Icon: React.ComponentType<React.ComponentProps<'svg'> | JSX.Element>;
+  Icon: React.ElementType<{ className?: string }>;
   children: React.ReactNode;
   blur?: boolean;
 }): JSX.Element {

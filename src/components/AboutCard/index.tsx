@@ -11,7 +11,7 @@ export default function AboutCard({
 }: {
   title: string;
   className: string;
-  Icon: React.ComponentType<React.ComponentProps<'svg'> | JSX.Element>;
+  Icon: React.ElementType<{ className?: string }>;
   children: React.ReactNode;
   blur?: boolean;
 }): JSX.Element {
@@ -24,7 +24,7 @@ export default function AboutCard({
           blur ? 'backdrop-blur-md' : '',
         )}
       >
-        <Icon className="h-4 w-4 xl:w-6 h-6 ml-2 mr-2" />
+        <Icon className="h-4 w-4 xl:w-6 xl:h-6 ml-2 mr-2" />
         {title}
         <AboutHeaderFix className="absolute right-[-32px] bottom-0 dark:text-neutral-500/10 text-neutral-150/50"></AboutHeaderFix>
       </div>

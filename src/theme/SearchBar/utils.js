@@ -66,7 +66,7 @@ const utils = {
    */
   groupBy(collection, property) {
     const newCollection = {};
-    $.each(collection, (index, item) => {
+    $.each(collection, (_index, item) => {
       if (item[property] === undefined) {
         throw new Error(`[groupBy]: Object has no key ${property}`);
       }

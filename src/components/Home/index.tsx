@@ -1,7 +1,6 @@
 import React from 'react';
 import { CameraIcon, CodeBracketIcon, CpuChipIcon, ShieldCheckIcon, UsersIcon } from '@heroicons/react/24/solid';
 import JetIcon from '@site/src/icons/jet.icon.svg';
-import { BlogProps } from '@site/src/types';
 import BetaflightLayout from '../Layout';
 import HomepageFeature from '../HomepageFeature';
 import FancyAboutCard from '../FancyAboutCard';
@@ -13,7 +12,7 @@ import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import SponsorBanner from '../Sponsors/SponsorBanner';
 
-export default function Home({ recentPosts }: BlogProps) {
+export default function Home() {
   function onClickDonate(service: string) {
     switch (service) {
       case 'paypal':

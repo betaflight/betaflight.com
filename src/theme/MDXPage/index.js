@@ -22,7 +22,7 @@ export default function MDXPage(props) {
         <main className="container container--fluid margin-vert--lg">
           <div className={clsx('row', styles.mdxPageWrapper)}>
             <div className={clsx('col', !hideTableOfContents && 'col--8')}>
-              <article class="theme-doc-markdown markdown">
+              <article className="theme-doc-markdown markdown">
                 <MDXContent>
                   <MDXPageContent />
                 </MDXContent>

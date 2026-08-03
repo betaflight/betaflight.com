@@ -7,13 +7,13 @@ import BetaflightLayout from '../components/Layout';
 import AboutCard from '../components/AboutCard';
 
 type IconElementFeatureProps = {
-  Icon: React.ComponentType<React.ComponentProps<'svg'>>;
+  Icon: React.ElementType<{ className?: string }>;
   title: string;
   description?: string;
   link?: {
     text: string;
     href: string;
-    icon?: React.ComponentType<React.ComponentProps<'svg'>>;
+    icon?: React.ElementType<{ className?: string }>;
   };
   children?: React.ReactNode;
 };

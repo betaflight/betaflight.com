@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import HomepageFeature from '../components/HomepageFeature';
 import BetaflightLayout from '../components/Layout';
-import { ResponsiveLine } from '@nivo/line';
+import { ResponsiveLine, type Point } from '@nivo/line';
 import { themeLight } from '../theme/nivoThemeLight.js';
 import { themeDark } from '../theme/nivoThemeDark.js';
 import { useColorMode } from '@docusaurus/theme-common';
@@ -10,50 +10,99 @@ interface Volume {
   date: string;
   cached: number;
   built: number;
-  failed: number;
-  percentCached: number;
-  percentSuccess: number;
   targets: Target[];
   releases: Release[];
 }
 
 interface Target {
   name: string;
-  percent: number;
   volume: number;
 }
 
 interface Release {
   name: string;
-  percent: number;
   volume: number;
 }
 
-async function getStats() {
-  const stats = await fetch(`https://build.betaflight.com/api/stats`).then((res) => res.json());
+interface StatsResponse {
+  volumes: Volume[];
+}
+
+interface ChartPoint {
+  x: string;
+  y: number;
+}
+
+interface ChartSeries {
+  id: string;
+  data: ChartPoint[];
+}
+
+interface StatsData {
+  total: ChartPoint[];
+  targets: ChartSeries[];
+  releases: ChartSeries[];
+}
+
+type MinorChartType = 'targets' | 'releases';
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
+function isBreakdown(value: unknown): value is Target {
+  return isRecord(value) && typeof value.name === 'string' && typeof value.volume === 'number';
+}
+
+function isVolume(value: unknown): value is Volume {
+  return (
+    isRecord(value) &&
+    typeof value.date === 'string' &&
+    typeof value.cached === 'number' &&
+    typeof value.built === 'number' &&
+    Array.isArray(value.targets) &&
+    value.targets.every(isBreakdown) &&
+    Array.isArray(value.releases) &&
+    value.releases.every(isBreakdown)
+  );
+}
+
+function isStatsResponse(value: unknown): value is StatsResponse {
+  return isRecord(value) && Array.isArray(value.volumes) && value.volumes.every(isVolume);
+}
+
+async function getStats(): Promise<StatsData> {
+  const response = await fetch('https://build.betaflight.com/api/stats');
+  if (!response.ok) {
+    throw new Error(`Unable to load build statistics (${response.status})`);
+  }
+
+  const stats: unknown = await response.json();
+  if (!isStatsResponse(stats) || stats.volumes.length === 0) {
+    throw new Error('Build statistics have an invalid response format');
+  }
+
   const data = stats.volumes.map((volume: Volume) => ({
     x: new Date(volume.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
     y: volume.cached + volume.built,
   }));
 
-  const targets = stats.volumes[0].targets.map((target: Target) => ({
+  const firstVolume = stats.volumes[0];
+  const targets = firstVolume.targets.slice(0, 5).map((target) => ({
     id: target.name,
     data: stats.volumes.map((volume: Volume) => ({
       x: new Date(volume.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
-      y: volume.targets.find((t: Target) => t.name === target.name)?.volume,
+      y: volume.targets.find((item) => item.name === target.name)?.volume ?? 0,
     })),
   }));
 
-  const releases = stats.volumes[0].releases.map((release: Release) => ({
+  const releases = firstVolume.releases.slice(0, 3).map((release) => ({
     id: release.name,
     data: stats.volumes.map((volume: Volume) => ({
       x: new Date(volume.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
-      y: volume.releases.find((r: Release) => r.name === release.name)?.volume,
+      y: volume.releases.find((item) => item.name === release.name)?.volume ?? 0,
     })),
   }));
-
-  targets.length = 5;
-  releases.length = 3;
 
   return {
     total: data,
@@ -62,7 +111,12 @@ async function getStats() {
   };
 }
 
-const Tooltip = ({ point, children }) => {
+interface TooltipProps {
+  point: Point;
+  children: React.ReactNode;
+}
+
+const Tooltip = ({ point, children }: TooltipProps) => {
   return (
     <div className="backdrop-blur-xl dark:bg-neutral-700/90 bg-neutral-200 h-fit p-2 rounded-full border-2 dark:border-neutral-500/50 border-neutral-300/50 shadow-xl z-10">
       <span style={{ color: point.serieColor }} className="font-semibold">
@@ -73,11 +127,16 @@ const Tooltip = ({ point, children }) => {
   );
 };
 
-const MajorChart = ({ data, maxY }) => {
+interface MajorChartProps {
+  data: ChartPoint[] | null;
+  maxY: number | null;
+}
+
+const MajorChart = ({ data, maxY }: MajorChartProps) => {
   const isDark = useColorMode().isDarkTheme;
   return (
     <div className="h-96 w-full flex">
-      {data ? (
+      {data && maxY !== null ? (
         <ResponsiveLine
           data={[
             {
@@ -135,31 +194,37 @@ const MajorChart = ({ data, maxY }) => {
 };
 
 const MajorChartWrapper = () => {
-  const [data, setData] = useState(null);
-  const [maxY, setMaxY] = useState(null);
+  const [data, setData] = useState<ChartPoint[] | null>(null);
+  const [maxY, setMaxY] = useState<number | null>(null);
 
   useEffect(() => {
-    getStats().then((stats) => {
-      const totalData = stats.total;
+    getStats()
+      .then((stats) => {
+        const totalData = stats.total;
+        if (totalData.length > 0) {
+          const yValues = totalData.map((dataPoint) => dataPoint.y);
+          const maxBuildCount = Math.max(...yValues);
 
-      if (totalData) {
-        const yValues = totalData.map((dataPoint) => dataPoint.y);
-        const maxBuildCount = Math.max(...yValues);
-
-        setData(totalData);
-        setMaxY(maxBuildCount);
-      }
-    });
+          setData(totalData);
+          setMaxY(maxBuildCount);
+        }
+      })
+      .catch((error: unknown) => console.error(error));
   }, []);
 
   return <MajorChart data={data} maxY={maxY} />;
 };
 
-const MinorChart = ({ type, data, maxY }) => {
+interface MinorChartProps {
+  data: ChartSeries[] | null;
+  maxY: number | null;
+}
+
+const MinorChart = ({ data, maxY }: MinorChartProps) => {
   const isDark = useColorMode().isDarkTheme;
   return (
     <div className="h-96 w-full flex">
-      {data ? (
+      {data && maxY !== null ? (
         <ResponsiveLine
           data={data.map((target) => ({
             id: target.id,
@@ -238,37 +303,27 @@ const MinorChart = ({ type, data, maxY }) => {
   );
 };
 
-const MinorChartWrapper = ({ type }) => {
-  const [data, setData] = useState(null);
-  const [maxY, setMaxY] = useState(null);
+interface MinorChartWrapperProps {
+  type: MinorChartType;
+}
+
+const MinorChartWrapper = ({ type }: MinorChartWrapperProps) => {
+  const [data, setData] = useState<ChartSeries[] | null>(null);
+  const [maxY, setMaxY] = useState<number | null>(null);
 
   useEffect(() => {
-    getStats().then((stats) => {
-      let filteredData = null;
-      let maxCount = null;
+    getStats()
+      .then((stats) => {
+        const filteredData = stats[type];
+        const maxCount = Math.max(0, ...filteredData.flatMap((series) => series.data.map((dataPoint) => dataPoint.y)));
 
-      if (type === 'releases') {
-        filteredData = stats.releases;
-        maxCount = Math.max(
-          ...stats.releases.map((release) => {
-            return Math.max(...release.data.map((dataPoint) => dataPoint.y));
-          }),
-        );
-      } else if (type === 'targets') {
-        filteredData = stats.targets;
-        maxCount = Math.max(
-          ...stats.targets.map((target) => {
-            return Math.max(...target.data.map((dataPoint) => dataPoint.y));
-          }),
-        );
-      }
-
-      setData(filteredData);
-      setMaxY(maxCount);
-    });
+        setData(filteredData);
+        setMaxY(maxCount);
+      })
+      .catch((error: unknown) => console.error(error));
   }, [type]);
 
-  return <MinorChart type={type} data={data} maxY={maxY} />;
+  return <MinorChart data={data} maxY={maxY} />;
 };
 
 export default function Stats() {
