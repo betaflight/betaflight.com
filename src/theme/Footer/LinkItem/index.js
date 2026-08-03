@@ -36,11 +36,11 @@ export default function FooterLinkItem({ item }) {
       className="fancy-link pb-1 no-underline flex"
       {...(href
         ? {
-          href: prependBaseUrlToHref ? normalizedHref : href,
-        }
+            href: prependBaseUrlToHref ? normalizedHref : href,
+          }
         : {
-          to: toUrl,
-        })}
+            to: toUrl,
+          })}
       {...props}
     >
       {icon && (

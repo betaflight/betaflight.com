@@ -9,11 +9,11 @@ export default function AboutCard({
   children,
   blur,
 }: {
-  title: string
-  className: string
-  Icon: React.ComponentType<React.ComponentProps<'svg'> | JSX.Element>
-  children: React.ReactNode
-  blur?: boolean
+  title: string;
+  className: string;
+  Icon: React.ComponentType<React.ComponentProps<'svg'> | JSX.Element>;
+  children: React.ReactNode;
+  blur?: boolean;
 }): JSX.Element {
   return (
     <div className="box flex flex-col w-full">

@@ -7,26 +7,26 @@ import { themeDark } from '../theme/nivoThemeDark.js';
 import { useColorMode } from '@docusaurus/theme-common';
 
 interface Volume {
-  date: string
-  cached: number
-  built: number
-  failed: number
-  percentCached: number
-  percentSuccess: number
-  targets: Target[]
-  releases: Release[]
+  date: string;
+  cached: number;
+  built: number;
+  failed: number;
+  percentCached: number;
+  percentSuccess: number;
+  targets: Target[];
+  releases: Release[];
 }
 
 interface Target {
-  name: string
-  percent: number
-  volume: number
+  name: string;
+  percent: number;
+  volume: number;
 }
 
 interface Release {
-  name: string
-  percent: number
-  volume: number
+  name: string;
+  percent: number;
+  volume: number;
 }
 
 async function getStats() {

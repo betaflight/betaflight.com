@@ -35,7 +35,7 @@ const styles = {
 };
 
 interface CarouselProps {
-  readonly children?: React.ReactNode
+  readonly children?: React.ReactNode;
 }
 
 export default function Carousel({ children }: CarouselProps) {
@@ -86,7 +86,7 @@ export default function Carousel({ children }: CarouselProps) {
 }
 
 interface CarouselItemProps {
-  readonly children?: React.ReactNode
+  readonly children?: React.ReactNode;
 }
 
 export function CarouselItem({ children }: CarouselItemProps) {

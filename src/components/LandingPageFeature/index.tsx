@@ -3,12 +3,12 @@ import clsx from 'clsx';
 import slugify from 'react-slugify';
 
 type Props = {
-  title: string
-  subtitle?: string
-  className?: string
-  children: React.ReactNode
-  addToList?: (slug: string, title: string) => void
-}
+  title: string;
+  subtitle?: string;
+  className?: string;
+  children: React.ReactNode;
+  addToList?: (slug: string, title: string) => void;
+};
 
 export default function LandingPageFeature({ title, subtitle, children, addToList, className }: Props) {
   const slug = slugify(title);

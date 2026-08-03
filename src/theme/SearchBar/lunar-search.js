@@ -29,11 +29,11 @@ class LunrSearchAdapter {
       url: doc.url,
       _snippetResult: formattedContent
         ? {
-          content: {
-            value: formattedContent,
-            matchLevel: 'full',
-          },
-        }
+            content: {
+              value: formattedContent,
+              matchLevel: 'full',
+            },
+          }
         : null,
       _highlightResult: {
         hierarchy: {
@@ -44,8 +44,8 @@ class LunrSearchAdapter {
             doc.type === 0
               ? null
               : {
-                value: formattedTitle || doc.title,
-              },
+                  value: formattedTitle || doc.title,
+                },
         },
       },
     };

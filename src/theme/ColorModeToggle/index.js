@@ -17,15 +17,15 @@ function ColorModeToggle({ className, value, onChange }) {
       mode:
         value === 'dark'
           ? translate({
-            message: 'dark mode',
-            id: 'theme.colorToggle.ariaLabel.mode.dark',
-            description: 'The name for the dark color mode',
-          })
+              message: 'dark mode',
+              id: 'theme.colorToggle.ariaLabel.mode.dark',
+              description: 'The name for the dark color mode',
+            })
           : translate({
-            message: 'light mode',
-            id: 'theme.colorToggle.ariaLabel.mode.light',
-            description: 'The name for the light color mode',
-          }),
+              message: 'light mode',
+              id: 'theme.colorToggle.ariaLabel.mode.light',
+              description: 'The name for the light color mode',
+            }),
     },
   );
   return (
