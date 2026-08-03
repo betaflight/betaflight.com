@@ -2,12 +2,16 @@ import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import React, { useEffect, useState } from 'react';
 import semver from 'semver';
 
-function isUpToDate(currentVersion: string | number, latestVersion: string) {
-  const currentSemver = semver.parse(String(currentVersion));
-  const latestSemver = semver.parse(latestVersion);
+function normalizeVersion(version: string | number): semver.SemVer | null {
+  return semver.coerce(String(version), { loose: true });
+}
+
+function isUpToDate(currentVersion: string | number, latestVersion: string): boolean {
+  const currentSemver = normalizeVersion(currentVersion);
+  const latestSemver = normalizeVersion(latestVersion);
 
   if (!currentSemver || !latestSemver) {
-    throw new Error('Invalid version format');
+    return true;
   }
 
   return currentSemver.major === latestSemver.major && currentSemver.minor === latestSemver.minor;
