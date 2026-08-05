@@ -52,7 +52,7 @@ static/img/connector_standard/bf_connector_standard.svg
 static/img/connector_standard/bf_connector_standard.pdf
 ```
 
-CI runs `npm run check:connector-standard`, which renders into a temporary directory and fails if a generated file differs from its committed counterpart.
+CI runs `npm run check:connector-standard`, which renders into a temporary directory and fails when the generated artwork differs from its committed counterpart. PNG and SVG comparisons allow only a tightly bounded one-level antialiasing difference between platforms. The PDF embeds a deterministic SHA-256 source fingerprint and is checked by that fingerprint and its stable document structure because KiCad orders visually equivalent PDF drawing streams differently on Windows and Linux.
 
 The repository-owned `render-theme.json` controls schematic colors, default PCB materials, lighting background, and other presentation details. Explicit board-stackup colors take precedence over its material defaults. KiCad is given an isolated temporary configuration directory, so rendering does not modify or depend on the user's KiCad preferences.
 

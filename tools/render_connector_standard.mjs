@@ -1,4 +1,5 @@
 import { execFile as execFileCallback, spawn } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { access, copyFile, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { constants as fsConstants } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -345,9 +346,51 @@ function croppedSvg(svg, bounds) {
   return `${svg.slice(0, svgStart)}${tag}${svg.slice(tagEnd + 1)}`;
 }
 
-function normalizePdf(buffer) {
+function normalizePdf(buffer, sourceFingerprint) {
   const text = buffer.toString('latin1').replace(/\/CreationDate \(D:\d{4}:\d{2}:\d{2}:\d{2}:\d{2}:\d{2}\)/g, '/CreationDate (D:2000:01:01:00:00:00)');
-  return Buffer.from(text, 'latin1');
+  const marker = `% Betaflight-Source-SHA256: ${sourceFingerprint}`;
+  if (!/%%EOF\s*$/.test(text)) {
+    throw new Error('KiCad produced an invalid schematic PDF');
+  }
+  return Buffer.from(text.replace(/%%EOF\s*$/, `${marker}\n%%EOF\n`), 'latin1');
+}
+
+function pdfSignature(buffer) {
+  const text = buffer.toString('latin1');
+  const version = text.match(/^%PDF-(\d+\.\d+)/)?.[1];
+  const sourceFingerprint = text.match(/% Betaflight-Source-SHA256: ([a-f0-9]{64})/)?.[1];
+  const pageCount = text.match(/\/Type\s*\/Page\b/g)?.length ?? 0;
+  const mediaBoxes = [...text.matchAll(/\/MediaBox\s*\[([^\]]]+)\]/g)].map((match) => match[1].trim());
+
+  if (!version || !sourceFingerprint || pageCount === 0 || !/%%EOF\s*$/.test(text)) {
+    return null;
+  }
+  return JSON.stringify({ version, sourceFingerprint, pageCount, mediaBoxes });
+}
+
+async function rasterImagesMatch(generated, committed, resizeWidth, maxChangedChannels) {
+  const rasterize = async (buffer) => {
+    let image = sharp(buffer, { density: 96 });
+    if (resizeWidth) {
+      image = image.resize({ width: resizeWidth });
+    }
+    return image.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  };
+  const [generatedRaster, committedRaster] = await Promise.all([rasterize(generated), rasterize(committed)]);
+  const generatedInfo = generatedRaster.info;
+  const committedInfo = committedRaster.info;
+  if (generatedInfo.width !== committedInfo.width || generatedInfo.height !== committedInfo.height || generatedInfo.channels !== committedInfo.channels) {
+    return false;
+  }
+
+  let changedChannels = 0;
+  for (let index = 0; index < generatedRaster.data.length; index += 1) {
+    const delta = Math.abs(generatedRaster.data[index] - committedRaster.data[index]);
+    if (delta > 1 || (delta !== 0 && ++changedChannels > maxChangedChannels)) {
+      return false;
+    }
+  }
+  return true;
 }
 
 async function visiblePixelBounds(path) {
@@ -528,7 +571,16 @@ async function verifyGeneratedAssets(generatedFiles, generatedDir) {
     const generated = await readFile(join(generatedDir, file));
     try {
       const committed = await readFile(join(assetsDir, file));
-      if (!generated.equals(committed)) {
+      let matches = generated.equals(committed);
+      if (!matches && file.endsWith('.png')) {
+        matches = await rasterImagesMatch(generated, committed, undefined, 128);
+      } else if (!matches && file.endsWith('.svg')) {
+        matches = await rasterImagesMatch(generated, committed, 1024, 512);
+      } else if (!matches && file.endsWith('.pdf')) {
+        const generatedSignature = pdfSignature(generated);
+        matches = generatedSignature !== null && generatedSignature === pdfSignature(committed);
+      }
+      if (!matches) {
         stale.push(file);
       }
     } catch {
@@ -628,7 +680,13 @@ async function render(options, schematicSource, schematicCrops, boardCrops, boar
     });
 
     const pdfPath = join(generatedDir, 'bf_connector_standard.pdf');
-    await writeFile(pdfPath, normalizePdf(await readFile(pdfPath)));
+    const pdfSourceFingerprint = createHash('sha256')
+      .update(cleanSchematic)
+      .update(await readFile(projectPath))
+      .update(await readFile(themePath))
+      .update(kicadVersion)
+      .digest('hex');
+    await writeFile(pdfPath, normalizePdf(await readFile(pdfPath), pdfSourceFingerprint));
     const generatedFiles = listGeneratedFiles(schematicCrops, boardCrops);
     await syncGeneratedAssets(options, generatedFiles, generatedDir, version);
   } finally {
