@@ -355,6 +355,16 @@ function normalizePdf(buffer, sourceFingerprint) {
   return Buffer.from(text.replace(/%%EOF\s*$/, `${marker}\n%%EOF\n`), 'latin1');
 }
 
+function sourceFingerprint(sources) {
+  const hash = createHash('sha256');
+  for (const source of sources) {
+    const normalized = source.toString().replace(/\r\n?/g, '\n');
+    hash.update(`${Buffer.byteLength(normalized)}\0`);
+    hash.update(normalized);
+  }
+  return hash.digest('hex');
+}
+
 function pdfSignature(buffer) {
   const text = buffer.toString('latin1');
   const version = text.match(/^%PDF-(\d+\.\d+)/)?.[1];
@@ -680,12 +690,7 @@ async function render(options, schematicSource, schematicCrops, boardCrops, boar
     });
 
     const pdfPath = join(generatedDir, 'bf_connector_standard.pdf');
-    const pdfSourceFingerprint = createHash('sha256')
-      .update(cleanSchematic)
-      .update(await readFile(projectPath))
-      .update(await readFile(themePath))
-      .update(kicadVersion)
-      .digest('hex');
+    const pdfSourceFingerprint = sourceFingerprint([cleanSchematic, await readFile(projectPath), await readFile(themePath), kicadVersion]);
     await writeFile(pdfPath, normalizePdf(await readFile(pdfPath), pdfSourceFingerprint));
     const generatedFiles = listGeneratedFiles(schematicCrops, boardCrops);
     await syncGeneratedAssets(options, generatedFiles, generatedDir, version);
