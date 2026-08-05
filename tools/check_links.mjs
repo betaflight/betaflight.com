@@ -110,6 +110,8 @@ function checkFile(filePath) {
 
   let inCodeBlock = false;
   let fenceChar = '';
+  let inMdxComment = false;
+  let inHtmlComment = false;
 
   lines.forEach((line, lineIndex) => {
     const trimmed = line.trim();
@@ -130,9 +132,49 @@ function checkFile(filePath) {
       return;
     }
 
+    let searchableLine = '';
+    let remaining = line;
+
+    while (remaining) {
+      if (inMdxComment) {
+        const commentEnd = remaining.indexOf('*/}');
+        if (commentEnd === -1) {
+          return;
+        }
+        remaining = remaining.slice(commentEnd + 3);
+        inMdxComment = false;
+        continue;
+      }
+
+      if (inHtmlComment) {
+        const commentEnd = remaining.indexOf('-->');
+        if (commentEnd === -1) {
+          return;
+        }
+        remaining = remaining.slice(commentEnd + 3);
+        inHtmlComment = false;
+        continue;
+      }
+
+      const mdxCommentStart = remaining.indexOf('{/*');
+      const htmlCommentStart = remaining.indexOf('<!--');
+      const starts = [mdxCommentStart, htmlCommentStart].filter((index) => index >= 0);
+
+      if (starts.length === 0) {
+        searchableLine += remaining;
+        break;
+      }
+
+      const commentStart = Math.min(...starts);
+      searchableLine += remaining.slice(0, commentStart);
+      inMdxComment = commentStart === mdxCommentStart;
+      inHtmlComment = commentStart === htmlCommentStart;
+      remaining = remaining.slice(commentStart + (inMdxComment ? 3 : 4));
+    }
+
     linkPatterns[0].lastIndex = 0;
     let match;
-    while ((match = linkPatterns[0].exec(line)) !== null) {
+    while ((match = linkPatterns[0].exec(searchableLine)) !== null) {
       // Strip optional inline title (e.g. 'title' or "title" after the URL)
       const linkUrl = match[2].replace(/[ \t]{1,100}(?:"[^"]{0,2000}"|'[^']{0,2000}')[ \t]{0,100}$/, '').trim();
       // Strip query string before resolving (e.g. ?fbclid=...)

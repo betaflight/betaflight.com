@@ -29,11 +29,11 @@ class LunrSearchAdapter {
       url: doc.url,
       _snippetResult: formattedContent
         ? {
-          content: {
-            value: formattedContent,
-            matchLevel: 'full',
-          },
-        }
+            content: {
+              value: formattedContent,
+              matchLevel: 'full',
+            },
+          }
         : null,
       _highlightResult: {
         hierarchy: {
@@ -44,8 +44,8 @@ class LunrSearchAdapter {
             doc.type === 0
               ? null
               : {
-                value: formattedTitle || doc.title,
-              },
+                  value: formattedTitle || doc.title,
+                },
         },
       },
     };
@@ -119,7 +119,9 @@ class LunrSearchAdapter {
     return new Promise((resolve) => {
       const results = this.getLunrResult(input);
       const hits = [];
-      results.length > 5 && (results.length = 5);
+      if (results.length > 5) {
+        results.length = 5;
+      }
       this.titleHitsRes = [];
       this.contentHitsRes = [];
       results.forEach((result) => {
@@ -142,7 +144,9 @@ class LunrSearchAdapter {
           }
         }
       });
-      hits.length > 5 && (hits.length = 5);
+      if (hits.length > 5) {
+        hits.length = 5;
+      }
       resolve(hits);
     });
   }

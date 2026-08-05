@@ -43,7 +43,7 @@ This document is primarily for developers.
 
 Contribution of bugfixes and new features is encouraged. Please be aware that we have a thorough review process for pull requests, and be prepared to explain what you want to achieve with your pull request.
 
-Before starting to write code, please read this document and the [coding style definition](CodingStyle).
+Before starting to write code, please read this document and the [coding style definition](/docs/development/CodingStyle).
 
 GitHub actions are used to run automatic builds against a PR, and the action will indicate whether or not there is a build error. Note that the action runs under the latest Ubuntu release that is supported by the Betaflight team.
 
@@ -51,9 +51,9 @@ GitHub actions are used to run automatic builds against a PR, and the action wil
 
 The Betaflight team relies heavily on contributors to get their own development environment working on their respective setups. So that we do not spend time catering for all different development environments, and of course personal preferences, we have nominated the following as officially supported:
 
-1. Ubuntu 24.04 LTS (Noble Numbat) [...](development/building/Building-in-Ubuntu)
-2. Windows - using WSL (with Ubuntu 24.04 LTS installed) [...](development/building/Building-in-Windows)
-3. MacOS 15 Sequoia [...](development/building/Building-in-Mac-OSX)
+1. Ubuntu 24.04 LTS (Noble Numbat) [...](/docs/development/building/Building-in-Ubuntu)
+2. Windows - using WSL (with Ubuntu 24.04 LTS installed) [...](/docs/development/building/Building-in-Windows)
+3. MacOS 15 Sequoia [...](/docs/development/building/Building-in-Mac-OSX)
 
 For the IDE we recommend (and support):
 

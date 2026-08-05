@@ -2,12 +2,12 @@ import React from 'react';
 import clsx from 'clsx';
 
 type Props = {
-  title?: string
-  className?: string
-  children?: React.ReactNode
-  compact?: boolean
-  blur?: boolean
-}
+  title?: string;
+  className?: string;
+  children?: React.ReactNode;
+  compact?: boolean;
+  blur?: boolean;
+};
 
 export default function HomepageFeature({ title = '<unset>', compact = false, className, children, blur }: Props): JSX.Element {
   return (

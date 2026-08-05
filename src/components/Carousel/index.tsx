@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSnapCarousel } from 'react-snap-carousel';
 
-const styles = {
+const styles: Record<string, React.CSSProperties> = {
   root: {},
   scroll: {
     position: 'relative',
@@ -35,7 +35,7 @@ const styles = {
 };
 
 interface CarouselProps {
-  readonly children?: React.ReactNode
+  readonly children?: React.ReactNode;
 }
 
 export default function Carousel({ children }: CarouselProps) {
@@ -86,7 +86,7 @@ export default function Carousel({ children }: CarouselProps) {
 }
 
 interface CarouselItemProps {
-  readonly children?: React.ReactNode
+  readonly children?: React.ReactNode;
 }
 
 export function CarouselItem({ children }: CarouselItemProps) {

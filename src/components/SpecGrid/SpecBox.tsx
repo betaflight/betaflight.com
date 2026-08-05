@@ -1,6 +1,14 @@
 import React from 'react';
 
-export default function SpecBox({ icon, title, color, children, colSpan = 1 }) {
+interface SpecBoxProps {
+  readonly icon: React.ReactNode;
+  readonly title: React.ReactNode;
+  readonly color: 'primary' | 'secondary' | 'neutral' | 'neutral-light';
+  readonly children: React.ReactNode;
+  readonly colSpan?: 1 | 2 | 3;
+}
+
+export default function SpecBox({ icon, title, color, children, colSpan = 1 }: SpecBoxProps) {
   let bgColor = '';
   let primaryTextColor = '';
   let secondaryTextColor = '';

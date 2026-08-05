@@ -4,39 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import teamInfo from '../../json/team.json';
 
 type GitHubUser = {
-  id: number
-  login: string
-  node_id: string
-  avatar_url: string
-  gravatar_id: string
-  url: string
-  html_url: string
-  followers_url: string
-  following_url: string
-  gists_url: string
-  starred_url: string
-  subscriptions_url: string
-  organizations_url: string
-  repos_url: string
-  events_url: string
-  received_events_url: string
-  type: string
-  site_admin: boolean
-  name: string
-  company: string
-  blog: string
-  location: string
-  email: string
-  hireable: boolean
-  bio: string
-  twitter_username: string
-  public_repos: number
-  public_gists: number
-  followers: number
-  following: number
-  created_at: string
-  updated_at: string
-}
+  id: number;
+  login: string;
+  avatar_url: string;
+  name: string | null;
+  blog: string;
+  location: string | null;
+};
 
 export default function TeamFeature() {
   const userData: GitHubUser[] = teamInfo;
@@ -69,11 +43,11 @@ export default function TeamFeature() {
                 <div className="text-xs text-neutral-600 font-semibold">{user.name}</div>
                 {user.location && <div className="text-xs text-neutral-600">{truncateStr(user.location)}</div>}
                 {user.blog && (
-                <div className="text-xs text-neutral-600 font-semibold">
-                  <a className="fancy-link no-underline" href={checkLink(user.blog)} target="_blank" rel="noreferrer">
-                    {truncateStr(checkLink(user.blog, true))}
-                  </a>
-                </div>
+                  <div className="text-xs text-neutral-600 font-semibold">
+                    <a className="fancy-link no-underline" href={checkLink(user.blog)} target="_blank" rel="noreferrer">
+                      {truncateStr(checkLink(user.blog, true))}
+                    </a>
+                  </div>
                 )}
               </div>
             </div>

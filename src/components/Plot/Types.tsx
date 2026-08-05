@@ -5,54 +5,54 @@ import React from 'react';
 // ============================================================================
 
 export type DataPoint = {
-  x: number
-  y: number
-}
+  x: number;
+  y: number;
+};
 
 export type DataSourceProps = {
   /** Function (x) => y to plot */
-  fn?: (x: number) => number
+  fn?: (x: number) => number;
   /** URL to JSON or CSV file with data points */
-  lookup?: string
+  lookup?: string;
   /** Minimum x value for function plotting */
-  xmin?: number
+  xmin?: number;
   /** Maximum x value for function plotting */
-  xmax?: number
+  xmax?: number;
   /** Number of sample points for function plotting */
-  samples?: number
-}
+  samples?: number;
+};
 
 export type PlotLineProps = {
   /** Unique identifier for the series */
-  id?: string
+  id?: string;
   /** Label for the legend */
-  label?: string
+  label?: string;
   /** Line color (CSS color value) */
-  color?: string
+  color?: string;
   /** Line thickness */
-  strokeWidth?: number
+  strokeWidth?: number;
   /** Dash pattern (e.g. "8 4") */
-  strokeDasharray?: string
+  strokeDasharray?: string;
   /** Show data points */
-  dot?: boolean
-}
+  dot?: boolean;
+};
 
 export type PlotCanvasProps = {
   /** Additional CSS class names */
-  className?: string
+  className?: string;
   /** Series components for multi-line plots */
-  children?: React.ReactNode
-}
+  children?: React.ReactNode;
+};
 
 // ============================================================================
 // Component Props
 // ============================================================================
 
-export type SeriesProps = DataSourceProps & PlotLineProps
+export type SeriesProps = DataSourceProps & PlotLineProps;
 
-export type PlotProps = SeriesProps & PlotCanvasProps
+export type PlotProps = SeriesProps & PlotCanvasProps;
 
 export type SeriesWithData = PlotLineProps & {
-  id: string
-  data: DataPoint[]
-}
+  id: string;
+  data: DataPoint[];
+};

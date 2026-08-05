@@ -102,7 +102,7 @@ const LINE = {
  */
 const TOOLTIP = {
   labelFormatter: (l: number | string) => `x : ${formatSignificant(l)}`,
-  formatter: (v: number | string) => formatSignificant(v),
+  formatter: (v: number | string | undefined) => (v === undefined ? '' : formatSignificant(v)),
   isAnimationActive: false,
   contentStyle: {
     backgroundColor: 'var(--ifm-background-surface-color)',
@@ -121,15 +121,7 @@ const TOOLTIP = {
  * Cycles through these colors when multiple Plot.Series are rendered
  * Define color values in Plot.module.css
  */
-export const SERIES_COLORS = [
-  'var(--plot-color-1)',
-  'var(--plot-color-2)',
-  'var(--plot-color-3)',
-  'var(--plot-color-4)',
-  'var(--plot-color-5)',
-  'var(--plot-color-6)',
-  'var(--plot-color-7)',
-] as const;
+export const SERIES_COLORS = ['var(--plot-color-1)', 'var(--plot-color-2)', 'var(--plot-color-3)', 'var(--plot-color-4)', 'var(--plot-color-5)', 'var(--plot-color-6)', 'var(--plot-color-7)'] as const;
 
 const PLOT_PROPS = {
   CONTAINER,

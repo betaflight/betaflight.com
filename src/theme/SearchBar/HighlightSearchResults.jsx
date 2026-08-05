@@ -1,9 +1,9 @@
 //copied from https://github.com/cmfcmf/docusaurus-search-local
-import Mark from "mark.js";
-import { useEffect, useState } from "react";
-import { useLocation } from "@docusaurus/router";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { useHistory } from "@docusaurus/router";
+import Mark from 'mark.js';
+import { useEffect, useState } from 'react';
+import { useLocation } from '@docusaurus/router';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { useHistory } from '@docusaurus/router';
 
 export function HighlightSearchResults() {
   const location = useLocation();
@@ -12,13 +12,10 @@ export function HighlightSearchResults() {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
 
-  const [highlightData, setHighlightData] = useState({ wordToHighlight: '', isTitleSuggestion: false , titleText: '' });
+  const [highlightData, setHighlightData] = useState({ wordToHighlight: '', isTitleSuggestion: false, titleText: '' });
 
   useEffect(() => {
-    if (
-      !location.state?.highlightState ||
-      location.state.highlightState.wordToHighlight.length === 0
-    ) {
+    if (!location.state?.highlightState || location.state.highlightState.wordToHighlight.length === 0) {
       return;
     }
     setHighlightData(location.state.highlightState);
@@ -36,7 +33,7 @@ export function HighlightSearchResults() {
     }
 
     // Make sure to also adjust parse.js if you change the top element here.
-    const root =  document.getElementsByTagName("article")[0] ?? document.getElementsByTagName("main")[0] ;
+    const root = document.getElementsByTagName('article')[0] ?? document.getElementsByTagName('main')[0];
     if (!root) {
       return;
     }
@@ -45,7 +42,7 @@ export function HighlightSearchResults() {
     const options = {
       ignoreJoiners: true,
     };
-    mark.mark(highlightData.wordToHighlight , options);
+    mark.mark(highlightData.wordToHighlight, options);
     return () => mark.unmark(options);
   }, [highlightData, baseUrl]);
 

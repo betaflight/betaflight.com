@@ -1,6 +1,7 @@
 .docusaurus-mermaid-container {
   .node {
-    rect, circle {
+    rect,
+    circle {
       @apply stroke-2 stroke-neutral-500 fill-neutral-500/20 #{!important};
     }
   }
@@ -9,6 +10,6 @@
   }
 
   .cluster rect {
-	  @apply stroke-1 stroke-neutral-500/50 #{!important};
+    @apply stroke-1 stroke-neutral-500/50 #{!important};
   }
 }

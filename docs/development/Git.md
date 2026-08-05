@@ -387,7 +387,7 @@ Once your branch is pushed:
 3. Write a clear description of what the PR does and why
 4. Reference any related issues (e.g., "Fixes #1234")
 
-After the PR is created, GitHub Actions will automatically build your changes and report any errors. See [Development](/docs/development/development) for more details on the review process.
+After the PR is created, GitHub Actions will automatically build your changes and report any errors. See [Development](/docs/development) for more details on the review process.
 
 ### Quickly testing a PR
 
@@ -528,7 +528,7 @@ Add these to your `~/.gitconfig` to speed up common operations:
 
 ## See Also
 
-- [Development Guide](/docs/development/development) — general contribution guidelines, PR process, and coding principles
+- [Development Guide](/docs/development) — general contribution guidelines, PR process, and coding principles
 - [Coding Style](/docs/development/CodingStyle) — code formatting requirements
 - [Test Coverage](/docs/development/TestCoverage) — unit test and coverage details
 - [Building](/docs/category/building) — setting up your build environment

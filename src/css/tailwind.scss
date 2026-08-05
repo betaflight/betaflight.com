@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-.theme-doc-markdown a:not(.no-effect), .fancy-link {
-    @apply no-underline bg-gradient-to-r from-primary-600 to-primary-600 bg-no-repeat bg-left-bottom 
+.theme-doc-markdown a:not(.no-effect),
+.fancy-link {
+  @apply no-underline bg-gradient-to-r from-primary-600 to-primary-600 bg-no-repeat bg-left-bottom 
     bg-0w hover:bg-100w hover:text-primary-600 duration-300 w-fit dark:text-primary-600 text-primary-600 transition-all font-medium;
 }
 
 .theme-doc-markdown {
-
   h1,
   header {
     @apply text-4xl font-bold text-primary-600;
@@ -47,7 +47,7 @@
     @apply text-xs;
     @apply p-1 m-1;
   }
-  
+
   code {
     @apply text-sm;
     @apply p-1 m-0;
@@ -85,7 +85,7 @@
     }
   }
   &__search-input {
-	@apply bg-neutral-500/10 focus-visible:outline-primary-500 focus-visible:outline-2 focus-visible:outline #{!important}
+    @apply bg-neutral-500/10 focus-visible:outline-primary-500 focus-visible:outline-2 focus-visible:outline #{!important};
   }
 }
 
@@ -190,11 +190,13 @@ nav.menu.thin-scrollbar {
 
 /* table of contents */
 
-.sidebar_node_modules-\@docusaurus-theme-classic-lib-theme-DocSidebar-Desktop-styles-module, .sidebar_njMd {
-	@apply overflow-y-visible pt-0 max-h-[90vh] #{!important};
+.sidebar_node_modules-\@docusaurus-theme-classic-lib-theme-DocSidebar-Desktop-styles-module,
+.sidebar_njMd {
+  @apply overflow-y-visible pt-0 max-h-[90vh] #{!important};
 }
 
-.menu_node_modules-\@docusaurus-theme-classic-lib-theme-DocSidebar-Desktop-Content-styles-module, .menu_SIkG {
+.menu_node_modules-\@docusaurus-theme-classic-lib-theme-DocSidebar-Desktop-Content-styles-module,
+.menu_SIkG {
   @apply pt-0 pb-4 px-4 sticky;
 }
 
@@ -215,15 +217,15 @@ nav.menu.thin-scrollbar {
 }
 
 .cardContainer_src-theme-DocCard-styles-module {
-	@apply border-0 border-l-4 border-transparent p-3 duration-300 #{!important};
+  @apply border-0 border-l-4 border-transparent p-3 duration-300 #{!important};
 }
 
 .cardContainer_src-theme-DocCard-styles-module:hover {
-	@apply border-primary-500 bg-primary-500/20 #{!important};
+  @apply border-primary-500 bg-primary-500/20 #{!important};
 }
 
 .cardTitle_src-theme-DocCard-styles-module {
-	@apply mb-2 text-base font-bold #{!important};
+  @apply mb-2 text-base font-bold #{!important};
 }
 
 .text-shadow {

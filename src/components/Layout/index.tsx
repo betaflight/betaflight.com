@@ -3,8 +3,8 @@ import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 export default function BetaflightLayout({ children }: Props) {
   const { siteConfig } = useDocusaurusContext();

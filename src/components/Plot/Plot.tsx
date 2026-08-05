@@ -40,21 +40,7 @@ import css from './Plot.module.css';
  * @param className - Additional CSS class names
  * @param children - Series components for multi-line plots
  */
-export default function Plot({
-  fn,
-  lookup,
-  xmin = 0,
-  xmax = 1,
-  samples = 100,
-  id,
-  label,
-  color,
-  strokeWidth,
-  strokeDasharray,
-  dot,
-  className,
-  children,
-}: PlotProps) {
+export default function Plot({ fn, lookup, xmin = 0, xmax = 1, samples = 100, id, label, color, strokeWidth, strokeDasharray, dot, className, children }: PlotProps) {
   const effectiveChildren = React.useMemo(() => {
     if (React.Children.count(children) === 0 && (fn || lookup)) {
       // If no children provided, create an implicit Series with the Plot's props

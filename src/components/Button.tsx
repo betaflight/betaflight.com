@@ -1,7 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export default function Button({ children, className, ...props }: { children: React.ReactNode; className?: string; [key: string]: any }): JSX.Element {
+type ButtonProps = React.PropsWithChildren<React.ButtonHTMLAttributes<HTMLButtonElement>>;
+
+export default function Button({ children, className, ...props }: ButtonProps): JSX.Element {
   return (
     <button
       type="button"
