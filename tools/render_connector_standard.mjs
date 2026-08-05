@@ -419,7 +419,7 @@ async function findKicadCli(explicitPath) {
   }
 
   if (process.platform === 'win32') {
-    for (const path of [`C:\\Program Files\\KiCad\\${kicadMajorMinor}\\bin\\kicad-cli.exe`, `C:\\Program Files\\KiCad\\10.0\\bin\\kicad-cli.exe`]) {
+    for (const path of [String.raw`C:\Program Files\KiCad\${kicadMajorMinor}\bin\kicad-cli.exe`, String.raw`C:\Program Files\KiCad\10.0\bin\kicad-cli.exe`]) {
       if (await pathExists(path)) {
         return path;
       }
