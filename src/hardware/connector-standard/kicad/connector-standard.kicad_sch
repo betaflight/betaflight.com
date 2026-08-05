@@ -7364,19 +7364,7 @@
 		)
 	)
 	(group "digital-vtx-connector"
-		(uuid "123bf5e3-9c77-411e-ba3e-577423bfb21f")
-		(members "38a2c3b3-ee84-4c43-b29f-466557172378" "3c423b35-9aa5-4aae-a21a-f682beebf301"
-			"3e03ce6c-d8c0-404e-aed1-e93af3f1928a" "3f5c386b-3a33-4665-b132-1d0b9d439821"
-			"42cd2c7f-5f5b-4dd5-88af-8ecd0e9fa5df" "4f2d6729-d03b-4fc0-a553-b05ad5fae017"
-			"6b66d021-fa57-4ed9-8e98-efcf02ae1408" "77839323-a722-4715-a51e-aaa650e4fc8a"
-			"7f3843ee-1c3c-4dab-9ef2-fc3f430b8067" "8eacd6d7-9278-4c0c-828e-2973baf0598e"
-			"a65d337d-73d9-4f3d-9f17-050b74858257" "ac989c6c-ad8f-4be5-aaaa-f88134270f56"
-			"bc25146e-3ea9-4eac-955a-c71bc4d67fcc" "c8d6d483-1ff4-48d6-a8e9-04fe043a672d"
-			"d69f007e-f11d-42d3-a200-237993c97f3d" "dfae8ed7-08b0-46c9-8304-618b2c6056f9"
-		)
-	)
-	(group "digital-vtx-connector"
-		(uuid "123bf5e3-9c77-411e-ba3e-577423bfb21f")
+		(uuid "123bf5e3-9c77-411e-ba3e-577423bfb220")
 		(members "38a2c3b3-ee84-4c43-b29f-466557172378" "3c423b35-9aa5-4aae-a21a-f682beebf301"
 			"3e03ce6c-d8c0-404e-aed1-e93af3f1928a" "3f5c386b-3a33-4665-b132-1d0b9d439821"
 			"42cd2c7f-5f5b-4dd5-88af-8ecd0e9fa5df" "4f2d6729-d03b-4fc0-a553-b05ad5fae017"
@@ -7397,7 +7385,7 @@
 			"edbd2e93-d163-4952-935e-6616659c64a7" "f375a716-402f-4dfc-8787-0d81a68fe268"
 		)
 	)
-	(group "5-pin-cammera-connector"
+	(group "5-pin-camera-connector"
 		(uuid "2af83811-c9a1-44eb-b929-4ceb3206d031")
 		(members "0586f624-4765-49a8-99a3-6b9b9b2177e6" "05e701ff-d982-4ddf-8815-ced1882ad987"
 			"11374b0a-1d16-4535-89f6-8229cd85fa05" "127cb58d-abe8-4087-9a66-42a763c634fb"
@@ -7424,17 +7412,8 @@
 			"d69a52fa-8ad5-490d-9b10-40e6247386f4" "ecc336d9-30be-445a-a9c1-ae6f347d823e"
 		)
 	)
-	(group "3-pin-cammera-connector"
-		(uuid "40242622-896d-420a-824b-90ed92c86137")
-		(members "398d6032-f685-422e-abfc-9f9167758912" "50cd85ce-9c25-4c84-a44e-9b80c44f5338"
-			"59ff74e0-ca6e-41f9-b089-af866a1f2bce" "6a7275c5-909c-40cf-af4a-d8f58dc203d6"
-			"7cbb886b-6ad8-4c2b-9505-94f588f6948c" "7e99a73e-36c8-4072-8db2-e9fe4a22b1d7"
-			"a983da0a-0ba7-44b6-87c5-3b600b7e774a" "ae3b94f5-8140-4565-815c-45883b3d302d"
-			"c07df432-871e-46e1-bc6d-b0c287ba77c0" "db97fa13-adf9-4a5e-b279-48ffc88e83e5"
-		)
-	)
-	(group "3-pin-cammera-connector"
-		(uuid "40242622-896d-420a-824b-90ed92c86137")
+	(group "3-pin-camera-connector"
+		(uuid "40242622-896d-420a-824b-90ed92c86138")
 		(members "398d6032-f685-422e-abfc-9f9167758912" "50cd85ce-9c25-4c84-a44e-9b80c44f5338"
 			"59ff74e0-ca6e-41f9-b089-af866a1f2bce" "6a7275c5-909c-40cf-af4a-d8f58dc203d6"
 			"7cbb886b-6ad8-4c2b-9505-94f588f6948c" "7e99a73e-36c8-4072-8db2-e9fe4a22b1d7"
@@ -7453,7 +7432,7 @@
 			"f327805c-c5c5-464c-a651-4169f287f55f" "f3d32a59-19b7-4007-a95f-a37f7ff8b078"
 		)
 	)
-	(group "4-pin-cammera-connector"
+	(group "4-pin-camera-connector"
 		(uuid "9152855b-a748-44ec-8021-efbebce015b0")
 		(members "0cfe4cd6-0df0-462a-b43d-efa77f6a928f" "10bf8a69-49df-4cc8-b99b-7331e67e7771"
 			"156eb3ac-0e94-4ae9-86fa-c87d9d2de3ef" "220789e2-6cb3-41cd-8803-ae65b9ea23d1"
@@ -7471,6 +7450,16 @@
 			"7d8bc953-7b26-4094-a4d7-23ee48630870" "7f1a8a24-ef66-4b26-b519-e21fd3e1f820"
 			"bb4ab7c7-5065-41b8-a893-a9a6fbaac6d4" "d32d5d1b-7e53-4e8d-a9c8-a8387d6dde4b"
 			"f9e48531-4212-45db-bd28-d0ac7939f36d" "fc4d8889-223d-4075-96ee-f8e9bb7b4cb7"
+		)
+	)
+	(group "swd-connector"
+		(uuid "b3121d92-2d23-44ab-b36c-b4d714c07792")
+		(members "0f12247e-6567-4aeb-8bc9-07b6d31a1a9e" "150be5b4-86af-40f1-84ec-1cf16b462d07"
+			"666a163c-1fca-4d71-b97a-06c4f46bafbd" "6bf15f31-0afb-4959-9761-0e60bed0f8df"
+			"93e36b29-53fa-4291-855d-21ead518bbd4" "9a807c7a-3b7d-4495-bb78-0b7fad828eb0"
+			"b97f3682-aae9-4624-9240-829a35a50302" "bef40bfc-6a1f-474b-ba3a-87272e15585d"
+			"d7a307d6-2e1d-4ed5-b711-3984fda3e94f" "d96b0e4b-abc5-4414-95b9-6edb9199543d"
+			"e1e0f9e0-c2ef-4f69-a610-ed231670a1df" "ffcb1dfb-125b-4e98-97a7-662b86ef12ba"
 		)
 	)
 	(group "esc-connector"
