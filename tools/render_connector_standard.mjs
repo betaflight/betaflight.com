@@ -325,7 +325,7 @@ function removeSourceRanges(source, ranges) {
 }
 
 function normalizedSvg(svg) {
-  return svg.replace(/<title>SVG Image created as .*?<\/title>/, '<title>Betaflight Connector Standard</title>').replace(/[ \t]+$/gm, '');
+  return svg.replace(/<title>SVG Image created as [^<]*<\/title>/, '<title>Betaflight Connector Standard</title>').replace(/[ \t]+$/gm, '');
 }
 
 function croppedSvg(svg, bounds) {
