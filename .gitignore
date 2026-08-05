@@ -21,7 +21,9 @@ yarn-debug.log*
 yarn-error.log*
 /.vscode/
 
-# KiCad local state and automatic backups
+# Generated connector-standard schematic (source lives in src/hardware/)
+/static/img/connector_standard/connector-standard.kicad_sch
+
 /src/hardware/connector-standard/kicad/*.kicad_prl
 /src/hardware/connector-standard/kicad/~*.lck
 /src/hardware/connector-standard/kicad/*-backups/
