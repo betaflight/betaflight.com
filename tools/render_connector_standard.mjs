@@ -23,7 +23,7 @@ const outputPrefix = 'render:';
 const schematicFont = 'Geist Mono Medium';
 const schematicSize = 1024;
 const boardSize = schematicSize;
-const boardSourceSize = 3072;
+const boardSourceSize = 8192;
 const boardSourceZoom = 0.9;
 const kicadMajorMinor = '10.0';
 const kicadVersion = '10.0.0';
@@ -483,6 +483,10 @@ async function render(options, schematicSource, schematicCrops, boardCrops, boar
       const centerX = panelCenter.x + (cropCenter.x - boardCenter.x) * pixelsPerMillimeter;
       const centerY = panelCenter.y + (cropCenter.y - boardCenter.y) * pixelsPerMillimeter;
       const extract = { left: Math.round(centerX - cropPixels / 2), top: Math.round(centerY - cropPixels / 2), width: cropPixels, height: cropPixels };
+
+      if (cropPixels < boardSize) {
+        throw new Error(`PCB crop "${crop.name}" is only ${cropPixels}px before the ${boardSize}px output resize; increase boardSourceSize to avoid upscaling`);
+      }
 
       if (extract.left < 0 || extract.top < 0 || extract.left + extract.width > visibleBounds.imageWidth || extract.top + extract.height > visibleBounds.imageHeight) {
         throw new Error(`PCB crop "${crop.name}" extends outside the source render; reduce boardSourceZoom`);
