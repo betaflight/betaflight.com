@@ -465,6 +465,97 @@ async function prepareKicadEnvironment(tempRoot) {
   };
 }
 
+async function exportSchematicFiles(kicadCli, tempSchematicPath, schematicExportDir, generatedDir, theme, environment) {
+  await run(kicadCli, ['sch', 'export', 'svg', '--output', schematicExportDir, '--theme', theme, '--default-font', schematicFont, tempSchematicPath], environment);
+  // KiCad emits outline-font PDF subsets in nondeterministic object order.
+  // Keep the downloadable PDF on the deterministic built-in stroke font;
+  // the SVG and cropped schematic images use the selected render font.
+  await run(kicadCli, ['sch', 'export', 'pdf', '--output', join(generatedDir, 'bf_connector_standard.pdf'), '--theme', theme, tempSchematicPath], environment);
+
+  const exportedSvgPath = join(schematicExportDir, `${projectBase}.svg`);
+  const svg = normalizedSvg(await readFile(exportedSvgPath, 'utf8'));
+  await writeFile(join(generatedDir, 'bf_connector_standard.svg'), svg);
+  return svg;
+}
+
+async function renderSchematicCropImages(svg, schematicCrops, generatedDir) {
+  for (const crop of schematicCrops) {
+    const target = join(generatedDir, `${outputSlug(crop.name)}_schematic.png`);
+    await sharp(Buffer.from(croppedSvg(svg, crop.bounds)))
+      .png({ compressionLevel: 9, adaptiveFiltering: false })
+      .toFile(target);
+  }
+}
+
+async function renderBoardCropImages({ rawBoardPath, boardCrops, boardCenter, visibleBounds, pixelsPerMillimeter, panelCenter, background, generatedDir }) {
+  for (const crop of boardCrops) {
+    const cropSpan = Math.max(crop.bounds.width, crop.bounds.height);
+    const cropCenter = { x: (crop.bounds.minX + crop.bounds.maxX) / 2, y: (crop.bounds.minY + crop.bounds.maxY) / 2 };
+    const target = join(generatedDir, `${outputSlug(crop.name)}_render.png`);
+    const cropPixels = Math.round(cropSpan * pixelsPerMillimeter);
+    const centerX = panelCenter.x + (cropCenter.x - boardCenter.x) * pixelsPerMillimeter;
+    const centerY = panelCenter.y + (cropCenter.y - boardCenter.y) * pixelsPerMillimeter;
+    const extract = { left: Math.round(centerX - cropPixels / 2), top: Math.round(centerY - cropPixels / 2), width: cropPixels, height: cropPixels };
+
+    if (cropPixels < boardSize) {
+      throw new Error(`PCB crop "${crop.name}" is only ${cropPixels}px before the ${boardSize}px output resize; increase boardSourceSize to avoid upscaling`);
+    }
+
+    if (extract.left < 0 || extract.top < 0 || extract.left + extract.width > visibleBounds.imageWidth || extract.top + extract.height > visibleBounds.imageHeight) {
+      throw new Error(`PCB crop "${crop.name}" extends outside the source render; reduce boardSourceZoom`);
+    }
+
+    const foreground = await sharp(rawBoardPath).extract(extract).resize(boardSize, boardSize, { fit: 'fill' }).png().toBuffer();
+    await sharp(background)
+      .composite([{ input: foreground }])
+      .png({ compressionLevel: 9, adaptiveFiltering: false })
+      .toFile(target);
+  }
+}
+
+function listGeneratedFiles(schematicCrops, boardCrops) {
+  return [
+    'bf_connector_standard.svg',
+    'bf_connector_standard.pdf',
+    ...schematicCrops.map((crop) => `${outputSlug(crop.name)}_schematic.png`),
+    ...boardCrops.map((crop) => `${outputSlug(crop.name)}_render.png`),
+  ];
+}
+
+async function verifyGeneratedAssets(generatedFiles, generatedDir) {
+  const stale = [];
+  for (const file of generatedFiles) {
+    const generated = await readFile(join(generatedDir, file));
+    try {
+      const committed = await readFile(join(assetsDir, file));
+      if (!generated.equals(committed)) {
+        stale.push(file);
+      }
+    } catch {
+      stale.push(`${file} (missing)`);
+    }
+  }
+
+  if (stale.length) {
+    throw new Error(`Generated connector-standard assets are stale:\n  ${stale.join('\n  ')}\nRun npm run render:connector-standard and commit the results.`);
+  }
+  console.log(`Verified ${generatedFiles.length} generated connector-standard assets.`);
+}
+
+async function publishGeneratedAssets(generatedFiles, generatedDir, version) {
+  await mkdir(assetsDir, { recursive: true });
+  await Promise.all(generatedFiles.map((file) => copyFile(join(generatedDir, file), join(assetsDir, file))));
+  console.log(`Rendered ${generatedFiles.length} connector-standard assets with KiCad ${version}.`);
+}
+
+async function syncGeneratedAssets(options, generatedFiles, generatedDir, version) {
+  if (options.check) {
+    await verifyGeneratedAssets(generatedFiles, generatedDir);
+  } else {
+    await publishGeneratedAssets(generatedFiles, generatedDir, version);
+  }
+}
+
 async function render(options, schematicSource, schematicCrops, boardCrops, boardBounds) {
   const kicadCli = await findKicadCli(options.kicadCli);
   const { stdout: versionOutput } = await execFile(kicadCli, ['version']);
@@ -489,22 +580,8 @@ async function render(options, schematicSource, schematicCrops, boardCrops, boar
     await copyFile(projectPath, join(tempProjectDir, `${projectBase}.kicad_pro`));
 
     const theme = 'Betaflight Connector Standard';
-    await run(kicadCli, ['sch', 'export', 'svg', '--output', schematicExportDir, '--theme', theme, '--default-font', schematicFont, tempSchematicPath], environment);
-    // KiCad emits outline-font PDF subsets in nondeterministic object order.
-    // Keep the downloadable PDF on the deterministic built-in stroke font;
-    // the SVG and cropped schematic images use the selected render font.
-    await run(kicadCli, ['sch', 'export', 'pdf', '--output', join(generatedDir, 'bf_connector_standard.pdf'), '--theme', theme, tempSchematicPath], environment);
-
-    const exportedSvgPath = join(schematicExportDir, `${projectBase}.svg`);
-    const svg = normalizedSvg(await readFile(exportedSvgPath, 'utf8'));
-    await writeFile(join(generatedDir, 'bf_connector_standard.svg'), svg);
-
-    for (const crop of schematicCrops) {
-      const target = join(generatedDir, `${outputSlug(crop.name)}_schematic.png`);
-      await sharp(Buffer.from(croppedSvg(svg, crop.bounds)))
-        .png({ compressionLevel: 9, adaptiveFiltering: false })
-        .toFile(target);
-    }
+    const svg = await exportSchematicFiles(kicadCli, tempSchematicPath, schematicExportDir, generatedDir, theme, environment);
+    await renderSchematicCropImages(svg, schematicCrops, generatedDir);
 
     const boardCenter = { x: (boardBounds.minX + boardBounds.maxX) / 2, y: (boardBounds.minY + boardBounds.maxY) / 2 };
     const rawBoardPath = join(tempRoot, 'board-panel-raw.png');
@@ -539,65 +616,21 @@ async function render(options, schematicSource, schematicCrops, boardCrops, boar
     const pixelsPerMillimeter = ((visibleBounds.width - 1) / boardBounds.width + (visibleBounds.height - 1) / boardBounds.height) / 2;
     const panelCenter = { x: (visibleBounds.minX + visibleBounds.maxX) / 2, y: (visibleBounds.minY + visibleBounds.maxY) / 2 };
     const background = boardBackgroundSvg(JSON.parse(await readFile(themePath, 'utf8')));
-
-    for (const crop of boardCrops) {
-      const cropSpan = Math.max(crop.bounds.width, crop.bounds.height);
-      const cropCenter = { x: (crop.bounds.minX + crop.bounds.maxX) / 2, y: (crop.bounds.minY + crop.bounds.maxY) / 2 };
-      const target = join(generatedDir, `${outputSlug(crop.name)}_render.png`);
-      const cropPixels = Math.round(cropSpan * pixelsPerMillimeter);
-      const centerX = panelCenter.x + (cropCenter.x - boardCenter.x) * pixelsPerMillimeter;
-      const centerY = panelCenter.y + (cropCenter.y - boardCenter.y) * pixelsPerMillimeter;
-      const extract = { left: Math.round(centerX - cropPixels / 2), top: Math.round(centerY - cropPixels / 2), width: cropPixels, height: cropPixels };
-
-      if (cropPixels < boardSize) {
-        throw new Error(`PCB crop "${crop.name}" is only ${cropPixels}px before the ${boardSize}px output resize; increase boardSourceSize to avoid upscaling`);
-      }
-
-      if (extract.left < 0 || extract.top < 0 || extract.left + extract.width > visibleBounds.imageWidth || extract.top + extract.height > visibleBounds.imageHeight) {
-        throw new Error(`PCB crop "${crop.name}" extends outside the source render; reduce boardSourceZoom`);
-      }
-
-      const foreground = await sharp(rawBoardPath).extract(extract).resize(boardSize, boardSize, { fit: 'fill' }).png().toBuffer();
-      await sharp(background)
-        .composite([{ input: foreground }])
-        .png({ compressionLevel: 9, adaptiveFiltering: false })
-        .toFile(target);
-    }
+    await renderBoardCropImages({
+      rawBoardPath,
+      boardCrops,
+      boardCenter,
+      visibleBounds,
+      pixelsPerMillimeter,
+      panelCenter,
+      background,
+      generatedDir,
+    });
 
     const pdfPath = join(generatedDir, 'bf_connector_standard.pdf');
     await writeFile(pdfPath, normalizePdf(await readFile(pdfPath)));
-    const generatedFiles = [
-      'bf_connector_standard.svg',
-      'bf_connector_standard.pdf',
-      ...schematicCrops.map((crop) => `${outputSlug(crop.name)}_schematic.png`),
-      ...boardCrops.map((crop) => `${outputSlug(crop.name)}_render.png`),
-    ];
-
-    if (options.check) {
-      const stale = [];
-      for (const file of generatedFiles) {
-        const generated = await readFile(join(generatedDir, file));
-        let committed;
-        try {
-          committed = await readFile(join(assetsDir, file));
-        } catch {
-          stale.push(`${file} (missing)`);
-          continue;
-        }
-        if (!generated.equals(committed)) {
-          stale.push(file);
-        }
-      }
-
-      if (stale.length) {
-        throw new Error(`Generated connector-standard assets are stale:\n  ${stale.join('\n  ')}\nRun npm run render:connector-standard and commit the results.`);
-      }
-      console.log(`Verified ${generatedFiles.length} generated connector-standard assets.`);
-    } else {
-      await mkdir(assetsDir, { recursive: true });
-      await Promise.all(generatedFiles.map((file) => copyFile(join(generatedDir, file), join(assetsDir, file))));
-      console.log(`Rendered ${generatedFiles.length} connector-standard assets with KiCad ${version}.`);
-    }
+    const generatedFiles = listGeneratedFiles(schematicCrops, boardCrops);
+    await syncGeneratedAssets(options, generatedFiles, generatedDir, version);
   } finally {
     await rm(tempRoot, { recursive: true, force: true });
   }
