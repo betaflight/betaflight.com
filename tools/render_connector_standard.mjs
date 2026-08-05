@@ -34,10 +34,15 @@ function parseArguments(argv) {
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
 
-    if (argument === '--check') options.check = true;
-    else if (argument === '--validate') options.validate = true;
-    else if (argument === '--kicad-cli') options.kicadCli = argv[++index] || '';
-    else throw new Error(`Unknown argument: ${argument}`);
+    if (argument === '--check') {
+      options.check = true;
+    } else if (argument === '--validate') {
+      options.validate = true;
+    } else if (argument === '--kicad-cli') {
+      options.kicadCli = argv[++index] || '';
+    } else {
+      throw new Error(`Unknown argument: ${argument}`);
+    }
   }
 
   return options;
@@ -51,7 +56,9 @@ function parseSExpression(source) {
       if (/\s/.test(source[position])) {
         position += 1;
       } else if (source[position] === ';') {
-        while (position < source.length && source[position] !== '\n') position += 1;
+        while (position < source.length && source[position] !== '\n') {
+          position += 1;
+        }
       } else {
         break;
       }
@@ -65,10 +72,14 @@ function parseSExpression(source) {
 
     while (position < source.length) {
       const character = source[position++];
-      if (character === '"') return { type: 'atom', value, quoted: true, start, end: position };
+      if (character === '"') {
+        return { type: 'atom', value, quoted: true, start, end: position };
+      }
 
       if (character === '\\') {
-        if (position >= source.length) throw new Error(`Unterminated escape sequence at byte ${position}`);
+        if (position >= source.length) {
+          throw new Error(`Unterminated escape sequence at byte ${position}`);
+        }
         const escaped = source[position++];
         value += { n: '\n', r: '\r', t: '\t' }[escaped] ?? escaped;
       } else {
@@ -81,8 +92,12 @@ function parseSExpression(source) {
 
   function parseAtom() {
     const start = position;
-    while (position < source.length && !/[\s()]/.test(source[position])) position += 1;
-    if (position === start) throw new Error(`Expected an atom at byte ${position}`);
+    while (position < source.length && !/[\s()]/.test(source[position])) {
+      position += 1;
+    }
+    if (position === start) {
+      throw new Error(`Expected an atom at byte ${position}`);
+    }
     return { type: 'atom', value: source.slice(start, position), quoted: false, start, end: position };
   }
 
@@ -106,15 +121,21 @@ function parseSExpression(source) {
 
   function parseNode() {
     skipTrivia();
-    if (source[position] === '(') return parseList();
-    if (source[position] === '"') return parseString();
+    if (source[position] === '(') {
+      return parseList();
+    }
+    if (source[position] === '"') {
+      return parseString();
+    }
     return parseAtom();
   }
 
   const forms = [];
   while (position < source.length) {
     skipTrivia();
-    if (position < source.length) forms.push(parseNode());
+    if (position < source.length) {
+      forms.push(parseNode());
+    }
   }
 
   return forms;
@@ -134,20 +155,28 @@ function directChild(node, name) {
 
 function atomValue(node, index = 1) {
   const atom = node?.children[index];
-  if (atom?.type !== 'atom') throw new Error(`Expected atom ${index} in ${head(node) || 'expression'}`);
+  if (atom?.type !== 'atom') {
+    throw new Error(`Expected atom ${index} in ${head(node) || 'expression'}`);
+  }
   return atom.value;
 }
 
 function pointsFrom(node) {
   const pointsNode = directChild(node, 'pts');
-  if (!pointsNode) throw new Error(`${head(node)} has no point list`);
+  if (!pointsNode) {
+    throw new Error(`${head(node)} has no point list`);
+  }
 
   return directChildren(pointsNode, 'xy').map((point) => ({ x: Number(atomValue(point, 1)), y: Number(atomValue(point, 2)) }));
 }
 
 function rectangleBounds(points, description) {
-  if (points.length > 1 && points[0].x === points.at(-1).x && points[0].y === points.at(-1).y) points = points.slice(0, -1);
-  if (points.length !== 4) throw new Error(`${description} must have exactly four corners; found ${points.length}`);
+  if (points.length > 1 && points[0].x === points.at(-1).x && points[0].y === points.at(-1).y) {
+    points = points.slice(0, -1);
+  }
+  if (points.length !== 4) {
+    throw new Error(`${description} must have exactly four corners; found ${points.length}`);
+  }
 
   const xs = [...new Set(points.map((point) => point.x))].sort((a, b) => a - b);
   const ys = [...new Set(points.map((point) => point.y))].sort((a, b) => a - b);
@@ -174,7 +203,9 @@ function outputSlug(name) {
 
 function readSchematicCrops(source) {
   const root = parseSExpression(source).find((node) => head(node) === 'kicad_sch');
-  if (!root) throw new Error('Could not find the kicad_sch root expression');
+  if (!root) {
+    throw new Error('Could not find the kicad_sch root expression');
+  }
 
   const ruleAreas = directChildren(root, 'rule_area').map((node) => {
     const polyline = directChild(node, 'polyline');
@@ -192,20 +223,28 @@ function readSchematicCrops(source) {
         .filter((child) => child.type === 'atom')
         .map((child) => child.value) || [];
     const memberAreas = members.map((uuid) => areasByUuid.get(uuid)).filter(Boolean);
-    if (memberAreas.length === 0) continue;
-    if (memberAreas.length !== 1) throw new Error(`Schematic group "${name}" contains ${memberAreas.length} crop rule areas; expected one`);
+    if (memberAreas.length === 0) {
+      continue;
+    }
+    if (memberAreas.length !== 1) {
+      throw new Error(`Schematic group "${name}" contains ${memberAreas.length} crop rule areas; expected one`);
+    }
 
     crops.push({ name: canonicalName(name), bounds: memberAreas[0].bounds, guideNode: memberAreas[0].node, groupNode: group });
   }
 
-  if (crops.length === 0) throw new Error('No schematic groups containing crop rule areas were found');
+  if (crops.length === 0) {
+    throw new Error('No schematic groups containing crop rule areas were found');
+  }
   assertUniqueNames(crops, 'schematic');
   return crops.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 function readBoardCrops(source) {
   const root = parseSExpression(source).find((node) => head(node) === 'kicad_pcb');
-  if (!root) throw new Error('Could not find the kicad_pcb root expression');
+  if (!root) {
+    throw new Error('Could not find the kicad_pcb root expression');
+  }
 
   const crops = directChildren(root, 'zone')
     .filter((node) => directChild(node, 'keepout') && directChild(node, 'name'))
@@ -215,7 +254,9 @@ function readBoardCrops(source) {
       return { name, bounds: rectangleBounds(pointsFrom(polygon), `PCB rule area "${name}"`) };
     });
 
-  if (crops.length === 0) throw new Error('No named PCB keepout rule areas were found');
+  if (crops.length === 0) {
+    throw new Error('No named PCB keepout rule areas were found');
+  }
   assertUniqueNames(crops, 'PCB');
 
   const edgeRectangles = directChildren(root, 'gr_rect')
@@ -234,14 +275,18 @@ function readBoardCrops(source) {
       );
     });
 
-  if (edgeRectangles.length === 0) throw new Error('No rectangular Edge.Cuts board outlines were found');
+  if (edgeRectangles.length === 0) {
+    throw new Error('No rectangular Edge.Cuts board outlines were found');
+  }
   return { crops: crops.sort((a, b) => a.name.localeCompare(b.name)), boardBounds: unionBounds(edgeRectangles) };
 }
 
 function assertUniqueNames(items, kind) {
   const names = new Set();
   for (const item of items) {
-    if (names.has(item.name)) throw new Error(`Duplicate ${kind} crop name "${item.name}"`);
+    if (names.has(item.name)) {
+      throw new Error(`Duplicate ${kind} crop name "${item.name}"`);
+    }
     names.add(item.name);
   }
 }
@@ -265,8 +310,12 @@ function validateMatchingCrops(schematicCrops, boardCrops) {
 
   if (missingOnBoard.length || missingOnSchematic.length) {
     const details = [];
-    if (missingOnBoard.length) details.push(`missing on PCB: ${missingOnBoard.join(', ')}`);
-    if (missingOnSchematic.length) details.push(`missing on schematic: ${missingOnSchematic.join(', ')}`);
+    if (missingOnBoard.length) {
+      details.push(`missing on PCB: ${missingOnBoard.join(', ')}`);
+    }
+    if (missingOnSchematic.length) {
+      details.push(`missing on schematic: ${missingOnSchematic.join(', ')}`);
+    }
     throw new Error(`Schematic and PCB crop names do not match (${details.join('; ')})`);
   }
 }
@@ -285,7 +334,9 @@ function croppedSvg(svg, bounds) {
   const y = bounds.minY - (size - bounds.height) / 2;
   const svgStart = svg.indexOf('<svg');
   const tagEnd = svg.indexOf('>', svgStart);
-  if (svgStart < 0 || tagEnd < 0) throw new Error('Exported schematic is not an SVG document');
+  if (svgStart < 0 || tagEnd < 0) {
+    throw new Error('Exported schematic is not an SVG document');
+  }
 
   let tag = svg.slice(svgStart, tagEnd + 1);
   tag = tag.replace(/\bwidth="[^"]+"/, `width="${schematicSize}"`);
@@ -308,7 +359,9 @@ async function visiblePixelBounds(path) {
 
   for (let y = 0; y < info.height; y += 1) {
     for (let x = 0; x < info.width; x += 1) {
-      if (data[(y * info.width + x) * 4 + 3] === 0) continue;
+      if (data[(y * info.width + x) * 4 + 3] === 0) {
+        continue;
+      }
       minX = Math.min(minX, x);
       minY = Math.min(minY, y);
       maxX = Math.max(maxX, x);
@@ -316,7 +369,9 @@ async function visiblePixelBounds(path) {
     }
   }
 
-  if (maxX < 0) throw new Error('KiCad produced an empty PCB render');
+  if (maxX < 0) {
+    throw new Error('KiCad produced an empty PCB render');
+  }
   return { minX, minY, maxX, maxY, width: maxX - minX + 1, height: maxY - minY + 1, imageWidth: info.width, imageHeight: info.height };
 }
 
@@ -324,7 +379,9 @@ function boardBackgroundSvg(theme) {
   const top = theme['3d_viewer']?.background_top;
   const bottom = theme['3d_viewer']?.background_bottom;
   const validColor = /^rgba?\([\d.,\s]+\)$/;
-  if (!validColor.test(top) || !validColor.test(bottom)) throw new Error('Render theme must define valid 3D background_top and background_bottom colors');
+  if (!validColor.test(top) || !validColor.test(bottom)) {
+    throw new Error('Render theme must define valid 3D background_top and background_bottom colors');
+  }
 
   return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${boardSize}" height="${boardSize}">
   <defs><linearGradient id="background" x1="0" y1="0" x2="0" y2="1"><stop stop-color="${top}"/><stop offset="1" stop-color="${bottom}"/></linearGradient></defs>
@@ -344,7 +401,9 @@ async function pathExists(path) {
 async function findKicadCli(explicitPath) {
   if (explicitPath) {
     const path = resolve(explicitPath);
-    if (!(await pathExists(path))) throw new Error(`KiCad CLI does not exist or is not executable: ${path}`);
+    if (!(await pathExists(path))) {
+      throw new Error(`KiCad CLI does not exist or is not executable: ${path}`);
+    }
     return path;
   }
 
@@ -352,14 +411,18 @@ async function findKicadCli(explicitPath) {
   try {
     const { stdout } = await execFile(command, ['kicad-cli']);
     const firstPath = stdout.split(/\r?\n/).find(Boolean);
-    if (firstPath) return firstPath.trim();
+    if (firstPath) {
+      return firstPath.trim();
+    }
   } catch {
     // Try the standard Windows installation locations below.
   }
 
   if (process.platform === 'win32') {
     for (const path of [`C:\\Program Files\\KiCad\\${kicadMajorMinor}\\bin\\kicad-cli.exe`, `C:\\Program Files\\KiCad\\10.0\\bin\\kicad-cli.exe`]) {
-      if (await pathExists(path)) return path;
+      if (await pathExists(path)) {
+        return path;
+      }
     }
   }
 
@@ -406,7 +469,9 @@ async function render(options, schematicSource, schematicCrops, boardCrops, boar
   const kicadCli = await findKicadCli(options.kicadCli);
   const { stdout: versionOutput } = await execFile(kicadCli, ['version']);
   const version = versionOutput.trim();
-  if (version !== kicadVersion) throw new Error(`Expected KiCad ${kicadVersion}, found ${version}`);
+  if (version !== kicadVersion) {
+    throw new Error(`Expected KiCad ${kicadVersion}, found ${version}`);
+  }
 
   const tempRoot = await mkdtemp(join(tmpdir(), 'betaflight-connector-standard-'));
   const tempProjectDir = join(tempRoot, 'project');
@@ -519,10 +584,14 @@ async function render(options, schematicSource, schematicCrops, boardCrops, boar
           stale.push(`${file} (missing)`);
           continue;
         }
-        if (!generated.equals(committed)) stale.push(file);
+        if (!generated.equals(committed)) {
+          stale.push(file);
+        }
       }
 
-      if (stale.length) throw new Error(`Generated connector-standard assets are stale:\n  ${stale.join('\n  ')}\nRun npm run render:connector-standard and commit the results.`);
+      if (stale.length) {
+        throw new Error(`Generated connector-standard assets are stale:\n  ${stale.join('\n  ')}\nRun npm run render:connector-standard and commit the results.`);
+      }
       console.log(`Verified ${generatedFiles.length} generated connector-standard assets.`);
     } else {
       await mkdir(assetsDir, { recursive: true });
@@ -542,7 +611,9 @@ async function main() {
   validateMatchingCrops(schematicCrops, boardCrops);
 
   console.log(`Found ${schematicCrops.length} connector crop pairs: ${schematicCrops.map((crop) => crop.name).join(', ')}`);
-  if (!options.validate) await render(options, schematicSource, schematicCrops, boardCrops, boardBounds);
+  if (!options.validate) {
+    await render(options, schematicSource, schematicCrops, boardCrops, boardBounds);
+  }
 }
 
 main().catch((error) => {
