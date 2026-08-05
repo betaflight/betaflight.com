@@ -472,7 +472,7 @@ async function findKicadCli(explicitPath) {
   }
 
   if (process.platform === 'win32') {
-    for (const path of [String.raw`C:\Program Files\KiCad\${kicadMajorMinor}\bin\kicad-cli.exe`, String.raw`C:\Program Files\KiCad\10.0\bin\kicad-cli.exe`]) {
+    for (const path of [join(String.raw`C:\Program Files\KiCad`, kicadMajorMinor, 'bin', 'kicad-cli.exe'), String.raw`C:\Program Files\KiCad\10.0\bin\kicad-cli.exe`]) {
       if (await pathExists(path)) {
         return path;
       }
@@ -579,22 +579,28 @@ async function verifyGeneratedAssets(generatedFiles, generatedDir) {
   const stale = [];
   for (const file of generatedFiles) {
     const generated = await readFile(join(generatedDir, file));
+    let committed;
     try {
-      const committed = await readFile(join(assetsDir, file));
-      let matches = generated.equals(committed);
-      if (!matches && file.endsWith('.png')) {
-        matches = await rasterImagesMatch(generated, committed, undefined, 128);
-      } else if (!matches && file.endsWith('.svg')) {
-        matches = await rasterImagesMatch(generated, committed, 1024, 512);
-      } else if (!matches && file.endsWith('.pdf')) {
-        const generatedSignature = pdfSignature(generated);
-        matches = generatedSignature !== null && generatedSignature === pdfSignature(committed);
+      committed = await readFile(join(assetsDir, file));
+    } catch (error) {
+      if (error?.code === 'ENOENT') {
+        stale.push(`${file} (missing)`);
+        continue;
       }
-      if (!matches) {
-        stale.push(file);
-      }
-    } catch {
-      stale.push(`${file} (missing)`);
+      throw error;
+    }
+
+    let matches = generated.equals(committed);
+    if (!matches && file.endsWith('.png')) {
+      matches = await rasterImagesMatch(generated, committed, undefined, 128);
+    } else if (!matches && file.endsWith('.svg')) {
+      matches = await rasterImagesMatch(generated, committed, 1024, 512);
+    } else if (!matches && file.endsWith('.pdf')) {
+      const generatedSignature = pdfSignature(generated);
+      matches = generatedSignature !== null && generatedSignature === pdfSignature(committed);
+    }
+    if (!matches) {
+      stale.push(file);
     }
   }
 
