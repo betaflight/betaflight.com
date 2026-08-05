@@ -649,7 +649,9 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+try {
+  await main();
+} catch (error) {
   console.error(`Connector-standard render failed: ${error.message}`);
   process.exitCode = 1;
-});
+}
