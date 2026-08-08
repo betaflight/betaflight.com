@@ -770,7 +770,7 @@ Crash recovery detects an uncontrolled crash and attempts to recover. Disabled b
 | `crash_recovery_angle`     | 10 (per profile)  | 5–30 deg              | Maximum recovery correction angle (degrees).                                  |
 | `crash_recovery_rate`      | 100 (per profile) | 50–255 deg/s          | Rate at which the FC tries to recover from a crash.                           |
 | `crashflip_motor_percent`  | 0                 | 0–100                 | Motor output percentage during crash flip / turtle mode. 0 = full power.      |
-| `crashflip_rate`           | 0                 | 0–250                 | Rotation rate limit during crash flip mode (degrees/s). 0 = unlimited.        |
+| `crashflip_rate`           | 0                 | 0–250                 | Rotation rate limit during crash flip mode (deg/s times 10). 0 = unlimited.   |
 | `crashflip_auto_rearm`     | OFF               | OFF, ON               | Automatically re-arm after a successful crash flip recovery.                  |
 
 ---
