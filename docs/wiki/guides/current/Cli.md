@@ -769,6 +769,19 @@ Crash recovery detects an uncontrolled crash and attempts to recover. Disabled b
 | `crash_limit_yaw`          | 200 (per profile) | 0–1000                | Yaw rate limit during crash recovery (deg/s).                                 |
 | `crash_recovery_angle`     | 10 (per profile)  | 5–30 deg              | Maximum recovery correction angle (degrees).                                  |
 | `crash_recovery_rate`      | 100 (per profile) | 50–255 deg/s          | Rate at which the FC tries to recover from a crash.                           |
+
+Also see:
+
+- [Crash Recovery](/docs/wiki/guides/current/Crash-Recovery)
+
+---
+
+### Crash Flip Mode
+
+Also known as Flip Over After Crash, or Turtle Mode, makes it possible to flip the aircraft after it lands upside down.
+
+| Variable                   | Default           | Range / Values        | Description                                                                   |
+| -------------------------- | ----------------- | --------------------- | ----------------------------------------------------------------------------- |
 | `crashflip_motor_percent`  | 0                 | 0–100                 | Motor output percentage during crash flip / turtle mode. 0 = full power.      |
 | `crashflip_rate`           | 0                 | 0–250                 | Rotation rate limit during crash flip mode (deg/s times 10). 0 = unlimited.   |
 | `crashflip_auto_rearm`     | OFF               | OFF, ON               | Automatically re-arm after a successful crash flip recovery.                  |
