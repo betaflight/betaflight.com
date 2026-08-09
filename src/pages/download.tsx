@@ -66,9 +66,8 @@ export default function Media() {
                 <div className="flex flex-col">
                   <div className="flex flex-row space-x-1 mt-0">
                     <span>
-                      Betaflight App is a Windows/OSX/Linux application for building, flashing and configuring Betaflight. Download the{' '}
-                      <a href="https://github.com/betaflight/betaflight-configurator/releases/latest" className="fancy-link no-underline">
-                        {' '}
+                      Betaflight App is a Windows/macOS/Linux/Android application for building, flashing and configuring Betaflight. Download the{' '}
+                      <a href="https://downloads.betaflight.com" target="_top" className="fancy-link no-underline">
                         latest release
                       </a>{' '}
                       or run the{' '}
@@ -140,6 +139,9 @@ export default function Media() {
                 description="Test the latest upcoming features and contribute to Betaflight's development by using the nightly builds:"
               >
                 <div className="flex flex-col">
+                  <a href="https://downloads.betaflight.com" target="_top" className="fancy-link no-underline">
+                    Betaflight App Nightly builds
+                  </a>
                   <a href="https://github.com/betaflight/betaflight-tx-lua-scripts-nightlies/releases" className="fancy-link no-underline">
                     Betaflight TX Lua Scripts Nightly builds
                   </a>
