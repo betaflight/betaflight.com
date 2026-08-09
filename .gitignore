@@ -20,3 +20,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /.vscode/
+
+# Generated connector-standard downloads (source lives in src/hardware/)
+/static/img/connector_standard/connector-standard.kicad_sch
+/static/img/connector_standard/connector-standard.zip
+
+/src/hardware/connector-standard/kicad/*.kicad_prl
+/src/hardware/connector-standard/kicad/~*.lck
+/src/hardware/connector-standard/kicad/*-backups/
+/src/hardware/connector-standard/kicad/.history/

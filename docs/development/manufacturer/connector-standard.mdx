@@ -1,18 +1,18 @@
-import ConnectorLogo from '/img/betaflight/connector_logo.svg'
+import ConnectorLogo from '/img/betaflight/connector_logo.svg';
 
 # Betaflight Connector Standard
 
 ## Version Change Register
 
-| Version #   | Revision Date    | Changes, Reasons, and Notes                                                   |
-| :---------- | :--------------- | :---------------------------------------------------------------------------- |
-| Draft 0.1   | 27 April 2023    | Initial Draft Format                                                          |
-| Draft 0.2   | 08 May 2023      | Added Logo and pinout correction                                              |
-| Draft 0.3   | 16 June 2024     | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD           |
-| Version 1.0 | 14 April 2025    | Formalize standard                                                            |
-| Version 1.1 | 24 April 2025    | Add option for 10P ESC socket                                                 |
-| Version 1.2 | 08 May 2025      | Add reference schematic + board renders                                       |
-| Version 1.3 | 16 December 2025 | Add reference schematic + board renders for 4-pin and 3-pin camera connectors |
+| Version #   | Revision Date    | Changes, Reasons, and Notes                                                                                                                                                                                                                                            |
+| :---------- | :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Draft 0.1   | 27 April 2023    | Initial Draft Format                                                                                                                                                                                                                                                   |
+| Draft 0.2   | 08 May 2023      | Added Logo and pinout correction                                                                                                                                                                                                                                       |
+| Draft 0.3   | 16 June 2024     | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD                                                                                                                                                                                                    |
+| Version 1.0 | 14 April 2025    | Formalize standard                                                                                                                                                                                                                                                     |
+| Version 1.1 | 24 April 2025    | Add option for 10P ESC socket                                                                                                                                                                                                                                          |
+| Version 1.2 | 08 May 2025      | Add reference schematic + board renders                                                                                                                                                                                                                                |
+| Version 1.3 | 16 December 2025 | Add reference schematic + board renders for 4-pin and 3-pin camera connectors                                                                                                                                                                                          |
 | Version 2.0 | 03 August 2026   | Remove the 6-pin UART+I2C (GPS) connector; GPS now uses the 4-pin serial connector. The 6-pin option is deprecated due to the risk of a GPS being plugged into the physically identical 6-pin digital VTX connector, whose 8-26V supply will damage or destroy the GPS |
 
 ## Introduction
@@ -180,9 +180,9 @@ The pin configuration for the 5-pin JST SH connector is as follows:
 
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
 
-![Analog Camera Connector Schematic](/img/connector_standard/camera_connector_schematic.png)
+![Analog Camera Connector Schematic](/img/connector_standard/5_pin_camera_connector_schematic.png)
 
-![Analog Camera Connector Board Render](/img/connector_standard/camera_connector_render.png)
+![Analog Camera Connector Board Render](/img/connector_standard/5_pin_camera_connector_render.png)
 
 </div>
 
@@ -199,9 +199,9 @@ The pin configuration for the 4-pin JST SH connector is as follows:
 
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
 
-![4-pin Analog Camera Connector Schematic](/img/connector_standard/4pin_camera_connector_schematic.png)
+![4-pin Analog Camera Connector Schematic](/img/connector_standard/4_pin_camera_connector_schematic.png)
 
-![4-pin Analog Camera Connector Board Render](/img/connector_standard/4pin_camera_connector_render.png)
+![4-pin Analog Camera Connector Board Render](/img/connector_standard/4_pin_camera_connector_render.png)
 
 </div>
 
@@ -217,9 +217,9 @@ The pin configuration for the 3-pin JST SH connector is as follows:
 
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
 
-![3-pin Analog Camera Connector Schematic](/img/connector_standard/3pin_camera_connector_schematic.png)
+![3-pin Analog Camera Connector Schematic](/img/connector_standard/3_pin_camera_connector_schematic.png)
 
-![3-pin Analog Camera Connector Board Render](/img/connector_standard/3pin_camera_connector_render.png)
+![3-pin Analog Camera Connector Board Render](/img/connector_standard/3_pin_camera_connector_render.png)
 
 </div>
 
@@ -315,9 +315,11 @@ This way users know that the component is compatible with other components that 
 
 [Download](/img/connector_standard/bf_connector_standard.pdf)
 
-### KiCad Schematic
+### KiCad Source
 
-[Download](/img/connector_standard/bf_connector_standard.kicad_sch)
+<a href="/img/connector_standard/connector-standard.zip" download="connector-standard.zip">
+  Download
+</a>
 
 ## Betaflight App
 

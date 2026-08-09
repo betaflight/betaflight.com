@@ -61,6 +61,7 @@ const config = {
   ],
 
   plugins: [
+    './plugins/connector-schematic-plugin.mjs',
     [
       './plugins/blog-plugin',
       /** @type {import('@docusaurus/plugin-content-blog').Options} */
