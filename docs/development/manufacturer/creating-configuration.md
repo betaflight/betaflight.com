@@ -84,10 +84,12 @@ The license information is used to identify the license of the firmware. The con
 ### Board Configuration
 
 ```
-#define FC_TARGET_MCU ATF435M
-#define BOARD_NAME AIRBOTF435
-#define MANUFACTURER_ID AIRB
+#define FC_TARGET_MCU AT32F435M
+#define BOARD_NAME ATSTARTF435
+#define MANUFACTURER_ID ATRY
 ```
+
+`FC_TARGET_MCU` must be one of the target names the firmware provides — see [Supported MCU Platforms and Targets](manufacturer-design-guidelines#44-supported-mcu-platforms-and-targets) for the full list. A value that does not match a target fails the build.
 
 These three defines are mandatory — both the firmware build and the cloud build API derive the target's identity from them:
 
@@ -286,7 +288,7 @@ For an orientation the presets cannot express, give the rotation in decidegrees 
 #define GYRO_1_ALIGN_YAW   1350
 ```
 
-The per-axis defines and `GYRO_1_CUSTOM_ALIGN` are mutually exclusive — using both produces a build error.
+The per-axis defines set the alignment to `ALIGN_CUSTOM` on their own, so `GYRO_1_ALIGN` can be left out. If it is given, it must be `ALIGN_CUSTOM` — combining a preset such as `CW180_DEG` with per-axis values fails the build. `GYRO_1_CUSTOM_ALIGN` is the alternative, pre-composed form of the same setting, and is mutually exclusive with the per-axis defines.
 
 Where the whole board is rotated relative to the airframe, use `DEFAULT_ALIGN_BOARD_YAW` rather than baking the rotation into the gyro alignment. Magnetometer alignment follows the same pattern with `MAG_ALIGN` and `MAG_ALIGN_ROLL` / `MAG_ALIGN_PITCH` / `MAG_ALIGN_YAW`.
 

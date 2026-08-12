@@ -14,7 +14,7 @@ Having a driver does not make a part a good choice. Recommendations for new hard
 
 ## Gyroscope and Accelerometer
 
-Gyroscopes must be connected over SPI. I2C gyros are not supported for new designs.
+For new designs, gyroscopes must be connected over SPI. I2C gyros are only supported on legacy boards.
 
 | Chip                               | Bus | Notes                                                                       |
 | :--------------------------------- | :-- | :-------------------------------------------------------------------------- |
@@ -67,17 +67,17 @@ There is no separate DPS368 or BMP390 driver — use the DPS310 and BMP388 drive
 
 Betaflight strongly recommends connecting magnetometers over I2C, and using each part's default I2C address so that it can be detected automatically.
 
-| Chip     | Bus       | Notes                                                                       |
-| :------- | :-------- | :-------------------------------------------------------------------------- |
-| QMC5883L | I2C       | Normal axis orientation, works well; default address 0x0D                   |
-| QMC5883P | I2C       | Default address 0x2C                                                        |
-| HMC5883L | I2C / SPI |                                                                             |
-| LIS2MDL  | I2C       |                                                                             |
-| LIS3MDL  | I2C       |                                                                             |
-| MMC560X  | I2C       |                                                                             |
-| AK8963   | I2C / SPI | Also reachable through the MPU925X pass-through                             |
-| AK8975   | I2C       | Legacy                                                                      |
-| IST8310  | I2C       | Not recommended — non-standard axis orientation requires a custom alignment |
+| Chip     | Bus       | Notes                                                                                                                                                                                            |
+| :------- | :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| QMC5883L | I2C       | Normal axis orientation, works well; default address 0x0D                                                                                                                                        |
+| QMC5883P | I2C       | Default address 0x2C                                                                                                                                                                             |
+| HMC5883L | I2C / SPI |                                                                                                                                                                                                  |
+| LIS2MDL  | I2C       |                                                                                                                                                                                                  |
+| LIS3MDL  | I2C       |                                                                                                                                                                                                  |
+| MMC560X  | I2C       |                                                                                                                                                                                                  |
+| AK8963   | I2C / SPI | Also reachable through the MPU925X pass-through                                                                                                                                                  |
+| AK8975   | I2C       | Legacy                                                                                                                                                                                           |
+| IST8310  | I2C       | Not recommended — non-standard axis orientation requires a custom alignment. Auto-detected at 0x0E only; the other CAD-selected addresses (0x0C, 0x0D, 0x0F) need `mag_i2c_address` set manually |
 
 ## Rangefinder and Optical Flow
 
@@ -91,14 +91,14 @@ Betaflight strongly recommends connecting magnetometers over I2C, and using each
 
 ## Blackbox Flash
 
-| Chip family                             | Interface               | Notes                                                              |
-| :-------------------------------------- | :---------------------- | :----------------------------------------------------------------- |
-| Winbond W25Qxx and JEDEC-compatible NOR | SPI                     | Covered by the M25P16 driver's JEDEC ID table                      |
-| Winbond W25Q128FV                       | SPI / QuadSPI / OctoSPI |                                                                    |
-| PUYA PY25Q128HA                         | SPI                     | Uses the M25P16 driver                                             |
-| Winbond W25N01G / W25N02K               | SPI                     | NAND                                                               |
-| Winbond W25M512 / W25M02G               | SPI                     | Stacked die                                                        |
-| Micron MT29F                            | SPI                     | NAND, 3.3 V and 1.8 V variants                                     |
-| Macronix MX66UW1G45G                    | OctoSPI                 | Selected through the target's `config.mk`, not a `config.h` define |
+| Chip family                             | Interface         | Notes                                                              |
+| :-------------------------------------- | :---------------- | :----------------------------------------------------------------- |
+| Winbond W25Qxx and JEDEC-compatible NOR | SPI / QuadSPI     | Only the chips in the M25P16 driver's JEDEC ID table               |
+| Winbond W25Q128FV                       | QuadSPI / OctoSPI | On plain SPI the same part is handled by the M25P16 driver         |
+| PUYA PY25Q128HA                         | SPI               | Uses the M25P16 driver                                             |
+| Winbond W25N01G / W25N02K               | SPI / QuadSPI     | NAND                                                               |
+| Winbond W25M512 / W25M02G               | SPI               | Stacked die                                                        |
+| Micron MT29F                            | SPI / QuadSPI     | NAND, 3.3 V and 1.8 V variants                                     |
+| Macronix MX66UW1G45G                    | OctoSPI           | Selected through the target's `config.mk`, not a `config.h` define |
 
 An SD card can be used instead of flash where the board provides one.

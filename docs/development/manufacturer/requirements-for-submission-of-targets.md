@@ -4,7 +4,7 @@ The following new requirements for pull requests adding new targets or modifying
 
 1. Hardware should comply with the [Manufacturer Design Guidelines](manufacturer-design-guidelines). Hardware designs that do not comply will NOT be accepted as [Betaflight Supported](betaflight-supported). To avoid costly issues and delays, **please consult the Betaflight developers early in the design process.**
 
-2. New manufacturers are required to be added to the [manufacturers list](https://github.com/betaflight/config/blob/master/Manufacturers.md). Your four-letter manufacturer ID is also the name of the directory your configs live in, so it must be registered before the first target is submitted.
+2. New manufacturers are required to be added to the [manufacturers list](https://github.com/betaflight/config/blob/master/Manufacturers.md). Your four-letter manufacturer ID is also the name of the directory your configs live in, so it must be registered before the first target is submitted. Submissions that have no registered vendor use one of the reserved IDs already in that list (`CUST`, `FOSS`, `COMM`, `LEGA`) and need no new entry.
 
 3. For any new targets, a definition file needs to be submitted to [betaflight/config](https://github.com/betaflight/config), placed at `configs/<MANUFACTURER_ID>/<BOARD_NAME>/config.h`. Board names must be unique across the whole repository. See the [instructions](https://betaflight.com/docs/development/manufacturer/creating-configuration) for how to create a configuration file. Ensure you adhere to the [Config Target Guidance](config-target-guidance) also.
 
