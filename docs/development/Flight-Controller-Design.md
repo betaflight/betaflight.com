@@ -52,10 +52,7 @@ http://dronemeshforum.com/viewforum.php?f=33&sid=c2c2708fe551f2214d6d2290c62a3e9
 
 ### MCU data sheet and reference manuals
 
-#### STM32F303CC
-
-https://www.st.com/resource/en/datasheet/stm32f303cc.pdf
-https://www.st.com/resource/en/reference_manual/dm00043574.pdf
+The MCUs below are a subset of what Betaflight supports today — for the full list of platforms and target names, and which are recommended for new designs, see [Supported MCU Platforms and Targets](/docs/development/manufacturer/manufacturer-design-guidelines#44-supported-mcu-platforms-and-targets). STM32F1 and STM32F3 are no longer supported by the firmware.
 
 #### STM32F405RG
 

@@ -69,8 +69,8 @@ With this assignment, PINIO #1 through #4 are associated with boxes as follow.
 
 For permanent ID of boxes (or AUX modes), the table below is based on [msp/msp_box.c](https://github.com/betaflight/betaflight/blob/master/src/main/msp/msp_box.c).
 
-| Box                     | Mode                     |   ID | Notes     |
-| ----------------------- | ------------------------ | ---: | --------- |
+| Box                     | Mode                     |   ID | Notes   |
+| ----------------------- | ------------------------ | ---: | ------- |
 | `BOXARM`                | ARM                      |  `0` |
 | `BOXANGLE`              | ANGLE                    |  `1` |
 | `BOXHORIZON`            | HORIZON                  |  `2` |
@@ -135,7 +135,7 @@ Some inbuilt or external devices/modules come with a dedicated pin/wire to enabl
 
 Some flight controller targets come with PINIOs _preconfigured_, for example to switch the camera, the VTX supply voltage or an inbuilt Bluetooth device.
 
-Check the [unified target configuration](https://github.com/betaflight/unified-targets/tree/master/configs/default) of **your** flight controller or use the `resource` command on the running board, to find any existing PINIOs -- if any.
+Check the [board configuration](https://github.com/betaflight/config/tree/master/configs) of **your** flight controller (`configs/<MANUFACTURER_ID>/<BOARD_NAME>/config.h`) or use the `resource` command on the running board, to find any existing PINIOs -- if any.
 
 You may find something like `resource PINIO 1 B00` or `PINIO 1 B00`. This shows us, that there is already a PINIO with the index of `1` (PINIO #1).
 

@@ -214,7 +214,9 @@ cd config
 git remote add upstream https://github.com/betaflight/config.git
 ```
 
-Submit config changes as a separate PR to the config repo. Do not include config submodule changes in firmware PRs. See [Manufacturer Requirements](/docs/development/manufacturer/requirements-for-submission-of-targets) for full submission guidelines.
+Configs are grouped by manufacturer, so a target lives at `configs/<MANUFACTURER_ID>/<BOARD_NAME>/config.h`. If you are working from an older fork, rebase onto current `master` before adding a target — the repository used a flat `configs/<BOARD_NAME>/` layout until [config#1164](https://github.com/betaflight/config/pull/1164).
+
+Submit config changes as a separate PR to the config repo, from a custom branch and not from `master` (PRs opened from `master` are closed automatically). Do not include config submodule changes in firmware PRs. See [Manufacturer Requirements](/docs/development/manufacturer/requirements-for-submission-of-targets) for full submission guidelines.
 
 ### Resolve merge conflicts
 
