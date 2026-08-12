@@ -104,7 +104,6 @@ Commonly used optional defines:
 | Define              | Purpose                                                                                                                                                         |
 | :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `SYSTEM_HSE_MHZ`    | External oscillator frequency in MHz; sets `HSE_VALUE` for the clock tree. Required on boards with an HSE crystal, omit if running off the internal oscillator. |
-| `FC_VMA_ADDRESS`    | Sets the load/run (VMA) address. Its presence switches the build to an EXST (bootloader-relocated) image. Rare.                                                 |
 | `TIMER_PIN_MAPPING` | Per-pin timer/DMA assignment, see [Timer and Dma Resources](#timer-and-dma-resources) below.                                                                    |
 
 ### Hardware Defines
@@ -290,7 +289,11 @@ For an orientation the presets cannot express, give the rotation in decidegrees 
 
 The per-axis defines set the alignment to `ALIGN_CUSTOM` on their own, so `GYRO_1_ALIGN` can be left out. If it is given, it must be `ALIGN_CUSTOM` — combining a preset such as `CW180_DEG` with per-axis values fails the build. `GYRO_1_CUSTOM_ALIGN` is the alternative, pre-composed form of the same setting, and is mutually exclusive with the per-axis defines.
 
-Where the whole board is rotated relative to the airframe, use `DEFAULT_ALIGN_BOARD_YAW` rather than baking the rotation into the gyro alignment. Magnetometer alignment follows the same pattern with `MAG_ALIGN` and `MAG_ALIGN_ROLL` / `MAG_ALIGN_PITCH` / `MAG_ALIGN_YAW`.
+The gyro alignment describes how the IMU chip is oriented relative to the board's own forward marking, normally the arrow silkscreened on the PCB. This includes boards whose arrow points at 45 degrees to the PCB edges: that offset belongs in the gyro alignment, so that a board installed with its arrow facing the front of the craft needs no further correction from the user.
+
+`DEFAULT_ALIGN_BOARD_YAW` is a different thing — it describes the board being mounted at an angle to the airframe, which is a user decision rather than a property of the hardware, so it does not normally belong in a board's config.
+
+Magnetometer alignment follows the same pattern as the gyro, with `MAG_ALIGN` and `MAG_ALIGN_ROLL` / `MAG_ALIGN_PITCH` / `MAG_ALIGN_YAW`.
 
 ### Serial Receiver Provider
 
@@ -308,7 +311,7 @@ The ADC configuration is used to configure the ADC on the flight controller.
 
 The bus configuration is used to configure the I2C and SPI buses on the flight controller, and to tell each peripheral which bus it sits on.
 
-Sensors on a bus other than the board default must say so — the barometer and magnetometer default to `I2C_DEVICE`, so a baro on a second I2C bus will not be found unless its instance is declared:
+Every I2C sensor must name its bus. `BARO_I2C_INSTANCE` and `MAG_I2C_INSTANCE` fall back to `I2C_DEVICE`, which is itself `I2CINVALID` unless the config defines it, so there is no usable default — a barometer or magnetometer whose instance is not declared will not be found:
 
 ```
 #define BARO_I2C_INSTANCE I2CDEV_2

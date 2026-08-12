@@ -553,7 +553,7 @@ Additionally, there are no RC ecosystems that are actively developing a supporte
 
 Note that the use of gyros such as the BMI270 lowers the gyro loop rate from 8kHz to 3.2kHz and therefore may be advantageous for F411 designs.
 
-Targets on the newer platforms (STM32 H5, C5, N6, RP2350, X32M7 and APM32) are not listed above. Treat H5, C5, N6 and X32M7 designs as H7-class for these purposes, and APM32 F4 as F405-class, but agree the defaults with the Betaflight team as part of the target review — see [4.4](#44-supported-mcu-platforms-and-targets) for the status of each platform.
+Targets on the newer platforms (STM32 H5, C5, N6, RP2350, X32M7 and APM32) are not listed above. As a starting point, the N6 and X32M7 are H7-class in compute; the H5 is closer to an F7 despite being a newer part; the C5 is lower again, at roughly half the H5; and APM32 F4 tracks F405. Agree the defaults with the Betaflight team as part of the target review — see [4.4](#44-supported-mcu-platforms-and-targets) for the status of each platform.
 
 :::warning
 
@@ -670,7 +670,7 @@ Available from Betaflight 2026.6.1 onwards ([PR #15484](https://github.com/betaf
 
 Other BMI270 constraints that matter when sharing a footprint with the ICM-42688-P:
 
-- Maximum SPI clock is 10 MHz, well below what the ICM parts tolerate, so the layout must be good enough for the slower part.
+- Maximum SPI clock is 10 MHz, against 24 MHz for the ICM parts. On a shared-footprint board the bus runs at whichever speed the fitted part allows, so the BMI270 variant gets less headroom for gyro reads than its ICM-42688-P sibling.
 - The gyro is limited to a 3.2 kHz sample rate (accelerometer 1.6 kHz), so a BMI270-populated board cannot run the 8 kHz gyro loop its ICM-42688-P sibling can — see [4.1](#41-rated-looptime-and-performance).
 - The driver accepts chip ID `0x24` only. Clone or re-marked parts that report anything else are not detected, and the board reports no gyro at all.
 - The BMI323 is **not** supported by Betaflight and cannot be used as a substitute.
@@ -736,7 +736,7 @@ The chip defines below do not enable the barometer subsystem on their own — un
 #define USE_BARO_SPI_BMP581
 ```
 
-The bus and, where needed, the address are declared separately — `BARO_I2C_INSTANCE` (defaults to `I2C_DEVICE`, so a baro on any other bus must say so), `BARO_SPI_INSTANCE` and `BARO_CS_PIN` for SPI parts, and `DEFAULT_BARO_I2C_ADDRESS` (decimal) where the fitted part cannot use its default address. `DEFAULT_BARO_DEVICE` pins which driver is used, and the BMP085 additionally needs `BARO_XCLR_PIN`.
+The bus and, where needed, the address are declared separately — `BARO_I2C_INSTANCE`, which must always be given because it falls back to `I2C_DEVICE` and that is `I2CINVALID` unless the config defines it, or `BARO_SPI_INSTANCE` and `BARO_CS_PIN` for SPI parts, and `DEFAULT_BARO_I2C_ADDRESS` (decimal) where the fitted part cannot use its default address. `DEFAULT_BARO_DEVICE` pins which driver is used, and the BMP085 additionally needs `BARO_XCLR_PIN`.
 
 :::warning
 
@@ -769,7 +769,7 @@ Define a magnetometer only if physical present on the board. Betaflight strongly
 
 For the QMC5883, prefer the chip-specific `USE_MAG_QMC5883L` or `USE_MAG_QMC5883P` for the part actually fitted. `USE_MAG_QMC5883` is a hybrid define retained for backwards compatibility — the firmware expands it to enable both drivers (see `common_post.h`) — so existing configs that use it continue to build. Note that the two parts use different default I2C addresses: 0x0D for the QMC5883L and 0x2C for the QMC5883P.
 
-As with the barometer, `USE_MAG` itself must be defined for any compass driver to be built. The bus is declared with `MAG_I2C_INSTANCE` (defaulting to `I2C_DEVICE`), or `MAG_SPI_INSTANCE` and `MAG_CS_PIN` for an SPI part, and `MAG_I2C_ADDRESS` (decimal) overrides the address where the default cannot be used. `MAG_INT_EXTI` declares a data-ready interrupt pin, which is only used when `USE_MAG_DATA_READY_SIGNAL` is defined. Board-relative orientation is set with `MAG_ALIGN`, or per axis with `MAG_ALIGN_ROLL` / `MAG_ALIGN_PITCH` / `MAG_ALIGN_YAW`.
+As with the barometer, `USE_MAG` itself must be defined for any compass driver to be built. The bus is declared with `MAG_I2C_INSTANCE`, which like the barometer has no usable default and must always be given, or `MAG_SPI_INSTANCE` and `MAG_CS_PIN` for an SPI part, and `MAG_I2C_ADDRESS` (decimal) overrides the address where the default cannot be used. `MAG_INT_EXTI` declares a data-ready interrupt pin, which is only used when `USE_MAG_DATA_READY_SIGNAL` is defined. Board-relative orientation is set with `MAG_ALIGN`, or per axis with `MAG_ALIGN_ROLL` / `MAG_ALIGN_PITCH` / `MAG_ALIGN_YAW`.
 
 ### 4.2.5 Defines for SX1280
 
