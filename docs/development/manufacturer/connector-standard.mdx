@@ -1,19 +1,20 @@
-import ConnectorLogo from '/img/betaflight/connector_logo.svg'
+import ConnectorLogo from '/img/betaflight/connector_logo.svg';
 
 # Betaflight Connector Standard
 
 ## Version Change Register
 
-| Version #   | Revision Date    | Changes, Reasons, and Notes                                                   |
-| :---------- | :--------------- | :---------------------------------------------------------------------------- |
-| Draft 0.1   | 27 April 2023    | Initial Draft Format                                                          |
-| Draft 0.2   | 08 May 2023      | Added Logo and pinout correction                                              |
-| Draft 0.3   | 16 June 2024     | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD           |
-| Version 1.0 | 14 April 2025    | Formalize standard                                                            |
-| Version 1.1 | 24 April 2025    | Add option for 10P ESC socket                                                 |
-| Version 1.2 | 08 May 2025      | Add reference schematic + board renders                                       |
-| Version 1.3 | 16 December 2025 | Add reference schematic + board renders for 4-pin and 3-pin camera connectors |
-| Version 2.0 | 03 August 2026   | Remove the 6-pin UART+I2C (GPS) connector; GPS now uses the 4-pin serial connector. The 6-pin option is deprecated due to the risk of a GPS being plugged into the physically identical 6-pin digital VTX connector, whose 8-26V supply will damage or destroy the GPS |
+| Version #   | Revision Date    | Changes, Reasons, and Notes                                                                                                                                                                                                                                                                                                  |
+| :---------- | :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Draft 0.1   | 27 April 2023    | Initial Draft Format                                                                                                                                                                                                                                                                                                         |
+| Draft 0.2   | 08 May 2023      | Added Logo and pinout correction                                                                                                                                                                                                                                                                                             |
+| Draft 0.3   | 16 June 2024     | Adjustment to GPS to 4 pin, moved to RX and renamed, and adding SWD                                                                                                                                                                                                                                                          |
+| Version 1.0 | 14 April 2025    | Formalize standard                                                                                                                                                                                                                                                                                                           |
+| Version 1.1 | 24 April 2025    | Add option for 10P ESC socket                                                                                                                                                                                                                                                                                                |
+| Version 1.2 | 08 May 2025      | Add reference schematic + board renders                                                                                                                                                                                                                                                                                      |
+| Version 1.3 | 16 December 2025 | Add reference schematic + board renders for 4-pin and 3-pin camera connectors                                                                                                                                                                                                                                                |
+| Version 2.0 | 03 August 2026   | Remove the 6-pin UART+I2C (GPS) connector; GPS now uses the 4-pin serial connector. The 6-pin option is deprecated due to the risk of a GPS being plugged into the physically identical 6-pin digital VTX connector, whose 8-26V supply will damage or destroy the GPS                                                       |
+| Version 2.1 | 13 August 2026   | Add optional 2-pin I2C connector for devices that already take power from another connector, such as a GPS with an onboard compass. The 4-pin I2C connector remains the recommended and preferred option. Specify the ext. power connector as JST PH, so that a power connector can no longer be mated with a signal harness |
 
 ## Introduction
 
@@ -39,6 +40,8 @@ Provide legacy wire harness in addition to the standard for current products.
 
 JST-SH is a widely used and reliable connector that has proven to be a robust choice for drone applications.
 The connector should be the standard for all drone manufacturers, ensuring compatibility between components from different manufacturers.
+
+The single exception is power-only connections, which use JST PH so that they cannot be mated with a signal harness. See [Ext. Power Pin Configuration](#ext-power-pin-configuration).
 
 ### JST GH Series as Optional Component.
 
@@ -78,7 +81,8 @@ The pin configuration for the JST SH connector is as follows:
 
 #### ESC with additional power requirements
 
-An additional 2-pin connector for power (ext. power) can be used for high-powered devices or if the user wants to use an external power source.
+An additional 2-pin connector for power (ext. power) can be used for high-powered devices or if the user wants to use an external power source. See [Ext. Power Pin Configuration](#ext-power-pin-configuration) for that connector.
+
 Alternative a 10-pin connector can be used:
 
 | Pin # | Signal Name | Description |
@@ -102,6 +106,27 @@ Alternative a 10-pin connector can be used:
 
 </div>
 
+### Ext. Power Pin Configuration
+
+Power-only connections use the **JST PH series (2.0 mm pitch)**, not JST SH. This is the one deliberate departure from the JST SH standard, and it exists so that a connector carrying VBAT cannot physically be mated with any signal harness in this standard.
+
+The pin configuration for the 2-pin JST PH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | V+ (VBAT)   | Power       |
+| 2     | GND         | Ground      |
+
+Red wire for V+ and black wire for GND, as is conventional for power leads.
+
+:::note
+JST PH is rated at approximately 2A per contact. Where the load exceeds that, use direct solder pads or an XT30 rather than stretching this connector beyond its rating.
+:::
+
+:::caution
+A 2-pin power connection must never be presented on a JST SH or JST GH socket, even on legacy designs. Both are used for signal elsewhere in this standard, and a power socket that accepts a signal harness will destroy whatever is plugged into it by mistake.
+:::
+
 ### Serial (UART) Pin Configuration (RX, GPS, and other 5V serial devices)
 
 The pin configuration for the 4 pin JST SH connector is as follows:
@@ -124,7 +149,7 @@ The pin configuration for the 4 pin JST SH connector is as follows:
 :::note
 This connector could also be used for any number of serial devices.
 
-Where a GPS module uses a 6-pin cable, e.g. a combined GPS and magnetometer that requires I2C, use a Y cable that splits across a 4-pin serial connector and a separate I2C connector. Note that mounting the magnetometer and GPS together is not recommended.
+Where a GPS module uses a 6-pin cable, e.g. a combined GPS and magnetometer that requires I2C, use a Y cable that splits across a 4-pin serial connector and a separate [I2C connector](#i2c-pin-configuration). The GPS takes its 5V and ground from the serial connector, so the I2C leg carries data and clock only and may terminate in either the 4-pin I2C connector (preferred) or the [2-pin I2C connector](#2-pin-i2c-connector-optional). Note that mounting the magnetometer and GPS together is not recommended.
 :::
 
 :::danger[Deprecated in v2.0: 6-pin GPS (UART+I2C) connector]
@@ -135,7 +160,9 @@ The 6-pin serial footprint is physically identical to the 6-pin [digital VTX con
 
 ### I2C Pin Configuration
 
-The pin configuration for the JST SH connector is as follows:
+#### 4-pin I2C Connector (Preferred)
+
+The pin configuration for the 4-pin JST SH connector is as follows:
 
 | Pin # | Signal Name | Description |
 | :---- | :---------- | :---------- |
@@ -156,6 +183,25 @@ The pin configuration for the JST SH connector is as follows:
 The I2C connector should be used for all I2C devices, including compasses (magnetometers), barometers, and other sensors.
 
 On STM devices pins are shared with PB10 and PB11 for TX3 and RX3 so please keep this in mind when using onboard I2C device such as compasses and barometers.
+:::
+
+#### 2-pin I2C Connector (Optional)
+
+The pin configuration for the 2-pin JST SH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | Signal 1    | SDA         |
+| 2     | Signal 2    | SCL         |
+
+This connector carries data and clock only, for devices that already take their 5V and ground from another connector. The intended use is a GPS with an onboard compass: the module is powered through its 4-pin serial connector, so a second power and ground pair on the I2C leg of the harness is redundant.
+
+The 4-pin I2C connector above remains the recommended and preferred option, and should be provided wherever board space allows. A board may fit both, sharing the same bus. Any device that has no other source of power must use the 4-pin connector.
+
+:::caution
+The 2-pin [ext. power connector](#ext-power-pin-configuration) is JST PH specifically so that it cannot accept this harness, since applying VBAT to SDA and SCL will destroy the connected device.
+
+Legacy boards predating v2.1 may still present a 2-pin power connection on a JST SH socket. Do not fit a 2-pin I2C connector on such a board, and do not use a 2-pin JST SH socket for power on new designs.
 :::
 
 ### Analog Camera Pin Configuration
