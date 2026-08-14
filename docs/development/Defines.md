@@ -461,3 +461,11 @@ USE_WING
 USE_WS2811_SINGLE_COLOUR
 USE_YAW_SPIN_RECOVERY
 ```
+
+## Config Defines Without a `USE_` Prefix
+
+A small number of build options are not feature switches and therefore do not carry the `USE_` prefix, so they do not appear in the generated list above. These are set in a board's `config.h` and take a numeric value:
+
+| Define                       | Values              | Purpose                                                                                                                                                                                                                                                                                                      |
+| :--------------------------- | :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ENABLE_BMI270_ALIGN_AS_ICM` | `0` (default) / `1` | Rotates BMI270 raw gyro and accelerometer data CW90 so the part presents ICM-42688-P axes, for boards that second-source both chips on one footprint. See the [manufacturer design guidelines](/docs/development/manufacturer/manufacturer-design-guidelines#4211-bmi270-on-a-shared-icm-42688-p-footprint). |

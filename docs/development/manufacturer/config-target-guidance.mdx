@@ -23,8 +23,14 @@ The Betaflight project has deprecated implementation of new STM F411 application
 
 - New targets for designs that use SPI for RX communications will not be accepted. This is because we favour the use of serial for RX communications, which is also inline with the wishes of the ELRS development team. Existing targets will maintain support for the time being.
 
-- The BMI270 IMU is no longer recommended due to calibration issues (drift).
+- The BMI270 IMU is no longer recommended due to calibration issues (drift). Where an existing PCB is second-sourced between a BMI270 and an ICM-42688-P on the same footprint, see the [`ENABLE_BMI270_ALIGN_AS_ICM` define](manufacturer-design-guidelines#4211-bmi270-on-a-shared-icm-42688-p-footprint).
   :::
+
+:::note
+
+For the full list of MCU platforms and target names the firmware supports, and which are recommended for new designs, see [Supported MCU Platforms and Targets](manufacturer-design-guidelines#44-supported-mcu-platforms-and-targets). For the sensor and peripheral defines a config may use, see [Definitions for Targets](manufacturer-design-guidelines#42-definitions-for-targets).
+
+:::
 
 :::note
 

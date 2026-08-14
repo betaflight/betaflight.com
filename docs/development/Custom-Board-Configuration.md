@@ -1,6 +1,6 @@
 # Custom Board Configuration
 
-Warning: This section covers beyond the normal use-case for Betaflight. It's recommended that you use a pre-made target configuration for a flight controller that has been thoroughly tested before. Those configurations can be found in the [unified targets list](https://github.com/betaflight/unified-targets/tree/master/configs/default).
+Warning: This section covers beyond the normal use-case for Betaflight. It's recommended that you use a pre-made target configuration for a flight controller that has been thoroughly tested before. Those configurations can be found in the [config repository](https://github.com/betaflight/config/tree/master/configs), grouped by manufacturer as `configs/<MANUFACTURER_ID>/<BOARD_NAME>/config.h`.
 
 However, Betaflight can provide support for custom-made flight controllers, assuming it contains supported hardware. Before using Betaflight at all, it's highly recommended that you, first, check to make sure your MCU and your peripherals are supported. Checking the [Supported Sensors](/docs/wiki/guides/current/Supported-Sensors) and [Hardware Reference](/docs/wiki/guides/current/Hardware-Reference) pages are good places to look. Betaflight is supported across many STM32 processors. Second, thoroughly test the functionality of your hardware by programming your board in an IDE (i.e. STMCube) or using any other hardware debugging methods/tools.
 
@@ -15,4 +15,4 @@ Alongside `resource` and `set` commands, there are `timer` and `dma` commands. F
 - `# dma`
 - `dma [SPI_TX|ADC|pin] [index|pin] [0|1]`
 
-For custom configuration like this outside the normal use-case, it's recommended that you use the pre-made [configs](https://github.com/betaflight/unified-targets/tree/master/configs/default) as a source of reference.
+For custom configuration like this outside the normal use-case, it's recommended that you use the pre-made [configs](https://github.com/betaflight/config/tree/master/configs) as a source of reference.

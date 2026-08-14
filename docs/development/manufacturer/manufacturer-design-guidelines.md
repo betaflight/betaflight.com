@@ -16,30 +16,31 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 ## Version Change Register
 
-| Version # | Revision Date     | Changes, Reasons, and Notes                               |
-| :-------- | :---------------- | :-------------------------------------------------------- |
-| Draft 0.1 | 14 May 2022       | Initial Draft Format                                      |
-| Draft 0.2 | 04 June 2022      | Revise format to Final Format                             |
-| Draft 0.3 | 12 June 2022      | Update Visual Media and Tables                            |
-| Draft 0.4 | 21 October 2022   | Update format, add information                            |
-| Draft 0.5 | 24 October 2022   | Add additional information                                |
-| Draft 0.6 | 06 November 2022  | Add cloud build information                               |
-| Draft 0.7 | 17 November 2022  | Remove off-board hardware defines                         |
-| Draft 0.8 | 01 January 2023   | Update Baro and CC2500                                    |
-| Draft 0.9 | 14 January 2023   | Add FC LEDs                                               |
-| Draft 1.0 | 26 January 2023   | Add Signal Rules                                          |
-| Draft 1.1 | 10 December 2023  | Add LSM6DSV16X and LPS22DF                                |
-| Draft 1.2 | 13 January 2024   | Add Mag and Baro hardware note                            |
-| Draft 1.3 | 23 October 2024   | Update MCU recommendations                                |
-| Draft 1.4 | 06 November 2024  | Add LED pin resource warning                              |
-| Draft 1.5 | 13 January 2025   | Update ADC/gyro recommendations                           |
-| Draft 1.6 | 18 February 2025  | Add W25N02K flash define                                  |
-| Draft 1.7 | 27 March 2025     | Update FC review policy                                   |
-| Draft 1.8 | 01 April 2025     | Update I2C Device Info                                    |
-| Draft 1.9 | 12 September 2025 | Update motor requirements                                 |
-| Draft 2.0 | 12 November 2025  | GPIO usage clarifications                                 |
-| Draft 2.1 | 29 March 2026     | Update sensors                                            |
-| Draft 2.2 | 05 July 2026      | Sync sensor defines with firmware master; add LSM6DSK320X |
+| Version # | Revision Date     | Changes, Reasons, and Notes                                                    |
+| :-------- | :---------------- | :----------------------------------------------------------------------------- |
+| Draft 0.1 | 14 May 2022       | Initial Draft Format                                                           |
+| Draft 0.2 | 04 June 2022      | Revise format to Final Format                                                  |
+| Draft 0.3 | 12 June 2022      | Update Visual Media and Tables                                                 |
+| Draft 0.4 | 21 October 2022   | Update format, add information                                                 |
+| Draft 0.5 | 24 October 2022   | Add additional information                                                     |
+| Draft 0.6 | 06 November 2022  | Add cloud build information                                                    |
+| Draft 0.7 | 17 November 2022  | Remove off-board hardware defines                                              |
+| Draft 0.8 | 01 January 2023   | Update Baro and CC2500                                                         |
+| Draft 0.9 | 14 January 2023   | Add FC LEDs                                                                    |
+| Draft 1.0 | 26 January 2023   | Add Signal Rules                                                               |
+| Draft 1.1 | 10 December 2023  | Add LSM6DSV16X and LPS22DF                                                     |
+| Draft 1.2 | 13 January 2024   | Add Mag and Baro hardware note                                                 |
+| Draft 1.3 | 23 October 2024   | Update MCU recommendations                                                     |
+| Draft 1.4 | 06 November 2024  | Add LED pin resource warning                                                   |
+| Draft 1.5 | 13 January 2025   | Update ADC/gyro recommendations                                                |
+| Draft 1.6 | 18 February 2025  | Add W25N02K flash define                                                       |
+| Draft 1.7 | 27 March 2025     | Update FC review policy                                                        |
+| Draft 1.8 | 01 April 2025     | Update I2C Device Info                                                         |
+| Draft 1.9 | 12 September 2025 | Update motor requirements                                                      |
+| Draft 2.0 | 12 November 2025  | GPIO usage clarifications                                                      |
+| Draft 2.1 | 29 March 2026     | Update sensors                                                                 |
+| Draft 2.2 | 05 July 2026      | Sync sensor defines with firmware master; add LSM6DSK320X                      |
+| Draft 2.3 | 12 August 2026    | Add BMI270 shared-footprint alignment define; add supported MCU platform table |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -182,6 +183,8 @@ Selecting the right IMU for a flight controller is crucial for optimal flight pe
 
 We do not recommend using the Bosch BMI-270 IMU, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used. New designs using this gyro will not be approved.
 
+Existing boards that share one PCB footprint between a BMI270 and an ICM-42688-P should note that the two parts do not share axis orientation — see [BMI270 on a shared ICM-42688-P footprint](#4211-bmi270-on-a-shared-icm-42688-p-footprint) for the config define that compensates for this.
+
 :::
 
 ### 3.1.2.1 Future IMU Options and How to Select Preferred Options
@@ -189,6 +192,8 @@ We do not recommend using the Bosch BMI-270 IMU, because its gyroscope is uncali
 As the MPU-6000 is EOL, the currently recommended IMU for most applications is the TDK InvenSense ICM-42688-P. This gyro has been proven in many designs to provide excellent performance with low noise and good durability. In all cases, it is strongly recommended that the gyro be powered from its own LDO. For the ICM-42688-P, this is _required_. See below for more on electrical noise considerations.
 
 The ICM-42688-P also supports an external clock input, which can yield increased stability and performance. If your design allows, consider adding external clock support. See the following PR for more info: https://github.com/betaflight/betaflight/pull/13912
+
+In the config this is `USE_GYRO_CLKIN` together with `GYRO_1_CLKIN_PIN` (and `GYRO_2_CLKIN_PIN` for a second gyro). The firmware drives the clock at a fixed 32 kHz and currently applies it only to the ICM-42688-P, so other parts on the same footprint gain nothing from the circuit.
 
 :::note
 
@@ -219,7 +224,7 @@ Where space allows, a dedicated LDO and circuit is advised for the IMU. For ICM-
 
 ### 3.1.3 Other Sensors
 
-#### 3.1.4.1 I2C Devices and I2C Buses
+#### 3.1.3.1 I2C Devices and I2C Buses
 
 Barometers and magnetometers should use I2C, not SPI. Betaflight operates with a fast (800 kHz) I2C bus speed by default, making proper pull-up resistor selection critical to prevent signal loss. The optimal pull-up values depend on bus capacitance, but 4.7kΩ is a recommended starting point.
 I2C is a shared bus, meaning multiple devices can communicate over the same two-wire interface (SCL and SDA). However, for reliable communication, careful attention must be given to signal integrity and noise immunity. Excessive bus capacitance, improper PCB layout, or insufficient pull-up resistance can lead to communication errors or device malfunctions.
@@ -287,7 +292,7 @@ Implement additional filtering on VDD if using a single 3v reg for MCU and Senso
 
 #### 3.1.4.1 Regulated Power and LDO Power Configurations
 
-A key aspect of flight controller performance and longevity is design of the low powered rails that supply power to inertial motion units and the STM microcontroller. Providing robust low-ripple power to these devices provides the maximum performance potential and hardware longevity for operation in the challenging EMI environments present on these craft.
+A key aspect of flight controller performance and longevity is design of the low powered rails that supply power to inertial motion units and the MCU. Providing robust low-ripple power to these devices provides the maximum performance potential and hardware longevity for operation in the challenging EMI environments present on these craft.
 
 Similarly, 3.3V, 5V, and 9-12V BEC power needs to provide consistent power at the intended current draw. For example, 3.3V 500mA is a recommended minimum current. ‘4.5V’ (5V USB supplied power) should be capable of powering a receiver and GPS unit, which may require over 700mA.
 
@@ -343,7 +348,7 @@ Pin PC13, PC14 and PC15 are supplied through the power switch. Since the switch 
 
 :::
 
-#### 3.1.5 Current Limiting Resistors
+### 3.1.5 Current Limiting Resistors
 
 Current-limiting resistors on GPIOs, if used, should not exceed 100 ohms. This is especially true for motor and LED signal pins, where signal levels are marginal to begin with, and UARTs, where low signal levels can cause issues with some digital VTX systems.
 
@@ -357,11 +362,11 @@ Betaflight does not support sharing devices on the SPI bus which is blocking exe
 
 :::warning
 
-Effective immediately, new flight controller designs that use the STM F4 and F7 series MCUs will be limited to 4 motor outputs. For designs requiring more than 4 motor outputs, it is highly recommended to use the STM32 H7 series MCUs.
+Effective immediately, new flight controller designs that use the STM F4 and F7 series MCUs will be limited to 4 motor outputs. For designs requiring more than 4 motor outputs, it is highly recommended to use the STM32 H7 series MCUs. The STM32 G4, STM32 H5 and AT32F435 families are also acceptable where their resources suit the design. For the full list of platforms and their suitability, see [4.4](#44-supported-mcu-platforms-and-targets).
 
 :::
 
-BITBANG is the new default on non-F4 and FC designers should use as few GPIO PORTS as possible to avoid needing a DMA stream per GPIO port. i.e.
+BITBANG is the new default on non-F4 MCUs (the APM32 F4 family behaves like the STM32 F4 here) and FC designers should use as few GPIO PORTS as possible to avoid needing a DMA stream per GPIO port. i.e.
 
 - 8 motors on 1 GPIO port is optimal.
 - M1-M4 are required to use 1 GPIO port, and preferably one 4-channel timer with DMA.
@@ -410,13 +415,15 @@ F7 series MCUs provide greater flexibility in resource assignments and do not re
 
 Bitbanged DShot communication protocol will always use TIM1 and/or TIM8 - At least one of these timers must be available for use.
 
-#### 3.2.1.3 G4, H7, and AT32F435 Resource Selection
+#### 3.2.1.3 Resource Selection on MCUs With Flexible DMA Routing
 
-G4, H7, and F435 series MCUs include a DMAMUX, which allows for flexible DMA stream allocation. Therefore, only timer conflicts between motor outputs and other outputs need to be avoided.
+G4, H7 and AT32F435 series MCUs include a DMAMUX, and the newer H5, C5, N6 and X32M7 families provide the equally flexible GPDMA/LPDMA scheme, both of which allow for flexible DMA stream allocation. Therefore, only timer conflicts between motor outputs and other outputs need to be avoided.
+
+RP2350 (PICO) and ESP32 do not drive DShot from timers at all — RP2350 uses PIO state machines — so the timer and bitbang guidance above does not apply to those platforms.
 
 :::note
 
-STM32 F4 MCUs should use PWM-based DShot by default, due to a chip errata that prevents peripherals on DMA2 (usually gyro on SPI1) from using DMA when bitbanged DShot is used. All other MCUs (F7, H7, G4, AT32F435) should use bitbanged DShot by default for the best performance and most efficient use of timer and DMA resources.
+STM32 F4 MCUs (and the APM32 F4 family) should use PWM-based DShot by default, due to a chip errata that prevents peripherals on DMA2 (usually gyro on SPI1) from using DMA when bitbanged DShot is used. All other timer-driven MCUs (F7, G4, H7, H5, C5, N6, AT32F435, X32M7) should use bitbanged DShot by default for the best performance and most efficient use of timer and DMA resources.
 
 :::
 
@@ -447,6 +454,8 @@ https://www.arterychip.com/download/DS/DS_AT32F435_437_V2.02-EN.pdf
 | STM32H73x | (PA09, PA10), (PA02, PA03), (PB10, PB11), (PD08, PD09) |
 | STM32H74x | (PA09, PA10), (PB14, PB15), (PA02, PA03), (PB10, PB11) |
 | AT32F435  | (PA09, PA10), (PA02, PA03), (PB10, PB11)               |
+
+The table covers the families where a UART can hijack the ROM bootloader. Check the relevant bootloader application note for any family not listed. Note that some newer platforms do not use USB DFU at all — RP2350 boards enter their bootloader through BOOTSEL and present a UF2 mass-storage device, and ESP32 parts use a serial bootloader — so this specific failure mode does not apply to them.
 
 ## 3.3 Markings, Version Numbers, and Documentation
 
@@ -519,21 +528,23 @@ Importantly, although the Bidirectional DShot ENABLED may require lower PID Loop
 
 Looptime and Performance Recommendation Table:
 
-| MCU                          | IMU                          | Sampling Rate | Bidirectional DShot Status | PID Loop Rate | DShot Protocol |
-| :--------------------------- | :--------------------------- | :------------ | :------------------------- | :------------ | :------------- |
-| H7XX                         | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled or Disabled        | 8 kHz         | DShot 600      |
-|                              | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
-| F7X2, G4XX, AT32 and similar | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled or Disabled        | 4 kHz         | DShot 300      |
-|                              | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
-| F405                         | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
-|                              | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Disabled (not recommended) | 8 kHz         | DShot 600      |
-|                              | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
-| F411 UART RX \*\*            | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
-|                              | BMI-270                      | 3.2 kHz       | Enabled                    | 3.2 kHz       | DShot 300      |
-| F411 SPI RX \*\*\*           | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 2 kHz         | DShot 300      |
-|                              | MPU60X0, ICM2060X            | 8 kHz         | Disabled (not recommended) | 4 kHz         | DShot 300      |
-|                              | BMI-270                      | 3.2 kHz       | Enabled                    | 1.6 kHz       | DShot 300      |
-|                              | BMI-270                      | 3.2 kHz       | Disabled (not recommended) | 3.2 kHz       | DShot 300      |
+| MCU                              | IMU                          | Sampling Rate | Bidirectional DShot Status | PID Loop Rate | DShot Protocol |
+| :------------------------------- | :--------------------------- | :------------ | :------------------------- | :------------ | :------------- |
+| H7XX                             | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled or Disabled        | 8 kHz         | DShot 600      |
+|                                  | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
+| F722, G474, AT32F435 and similar | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled or Disabled        | 4 kHz         | DShot 300      |
+|                                  | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
+| F405                             | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
+|                                  | MPU60X0, ICM2060X, ICM42688P | 8 kHz         | Disabled (not recommended) | 8 kHz         | DShot 600      |
+|                                  | BMI-270                      | 3.2 kHz       | Enabled or Disabled        | 3.2 kHz       | DShot 300      |
+| F411 UART RX \*\*                | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 4 kHz         | DShot 300      |
+|                                  | BMI-270                      | 3.2 kHz       | Enabled                    | 3.2 kHz       | DShot 300      |
+| F411 SPI RX \*\*\*               | MPU60X0, ICM2060X            | 8 kHz         | Enabled                    | 2 kHz         | DShot 300      |
+|                                  | MPU60X0, ICM2060X            | 8 kHz         | Disabled (not recommended) | 4 kHz         | DShot 300      |
+|                                  | BMI-270                      | 3.2 kHz       | Enabled                    | 1.6 kHz       | DShot 300      |
+|                                  | BMI-270                      | 3.2 kHz       | Disabled (not recommended) | 3.2 kHz       | DShot 300      |
+
+The IMU column above predates several currently supported parts. For reference, the native gyro output data rates are 8 kHz for the ICM-42688-P, ICM-42605, ICM-42622-P, ICM-42686-P, IIM-42652, IIM-42653, ICM-40609-D, LSM6DSV16X and LSM6DSK320X; 6.4 kHz for the ICM-45605, ICM-45686 and ICM-56686; 6664 Hz for the LSM6DSO; 9 kHz for the legacy ICM-20649; and 3.2 kHz for the BMI270 and BMI160. Treat the 8 kHz parts as equivalent to the ICM-42688-P rows, and agree defaults for the slower parts with the Betaflight team.
 
 \*\* For F411 UART RX applications, using both available UARTs AND enabling SoftSerial, Accelerometer, large numbers of OSD elements, and using a larger number of filters, stability may require lowering looprate to 2kHz.
 
@@ -541,6 +552,8 @@ Looptime and Performance Recommendation Table:
 Additionally, there are no RC ecosystems that are actively developing a supported SPI RX solution (ExpressLRS 4.0 and later do not support SPI receivers; FrSky does not support SPI RX over any protocol, and other SPI RX solutions have been fully deprecated).
 
 Note that the use of gyros such as the BMI270 lowers the gyro loop rate from 8kHz to 3.2kHz and therefore may be advantageous for F411 designs.
+
+Targets on the newer platforms (STM32 H5, C5, N6, RP2350, X32M7 and APM32) are not listed above. As a starting point, the N6 and X32M7 are H7-class in compute; the H5 is closer to an F7 despite being a newer part; the C5 is lower again, at roughly half the H5; and APM32 F4 tracks F405. Agree the defaults with the Betaflight team as part of the target review — see [4.4](#44-supported-mcu-platforms-and-targets) for the status of each platform.
 
 :::warning
 
@@ -553,6 +566,12 @@ BMI270 is no longer recommended.
 ## 4.2 Definitions for Targets
 
 As reference please choose the defines for your target from this list as applicable for the target to select appropriate hardware for the cloud build.
+
+:::warning
+
+Use the exact define names below. A misspelled or non-existent `USE_*` define is not a build error — it is silently ignored, and the affected sensor simply never gets a driver compiled in, so the hardware appears absent to the user. Check your config against this list, and confirm each sensor is detected on real hardware before release.
+
+:::
 
 ### 4.2.1 Defines for GYRO and ACC
 
@@ -579,10 +598,11 @@ Define at least one gyro and one accelerometer. Gyroscopes must communicate via 
 #define USE_ACCGYRO_ICM42686P
 #define USE_GYRO_SPI_ICM42688P
 #define USE_ACC_SPI_ICM42688P
-#define USE_ACCGYRO_IIM42652
+#define USE_ACCGYRO_IIM42652       // pair with another 426xx define, see note below
 #define USE_ACCGYRO_IIM42653
 #define USE_ACCGYRO_ICM45605
 #define USE_ACCGYRO_ICM45686
+#define USE_ACCGYRO_ICM56686
 // Bosch
 #define USE_ACCGYRO_BMI160
 #define USE_ACCGYRO_BMI270
@@ -591,6 +611,71 @@ Define at least one gyro and one accelerometer. Gyroscopes must communicate via 
 #define USE_ACCGYRO_LSM6DSV16X
 #define USE_ACCGYRO_LSM6DSK320X
 ```
+
+Every gyro also needs its bus, chip select and interrupt pin declared (`GYRO_<n>_SPI_INSTANCE`, `GYRO_<n>_CS_PIN`, `GYRO_<n>_EXTI_PIN`), and an alignment (`GYRO_<n>_ALIGN`). The gyro count is derived from how many `GYRO_<n>_CS_PIN` defines are present, up to four, and `DEFAULT_GYRO_TO_USE` selects which one is used by default on a multi-gyro board. See [creating a configuration](creating-configuration#gyro-wiring) for the details.
+
+:::warning
+
+Omitting `GYRO_<n>_EXTI_PIN` is not a build error, but the driver then falls back to polled SPI reads with no DMA and no interrupt-synchronised sampling. Always route and declare an interrupt pin for every gyro.
+
+:::
+
+Additional gyro defines that are easy to miss:
+
+| Define                                                                | Purpose                                                                                                                                    |
+| :-------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| `USE_GYRO_CLKIN`, `GYRO_<n>_CLKIN_PIN`                                | External clock input. The firmware only applies it to the ICM-42688-P, at a fixed 32 kHz, even though other parts in the family support it |
+| `ICM426XX_CLOCK`, `ICM456XX_CLOCK`, `ICM56686_CLOCK`, `ICM40609_LOCK` | Override the default 24 MHz SPI clock where the layout cannot sustain it. Note the inconsistent `_LOCK` spelling on the ICM-40609 define   |
+| `ENABLE_42686_EXTENDED_RANGE 1`                                       | Switches an ICM-42686-P to ±4000 dps / ±32 g instead of the default ±2000 dps / ±16 g                                                      |
+| `ENABLE_BMI270_ALIGN_AS_ICM 1`                                        | BMI270 axis remap for shared footprints, see below                                                                                         |
+
+:::warning
+
+`USE_ACCGYRO_IIM42652` is currently missing from the firmware's SPI detection table. A config that defines it alone will build but detect no gyro, so pair it with another ICM-426xx define (for example `USE_GYRO_SPI_ICM42688P`) until this is fixed in the firmware.
+
+:::
+
+#### 4.2.1.1 BMI270 on a Shared ICM-42688-P Footprint
+
+The BMI270 and the ICM-42688-P share the LGA-14 PCB footprint but **not** their sense-axis orientation, so a BMI270 populated on a board laid out for the ICM-42688-P comes up rotated by 90 degrees.
+
+Where one PCB is second-sourced between the two parts, the config can opt in to a CW90 remap of the BMI270 raw data, so that a single board alignment serves either populated chip:
+
+```c
+// Second-sourced IMU: ICM-42688-P primary, BMI270 alternate on the same footprint
+#define USE_GYRO_SPI_ICM42688P
+#define USE_ACC_SPI_ICM42688P
+#define USE_ACCGYRO_BMI270
+
+// Present the BMI270 with ICM-42688-P axes so one alignment covers both populations
+#define ENABLE_BMI270_ALIGN_AS_ICM 1
+
+#define GYRO_1_ALIGN CW180_DEG // the value that is correct for the ICM-42688-P
+```
+
+| Value                         | Behaviour                                                                         |
+| :---------------------------- | :-------------------------------------------------------------------------------- |
+| define omitted, or set to `0` | Default. BMI270 raw axes are passed through unchanged.                            |
+| `1`                           | BMI270 raw accelerometer and gyro axes are rotated CW90 to match the ICM-42688-P. |
+
+The remap is applied inside the BMI270 driver on every raw-read path (register read, DMA read, FIFO read, and the accelerometer), so `GYRO_1_ALIGN` then describes the board as if an ICM-42688-P were fitted. The define is evaluated with `#if`, so it must be given a numeric value — `#define ENABLE_BMI270_ALIGN_AS_ICM` with no value will not compile. It is a build-wide switch and cannot be set per gyro instance.
+
+:::warning
+
+This flag is off by default so that no existing board changes its frame of reference. Only set it when you have confirmed the resulting orientation on hardware — changing it for an existing board name will silently rotate every user's craft. CW90 versus CW270 is layout dependent, so bench-verify pitch, roll and yaw signs with the BMI270 fitted before shipping a config that sets it. On boards where a BMI270 and a second gyro are fitted and used together, note that the flag rotates every BMI270 in the build — confirm the two gyros still agree.
+
+:::
+
+Available from Betaflight 2026.6.1 onwards ([PR #15484](https://github.com/betaflight/betaflight/pull/15484)).
+
+Other BMI270 constraints that matter when sharing a footprint with the ICM-42688-P:
+
+- Maximum SPI clock is 10 MHz, against 24 MHz for the ICM parts. On a shared-footprint board the bus runs at whichever speed the fitted part allows, so the BMI270 variant gets less headroom for gyro reads than its ICM-42688-P sibling.
+- The gyro is limited to a 3.2 kHz sample rate (accelerometer 1.6 kHz), so a BMI270-populated board cannot run the 8 kHz gyro loop its ICM-42688-P sibling can — see [4.1](#41-rated-looptime-and-performance).
+- The driver accepts chip ID `0x24` only. Clone or re-marked parts that report anything else are not detected, and the board reports no gyro at all.
+- The BMI323 is **not** supported by Betaflight and cannot be used as a substitute.
+
+This define only resolves the footprint/axis mismatch; it does not change the fact that new designs using the BMI270 are not approved (see [3.1.2](#312-inertial-measurement-unit-imu-selection)).
 
 ### 4.2.2 Defines for FLASH
 
@@ -610,7 +695,9 @@ Define correct flash driver(s) only if physical present on the board.
 #define USE_FLASH_MX66UW1G45G      // 1Gb (128MB) Macronix MX66UW1G45G OctoSPI NOR (see OctoSPI note below)
 ```
 
-The bus interface (`USE_FLASH_SPI`, `USE_FLASH_QUADSPI`, `USE_FLASH_OCTOSPI`) is normally provided by the target platform — enable the per-chip driver above that matches the fitted part.
+The bus interface (`USE_FLASH_SPI`, `USE_FLASH_QUADSPI`, `USE_FLASH_OCTOSPI`) is normally provided by the target platform — enable the per-chip driver above that matches the fitted part. Declare the wiring with `FLASH_CS_PIN` plus `FLASH_SPI_INSTANCE`, `FLASH_QUADSPI_INSTANCE` or `FLASH_OCTOSPI_INSTANCE` as appropriate.
+
+The `USE_FLASH_M25P16` driver carries a large JEDEC ID table that also covers Micron, PUYA, Zbit, Infineon/Cypress S25FL, BergMicro, Boyamicro, XMC, Zetta, FMSH, XTX and Giantec parts, and the `USE_FLASH_W25Q128FV`, `USE_FLASH_PY25Q128HA` and `USE_FLASH_W25M512` defines imply it. The `USE_FLASH_W25N` NAND driver likewise covers the Macronix MX35LF2GE4AD as well as the Winbond parts.
 
 OctoSPI/XSPI boot-flash chips (e.g. the Macronix `MX66UW1G45G`) are not selected with a `config.h` `#define`. Instead, set `OCTOSPI_FLASH_CHIP := MX66UW1G45G` in the target's `config.mk`; the build emits the matching `USE_FLASH_*` define automatically (needed for chips that cannot be probed via JEDEC RDID at runtime).
 
@@ -618,7 +705,14 @@ OctoSPI/XSPI boot-flash chips (e.g. the Macronix `MX66UW1G45G`) are not selected
 
 Define a barometer only if physical present on the board. Betaflight strongly recommends I2C for barometer connections.
 
+:::warning
+
+The chip defines below do not enable the barometer subsystem on their own — unlike the rangefinder defines there is no bottom-up rule. A config that lists a baro chip but not `USE_BARO` compiles with no barometer driver at all. The same applies to `USE_MAG` in [4.2.4](#424-defines-for-mag).
+
+:::
+
 ```c
+#define USE_BARO
 #define USE_BARO_BMP085            // legacy, I2C only (not recommended for new designs)
 #define USE_BARO_MS5611
 #define USE_BARO_SPI_MS5611
@@ -626,11 +720,12 @@ Define a barometer only if physical present on the board. Betaflight strongly re
 #define USE_BARO_SPI_BMP280
 #define USE_BARO_BMP388
 #define USE_BARO_SPI_BMP388
-#define USE_BARO_SPI_LPS
+#define USE_BARO_SPI_LPS           // ST LPS22HB / LPS25 family, SPI only (no I2C variant)
 #define USE_BARO_QMP6988
 #define USE_BARO_SPI_QMP6988
 #define USE_BARO_DPS310            // one driver covers DPS310, DPS368 and SPL07-003 (no separate DPS368 define)
 #define USE_BARO_SPI_DPS310
+#define USE_BARO_SPA06_003         // SPA06-003; shares the SPL07-003 register map and implies USE_BARO_DPS310
 #define USE_BARO_2SMBP_02B
 #define USE_BARO_SPI_2SMBP_02B
 #define USE_BARO_LPS22DF
@@ -640,6 +735,16 @@ Define a barometer only if physical present on the board. Betaflight strongly re
 #define USE_BARO_BMP581
 #define USE_BARO_SPI_BMP581
 ```
+
+The bus and, where needed, the address are declared separately — `BARO_I2C_INSTANCE`, which must always be given because it falls back to `I2C_DEVICE` and that is `I2CINVALID` unless the config defines it, or `BARO_SPI_INSTANCE` and `BARO_CS_PIN` for SPI parts, and `DEFAULT_BARO_I2C_ADDRESS` (decimal) where the fitted part cannot use its default address. `DEFAULT_BARO_DEVICE` pins which driver is used, and the BMP085 additionally needs `BARO_XCLR_PIN`.
+
+:::warning
+
+The BMP580 and BMP581 default to I2C address **0x47** (or 0x46 with SDO low), not the 0x76/0x77 used by most other barometers. Plan the bus accordingly.
+
+Also note that the SPI variants of these two parts (`USE_BARO_SPI_BMP580` / `USE_BARO_SPI_BMP581`) do not currently reach the driver's SPI initialisation in firmware. Use these parts on I2C, which is the recommended connection anyway.
+
+:::
 
 ### 4.2.4 Defines for MAG
 
@@ -662,7 +767,9 @@ Define a magnetometer only if physical present on the board. Betaflight strongly
 #define USE_MAG_MMC560X
 ```
 
-For the QMC5883, prefer the chip-specific `USE_MAG_QMC5883L` or `USE_MAG_QMC5883P` for the part actually fitted. `USE_MAG_QMC5883` is a hybrid define retained for backwards compatibility — the firmware expands it to enable both drivers (see `common_post.h`) — so existing configs that use it continue to build.
+For the QMC5883, prefer the chip-specific `USE_MAG_QMC5883L` or `USE_MAG_QMC5883P` for the part actually fitted. `USE_MAG_QMC5883` is a hybrid define retained for backwards compatibility — the firmware expands it to enable both drivers (see `common_post.h`) — so existing configs that use it continue to build. Note that the two parts use different default I2C addresses: 0x0D for the QMC5883L and 0x2C for the QMC5883P.
+
+As with the barometer, `USE_MAG` itself must be defined for any compass driver to be built. The bus is declared with `MAG_I2C_INSTANCE`, which like the barometer has no usable default and must always be given, or `MAG_SPI_INSTANCE` and `MAG_CS_PIN` for an SPI part, and `MAG_I2C_ADDRESS` (decimal) overrides the address where the default cannot be used. Note the two are distinct: the uppercase `MAG_I2C_ADDRESS` build define only sets the shipped default for the runtime `mag_i2c_address` setting, which a user can change from the CLI. So a board fitted with, say, an IST8310 at 0x0C is recoverable in the field with `set mag_i2c_address = 12` followed by `save`, but only if the user knows to do it — see [3.1.3.1](#3131-i2c-devices-and-i2c-buses) for why the default address is strongly preferred. `MAG_INT_EXTI` declares a data-ready interrupt pin, which is only used when `USE_MAG_DATA_READY_SIGNAL` is defined. Board-relative orientation is set with `MAG_ALIGN`, or per axis with `MAG_ALIGN_ROLL` / `MAG_ALIGN_PITCH` / `MAG_ALIGN_YAW`.
 
 ### 4.2.5 Defines for SX1280
 
@@ -702,11 +809,11 @@ Define these only if the corresponding sensor is physically present on the board
 
 ```c
 #define USE_RANGEFINDER
-#define USE_RANGEFINDER_HCSR04     // HC-SR04 ultrasonic (GPIO trigger/echo)
-#define USE_RANGEFINDER_TF         // Benewake TFmini / TF02 / TFnova (UART)
-#define USE_RANGEFINDER_MT         // Micoair MTF-01 / MTF-02 (also provides optical flow)
-#define USE_RANGEFINDER_NOOPLOOP   // Nooploop TOFSense
-#define USE_RANGEFINDER_UPT1       // UPT1 (also provides optical flow)
+#define USE_RANGEFINDER_HCSR04     // HC-SR04 ultrasonic (GPIO trigger/echo pins)
+#define USE_RANGEFINDER_TF         // Benewake TFmini / TF02 / TFnova (UART, LIDAR function)
+#define USE_RANGEFINDER_MT         // Micoair MTF-01 / MTF-02 (UART, via MSP; also provides optical flow)
+#define USE_RANGEFINDER_NOOPLOOP   // Nooploop TOFSense (UART, LIDAR function)
+#define USE_RANGEFINDER_UPT1       // UPT1 (UART, LIDAR function; also provides optical flow)
 #define USE_OPTICALFLOW
 #define USE_OPTICALFLOW_MT         // Micoair MTF-01 / MTF-02 optical flow (pair with USE_RANGEFINDER_MT)
 #define USE_OPTICALFLOW_UPT1       // UPT1 optical flow (pair with USE_RANGEFINDER_UPT1)
@@ -715,6 +822,52 @@ Define these only if the corresponding sensor is physically present on the board
 ## 4.3 Usage of the Cloud Build API
 
 See reference to [cloud build API](/docs/development/API/Cloud-Build-API)
+
+## 4.4 Supported MCU Platforms and Targets
+
+Betaflight is no longer an ST-only firmware. The table below lists every platform in the firmware, the target names accepted as `FC_TARGET_MCU` in a `config.h`, and how suitable each is for a new commercial flight controller design. Being buildable is not the same as being recommended: several platforms exist for development work only.
+
+| Platform  | `FC_TARGET_MCU` values                                                                    | Flash                                              | Suitability for new designs                                                                      |
+| :-------- | :---------------------------------------------------------------------------------------- | :------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
+| STM32 F4  | `STM32F411`, `STM32F405`, `STM32F446`                                                     | 512 KB / 1 MB / 512 KB                             | Legacy. F411 is deprecated for new designs; F4 designs are limited to 4 motor outputs            |
+| STM32 F7  | `STM32F722`, `STM32F745`                                                                  | 512 KB / 1 MB                                      | Legacy/maintenance. Limited to 4 motor outputs                                                   |
+| STM32 G4  | `STM32G474`                                                                               | 512 KB                                             | Supported and current — a good small/budget choice                                               |
+| STM32 H7  | `STM32H723`, `STM32H725`, `STM32H730`, `STM32H735`, `STM32H743`, `STM32H750`, `STM32H757` | 1 MB – 2 MB (H730/H750 128 KB internal)            | **Recommended** for high-motor-count and feature-rich designs                                    |
+| STM32 H5  | `STM32H562`, `STM32H563`                                                                  | 2 MB                                               | New. Currently excluded from CI, so no official release binaries yet — discuss before committing |
+| STM32 C5  | `STM32C562`, `STM32C591`, `STM32C5A3`                                                     | 512 KB – 1 MB                                      | Developer preview. No production flight controllers                                              |
+| STM32 N6  | `STM32N657`                                                                               | No internal user flash; app lives in external XSPI | Developer preview. Requires a signed first-stage bootloader                                      |
+| AT32      | `AT32F435G`, `AT32F435M`                                                                  | 1 MB / 4 MB                                        | Supported and current, with flexible DMA routing                                                 |
+| APM32     | `APM32F405`, `APM32F407`, `APM32F425`, `APM32F427`                                        | 1 MB                                               | Supported in firmware, but no official configs exist. Shares the F4 DMA restrictions             |
+| PICO      | `RP2350A`, `RP2350B`                                                                      | External QSPI, 4 MB / 8 MB                         | Supported and new. DShot is driven from PIO state machines, not timers                           |
+| X32       | `X32M7B`                                                                                  | 2 MB XIP NOR                                       | Experimental                                                                                     |
+| ESP32     | `ESP32WROOM`, `ESP32S3`, `ESP32C5`, `ESP32P4`                                             | 4 MB – 16 MB                                       | Experimental. Excluded from CI, so no official release binaries                                  |
+| SIMULATOR | `SITL`                                                                                    | n/a                                                | Software simulation only, not hardware                                                           |
+
+:::warning
+
+Targets excluded from CI (STM32H562, STM32H563, STM32C591 and all ESP32 variants at the time of writing) produce no official release firmware, because release assets are the CI artifacts. Do not plan a product around one of these without first discussing it with the Betaflight team.
+
+:::
+
+Practical consequences to design around:
+
+- **STM32H730 and STM32H750 have only 128 KB of internal flash.** They require an external memory-mapped flash and the EXST (bootloader-relocated) build arrangement, which adds complexity for both you and the end user.
+- **STM32N657 has no internal user flash at all.** The application runs from external XSPI and needs a signed first-stage bootloader.
+- **STM32H757 is dual core.** Betaflight runs standalone on the M7; the M4 is left halted.
+- **512 KB is the practical floor.** The F722 and G474 targets are already compiled at reduced optimisation to fit 512 KB, which constrains how many features a cloud build can include.
+- **AT32F435M offers 4 MB of flash** against 1 MB on AT32F435G, which matters for feature-rich cloud builds.
+- **Do not advertise GD32 support.** A vendor SDK is present in the tree but there is no GD32 platform.
+
+DMA and DShot behaviour differs by family, which affects pin planning:
+
+| Family                                    | DMA routing                                         | DShot default                                                                                      |
+| :---------------------------------------- | :-------------------------------------------------- | :------------------------------------------------------------------------------------------------- |
+| STM32 F4, F7, APM32 F4                    | Fixed stream map — plan pin, timer and DMA together | F4 and APM32 F4 only enable bitbang when bidirectional DShot telemetry is enabled; F7 uses bitbang |
+| STM32 G4, H7, H5, C5, N6, AT32F435, X32M7 | Flexible (DMAMUX, or GPDMA/LPDMA on H5/C5/N6)       | Bitbang                                                                                            |
+| PICO (RP2350)                             | n/a for motors                                      | Driven from PIO state machines — timer and bitbang guidance does not apply                         |
+| ESP32                                     | n/a for motors                                      | Platform-specific driver — timer and bitbang guidance does not apply                               |
+
+Gyro external clock input (`GYRO_CLKIN`) is available on STM32, AT32, RP2350 and X32M7, but not on APM32 or ESP32.
 
 # 5 Information for Marketing Purposes
 
