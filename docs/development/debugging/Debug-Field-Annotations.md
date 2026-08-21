@@ -18,10 +18,23 @@ It is a comment, so it costs no flash. A firmware-side string table would have c
 The annotation goes on the line the call **ends** on, which matters for a call spanning several lines:
 
 ```
-//!< [<indices>] <label> [<unit>]
+//!< [<indices>] <label> [<shape>]
 ```
 
 The canonical specification lives above the `DEBUG_SET` macro in [`src/main/build/debug.h`](https://github.com/betaflight/betaflight/blob/master/src/main/build/debug.h). This page is the guide to writing one.
+
+### Shapes
+
+The trailing bracket says what **kind** of value the field holds, and that is the whole of what a tool needs: from the shape alone it derives the label to print, how to format a sample, and how to scale a graph axis. Four shapes cover every field, so nothing has to be decided per field in an app.
+
+| Shape         | Written as                                              | A tool shows              | Graph axis                 |
+| ------------- | ------------------------------------------------------- | ------------------------- | -------------------------- |
+| Quantity      | `[us]`, `[0.1deg]`, `[-1dBm]`, `[gyroADC]`              | the value in that unit    | scaled by the unit         |
+| Enumerator    | `[enum:failsafePhase_e]`                                | the enumerator's name     | `0` to the last enumerator |
+| Bit flags     | `[flags:Channel 17\|Channel 18\|Signal Loss\|Failsafe]` | the names of the set bits | `0` to all bits set        |
+| Plain integer | nothing at all                                          | the number                | fitted to the logged data  |
+
+A field is a plain integer when it is none of the others — a count, a state number with no enum to name it, a packed value. That is a legitimate shape, not a gap: the tool shows the number and fits the axis to the data.
 
 ### Label
 
@@ -92,6 +105,30 @@ The enum has to be visible in the file or in a header it includes, and its enume
 
 This is worth reaching for: the configurator's list of dynamic-notch calculation steps still named the CMSIS FFT steps that the firmware dropped years earlier, and nobody noticed because a stale enum still decodes to plausible-looking names.
 
+### Bit Flags
+
+A field holding bit flags names them, lowest bit first, with `-` for a bit the field does not use:
+
+```c
+DEBUG_SET(DEBUG_SBUS, DEBUG_SBUS_FRAME_FLAGS, frame.channels.flags);  //!< Frame Flags [flags:Channel 17|Channel 18|Signal Loss|Failsafe]
+```
+
+A tool then shows `Signal Loss | Failsafe` instead of `12`, and a bit no name was given for shows as its bit number rather than being dropped — an unexpected bit is worth seeing.
+
+The names go in the annotation rather than being read from the source, because flag bits are `#define`s (`SBUS_FLAG_SIGNAL_LOSS (1 << 2)`) rather than an enum, so there is no type for a generator to follow.
+
+## Fields That Cannot Be Described
+
+Some fields cram two values into one index, or use a sentinel:
+
+```c
+DEBUG_SET(DEBUG_GPS_CONNECTION, 4, gpsData.state * 100 + gpsData.state_position);
+DEBUG_SET(DEBUG_AUTOPILOT_PID, 7, 100);   // a marker for "reached this branch"
+DEBUG_SET(DEBUG_LIDAR_TF, 6, -99);        // out of range
+```
+
+No annotation makes `412` readable, and no shape describes it, so these are plain integers to every tool. If you are writing one, **split it across two indices instead** — a debug mode has eight, and two fields a pilot can read are worth more than one that needs a decoder ring. Where an existing field does this, fixing the firmware is the way forward, not a richer annotation.
+
 ## Fields Two Subsystems Write
 
 A logged `debug[n]` records only the number, never which code wrote it. So an index has to mean one thing in a given build, and annotations that share an index must agree.
@@ -111,11 +148,11 @@ A field multiplexed by state is a milder case of the same thing: `DEBUG_GPS_CONN
 
 `scripts/generate-debug-modes.mjs` in the configurator walks the firmware's git history, reads the annotations at each MSP API version, and writes:
 
-| File                                    | Purpose                                                         |
-| --------------------------------------- | --------------------------------------------------------------- |
-| `src/js/debug_modes_table.js`           | the ordered `debugType_e` names per API version                 |
-| `src/js/debug_fields_table.js`          | the label, unit, scale and enum values of every annotated field |
-| `test/generated/debug_field_usage.json` | which `debug[n]` each mode writes, for the consistency test     |
+| File                                    | Purpose                                                                                     |
+| --------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `src/js/debug_modes_table.js`           | the ordered `debugType_e` names per API version                                             |
+| `src/js/debug_fields_table.js`          | the label and shape — unit and scale, enum values, or flag names — of every annotated field |
+| `test/generated/debug_field_usage.json` | which `debug[n]` each mode writes, for the consistency test                                 |
 
 ```bash
 npm run generate:debug-modes   # regenerate from a firmware checkout
@@ -134,7 +171,8 @@ When you add or change a `DEBUG_SET()`:
 - [ ] The label says what the value is, not which variable holds it, and contains no brackets.
 - [ ] An index spec is present if and only if the index is computed at run time, and it lists what the code really writes.
 - [ ] The unit is the value of one LSB, with the factor and the sign that the expression implies.
-- [ ] A field holding an enumerator names its enum.
+- [ ] A field holding an enumerator names its enum, and one holding bit flags names its bits.
+- [ ] A field that packs two values into one index is split, not annotated around.
 - [ ] If another call site writes the same index, the two annotations agree — or the disagreement is a bug worth fixing first.
 - [ ] `npm run check:debug-modes` in the configurator, against your firmware checkout, reports no problems.
 
