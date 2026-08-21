@@ -36,6 +36,8 @@ Every bracket names what it is, so nothing about an annotation depends on where 
 
 A field is a plain integer when it is none of the others — a count, a state number with no enum to name it, a packed value. That is a legitimate shape, not a gap: the tool shows the number and fits the axis to the data.
 
+Note what the shapes do **not** carry: a minimum and maximum for the graph. That is deliberate. A unit almost never implies a range — across the annotated fields, `us` takes six different ranges and `%` takes six — and the ranges that matter most follow the craft rather than the field: a gyro axis follows the configured rates, an accelerometer axis the configured full scale. So a range is derived from the shape instead. An enumerator spans its values, bit flags span their bits, a unit bounded by definition uses that bound, a device-native unit follows the flight controller's own configuration, and everything else is fitted to the logged data, over the fields that share a unit and scaling. Annotating a range would be a constant that is wrong more often than right.
+
 ### Label
 
 What the value **is**, in the words a pilot reads — not the name of the variable holding it. `taskDeltaTimeUs` is the implementation; `Cycle Time` is the field.
@@ -91,7 +93,7 @@ A few more are device-native: the firmware stores the raw sensor value, and only
 | `rcCommand`          | throttle in rcCommand units | %                                    |
 | `eRPM`               | Dshot electrical RPM        | rpm, using the motor pole count      |
 
-A symbol outside this list, or a bracket with no key at all, fails the generator rather than reaching an app that would not know how to display it. If a field genuinely needs a new unit, add it to the list in `debug.h` and to the display map in the configurator's `src/js/utils/debugModes.js` in the same change.
+A symbol outside this list, or a bracket with no key at all, fails the generator rather than reaching an app that would not know how to display it. That is enforced rather than conventional: the generator takes its accepted vocabulary from the keys of the configurator's `src/js/debug_units.js`, so a unit with no display rule cannot be generated at all. If a field genuinely needs a new unit, add it to the list in `debug.h` and to that table in the same change.
 
 ### Enumerations
 
@@ -154,6 +156,8 @@ A field multiplexed by state is a milder case of the same thing: `DEBUG_GPS_CONN
 | `src/js/debug_modes_table.js`           | the ordered `debugType_e` names per API version                                             |
 | `src/js/debug_fields_table.js`          | the label and shape — unit and scale, enum values, or flag names — of every annotated field |
 | `test/generated/debug_field_usage.json` | which `debug[n]` each mode writes, for the consistency test                                 |
+
+It reads one table that is not generated: `src/js/debug_units.js`, which holds every unit symbol and what it means to a consumer — the suffix to print, the factor to the displayed unit, the hardware conversion a device-native unit needs, and the graph axis the unit implies. The generator's vocabulary is that table's keys, so the units firmware may write and the units an app can display are the same list by construction.
 
 ```bash
 npm run generate:debug-modes   # regenerate from a firmware checkout
