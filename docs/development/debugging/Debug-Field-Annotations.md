@@ -7,8 +7,8 @@ What the firmware did **not** record, until now, is what each field _means_. Eve
 A `//!<` annotation on the call site fixes that: the meaning lives next to the value, so a change to what a field holds and a change to its label are the same diff.
 
 ```c
-DEBUG_SET(DEBUG_CYCLETIME, 0, getTaskDeltaTimeUs(TASK_SELF));  //!< Cycle Time [us]
-DEBUG_SET(DEBUG_CYCLETIME, 1, getAverageSystemLoadPercent());  //!< CPU Load [%]
+DEBUG_SET(DEBUG_CYCLETIME, 0, getTaskDeltaTimeUs(TASK_SELF));  //!< Cycle Time [unit:us]
+DEBUG_SET(DEBUG_CYCLETIME, 1, getAverageSystemLoadPercent());  //!< CPU Load [unit:%]
 ```
 
 It is a comment, so it costs no flash. A firmware-side string table would have cost every target flash for data only tooling needs.
@@ -18,18 +18,18 @@ It is a comment, so it costs no flash. A firmware-side string table would have c
 The annotation goes on the line the call **ends** on, which matters for a call spanning several lines:
 
 ```
-//!< [<indices>] <label> [<shape>]
+//!< [index:<indices>] <label> [<shape>]
 ```
 
 The canonical specification lives above the `DEBUG_SET` macro in [`src/main/build/debug.h`](https://github.com/betaflight/betaflight/blob/master/src/main/build/debug.h). This page is the guide to writing one.
 
 ### Shapes
 
-The trailing bracket says what **kind** of value the field holds, and that is the whole of what a tool needs: from the shape alone it derives the label to print, how to format a sample, and how to scale a graph axis. Four shapes cover every field, so nothing has to be decided per field in an app.
+Every bracket names what it is, so nothing about an annotation depends on where it sits — and the shape bracket says what **kind** of value the field holds, which is the whole of what a tool needs: from the shape alone it derives how to format a sample and how to scale a graph axis. Four shapes cover every field, so nothing has to be decided per field in an app.
 
 | Shape         | Written as                                              | A tool shows              | Graph axis                 |
 | ------------- | ------------------------------------------------------- | ------------------------- | -------------------------- |
-| Quantity      | `[us]`, `[0.1deg]`, `[-1dBm]`, `[gyroADC]`              | the value in that unit    | scaled by the unit         |
+| Quantity      | `[unit:us]`, `[unit:0.1deg]`, `[unit:-1dBm]`            | the value in that unit    | scaled by the unit         |
 | Enumerator    | `[enum:failsafePhase_e]`                                | the enumerator's name     | `0` to the last enumerator |
 | Bit flags     | `[flags:Channel 17\|Channel 18\|Signal Loss\|Failsafe]` | the names of the set bits | `0` to all bits set        |
 | Plain integer | nothing at all                                          | the number                | fitted to the logged data  |
@@ -40,10 +40,10 @@ A field is a plain integer when it is none of the others — a count, a state nu
 
 What the value **is**, in the words a pilot reads — not the name of the variable holding it. `taskDeltaTimeUs` is the implementation; `Cycle Time` is the field.
 
-Brackets delimit the index spec and the unit, so a label may not contain `[` or `]`. Use parentheses for a qualifier:
+The label is the one part with no key, being the only prose. Brackets delimit the keyed parts around it, so a label may not contain `[` or `]` — use parentheses for a qualifier:
 
 ```c
-DEBUG_SET(DEBUG_ITERM_RELAX, 0, lrintf(setpointHpf));  //!< Setpoint HPF (roll) [dps]
+DEBUG_SET(DEBUG_ITERM_RELAX, 0, lrintf(setpointHpf));  //!< Setpoint HPF (roll) [unit:dps]
 ```
 
 ### Indices
@@ -53,27 +53,27 @@ Omit the index spec when the index argument is a compile-time constant — a lit
 Give it when the index is computed at run time, because no static scan can evaluate `axis` or `motorIndex`:
 
 ```c
-DEBUG_SET(DEBUG_CURRENT_ANGLE, axis, lrintf(currentAngle * 10.0f));  //!< [0..2] Current Angle ({roll|pitch|yaw}) [0.1deg]
+DEBUG_SET(DEBUG_CURRENT_ANGLE, axis, lrintf(currentAngle * 10.0f));  //!< [index:0..2] Current Angle ({roll|pitch|yaw}) [unit:0.1deg]
 ```
 
-`[2]`, `[0..2]` and `[0,2,4,6]` are all accepted. A single `{a|b|c}` group in the label then spells out one label per index, in index order, and the number of alternatives has to match the number of indices.
+`[index:2]`, `[index:0..2]` and `[index:0,2,4,6]` are all accepted. A single `{a|b|c}` group in the label then spells out one label per index, in index order, and the number of alternatives has to match the number of indices.
 
-Say what the code actually writes, not what the mode could hold. `DEBUG_ESC_SENSOR_RPM` sits behind `if (escSensorMotor < 4)`, so it is `[0..3]` with four motors, not `[0..7]`.
+Say what the code actually writes, not what the mode could hold. `DEBUG_ESC_SENSOR_RPM` sits behind `if (escSensorMotor < 4)`, so it is `[index:0..3]` with four motors, not `[index:0..7]`.
 
 ### Unit
 
-The unit of **one LSB** of the stored value, which is what lets tooling scale an axis and label it. An optional decimal factor precedes the symbol:
+`[unit:…]` is the unit of **one LSB** of the stored value, which is what lets tooling scale an axis and label it. An optional decimal factor precedes the symbol:
 
-| Firmware writes         | Annotation | Reads as                         |
-| ----------------------- | ---------- | -------------------------------- |
-| `lrintf(angleDeg * 10)` | `[0.1deg]` | one count is a tenth of a degree |
-| `baro.pressure / 100`   | `[100Pa]`  | one count is a hundred pascals   |
-| `lrintf(ratio * 1000)`  | `[0.001]`  | scaled, but dimensionless        |
-| `stats.uplink_RSSI_1`   | `[-1dBm]`  | the magnitude of a negative dBm  |
+| Firmware writes         | Annotation      | Reads as                         |
+| ----------------------- | --------------- | -------------------------------- |
+| `lrintf(angleDeg * 10)` | `[unit:0.1deg]` | one count is a tenth of a degree |
+| `baro.pressure / 100`   | `[unit:100Pa]`  | one count is a hundred pascals   |
+| `lrintf(ratio * 1000)`  | `[unit:0.001]`  | scaled, but dimensionless        |
+| `stats.uplink_RSSI_1`   | `[unit:-1dBm]`  | the magnitude of a negative dBm  |
 
-Omit the unit entirely for a plain count, a flag or an enumeration.
+Omit the bracket entirely for a plain count — a flag and an enumeration each have a shape of their own, below.
 
-The factor is the most common thing to get wrong, and the sign is the subtle one: CRSF sends RSSI as a positive count of dBm _below_ zero, so `[-1dBm]` is what makes a decoder plot it as the negative number it is.
+The factor is the most common thing to get wrong, and the sign is the subtle one: CRSF sends RSSI as a positive count of dBm _below_ zero, so `[unit:-1dBm]` is what makes a decoder plot it as the negative number it is.
 
 #### Symbols
 
@@ -91,7 +91,7 @@ A few more are device-native: the firmware stores the raw sensor value, and only
 | `rcCommand`          | throttle in rcCommand units | %                                    |
 | `eRPM`               | Dshot electrical RPM        | rpm, using the motor pole count      |
 
-A symbol outside this list fails the generator rather than reaching an app that would not know how to display it. If a field genuinely needs a new unit, add it to the list in `debug.h` and to the display map in the configurator's `src/js/utils/debugModes.js` in the same change.
+A symbol outside this list, or a bracket with no key at all, fails the generator rather than reaching an app that would not know how to display it. If a field genuinely needs a new unit, add it to the list in `debug.h` and to the display map in the configurator's `src/js/utils/debugModes.js` in the same change.
 
 ### Enumerations
 
@@ -170,6 +170,7 @@ When you add or change a `DEBUG_SET()`:
 - [ ] The annotation is on the line the call ends on.
 - [ ] The label says what the value is, not which variable holds it, and contains no brackets.
 - [ ] An index spec is present if and only if the index is computed at run time, and it lists what the code really writes.
+- [ ] Every bracket carries its key — `index:`, `unit:`, `enum:` or `flags:`.
 - [ ] The unit is the value of one LSB, with the factor and the sign that the expression implies.
 - [ ] A field holding an enumerator names its enum, and one holding bit flags names its bits.
 - [ ] A field that packs two values into one index is split, not annotated around.
