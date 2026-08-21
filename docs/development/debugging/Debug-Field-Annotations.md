@@ -64,7 +64,7 @@ Say what the code actually writes, not what the mode could hold. `DEBUG_ESC_SENS
 
 ### Unit
 
-`[unit:…]` is the unit of **one LSB** of the stored value, which is what lets tooling scale an axis and label it. An optional decimal factor precedes the symbol:
+`[unit:…]` is the unit of **one LSB** of the stored value, which is what lets tooling scale an axis and label it. A numeric factor may precede the symbol — whole or decimal, and negative for a field that stores the magnitude of a negative quantity — and the symbol itself may be left out when the value is scaled but dimensionless:
 
 | Firmware writes         | Annotation      | Reads as                         |
 | ----------------------- | --------------- | -------------------------------- |
