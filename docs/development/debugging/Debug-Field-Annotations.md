@@ -11,13 +11,13 @@ DEBUG_SET(DEBUG_CYCLETIME, 0, getTaskDeltaTimeUs(TASK_SELF));  //!< Cycle Time [
 DEBUG_SET(DEBUG_CYCLETIME, 1, getAverageSystemLoadPercent());  //!< CPU Load [unit:%]
 ```
 
-It is a comment, so it costs no flash. A firmware-side string table would have cost every target flash for data only tooling needs.
+It is a comment, so it costs no flash. A firmware-side string table would have cost flash on every target for tooling-only data.
 
 ## The Grammar
 
 The annotation goes on the line the call **ends** on, which matters for a call spanning several lines:
 
-```
+```text
 //!< [index:<indices>] <label> [<shape>]
 ```
 
@@ -25,7 +25,7 @@ The canonical specification lives above the `DEBUG_SET` macro in [`src/main/buil
 
 ### Shapes
 
-Every bracket names what it is, so nothing about an annotation depends on where it sits — and the shape bracket says what **kind** of value the field holds, which is the whole of what a tool needs: from the shape alone it derives how to format a sample and how to scale a graph axis. Four shapes cover every field, so nothing has to be decided per field in an app.
+Every bracket names what it is, so nothing about an annotation depends on where it sits. Between them the two parts are all a tool needs: the label supplies the text it prints, and the shape bracket says what **kind** of value the field holds, from which it derives how to format a sample and how to scale a graph axis. Four shapes cover every field, so nothing has to be decided per field in an app.
 
 | Shape         | Written as                                              | A tool shows              | Graph axis                 |
 | ------------- | ------------------------------------------------------- | ------------------------- | -------------------------- |
@@ -77,7 +77,7 @@ The factor is the most common thing to get wrong, and the sign is the subtle one
 
 #### Symbols
 
-```
+```text
 s ms us  Hz kHz MHz kbit/s  rad rad/s  deg dps dps2
 m cm m/s cm/s  g g/s  V A mAh  degC Pa hPa  rpm % dB dBm  bytes ticks
 ```
@@ -101,7 +101,7 @@ A field holding an enumerator names the enum instead of a unit, and tooling read
 DEBUG_SET(DEBUG_FAILSAFE, 3, failsafeState.phase);  //!< Failsafe Phase [enum:failsafePhase_e]
 ```
 
-The enum has to be visible in the file or in a header it includes, and its enumerators have to be plain — an initialiser the parser cannot evaluate, or entries behind an `#ifdef`, mean the values would depend on the build, so such a block is skipped and the annotation fails.
+The enum has to be visible in the file or in a header it includes, and its enumerators have to be plain — an initializer the parser cannot evaluate, or entries behind an `#ifdef`, mean the values would depend on the build, so such a block is skipped and the annotation fails.
 
 This is worth reaching for: the configurator's list of dynamic-notch calculation steps still named the CMSIS FFT steps that the firmware dropped years earlier, and nobody noticed because a stale enum still decodes to plausible-looking names.
 
@@ -127,7 +127,7 @@ DEBUG_SET(DEBUG_AUTOPILOT_PID, 7, 100);   // a marker for "reached this branch"
 DEBUG_SET(DEBUG_LIDAR_TF, 6, -99);        // out of range
 ```
 
-No annotation makes `412` readable, and no shape describes it, so these are plain integers to every tool. If you are writing one, **split it across two indices instead** — a debug mode has eight, and two fields a pilot can read are worth more than one that needs a decoder ring. Where an existing field does this, fixing the firmware is the way forward, not a richer annotation.
+No annotation makes `412` readable, and no shape describes it, so any tool reading the annotations shows a plain integer — a purpose-built decoder can of course unpack it, which is the point: it has to be told how. If you are writing one, **split it across two indices instead** — a debug mode has eight, and two fields a pilot can read are worth more than one that needs a decoder ring. Where an existing field does this, fixing the firmware is the way forward, not a richer annotation.
 
 ## Fields Two Subsystems Write
 
@@ -135,14 +135,15 @@ A logged `debug[n]` records only the number, never which code wrote it. So an in
 
 Where they disagree, annotate each call site truthfully. The generator reports the clash instead of picking one:
 
-```
-WARNING BATTERY[3] has 2 meanings: "Sag Compensation Attenuation" [0.001] at
-src/main/flight/mixer.c:262 vs "Voltage Stable Bits" at src/main/sensors/battery.c:179
+```text
+generate-debug-modes: WARNING BATTERY[3] has 2 meanings: "Sag Compensation
+Attenuation" at src/main/flight/mixer.c:262 vs "Voltage Stable Bits" at
+src/main/sensors/battery.c:179
 ```
 
 Those are firmware bugs, not annotation problems, and the report is the point — see [issue 15594](https://github.com/betaflight/betaflight/issues/15594). Tooling names both meanings and drops the unit, since a unit that belongs to one of them would scale the other's samples wrongly.
 
-A field multiplexed by state is a milder case of the same thing: `DEBUG_GPS_CONNECTION[3]` carries the baud rate while the GPS baud is being detected and the age of the last nav message afterwards. Name both in the label — there is no unit that covers both.
+A field multiplexed by state is a milder case of the same thing: `DEBUG_GPS_CONNECTION[3]` carries the baud rate while the GPS baud is being detected and the age of the last nav message afterward. Name both in the label — there is no unit that covers both.
 
 ## How Tooling Reads It
 
@@ -180,5 +181,5 @@ When you add or change a `DEBUG_SET()`:
 ## See Also
 
 - [`src/main/build/debug.h`](https://github.com/betaflight/betaflight/blob/master/src/main/build/debug.h) — the canonical grammar, next to the macro
-- [Blackbox Internals](../Blackbox-Internals.md) — how debug fields reach a log
-- [Coding Style](../CodingStyle.md)
+- [Blackbox Internals](../Blackbox-Internals) — how debug fields reach a log
+- [Coding Style](../CodingStyle)
