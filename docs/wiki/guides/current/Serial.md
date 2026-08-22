@@ -49,13 +49,15 @@ What this changes in practice:
 - `serial` is now a **read-only** command. It still prints the familiar six-column view, but that view is synthesised on the fly from the per-feature settings.
 - `diff` and `dump` no longer emit `serial` lines. Port assignments appear as ordinary `set` lines instead.
 - Pasting a `serial` line from an older diff is rejected with `###ERROR IN serial: READ ONLY, ASSIGN PORTS WITH THE <FEATURE>_UART SETTINGS###`. Port assignments from an older configuration have to be re-created with the settings below.
-- The MSP write commands `MSP_SET_CF_SERIAL_CONFIG` (55) and `MSP2_COMMON_SET_SERIAL_CONFIG` (0x100A) have been **removed**, as has the passthrough-by-function mode of `MSP_SET_PASSTHROUGH` (`0xFE`). The read commands `MSP_CF_SERIAL_CONFIG` (54) and `MSP2_COMMON_SERIAL_CONFIG` (0x1009) remain and synthesise their reply from the feature settings, so existing tools can still read the port layout. Writing is done through the CLI over MSP.
+- The MSP write commands `MSP_SET_CF_SERIAL_CONFIG` (55) and `MSP2_COMMON_SET_SERIAL_CONFIG` (0x100A) have been **removed**, as has the `MSP_PASSTHROUGH_SERIAL_FUNCTION_ID` (`0xFE`) mode of `MSP_SET_PASSTHROUGH` (245), which selected a passthrough port by function rather than by identifier. The read commands `MSP_CF_SERIAL_CONFIG` (54) and `MSP2_COMMON_SERIAL_CONFIG` (0x1009) remain and synthesise their reply from the feature settings, so existing tools can still read the port layout. Writing is done through the CLI over MSP.
 
 #### Port Names
 
 Every `*_uart` setting takes a port **name**, not a number:
 
-`NONE`, `VCP`, `UART0` … `UART15`, `LPUART1`, `SOFTSERIAL1`, `SOFTSERIAL2`, `PIOUART0` … `PIOUART9`
+`NONE`, `VCP`, `UART0` … `UART15`, `LPUART1`, `SOFT1`, `SOFT2`, `PIOUART0` … `PIOUART9`
+
+Note the SoftSerial ports are named `SOFT1` and `SOFT2` — `SOFTSERIAL1` is not accepted.
 
 Only ports the target actually has are accepted — `get <setting>` lists the valid names for the board in front of you. `NONE` leaves the feature unassigned.
 
@@ -92,15 +94,17 @@ set telemetry_1_protocol = SMARTPORT
 set telemetry_1_uart = UART6
 ```
 
-- `telemetry_<n>_protocol` accepts `NONE`, `FRSKY_HUB`, `HOTT`, `LTM`, `SMARTPORT`, `MAVLINK` and `IBUS`. Protocols not built into the firmware are not selectable.
+- `telemetry_<n>_protocol` accepts `NONE`, `FRSKY_HUB`, `HOTT`, `LTM`, `SMARTPORT`, `MAVLINK` and `IBUS`. The list is not filtered per build: selecting a protocol the firmware was not built with is accepted, but nothing claims the port and the slot silently does nothing.
 - The number of slots is capped at the number of telemetry protocols the build actually contains, so a cut-down build may expose fewer than three.
 - CRSF and GHST telemetry ride the receiver's own port and never occupy a slot.
-- A protocol may only be used once. If two slots name the same protocol, the later one is cleared on boot.
+- A protocol may only be used once. If two slots name the same protocol and the earlier one has a port assigned, the later one is cleared on boot. Two slots naming the same protocol with the earlier one left at `NONE` both survive.
 - Only LTM and MAVLink honour `telemetry_<n>_baud`. FrSky Hub, HoTT, SmartPort and iBus run at rates fixed by the protocol. `AUTO` means "let the protocol pick", which is `19200` for LTM and `57600` for MAVLink.
 
 #### MSP Slots
 
 MSP works the same way, with `msp_uart_1` … `msp_uart_3` and matching `msp_baud_<n>`. On a freshly flashed board the first available port — VCP where the board has one — always claims slot 1, so the flight controller stays reachable.
+
+There are exactly **three** slots. The `MAX_MSP_PORT_COUNT` custom define still sizes the internal array, but the CLI only defines settings for slots 1 to 3, so raising it above 3 no longer gives you extra assignable MSP ports the way it did before 2026.12.
 
 `AUTO` is not a valid MSP baud rate; a slot left at `AUTO` opens at `115200`.
 
@@ -120,7 +124,12 @@ Functions on one port are rejected as conflicting when:
 
 - MSP or serial RX is placed on a SoftSerial port.
 - MSP VTX is alone on a port — it has to share with MSP or with serial RX.
-- Two or more functions share a port in any combination other than MSP together with blackbox, telemetry, MSP VTX or a serial rangefinder, or serial RX together with telemetry.
+- Two or more functions share a port in any combination other than the two permitted ones below.
+
+The permitted combinations are:
+
+- **MSP** together with any of blackbox, telemetry, MSP VTX or a serial rangefinder.
+- **Serial RX** together with FrSky Hub, LTM or MAVLink telemetry, and only when `serialrx_provider` is one of `SPEKTRUM1024`, `SPEKTRUM2048`, `SBUS`, `SUMD`, `SUMH`, `XBUS_MODE_B`, `XBUS_MODE_B_RJ01`, `IBUS` or `MAVLINK`. iBus telemetry may also share with an iBus receiver, and MSP VTX with any serial RX. CRSF, GHST and F.Port receivers cannot share their port with a telemetry slot — they carry telemetry over the receiver protocol itself.
 
 #### Examples
 
@@ -157,9 +166,9 @@ If the configuration is invalid the serial port configuration will reset to its 
   e.g. after configuring a port for GPS enable the GPS feature.
 - If SoftSerial is used, then all SoftSerial ports must use the same baudrate.
 - Softserial is limited to 19200 baud.
-- All telemetry systems except MSP will ignore any attempts to override the baudrate.
-- MSP/CLI can be shared with EITHER Blackbox OR telemetry. In shared mode blackbox or telemetry will be output only when armed.
-- Smartport telemetry cannot be shared with MSP.
+- Most telemetry protocols run at a rate fixed by the protocol and ignore the configured baud rate. Only LTM and MAVLink honour it — `telemetry_<n>_baud` from firmware 2026.12, the telemetry baud column before that.
+- MSP/CLI can be shared with blackbox, telemetry, MSP VTX or a serial rangefinder. In shared mode blackbox or telemetry will be output only when armed.
+- Serial RX can be shared with telemetry, subject to the receiver protocol restrictions listed under [Validation and Recovery](#validation-and-recovery).
 - No other serial port sharing combinations are valid.
 - You can use as many different telemetry systems as you like at the same time.
 - You can only use each telemetry system once. e.g. FrSky telemetry cannot be used on two port, but MSP Telemetry + FrSky on different ports is fine.
@@ -172,9 +181,9 @@ From firmware 2026.12 (MSP API 1.49) `serial` is read-only and takes no argument
 
 :::
 
-You can use the CLI for configuration but the commands are reserved for developers and advanced users.
+On firmware 2025.12 and earlier (MSP API 1.48 and earlier) the `serial` command wrote the configuration and took 6 arguments. The syntax and the examples in this section describe that historical behaviour — on 2026.12 and later they are rejected. They are documented here because `serial` still **prints** in this format, and because older diffs and guides use it.
 
-The `serial` CLI command takes 6 arguments:
+The `serial` CLI command takes 6 arguments (write support: firmware 2025.12 and earlier only):
 
 ```
 serial <port identifier> <port function> <msp baudrate> <gps baudrate> <telemetry baudrate> <blackbox baudrate>
@@ -300,7 +309,9 @@ resource LPUART_RX 1 <PIN>
 
 Notes:
 
-`FUNCTION_FRSKY_OSD` = `(1\<\<16)` requires 17 bits . We can use up to 32 bits (1\<\<32) here.
+`FUNCTION_FRSKY_OSD` = `(1\<\<16)` requires 17 bits. The mask is a 32-bit value, so the highest usable bit is `1 \<\< 31`.
+
+Only `MSP2_COMMON_SERIAL_CONFIG` (0x1009) carries the full 32 bits. The legacy `MSP_CF_SERIAL_CONFIG` (54) sends the mask as a 16-bit value, so `FUNCTION_FRSKY_OSD` and everything above it is truncated on that command — tools that need those bits must use the MSP2 variant.
 
 To configure `MSP_DISPLAYPORT` use the combination `FUNCTION_VTX_MSP | FUNCTION_MSP`.
 
@@ -309,7 +320,7 @@ To configure `MSP_DISPLAYPORT` use the combination `FUNCTION_VTX_MSP | FUNCTION_
 Changes in firmware 2026.12 (MSP API 1.49):
 
 - `FUNCTION_LIDAR_TF` was renamed to `FUNCTION_LIDAR` and now covers every serial rangefinder; the driver is selected with `rangefinder_hardware` rather than by the bit.
-- `FUNCTION_OSD_CUSTOM_TEXT` moved from `1 \<\< 20` into the bit freed by that consolidation.
+- `FUNCTION_OSD_CUSTOM_TEXT` moved from `1 \<\< 20` down to `1 \<\< 19`, the bit freed when `FUNCTION_LIDAR_NL` was folded into `FUNCTION_LIDAR`.
 
 ### 3. MSP Baudrates
 
