@@ -89,7 +89,7 @@ Assigning the port and selecting the device are two separate settings. `rangefin
 
 Telemetry is configured as a set of slots, three by default. Each slot is a protocol, a port and a baud rate:
 
-```
+```text
 set telemetry_1_protocol = SMARTPORT
 set telemetry_1_uart = UART6
 ```
@@ -133,7 +133,7 @@ The permitted combinations are:
 
 #### Examples
 
-```
+```text
 # receiver on UART2
 set rx_uart = UART2
 
@@ -185,7 +185,7 @@ On firmware 2025.12 and earlier (MSP API 1.48 and earlier) the `serial` command 
 
 The `serial` CLI command takes 6 arguments (write support: firmware 2025.12 and earlier only):
 
-```
+```text
 serial <port identifier> <port function> <msp baudrate> <gps baudrate> <telemetry baudrate> <blackbox baudrate>
 ```
 
@@ -248,7 +248,7 @@ Note: for Identifier see serialPortIdentifier_e in the source; for Function bitm
 
 Firmware 2025.12 changes the way CLI handles serial configuration as it uses serial port name instead of identifier.
 
-```
+```text
 serial VCP 1 115200 57600 0 115200
 serial UART1 2048 115200 57600 0 115200
 serial UART2 64 115200 57600 0 115200
@@ -272,7 +272,7 @@ serial UART6 2 115200 57600 0 115200
 
 In firmware 4.5 for SOFTSERIAL or LPUART we use the following resources:
 
-```
+```text
 resource SOFTSERIAL_TX 1 <PIN>
 resource SOFTSERIAL_RX 1 <PIN>
 resource SOFTSERIAL_TX 2 <PIN>
@@ -415,7 +415,7 @@ If port2 config(the last three arguments) is not specified, the passthrough will
 
 For example. If you have your MWOSD connected to UART 2, you could enable communicaton to this device using the following command. This command does not specify the baud rate or mode, using the one configured for the port (see above).
 
-```
+```text
 serialpassthrough 1
 ```
 
@@ -429,7 +429,7 @@ In order to reflash an Arduino based device such as a MWOSD via `serialpassthrou
 
 For example, the following configuration for an OpenPilot Revolution shows the UART6 serial port to be configured with TX on pin C06, RX on pin C07 and a DTR connection using PINIO on pin C08.
 
-```
+```text
 resource SERIAL_TX 1 A09
 resource SERIAL_TX 3 B10
 resource SERIAL_TX 4 A00
@@ -443,13 +443,13 @@ resource PINIO 1 C08
 
 To assign the DTR line to another pin use the following command.
 
-```
+```text
 resource PINIO 1 c05
 ```
 
 To disassociate DTR from a pin use the following command.
 
-```
+```text
 resource PINIO 1 none
 ```
 
@@ -475,7 +475,7 @@ if you want passthrough between UARTs, `[port2 id]` is a required argument, the 
 
 For example. If you using a filght controller built-in BLE chip, and the BLE chip was inner connected to a UART, you can use the following command to let the UART to talk with other UART:
 
-```
+```text
 serialpassthrough 0 115200 rxtx none 4 19200
 ```
 
