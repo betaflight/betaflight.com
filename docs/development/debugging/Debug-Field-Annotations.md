@@ -193,6 +193,11 @@ npm run generate:debug-modes:dev -- --repo /path/to/your/betaflight
 npm run generate:debug-modes -- --repo /path/to/betaflight --pr 15596
 ```
 
+`--repo` is only needed when the checkout is not found on its own: the generator
+looks at `$BETAFLIGHT_REPO` and then at checkouts sitting alongside the
+configurator, so `npm run generate:debug-modes -- --pr 15596` is often a whole
+command by itself.
+
 Both read the newest API version from the firmware you named; older versions still
 come from committed history, since only the newest can be the one you are changing.
 Discard the regenerated files with `git checkout` when you are done: they describe
