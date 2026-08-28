@@ -105,6 +105,8 @@ DEBUG_SET(DEBUG_FAILSAFE, 3, failsafeState.phase);  //!< Failsafe Phase [enum:fa
 
 The enum has to be visible in the file or in a header it includes, and its enumerators have to be plain — an initializer the parser cannot evaluate, or entries behind an `#ifdef`, mean the values would depend on the build, so such a block is skipped and the annotation fails.
 
+Pinning values is fine, gaps included: `{ A, B = 3 }` names 0 and 3 and leaves 1 and 2 unnamed, and a sample landing on an unnamed value shows as the number. An enum whose values are pinned by a shift or a mask is not an enumeration in this sense — it is bit flags, and has a shape of its own below.
+
 This is worth reaching for: the configurator's list of dynamic-notch calculation steps still named the CMSIS FFT steps that the firmware dropped years earlier, and nobody noticed because a stale enum still decodes to plausible-looking names.
 
 ### Bit Flags
@@ -167,6 +169,11 @@ mode's position in `versions[api].modes` is its numeric `debug_mode`, and each
 version records the firmware commit it was read from.
 
 It reads one table that is not generated: `src/js/debug_units.ts`, which holds every unit symbol and what it means to a consumer — the suffix to print, the factor to the displayed unit, the hardware conversion a device-native unit needs, and the graph axis the unit implies. The generator's vocabulary is that table's keys, so the units firmware may write and the units an app can display are the same list by construction.
+
+Only live code is read. A commented-out `DEBUG_SET()` is not a field the mode
+writes, and an annotation inside a block comment is not an annotation — so a call
+left commented out for later costs nothing, and does not have to be tidied away
+before the tables are regenerated.
 
 ```bash
 npm run generate:debug-modes   # regenerate from a firmware checkout
