@@ -93,7 +93,7 @@ A few more are device-native: the firmware stores the raw sensor value, and only
 | `rcCommand`          | throttle in rcCommand units | %                                    |
 | `eRPM`               | Dshot electrical RPM        | rpm, using the motor pole count      |
 
-A symbol outside this list, or a bracket with no key at all, fails the generator rather than reaching an app that would not know how to display it. That is enforced rather than conventional: the generator takes its accepted vocabulary from the keys of the configurator's `src/js/debug_units.js`, so a unit with no display rule cannot be generated at all. If a field genuinely needs a new unit, add it to the list in `debug.h` and to that table in the same change.
+A symbol outside this list, or a bracket with no key at all, fails the generator rather than reaching an app that would not know how to display it. That is enforced rather than conventional: the generator takes its accepted vocabulary from the keys of the configurator's `src/js/debug_units.ts`, so a unit with no display rule cannot be generated at all. If a field genuinely needs a new unit, add it to the list in `debug.h` and to that table in the same change.
 
 ### Enumerations
 
@@ -155,14 +155,49 @@ A field multiplexed by state is a milder case of the same thing: `DEBUG_GPS_CONN
 | --------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `src/js/debug_modes_table.js`           | the ordered `debugType_e` names per API version                                             |
 | `src/js/debug_fields_table.js`          | the label and shape — unit and scale, enum values, or flag names — of every annotated field |
+| `generated/debug-fields.json`           | all of the above as one schema-validated document, published for other tools                |
+| `generated/debug-fields.schema.json`    | its JSON Schema, generated alongside it                                                     |
 | `test/generated/debug_field_usage.json` | which `debug[n]` each mode writes, for the consistency test                                 |
 
-It reads one table that is not generated: `src/js/debug_units.js`, which holds every unit symbol and what it means to a consumer — the suffix to print, the factor to the displayed unit, the hardware conversion a device-native unit needs, and the graph axis the unit implies. The generator's vocabulary is that table's keys, so the units firmware may write and the units an app can display are the same list by construction.
+The first two are the configurator's own source. The published pair exists so that
+nothing outside that repository has to parse the firmware's C or scrape its
+JavaScript to label a debug field — which is how the blackbox log viewer and every
+third-party log tool came to keep a copy of these labels in the first place. A
+mode's position in `versions[api].modes` is its numeric `debug_mode`, and each
+version records the firmware commit it was read from.
+
+It reads one table that is not generated: `src/js/debug_units.ts`, which holds every unit symbol and what it means to a consumer — the suffix to print, the factor to the displayed unit, the hardware conversion a device-native unit needs, and the graph axis the unit implies. The generator's vocabulary is that table's keys, so the units firmware may write and the units an app can display are the same list by construction.
 
 ```bash
 npm run generate:debug-modes   # regenerate from a firmware checkout
 npm run check:debug-modes      # exit 1 if the committed tables are stale
 ```
+
+### Seeing Your Annotation
+
+You do not have to commit an annotation, let alone merge it, to see what it does.
+Point the generator at the firmware you are working on and run the configurator:
+
+```bash
+# the checkout as it sits on disk — uncommitted edits and untracked files included
+npm run generate:debug-modes:dev -- --repo /path/to/your/betaflight
+
+# a pull request, fetched by number from the upstream project
+npm run generate:debug-modes -- --repo /path/to/betaflight --pr 15596
+```
+
+Both read the newest API version from the firmware you named; older versions still
+come from committed history, since only the newest can be the one you are changing.
+Discard the regenerated files with `git checkout` when you are done: they describe
+the firmware in front of you, not what the configurator ships.
+
+Output built from a working tree describes firmware nobody else has, so every file
+it writes opens with a `NOT FOR COMMIT` banner and the published JSON marks that
+version `"worktree": true`.
+
+Getting this wrong is the easy mistake: run with no firmware named and the
+generator reads plain `master`, which has none of your annotations, and quietly
+regenerates a table without them.
 
 For an annotated mode the generated labels **replace** the configurator's hand-written ones rather than merging with them, so a label left behind by a rework cannot go on naming a field the firmware no longer writes. Firmware older than the annotations keeps using the hand-written table.
 
@@ -180,7 +215,7 @@ When you add or change a `DEBUG_SET()`:
 - [ ] A field holding an enumerator names its enum, and one holding bit flags names its bits.
 - [ ] A field that packs two values into one index is split, not annotated around.
 - [ ] If another call site writes the same index, the two annotations agree — or the disagreement is a bug worth fixing first.
-- [ ] `npm run check:debug-modes` in the configurator, against your firmware checkout, reports no problems.
+- [ ] `npm run generate:debug-modes:dev -- --repo <your firmware>` in the configurator reports no problems, and the field reads the way you meant it to in the app.
 
 ## See Also
 
