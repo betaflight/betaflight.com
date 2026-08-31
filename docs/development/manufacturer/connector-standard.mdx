@@ -15,6 +15,7 @@ import ConnectorLogo from '/img/betaflight/connector_logo.svg';
 | Version 1.3 | 16 December 2025 | Add reference schematic + board renders for 4-pin and 3-pin camera connectors                                                                                                                                                                                                                                                |
 | Version 2.0 | 03 August 2026   | Remove the 6-pin UART+I2C (GPS) connector; GPS now uses the 4-pin serial connector. The 6-pin option is deprecated due to the risk of a GPS being plugged into the physically identical 6-pin digital VTX connector, whose 8-26V supply will damage or destroy the GPS                                                       |
 | Version 2.1 | 13 August 2026   | Add optional 2-pin I2C connector for devices that already take power from another connector, such as a GPS with an onboard compass. The 4-pin I2C connector remains the recommended and preferred option. Specify the ext. power connector as JST PH, so that a power connector can no longer be mated with a signal harness |
+| Version 2.2 | 31 August 2026   | Add the 4-pin FDCAN connector, adopting the JST GH CAN connector of the PX4 and ArduPilot connector standard unchanged so that existing CAN peripherals and harnesses work without adapters                                                                                                                                  |
 
 ## Introduction
 
@@ -41,12 +42,14 @@ Provide legacy wire harness in addition to the standard for current products.
 JST-SH is a widely used and reliable connector that has proven to be a robust choice for drone applications.
 The connector should be the standard for all drone manufacturers, ensuring compatibility between components from different manufacturers.
 
-The single exception is power-only connections, which use JST PH so that they cannot be mated with a signal harness. See [Ext. Power Pin Configuration](#ext-power-pin-configuration).
+Two connections do not use JST SH, for different reasons. Power-only connections use JST PH so that they cannot be mated with a signal harness, see [Ext. Power Pin Configuration](#ext-power-pin-configuration). FDCAN uses JST GH because it adopts the PX4 and ArduPilot CAN standard in full, see [FDCAN Pin Configuration](#fdcan-pin-configuration).
 
 ### JST GH Series as Optional Component.
 
 Some manufacturers also use other firmware, such as Ardupilot or Pixhawk, which have their own [standard](https://github.com/pixhawk/Pixhawk-Standards).
 This connector type is optional for drone manufacturers, allowing them to choose the connector type that best suits their needs as long as they provide a harness for both platforms.
+
+Where an established standard already covers a connection well, this standard adopts it as it is rather than defining a competing pinout. [FDCAN](#fdcan-pin-configuration) is taken wholesale from the PX4 and ArduPilot connector standard, JST GH included, so that the existing ecosystem of CAN peripherals and harnesses works without adapters. Adopting an outside standard this way is deliberate practice rather than an exception to be minimised, since a second, incompatible CAN pinout would fragment exactly what this document exists to unify. JST GH is therefore not optional for FDCAN, even on a board that is otherwise entirely JST SH.
 
 ### ESC Pin Configuration
 
@@ -108,7 +111,7 @@ Alternative a 10-pin connector can be used:
 
 ### Ext. Power Pin Configuration
 
-Power-only connections use the **JST PH series (2.0 mm pitch)**, not JST SH. This is the one deliberate departure from the JST SH standard, and it exists so that a connector carrying VBAT cannot physically be mated with any signal harness in this standard.
+Power-only connections use the **JST PH series (2.0 mm pitch)**, not JST SH. This deliberate departure from the JST SH standard exists so that a connector carrying VBAT cannot physically be mated with any signal harness in this standard.
 
 The pin configuration for the 2-pin JST PH connector is as follows:
 
@@ -202,6 +205,37 @@ The 4-pin I2C connector above remains the recommended and preferred option, and 
 The 2-pin [ext. power connector](#ext-power-pin-configuration) is JST PH specifically so that it cannot accept this harness, since applying VBAT to SDA and SCL will destroy the connected device.
 
 Legacy boards predating v2.1 may still present a 2-pin power connection on a JST SH socket. Do not fit a 2-pin I2C connector on such a board, and do not use a 2-pin JST SH socket for power on new designs.
+:::
+
+### FDCAN Pin Configuration
+
+FDCAN adopts the CAN connector of the [PX4 and ArduPilot connector standard](https://github.com/pixhawk/Pixhawk-Standards) unchanged: a 4-pin **JST GH (1.25 mm pitch)** connector with the pinout below. Nothing here is redefined by Betaflight. The reason for adopting rather than redefining is that CAN peripherals, splitters and harnesses in this form are already widely available, and a competing Betaflight CAN pinout would only fragment that supply.
+
+The pin configuration for the 4-pin JST GH connector is as follows:
+
+| Pin # | Signal Name | Description |
+| :---- | :---------- | :---------- |
+| 1     | V+ (5V)     | Power       |
+| 2     | Signal 1    | CAN_H       |
+| 3     | Signal 2    | CAN_L       |
+| 4     | GND         | Ground      |
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+![FDCAN Connector Schematic](/img/connector_standard/fdcan_connector_schematic.png)
+
+![FDCAN Connector Board Render](/img/connector_standard/fdcan_connector_render.png)
+
+</div>
+
+:::caution
+The pin order differs from every other connector in this standard: ground is on pin 4, not pin 2. This follows from adopting the PX4 and ArduPilot pinout as-is, and must not be "corrected" to match the rest of this document, as that would break compatibility with every existing CAN peripheral. The 1.25 mm GH pitch means the connector cannot be mated with a 4-pin JST SH [serial](#serial-uart-pin-configuration-rx-gps-and-other-5v-serial-devices) or [I2C](#4-pin-i2c-connector-preferred) harness.
+:::
+
+:::note
+CAN is a bus, not a point-to-point link. Boards intended to sit in the middle of a bus should provide two CAN connectors wired in parallel so peripherals can be daisy-chained, and the two physical ends of the bus require 120 Ω termination. Where a board provides on-board termination it should be selectable, so that a board fitted mid-bus does not add a third terminator.
+
+The 5V supply on pin 1 comes from the FC's onboard regulator and is intended for peripherals such as CAN GPS, compass, or ESC telemetry nodes. Higher-powered nodes should take their power from the [ext. power connector](#ext-power-pin-configuration) or directly from the battery.
 :::
 
 ### Analog Camera Pin Configuration
