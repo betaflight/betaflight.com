@@ -14,8 +14,8 @@ To force your board into DFU mode, simply hold the boot button pressed when plug
 
 In order for the Betaflight App to be able to access serial ports, your account needs to be in the `dialout` group. You can add yourself to this group as below:
 
-```
-sudo usermod -a -G dialout <username>
+```sh
+sudo usermod -a -G dialout $USER
 ```
 
 If your logs show `unable to open serial port` you might have skipped this step.
@@ -24,16 +24,16 @@ If your logs show `unable to open serial port` you might have skipped this step.
 
 Linux requires udev rules to allow write access to USB devices for users. An example shell command to achieve this on Ubuntu is shown here:
 
-```
+```sh
 (echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
  echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"'
  echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
 ```
 
-This assigns the device to the plugdev group(a standard group in Ubuntu). To check that your account is in the plugdev group type `groups` in the shell and ensure plugdev is listed. If not you can add yourself as shown (replacing `<username>` with your username):
+This assigns the device to the plugdev group(a standard group in Ubuntu). To check that your account is in the plugdev group type `groups` in the shell and ensure plugdev is listed. If not you can add yourself as shown (`$USER` automatically refers to your currently logged-in account, so nothing needs to be replaced):
 
-```
-sudo usermod -a -G plugdev <username>
+```sh
+sudo usermod -a -G plugdev $USER
 ```
 
 ### Fedora
@@ -41,7 +41,7 @@ sudo usermod -a -G plugdev <username>
 If you are using Fedora, you will not need to add your account to the plugdev group.
 Instead use the `uaccess` tag in your udev rule for dfu:
 
-```
+```sh
 (echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
  echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", TAG+="uaccess"'
  echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", TAG+="uaccess"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
@@ -51,7 +51,7 @@ Instead use the `uaccess` tag in your udev rule for dfu:
 
 If you see your ttyUSB device disappear right after the board is connected, chances are that the ModemManager service (that handles network connectivity for you) thinks it is a GSM modem. If this happens, you can issue the following command to disable the service:
 
-```
+```sh
 sudo systemctl stop ModemManager.service
 ```
 

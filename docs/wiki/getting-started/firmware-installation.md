@@ -91,23 +91,23 @@ Linux requires udev rules to allow write access to USB devices for users. If you
 
 Note: you might need to install libatomic:
 
-```
-$ sudo apt install libatomic1
+```sh
+sudo apt install libatomic1
 ```
 
 #### Step 0:
 
 Without next command the configurator will not launch on at least ubuntu 20.04 and higher
 
-```
-$ sudo usermod -a -G plugdev $USER
+```sh
+sudo usermod -a -G plugdev $USER
 ```
 
 #### Step 1:
 
 Since we will be using the CLI, simply copy and paste this command into your terminal, it will create the required file for you:
 
-```
+```sh
 (echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
 	echo 'ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"'
 	echo 'ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
@@ -127,9 +127,11 @@ Our USB device is called _/dev/ttyUSB0_.
 
 Check the current permissions and owner/group of the device.
 
-`[user@machine ~]$ ls -la /dev/ttyUSB0`
+```sh
+ls -la /dev/ttyUSB0
 
-`crw-rw----. 1 root dialout 188, 0 Apr  3 21:16 /dev/ttyUSB0`
+crw-rw----. 1 root dialout 188, 0 Apr  3 21:16 /dev/ttyUSB0
+```
 
 For this configuration, the owner is _root_, the group is _dialout_ and both the owner/group have _read/write_ permissions.
 
@@ -137,7 +139,9 @@ What you need to do is make your login userid part of the group associated with 
 
 For this case, we add the group _dialout_ to our userid _user_ using the _usermod_ command. This command requires root privileges to run.
 
-`[user@machine ~]$ sudo usermod -a -G dialout user`
+```sh
+sudo usermod -a -G dialout $USER
+```
 
 You will need to log out then log back in and now you should have access to the device.
 
@@ -147,7 +151,7 @@ If you are still not added to the _dialout_ group (you can check that using the 
 
 If you see your ttyUSB device disappear right after the board is connected, chances are that the ModemManager service (that handles network connectivity for you) thinks it is a GSM modem. If this happens, you can issue the following command to disable the service:
 
-```
+```sh
 sudo systemctl stop ModemManager.service
 ```
 
@@ -157,7 +161,7 @@ If you see the ttyUSB device appear and immediately disappear from the list in C
 
 Sometimes, after other programs (configuration scripts, ESC firmware uploaders) have used the port that your flight controller is recognised as, and (i.e. `/dev/ttyUSB0` or `/dev/ttyACM0`), and change modes on the port without resetting them. This leaves the configurator unable to connect to the flight controller, even after unplugging / replugging the USB cable. In this situation, the following command will reset the port settings to defaults:
 
-```
+```sh
 stty sane -F /dev/\<your port>
 ```
 
