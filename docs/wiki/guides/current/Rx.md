@@ -187,7 +187,9 @@ For more information on the wiring and setup see [this document](/resources/Jeti
 
 ## MultiWii serial protocol (MSP)
 
-Allows you to use MSP commands as the RC input. Only 8 channel support to maintain compatibility with MSP.
+Allows you to use MSP commands as the RC input, either as the sole receiver (`feature RX_MSP`) or as an override on selected channels while a real receiver supplies the rest. Up to 18 channels are accepted.
+
+This is the usual way to drive Betaflight from a companion computer such as a Raspberry Pi or Jetson. The two configurations have very different safety properties, so see [Controlling Betaflight From a Companion Computer Over MSP](/docs/wiki/guides/current/MSP-Companion-Computer-Control) before flying either.
 
 ## Configuration
 
