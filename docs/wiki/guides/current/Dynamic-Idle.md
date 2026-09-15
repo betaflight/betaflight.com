@@ -14,8 +14,6 @@ NOTE 2: **Dynamic Idle is off by default**. To enable it, enable DShot Telemetry
 
 NOTE 3: Dynamic Idle must not be used with 3D mode.
 
-NOTE 4: **Transient throttle limit should be disabled while using Dynamic Idle** (`set transient_throttle_limit = 0`)
-
 ### How does Dynamic Idle work?
 
 #### Let's first explain how idle is managed without dynamic idle.
