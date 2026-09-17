@@ -81,8 +81,10 @@ The factor is the most common thing to get wrong, and the sign is the subtle one
 
 ```text
 s ms us  Hz kHz MHz kbit/s  rad rad/s  deg dps dps2
-m cm m/s cm/s  g g/s  V A mAh  degC Pa hPa  rpm % dB dBm  bytes ticks
+m cm cm2  m/s cm/s  cm/s2 cm2/s2  g g/s  V A mAh  degC Pa hPa  rpm % dB dBm  bytes ticks
 ```
+
+A trailing `2` squares the symbol it follows, so `cm/s2` is an acceleration and `cm2/s2` the variance of a velocity — the same rule that makes `cm2` an area and `dps2` an angular acceleration. It is worth knowing before reading `cm2/s2` as a typo.
 
 A few more are device-native: the firmware stores the raw sensor value, and only the flight controller's own configuration can convert it.
 
@@ -93,7 +95,16 @@ A few more are device-native: the firmware stores the raw sensor value, and only
 | `rcCommand`          | throttle in rcCommand units | %                                    |
 | `eRPM`               | Dshot electrical RPM        | rpm, using the motor pole count      |
 
-A symbol outside this list, or a bracket with no key at all, fails the generator rather than reaching an app that would not know how to display it. That is enforced rather than conventional: the generator takes its accepted vocabulary from the keys of the configurator's `src/js/debug_units.ts`, so a unit with no display rule cannot be generated at all. If a field genuinely needs a new unit, add it to the list in `debug.h` and to that table in the same change.
+A symbol outside this list, or a bracket with no key at all, fails the firmware's own test suite, and the generator after it, rather than reaching an app that would not know how to display it. That is enforced rather than conventional: the generator takes its accepted vocabulary from the keys of the configurator's `src/js/debug_units.ts`, so a unit with no display rule cannot be generated at all.
+
+A unit therefore has four homes, and a field that genuinely needs a new one adds it to all four in the same change:
+
+| Place                                         | Repository     | Holds                                             |
+| --------------------------------------------- | -------------- | ------------------------------------------------- |
+| `src/main/build/debug.h`                      | firmware       | the canonical list, next to the macro             |
+| `src/test/unit/debug_annotations_unittest.cc` | firmware       | the accepted list `make test` enforces against it |
+| `src/js/debug_units.ts`                       | configurator   | the display rule — suffix, factor, axis           |
+| this page                                     | betaflight.com | the guide an author writes from                   |
 
 ### Enumerations
 
@@ -213,7 +224,18 @@ regenerates a table without them.
 
 For an annotated mode the generated labels **replace** the configurator's hand-written ones rather than merging with them, so a label left behind by a rework cannot go on naming a field the firmware no longer writes. Firmware older than the annotations keeps using the hand-written table.
 
-A malformed annotation fails the generator. It is the only record of what a field means, so a typo has to be loud rather than leaving the field silently unlabelled.
+### Checked in the Firmware
+
+An annotation is the only record of what a field means, so a malformed one has to be loud rather than leaving the field silently unlabelled. The firmware says so first: `make test` checks every annotation in `src/main` against the grammar, in `src/test/unit/debug_annotations_unittest.cc`, so it fails the pull request that writes it rather than the next tool that reads it. It reports:
+
+- a unit symbol no consumer knows, or a bracket with no key at all;
+- a bracket in a label, or a `{a|b|c}` group whose names do not match the indices;
+- an `[enum:…]` naming a type the firmware does not define;
+- an `[index:…]` spec on an index that is already a compile-time constant;
+- an annotation on the wrong line of a call that spans several lines;
+- a `DEBUG_SET()` with no annotation at all.
+
+What it cannot check is agreement between call sites, or the tables themselves: the report for an index two subsystems write, and the generated output, still come from the generator, which fails on the same malformed annotation for the same reasons. So run both — `make test` first, because it is local and fast, then the generator to see the field the way a pilot will.
 
 ## Checklist
 
@@ -227,6 +249,7 @@ When you add or change a `DEBUG_SET()`:
 - [ ] A field holding an enumerator names its enum, and one holding bit flags names its bits.
 - [ ] A field that packs two values into one index is split, not annotated around.
 - [ ] If another call site writes the same index, the two annotations agree — or the disagreement is a bug worth fixing first.
+- [ ] `make test` in the firmware passes — it checks every annotation in `src/main` against the grammar.
 - [ ] `npm run generate:debug-modes:dev -- --repo <your firmware>` in the configurator reports no problems, and the field reads the way you meant it to in the app.
 
 ## See Also
