@@ -50,7 +50,7 @@ DEBUG_SET(DEBUG_ITERM_RELAX, 0, lrintf(setpointHpf));  //!< Setpoint HPF (roll) 
 
 ### Indices
 
-Omit the index spec when the index argument is a compile-time constant — a literal, an `enum` member or a `#define`. Tooling resolves all three, including constants defined in a header the file includes.
+Omit the index spec when the index argument is a compile-time constant — a literal, an `enum` member or a `#define`. The generator resolves all three, including constants defined in a header the file includes.
 
 Give it when the index is computed at run time, because no static scan can evaluate `axis` or `motorIndex`:
 
@@ -59,6 +59,8 @@ DEBUG_SET(DEBUG_CURRENT_ANGLE, axis, lrintf(currentAngle * 10.0f));  //!< [index
 ```
 
 `[index:2]`, `[index:0..2]` and `[index:0,2,4,6]` are all accepted. A single `{a|b|c}` group in the label then spells out one label per index, in index order, and the number of alternatives has to match the number of indices.
+
+The firmware test decides from the call alone, so it recognises a literal and a constant written in capitals — `DEBUG_ESC_DATA_AGE`, `FD_YAW` — which is how Betaflight writes a `#define` or an `enum` member. Anything else it asks for a spec: a lower case `#define` used as an index, or an expression such as `SOME_SLOT + 1`. That is not a false alarm — no static scan evaluates arithmetic, so the spec is the right answer there, and the test asks for one exactly where it is missing.
 
 Say what the code actually writes, not what the mode could hold. `DEBUG_ESC_SENSOR_RPM` sits behind `if (escSensorMotor < 4)`, so it is `[index:0..3]` with four motors, not `[index:0..7]`.
 
@@ -114,7 +116,7 @@ A field holding an enumerator names the enum instead of a unit, and tooling read
 DEBUG_SET(DEBUG_FAILSAFE, 3, failsafeState.phase);  //!< Failsafe Phase [enum:failsafePhase_e]
 ```
 
-The enum has to be visible in the file or in a header it includes, and its enumerators have to be plain — an initializer the parser cannot evaluate, or entries behind an `#ifdef`, mean the values would depend on the build, so such a block is skipped and the annotation fails.
+The enum has to be visible in the file or in a header it includes, and that is now checked rather than trusted: the firmware test walks the includes of the file the call sits in, so a type defined somewhere the call site cannot reach fails, and the failure names the file that does define it when an include is all that is missing. Its enumerators also have to be plain — an initializer the parser cannot evaluate, or entries behind an `#ifdef`, mean the values would depend on the build, so such a block is skipped and the annotation fails.
 
 Pinning values is fine, gaps included: `{ A, B = 3 }` names 0 and 3 and leaves 1 and 2 unnamed, and a sample landing on an unnamed value shows as the number. An enum whose values are pinned by a shift or a mask is not an enumeration in this sense — it is bit flags, and has a shape of its own below.
 
@@ -228,12 +230,16 @@ For an annotated mode the generated labels **replace** the configurator's hand-w
 
 An annotation is the only record of what a field means, so a malformed one has to be loud rather than leaving the field silently unlabelled. The firmware says so first: `make test` checks every annotation in `src/main` against the grammar, in `src/test/unit/debug_annotations_unittest.cc`, so it fails the pull request that writes it rather than the next tool that reads it. It reports:
 
-- a unit symbol no consumer knows, or a bracket with no key at all;
-- a bracket in a label, or a `{a|b|c}` group whose names do not match the indices;
-- an `[enum:…]` naming a type the firmware does not define;
-- an `[index:…]` spec on an index that is already a compile-time constant;
-- an annotation on the wrong line of a call that spans several lines;
-- a `DEBUG_SET()` with no annotation at all.
+| What it checks | What it reports                                                                                                                                                            |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Coverage       | a `DEBUG_SET()` with no `//!<` at all                                                                                                                                      |
+| Placement      | an annotation on any line of a call but the one it ends on                                                                                                                 |
+| Brackets       | a bracket with no key, a key that is not `index:`, `unit:`, `enum:` or `flags:`, an index spec after the label                                                             |
+| Label          | a bracket in the label, no label, an unbalanced or repeated `{a\|b\|c}` group, a group naming a different number of fields than the spec has indices, a field left unnamed |
+| Unit           | a symbol `debug.h` does not list, a factor that is a lone sign or decimal point, an empty unit                                                                             |
+| Enum           | a name that is not a `_e` type, a type the firmware does not define, or one the call site's own includes cannot reach                                                      |
+| Index          | a spec on a compile-time index, **and a runtime index with no spec**                                                                                                       |
+| Mode names     | a `debugType_e` that reaches `debugModeNames[]` without a name                                                                                                             |
 
 What it cannot check is agreement between call sites, or the tables themselves: the report for an index two subsystems write, and the generated output, still come from the generator, which fails on the same malformed annotation for the same reasons. So run both — `make test` first, because it is local and fast, then the generator to see the field the way a pilot will.
 
