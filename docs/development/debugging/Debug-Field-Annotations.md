@@ -50,9 +50,9 @@ DEBUG_SET(DEBUG_ITERM_RELAX, 0, lrintf(setpointHpf));  //!< Setpoint HPF (roll) 
 
 ### Indices
 
-Omit the index spec when the index argument is a compile-time constant — a literal, an `enum` member or a `#define`. The generator resolves all three, including constants defined in a header the file includes.
+Omit the index spec when the index argument is one a reader can resolve from the call itself: a literal, or a constant written in capitals — `DEBUG_ESC_DATA_AGE`, `FD_YAW` — which is how Betaflight writes a `#define` or an `enum` member.
 
-Give it when the index is computed at run time, because no static scan can evaluate `axis` or `motorIndex`:
+Give it for anything else, starting with an index computed at run time, because no static scan can evaluate `axis` or `motorIndex`:
 
 ```c
 DEBUG_SET(DEBUG_CURRENT_ANGLE, axis, lrintf(currentAngle * 10.0f));  //!< [index:0..2] Current Angle ({roll|pitch|yaw}) [unit:0.1deg]
@@ -60,7 +60,7 @@ DEBUG_SET(DEBUG_CURRENT_ANGLE, axis, lrintf(currentAngle * 10.0f));  //!< [index
 
 `[index:2]`, `[index:0..2]` and `[index:0,2,4,6]` are all accepted. A single `{a|b|c}` group in the label then spells out one label per index, in index order, and the number of alternatives has to match the number of indices.
 
-The firmware test decides from the call alone, so it recognises a literal and a constant written in capitals — `DEBUG_ESC_DATA_AGE`, `FD_YAW` — which is how Betaflight writes a `#define` or an `enum` member. Anything else it asks for a spec: a lower case `#define` used as an index, or an expression such as `SOME_SLOT + 1`. That is not a false alarm — no static scan evaluates arithmetic, so the spec is the right answer there, and the test asks for one exactly where it is missing.
+That last part is wider than it looks, because the two consumers draw the line in different places. The generator reads the headers, so it also resolves a lower case `#define`, wherever it is defined; the firmware test decides from the call alone, so it does not, and asks for a spec there and for an expression such as `SOME_SLOT + 1`. Neither evaluates arithmetic. Writing the spec wherever the index is not a literal or a constant in capitals satisfies both, and costs nothing where the generator could have worked it out for itself.
 
 Say what the code actually writes, not what the mode could hold. `DEBUG_ESC_SENSOR_RPM` sits behind `if (escSensorMotor < 4)`, so it is `[index:0..3]` with four motors, not `[index:0..7]`.
 
@@ -238,7 +238,7 @@ An annotation is the only record of what a field means, so a malformed one has t
 | Label          | a bracket in the label, no label, an unbalanced or repeated `{a\|b\|c}` group, a group naming a different number of fields than the spec has indices, a field left unnamed |
 | Unit           | a symbol `debug.h` does not list, a factor that is a lone sign or decimal point, an empty unit                                                                             |
 | Enum           | a name that is not a `_e` type, a type the firmware does not define, or one the call site's own includes cannot reach                                                      |
-| Index          | a spec on a compile-time index, **and a runtime index with no spec**                                                                                                       |
+| Index          | a spec on a literal or a constant in capitals, **and no spec on anything else**                                                                                            |
 | Mode names     | a `debugType_e` that reaches `debugModeNames[]` without a name                                                                                                             |
 
 What it cannot check is agreement between call sites, or the tables themselves: the report for an index two subsystems write, and the generated output, still come from the generator, which fails on the same malformed annotation for the same reasons. So run both — `make test` first, because it is local and fast, then the generator to see the field the way a pilot will.
@@ -249,7 +249,7 @@ When you add or change a `DEBUG_SET()`:
 
 - [ ] The annotation is on the line the call ends on.
 - [ ] The label says what the value is, not which variable holds it, and contains no brackets.
-- [ ] An index spec is present if and only if the index is computed at run time, and it lists what the code really writes.
+- [ ] An index spec is present if and only if the index is something other than a literal or a constant in capitals, and it lists what the code really writes.
 - [ ] Every bracket carries its key — `index:`, `unit:`, `enum:` or `flags:`.
 - [ ] The unit is the value of one LSB, with the factor and the sign that the expression implies.
 - [ ] A field holding an enumerator names its enum, and one holding bit flags names its bits.
