@@ -50,15 +50,17 @@ DEBUG_SET(DEBUG_ITERM_RELAX, 0, lrintf(setpointHpf));  //!< Setpoint HPF (roll) 
 
 ### Indices
 
-Omit the index spec when the index argument is a compile-time constant — a literal, an `enum` member or a `#define`. Tooling resolves all three, including constants defined in a header the file includes.
+Omit the index spec when the index argument is one a reader can resolve from the call itself: a literal, or a constant written in capitals — `DEBUG_ESC_DATA_AGE`, `FD_YAW` — which is how Betaflight writes a `#define` or an `enum` member.
 
-Give it when the index is computed at run time, because no static scan can evaluate `axis` or `motorIndex`:
+Give it for anything else, starting with an index computed at run time, because no static scan can evaluate `axis` or `motorIndex`:
 
 ```c
 DEBUG_SET(DEBUG_CURRENT_ANGLE, axis, lrintf(currentAngle * 10.0f));  //!< [index:0..2] Current Angle ({roll|pitch|yaw}) [unit:0.1deg]
 ```
 
 `[index:2]`, `[index:0..2]` and `[index:0,2,4,6]` are all accepted. A single `{a|b|c}` group in the label then spells out one label per index, in index order, and the number of alternatives has to match the number of indices.
+
+That last part is wider than it looks, because the two consumers draw the line in different places. The generator reads the file and the headers it includes directly, so it also resolves a lower case `#define` — provided it is a plain decimal one, and not in a header reached only through another header. The firmware test decides from the call alone, so it resolves neither. And neither evaluates arithmetic, so an expression such as `SOME_SLOT + 1` needs the spec whichever is reading. Writing the spec wherever the index is not a literal or a constant in capitals satisfies both, and costs nothing where the generator could have worked it out for itself.
 
 Say what the code actually writes, not what the mode could hold. `DEBUG_ESC_SENSOR_RPM` sits behind `if (escSensorMotor < 4)`, so it is `[index:0..3]` with four motors, not `[index:0..7]`.
 
@@ -81,8 +83,10 @@ The factor is the most common thing to get wrong, and the sign is the subtle one
 
 ```text
 s ms us  Hz kHz MHz kbit/s  rad rad/s  deg dps dps2
-m cm m/s cm/s  g g/s  V A mAh  degC Pa hPa  rpm % dB dBm  bytes ticks
+m cm cm2  m/s cm/s  cm/s2 cm2/s2  g g/s  V A mAh  degC Pa hPa  rpm % dB dBm  bytes ticks
 ```
+
+A trailing `2` squares the symbol it follows, so `cm/s2` is an acceleration and `cm2/s2` the variance of a velocity — the same rule that makes `cm2` an area and `dps2` an angular acceleration. It is worth knowing before reading `cm2/s2` as a typo.
 
 A few more are device-native: the firmware stores the raw sensor value, and only the flight controller's own configuration can convert it.
 
@@ -93,7 +97,16 @@ A few more are device-native: the firmware stores the raw sensor value, and only
 | `rcCommand`          | throttle in rcCommand units | %                                    |
 | `eRPM`               | Dshot electrical RPM        | rpm, using the motor pole count      |
 
-A symbol outside this list, or a bracket with no key at all, fails the generator rather than reaching an app that would not know how to display it. That is enforced rather than conventional: the generator takes its accepted vocabulary from the keys of the configurator's `src/js/debug_units.ts`, so a unit with no display rule cannot be generated at all. If a field genuinely needs a new unit, add it to the list in `debug.h` and to that table in the same change.
+A symbol outside this list, or a bracket with no key at all, fails the firmware's own test suite, and the generator after it, rather than reaching an app that would not know how to display it. That is enforced rather than conventional: the generator takes its accepted vocabulary from the keys of the configurator's `src/js/debug_units.ts`, so a unit with no display rule cannot be generated at all.
+
+A unit therefore has four homes, and a field that genuinely needs a new one adds it to all four in the same change:
+
+| Place                                         | Repository     | Holds                                             |
+| --------------------------------------------- | -------------- | ------------------------------------------------- |
+| `src/main/build/debug.h`                      | firmware       | the canonical list, next to the macro             |
+| `src/test/unit/debug_annotations_unittest.cc` | firmware       | the accepted list `make test` enforces against it |
+| `src/js/debug_units.ts`                       | configurator   | the display rule — suffix, factor, axis           |
+| this page                                     | betaflight.com | the guide an author writes from                   |
 
 ### Enumerations
 
@@ -103,7 +116,7 @@ A field holding an enumerator names the enum instead of a unit, and tooling read
 DEBUG_SET(DEBUG_FAILSAFE, 3, failsafeState.phase);  //!< Failsafe Phase [enum:failsafePhase_e]
 ```
 
-The enum has to be visible in the file or in a header it includes, and its enumerators have to be plain — an initializer the parser cannot evaluate, or entries behind an `#ifdef`, mean the values would depend on the build, so such a block is skipped and the annotation fails.
+The enum has to be visible in the file or in a header it includes, and that is now checked rather than trusted: the firmware test walks the includes of the file the call sits in, so a type defined somewhere the call site cannot reach fails, and the failure names the file that does define it when an include is all that is missing. Its enumerators also have to be plain — an initializer the parser cannot evaluate, or entries behind an `#ifdef`, mean the values would depend on the build, so such a block is skipped and the annotation fails.
 
 Pinning values is fine, gaps included: `{ A, B = 3 }` names 0 and 3 and leaves 1 and 2 unnamed, and a sample landing on an unnamed value shows as the number. An enum whose values are pinned by a shift or a mask is not an enumeration in this sense — it is bit flags, and has a shape of its own below.
 
@@ -213,7 +226,25 @@ regenerates a table without them.
 
 For an annotated mode the generated labels **replace** the configurator's hand-written ones rather than merging with them, so a label left behind by a rework cannot go on naming a field the firmware no longer writes. Firmware older than the annotations keeps using the hand-written table.
 
-A malformed annotation fails the generator. It is the only record of what a field means, so a typo has to be loud rather than leaving the field silently unlabelled.
+### Checked in the Firmware
+
+An annotation is the only record of what a field means, so a malformed one has to be loud rather than leaving the field silently unlabelled. The firmware says so first: `make test` checks every annotation in `src/main` against the grammar, in `src/test/unit/debug_annotations_unittest.cc`, so it fails the pull request that writes it rather than the next tool that reads it. It reports:
+
+| What it checks | What it reports                                                                                                                                                            |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Coverage       | a `DEBUG_SET()` with no `//!<` at all                                                                                                                                      |
+| Placement      | an annotation on any line of a call but the one it ends on                                                                                                                 |
+| Brackets       | a bracket with no key, a key that is not `index:`, `unit:`, `enum:` or `flags:`, an index spec after the label                                                             |
+| Label          | a bracket in the label, no label, an unbalanced or repeated `{a\|b\|c}` group, a group naming a different number of fields than the spec has indices, a field left unnamed |
+| Unit           | a symbol `debug.h` does not list, a factor that is a lone sign or decimal point, an empty unit                                                                             |
+| Enum           | a name that is not a `_e` type, a type the firmware does not define, or one the call site's own includes cannot reach                                                      |
+| Index          | a spec on a literal or a constant in capitals, **and no spec on anything else**                                                                                            |
+| Vocabulary     | a symbol the test accepts that the grammar in `debug.h` does not list, so the two firmware homes cannot drift apart                                                        |
+| Mode names     | a `debugType_e` that reaches `debugModeNames[]` without a name                                                                                                             |
+
+What it cannot check is agreement between call sites, or the tables themselves: the report for an index two subsystems write, and the generated output, still come from the generator. Nor do the two overlap exactly. The generator fails on a malformed annotation as well — a bracket it cannot parse, an enum it cannot reach from the call site, a spec that does not cover the index the call writes — but coverage, placement and the runtime-index rule are the firmware test's alone. To the generator, an annotation that is missing and one left on an earlier line of the call are both simply absent: it warns once per unannotated mode and labels nothing, rather than failing. A runtime index with no spec is a field it records as dynamic, not an error.
+
+So run both — `make test` first, because it is local and fast, then the generator to see the field the way a pilot will.
 
 ## Checklist
 
@@ -221,12 +252,13 @@ When you add or change a `DEBUG_SET()`:
 
 - [ ] The annotation is on the line the call ends on.
 - [ ] The label says what the value is, not which variable holds it, and contains no brackets.
-- [ ] An index spec is present if and only if the index is computed at run time, and it lists what the code really writes.
+- [ ] An index spec is present if and only if the index is something other than a literal or a constant in capitals, and it lists what the code really writes.
 - [ ] Every bracket carries its key — `index:`, `unit:`, `enum:` or `flags:`.
 - [ ] The unit is the value of one LSB, with the factor and the sign that the expression implies.
 - [ ] A field holding an enumerator names its enum, and one holding bit flags names its bits.
 - [ ] A field that packs two values into one index is split, not annotated around.
 - [ ] If another call site writes the same index, the two annotations agree — or the disagreement is a bug worth fixing first.
+- [ ] `make test` in the firmware passes — it checks every annotation in `src/main` against the grammar.
 - [ ] `npm run generate:debug-modes:dev -- --repo <your firmware>` in the configurator reports no problems, and the field reads the way you meant it to in the app.
 
 ## See Also
