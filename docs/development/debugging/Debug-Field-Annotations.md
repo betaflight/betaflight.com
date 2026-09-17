@@ -60,7 +60,7 @@ DEBUG_SET(DEBUG_CURRENT_ANGLE, axis, lrintf(currentAngle * 10.0f));  //!< [index
 
 `[index:2]`, `[index:0..2]` and `[index:0,2,4,6]` are all accepted. A single `{a|b|c}` group in the label then spells out one label per index, in index order, and the number of alternatives has to match the number of indices.
 
-That last part is wider than it looks, because the two consumers draw the line in different places. The generator reads the headers, so it also resolves a lower case `#define`, wherever it is defined; the firmware test decides from the call alone, so it does not, and asks for a spec there and for an expression such as `SOME_SLOT + 1`. Neither evaluates arithmetic. Writing the spec wherever the index is not a literal or a constant in capitals satisfies both, and costs nothing where the generator could have worked it out for itself.
+That last part is wider than it looks, because the two consumers draw the line in different places. The generator reads the file and the headers it includes directly, so it also resolves a lower case `#define` — provided it is a plain decimal one, and not in a header reached only through another header. The firmware test decides from the call alone, so it resolves neither. And neither evaluates arithmetic, so an expression such as `SOME_SLOT + 1` needs the spec whichever is reading. Writing the spec wherever the index is not a literal or a constant in capitals satisfies both, and costs nothing where the generator could have worked it out for itself.
 
 Say what the code actually writes, not what the mode could hold. `DEBUG_ESC_SENSOR_RPM` sits behind `if (escSensorMotor < 4)`, so it is `[index:0..3]` with four motors, not `[index:0..7]`.
 
@@ -241,7 +241,9 @@ An annotation is the only record of what a field means, so a malformed one has t
 | Index          | a spec on a literal or a constant in capitals, **and no spec on anything else**                                                                                            |
 | Mode names     | a `debugType_e` that reaches `debugModeNames[]` without a name                                                                                                             |
 
-What it cannot check is agreement between call sites, or the tables themselves: the report for an index two subsystems write, and the generated output, still come from the generator, which fails on the same malformed annotation for the same reasons. So run both — `make test` first, because it is local and fast, then the generator to see the field the way a pilot will.
+What it cannot check is agreement between call sites, or the tables themselves: the report for an index two subsystems write, and the generated output, still come from the generator. Nor do the two overlap exactly. The generator fails on a malformed annotation as well — a bracket it cannot parse, an enum it cannot reach from the call site, a spec that does not cover the index the call writes — but coverage, placement and the runtime-index rule are the firmware test's alone. To the generator, an annotation that is missing and one left on an earlier line of the call are both simply absent: it warns once per unannotated mode and labels nothing, rather than failing. A runtime index with no spec is a field it records as dynamic, not an error.
+
+So run both — `make test` first, because it is local and fast, then the generator to see the field the way a pilot will.
 
 ## Checklist
 
