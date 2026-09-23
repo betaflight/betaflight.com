@@ -186,7 +186,7 @@ http://www.youtube.com/watch?v=xSzO6HP6yzs
 New Video by Joshua Bardwell on the Betaflight App:
 https://www.youtube.com/watch?v=VAHUZZXIn9o
 
-There is a step-by-step guide on how to flash the flight controller with Betaflight here: http://quadquestions.com/blog/2015/12/25/betaflight_flashing/
+There is a step-by-step guide on how to flash the flight controller with Betaflight here: https://web.archive.org/web/20201108123620/https://quadquestions.com/blog/2015/12/25/betaflight_flashing/
 
 How to flash Betaflight on CC3D video guide:
 http://www.rcgroups.com/forums/showpost.php?p=34196999&postcount=21477

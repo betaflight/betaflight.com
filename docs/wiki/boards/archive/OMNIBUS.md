@@ -43,8 +43,6 @@ Available here: http://shop.myairbot.com/index.php/flight-control/cleanflight-ba
 #### Distributors
 
 - http://www.readytoflyquads.com/
-- https://www.pitchrollyaw.net
-- https://www.fpv303.com
 
 ## Designers
 

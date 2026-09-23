@@ -1,12 +1,6 @@
 # MultiFlite PICO-B-FC
 
-http://www.multiflite.co.uk
-
 The multiFlite PICO-B-FC is a micro sized brushed FC, sporting an F3 chip, quad >8A fets, 5V out, and upgradable to hex. This FC is designed for power delivery and high performance.
-
-The FC is available from the following store(s):
-
-- http://store.multiflite.co.uk/index.php?route=product/product&path=59&product_id=71
 
 The features of the FC are detailed below:
 

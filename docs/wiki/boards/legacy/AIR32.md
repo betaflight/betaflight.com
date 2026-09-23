@@ -27,11 +27,11 @@ The AIR32 flight controller uses SMT32F3 processor and low noise MPU6000 gyro on
 
 ## Manufacturers and Distributors
 
-Flyinglemon - https://flyinglemon.eu
+Flyinglemon
 
 ## Designers
 
-Flyinglemon - https://flyinglemon.eu
+Flyinglemon
 
 ## Maintainers
 
@@ -48,7 +48,7 @@ Differences:
 ## FAQ and Known Issues
 
 **Wiring:**
-Use wiring only from PDF file https://flyinglemon.eu/index.php?controller=attachment&id_attachment=5
+Use wiring only from the Flyinglemon PDF wiring diagram.
 On website graphics has mistake with GND and Vcc for UART1 - they are swapped.
 
 **DSHOT:**

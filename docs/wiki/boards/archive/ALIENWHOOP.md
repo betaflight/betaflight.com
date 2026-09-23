@@ -38,9 +38,7 @@ AlienWhoop flight controller for Tiny Whoop, Blade Inductrix, Eachine, BetaFPV, 
 
 AlienWhoop (Manufacturers)
 
-- AlienWhoop Shop: [https://shop.alienwhoop.us/products/alienwhoop-v2-1-f4-brushed-flight-controller](https://shop.alienwhoop.us/products/alienwhoop-v2-1-f4-brushed-flight-controller)
 - BetaFPV: [https://betafpv.com/products/alienwhoop-f4-brushed-flight-controller](https://betafpv.com/products/alienwhoop-f4-brushed-flight-controller)
-- Drone Junkie: https://www.dronejunkie.co.uk/alienwhoop-f4-brushed-flight-controller-v2
 - TinyWhoop: https://www.tinywhoop.com/collections/electronics/products/alien-whoop-v2-1-f4-brushed-flight-controller
 - DIY files here: [https://oshpark.com/shared_projects/p4hs6DbI](https://oshpark.com/shared_projects/p4hs6DbI)
 

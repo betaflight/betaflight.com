@@ -63,7 +63,7 @@ http://team-blacksheep.com/tbs-unify-pro-5g8-manual.pdf
 
 #### Here is a tutorial by Amano13:
 
-https://tmr.kiwi/betaflight-mwosd-smartaudio-cms/
+https://web.archive.org/web/20180129174917/https://tmr.kiwi/betaflight-mwosd-smartaudio-cms/
 
 #### From Boris:
 
@@ -236,7 +236,7 @@ IRC-Tramp#modify-vtx-settings-tbs-unify--tramp-hv--rtc6705--using-spektrum-vtx-s
 
 ## Modify VTX Settings (TBS Unify / TrampHV) using FrSky TARANIS Menu
 
-http://www.nitbeatfpv.com/tramphv-unify-vtx-settings-taranis
+https://web.archive.org/web/20180201174625/http://www.nitbeatfpv.com/tramphv-unify-vtx-settings-taranis
 
 Note: The bf script linked in this 'how to' link isn't the latest one. You need the one linked here.
 https://github.com/betaflight/betaflight-tx-lua-scripts

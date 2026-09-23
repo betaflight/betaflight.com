@@ -55,7 +55,3 @@ There are currently (as of Jan 2017) three variants available sporting different
 - Flysky Compatible built-in receiver
 
   Available here: [Banggood](http://www.banggood.com/Micro-Scisky-32bits-Brushed-Flight-Control-Board-Built-in-FlySky-Compatible-RX-For-DIY-Micro-Frame-p-1093312.html?rmmds=search)
-
-## Other Resources
-
-http://community.micro-motor-warehouse.com/t/how-to-set-up-scisky-fc-step-by-step/1224

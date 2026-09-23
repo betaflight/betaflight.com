@@ -82,8 +82,6 @@ FC designed to run RaceFlight 'closed source' firmware, but has a target called 
 
 ## Manufacturers and Distributors
 
-https://revoltfc.com/index.html
-
 ## Designers
 
 ## Maintainers

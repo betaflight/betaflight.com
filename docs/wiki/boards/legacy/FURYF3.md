@@ -10,13 +10,9 @@ you do not have proficient soldering skills that you find someone in your area t
 your build. MultiGP is a good place to find like-minded quad builders. Go to MultiGP.com for
 more info
 
-**Available here: http://www.2dogrc.com/furyf3-board.html**
-
 **RCGroups Thread: https://www.rcgroups.com/forums/showthread.php?t=2628430**
 
 **Facebook Group: https://www.facebook.com/groups/1391468950869052/**
-
-**Website: http://www.furyflightcontrol.com/**
 
 # **Board Features**
 
@@ -62,10 +58,6 @@ more info
 - Direct mounting option for a Pololu switching regulator for up to 6S lipo operation.
 - Thoughtful, easy-to-build layout
 - Edge launch pins for a low profile build, also better for direct soldering.
-
-# **Manual**
-
-https://quadquestions.com/uploads/furyf3manual.pdf
 
 # **Board Layout**
 

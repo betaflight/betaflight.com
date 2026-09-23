@@ -16,11 +16,7 @@ https://www.moddquad.com/p/fc.html
 
 #### AlienFlight
 
-https://alienflight.com
-
-#### AlienFightNG
-
-https://www.alienflightng.com
+https://github.com/MJ666/Flight-Controllers
 
 #### OpenPilot Revo
 
@@ -43,10 +39,6 @@ https://fishpepper.de/projects/tinyfish/
 #### AlienWhoopF7 by brucesdad13
 
 https://github.com/brucesdad13/AlienWhoopF7
-
-#### OpenFC Project by DroneMesh
-
-http://dronemeshforum.com/viewforum.php?f=33&sid=c2c2708fe551f2214d6d2290c62a3e91
 
 ---
 

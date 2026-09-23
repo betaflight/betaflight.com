@@ -68,7 +68,6 @@ vtx_channel values are 1-8 for channel 1-8.
 - [RocketCityFPV](http://www.rocketcityfpv.com/Motolab-TyphoonF4-Flight-Controller_p_77.html)
 - [DefianceRC](https://www.defiancerc.com/collections/flight-controller/products/motolab-typhoon-f4-flight-controller-vtx-combo)
 - [65Drones](https://www.65drones.com/products/motolab-typhoon-f4-flight-controller-and-typhoon-vtx)
-- [Multicopter Builders](https://multicopterbuilders.com/products/motolab-tempest-f4-flight-controller-fc)
 
 ### Firmware
 

@@ -14,11 +14,11 @@ Omnibus Fireworks supports 3-6s LIPO direct input, contains a built-in hall effe
 
 ### Hardware
 
-| Hardware | Part Number                                                                                    | Notes                 |
-| -------- | ---------------------------------------------------------------------------------------------- | --------------------- |
-| MCU      | [STM32F405RGT6](http://www.mouser.com/ds/2/389/DM00037051-492832.pdf)                          |                       |
-| IMU      | [ICM-20608](https://store.invensense.com/datasheets/invensense/ICM-20608-G-ProductSpec-V1.pdf) |                       |
-| OSD      | [AB7456](https://www.unmannedtechshop.co.uk/micro-osd-v2-3-ab7456/)                            | Need actual datasheet |
+| Hardware | Part Number                                                           | Notes                 |
+| -------- | --------------------------------------------------------------------- | --------------------- |
+| MCU      | [STM32F405RGT6](http://www.mouser.com/ds/2/389/DM00037051-492832.pdf) |                       |
+| IMU      | ICM-20608                                                             |                       |
+| OSD      | [AB7456](https://www.unmannedtechshop.co.uk/micro-osd-v2-3-ab7456/)   | Need actual datasheet |
 
 | Features       | Yes/No |
 | -------------- | ------ |

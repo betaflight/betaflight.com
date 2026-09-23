@@ -8,16 +8,7 @@ AlienFlight F3 Eagle files are available at:
 
 https://github.com/MJ666/Flight-Controllers
 
-AlienFlightNG (Next Generation) designs are released for noncommercial use (CC BY-NC-SA 4.0) or (CC BY-NC-ND 4.0) can be found here:
-
-http://www.alienflightng.com
-
 This targets supports various variants of brushed and brushless flight controllers. All published designs are flight tested by various people. The intention here is to make these flight controllers available and enable skilled users and in some cases RC vendors to build them.
-
-Some variants of the AlienFlight controllers will be available for purchase from:
-
-http://www.microfpv.eu
-https://micro-motor-warehouse.com
 
 ### General hardware specifications
 

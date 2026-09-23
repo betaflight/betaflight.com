@@ -103,7 +103,6 @@ Known issues/bugs:
 Boris: This will be addressed in 3.1.7
 
 - On a CC3D the receiver goes into bind mode every time. Fixed in 3.1.7 alpha.
-http://andwho.sytes.net:8080/job/BorisB_BetaFlight_Maint/
 
 - Use Configurator 1.9.3
 

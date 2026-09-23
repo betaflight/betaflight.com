@@ -214,8 +214,6 @@ resource motor 2 A08
 save
 ```
 
-See: [AlienFlightNG Support](https://www.alienflightng.com/wiki/)
-
 ##### MOTOLAB - (MotoF3, Cyclone & Tempest)
 
 Move motor 1 from Output #1 header pin to the PPM input header pin.

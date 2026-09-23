@@ -143,7 +143,7 @@ The following boards/FCs are known to have the font upload problem:
 
 | Board Name                 | Target        | OSD Chip | LiPo-In Fix Works? | Product URL                                                                                                                                       |
 | -------------------------- | ------------- | -------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DAL RC F405 AIO            | DALRCF405     | N/A      | Yes                | [dalrc](http://www.dalrc.cn/DALRC/plus/view.php?aid=186)                                                                                          |
+| DAL RC F405 AIO            | DALRCF405     | N/A      | Yes                | N/A                                                                                                                                               |
 | DAL RC F722Dual            | DALRCF722DUAL | N/A      | Yes                |                                                                                                                                                   |
 | Speedy Bee F7 AIO          | SPEEDYBEEF7   | N/A      | Yes                | [Speedy Bee F7](https://www.speedybee.com/f7-aio-flight-controller/)                                                                              |
 | Diatone Mamba F405 Mini FC | FURYF4OSD     | N/A      | Yes                | [diatone](https://www.diatoneusa.com/store/p574/MAMBA_F405_Mini_Betaflight_Flight_Controller_F25_25A_2_4S_DSHOT600_FPV_Racing_Brushless_ESC.html) |
