@@ -1,8 +1,5 @@
 # DALRCF405
 
-The DALRCF405 described here:
-http://www.dalrcmodel.com/DALRC/plus/view.php?aid=184
-
 This board use the STM32F405RGT6 microcontroller and have the following features:
 
 - 1024K bytes of flash memory,192K bytes RAM,168 MHz CPU/210 DMIPS

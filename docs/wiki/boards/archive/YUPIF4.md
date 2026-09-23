@@ -39,11 +39,6 @@ The YuPiF4 is a 36x36mm (30.5x30.5 mounting holes) board with an F4 microcontrol
 
 This board is currently in the prototype phase. Only small batches were manufactured for testing.
 
-Website : http://www.yupif4.com/
-
 ## Hardware Designs (if available)
 
 The hardware is currently closed source.
-
-![YuPiF4 - FC](https://www.yupif4.com/imgs/FC2.jpg)
-![YuPiF4 - Logo](https://www.yupif4.com/imgs/YuPiF4.jpg)

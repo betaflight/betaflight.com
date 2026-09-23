@@ -20,8 +20,6 @@ For now you have to enable passthrough in the cli and than flash through flash l
 
 KISSESC_flashloader also attached to [First Post of DShot Thread](https://www.rcgroups.com/forums/showthread.php?2756129-DShot-testing-a-new-digital-parallel-ESC-throttle-signal) in the "Files" section.
 
-[Flydiuno Down Loads](http://kiss.flyduino.net/downloads/)
-
 Command for esc #1:
 escprog ki 1
 

@@ -10,13 +10,13 @@ MPU-6000 F4 flight controller with stackable PDB. Integrated 12V and 5V regulato
 
 ### Hardware
 
-| Hardware      | Part Number                                                                                  | Notes                                  |
-| ------------- | -------------------------------------------------------------------------------------------- | -------------------------------------- |
-| MCU           | [STM32F405RGT6](http://www.mouser.com/ds/2/389/DM00037051-492832.pdf)                        | 4 Hardware UARTS - Shared PPM/UART TBD |
-| IMU           | [MPU-6000](https://store.invensense.com/datasheets/invensense/MPU-6050_DataSheet_V3%204.pdf) | Interrupt TBD                          |
-| OSD           | [MAX 7456](https://datasheets.maximintegrated.com/en/ds/MAX7456.pdf)                         |                                        |
-| 12V Regulator | [NCP1117 17-12G](https://www.onsemi.com/pub/Collateral/NCP1117-D.PDF)                        | LDO Linear: 1A Max                     |
-| 5V Regulator  | [LMR14206](http://www.ti.com/lit/ds/symlink/lmr14206.pdf)                                    | Switching Freq: 1.25MHz                |
+| Hardware      | Part Number                                                           | Notes                                  |
+| ------------- | --------------------------------------------------------------------- | -------------------------------------- |
+| MCU           | [STM32F405RGT6](http://www.mouser.com/ds/2/389/DM00037051-492832.pdf) | 4 Hardware UARTS - Shared PPM/UART TBD |
+| IMU           | MPU-6000                                                              | Interrupt TBD                          |
+| OSD           | [MAX 7456](https://datasheets.maximintegrated.com/en/ds/MAX7456.pdf)  |                                        |
+| 12V Regulator | [NCP1117 17-12G](https://www.onsemi.com/pub/Collateral/NCP1117-D.PDF) | LDO Linear: 1A Max                     |
+| 5V Regulator  | [LMR14206](http://www.ti.com/lit/ds/symlink/lmr14206.pdf)             | Switching Freq: 1.25MHz                |
 
 | Features       | Yes/No |
 | -------------- | ------ |
@@ -29,10 +29,6 @@ MPU-6000 F4 flight controller with stackable PDB. Integrated 12V and 5V regulato
 | Boot Button    | Yes    |
 
 ## Manufacturers and Distributors
-
-[Flying Lemon](https://flyinglemon.eu/flight-controllers/39-kiwif4-flight-controller.html)
-
-[Beaver FPV](https://beaverfpv.com/collections/new-arrivals/products/kiwi-f4-flight-controller-kiwi-pdb)
 
 ## Contributors
 

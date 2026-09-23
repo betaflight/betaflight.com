@@ -16,11 +16,7 @@ https://www.moddquad.com/p/fc.html
 
 #### AlienFlight
 
-https://alienflight.com
-
-#### AlienFightNG
-
-https://www.alienflightng.com
+https://github.com/MJ666/Flight-Controllers
 
 #### OpenPilot Revo
 

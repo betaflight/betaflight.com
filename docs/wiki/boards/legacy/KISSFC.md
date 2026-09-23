@@ -121,7 +121,3 @@ KISS original firmware uses another motor layout pattern than Betaflight uses. T
 Pinouts, schematics and RX wiring: http://nathan.vertile.com/blog/2016/07/29/betaflight-kiss-flight-controller/#pinout
 
 Rcgroups Thread: http://www.rcgroups.com/forums/showthread.php?t=2555204
-
-## Image
-
-![](https://cdn3.volusion.com/zzpvf.kmsuu/v/vspfiles/photos/elec-fc-kiss103-4.jpg)

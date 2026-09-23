@@ -19,7 +19,6 @@ Basically a lot of fundamental changes. Not much of those will affect the user, 
 The major complaint about Betaflight was too frequent updates in the past. So we slowed that down. Not having the pressure for quick releases gives some time for thinking and researching new things.
 
 Current V3.2 files are here: https://ci.betaflight.tech/job/Betaflight/lastSuccessfulBuild/artifact/obj/
-or https://betaflight.qmd.cl/
 
 ### Note: When discussing this Version in the Forums (Boris' BetaFlight thread)
 ## Please State: Version and Build Number.
@@ -227,7 +226,6 @@ Briefly the mode works like this:
 TCHTHSKY Posted in Boris' thread-
 [Here's the code for it. It has comments: ](https://github.com/kc10kevin/betaflight/blob/master/src/main/flight/pid.c)
 [And here is the feature request: ](https://github.com/betaflight/betaflight/issues/2731)
-[And here's this: ](http://stackissue.com/betaflight/betaflight/added-experimental-crash-detection-and-recovery-2783.html)
 [Here's another from earlier in this thread:](https://www.rcgroups.com/forums/showpost.php?p=37951070&postcount=49982)
 
 #### Important note from mjbudden:

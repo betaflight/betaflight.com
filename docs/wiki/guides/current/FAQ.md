@@ -565,7 +565,7 @@ Some additional information can be found from 6:20 onwards in this video: http:/
 NOTE: Failsafe configuration has changed in Betaflight 2.4.0 onwards and CF Configurator 1.2.0. The relevant documentation can be found [here](/docs/wiki/guides/current/Failsafe).
 
 A good method for RX's that do NOT have a FailSafe output (no Pulses):
-[Setting Up Failsafe on FrSky BeeBrain](http://fpvobsession.com/setting-up-failsafe-on-frsky-beebrain/)
+[Setting Up Failsafe on FrSky BeeBrain](https://web.archive.org/web/20200429000455/http://fpvobsession.com/setting-up-failsafe-on-frsky-beebrain/)
 
 ## What is the best practice for configuring the Throttle end points ?
 
@@ -858,7 +858,7 @@ Once you wrap your head around and think about looptimes and ESC pulses(whether 
 But I agree if josh doesn't already have a video on it he needs one
 
 Some info here on Oscar Liang's excellent Blog site regarding MultiShot technique:
-http://blog.oscarliang.net/raceflight-multishot/
+https://web.archive.org/web/20250915042747/http://blog.oscarliang.net/raceflight-multishot/
 
 ## How do I go about suggesting Betaflight App enhancements ?
 

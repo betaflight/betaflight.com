@@ -30,8 +30,6 @@ Software serial is preconfigured by default, all you have to do is enable SOFTSE
 
 Manufacturers and Distributors
 
-https://www.aikon-electronics.com/
-
 Designers
 
 AIKON Electronics Avi Jang

@@ -36,13 +36,8 @@ These boards are now currently available. Shipping of pre-orders is occurring no
 
 Available here:
 
-- [fpvgame.eu](https://www.fpvgame.eu/product-page/fc-f7-nero)
 - [electricwingman.com](https://www.electricwingman.com/nero-f7-flight-controller)
 - [readytoflyquads.com](http://www.readytoflyquads.com/nero-f7-flight-controller)
-
-More information available here:
-
-- [nerofc.com](https://nerofc.com)
 
 ## Configuration Information
 

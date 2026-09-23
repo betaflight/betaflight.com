@@ -28,9 +28,6 @@ _(add list of features)_
 
 ## Manufacturers and Distributors
 
-[https://flyinglemon.eu/flight-controllers/39-kiwif4-flight-controller.html](https://flyinglemon.eu/flight-controllers/39-kiwif4-flight-controller.html)
-[https://beaverfpv.com/collections/new-arrivals/products/kiwi-f4-flight-controller-kiwi-pdb](https://beaverfpv.com/collections/new-arrivals/products/kiwi-f4-flight-controller-kiwi-pdb)
-
 ## Designers
 
 - JohnLemon
@@ -79,10 +76,6 @@ voltage 57, current 320. If this reads reverse current at idle and reads way too
 For KIWIF4V2 with PDB: set ibata_scale = 411 and set ibata_offset = -7
 
 ## Other Resources
-
-Setup Guide:
-
-[http://flyinglemon.eu/ext_images/kiwif4_wiring_s.pdf](http://flyinglemon.eu/ext_images/kiwif4_wiring_s.pdf)
 
 Rcgroups Thread:
 

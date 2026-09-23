@@ -27,7 +27,7 @@ For board identification, see
 resource inverter 6 c9
 ```
 
-- The full inverter support is available as current dev master, available at http://andwho.sytes.net:8080/job/BorisB_BetaFlight/ . Select build after #1253.
+- The full inverter support is available as current dev master. Select build after #1253.
 - Fixed inversion firmware based on 3.1.7 is available at https://www.dropbox.com/s/hj4jd3av8oko9ji/betaflight_3.1.6_Asgard_PC9_HIGH_SBUSInverter_Enabled?dl=0
   With this firmware, UART6 is serial RX with inversion (SBUS).
 - Note Spektrum users can use stock 3.1.7.

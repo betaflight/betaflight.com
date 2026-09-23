@@ -1,9 +1,5 @@
 ## PLUM F4
 
-Available at: http://flyinglemon.eu/
-
-![PLUMF4](http://flyinglemon.eu/ext_images/plum_top_s.jpg)
-
 ### Board information:
 
 - CPU - STM32F405RGT6
