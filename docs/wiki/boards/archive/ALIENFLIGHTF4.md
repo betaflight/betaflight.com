@@ -17,7 +17,6 @@ This targets supports various variants of brushed and brushless flight controlle
 Some variants of the AlienFlight controllers will be available for purchase from:
 
 http://www.microfpv.eu
-https://micro-motor-warehouse.com
 
 ### General hardware specifications
 

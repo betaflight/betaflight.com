@@ -44,10 +44,6 @@ https://fishpepper.de/projects/tinyfish/
 
 https://github.com/brucesdad13/AlienWhoopF7
 
-#### OpenFC Project by DroneMesh
-
-http://dronemeshforum.com/viewforum.php?f=33&sid=c2c2708fe551f2214d6d2290c62a3e91
-
 ---
 
 ### MCU data sheet and reference manuals
