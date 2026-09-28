@@ -62,7 +62,7 @@ export default function Home() {
                 <a className="fancy-link no-underline" href="/docs/wiki/getting-started/hardware-support">
                   each manufacturer supports its own hardware
                 </a>
-                . Boards reviewed by the development team are marked Betaflight Supported, and the{' '}
+                . Boards that the development team has reviewed, and whose manufacturer has committed to support them, are marked Betaflight Supported, and the{' '}
                 <a className="fancy-link no-underline" href="/docs/sponsors/partners">
                   Betaflight Partner
                 </a>{' '}

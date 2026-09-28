@@ -33,7 +33,7 @@ Every board in the list carries one of three statuses:
 | ⚠️ Manufacturer supported | Included as the manufacturer supplied it, after basic checks. The manufacturer, or the board's named maintainer, supports it. If a release is reported not to work on the board, the board is withdrawn from that release onwards. |
 | Legacy                    | Can still be flashed, but nobody maintains it. Custom firmware loaded with `Load Firmware [Local]` is treated the same way. Use at your own discretion.                                                                            |
 
-Whatever the status, support for the board itself comes from its manufacturer. See [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support).
+Whatever the status, hardware faults and warranty go to the manufacturer. The board's config is maintained by its manufacturer, or by the named maintainer for community and homebrew boards. Legacy boards have no active maintainer, although the community may help. See [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support).
 
 ## Basic Flashing Procedure
 

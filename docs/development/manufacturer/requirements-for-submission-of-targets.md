@@ -2,7 +2,7 @@
 
 Pull requests adding new targets or modifying existing targets need to meet the following requirements:
 
-1. Hardware should follow the [Manufacturer Design Guidelines](manufacturer-design-guidelines). Designs outside the guidelines can still be submitted as Manufacturer supported, but are not eligible for [Betaflight Supported](betaflight-supported), see the [Hardware Policy](hardware-policy). To avoid costly issues and delays, **please talk to the Betaflight team early in the design process.**
+1. Hardware should follow the [Manufacturer Design Guidelines](manufacturer-design-guidelines). A new design that uses anything [warned against](hardware-policy#warned-against) in the Hardware Policy, or that copies an existing design, is not eligible for [Betaflight Supported](betaflight-supported), but can still be submitted as Manufacturer supported. To avoid costly issues and delays, **please talk to the Betaflight team early in the design process.**
 
 2. New manufacturers are required to be added to the [manufacturers list](https://github.com/betaflight/config/blob/master/Manufacturers.md). Your four-letter manufacturer ID is also the name of the directory your configs live in, so it must be registered before the first target is submitted. Submissions that have no registered vendor use one of the reserved IDs already in that list (`CUST`, `FOSS`, `COMM`, `LEGA`) and need no new entry.
 
