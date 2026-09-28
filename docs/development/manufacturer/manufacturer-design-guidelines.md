@@ -16,53 +16,60 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 ## Version Change Register
 
-| Version # | Revision Date     | Changes, Reasons, and Notes                                                    |
-| :-------- | :---------------- | :----------------------------------------------------------------------------- |
-| Draft 0.1 | 14 May 2022       | Initial Draft Format                                                           |
-| Draft 0.2 | 04 June 2022      | Revise format to Final Format                                                  |
-| Draft 0.3 | 12 June 2022      | Update Visual Media and Tables                                                 |
-| Draft 0.4 | 21 October 2022   | Update format, add information                                                 |
-| Draft 0.5 | 24 October 2022   | Add additional information                                                     |
-| Draft 0.6 | 06 November 2022  | Add cloud build information                                                    |
-| Draft 0.7 | 17 November 2022  | Remove off-board hardware defines                                              |
-| Draft 0.8 | 01 January 2023   | Update Baro and CC2500                                                         |
-| Draft 0.9 | 14 January 2023   | Add FC LEDs                                                                    |
-| Draft 1.0 | 26 January 2023   | Add Signal Rules                                                               |
-| Draft 1.1 | 10 December 2023  | Add LSM6DSV16X and LPS22DF                                                     |
-| Draft 1.2 | 13 January 2024   | Add Mag and Baro hardware note                                                 |
-| Draft 1.3 | 23 October 2024   | Update MCU recommendations                                                     |
-| Draft 1.4 | 06 November 2024  | Add LED pin resource warning                                                   |
-| Draft 1.5 | 13 January 2025   | Update ADC/gyro recommendations                                                |
-| Draft 1.6 | 18 February 2025  | Add W25N02K flash define                                                       |
-| Draft 1.7 | 27 March 2025     | Update FC review policy                                                        |
-| Draft 1.8 | 01 April 2025     | Update I2C Device Info                                                         |
-| Draft 1.9 | 12 September 2025 | Update motor requirements                                                      |
-| Draft 2.0 | 12 November 2025  | GPIO usage clarifications                                                      |
-| Draft 2.1 | 29 March 2026     | Update sensors                                                                 |
-| Draft 2.2 | 05 July 2026      | Sync sensor defines with firmware master; add LSM6DSK320X                      |
-| Draft 2.3 | 12 August 2026    | Add BMI270 shared-footprint alignment define; add supported MCU platform table |
+| Version #   | Revision Date     | Changes, Reasons, and Notes                                                                                                                                         |
+| :---------- | :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Draft 0.1   | 14 May 2022       | Initial Draft Format                                                                                                                                                |
+| Draft 0.2   | 04 June 2022      | Revise format to Final Format                                                                                                                                       |
+| Draft 0.3   | 12 June 2022      | Update Visual Media and Tables                                                                                                                                      |
+| Draft 0.4   | 21 October 2022   | Update format, add information                                                                                                                                      |
+| Draft 0.5   | 24 October 2022   | Add additional information                                                                                                                                          |
+| Draft 0.6   | 06 November 2022  | Add cloud build information                                                                                                                                         |
+| Draft 0.7   | 17 November 2022  | Remove off-board hardware defines                                                                                                                                   |
+| Draft 0.8   | 01 January 2023   | Update Baro and CC2500                                                                                                                                              |
+| Draft 0.9   | 14 January 2023   | Add FC LEDs                                                                                                                                                         |
+| Draft 1.0   | 26 January 2023   | Add Signal Rules                                                                                                                                                    |
+| Draft 1.1   | 10 December 2023  | Add LSM6DSV16X and LPS22DF                                                                                                                                          |
+| Draft 1.2   | 13 January 2024   | Add Mag and Baro hardware note                                                                                                                                      |
+| Draft 1.3   | 23 October 2024   | Update MCU recommendations                                                                                                                                          |
+| Draft 1.4   | 06 November 2024  | Add LED pin resource warning                                                                                                                                        |
+| Draft 1.5   | 13 January 2025   | Update ADC/gyro recommendations                                                                                                                                     |
+| Draft 1.6   | 18 February 2025  | Add W25N02K flash define                                                                                                                                            |
+| Draft 1.7   | 27 March 2025     | Update FC review policy                                                                                                                                             |
+| Draft 1.8   | 01 April 2025     | Update I2C Device Info                                                                                                                                              |
+| Draft 1.9   | 12 September 2025 | Update motor requirements                                                                                                                                           |
+| Draft 2.0   | 12 November 2025  | GPIO usage clarifications                                                                                                                                           |
+| Draft 2.1   | 29 March 2026     | Update sensors                                                                                                                                                      |
+| Draft 2.2   | 05 July 2026      | Sync sensor defines with firmware master; add LSM6DSK320X                                                                                                           |
+| Draft 2.3   | 12 August 2026    | Add BMI270 shared-footprint alignment define; add supported MCU platform table                                                                                      |
+| Version 3.0 | 28 September 2026 | Align with the Hardware Policy: guidance is Preferred, Warned against or Not accepted; designs outside the guidance can still be included as Manufacturer supported |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
+:::info
+
+These guidelines sit under the Betaflight [Hardware Policy](hardware-policy): we fix Betaflight, manufacturers support their hardware, and pilots own their builds. Every board in the firmware flasher is Betaflight Supported, Manufacturer supported or Legacy, and the guidance in this document is Preferred, Warned against or Not accepted. A design that departs from the Preferred guidance can still be included in the cloud build as Manufacturer supported. A new design that uses anything Warned against is not eligible for Betaflight Supported, and only the [Not accepted](hardware-policy#not-accepted) cases keep a board out of the cloud build. This applies to new designs from 28 September 2026; existing boards keep their status.
+
+:::
+
 Betaflight is an open source project that is free to use and does not incur a license cost, however for the most successful release of a new flight controller or complete ready-to-fly product that is using Betaflight, it remains immensely beneficial to provide representative production samples or pre-production testing units to the Betaflight development team for testing and development feedback.
 
-In order to have hardware added to the Betaflight approved hardware list, hardware samples representative of the final configuration must be provided to designated members of the Betaflight development team. It is strongly recommended that samples of development hardware or production-representative examples are evaluated positively before accepting pre-orders or releasing products. Many of the same benefits can be provided for inclusive hardware packages, including flight control stacks, or ready-to-fly craft.
+For a board to be Betaflight Supported, hardware samples representative of the final configuration must be provided to designated members of the Betaflight development team when requested. It is strongly recommended that samples of development hardware or production-representative examples are evaluated positively before accepting pre-orders or releasing products. Many of the same benefits can be provided for inclusive hardware packages, including flight control stacks, or ready-to-fly craft.
 
 Sharing schematics/layouts with the reviewers will also be beneficial and improve the quality of the review.
 
-This provides the Betaflight team with an opportunity to ensure that the hardware and firmware behave 100% as expected in the representative configuration, as well as support verification of custom defaults required for firmware operation. After-sales support to customers from members of the Betaflight team are also made possible for reproducing end-user issues.
+This provides the Betaflight team with an opportunity to ensure that the hardware and firmware behave 100% as expected in the representative configuration, as well as support verification of custom defaults required for firmware operation. It also lets the team reproduce firmware bugs that a manufacturer raises on behalf of its customers, while support for the hardware itself stays with the manufacturer.
 
 Additional benefits are also present in the form of allowing experienced active pilots with backgrounds in engineering of these systems to assist with aspects of the development process particularly in respect to real world use the products will be subjected to.
 
-Note: Manufacturers may use the same target for multiple flight controller designs; however, **all new flight controllers must undergo the review process**, regardless of whether they use an existing target.
+Note: Manufacturers may use the same target for multiple flight controller designs; however, **each new flight controller must go through the review process to be Betaflight Supported**, regardless of whether it uses an existing target.
 
-Finally, we will offer a ’Betaflight approved’ product list on the Betaflight GitHub to advise the userbase on electronics which both follow our ‘best practice’ guidance, and which have been tested by our development team. This will be available for flight controller hardware, as well as electronic speed controller stacks, AIOs, and ready-to-fly craft. This strategy is designed to help both developers optimize their hardware and our user base get directed to optimal hardware, and reduce support requests for the Betaflight team who serve a user base of over a hundred thousand users.
+Finally, boards that follow our best-practice guidance and have been reviewed by our development team are shown as Betaflight Supported in the firmware flasher of the Betaflight App, so pilots can find them when choosing hardware. This covers flight controllers, including AIOs and the flight controllers supplied in stacks and ready-to-fly craft. This strategy is designed to help manufacturers optimise their hardware, direct pilots to well-designed hardware, and reduce support requests to the Betaflight team, who serve a user base of over a hundred thousand users.
 
 # 1 Important Terms and Conditions
 
 ## 1.1 Intent
 
-The goal of achieving a certified hardware ecosystem for Betaflight Flight Controller hardware and firmware targets is to ensure that hardware design supports correct operation of Betaflight features and supports an improved user experience for ‘connecting’, flashing, programming, and flying.
+The goal of these guidelines for Betaflight Flight Controller hardware and firmware targets, and of Betaflight Supported status, is to ensure that hardware design supports correct operation of Betaflight features and supports an improved user experience for ‘connecting’, flashing, programming, and flying.
 
 The cutting edge flight performance achieved by Betaflight relies on proper hardware design, microcontroller resource allocation, and the ability of end-users to correctly configure the software with Betaflight.
 
@@ -91,13 +98,15 @@ Achieving state of the art performance requires minimizing latency in craft resp
 
 # 2 Engaging with the Betaflight Development Team
 
-## 2.1 Hardware Approval Process - Example
+## 2.1 Betaflight Supported Review Process - Example
+
+This is the path to Betaflight Supported status. A board that does not go through it can still be submitted as Manufacturer supported, as set out in the [Hardware Policy](hardware-policy).
 
 - Manufacturer initiates contact with Betaflight developer(s) at hardware@betaflight.com
 
 - Betaflight team will establish a closed Discord channel for ongoing private discussion between key members of the development team and manufacturer designees.
   Work in progress schematics, PCB renders, and similar documentation prior to initial production provides opportunities for early feedback.
-- **Before submitting a target design, you must carefully review and follow the manufacturer design guidelines. Failure to do so may result in automatic rejection of the target.**
+- **Before submitting a target design, review it carefully against these guidelines.** A new design that uses anything Warned against is not eligible for Betaflight Supported, although it can still be included as Manufacturer supported. Only the [Not accepted](hardware-policy#not-accepted) cases keep a board out of the cloud build.
 
 - Initial Submission
 
@@ -115,21 +124,21 @@ Achieving state of the art performance requires minimizing latency in craft resp
 
 - Production Representative Samples
 
-  - To complete hardware certification, representative hardware samples of initial production run, or pre-production batches which are representative of the final release design must be furnished to designated Betaflight development team member(s) to conduct final validation and certification operations.
+  - To complete the review for Betaflight Supported, representative hardware samples of initial production run, or pre-production batches which are representative of the final release design, must be furnished to designated Betaflight development team member(s) when requested, to conduct final validation.
 
   - This will indirectly provide access to the adjacent benefits of leveraging Betaflight developer expertise by using this hardware in complete systems, including flight testing as desired and comprehensive blackbox log analysis. For configurations requiring specific hardware to be tested (e.g. a Bind & Fly or Plug & Play UAS), providing complete representative hardware systems is best.
 
 - Reporting of performance
 
-  - With sufficient test time using the final product, developers can agree to recommend products which meet our guidelines and performance expectations. Products will be noted on Betaflight GitHub.
+  - With sufficient test time using the final product, developers can confirm that it meets our guidelines and performance expectations.
 
 - Submission
 
-  - Once hardware has been approved, it will be added to the list of Betaflight approved hardware
-    - If new target(s) and/or presets have been added, pull requests will be evaluated, completed, and merged for inclusion in subsequent Betaflight releases
+  - Once the review is complete, the board is marked Betaflight Supported, and the Betaflight App shows that status in the firmware flasher
+    - If new target(s) and/or presets have been added, pull requests will be evaluated, completed, and merged. New Betaflight Supported boards, and fixes to them, can reach the cloud build between releases
 
 - Target Maintenance
-  - After approval and release, the designated contact is expected to provide any continuing support that may be required in order to keep the approved hardware working well for end-users
+  - After review and release, the designated contact provides continuing support to end users and keeps the target working as Betaflight moves forward. The Betaflight team does not provide end-user hardware support, even for Betaflight Supported boards; it fixes the firmware bugs that the manufacturer raises with it
 
 ## 2.2 Adjacent Benefits and Opportunities
 
@@ -137,11 +146,11 @@ Betaflight developers are likely to provide significant indirect benefits for ma
 
 Improved customer experience with software interactions, development of presets for BNF multicopter configurations, and validation with specific FPV and RC segments of craft to ensure customer experience will be positive. The key integration aspects of supporting various remote control and video combinations can only be fully validated with testing hardware samples.
 
-This thorough testing by expert team members, will help verify and then allow recommendation from the Betaflight development team. Betaflight official recommendation will be highly valuable promotion for the manufacturer so we urge manufacturers to take up this opportunity and work with us.
+This thorough testing by expert team members will help verify the design on the way to Betaflight Supported status. Betaflight Supported status is valuable promotion for the manufacturer, so we urge manufacturers to take up this opportunity and work with us.
 
 # 3.0 Flight Controller Design Guidelines
 
-These guidelines provide best practices for physical, electrical, and documentation support of flight controllers. These recommendations are provided as guidelines, however deviating from these provided suggestions should only be undertaken through a collaborative effort with Betaflight developers during the design and prototyping process.
+These guidelines provide best practices for physical, electrical, and documentation support of flight controllers. If your design needs to depart from them, we invite you to talk to the Betaflight developers early in the design and prototyping process, at hardware@betaflight.com. It is much easier to find a good approach together before production than after it.
 
 ## 3.1 Best Practices for Flight Controller Design and Performance
 
@@ -160,7 +169,7 @@ Castellations and use of mounting pads with through holes or edge continuity are
 
 For board layouts implementing transistor PINIO functionality for ‘pit switch’ or similar behaviors, solder bridge options are strongly recommended to enable users to select output voltage, or physically bypass the switching functionality by connecting to voltage sources. Particularly for video systems, it is strongly recommended to avoid performing this switching on the ground, due to interference concerns demonstrated with inconsistent ground planes.
 
-If providing direct mounting support for receivers, the following specification should be followed: the pin sequence must be GND, 5V, UART RX, UART TX with a 2.54mm pin pitch, and permit receivers sized up to 12x20mm. This mirrors the standard mounting (Gnd/5V/Tx/Rx) of CRSF Nano and ELRS Nano receivers, with mirrored UART communication allowing for Tx and Rx to be paired to the same UART.
+If providing direct mounting support for receivers, the following specification should be followed: the pin sequence must be GND, 5V, UART RX, UART TX with a 2.54mm pin pitch, and permit receivers sized up to 12x20mm. This matches the pad order of CRSF Nano and ELRS Nano receivers, which label their own pads GND, 5V, TX, RX, so each receiver pad lands on its crossed partner on the same UART (receiver TX to FC RX, receiver RX to FC TX). This direct-mount order deliberately differs from the 4-pin JST SH serial connector in the [Betaflight Connector Standard](connector-standard) (5V, GND, RX, TX), because it follows the receivers' pad layout rather than the connector standard's power-first order.
 
 **Rules:**
 
@@ -177,19 +186,19 @@ For connector pinout please refer to the [Betaflight Connector Standard](connect
 
 ### 3.1.2 Inertial Measurement Unit (IMU) Selection
 
-Selecting the right IMU for a flight controller is crucial for optimal flight performance. The InvenSense MPU-6000, the long-time standard, has reached end-of-life. As a replacement, we strongly recommend the ICM-42688-P (see below). Where the ICM-42688-P cannot be sourced, the STMicroelectronics LSM6DSK320X is a Betaflight-supported alternative (see below). Note that gyroscopes must communicate via SPI; I2C gyros are not supported. Legacy models such as the MPU-6500 will not be accepted.
+Selecting the right IMU for a flight controller is crucial for optimal flight performance. The InvenSense MPU-6000, the long-time standard, has reached end-of-life. As a replacement, we strongly recommend the ICM-42688-P (see below). Where the ICM-42688-P cannot be sourced, the STMicroelectronics LSM6DSK320X is the preferred second source (see below). Gyros must communicate via SPI, because the firmware does not support I2C gyros, so a board with its gyro on I2C is not accepted into the cloud build. Legacy gyros (the MPU-6000 and MPU-6500 family, and the ICM-2060x parts) are end of life, so they are warned against on new designs: a new design using one can be included as Manufacturer supported, but is not eligible for Betaflight Supported. Existing boards that use them keep their status.
 
 :::note
 
-We do not recommend using the Bosch BMI-270 IMU, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used. New designs using this gyro will not be approved.
+The Bosch BMI-270 IMU is warned against, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used. A new design using this gyro can be included as Manufacturer supported, but is not eligible for Betaflight Supported.
 
-Existing boards that share one PCB footprint between a BMI270 and an ICM-42688-P should note that the two parts do not share axis orientation — see [BMI270 on a shared ICM-42688-P footprint](#4211-bmi270-on-a-shared-icm-42688-p-footprint) for the config define that compensates for this.
+Boards that second-source a BMI270 on an ICM-42688-P footprint should note that the two parts do not share axis orientation. See [BMI270 on a shared ICM-42688-P footprint](#4211-bmi270-on-a-shared-icm-42688-p-footprint) for the config define that compensates for this.
 
 :::
 
 ### 3.1.2.1 Future IMU Options and How to Select Preferred Options
 
-As the MPU-6000 is EOL, the currently recommended IMU for most applications is the TDK InvenSense ICM-42688-P. This gyro has been proven in many designs to provide excellent performance with low noise and good durability. In all cases, it is strongly recommended that the gyro be powered from its own LDO. For the ICM-42688-P, this is _required_. See below for more on electrical noise considerations.
+As the MPU-6000 is EOL, the currently recommended IMU for most applications is the TDK InvenSense ICM-42688-P. This gyro has been proven in many designs to provide excellent performance with low noise and good durability. In all cases, it is strongly recommended that the gyro be powered from its own LDO. For the ICM-42688-P, this is _required_ for Betaflight Supported. See below for more on electrical noise considerations.
 
 The ICM-42688-P also supports an external clock input, which can yield increased stability and performance. If your design allows, consider adding external clock support. See the following PR for more info: https://github.com/betaflight/betaflight/pull/13912
 
@@ -203,7 +212,7 @@ Using a single timer with 4 channels dedicated to dual gyro FSYNC/INT pins for s
 
 #### Alternative IMU: STMicroelectronics LSM6DSK320X
 
-Where the ICM-42688-P is unavailable, the STMicroelectronics LSM6DSK320X is a Betaflight-supported alternative (define `USE_ACCGYRO_LSM6DSK320X`, which shares the LSM6DSV16X driver). It is a modern 6-axis SPI IMU with a high gyro output data rate and a dual accelerometer that adds a ±320 g high-g range. As with any IMU, it must be powered from its own LDO and validated in a representative flight environment in collaboration with the Betaflight development team. The ICM-42688-P remains the reference gyro for maximum flight performance — its lower gyro noise, native 8 kHz sampling, and external-clock input are what the current Betaflight filtering and tuning pipeline is built around — so the LSM6DSK320X is best treated as a second-source / availability-driven option rather than a performance upgrade.
+Where the ICM-42688-P is unavailable, the STMicroelectronics LSM6DSK320X is the preferred second source (define `USE_ACCGYRO_LSM6DSK320X`, which shares the LSM6DSV16X driver). It is a modern 6-axis SPI IMU with a high gyro output data rate and a dual accelerometer that adds a ±320 g high-g range. As with any IMU, it must be powered from its own LDO and validated in a representative flight environment in collaboration with the Betaflight development team. The ICM-42688-P remains the reference gyro for maximum flight performance — its lower gyro noise, native 8 kHz sampling, and external-clock input are what the current Betaflight filtering and tuning pipeline is built around — so the LSM6DSK320X is best treated as a second-source / availability-driven option rather than a performance upgrade.
 
 Future IMU selection should be carried out with close involvement of the Betaflight development group. Early hardware validation samples should be explored in collaboration with Betaflight developers to determine the suitability of these IMU units in relevant environments.
 The ability to customize IMU lowpass filtering and operate within the same GRMS/Shock environment allows for maximum portability of existing filtering and tune schemes, but this development must occur with complete hardware samples and flown in representative flight regimes in order to replicate the EMI environment end-users will experience.
@@ -218,7 +227,7 @@ These IMU require a stable and clean power supply to function correctly, provide
 Peak to peak noise of under 50uV on the supply should be the ideal goal.  
 Considerations for a suitable LDO are at least 500mA rated output allowing for extra capacitors on the output, two 20nF.  
 A PSRR >70dB down as low as 1Hz is preferred.  
-Where space allows, a dedicated LDO and circuit is advised for the IMU. For ICM-42688-P this is _required_.
+Where space allows, a dedicated LDO and circuit is advised for the IMU. For ICM-42688-P this is _required_ for Betaflight Supported.
 
 :::
 
@@ -243,7 +252,7 @@ Additionally, manufacturers should test the stability of the I2C bus under reali
 
 **Barometer selection**
 
-The Bosch BMP280 is a commonly used barometer. The 'real' unit is marked "Bosch BMP280" on the metal case. Sometimes it is replaced with a 'clone' which mimic the BMP280 in appearance, and reports the same I2C address and data structures, so that they show up as being a BMP280 in Betaflight. Manufacturers should only say that a board has a BMP280 barometer if it is a 'real' Bosch manufactured barometer. If a clone of the BMP280 is used, the name of the barometer used must be shown, e.g. A7L01, ASK03, and the manufacturer must confirm that the clone is as accurate as the original Bosch BMP280.
+The Bosch BMP280 is a commonly used barometer. The 'real' unit is marked "Bosch BMP280" on the metal case. Sometimes it is replaced with a 'clone' which mimic the BMP280 in appearance, and reports the same I2C address and data structures, so that they show up as being a BMP280 in Betaflight. Manufacturers should only say that a board has a BMP280 barometer if it is a 'real' Bosch manufactured barometer; a board that names a component it does not use is not accepted into the cloud build. If a clone of the BMP280 is used, the name of the barometer used must be shown, e.g. A7L01, ASK03, and the manufacturer must confirm that the clone is as accurate as the original Bosch BMP280. Correctly named clones are warned against because their accuracy varies, so a new design using one is not eligible for Betaflight Supported.
 
 The recommended I2C address for the BMP280 is 0x76, with SDO grounded, permitting automatic address identification by Betaflight.
 
@@ -261,7 +270,7 @@ The Infineon DPS310 was replaced with the Infineon DPS368 in late 2019, and the 
 
 :::note
 
-Metal-cased clones of the DPS310 barometer should NOT be used unless they report temperature accurately. Manufacturers who use clones of the Infineon DPS310 barometer MUST NOT claim that their barometer is a DPS310. We strongly recommend the latest Infineon DPS368 barometer, or the earlier Infineon DPS310, both of which are marked 'Infineon' and are supplied in a plastic case.
+A board that claims a DPS310 but uses a clone is not accepted into the cloud build, because it names a component it does not use. Correctly named metal-cased clones are warned against because of the temperature errors described above, so a new design using one is not eligible for Betaflight Supported. We strongly recommend the latest Infineon DPS368 barometer, or the earlier Infineon DPS310, both of which are marked 'Infineon' and are supplied in a plastic case.
 
 :::
 
@@ -278,6 +287,8 @@ The use of magnetometers with non-standard axis orientations is not recommended.
 Note also that the IST8310 magnetometer can be configured with any one of four I2C addresses. Betaflight will only connect to the IST8310 automatically if the default I2C address of 0x0E is used. If any of the other three I2C addresses (0x0C, 0x0D, 0x0F) are used, the user will need to custom enter either 12, 13 or 15 as the `mag_i2c_address` value, or it will not work.
 
 The QMC5883L has 'normal' axis orientation and works well.
+
+The naming rule for barometers applies to magnetometers too: name the part actually fitted. A board that names a magnetometer it does not use is not accepted into the cloud build, and a correctly named clone is warned against.
 
 :::note
 
@@ -313,7 +324,7 @@ The recommended Vbat voltage divider for most designs is 100K/10K. Note the tole
 
 #### 3.1.4.3 Supporting Additional Features
 
-Numerous standard features have become common with flight controller design, for example chips such as MAX7456 to enable monochrome On-Screen Display (OSD) functionality, including Barometers to supplement IMU functionality to provide more accurate altitude estimates, PINIO transistor switched output pads, LED pads, or additional PWM/Motor outputs.
+Numerous standard features have become common with flight controller design, for example Barometers to supplement IMU functionality to provide more accurate altitude estimates, PINIO transistor switched output pads, LED pads, or additional PWM/Motor outputs. A MAX7456 chip for monochrome analogue On-Screen Display (OSD) is optional, for boards aimed at analogue video builds. The [Betaflight Connector Standard](connector-standard#analog-camera-pin-configuration) recommends placing the analogue OSD on the VTX instead, as digital video systems do, and a board without an onboard OSD does not need the analogue camera connectors.
 
 In order to fully support these additional features, it remains strongly recommended that hardware manufacturers incorporate early developer feedback to ensure complete functionality.
 
@@ -323,11 +334,11 @@ In order to aid development of Betaflight firmware, and to debug FC specific iss
 
 #### 3.1.4.5 Blackbox Support
 
-Black box of at least 8mb should also be standard on all fcs as it’s literally impossible to problem solve a tune or flight issues with out black box.
+Blackbox storage of at least 8mb should also be standard on all FCs, because tuning problems and flight issues are very hard to diagnose without a blackbox log.
 
 #### 3.1.4.6 LEDs
 
-FCs should implement at least one LED to indicate activity. The second is preferable, and the third optional. Having at least one LED is essential for users to help diagnose basic faults. More LEDs are beneficial to developers as we can build custom images to help diagnose user reported issues.
+FCs should implement at least one LED to indicate activity, and LED 0 is required for Betaflight Supported. The second is preferable, and the third optional. Having at least one LED is essential for users to help diagnose basic faults. More LEDs are beneficial to developers as we can build custom images to help diagnose user reported issues.
 
 Each LED should be connected to a GPIO line. Polarity of the output does not matter.
 
@@ -356,31 +367,33 @@ Current-limiting resistors on GPIOs, if used, should not exceed 100 ohms. This i
 
 :::warning
 
-Betaflight does not support sharing devices on the SPI bus which is blocking execution and results in bad performance. Mainly sharing MAX7456 and blackbox generates support issues.
+A gyro sharing its SPI bus with other devices is warned against: transfers on a shared bus block each other, which costs gyro timing and flight performance, so a new design that does this is not eligible for Betaflight Supported. Give the gyro its own SPI bus. Sharing between other devices also blocks, and a MAX7456 sharing a bus with blackbox flash has been a common source of support issues, so keep those two apart where possible.
 
 :::
 
 :::warning
 
-Effective immediately, new flight controller designs that use the STM F4 and F7 series MCUs will be limited to 4 motor outputs. For designs requiring more than 4 motor outputs, it is highly recommended to use the STM32 H7 series MCUs. The STM32 G4, STM32 H5 and AT32F435 families are also acceptable where their resources suit the design. For the full list of platforms and their suitability, see [4.4](#44-supported-mcu-platforms-and-targets).
+STM32 F4 and F7 designs with more than 4 motor outputs are warned against, because these MCUs do not have enough timers and DMA streams to go round. A new design of this kind can be included as Manufacturer supported, but is not eligible for Betaflight Supported. F4 and F7 remain fine for budget boards and AIOs with 4 motor outputs. The STM32F411 is warned against on new designs because of its limited IO and flash, and remains fine on existing boards.
+
+For high IO or more than 4 motor outputs, the STM32 H7 (H743) is preferred. For small or budget boards, the STM32 G4, AT32F435 and RP2350 are preferred where their resources suit the design. The STM32 H5 has no official release binaries yet, so talk to the team before designing around it. For the full list of platforms and their suitability, see [4.4](#44-supported-mcu-platforms-and-targets).
 
 :::
 
 BITBANG is the new default on non-F4 MCUs (the APM32 F4 family behaves like the STM32 F4 here) and FC designers should use as few GPIO PORTS as possible to avoid needing a DMA stream per GPIO port. i.e.
 
 - 8 motors on 1 GPIO port is optimal.
-- M1-M4 are required to use 1 GPIO port, and preferably one 4-channel timer with DMA.
+- M1-M4 should use 1 GPIO port, and preferably one 4-channel timer with DMA.
 - 8 motors spread across 2 GPIO ports is OK.
-- 8 motors spread across more than 2 GPIO ports is BAD practice and will be rejected.
+- 8 motors spread across more than 2 GPIO ports is warned against, because each extra port needs another DMA stream, so a new design that does this is not eligible for Betaflight Supported.
 
 There is also a choice between using advanced timers or not, TIM1/TIM8 are advanced and get used by DSHOT BITBANG.
 
 It may be optimal to use TIM1 + TIM8 for all motors so that the other timers are always free.
-Or it may be optimal to use timers other than TIM1/TIM8 for motors so that TIM1/TIM8 are free for other uses when DSHOT BITBANG is NOT used.
+Or it may be optimal to use timers other than TIM1/TIM8 for motors so that TIM1/TIM8 are free for other uses when DSHOT BITBANG is not used.
 
 :::note
 
-When DSHOT BITBANG is used, the advanced timers (TIM1/TIM8) use DMA to drive the GPIO signals directly, the GPIO pins' timer AF modes are NOT used. The timer(s) used by DSHOT BITBANG can drive GPIO signals on any GPIO pins, even if they do not have timer AF signals.
+When DSHOT BITBANG is used, the advanced timers (TIM1/TIM8) use DMA to drive the GPIO signals directly, the GPIO pins' timer AF modes are not used. The timer(s) used by DSHOT BITBANG can drive GPIO signals on any GPIO pins, even if they do not have timer AF signals.
 TIM1 has inter-peripheral connectivity that other timers do not have.
 
 :::
@@ -391,17 +404,17 @@ Appropriate resource allocation ensures maximum flexibility in the selection of 
 
 Assign motor channels with highest priority.
 
-Note: As of December 2024, STM32F4 and STM32F7 MCUs are limited to 4 motor outputs.
+Note: STM32F4 and STM32F7 designs with more than 4 motor outputs are warned against, see [3.2](#32-resource-selection-considerations).
 
 #### 3.2.1.1 F4 Resource Selection
 
-As F4 MCUs do not support UART inversion, a hardware inverter must be added in order to support inverted serial protocols such as SBUS, SmartPort, and F.Port. This functionality is not required for Betaflight approval, but if included any pins that implement inversion should be clearly marked, and ideally not result in reduced capability of that UART when used with non-inverted peripherals.
+As F4 MCUs do not support UART inversion, a hardware inverter must be added in order to support inverted serial protocols such as SBUS, SmartPort, and F.Port. This functionality is not required for Betaflight Supported, but if included any pins that implement inversion should be clearly marked, and ideally not result in reduced capability of that UART when used with non-inverted peripherals.
 
-For Betaflight 4.4 and later versions, the expected default configuration will take advantage of Bidirectional DShot, therefore default PID loop rates and motor protocol of 4kHz and DSHOT300 are anticipated to be the stock configuration. This requires proper Motor Resource allocation to enable bidirectional DShot communication.
+Bidirectional DShot is off in the firmware defaults, but the recommended configuration uses it, and a config can turn it on with `#define DEFAULT_DSHOT_TELEMETRY DSHOT_TELEMETRY_ON`. With it enabled, F4 boards are expected to run a 4kHz PID loop with DSHOT300 (see [4.1](#41-rated-looptime-and-performance)). This requires proper Motor Resource allocation to enable bidirectional DShot communication.
 
 If using Bitbanged DShot, when SPI Bus #1 is to be used for the gyro, care must be taken to ensure that motor pins are assigned to appropriate timers. This is because Bitbanged DSHOT uses DMA2 to write to GPIO ports. If this is enabled, it is not possible to enable DMA on an SPI bus using DMA2.
-Practically speaking this means that we can’t support DMA on SPI bus 1 (which uses DMA2) on F405 and F411 processors. It is better to put multiple devices on other SPI busses that use SPI bus 1, which is typically used for the gyro.
-Bitbanged DShot communication protocol will always use Timer 1 and Timer 8 - do NOT use these pins for any other functions.
+Practically speaking this means that we can’t support DMA on SPI bus 1 (which uses DMA2) on F405 and F411 processors. It is better to put any devices that share a bus on another SPI bus, and keep SPI bus 1, which is typically used for the gyro, for the gyro alone.
+Bitbanged DShot communication protocol will always use Timer 1 and Timer 8 - do not use these pins for any other functions.
 
 Further reading: Section 2.1.10 of the errata at
 https://www.st.com/resource/en/errata_sheet/dm00037591-stm32f405407xx-and-stm32f415417xx-device-limitations-stmicroelectronics.pdf
@@ -431,17 +444,17 @@ STM32 F4 MCUs (and the APM32 F4 family) should use PWM-based DShot by default, d
 
 When selecting UARTs, for the default RX connection or to route to JST sockets, care should be taken to avoid those MCU pins which may interfere with USB DFU.
 
-The DFU protocol will attach to any MCU UART which is sending traffic, not only the USB DFU connection. This is a design feature of STM32 F4 MCUs and cannot be disabled.
+The DFU protocol will attach to any bootloader UART which is sending traffic, not only the USB DFU connection. This is a design feature of the ROM bootloader on the STM32 and AT32 MCUs listed in the table below, and cannot be disabled.
 
 Meaning that any receiver or GPS unit attached to UART1 or UART3 (by default on F405 boards) can "hijack" DFU and make the MCU think that the serial UART should be used for DFU traffic instead of USB.
 
-Avoiding this means selecting appropriate UARTs for default connectors so the pilot will be unlikely to connect receivers or GPS units to these ports. This is mainly a problem for peripherals which are powered from the 4v5 pads and so are powered on when USB is attached.
+Avoiding this means selecting appropriate UARTs for default connectors so the pilot will be unlikely to connect receivers or GPS units to these ports. This is mainly a problem for peripherals which are powered from the 4v5 pads and so are powered on when USB is attached. The symptoms pilots see, and their workarounds, are described in [DFU Hijacking](/docs/wiki/guides/current/DFU-Hijacking).
 
-More details on STM32 Bootloaders can be found in Application Node 2606
+More details on STM32 Bootloaders can be found in Application Note AN2606
 https://www.st.com/resource/en/application_note/an2606-stm32-microcontroller-system-memory-boot-mode-stmicroelectronics.pdf
 
-AT32 Bootloaders are described in section 2.5 at
-https://www.arterychip.com/download/DS/DS_AT32F435_437_V2.02-EN.pdf
+AT32 Bootloaders are described in section 2.5 (Boot modes) of the AT32F435/437 datasheet
+https://www.arterychip.com/download/DS/DS_AT32F435_437_V2.12_EN.pdf
 
 | MCU       | Pins                                                   |
 | :-------- | :----------------------------------------------------- |
@@ -463,7 +476,7 @@ It is highly recommended that the flight controller Manufacturer Name, Board Nam
 
 ### 3.3.1 Creating Design Revisions and Communicating Changes
 
-Providing sufficient marking and documentation will be required for hardware approval. Screen printing on the flight controller critical information - pin identifiers, board name, revision, and manufacturer will be necessary, with sufficient detail to enable end-users to properly connect devices to the flight controller.
+Providing sufficient marking and documentation will be required for Betaflight Supported. Screen printing on the flight controller critical information - pin identifiers, board name, revision, and manufacturer will be necessary, with sufficient detail to enable end-users to properly connect devices to the flight controller.
 
 When creating flight controller revisions and improvements, it is strongly recommended that indications and documentations are made available, particularly when pinout changes, output rating changes, or hardware bill of material changes. Any board configuration change requiring a user to change configuration behavior must have an accompanying change in marking to indicate (e.g. changing an IMU, or altering the pinout of solder pads).
 
@@ -488,27 +501,29 @@ Working with the Betaflight development team provides opportunities to develop p
 
 ## 3.4 Electronic Speed Controller Compatibility
 
-A significant amount of the added performance available in Betaflight 4.X and beyond is based on leveraging ESC RPM telemetry data in order to use RPM Notch Filters and Dynamic Idle features.
+A significant amount of the flight performance available in current Betaflight is based on leveraging ESC RPM telemetry data in order to use RPM Notch Filters and Dynamic Idle features.
 
 ### 3.4.1 For 32-Bit ESCs (e.g. BLHeli_32 and AM32)
 
 Betaflight supports all 32-bit ESCs currently available, with BLHeli_32 and AM32 configurations, as well as APD configurations being capable of supporting bidirectional DShot, and user-configured operation with bidirectional DShot disabled.
 Additional DShot extended telemetry will be implemented over time as demonstrated stable, however current extended telemetry options will only be enabled by user selection.
 
-BLHeli AS ceased operations in 2024. No new BLHeli_32 licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BLHeli_32 ESCs. There are several alternatives, including [AM32](https://am32.ca/) and [ESCape32](https://github.com/neoxic/ESCape32) that can be flashed to the same hardware and are fully supported by the open-source community.
+BLHeli AS ceased operations in 2024. No new BLHeli_32 licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BLHeli_32 ESCs: BLHeli_32 on new products is warned against because it is no longer maintained, so a new AIO that ships with it is not eligible for Betaflight Supported. There are several alternatives, including [AM32](https://am32.ca/) and [ESCape32](https://github.com/neoxic/ESCape32) that can be flashed to the same hardware and are fully supported by the open-source community.
 
 ### 3.4.2 For 8-Bit ESCs (e.g. BLHeli_S, Bluejay)
 
-Betaflight will continue to support all current 8-bit ESC configurations, however these will rely on having bidirectional DShot enabled by default.
+Betaflight will continue to support all current 8-bit ESC configurations. Bidirectional DShot is off in the firmware defaults, but RPM filtering and RPM dynamic idle depend on it, so the ESC firmware should support it.
 
-For Betaflight 4.4 and subsequent releases, the Betaflight team will NO LONGER support BLHeli_S as a default configuration. The enhanced flight performance made possible by operating with Bidirectional DShot features enabled will become the default behavior for all Betaflight craft.
+BLHeli_S without bidirectional DShot on new products is warned against, because it cannot provide the RPM telemetry that RPM filtering needs, so a new AIO that ships with it is not eligible for Betaflight Supported.
 
 8-bit ESCs with BLHeliS can be flashed with a modern ESC firmware such as [**Bluejay**](https://github.com/bird-sanctuary/bluejay) to support bidirectional DShot.
 
 For hardware, such as AIO boards, which incorporate an ESC and FC, the expectation will be that hardware comes with installed firmware meeting these requirements. The preferred option in this case is **Bluejay**, due to the ability to adjust PWM frequencies, bidirectional DShot support, and ease of end-user support for other functionality across MCU layouts.
 
-Failure to comply with this requirement will require end-users to perform firmware reflash of ESCs, and without reflashing craft will not arm due to the RPMFILTER error that will be present due to a lack of RPM Telemetry.
-The required solution will be disabling Bidirectional DShot (not recommended) or reflashing ESC (strongly recommended).
+Such boards should also enable bidirectional DShot in their config with `#define DEFAULT_DSHOT_TELEMETRY DSHOT_TELEMETRY_ON`, so that RPM filtering works out of the box.
+
+If the ESC firmware does not support bidirectional DShot, pilots do not get RPM filtering until they reflash their ESCs. If bidirectional DShot is enabled, whether by the config or by the pilot, and any ESC does not return telemetry, the craft will not arm and the arming flags show `DSHOT_TELEM`.
+The solution is reflashing the ESC (strongly recommended) or disabling Bidirectional DShot (not recommended).
 
 ### 3.4.3 For Legacy ESCs
 
@@ -524,7 +539,7 @@ These are the **strongly recommended** default configurations.
 
 For stock configurations, and implementations of ready-to-fly craft, the following configurations are the officially recommended configurations.
 
-Importantly, although the Bidirectional DShot ENABLED may require lower PID Loop Rates for F411 and F405 flight controllers, the difference in loop time is 125us or 250us. These are microseconds. The improvements in filtering using RPM Notches alongside Sliding-DFT Multi-Dynamic notches can provide improvements on the scale of milliseconds for phase latency when processing IMU signals to post-filter information that can be used for PID/Mixer calculations. The flight performance of using bidirectional DShot is absolutely worth the PID Looptime Tradeoff, due to that order of magnitude improvement in cumulative signal pathway delay enabled with more targeted notch filtering schema.
+Importantly, although enabling Bidirectional DShot may require lower PID Loop Rates for F411 and F405 flight controllers, the difference in loop time is 125us or 250us. These are microseconds. The improvements in filtering using RPM Notches alongside Sliding-DFT Multi-Dynamic notches can provide improvements on the scale of milliseconds for phase latency when processing IMU signals to post-filter information that can be used for PID/Mixer calculations. The flight performance of using bidirectional DShot is absolutely worth the PID Looptime Tradeoff, due to that order of magnitude improvement in cumulative signal pathway delay enabled with more targeted notch filtering schema.
 
 Looptime and Performance Recommendation Table:
 
@@ -544,24 +559,22 @@ Looptime and Performance Recommendation Table:
 |                                  | BMI-270                      | 3.2 kHz       | Enabled                    | 1.6 kHz       | DShot 300      |
 |                                  | BMI-270                      | 3.2 kHz       | Disabled (not recommended) | 3.2 kHz       | DShot 300      |
 
+:::note
+
+The F411 and BMI-270 rows, and the legacy gyros (MPU60X0, ICM2060X) in the other rows, are for existing designs. New designs using any of them are warned against (see [3.1.2](#312-inertial-measurement-unit-imu-selection) and [3.2](#32-resource-selection-considerations)): they can be included as Manufacturer supported, but are not eligible for Betaflight Supported.
+
+:::
+
 The IMU column above predates several currently supported parts. For reference, the native gyro output data rates are 8 kHz for the ICM-42688-P, ICM-42605, ICM-42622-P, ICM-42686-P, IIM-42652, IIM-42653, ICM-40609-D, LSM6DSV16X and LSM6DSK320X; 6.4 kHz for the ICM-45605, ICM-45686 and ICM-56686; 6664 Hz for the LSM6DSO; 9 kHz for the legacy ICM-20649; and 3.2 kHz for the BMI270 and BMI160. Treat the 8 kHz parts as equivalent to the ICM-42688-P rows, and agree defaults for the slower parts with the Betaflight team.
 
-\*\* For F411 UART RX applications, using both available UARTs AND enabling SoftSerial, Accelerometer, large numbers of OSD elements, and using a larger number of filters, stability may require lowering looprate to 2kHz.
+\*\* For F411 UART RX applications, using both available UARTs and enabling SoftSerial, Accelerometer, large numbers of OSD elements, and using a larger number of filters, stability may require lowering looprate to 2kHz.
 
-\*\*\* No new SPI RX solutions will be accepted due to challenges in resource allocation and scheduler inconsistency that consistently emerge with SPI RX designs.
+\*\*\* SPI receivers are warned against on new designs, due to challenges in resource allocation and scheduler inconsistency that consistently emerge with SPI RX designs. A new design with an SPI receiver can be included as Manufacturer supported, but is not eligible for Betaflight Supported.
 Additionally, there are no RC ecosystems that are actively developing a supported SPI RX solution (ExpressLRS 4.0 and later do not support SPI receivers; FrSky does not support SPI RX over any protocol, and other SPI RX solutions have been fully deprecated).
 
 Note that the use of gyros such as the BMI270 lowers the gyro loop rate from 8kHz to 3.2kHz and therefore may be advantageous for F411 designs.
 
 Targets on the newer platforms (STM32 H5, C5, N6, RP2350, X32M7 and APM32) are not listed above. As a starting point, the N6 and X32M7 are H7-class in compute; the H5 is closer to an F7 despite being a newer part; the C5 is lower again, at roughly half the H5; and APM32 F4 tracks F405. Agree the defaults with the Betaflight team as part of the target review — see [4.4](#44-supported-mcu-platforms-and-targets) for the status of each platform.
-
-:::warning
-
-Betaflight has deprecated implementation of new STM32F411 designs.
-
-BMI270 is no longer recommended.
-
-:::
 
 ## 4.2 Definitions for Targets
 
@@ -575,7 +588,9 @@ Use the exact define names below. A misspelled or non-existent `USE_*` define is
 
 ### 4.2.1 Defines for GYRO and ACC
 
-Define at least one gyro and one accelerometer. Gyroscopes must communicate via SPI. Legacy I2C-only parts (e.g. MPU6050), the obsolete L3GD20, and the SITL/virtual sensors are intentionally omitted below, as they are not accepted for new designs.
+Define at least one gyro and one accelerometer. Gyroscopes must communicate via SPI. Legacy I2C-only parts (e.g. MPU6050) are omitted below, because a board with its gyro not on SPI is not accepted into the cloud build. The obsolete L3GD20 and the SITL/virtual sensors are also omitted, as they are not for new hardware.
+
+The legacy MPU6000, MPU6500, MPU9250 and ICM2060x defines are listed for existing boards; new designs using those parts are warned against (see [3.1.2](#312-inertial-measurement-unit-imu-selection)). The BMI270 define is listed for existing boards and for second-sourcing on a shared footprint (see [4.2.1.1](#4211-bmi270-on-a-shared-icm-42688-p-footprint)); the BMI270 is warned against too.
 
 ```c
 // InvenSense / TDK
@@ -675,7 +690,7 @@ Other BMI270 constraints that matter when sharing a footprint with the ICM-42688
 - The driver accepts chip ID `0x24` only. Clone or re-marked parts that report anything else are not detected, and the board reports no gyro at all.
 - The BMI323 is **not** supported by Betaflight and cannot be used as a substitute.
 
-This define only resolves the footprint/axis mismatch; it does not change the fact that new designs using the BMI270 are not approved (see [3.1.2](#312-inertial-measurement-unit-imu-selection)).
+This define is the way to second-source a BMI270 on an ICM-42688-P footprint, but it only resolves the footprint and axis mismatch. It does not change the BMI270's status: it is warned against, so a new design using it is not eligible for Betaflight Supported (see [3.1.2](#312-inertial-measurement-unit-imu-selection)).
 
 ### 4.2.2 Defines for FLASH
 
@@ -703,7 +718,7 @@ OctoSPI/XSPI boot-flash chips (e.g. the Macronix `MX66UW1G45G`) are not selected
 
 ### 4.2.3 Defines for BARO
 
-Define a barometer only if physical present on the board. Betaflight strongly recommends I2C for barometer connections.
+Define a barometer only if physical present on the board. Betaflight strongly recommends I2C for barometer connections. The exception is the ST LPS22HB / LPS25 family (`USE_BARO_SPI_LPS`), which the firmware supports on SPI only.
 
 :::warning
 
@@ -773,7 +788,7 @@ As with the barometer, `USE_MAG` itself must be defined for any compass driver t
 
 ### 4.2.5 Defines for SX1280
 
-For SPI based SX1280 target designs add the following defines. For 900 MHz ExpressLRS hardware based on the SX127x, add `USE_RX_SX127X` as well (both may be defined for dual-band designs):
+These defines are for existing boards with an onboard SPI ExpressLRS receiver. SPI receivers are warned against on new designs, see [4.1](#41-rated-looptime-and-performance). For SPI based SX1280 target designs add the following defines. For 900 MHz ExpressLRS hardware based on the SX127x, add `USE_RX_SX127X` as well (both may be defined for dual-band designs):
 
 ```c
 #define USE_RX_EXPRESSLRS
@@ -784,6 +799,8 @@ For SPI based SX1280 target designs add the following defines. For 900 MHz Expre
 ```
 
 ### 4.2.6 Defines for OSD
+
+Only for boards with an onboard MAX7456 analogue OSD, which is optional (see [3.1.4.3](#3143-supporting-additional-features)).
 
 ```c
 #define USE_MAX7456
@@ -797,7 +814,7 @@ For SPI based SX1280 target designs add the following defines. For 900 MHz Expre
 
 ### 4.2.8 Defines for CC2500
 
-For SPI based CC2500 target designs add the following define:
+This define is for existing boards with an onboard SPI CC2500 receiver. SPI receivers are warned against on new designs, see [4.1](#41-rated-looptime-and-performance). For SPI based CC2500 target designs add the following define:
 
 ```c
 #define USE_RX_CC2500
@@ -827,25 +844,25 @@ See reference to [cloud build API](/docs/development/API/Cloud-Build-API)
 
 Betaflight is no longer an ST-only firmware. The table below lists every platform in the firmware, the target names accepted as `FC_TARGET_MCU` in a `config.h`, and how suitable each is for a new commercial flight controller design. Being buildable is not the same as being recommended: several platforms exist for development work only.
 
-| Platform  | `FC_TARGET_MCU` values                                                                    | Flash                                              | Suitability for new designs                                                                      |
-| :-------- | :---------------------------------------------------------------------------------------- | :------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
-| STM32 F4  | `STM32F411`, `STM32F405`, `STM32F446`                                                     | 512 KB / 1 MB / 512 KB                             | Legacy. F411 is deprecated for new designs; F4 designs are limited to 4 motor outputs            |
-| STM32 F7  | `STM32F722`, `STM32F745`                                                                  | 512 KB / 1 MB                                      | Legacy/maintenance. Limited to 4 motor outputs                                                   |
-| STM32 G4  | `STM32G474`                                                                               | 512 KB                                             | Supported and current — a good small/budget choice                                               |
-| STM32 H7  | `STM32H723`, `STM32H725`, `STM32H730`, `STM32H735`, `STM32H743`, `STM32H750`, `STM32H757` | 1 MB – 2 MB (H730/H750 128 KB internal)            | **Recommended** for high-motor-count and feature-rich designs                                    |
-| STM32 H5  | `STM32H562`, `STM32H563`                                                                  | 2 MB                                               | New. Currently excluded from CI, so no official release binaries yet — discuss before committing |
-| STM32 C5  | `STM32C562`, `STM32C591`, `STM32C5A3`                                                     | 512 KB – 1 MB                                      | Developer preview. No production flight controllers                                              |
-| STM32 N6  | `STM32N657`                                                                               | No internal user flash; app lives in external XSPI | Developer preview. Requires a signed first-stage bootloader                                      |
-| AT32      | `AT32F435G`, `AT32F435M`                                                                  | 1 MB / 4 MB                                        | Supported and current, with flexible DMA routing                                                 |
-| APM32     | `APM32F405`, `APM32F407`, `APM32F425`, `APM32F427`                                        | 1 MB                                               | Supported in firmware, but no official configs exist. Shares the F4 DMA restrictions             |
-| PICO      | `RP2350A`, `RP2350B`                                                                      | External QSPI, 4 MB / 8 MB                         | Supported and new. DShot is driven from PIO state machines, not timers                           |
-| X32       | `X32M7B`                                                                                  | 2 MB XIP NOR                                       | Experimental                                                                                     |
-| ESP32     | `ESP32WROOM`, `ESP32S3`, `ESP32C5`, `ESP32P4`                                             | 4 MB – 16 MB                                       | Experimental. Excluded from CI, so no official release binaries                                  |
-| SIMULATOR | `SITL`                                                                                    | n/a                                                | Software simulation only, not hardware                                                           |
+| Platform  | `FC_TARGET_MCU` values                                                                                 | Flash                                              | Suitability for new designs                                                                                          |
+| :-------- | :----------------------------------------------------------------------------------------------------- | :------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- |
+| STM32 F4  | `STM32F411`, `STM32F405`, `STM32F446`                                                                  | 512 KB / 1 MB / 512 KB                             | Fine for budget boards and AIOs with 4 motor outputs. More than 4 motors, or F411 on a new design, is warned against |
+| STM32 F7  | `STM32F722`, `STM32F745`                                                                               | 512 KB / 1 MB                                      | Fine for budget boards and AIOs with 4 motor outputs. More than 4 motors is warned against                           |
+| STM32 G4  | `STM32G474`                                                                                            | 512 KB                                             | Preferred for small and budget boards                                                                                |
+| STM32 H7  | `STM32H723`, `STM32H725`, `STM32H730`, `STM32H735`, `STM32H743`, `STM32H750`, `STM32H753`, `STM32H757` | 1 MB – 2 MB (H730/H750 128 KB internal)            | **Preferred** (H743) for high IO and more than 4 motor outputs                                                       |
+| STM32 H5  | `STM32H562`, `STM32H563`                                                                               | 2 MB                                               | New. Currently excluded from CI, so no official release binaries yet. Talk to the team before designing around it    |
+| STM32 C5  | `STM32C562`, `STM32C591`, `STM32C5A3`                                                                  | 512 KB – 1 MB                                      | Developer preview. No production flight controllers                                                                  |
+| STM32 N6  | `STM32N657`                                                                                            | No internal user flash; app lives in external XSPI | Developer preview. Requires a signed first-stage bootloader                                                          |
+| AT32      | `AT32F435G`, `AT32F435M`                                                                               | 1 MB / 4 MB                                        | Preferred for small and budget boards, with flexible DMA routing                                                     |
+| APM32     | `APM32F405`, `APM32F407`, `APM32F425`, `APM32F427`                                                     | 1 MB                                               | Available in firmware, but no official configs exist. Shares the F4 DMA restrictions                                 |
+| PICO      | `RP2350A`, `RP2350B`                                                                                   | External QSPI, 4 MB / 8 MB                         | Preferred for small and budget boards. DShot is driven from PIO state machines, not timers                           |
+| X32       | `X32M7B`                                                                                               | 2 MB XIP NOR                                       | Experimental                                                                                                         |
+| ESP32     | `ESP32WROOM`, `ESP32S3`, `ESP32C5`, `ESP32P4`                                                          | 4 MB – 16 MB                                       | Experimental. Excluded from CI, so no official release binaries                                                      |
+| SIMULATOR | `SITL`                                                                                                 | n/a                                                | Software simulation only, not hardware                                                                               |
 
 :::warning
 
-Targets excluded from CI (STM32H562, STM32H563, STM32C591 and all ESP32 variants at the time of writing) produce no official release firmware, because release assets are the CI artifacts. Do not plan a product around one of these without first discussing it with the Betaflight team.
+Targets excluded from CI (STM32H562, STM32H563, STM32C591 and all ESP32 variants at the time of writing) produce no official release firmware, because release assets are the CI artifacts. Talk to the Betaflight team before planning a product around one of these.
 
 :::
 
@@ -873,7 +890,7 @@ Gyro external clock input (`GYRO_CLKIN`) is available on STM32, AT32, RP2350 and
 
 - Betaflight is an open source flight controller software (firmware) used to fly multi-rotor and fixed wing aircraft.
 
-- The Betaflight name and logos are registered trademarks and may not be used in any commercial products or services without prior approval from the project.
+- The Betaflight name and logos are registered trademarks and may not be used in any commercial products or services without permission from the project. A board that uses the Betaflight name or logo without permission is not accepted into the cloud build.
 
 - Betaflight is a fork of Baseflight and Cleanflight, with an emphasis focused on flight performance, leading-edge feature additions, and wide target support. Combining cutting edge flight performance with diverse hardware support, Betaflight is the leading solution for high performance small unmanned aircraft.
 

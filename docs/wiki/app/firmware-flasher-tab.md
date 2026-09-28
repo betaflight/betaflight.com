@@ -19,9 +19,21 @@ For Betaflight 4.4 and above, firmware updating uses an online build process. Th
 
 To revert to previous firmware, the same online process would apply, but you would choose the original firmware version, and then restore your saved `diff` file. <br/><br/>
 
-Configurator only supports Betaflight version 4.0 and newer. Older versions of Configurator may be needed to flash older firmware.
+The Betaflight App only supports Betaflight version 4.0 and newer. Older versions of the app may be needed to flash older firmware.
 
 :::
+
+## Board Status
+
+Every board in the list carries one of three statuses:
+
+| Status                    | Meaning                                                                                                                                                                                                                            |
+| :------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ Betaflight Supported   | The Betaflight team has reviewed the design, and the manufacturer has committed to support it. Firmware regressions on these boards are fixed before release.                                                                      |
+| ⚠️ Manufacturer supported | Included as the manufacturer supplied it, after basic checks. The manufacturer, or the board's named maintainer, supports it. If a release is reported not to work on the board, the board is withdrawn from that release onwards. |
+| Legacy                    | Can still be flashed, but nobody maintains it. Custom firmware loaded with `Load Firmware [Local]` is treated the same way. Use at your own discretion.                                                                            |
+
+Whatever the status, support for the board itself comes from its manufacturer. See [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support).
 
 ## Basic Flashing Procedure
 
@@ -210,15 +222,15 @@ It is also possible to make a build from any previous point in time by entering 
 
 :::info
 
-If your board peripherals are not recognized after flashing, please help us add the required configuration details. Some boards have inadequate file definitions, or the manufacturer has changed something on the board.
+If your board, or a pad or peripheral on it, does not work as advertised after flashing, contact the board's manufacturer. They support their hardware and maintain its config and documentation, whatever its status. [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support) explains where to go with other problems.
 
-<br/>
-Reach out to us on our [Discord server](https://discord.betaflight.com/invite) or create an issue in the [Betaflight config repo](https://github.com/betaflight/config/issues).
-<br/>
-To get the required information follow this procedure:
-1. Flash your board with the <b>Core Only</b> switch enabled
+If you have found an error in a board's config, such as a wrong pin or a missing sensor, you can also create an issue in the [Betaflight config repo](https://github.com/betaflight/config/issues). Issues there are for config errors, not for help with a board or a build.
+
+To collect the information the manufacturer or config maintainer needs:
+
+1. Flash your board with the <b>Core Only</b> switch enabled.
 2. Go to the CLI tab and click the <b>Submit Support Data</b> button.
-3. With this generated support <b>ID</b> we should have all the required information, but we would then need your help to confirm a fix..
+3. Include the generated support <b>ID</b> in your issue or your message to the manufacturer.
 
 :::
 
@@ -228,7 +240,7 @@ The `Show Log` link will open the build log and show the defines being applied t
 
 The log file includes a full string for use when flashing the same build locally is provided, both for Docker and Make.
 
-At any time after flashing, the log can be re-loaded using the `log` button at the lower right side of Configurator's S`Setup` page. A summary of the included build options can be displayed using the nearby `Options` button.
+At any time after flashing, the log can be re-loaded using the `log` button at the lower right side of the app's `Setup` page. A summary of the included build options can be displayed using the nearby `Options` button.
 
 ### Local Flashing
 
