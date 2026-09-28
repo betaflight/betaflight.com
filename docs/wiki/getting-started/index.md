@@ -3,7 +3,9 @@ sidebar_position: 0
 title: About Betaflight
 ---
 
-Betaflight is flight controller software (firmware) for multi-rotor and fixed wing craft.
+Betaflight is free, open-source flight control software for every kind of drone, from racing and freestyle to cinematic filming, long range, micros and wings. It exists so that every pilot, whatever they fly and whoever made their hardware, gets precise, predictable and reliable flight, and so that the knowledge behind it stays open to everyone.
+
+We fix Betaflight. Manufacturers support their hardware. Pilots own their builds. See [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support) for who to ask when something goes wrong.
 
 If you're flying an FPV quadcopter, you're probably running Betaflight on the flight controller. A flight controller is basically a computer that reads the sensors (gyro, accelerometer, GPS, etc...), computes the desired actions to take, sends the commands to the ESC to control the motors, generate thrust, and keep the quadcopter in the air. It can also control other peripherals (VTX control, radio link telemetry, LEDs).
 
@@ -89,9 +91,9 @@ For even further experimentation, Betaflight was forked from Cleanflight as a wa
 
 ## Betaflight Features
 
-Betaflight is constantly being updated with new features and improvements. Its main focus is on high-performance flight (freestyle/racing quadcopters), but it also supports other types of aircraft (fixed wing, tri/hex/octocopters, and more). Recently, the focus has been expanding to support more advanced GPS rescue capabilities.
+Betaflight is constantly being updated with new features and improvements. It flies everything from tiny whoops, racing and freestyle quads to cinematic rigs, long range craft, tri/hex/octocopters and wings, and is expanding into GPS rescue and autonomous flight.
 
-- **Wide Target Support** - Betaflight has become the de-facto standard for flight controllers, nearly every flight controller out there has a Betaflight target.
+- **Wide Target Support** - Betaflight runs on flight controllers from around 140 manufacturers. Support for each board comes from its manufacturer, see [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support).
 - **Receiver Protocol Support** - Betaflight supports a wide variety of receiver protocols, including CRSF, Ghost, FPort, SBUS, Spektrum, and more.
 - **ESC Protocol Support** - Betaflight supports a wide variety of ESC protocols. The main one used on nearly everything is DShot, but there are also other protocols like Oneshot, Multishot, and even PWM if you really need them.
 - **Precision Tuning** - Whether you're tuning a tinywhoop, a 5" quad, or a 7"+ macro, you can tune your craft to get the best performance out of it. With tune and filter presets, you can get a good starting point within seconds.
