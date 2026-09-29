@@ -47,7 +47,7 @@ Thank you for considering or continuing your development of Betaflight capable f
 
 :::info
 
-These guidelines sit under the Betaflight [Hardware Policy](hardware-policy): we fix Betaflight, manufacturers support their hardware, and pilots own their builds. Every board in the firmware flasher is Betaflight Supported, Manufacturer supported or Legacy, and the guidance in this document is Preferred, Not accepted for new designs, Not recommended (accepted in some circumstances) or Warned against (advice that a config review cannot enforce). The cloud build carries designs the Betaflight team has reviewed and accepted, see [Cloud Build Acceptance](hardware-policy#cloud-build-acceptance). A manufacturer remains free to distribute their own firmware for any design, see [Two Routes to Pilots](hardware-policy#two-routes-to-pilots). This applies to new designs from 28 September 2026; existing boards keep their status.
+These guidelines sit under the Betaflight [Hardware Policy](hardware-policy): we fix Betaflight, manufacturers support their hardware, and pilots own their builds. Every board in the firmware flasher is Betaflight Supported, Manufacturer supported or Legacy, and the guidance in this document is Preferred, Not accepted for new designs, Not recommended (accepted only in specific circumstances) or Warned against (advice that a config review cannot enforce). The cloud build carries designs the Betaflight team has reviewed and accepted, see [Cloud Build Acceptance](hardware-policy#cloud-build-acceptance). A manufacturer remains free to distribute their own firmware for any design, see [Two Routes to Pilots](hardware-policy#two-routes-to-pilots). This applies to new designs from 28 September 2026; existing boards keep their status.
 
 :::
 
@@ -106,7 +106,7 @@ This is the path to Betaflight Supported status. A board that does not go throug
 
 - Betaflight team will establish a closed Discord channel for ongoing private discussion between key members of the development team and manufacturer designees.
   Work in progress schematics, PCB renders, and similar documentation prior to initial production provides opportunities for early feedback.
-- **Before submitting a target design, review it carefully against these guidelines.** A new design that uses anything [not accepted for new designs](hardware-policy#not-accepted-for-new-designs) is not accepted into the cloud build, and anything [not recommended](hardware-policy#not-recommended) needs agreeing with the team first, see [Cloud Build Acceptance](hardware-policy#cloud-build-acceptance).
+- **Before submitting a target design, review it carefully against these guidelines.** A new design that uses anything [not accepted for new designs](hardware-policy#not-accepted-for-new-designs) is not accepted into the cloud build, and anything [not recommended](hardware-policy#not-recommended) is accepted only within its limits, see [Cloud Build Acceptance](hardware-policy#cloud-build-acceptance).
 
 - Initial Submission
 
@@ -190,7 +190,7 @@ Selecting the right IMU for a flight controller is crucial for optimal flight pe
 
 :::note
 
-The Bosch BMI-270 IMU is not recommended, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used. It is accepted only in some circumstances, such as a second source on an ICM-42688-P footprint, so talk to the team before committing a design to it.
+The Bosch BMI-270 IMU is not recommended, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used. It is accepted only as a second source on an ICM-42688-P footprint, see [4.2.1.1](#4211-bmi270-on-a-shared-icm-42688-p-footprint).
 
 Boards that second-source a BMI270 on an ICM-42688-P footprint should note that the two parts do not share axis orientation. See [BMI270 on a shared ICM-42688-P footprint](#4211-bmi270-on-a-shared-icm-42688-p-footprint) for the config define that compensates for this.
 
@@ -689,7 +689,7 @@ Other BMI270 constraints that matter when sharing a footprint with the ICM-42688
 - The driver accepts chip ID `0x24` only. Clone or re-marked parts that report anything else are not detected, and the board reports no gyro at all.
 - The BMI323 is **not** supported by Betaflight and cannot be used as a substitute.
 
-This define is the way to second-source a BMI270 on an ICM-42688-P footprint, but it only resolves the footprint and axis mismatch. It does not change the BMI270's status: it is not recommended, and accepted only in some circumstances, such as this one (see [3.1.2](#312-inertial-measurement-unit-imu-selection)).
+This define is the way to second-source a BMI270 on an ICM-42688-P footprint, but it only resolves the footprint and axis mismatch. It does not change the BMI270's status: it is not recommended, and this second-source case is the only one in which it is accepted (see [3.1.2](#312-inertial-measurement-unit-imu-selection)).
 
 ### 4.2.2 Defines for FLASH
 

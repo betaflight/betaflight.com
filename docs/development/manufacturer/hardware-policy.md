@@ -101,11 +101,11 @@ New designs using any of these are not accepted into the cloud build.
 
 ### Not Recommended
 
-Accepted in some circumstances. Talk to us before committing a design to one of these.
+Accepted within the limits given for each, but a current part is the better choice.
 
-- BMI270 gyro: calibration and drift. Accepted, for example, as a second source on an ICM-42688-P footprint.
-- MPU6000 gyro: end of life, but accepted when the part is genuine.
-- ICM2060x gyros: end of life.
+- BMI270 gyro: calibration and drift. Accepted only as a second source on an ICM-42688-P footprint.
+- MPU6000 gyro: end of life. Accepted only when the part is genuine.
+- ICM2060x gyros: end of life. Accepted.
 
 ### Warned Against
 
@@ -125,7 +125,7 @@ The team accepts a new board into the cloud build when:
 - it builds;
 - its motor outputs do not conflict on timers or DMA;
 - its gyro is on SPI, which the firmware requires;
-- it uses nothing listed under [Not Accepted for New Designs](#not-accepted-for-new-designs), and anything [Not Recommended](#not-recommended) has been agreed with the team;
+- it uses nothing listed under [Not Accepted for New Designs](#not-accepted-for-new-designs), and anything [Not Recommended](#not-recommended) stays within its limits;
 - its manufacturer is registered in the [manufacturers list](https://github.com/betaflight/config/blob/master/Manufacturers.md).
 
 ## Existing Boards

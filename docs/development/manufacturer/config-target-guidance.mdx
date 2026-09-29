@@ -23,7 +23,7 @@ New STM32 F411 designs and SPI receivers are [not accepted for new designs](hard
 
 - Serial receivers are preferred to SPI receivers, in line with the direction of the ExpressLRS project. Existing SPI receiver targets continue to be built.
 
-- The BMI270 IMU is no longer recommended due to calibration issues (drift), and is accepted only in some circumstances, so talk to the team first. Where a PCB is second-sourced between a BMI270 and an ICM-42688-P on the same footprint, see the [`ENABLE_BMI270_ALIGN_AS_ICM` define](manufacturer-design-guidelines#4211-bmi270-on-a-shared-icm-42688-p-footprint).
+- The BMI270 IMU is no longer recommended due to calibration issues (drift), and is accepted only as a second source on an ICM-42688-P footprint. Where a PCB is second-sourced between a BMI270 and an ICM-42688-P on the same footprint, see the [`ENABLE_BMI270_ALIGN_AS_ICM` define](manufacturer-design-guidelines#4211-bmi270-on-a-shared-icm-42688-p-footprint).
   :::
 
 :::note
