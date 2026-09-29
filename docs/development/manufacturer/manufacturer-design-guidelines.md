@@ -16,38 +16,38 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 ## Version Change Register
 
-| Version #   | Revision Date     | Changes, Reasons, and Notes                                                                                                                                                                                              |
-| :---------- | :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Draft 0.1   | 14 May 2022       | Initial Draft Format                                                                                                                                                                                                     |
-| Draft 0.2   | 04 June 2022      | Revise format to Final Format                                                                                                                                                                                            |
-| Draft 0.3   | 12 June 2022      | Update Visual Media and Tables                                                                                                                                                                                           |
-| Draft 0.4   | 21 October 2022   | Update format, add information                                                                                                                                                                                           |
-| Draft 0.5   | 24 October 2022   | Add additional information                                                                                                                                                                                               |
-| Draft 0.6   | 06 November 2022  | Add cloud build information                                                                                                                                                                                              |
-| Draft 0.7   | 17 November 2022  | Remove off-board hardware defines                                                                                                                                                                                        |
-| Draft 0.8   | 01 January 2023   | Update Baro and CC2500                                                                                                                                                                                                   |
-| Draft 0.9   | 14 January 2023   | Add FC LEDs                                                                                                                                                                                                              |
-| Draft 1.0   | 26 January 2023   | Add Signal Rules                                                                                                                                                                                                         |
-| Draft 1.1   | 10 December 2023  | Add LSM6DSV16X and LPS22DF                                                                                                                                                                                               |
-| Draft 1.2   | 13 January 2024   | Add Mag and Baro hardware note                                                                                                                                                                                           |
-| Draft 1.3   | 23 October 2024   | Update MCU recommendations                                                                                                                                                                                               |
-| Draft 1.4   | 06 November 2024  | Add LED pin resource warning                                                                                                                                                                                             |
-| Draft 1.5   | 13 January 2025   | Update ADC/gyro recommendations                                                                                                                                                                                          |
-| Draft 1.6   | 18 February 2025  | Add W25N02K flash define                                                                                                                                                                                                 |
-| Draft 1.7   | 27 March 2025     | Update FC review policy                                                                                                                                                                                                  |
-| Draft 1.8   | 01 April 2025     | Update I2C Device Info                                                                                                                                                                                                   |
-| Draft 1.9   | 12 September 2025 | Update motor requirements                                                                                                                                                                                                |
-| Draft 2.0   | 12 November 2025  | GPIO usage clarifications                                                                                                                                                                                                |
-| Draft 2.1   | 29 March 2026     | Update sensors                                                                                                                                                                                                           |
-| Draft 2.2   | 05 July 2026      | Sync sensor defines with firmware master; add LSM6DSK320X                                                                                                                                                                |
-| Draft 2.3   | 12 August 2026    | Add BMI270 shared-footprint alignment define; add supported MCU platform table                                                                                                                                           |
-| Version 3.0 | 28 September 2026 | Align with the Hardware Policy: guidance is Preferred or Warned against; new designs using anything warned against are not accepted into the cloud build, and manufacturers remain free to distribute their own firmware |
+| Version #   | Revision Date     | Changes, Reasons, and Notes                                                                                                                                                        |
+| :---------- | :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Draft 0.1   | 14 May 2022       | Initial Draft Format                                                                                                                                                               |
+| Draft 0.2   | 04 June 2022      | Revise format to Final Format                                                                                                                                                      |
+| Draft 0.3   | 12 June 2022      | Update Visual Media and Tables                                                                                                                                                     |
+| Draft 0.4   | 21 October 2022   | Update format, add information                                                                                                                                                     |
+| Draft 0.5   | 24 October 2022   | Add additional information                                                                                                                                                         |
+| Draft 0.6   | 06 November 2022  | Add cloud build information                                                                                                                                                        |
+| Draft 0.7   | 17 November 2022  | Remove off-board hardware defines                                                                                                                                                  |
+| Draft 0.8   | 01 January 2023   | Update Baro and CC2500                                                                                                                                                             |
+| Draft 0.9   | 14 January 2023   | Add FC LEDs                                                                                                                                                                        |
+| Draft 1.0   | 26 January 2023   | Add Signal Rules                                                                                                                                                                   |
+| Draft 1.1   | 10 December 2023  | Add LSM6DSV16X and LPS22DF                                                                                                                                                         |
+| Draft 1.2   | 13 January 2024   | Add Mag and Baro hardware note                                                                                                                                                     |
+| Draft 1.3   | 23 October 2024   | Update MCU recommendations                                                                                                                                                         |
+| Draft 1.4   | 06 November 2024  | Add LED pin resource warning                                                                                                                                                       |
+| Draft 1.5   | 13 January 2025   | Update ADC/gyro recommendations                                                                                                                                                    |
+| Draft 1.6   | 18 February 2025  | Add W25N02K flash define                                                                                                                                                           |
+| Draft 1.7   | 27 March 2025     | Update FC review policy                                                                                                                                                            |
+| Draft 1.8   | 01 April 2025     | Update I2C Device Info                                                                                                                                                             |
+| Draft 1.9   | 12 September 2025 | Update motor requirements                                                                                                                                                          |
+| Draft 2.0   | 12 November 2025  | GPIO usage clarifications                                                                                                                                                          |
+| Draft 2.1   | 29 March 2026     | Update sensors                                                                                                                                                                     |
+| Draft 2.2   | 05 July 2026      | Sync sensor defines with firmware master; add LSM6DSK320X                                                                                                                          |
+| Draft 2.3   | 12 August 2026    | Add BMI270 shared-footprint alignment define; add supported MCU platform table                                                                                                     |
+| Version 3.0 | 28 September 2026 | Align with the Hardware Policy: guidance is Preferred, Not accepted for new designs, Not recommended or Warned against; manufacturers remain free to distribute their own firmware |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
 :::info
 
-These guidelines sit under the Betaflight [Hardware Policy](hardware-policy): we fix Betaflight, manufacturers support their hardware, and pilots own their builds. Every board in the firmware flasher is Betaflight Supported, Manufacturer supported or Legacy, and the guidance in this document is Preferred or Warned against. The cloud build carries designs the Betaflight team has reviewed and accepted: a new design that uses anything Warned against is not accepted, see [Cloud Build Acceptance](hardware-policy#cloud-build-acceptance). A manufacturer remains free to distribute their own firmware for any design, see [Two Routes to Pilots](hardware-policy#two-routes-to-pilots). This applies to new designs from 28 September 2026; existing boards keep their status.
+These guidelines sit under the Betaflight [Hardware Policy](hardware-policy): we fix Betaflight, manufacturers support their hardware, and pilots own their builds. Every board in the firmware flasher is Betaflight Supported, Manufacturer supported or Legacy, and the guidance in this document is Preferred, Not accepted for new designs, Not recommended (accepted in some circumstances) or Warned against (advice that a config review cannot enforce). The cloud build carries designs the Betaflight team has reviewed and accepted, see [Cloud Build Acceptance](hardware-policy#cloud-build-acceptance). A manufacturer remains free to distribute their own firmware for any design, see [Two Routes to Pilots](hardware-policy#two-routes-to-pilots). This applies to new designs from 28 September 2026; existing boards keep their status.
 
 :::
 
@@ -106,7 +106,7 @@ This is the path to Betaflight Supported status. A board that does not go throug
 
 - Betaflight team will establish a closed Discord channel for ongoing private discussion between key members of the development team and manufacturer designees.
   Work in progress schematics, PCB renders, and similar documentation prior to initial production provides opportunities for early feedback.
-- **Before submitting a target design, review it carefully against these guidelines.** A new design that uses anything Warned against is not accepted into the cloud build, see [Cloud Build Acceptance](hardware-policy#cloud-build-acceptance).
+- **Before submitting a target design, review it carefully against these guidelines.** A new design that uses anything [not accepted for new designs](hardware-policy#not-accepted-for-new-designs) is not accepted into the cloud build, and anything [not recommended](hardware-policy#not-recommended) needs agreeing with the team first, see [Cloud Build Acceptance](hardware-policy#cloud-build-acceptance).
 
 - Initial Submission
 
@@ -186,11 +186,11 @@ For connector pinout please refer to the [Betaflight Connector Standard](connect
 
 ### 3.1.2 Inertial Measurement Unit (IMU) Selection
 
-Selecting the right IMU for a flight controller is crucial for optimal flight performance. The InvenSense MPU-6000, the long-time standard, has reached end-of-life. As a replacement, we strongly recommend the ICM-42688-P (see below). Where the ICM-42688-P cannot be sourced, the STMicroelectronics LSM6DSK320X is the preferred second source (see below). Gyros must communicate via SPI, because the firmware does not support I2C gyros, so a board with its gyro on I2C is not accepted into the cloud build. Legacy gyros (the MPU-6000 and MPU-6500 family, and the ICM-2060x parts) are end of life, so they are warned against, and a new design using one is not accepted into the cloud build. Existing boards that use them keep their status.
+Selecting the right IMU for a flight controller is crucial for optimal flight performance. The InvenSense MPU-6000, the long-time standard, has reached end-of-life. As a replacement, we strongly recommend the ICM-42688-P (see below). Where the ICM-42688-P cannot be sourced, the STMicroelectronics LSM6DSK320X is the preferred second source (see below). Gyros must communicate via SPI, because the firmware does not support I2C gyros, so a board with its gyro on I2C is not accepted into the cloud build. Legacy gyros are end of life. The MPU-6500 is not accepted for new designs. A genuine MPU-6000 is still accepted, and the ICM-2060x parts are not recommended. Existing boards that use any of them keep their status.
 
 :::note
 
-The Bosch BMI-270 IMU is warned against, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used. A new design using this gyro is not accepted into the cloud build.
+The Bosch BMI-270 IMU is not recommended, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used. It is accepted only in some circumstances, such as a second source on an ICM-42688-P footprint, so talk to the team before committing a design to it.
 
 Boards that second-source a BMI270 on an ICM-42688-P footprint should note that the two parts do not share axis orientation. See [BMI270 on a shared ICM-42688-P footprint](#4211-bmi270-on-a-shared-icm-42688-p-footprint) for the config define that compensates for this.
 
@@ -252,7 +252,7 @@ Additionally, manufacturers should test the stability of the I2C bus under reali
 
 **Barometer selection**
 
-The Bosch BMP280 is a commonly used barometer. The 'real' unit is marked "Bosch BMP280" on the metal case. Sometimes it is replaced with a 'clone' which mimic the BMP280 in appearance, and reports the same I2C address and data structures, so that they show up as being a BMP280 in Betaflight. Manufacturers should only say that a board has a BMP280 barometer if it is a 'real' Bosch manufactured barometer; a board that names a component it does not use is not accepted into the cloud build. If a clone of the BMP280 is used, the name of the barometer used must be shown, e.g. A7L01, ASK03, and the manufacturer must confirm that the clone is as accurate as the original Bosch BMP280. Clones are warned against because their accuracy varies, so a new design using a clone that has not been shown to be as accurate is not accepted into the cloud build.
+The Bosch BMP280 is a commonly used barometer. The 'real' unit is marked "Bosch BMP280" on the metal case. Sometimes it is replaced with a 'clone' which mimic the BMP280 in appearance, and reports the same I2C address and data structures, so that they show up as being a BMP280 in Betaflight. Manufacturers should only say that a board has a BMP280 barometer if it is a 'real' Bosch manufactured barometer. If a clone of the BMP280 is used, the name of the barometer used must be shown, e.g. A7L01, ASK03, and the manufacturer must confirm that the clone is as accurate as the original Bosch BMP280. Clones are warned against because their accuracy varies, and should not be used. Because a clone uses the same driver as the original, this cannot be checked at the target level, so it is guidance rather than a condition of cloud build acceptance.
 
 The recommended I2C address for the BMP280 is 0x76, with SDO grounded, permitting automatic address identification by Betaflight.
 
@@ -270,7 +270,7 @@ The Infineon DPS310 was replaced with the Infineon DPS368 in late 2019, and the 
 
 :::note
 
-A board that claims a DPS310 but uses a clone is not accepted into the cloud build, because it names a component it does not use. Metal-cased clones are warned against because of the temperature errors described above, so a new design using one is not accepted into the cloud build unless the clone reports temperature accurately. We strongly recommend the latest Infineon DPS368 barometer, or the earlier Infineon DPS310, both of which are marked 'Infineon' and are supplied in a plastic case.
+A board that uses a clone must not be advertised as having a DPS310. Metal-cased clones are warned against because of the temperature errors described above, and should not be used. We strongly recommend the latest Infineon DPS368 barometer, or the earlier Infineon DPS310, both of which are marked 'Infineon' and are supplied in a plastic case.
 
 :::
 
@@ -288,7 +288,7 @@ Note also that the IST8310 magnetometer can be configured with any one of four I
 
 The QMC5883L has 'normal' axis orientation and works well.
 
-The naming rule for barometers applies to magnetometers too: name the part actually fitted. A board that names a magnetometer it does not use is not accepted into the cloud build, and a clone is accepted only when it is correctly named and shown to be as accurate as the original.
+The naming rule for barometers applies to magnetometers too: name the part actually fitted. A board must not be advertised with a magnetometer it does not use, and clones are warned against and should not be used.
 
 :::note
 
@@ -367,13 +367,13 @@ Current-limiting resistors on GPIOs, if used, should not exceed 100 ohms. This i
 
 :::warning
 
-A gyro sharing its SPI bus with other devices is warned against: transfers on a shared bus block each other, which costs gyro timing and flight performance, so a new design that does this is not accepted into the cloud build. Give the gyro its own SPI bus. Sharing between other devices also blocks, and a MAX7456 sharing a bus with blackbox flash has been a common source of support issues, so keep those two apart where possible.
+A gyro sharing its SPI bus with other devices is not accepted for new designs: transfers on a shared bus block each other, which costs gyro timing and flight performance, so a new design that does this is not accepted into the cloud build. Give the gyro its own SPI bus. Sharing between other devices also blocks, and a MAX7456 sharing a bus with blackbox flash has been a common source of support issues, so keep those two apart where possible.
 
 :::
 
 :::warning
 
-STM32 F4 and F7 designs with more than 4 motor outputs are warned against, because these MCUs do not have enough timers and DMA streams to go round. A new design of this kind is not accepted into the cloud build. F4 and F7 remain fine for budget boards and AIOs with 4 motor outputs. The STM32F411 is warned against on new designs because of its limited IO and flash, and remains fine on existing boards.
+STM32 F4 and F7 designs with more than 4 motor outputs are not accepted for new designs, because these MCUs do not have enough timers and DMA streams to go round. A new design of this kind is not accepted into the cloud build. F4 and F7 remain fine for budget boards and AIOs with 4 motor outputs. The STM32F411 is not accepted for new designs because of its limited IO and flash, and remains fine on existing boards.
 
 For high IO or more than 4 motor outputs, the STM32 H7 (H743) is preferred. For small or budget boards, the STM32 G4, AT32F435 and RP2350 are preferred where their resources suit the design. The STM32 H5 has no official release binaries yet, so talk to the team before designing around it. For the full list of platforms and their suitability, see [4.4](#44-supported-mcu-platforms-and-targets).
 
@@ -382,9 +382,8 @@ For high IO or more than 4 motor outputs, the STM32 H7 (H743) is preferred. For 
 BITBANG is the new default on non-F4 MCUs (the APM32 F4 family behaves like the STM32 F4 here) and FC designers should use as few GPIO PORTS as possible to avoid needing a DMA stream per GPIO port. i.e.
 
 - 8 motors on 1 GPIO port is optimal.
-- M1-M4 should use 1 GPIO port, and preferably one 4-channel timer with DMA.
-- 8 motors spread across 2 GPIO ports is OK.
-- 8 motors spread across more than 2 GPIO ports is warned against, because each extra port needs another DMA stream, so a new design that does this is not accepted into the cloud build.
+- M1-M4 must use 1 GPIO port, and preferably one 4-channel timer with DMA. A new design that spreads M1-M4 over more than one port is not accepted into the cloud build.
+- M5-M8 may be split across GPIO ports, for example on wing flight controllers or boards also designed for ArduPilot or INAV, though each extra port needs another DMA stream.
 
 There is also a choice between using advanced timers or not, TIM1/TIM8 are advanced and get used by DSHOT BITBANG.
 
@@ -404,7 +403,7 @@ Appropriate resource allocation ensures maximum flexibility in the selection of 
 
 Assign motor channels with highest priority.
 
-Note: STM32F4 and STM32F7 designs with more than 4 motor outputs are warned against, see [3.2](#32-resource-selection-considerations).
+Note: STM32F4 and STM32F7 designs with more than 4 motor outputs are not accepted for new designs, see [3.2](#32-resource-selection-considerations).
 
 #### 3.2.1.1 F4 Resource Selection
 
@@ -508,13 +507,13 @@ A significant amount of the flight performance available in current Betaflight i
 Betaflight supports all 32-bit ESCs currently available, with BLHeli_32 and AM32 configurations, as well as APD configurations being capable of supporting bidirectional DShot, and user-configured operation with bidirectional DShot disabled.
 Additional DShot extended telemetry will be implemented over time as demonstrated stable, however current extended telemetry options will only be enabled by user selection.
 
-BLHeli AS ceased operations in 2024. No new BLHeli_32 licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BLHeli_32 ESCs: BLHeli_32 on new products is warned against because it is no longer maintained, so a new AIO that ships with it is not accepted into the cloud build. There are several alternatives, including [AM32](https://am32.ca/) and [ESCape32](https://github.com/neoxic/ESCape32) that can be flashed to the same hardware and are fully supported by the open-source community.
+BLHeli AS ceased operations in 2024. No new BLHeli_32 licenses have been issued, and users are no longer able to flash firmware. Manufacturers should no longer be shipping BLHeli_32 ESCs: BLHeli_32 on new products is warned against because it is no longer maintained. ESC firmware is not part of the target, so this is guidance rather than a condition of cloud build acceptance. There are several alternatives, including [AM32](https://am32.ca/) and [ESCape32](https://github.com/neoxic/ESCape32) that can be flashed to the same hardware and are fully supported by the open-source community.
 
 ### 3.4.2 For 8-Bit ESCs (e.g. BLHeli_S, Bluejay)
 
 Betaflight will continue to support all current 8-bit ESC configurations. Bidirectional DShot is off in the firmware defaults, but RPM filtering and RPM dynamic idle depend on it, so the ESC firmware should support it.
 
-BLHeli_S without bidirectional DShot on new products is warned against, because it cannot provide the RPM telemetry that RPM filtering needs, so a new AIO that ships with it is not accepted into the cloud build.
+BLHeli_S without bidirectional DShot on new products is warned against, because it cannot provide the RPM telemetry that RPM filtering needs. As with BLHeli_32, this is guidance, not a condition of cloud build acceptance.
 
 8-bit ESCs with BLHeliS can be flashed with a modern ESC firmware such as [**Bluejay**](https://github.com/bird-sanctuary/bluejay) to support bidirectional DShot.
 
@@ -561,7 +560,7 @@ Looptime and Performance Recommendation Table:
 
 :::note
 
-The F411 and BMI-270 rows, and the legacy gyros (MPU60X0, ICM2060X) in the other rows, are for existing designs. New designs using any of them are warned against (see [3.1.2](#312-inertial-measurement-unit-imu-selection) and [3.2](#32-resource-selection-considerations)): they are not accepted into the cloud build.
+The F411 and BMI-270 rows, and the legacy gyros (MPU60X0, ICM2060X) in the other rows, are for existing designs. New F411 designs are not accepted, the BMI-270 and ICM-2060x are not recommended, and only a genuine MPU-6000 is still accepted (see [3.1.2](#312-inertial-measurement-unit-imu-selection) and [3.2](#32-resource-selection-considerations)).
 
 :::
 
@@ -569,7 +568,7 @@ The IMU column above predates several currently supported parts. For reference, 
 
 \*\* For F411 UART RX applications, using both available UARTs and enabling SoftSerial, Accelerometer, large numbers of OSD elements, and using a larger number of filters, stability may require lowering looprate to 2kHz.
 
-\*\*\* SPI receivers are warned against on new designs, due to challenges in resource allocation and scheduler inconsistency that consistently emerge with SPI RX designs. A new design with an SPI receiver is not accepted into the cloud build.
+\*\*\* SPI receivers are not accepted for new designs, due to challenges in resource allocation and scheduler inconsistency that consistently emerge with SPI RX designs. A new design with an SPI receiver is not accepted into the cloud build.
 Additionally, there are no RC ecosystems that are actively developing a supported SPI RX solution (ExpressLRS 4.0 and later do not support SPI receivers; FrSky does not support SPI RX over any protocol, and other SPI RX solutions have been fully deprecated).
 
 Note that the use of gyros such as the BMI270 lowers the gyro loop rate from 8kHz to 3.2kHz and therefore may be advantageous for F411 designs.
@@ -590,7 +589,7 @@ Use the exact define names below. A misspelled or non-existent `USE_*` define is
 
 Define at least one gyro and one accelerometer. Gyroscopes must communicate via SPI. Legacy I2C-only parts (e.g. MPU6050) are omitted below, because a board with its gyro not on SPI is not accepted into the cloud build. The obsolete L3GD20 and the SITL/virtual sensors are also omitted, as they are not for new hardware.
 
-The legacy MPU6000, MPU6500, MPU9250 and ICM2060x defines are listed for existing boards; new designs using those parts are warned against (see [3.1.2](#312-inertial-measurement-unit-imu-selection)). The BMI270 define is listed for existing boards and for second-sourcing on a shared footprint (see [4.2.1.1](#4211-bmi270-on-a-shared-icm-42688-p-footprint)); the BMI270 is warned against too.
+The legacy MPU6000, MPU6500, MPU9250 and ICM2060x defines are listed for existing boards; on new designs the MPU6500 is not accepted, the ICM2060x is not recommended, and only a genuine MPU6000 is still accepted (see [3.1.2](#312-inertial-measurement-unit-imu-selection)). The BMI270 define is listed for existing boards and for second-sourcing on a shared footprint (see [4.2.1.1](#4211-bmi270-on-a-shared-icm-42688-p-footprint)); the BMI270 is not recommended.
 
 ```c
 // InvenSense / TDK
@@ -690,7 +689,7 @@ Other BMI270 constraints that matter when sharing a footprint with the ICM-42688
 - The driver accepts chip ID `0x24` only. Clone or re-marked parts that report anything else are not detected, and the board reports no gyro at all.
 - The BMI323 is **not** supported by Betaflight and cannot be used as a substitute.
 
-This define is the way to second-source a BMI270 on an ICM-42688-P footprint, but it only resolves the footprint and axis mismatch. It does not change the BMI270's status: it is warned against, so a new design using it is not eligible for Betaflight Supported (see [3.1.2](#312-inertial-measurement-unit-imu-selection)).
+This define is the way to second-source a BMI270 on an ICM-42688-P footprint, but it only resolves the footprint and axis mismatch. It does not change the BMI270's status: it is not recommended, and accepted only in some circumstances, such as this one (see [3.1.2](#312-inertial-measurement-unit-imu-selection)).
 
 ### 4.2.2 Defines for FLASH
 
@@ -788,7 +787,7 @@ As with the barometer, `USE_MAG` itself must be defined for any compass driver t
 
 ### 4.2.5 Defines for SX1280
 
-These defines are for existing boards with an onboard SPI ExpressLRS receiver. SPI receivers are warned against on new designs, see [4.1](#41-rated-looptime-and-performance). For SPI based SX1280 target designs add the following defines. For 900 MHz ExpressLRS hardware based on the SX127x, add `USE_RX_SX127X` as well (both may be defined for dual-band designs):
+These defines are for existing boards with an onboard SPI ExpressLRS receiver. SPI receivers are not accepted for new designs, see [4.1](#41-rated-looptime-and-performance). For SPI based SX1280 target designs add the following defines. For 900 MHz ExpressLRS hardware based on the SX127x, add `USE_RX_SX127X` as well (both may be defined for dual-band designs):
 
 ```c
 #define USE_RX_EXPRESSLRS
@@ -814,7 +813,7 @@ Only for boards with an onboard MAX7456 analogue OSD, which is optional (see [3.
 
 ### 4.2.8 Defines for CC2500
 
-This define is for existing boards with an onboard SPI CC2500 receiver. SPI receivers are warned against on new designs, see [4.1](#41-rated-looptime-and-performance). For SPI based CC2500 target designs add the following define:
+This define is for existing boards with an onboard SPI CC2500 receiver. SPI receivers are not accepted for new designs, see [4.1](#41-rated-looptime-and-performance). For SPI based CC2500 target designs add the following define:
 
 ```c
 #define USE_RX_CC2500
@@ -844,21 +843,21 @@ See reference to [cloud build API](/docs/development/API/Cloud-Build-API)
 
 Betaflight is no longer an ST-only firmware. The table below lists every platform in the firmware, the target names accepted as `FC_TARGET_MCU` in a `config.h`, and how suitable each is for a new commercial flight controller design. Being buildable is not the same as being recommended: several platforms exist for development work only.
 
-| Platform  | `FC_TARGET_MCU` values                                                                                 | Flash                                              | Suitability for new designs                                                                                          |
-| :-------- | :----------------------------------------------------------------------------------------------------- | :------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- |
-| STM32 F4  | `STM32F411`, `STM32F405`, `STM32F446`                                                                  | 512 KB / 1 MB / 512 KB                             | Fine for budget boards and AIOs with 4 motor outputs. More than 4 motors, or F411 on a new design, is warned against |
-| STM32 F7  | `STM32F722`, `STM32F745`                                                                               | 512 KB / 1 MB                                      | Fine for budget boards and AIOs with 4 motor outputs. More than 4 motors is warned against                           |
-| STM32 G4  | `STM32G474`                                                                                            | 512 KB                                             | Preferred for small and budget boards                                                                                |
-| STM32 H7  | `STM32H723`, `STM32H725`, `STM32H730`, `STM32H735`, `STM32H743`, `STM32H750`, `STM32H753`, `STM32H757` | 1 MB – 2 MB (H730/H750 128 KB internal)            | **Preferred** (H743) for high IO and more than 4 motor outputs                                                       |
-| STM32 H5  | `STM32H562`, `STM32H563`                                                                               | 2 MB                                               | New. Currently excluded from CI, so no official release binaries yet. Talk to the team before designing around it    |
-| STM32 C5  | `STM32C562`, `STM32C591`, `STM32C5A3`                                                                  | 512 KB – 1 MB                                      | Developer preview. No production flight controllers                                                                  |
-| STM32 N6  | `STM32N657`                                                                                            | No internal user flash; app lives in external XSPI | Developer preview. Requires a signed first-stage bootloader                                                          |
-| AT32      | `AT32F435G`, `AT32F435M`                                                                               | 1 MB / 4 MB                                        | Preferred for small and budget boards, with flexible DMA routing                                                     |
-| APM32     | `APM32F405`, `APM32F407`, `APM32F425`, `APM32F427`                                                     | 1 MB                                               | Available in firmware, but no official configs exist. Shares the F4 DMA restrictions                                 |
-| PICO      | `RP2350A`, `RP2350B`                                                                                   | External QSPI, 4 MB / 8 MB                         | Preferred for small and budget boards. DShot is driven from PIO state machines, not timers                           |
-| X32       | `X32M7B`                                                                                               | 2 MB XIP NOR                                       | Experimental                                                                                                         |
-| ESP32     | `ESP32WROOM`, `ESP32S3`, `ESP32C5`, `ESP32P4`                                                          | 4 MB – 16 MB                                       | Experimental. Excluded from CI, so no official release binaries                                                      |
-| SIMULATOR | `SITL`                                                                                                 | n/a                                                | Software simulation only, not hardware                                                                               |
+| Platform  | `FC_TARGET_MCU` values                                                                                 | Flash                                              | Suitability for new designs                                                                                        |
+| :-------- | :----------------------------------------------------------------------------------------------------- | :------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------- |
+| STM32 F4  | `STM32F411`, `STM32F405`, `STM32F446`                                                                  | 512 KB / 1 MB / 512 KB                             | Fine for budget boards and AIOs with 4 motor outputs. More than 4 motors, or F411, is not accepted for new designs |
+| STM32 F7  | `STM32F722`, `STM32F745`                                                                               | 512 KB / 1 MB                                      | Fine for budget boards and AIOs with 4 motor outputs. More than 4 motors is not accepted for new designs           |
+| STM32 G4  | `STM32G474`                                                                                            | 512 KB                                             | Preferred for small and budget boards                                                                              |
+| STM32 H7  | `STM32H723`, `STM32H725`, `STM32H730`, `STM32H735`, `STM32H743`, `STM32H750`, `STM32H753`, `STM32H757` | 1 MB – 2 MB (H730/H750 128 KB internal)            | **Preferred** (H743) for high IO and more than 4 motor outputs                                                     |
+| STM32 H5  | `STM32H562`, `STM32H563`                                                                               | 2 MB                                               | New. Currently excluded from CI, so no official release binaries yet. Talk to the team before designing around it  |
+| STM32 C5  | `STM32C562`, `STM32C591`, `STM32C5A3`                                                                  | 512 KB – 1 MB                                      | Developer preview. No production flight controllers                                                                |
+| STM32 N6  | `STM32N657`                                                                                            | No internal user flash; app lives in external XSPI | Developer preview. Requires a signed first-stage bootloader                                                        |
+| AT32      | `AT32F435G`, `AT32F435M`                                                                               | 1 MB / 4 MB                                        | Preferred for small and budget boards, with flexible DMA routing                                                   |
+| APM32     | `APM32F405`, `APM32F407`, `APM32F425`, `APM32F427`                                                     | 1 MB                                               | Available in firmware, but no official configs exist. Shares the F4 DMA restrictions                               |
+| PICO      | `RP2350A`, `RP2350B`                                                                                   | External QSPI, 4 MB / 8 MB                         | Preferred for small and budget boards. DShot is driven from PIO state machines, not timers                         |
+| X32       | `X32M7B`                                                                                               | 2 MB XIP NOR                                       | Experimental                                                                                                       |
+| ESP32     | `ESP32WROOM`, `ESP32S3`, `ESP32C5`, `ESP32P4`                                                          | 4 MB – 16 MB                                       | Experimental. Excluded from CI, so no official release binaries                                                    |
+| SIMULATOR | `SITL`                                                                                                 | n/a                                                | Software simulation only, not hardware                                                                             |
 
 :::warning
 
@@ -888,9 +887,9 @@ Gyro external clock input (`GYRO_CLKIN`) is available on STM32, AT32, RP2350 and
 
 # 5 Information for Marketing Purposes
 
-- Betaflight is an open source flight controller software (firmware) used to fly multi-rotor and fixed wing aircraft.
+- Betaflight is free, open-source flight control software for every kind of drone, from racing and freestyle to cinematic filming, long range, micros and wings.
 
-- The Betaflight name and logos are registered trademarks and may not be used in any commercial products or services without permission from the project. A board that uses the Betaflight name or logo without permission is not accepted into the cloud build.
+- The Betaflight name and logos are registered trademarks and may not be used in any commercial products or services without permission from the project. Using the Betaflight logo on a product also requires the board to follow the [Connector Standard](connector-standard).
 
 - Betaflight is a fork of Baseflight and Cleanflight, with an emphasis focused on flight performance, leading-edge feature additions, and wide target support. Combining cutting edge flight performance with diverse hardware support, Betaflight is the leading solution for high performance small unmanned aircraft.
 

@@ -4,7 +4,7 @@ sidebar_label: Hardware Policy
 title: Hardware Policy
 ---
 
-This page sets out what the Betaflight project prefers, what it supports, what it accepts into the cloud build, what it warns against, and what simply works, together with who supports a board once it is in a pilot's hands. It applies to new designs from 28 September 2026. Existing boards are not affected, see [Existing Boards](#existing-boards).
+This page sets out what the Betaflight project prefers, what it supports, what it accepts into the cloud build, what it does not recommend or warns against, and what simply works, together with who supports a board once it is in a pilot's hands. It applies to new designs from 28 September 2026. Existing boards are not affected, see [Existing Boards](#existing-boards).
 
 ## Why Betaflight Exists
 
@@ -36,7 +36,7 @@ There are two separate ways Betaflight firmware reaches a pilot, and they are no
 
 **The Betaflight cloud build.** The config repository and the cloud build carry designs that the Betaflight team has reviewed and accepted. Pilots find these boards in the firmware flasher of the Betaflight App, which builds firmware for them on demand. Getting a board in is covered by [Cloud Build Acceptance](#cloud-build-acceptance) below.
 
-**The manufacturer's own distribution.** Betaflight is free software under the GPLv3, and any manufacturer is free to build firmware themselves and distribute it on their own terms, for example from their website, for pilots to flash with "Load Firmware [Local]" in the Betaflight App. This is how a design that is not in the cloud build, including one we warn against, reaches pilots. We cannot stop it and do not try to. The GPL does ask something in return: distributing firmware means making its corresponding source, including the board config, available to those who receive it. The Betaflight name and logo still need the project's permission, see section 5 of the [Manufacturer Design Guidelines](manufacturer-design-guidelines).
+**The manufacturer's own distribution.** Betaflight is free software under the GPLv3, and any manufacturer is free to build firmware themselves and distribute it on their own terms, for example from their website, for pilots to flash with "Load Firmware [Local]" in the Betaflight App. This is how a design that is not in the cloud build, including one we do not accept, reaches pilots. We cannot stop it and do not try to. The GPL does ask something in return: distributing firmware means making its corresponding source, including the board config, available to those who receive it. The Betaflight name and logo still need the project's permission, see section 5 of the [Manufacturer Design Guidelines](manufacturer-design-guidelines).
 
 A board accepted into the cloud build can also be distributed by its manufacturer, for example with their own defaults. Acceptance into the cloud build is about what Betaflight hosts and vouches for. It does not limit what a manufacturer may ship themselves.
 
@@ -86,22 +86,37 @@ What we recommend for new designs and develop against first.
 - ESC firmware with bidirectional DShot, such as Bluejay and AM32.
 - Onboard blackbox flash, SWD test points, a status LED and a switchable 10V BEC.
 
-Anything not listed as Preferred or Warned Against is fine for the cloud build.
+Anything not listed on this page is fine for the cloud build.
+
+### Not Accepted for New Designs
+
+New designs using any of these are not accepted into the cloud build.
+
+- STM32F4 or F7 with more than four motor outputs: not enough timers and DMA to go round.
+- STM32F411: limited IO and flash.
+- MPU6500 gyro: end of life.
+- SPI receivers: serial receivers are more capable and are where receiver development is heading.
+- A gyro sharing its SPI bus with other devices: it costs gyro timing.
+- Motors M1 to M4 spread over more than one GPIO port: bitbanged DShot needs them grouped. M5 to M8 may be split across ports, for example on wing flight controllers or boards also designed for ArduPilot or INAV.
+
+### Not Recommended
+
+Accepted in some circumstances. Talk to us before committing a design to one of these.
+
+- BMI270 gyro: calibration and drift. Accepted, for example, as a second source on an ICM-42688-P footprint.
+- MPU6000 gyro: end of life, but accepted when the part is genuine.
+- ICM2060x gyros: end of life.
 
 ### Warned Against
 
-These have known drawbacks, and new designs using them are not accepted into the cloud build. A manufacturer remains free to ship such a design with firmware they distribute themselves, but we would urge them not to, and pilots should know what the drawbacks are.
+We advise against these, but a review of the board's config cannot tell whether a board uses them, so they are guidance rather than conditions of acceptance.
 
-- STM32F4 or F7 with more than four motor outputs: not enough timers and DMA to go round.
-- STM32F411 on new designs: limited IO and flash.
-- BMI270 gyro: calibration and drift.
-- Legacy gyros (the MPU6000 and MPU6500 family, ICM2060x) on new designs: end of life.
-- SPI receivers: serial receivers are more capable and are where receiver development is heading.
-- A gyro sharing its SPI bus with other devices: it costs gyro timing.
-- Eight motors spread over more than two GPIO ports: bitbanged DShot needs them grouped.
-- Clone barometers and magnetometers, unless correctly named and shown to be as accurate as the original: accuracy varies.
-- The 6-pin GPS connector, and 2-pin power on JST SH: easy to plug into the wrong socket.
-- BLHeli_S without bidirectional DShot, and BLHeli_32, on new products: no RPM filtering, or no longer maintained.
+- Clone barometers and magnetometers: accuracy varies. They should not be used, and must never be advertised as the part they imitate. They use the same drivers as the originals, so the target cannot tell them apart.
+- BLHeli_S without bidirectional DShot, and BLHeli_32, on new products: no RPM filtering, or no longer maintained. ESC firmware is not part of the target.
+
+### The Betaflight Name and Logo
+
+Using the Betaflight name or logo on a product needs the project's permission, and using the Betaflight logo requires the board to follow the [Connector Standard](connector-standard). The standard is what keeps a pilot from plugging a harness into the wrong socket, which is why it retired the 6-pin GPS connector and moved 2-pin power off JST SH.
 
 ### Cloud Build Acceptance
 
@@ -110,13 +125,12 @@ The team accepts a new board into the cloud build when:
 - it builds;
 - its motor outputs do not conflict on timers or DMA;
 - its gyro is on SPI, which the firmware requires;
-- it uses nothing listed under [Warned Against](#warned-against);
-- it names only components it actually uses (a clone sold as a DPS310 is not a DPS310), and uses the Betaflight name or logo only with permission;
+- it uses nothing listed under [Not Accepted for New Designs](#not-accepted-for-new-designs), and anything [Not Recommended](#not-recommended) has been agreed with the team;
 - its manufacturer is registered in the [manufacturers list](https://github.com/betaflight/config/blob/master/Manufacturers.md).
 
 ## Existing Boards
 
-Nothing here removes a board that works today. The design guidance applies to new designs submitted from 28 September 2026, and boards already in the cloud build keep their current status, including those that use something now warned against. A Manufacturer supported board that stops working in a release is withdrawn from that release onwards, as it always has been, and stays available in the releases known to work.
+Nothing here removes a board that works today. The design guidance applies to new designs submitted from 28 September 2026, and boards already in the cloud build keep their current status, including those that use something now not accepted for new designs. A Manufacturer supported board that stops working in a release is withdrawn from that release onwards, as it always has been, and stays available in the releases known to work.
 
 ## Next Steps
 

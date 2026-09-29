@@ -7,7 +7,7 @@ sidebar_position: 1
 The cloud build carries boards that the Betaflight team has reviewed and accepted. What it accepts, what it warns against, and what is eligible for [Betaflight Supported](betaflight-supported) is set out in the [Hardware Policy](hardware-policy). A design that is not accepted can still be distributed by its manufacturer, see [Two Routes to Pilots](hardware-policy#two-routes-to-pilots). The notes below explain the guidance behind the most common questions.
 
 :::note
-New flight controller designs using STM32 F4 and F7 microcontrollers with more than four motor outputs are [warned against](hardware-policy#warned-against), and are not accepted into the cloud build.
+New flight controller designs using STM32 F4 and F7 microcontrollers with more than four motor outputs are [not accepted for new designs](hardware-policy#not-accepted-for-new-designs) in the cloud build.
 
 - We strive to be the best flight experience available on the widest range of hardware. These older microcontrollers have limited timer and DMA resources, and more than four motors exhausts them.
 
@@ -17,13 +17,13 @@ New flight controller designs using STM32 F4 and F7 microcontrollers with more t
   :::
 
 :::note
-New STM32 F411 designs, SPI receivers and the BMI270 gyro are [warned against](hardware-policy#warned-against), and new designs using them are not accepted into the cloud build:
+New STM32 F411 designs and SPI receivers are [not accepted for new designs](hardware-policy#not-accepted-for-new-designs), and the BMI270 gyro is [not recommended](hardware-policy#not-recommended):
 
 - The STM32 F411 has been a stable option for smaller flight controllers, and the cloud build has extended its useful life despite its limited flash. Its limited IO makes it a poor choice for new designs, and we recommend AT32, PICO or G4 options instead. Existing F411 targets continue to be built.
 
 - Serial receivers are preferred to SPI receivers, in line with the direction of the ExpressLRS project. Existing SPI receiver targets continue to be built.
 
-- The BMI270 IMU is no longer recommended due to calibration issues (drift). Where an existing PCB is second-sourced between a BMI270 and an ICM-42688-P on the same footprint, see the [`ENABLE_BMI270_ALIGN_AS_ICM` define](manufacturer-design-guidelines#4211-bmi270-on-a-shared-icm-42688-p-footprint).
+- The BMI270 IMU is no longer recommended due to calibration issues (drift), and is accepted only in some circumstances, so talk to the team first. Where a PCB is second-sourced between a BMI270 and an ICM-42688-P on the same footprint, see the [`ENABLE_BMI270_ALIGN_AS_ICM` define](manufacturer-design-guidelines#4211-bmi270-on-a-shared-icm-42688-p-footprint).
   :::
 
 :::note
