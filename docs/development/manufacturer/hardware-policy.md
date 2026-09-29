@@ -4,7 +4,7 @@ sidebar_label: Hardware Policy
 title: Hardware Policy
 ---
 
-This page sets out what the Betaflight project prefers, supports, permits and warns against in flight controller hardware, and who supports a board once it is in a pilot's hands. It applies to new designs from 28 September 2026. Existing boards are not affected, see [Existing Boards](#existing-boards).
+This page sets out what the Betaflight project prefers, what it supports, what it accepts into the cloud build, what it warns against, and what simply works, together with who supports a board once it is in a pilot's hands. It applies to new designs from 28 September 2026. Existing boards are not affected, see [Existing Boards](#existing-boards).
 
 ## Why Betaflight Exists
 
@@ -30,22 +30,28 @@ The [Betaflight config repository](https://github.com/betaflight/config) holds 6
 
 What we can do is keep the door open to as much hardware as possible, be clear about who supports what, and spend our own time where it improves Betaflight for every pilot.
 
-## Board Status
+## Two Routes to Pilots
 
-Every board in the firmware flasher carries one of three statuses.
+There are two separate ways Betaflight firmware reaches a pilot, and they are not mutually exclusive.
 
-|                             | Betaflight Supported                                  | Manufacturer supported                                             | Legacy                             |
-| :-------------------------- | :---------------------------------------------------- | :----------------------------------------------------------------- | :--------------------------------- |
-| Review                      | Design review against the guidelines, with schematics | Basic checks: it builds and its motor outputs do not conflict      | None                               |
-| Support for pilots          | The manufacturer                                      | The manufacturer, or the named maintainer for community boards     | None, the community may help       |
-| Firmware regressions        | Fixed by the team before release                      | The board is withdrawn from the affected release onwards           | Not tested                         |
-| New boards and fixes        | Between releases                                      | With the next release                                              | None                               |
-| Cloud build                 | Priority queue                                        | Standard queue, subject to availability                            | Standard queue, where still built  |
-| Shown in the Betaflight App | ✅ Betaflight Supported, no warning                   | ⚠️ Manufacturer supported, with a note to contact the manufacturer | Legacy, use at your own discretion |
+**The Betaflight cloud build.** The config repository and the cloud build carry designs that the Betaflight team has reviewed and accepted. Pilots find these boards in the firmware flasher of the Betaflight App, which builds firmware for them on demand. Getting a board in is covered by [Cloud Build Acceptance](#cloud-build-acceptance) below.
+
+**The manufacturer's own distribution.** Betaflight is free software under the GPLv3, and any manufacturer is free to build firmware themselves and distribute it on their own terms, for example from their website, for pilots to flash with "Load Firmware [Local]" in the Betaflight App. This is how a design that is not in the cloud build, including one we warn against, reaches pilots. We cannot stop it and do not try to. The GPL does ask something in return: distributing firmware means making its corresponding source, including the board config, available to those who receive it. The Betaflight name and logo still need the project's permission, see section 5 of the [Manufacturer Design Guidelines](manufacturer-design-guidelines).
+
+A board accepted into the cloud build can also be distributed by its manufacturer, for example with their own defaults. Acceptance into the cloud build is about what Betaflight hosts and vouches for. It does not limit what a manufacturer may ship themselves.
+
+|                             | Betaflight Supported                          | Manufacturer supported                                             | Legacy                             | Manufacturer's own distribution                  |
+| :-------------------------- | :-------------------------------------------- | :----------------------------------------------------------------- | :--------------------------------- | :----------------------------------------------- |
+| Route                       | Cloud build                                   | Cloud build                                                        | Cloud build                        | The manufacturer's website or other channel      |
+| Betaflight review           | Design review with schematics, and the config | The config, against the guidance and acceptance criteria           | Accepted in the past               | None                                             |
+| Support for pilots          | The manufacturer                              | The manufacturer, or the named maintainer for community boards     | None, the community may help       | The manufacturer, entirely                       |
+| Firmware regressions        | Fixed by the team before release              | The board is withdrawn from the affected release onwards           | Not tested                         | The manufacturer rebuilds and redistributes      |
+| New boards and fixes        | Between releases                              | With the next release                                              | None                               | Whenever the manufacturer publishes              |
+| Shown in the Betaflight App | ✅ Betaflight Supported, no warning           | ⚠️ Manufacturer supported, with a note to contact the manufacturer | Legacy, use at your own discretion | Not listed; flashed with "Load Firmware [Local]" |
 
 ### Betaflight Supported
 
-The team has reviewed the design against the [Manufacturer Design Guidelines](manufacturer-design-guidelines), and the manufacturer has committed to support it. In return, we treat a firmware regression on a Betaflight Supported board as ours to fix before release, and fixes and new boards can reach the cloud build between releases.
+The team has reviewed the design, schematics included, against the [Manufacturer Design Guidelines](manufacturer-design-guidelines), and the manufacturer has committed to support it. In return, we treat a firmware regression on a Betaflight Supported board as ours to fix before release, and fixes and new boards can reach the cloud build between releases.
 
 The manufacturer commits to:
 
@@ -54,19 +60,19 @@ The manufacturer commits to:
 - give pilots a support contact;
 - publish [board documentation](fc_documentation/how-to-create-board-documentation) on the wiki.
 
-A new design that uses anything listed under [Warned Against](#warned-against), or that copies an existing design rather than improving on it, is not eligible. See [Betaflight Supported](betaflight-supported) for how to apply and for the target fee, which does not apply to hobbyists or to [Betaflight Partners](partner-program).
+A design that copies an existing design rather than improving on it is not eligible. See [Betaflight Supported](betaflight-supported) for how to apply and for the target fee, which does not apply to hobbyists or to [Betaflight Partners](partner-program).
 
 ### Manufacturer Supported
 
-The board is included as supplied, after basic checks. The manufacturer, or the named maintainer for community and homebrew boards, is the source of support, and the Betaflight App says so. If a release is reported not to work on the board, we withdraw the board from that release and later ones. It stays available in the releases known to work.
+The team has reviewed the board's config and accepted it into the cloud build, but has not reviewed the design in depth. The manufacturer, or the named maintainer for community and homebrew boards, is the source of support, and the Betaflight App says so. If a release is reported not to work on the board, we withdraw the board from that release and later ones. It stays available in the releases known to work.
 
 ### Legacy
 
-Hardware the firmware can still run but that nobody actively maintains: boards no longer sold, experimental and developer-preview MCUs, and custom builds flashed with Load Local.
+Boards that were accepted in the past and are still built, but that nobody actively maintains, such as boards no longer sold.
 
 ## Design Guidance
 
-For manufacturers and designers. Anything not listed here is fine. Only the short [Not Accepted](#not-accepted) list keeps a board out of the cloud build altogether. The reasons and the detail behind each point are in the [Manufacturer Design Guidelines](manufacturer-design-guidelines), and we would much rather talk a design through early at [hardware@betaflight.com](mailto:hardware@betaflight.com) than find a problem after production.
+For manufacturers and designers. The reasons and the detail behind each point are in the [Manufacturer Design Guidelines](manufacturer-design-guidelines), and we would much rather talk a design through early at [hardware@betaflight.com](mailto:hardware@betaflight.com) than find a problem after production.
 
 ### Preferred
 
@@ -80,9 +86,11 @@ What we recommend for new designs and develop against first.
 - ESC firmware with bidirectional DShot, such as Bluejay and AM32.
 - Onboard blackbox flash, SWD test points, a status LED and a switchable 10V BEC.
 
+Anything not listed as Preferred or Warned Against is fine for the cloud build.
+
 ### Warned Against
 
-These work, and a board using them can be included as Manufacturer supported. They have known drawbacks, pilots are told what they are, and new designs using them are not eligible for Betaflight Supported.
+These have known drawbacks, and new designs using them are not accepted into the cloud build. A manufacturer remains free to ship such a design with firmware they distribute themselves, but we would urge them not to, and pilots should know what the drawbacks are.
 
 - STM32F4 or F7 with more than four motor outputs: not enough timers and DMA to go round.
 - STM32F411 on new designs: limited IO and flash.
@@ -91,23 +99,24 @@ These work, and a board using them can be included as Manufacturer supported. Th
 - SPI receivers: serial receivers are more capable and are where receiver development is heading.
 - A gyro sharing its SPI bus with other devices: it costs gyro timing.
 - Eight motors spread over more than two GPIO ports: bitbanged DShot needs them grouped.
-- Clone barometers and magnetometers, when correctly named: accuracy varies.
+- Clone barometers and magnetometers, unless correctly named and shown to be as accurate as the original: accuracy varies.
 - The 6-pin GPS connector, and 2-pin power on JST SH: easy to plug into the wrong socket.
 - BLHeli_S without bidirectional DShot, and BLHeli_32, on new products: no RPM filtering, or no longer maintained.
 
-### Not Accepted
+### Cloud Build Acceptance
 
-A board is not added to the cloud build if:
+The team accepts a new board into the cloud build when:
 
-- it does not build;
-- its motor outputs conflict on timers or DMA;
-- its gyro is not on SPI, which the firmware requires;
-- it names a component it does not use, such as a clone sold as a DPS310, or uses the Betaflight name or logo without permission;
-- its manufacturer is not registered in the [manufacturers list](https://github.com/betaflight/config/blob/master/Manufacturers.md).
+- it builds;
+- its motor outputs do not conflict on timers or DMA;
+- its gyro is on SPI, which the firmware requires;
+- it uses nothing listed under [Warned Against](#warned-against);
+- it names only components it actually uses (a clone sold as a DPS310 is not a DPS310), and uses the Betaflight name or logo only with permission;
+- its manufacturer is registered in the [manufacturers list](https://github.com/betaflight/config/blob/master/Manufacturers.md).
 
 ## Existing Boards
 
-Nothing here removes a board that works today. The design guidance applies to new designs submitted from 28 September 2026, and existing boards keep their current status. A Manufacturer supported board that stops working in a release is withdrawn from that release onwards, as it always has been, and stays available in the releases known to work.
+Nothing here removes a board that works today. The design guidance applies to new designs submitted from 28 September 2026, and boards already in the cloud build keep their current status, including those that use something now warned against. A Manufacturer supported board that stops working in a release is withdrawn from that release onwards, as it always has been, and stays available in the releases known to work.
 
 ## Next Steps
 

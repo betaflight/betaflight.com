@@ -23,8 +23,14 @@ Not sure whether it is the hardware or Betaflight? Start with the manufacturer. 
 Every board in the [firmware flasher](/docs/wiki/app/firmware-flasher-tab) carries one of three statuses. Whatever the status, hardware faults and warranty go to the manufacturer. The board's config is maintained by its manufacturer, or by the named maintainer for community and homebrew boards. Legacy boards have no active maintainer, although the community may help.
 
 - **✅ Betaflight Supported**: the Betaflight team has reviewed the design, and the manufacturer has committed to support it. Firmware regressions on these boards are fixed before release.
-- **⚠️ Manufacturer supported**: included as the manufacturer supplied it, after basic checks. The team has not reviewed the design. If a release turns out not to work on the board, the board is withdrawn from that release.
+- **⚠️ Manufacturer supported**: the Betaflight team has reviewed and accepted the board's config, but not its design in depth, and the manufacturer supports it. If a release turns out not to work on the board, the board is withdrawn from that release.
 - **Legacy**: can still be flashed, but nobody maintains it any more. Use at your own discretion.
+
+## Firmware From a Manufacturer's Website
+
+Some manufacturers distribute their own Betaflight firmware, for example for a board that is not in the firmware flasher, or with their own defaults. You flash it with "Load Firmware [Local]". The manufacturer built it and supports it; the Betaflight team has not reviewed the board or the build, and cannot help with it. If you think you have found a Betaflight bug, check that it also happens with firmware from the firmware flasher before reporting it.
+
+## Choosing a Board
 
 If you are choosing a new flight controller and want the most thoroughly checked option, look for Betaflight Supported, and check that the manufacturer offers a support channel you can reach. Manufacturers can find what we recommend in the [Hardware Policy](/docs/development/manufacturer/hardware-policy).
 

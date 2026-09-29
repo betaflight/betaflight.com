@@ -33,7 +33,7 @@ Targets presented to the config repository for **Betaflight Supported** status n
 
 1. Schematics are presented with the prospective config file. If your company requires the schematics to stay private, email them to [cloudtargets@betaflight.com](mailto:cloudtargets@betaflight.com).
 
-2. Our team assesses the schematics against the [Manufacturer Design Guidelines](manufacturer-design-guidelines). A new design that uses anything listed under [Warned Against](hardware-policy#warned-against) in the Hardware Policy, such as shared SPI bus lines or critical functions (gyro, motors) without the timers and DMA they need, or that copies an existing design rather than improving on it, is not eligible until it is revised. It can still be included as Manufacturer supported in the meantime.
+2. Our team assesses the schematics against the [Manufacturer Design Guidelines](manufacturer-design-guidelines). A design that copies an existing design rather than improving on it, or that shares SPI bus lines or leaves critical functions (gyro, motors) without the timers and DMA they need, is not eligible until it is revised. A new design using anything [warned against](hardware-policy#warned-against) in the Hardware Policy is not accepted into the cloud build at all.
 
 3. There is a target fee for our team to go through the review and grant **Betaflight Supported** status in the cloud build system. Contact the team via [cloudtargets@betaflight.com](mailto:cloudtargets@betaflight.com) for details. Hobbyists can contact us on [Discord](https://discord.betaflight.com/invite) or at the same address: we do not charge non-commercial users for target insertion.
 
@@ -41,14 +41,18 @@ Targets presented to the config repository for **Betaflight Supported** status n
 
 ## Manufacturer Supported
 
-Boards that are not Betaflight Supported are still welcome in the cloud build. This covers legacy hardware that is no longer sold, community-submitted "homebrew" boards, manufacturers who prefer to support their boards directly, and designs outside the guidelines.
+The cloud build also carries boards that the team has accepted without Betaflight Supported status. This covers community-submitted "homebrew" boards, manufacturers who prefer to support their boards directly, and boards accepted before this status existed. Every board in the cloud build, whatever its status, has been reviewed and accepted by the team against the [Cloud Build Acceptance](hardware-policy#cloud-build-acceptance) criteria.
 
 What that means:
 
-1. As Supplied: included in the config repository as the manufacturer or maintainer supplied it, without a design review.
+1. Config Review: the team reviews the config and accepts it into the config repository, but does not review the design or schematics in depth.
 2. Shown in the App: pilots selecting these targets see "⚠️ Manufacturer supported", with a note to contact the manufacturer for support.
 3. Standard Cloud Build: allocated to a lower-priority build server queue, subject to availability.
 4. Next Release: new targets and changes are included with the next release. There is no backporting to earlier releases.
-5. Basic Checks: pull requests are checked for critical safety conflicts, such as motor outputs that conflict on timers or DMA.
+5. Manufacturer Support: the manufacturer, or the named maintainer for community boards, supports pilots and keeps the config working.
 
 The Betaflight team does not maintain these boards, and as Betaflight moves forward, a board whose maintainer has moved on can stop working. If a release is reported not to work on a board, we withdraw the board from that release and later ones, so that pilots are not caught out. It stays available in the releases known to work.
+
+## Distributing Your Own Firmware
+
+None of this limits what a manufacturer may distribute themselves. Betaflight is free software under the GPLv3, and a manufacturer can build firmware for any board, in the cloud build or not, and publish it on their own website for pilots to flash with "Load Firmware [Local]". That firmware is supported by the manufacturer alone. See [Two Routes to Pilots](hardware-policy#two-routes-to-pilots) in the Hardware Policy.

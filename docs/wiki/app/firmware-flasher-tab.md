@@ -27,13 +27,13 @@ The Betaflight App only supports Betaflight version 4.0 and newer. Older version
 
 Every board in the list carries one of three statuses:
 
-| Status                    | Meaning                                                                                                                                                                                                                            |
-| :------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ✅ Betaflight Supported   | The Betaflight team has reviewed the design, and the manufacturer has committed to support it. Firmware regressions on these boards are fixed before release.                                                                      |
-| ⚠️ Manufacturer supported | Included as the manufacturer supplied it, after basic checks. The manufacturer, or the board's named maintainer, supports it. If a release is reported not to work on the board, the board is withdrawn from that release onwards. |
-| Legacy                    | Can still be flashed, but nobody maintains it. Custom firmware loaded with `Load Firmware [Local]` is treated the same way. Use at your own discretion.                                                                            |
+| Status                    | Meaning                                                                                                                                                                                                                                                             |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ✅ Betaflight Supported   | The Betaflight team has reviewed the design, and the manufacturer has committed to support it. Firmware regressions on these boards are fixed before release.                                                                                                       |
+| ⚠️ Manufacturer supported | The Betaflight team has reviewed and accepted the board's config, but not its design in depth. The manufacturer, or the board's named maintainer, supports it. If a release is reported not to work on the board, the board is withdrawn from that release onwards. |
+| Legacy                    | Accepted in the past and can still be flashed, but nobody maintains it. Use at your own discretion.                                                                                                                                                                 |
 
-Whatever the status, hardware faults and warranty go to the manufacturer. The board's config is maintained by its manufacturer, or by the named maintainer for community and homebrew boards. Legacy boards have no active maintainer, although the community may help. See [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support).
+Firmware loaded with `Load Firmware [Local]`, such as a build from a manufacturer's website, is outside the cloud build: its manufacturer built it and supports it. Whatever the status, hardware faults and warranty go to the manufacturer. The board's config is maintained by its manufacturer, or by the named maintainer for community and homebrew boards. Legacy boards have no active maintainer, although the community may help. See [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support).
 
 ## Basic Flashing Procedure
 
