@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
             </p>
 
             <div className="space-y-8 text-sm leading-relaxed">
-              <p>Betaflight ("us", "we", or "our") operates the Website, the Betaflight App for desktop and web, and the Betaflight app for iOS (collectively the "Service").</p>
+              <p>Betaflight ("us", "we", or "our") operates the Website, the Betaflight App for desktop, web and Android, and the Betaflight app for iOS (collectively the "Service").</p>
 
               <p>This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.</p>
 
