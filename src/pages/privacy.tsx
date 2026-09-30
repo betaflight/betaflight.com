@@ -61,15 +61,16 @@ export default function PrivacyPolicy() {
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-bold text-primary-600 mb-2">Location (iOS App)</h4>
+                    <h4 className="text-lg font-bold text-primary-600 mb-2">Location</h4>
                     <p className="mb-2">
                       The iOS app asks for your location only while it is in use, and only if you allow it. It uses your location to show the distance and bearing to your craft, and on the Conditions
-                      screen to look up weather, elevation and airspace for where you are flying.
+                      screen to look up weather, elevation and airspace for where you are flying. Distance and bearing are worked out on your device.
                     </p>
-                    <p>
-                      For Conditions, your coordinates are sent to the weather and airspace services listed under Service Providers. Distance and bearing are worked out on your device. We do not
-                      receive or store your location.
+                    <p className="mb-2">
+                      The Betaflight App uses your craft's GPS position where it has one. Otherwise it can use your device's location, if you allow it, or an approximate location worked out from your
+                      IP address, to set magnetic declination, centre the flight plan map and check airspace.
                     </p>
+                    <p>Where a location is needed from an outside service, it is sent to the services listed under Service Providers. We do not receive or store your location.</p>
                   </div>
 
                   <div>
@@ -188,36 +189,63 @@ export default function PrivacyPolicy() {
                   These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
                 </p>
 
-                <h3 className="text-xl font-bold text-primary-600 mt-6 mb-3">Weather, Space Weather and Airspace</h3>
+                <h3 className="text-xl font-bold text-primary-600 mt-6 mb-3">Location, Maps, Weather and Airspace</h3>
                 <p className="mb-4">
-                  The Conditions screen in the iOS app fetches information for your location directly from these services. They receive the coordinates and search radius in each request, along with
-                  your IP address as with any internet request. No account details or other identifiers are sent. Airspace services are only contacted if you turn them on and enter your own key for
-                  that service.
+                  The Betaflight App and the iOS app fetch some information directly from these services. Each request carries the coordinates or map area involved, along with your IP address as with
+                  any internet request. No account details or other identifiers are sent. Airspace services are only contacted if you turn them on and enter your own key for that service.
                 </p>
 
                 <ul className="list-disc ml-8 space-y-1 mb-4">
                   <li>
-                    Open-Meteo, for weather and elevation:{' '}
+                    Open-Meteo, for weather and elevation in the iOS app:{' '}
                     <a className="fancy-link" target="_blank" rel="noopener noreferrer" href="https://open-meteo.com/en/terms">
                       open-meteo.com/en/terms
                     </a>
                   </li>
                   <li>
-                    NOAA Space Weather Prediction Center, for the planetary K-index (no location is sent):{' '}
+                    NOAA Space Weather Prediction Center, for the planetary K-index in the iOS app (no location is sent):{' '}
                     <a className="fancy-link" target="_blank" rel="noopener noreferrer" href="https://www.noaa.gov/protecting-your-privacy">
                       noaa.gov/protecting-your-privacy
                     </a>
                   </li>
                   <li>
-                    FAA NOTAM API, if you choose it:{' '}
+                    FAA NOTAM API, for airspace notices if you choose it:{' '}
                     <a className="fancy-link" target="_blank" rel="noopener noreferrer" href="https://www.faa.gov/privacy">
                       faa.gov/privacy
                     </a>
                   </li>
                   <li>
-                    OpenAIP, if you choose it:{' '}
+                    OpenAIP, for airspace if you choose it:{' '}
                     <a className="fancy-link" target="_blank" rel="noopener noreferrer" href="https://www.openaip.net/legal#privacy-policy">
                       openaip.net/legal
+                    </a>
+                  </li>
+                  <li>
+                    ipapi.co and GeoJS, for an approximate location from your IP address in the Betaflight App:{' '}
+                    <a className="fancy-link" target="_blank" rel="noopener noreferrer" href="https://ipapi.co/privacy/">
+                      ipapi.co/privacy
+                    </a>{' '}
+                    and{' '}
+                    <a className="fancy-link" target="_blank" rel="noopener noreferrer" href="https://www.geojs.io/privacy/">
+                      geojs.io/privacy
+                    </a>
+                  </li>
+                  <li>
+                    OpenStreetMap, for street maps in the Betaflight App:{' '}
+                    <a className="fancy-link" target="_blank" rel="noopener noreferrer" href="https://osmfoundation.org/wiki/Privacy_Policy">
+                      osmfoundation.org/wiki/Privacy_Policy
+                    </a>
+                  </li>
+                  <li>
+                    Google Maps, for satellite maps in the Betaflight App:{' '}
+                    <a className="fancy-link" target="_blank" rel="noopener noreferrer" href="https://policies.google.com/privacy">
+                      policies.google.com/privacy
+                    </a>
+                  </li>
+                  <li>
+                    Apple Maps, for maps in the iOS app:{' '}
+                    <a className="fancy-link" target="_blank" rel="noopener noreferrer" href="https://www.apple.com/legal/privacy/">
+                      apple.com/legal/privacy
                     </a>
                   </li>
                 </ul>
