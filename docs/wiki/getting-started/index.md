@@ -93,7 +93,7 @@ For even further experimentation, Betaflight was forked from Cleanflight as a wa
 
 Betaflight is constantly being updated with new features and improvements. It flies everything from tiny whoops, racing and freestyle quads to cinematic rigs, long range craft, tri/hex/octocopters and wings, and is expanding into GPS rescue and autonomous flight.
 
-- **Wide Target Support** - Betaflight runs on flight controllers from around 140 manufacturers. Support for each board comes from its manufacturer, see [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support).
+- **Wide Target Support** - Betaflight runs on flight controllers from a great many manufacturers. Support for each board comes from its manufacturer, see [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support).
 - **Receiver Protocol Support** - Betaflight supports a wide variety of receiver protocols, including CRSF, Ghost, FPort, SBUS, Spektrum, and more.
 - **ESC Protocol Support** - Betaflight supports a wide variety of ESC protocols. The main one used on nearly everything is DShot, but there are also other protocols like Oneshot, Multishot, and even PWM if you really need them.
 - **Precision Tuning** - Whether you're tuning a tinywhoop, a 5" quad, or a 7"+ macro, you can tune your craft to get the best performance out of it. With tune and filter presets, you can get a good starting point within seconds.
