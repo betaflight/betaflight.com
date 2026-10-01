@@ -58,7 +58,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
             <FancyAboutCard title="Hardware" className="text-primary-600" Icon={CpuChipIcon}>
               <p className="text-justify">
-                Betaflight runs on flight controllers from a great many manufacturers, and{' '}
+                Betaflight runs on flight controllers from a considerable number of manufacturers, and{' '}
                 <a className="fancy-link no-underline" href="/docs/wiki/getting-started/hardware-support">
                   each manufacturer supports its own hardware
                 </a>
