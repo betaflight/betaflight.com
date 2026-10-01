@@ -41,9 +41,10 @@ export default function Home() {
           <div className="backdrop-blur-md shadow-xl flex xl:self-start p-4 rounded-2xl bg-neutral-500/10">
             <div className="text-center text-md">
               <h2 className="text-primary-600 font-bold text-2xl md:text-2xl mb-4">Pushing the Limits of UAV Performance</h2>
-              <p className="text-center xs:text-sm sm:text-lg xl:text-lg">Betaflight is the world's leading multi-rotor flight control software.</p>
+              <p className="text-center xs:text-sm sm:text-lg xl:text-lg">Betaflight is free, open-source flight control software for every kind of drone.</p>
               <p className="text-center xs:text-sm sm:text-lg xl:text-lg">
-                The global FPV drone racing and freestyle community choose Betaflight for its performance, precision, cutting edge features, reliability and hardware support.
+                From racing and freestyle to cinematic filming, long range, micros and wings, pilots choose Betaflight for its performance, precision, cutting edge features, reliability and hardware
+                choice.
               </p>
             </div>
           </div>
@@ -57,17 +58,21 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
             <FancyAboutCard title="Hardware" className="text-primary-600" Icon={CpuChipIcon}>
               <p className="text-justify">
-                Betaflight supports a wide range of flight controllers from a variety of manufacturers. The{' '}
+                Betaflight runs on flight controllers from around 140 manufacturers, and{' '}
+                <a className="fancy-link no-underline" href="/docs/wiki/getting-started/hardware-support">
+                  each manufacturer supports its own hardware
+                </a>
+                . Boards that the development team has reviewed, and whose manufacturer has committed to support them, are marked Betaflight Supported, and the{' '}
                 <a className="fancy-link no-underline" href="/docs/sponsors/partners">
                   Betaflight Partner
                 </a>{' '}
-                program provides hardware manufacturer recommendations from the development team.
+                program works directly with manufacturers on their designs.
               </p>
             </FancyAboutCard>
 
             <FancyAboutCard title="Community" className="text-primary-600" Icon={UsersIcon}>
               <p className="text-justify">
-                The user community is active and helpful, with a Facebook group of over 30,000 members and a growing{' '}
+                The user community is active and helpful, and is the place to ask about your build and setup, with a Facebook group of over 30,000 members and a growing{' '}
                 <a className="fancy-link no-underline" href="https://discord.betaflight.com/invite">
                   Discord server
                 </a>

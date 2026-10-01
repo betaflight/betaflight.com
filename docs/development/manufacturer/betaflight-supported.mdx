@@ -4,46 +4,55 @@ sidebar_label: Betaflight Supported
 title: Betaflight Supported
 ---
 
-The Betaflight Supported option is available to manufacturers of new and existing Flight Controllers that meet the [Manufacturer Design Guidelines](manufacturer-design-guidelines). Please contact the [Betaflight team](mailto:cloudtargets@betaflight.com) to submit your targets and get supported key that can be added to your config file.
+Betaflight Supported is the status for boards that the Betaflight team has reviewed against the [Manufacturer Design Guidelines](manufacturer-design-guidelines), and whose manufacturer has committed to support them. It is available for new and existing flight controllers. See the [Hardware Policy](hardware-policy) for how it sits alongside Manufacturer supported and Legacy boards. To apply, contact the [Betaflight team](mailto:cloudtargets@betaflight.com) with your targets, and we will issue a supported key to add to your config file.
 
-The key is issued by the Betaflight team once a target has been reviewed — it cannot be self-generated — and is added to the config as a `REFERENCE:` directive in the supported-target header block. See [Supported Target Header](creating-configuration#supported-target-header) for the exact format of that block, including the `DATE:`, `VERSION:` and `GROUP:` directives that control which firmware releases a target is offered for.
+The key is issued by the Betaflight team once a target has been reviewed. It cannot be self-generated, and is added to the config as a `REFERENCE:` directive in the supported-target header block. See [Supported Target Header](creating-configuration#supported-target-header) for the exact format of that block, including the `DATE:`, `VERSION:` and `GROUP:` directives that control which firmware releases a target is offered for.
 
 ## Benefits
 
-Betaflight Supported targets will receive:
+Betaflight Supported targets receive:
 
-1. "Official" Status: The target is recognized as officially supported code.
-2. Priority Cloud Build: Access to the high-speed build server for faster firmware compilation.
-3. No Warnings: Users selecting this target in the Configurator will see a clean interface with no disclaimer warnings.
-4. Immediate Availability: Targets can be updated and backported. You do not have to wait for the next major release cycle to fix issues or add support.
-5. Public Recognition: Brand identified and thanked within the ecosystem.
+1. Recognised Status: shown as "✅ Betaflight Supported" in the Betaflight App, with no warning.
+2. Firmware Regressions Fixed: the team treats a firmware regression on the board as its own bug to fix before release.
+3. Priority Cloud Build: access to the high-speed build server for faster firmware compilation.
+4. Immediate Availability: targets can be updated and backported. You do not have to wait for the next release to fix issues or add support.
+5. Public Recognition: brand identified and thanked within the ecosystem.
+
+## What the Manufacturer Commits To
+
+The manufacturer remains the first point of contact for pilots using the board. The Betaflight team does not provide end-user hardware support for any board, Betaflight Supported included. When a manufacturer finds that a problem reported by their customers is a firmware bug, they raise it with us and we work on it with them. For each Betaflight Supported board the manufacturer:
+
+1. supplies schematics for review, and samples when we ask for them;
+2. names a maintainer for the config;
+3. gives pilots a support contact;
+4. publishes [board documentation](fc_documentation/how-to-create-board-documentation) on the wiki.
 
 ## Requirements
 
-Any targets being presented to the config repository wishing to receive **Betaflight Supported** status will be required to follow these conditions:
+Targets presented to the config repository for **Betaflight Supported** status need to meet these conditions:
 
-1. Schematics need to be presented with the prospective config file. If your company requires these schematics to not be public they can be emailed to [cloudtargets@betaflight.com](mailto:cloudtargets@betaflight.com)
+1. Schematics are presented with the prospective config file. If your company requires the schematics to stay private, email them to [cloudtargets@betaflight.com](mailto:cloudtargets@betaflight.com).
 
-2. Our team will assess the schematics. If the schematic has resource sharing, lack of DMA and or timers on critical functions, e.g. gyro, motors, sharing SPI bus lines or is a blatant clone of existing designs (especially so if we consider it to be poorly designed), it will be denied supported status until it is redesigned to both meet the expected performance of the betaflight firmware, and demonstrates it is not merely a clone of an existing design.
+2. Our team assesses the schematics against the [Manufacturer Design Guidelines](manufacturer-design-guidelines). A design that copies an existing design rather than improving on it, or that shares SPI bus lines or leaves critical functions (gyro, motors) without the timers and DMA they need, is not eligible until it is revised. A new design using anything [not accepted for new designs](hardware-policy#not-accepted-for-new-designs) in the Hardware Policy is not accepted into the cloud build at all.
 
-3. There is a target fee for our team to go through the approval process and give **Betaflight Supported** status in the cloud build system. Please contact the team via cloudtargets@betaflight.com for details. Note if you are a hobbyist please contact us via our Discord or the above email as we will not be charging non-commercial users for target insertion.
+3. There is a target fee for our team to go through the review and grant **Betaflight Supported** status in the cloud build system. Contact the team via [cloudtargets@betaflight.com](mailto:cloudtargets@betaflight.com) for details. Hobbyists can contact us on [Discord](https://discord.betaflight.com/invite) or at the same address: we do not charge non-commercial users for target insertion.
 
-4. If a company wants to collaborate on the design with our team for performance testing, optimisation and official **Betaflight Supported** status to their flight controller we have a number of options available via the [Betaflight Partners Program](https://betaflight.com/docs/sponsors/partners) with details available by emailing the [team](mailto:partnersprogram@betaflight.com).
+4. Companies that want to collaborate on the design with our team, for performance testing, optimisation and **Betaflight Supported** status, can do so through the [Betaflight Partners Program](https://betaflight.com/docs/sponsors/partners). Details are available by emailing the [team](mailto:partnersprogram@betaflight.com). Members of the programme are exempt from the target fee for new targets released during their partnership term.
 
-5. We have developed the [Manufacturer Design Guidelines](https://betaflight.com/docs/development/manufacturer/manufacturer-design-guidelines) to give guidance to manufacturers in the design process.
+## Manufacturer Supported
 
-6. If your company is part of the [Betaflight Partners Program](https://betaflight.com/docs/sponsors/partners) you are exempt from the target fees for new targets released during your partnership term.
+The cloud build also carries boards that the team has accepted without Betaflight Supported status. This covers community-submitted "homebrew" boards, manufacturers who prefer to support their boards directly, and boards accepted before this status existed. Every board in the cloud build has been reviewed and accepted by the team. New boards are accepted against the current [Cloud Build Acceptance](hardware-policy#cloud-build-acceptance) criteria, and boards accepted earlier keep their status.
 
-## Community and / or Manufacturer Supported
+What that means:
 
-To maintain consistency and simplify the user experience we will continue to offer the ability to submit targets that are community or manufacturer supported. This is for legacy hardware that is no longer sold, community-submitted "homebrew" boards, or manufacturers who wish to provide direct support.
+1. Config Review: the team reviews the config and accepts it into the config repository, but does not review the design or schematics in depth.
+2. Shown in the App: pilots selecting these targets see "⚠️ Manufacturer supported", with a note to contact the manufacturer for support.
+3. Standard Cloud Build: allocated to a lower-priority build server queue, subject to availability.
+4. Next Release: new targets and changes are included with the next release. There is no backporting to earlier releases.
+5. Manufacturer Support: the manufacturer, or the named maintainer for community boards, supports pilots and keeps the config working.
 
-The limitations include:
+The Betaflight team does not maintain these boards, and as Betaflight moves forward, a board whose maintainer has moved on can stop working. If a release is reported not to work on a board, we withdraw the board from that release and later ones, so that pilots are not caught out. It stays available in the releases known to work.
 
-1. "As-Is" Status: Included in the source code but flagged as non-official.
-2. Configurator Warnings: Users selecting these targets will see a disclaimer similar to: "This is not an official Betaflight target. Please contact the manufacturer for support. Your mileage may vary."
-3. Slower Cloud Build: allocated to a lower-priority build server queue, and subject to availability.
-4. Release Delays: No backporting or prior-version support. New targets are only included in the next major official release.
-5. Basic Review Only: PRs will only be checked for critical safety conflicts (e.g., timer conflicts, motor counts).
+## Distributing Your Own Firmware
 
-Importantly these boards are not maintained by the Betaflight team and may stop working at any time. Why? Because as the Betaflight codebase continues to advance, these boards may not be maintained by the original submitter. If we receive reports that certain versions do not work, we will remove the board from that version (and any future versions) to avoid any user issues. Boards will remain available in known working versions.
+None of this limits what a manufacturer may distribute themselves. Betaflight is free software under the GPLv3, and a manufacturer can build firmware for any board, in the cloud build or not, and publish it on their own website for pilots to flash with "Load Firmware [Local]". That firmware is supported by the manufacturer alone. See [Two Routes to Pilots](hardware-policy#two-routes-to-pilots) in the Hardware Policy.

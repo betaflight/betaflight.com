@@ -41,7 +41,7 @@ Four manufacturer IDs are reserved for configs that do not belong to a registere
 | `COMM` | Community provided definitions for closed source targets |
 | `LEGA` | Closed source legacy targets without a maintainer        |
 
-Every other ID belongs to a registered manufacturer. The manufacturer ID is also what the Configurator uses to decide whether it may load a board configuration, so it must be registered in [Manufacturers.md](https://github.com/betaflight/config/blob/master/Manufacturers.md) before the first target is submitted.
+Every other ID belongs to a registered manufacturer. The manufacturer ID is also what the Betaflight App uses to decide whether it may load a board configuration, so it must be registered in [Manufacturers.md](https://github.com/betaflight/config/blob/master/Manufacturers.md) before the first target is submitted.
 
 :::note
 
@@ -367,7 +367,7 @@ The cloud build API reads a comment block placed after the GPL header and before
 | `REFERENCE:` | A `sha256_…` value marking the target as reviewed and supported by the Betaflight team, as opposed to community-supported. The Betaflight team provides this value once a target has been reviewed; it cannot be self-generated. It is validated against the upper-cased `BOARD_NAME`. |
 | `DATE:`      | Reference date (`YYYY-MM-DD`). The target is excluded from any release published before this date, so a new board does not appear against older releases that never supported it.                                                                                                      |
 | `VERSION:`   | The first firmware version the target is valid for. Earlier releases are never offered for the target, irrespective of `DATE:`.                                                                                                                                                        |
-| `GROUP:`     | Categorises the target. `SUPPORTED` is the implicit default; `LEGACY` flags an older board so it is grouped and sorted separately in the configurator's target list. A legacy target is not team-supported, so it carries no `REFERENCE:`.                                             |
+| `GROUP:`     | Categorises the target. `SUPPORTED` is the implicit default; `LEGACY` flags an older board so it is grouped and sorted separately in the app's target list. A legacy target is not team-supported, so it carries no `REFERENCE:`.                                                      |
 
 `REFERENCE:` together with a non-empty `BOARD_NAME` are required for the supported marking to take effect; `DATE:`, `VERSION:` and `GROUP:` are optional. `WIKI:` and `URL:` directives are recognised in the same block.
 

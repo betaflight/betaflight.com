@@ -6,7 +6,7 @@ This page provides details for hardware developers for future boards to ensure m
 
 ## Target Maintenance
 
-A hardware developer is responsible for developing, and maintaining, their target within Betaflight. Target files are being separated as much as possible to the main code so as to facilitate this.
+The manufacturer is responsible for supporting their hardware: its config and documentation, faults, warranty and customer support, and keeping its target working as Betaflight moves forward. Target files are being separated as much as possible to the main code so as to facilitate this. The Betaflight team fixes bugs in the firmware, the Betaflight App and the cloud build, and does not provide end-user hardware support. See the [Hardware Policy](/docs/development/manufacturer/hardware-policy).
 
 ## Adding new targets
 

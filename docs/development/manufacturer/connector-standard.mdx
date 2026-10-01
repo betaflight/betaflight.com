@@ -46,7 +46,7 @@ Two connections do not use JST SH, for different reasons. Power-only connections
 
 ### JST GH Series as Optional Component.
 
-Some manufacturers also use other firmware, such as Ardupilot or Pixhawk, which have their own [standard](https://github.com/pixhawk/Pixhawk-Standards).
+Some manufacturers also build for other firmware, such as ArduPilot and PX4, which use the [Pixhawk connector standard](https://github.com/pixhawk/Pixhawk-Standards).
 This connector type is optional for drone manufacturers, allowing them to choose the connector type that best suits their needs as long as they provide a harness for both platforms.
 
 Where an established standard already covers a connection well, this standard adopts it as it is rather than defining a competing pinout. [FDCAN](#fdcan-pin-configuration) is taken wholesale from the PX4 and ArduPilot connector standard, JST GH included, so that the existing ecosystem of CAN peripherals and harnesses works without adapters. Adopting an outside standard this way is deliberate practice rather than an exception to be minimised, since a second, incompatible CAN pinout would fragment exactly what this document exists to unify. JST GH is therefore not optional for FDCAN, even on a board that is otherwise entirely JST SH.
@@ -127,7 +127,7 @@ JST PH is rated at approximately 2A per contact. Where the load exceeds that, us
 :::
 
 :::caution
-A 2-pin power connection must never be presented on a JST SH or JST GH socket, even on legacy designs. Both are used for signal elsewhere in this standard, and a power socket that accepts a signal harness will destroy whatever is plugged into it by mistake.
+New designs must never present a 2-pin power connection on a JST SH or JST GH socket. Both are used for signal elsewhere in this standard, and a power socket that accepts a signal harness will destroy whatever is plugged into it by mistake. Legacy boards predating v2.1 may still have one, see the [2-pin I2C connector](#2-pin-i2c-connector-optional).
 :::
 
 ### Serial (UART) Pin Configuration (RX, GPS, and other 5V serial devices)
@@ -152,7 +152,7 @@ The pin configuration for the 4 pin JST SH connector is as follows:
 :::note
 This connector could also be used for any number of serial devices.
 
-Where a GPS module uses a 6-pin cable, e.g. a combined GPS and magnetometer that requires I2C, use a Y cable that splits across a 4-pin serial connector and a separate [I2C connector](#i2c-pin-configuration). The GPS takes its 5V and ground from the serial connector, so the I2C leg carries data and clock only and may terminate in either the 4-pin I2C connector (preferred) or the [2-pin I2C connector](#2-pin-i2c-connector-optional). Note that mounting the magnetometer and GPS together is not recommended.
+Where a GPS module uses a 6-pin cable, e.g. a combined GPS and magnetometer that requires I2C, use a Y cable that splits across a 4-pin serial connector and a separate [I2C connector](#i2c-pin-configuration). The GPS takes its 5V and ground from the serial connector, so the I2C leg carries data and clock only and may terminate in either the 4-pin I2C connector (preferred) or the [2-pin I2C connector](#2-pin-i2c-connector-optional). A magnetometer in a GPS module is only useful if the module can be mounted well away from motors, ESCs, power wiring and other electronics, see [Mounting a Magnetometer](/docs/wiki/guides/current/Magnetometer#mounting-a-magnetometer).
 :::
 
 :::danger[Deprecated in v2.0: 6-pin GPS (UART+I2C) connector]
@@ -241,9 +241,9 @@ The 5V supply on pin 1 comes from the FC's onboard regulator and is intended for
 ### Analog Camera Pin Configuration
 
 :::note
-It is no longer recommended to have an analogue OSD chip on the FC. The recommendation is to emulate the digital standard, and place the OSD chip on the VTX.
+An analogue OSD chip on the FC is optional, for boards aimed at analogue video builds. For new designs we recommend following the digital approach and placing the OSD chip on the VTX.
 
-This would render these connectors redundant.
+A board without an onboard analogue OSD does not need these connectors.
 :::
 
 #### 5-pin Connector

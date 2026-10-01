@@ -4,26 +4,26 @@ sidebar_position: 1
 
 # Config Target Guidance - Cloud Build
 
-Due to the increase in poorly designed flight controllers, primarily clones of known poorly designed units, Betaflight is now taking a strong stance on adding targets to our cloud build platform.
+The cloud build carries boards that the Betaflight team has reviewed and accepted. What it accepts, what it warns against, and what is eligible for [Betaflight Supported](betaflight-supported) is set out in the [Hardware Policy](hardware-policy). A design that is not accepted can still be distributed by its manufacturer, see [Two Routes to Pilots](hardware-policy#two-routes-to-pilots). The notes below explain the guidance behind the most common questions.
 
 :::note
-The Betaflight project will no longer accept new flight controller designs using the STM F4 and F7 series microcontroller where there is more than 4 motor outputs.
+New flight controller designs using STM32 F4 and F7 microcontrollers with more than four motor outputs are [not accepted for new designs](hardware-policy#not-accepted-for-new-designs) in the cloud build.
 
-- We strive to be the best flight experience available on the widest range of hardware. To continue delivering that we now need to limit flight controller designs using the older microcontrollers that have restrictions on timer and DMA resources.
+- We strive to be the best flight experience available on the widest range of hardware. These older microcontrollers have limited timer and DMA resources, and more than four motors exhausts them.
 
-- Moving forward these microcontrollers should only be used on budget freestyle or racing designs and for AIOs that only require 4 motor outputs. The STM H743 is now very close in price to the F405 and is a much better choice. We recommend the H743 be used in high performance, high motor output and high IO flight Controller designs where an STM microcontroller is preferred by the designer or manufacturer.
+- They remain a good choice for budget freestyle and racing designs, and for AIOs with four motor outputs. For high performance, high motor output and high IO designs, where an STM microcontroller is preferred, we recommend the STM32H743, which is now very close in price to the F405.
 
-- Existing designs will not be affected by this change but features may be restricted for those flight controllers in the future where performance becomes an issue.
+- Existing designs are not affected, although some future features may not fit within their resources.
   :::
 
 :::note
-The Betaflight project has deprecated implementation of new STM F411 applications, SPI for RX communications and no longer recommends BMI270:
+New STM32 F411 designs and SPI receivers are [not accepted for new designs](hardware-policy#not-accepted-for-new-designs), and the BMI270 gyro is [not recommended](hardware-policy#not-recommended):
 
-- The STM F411 has been a stable option for those smaller FCs. Whilst the cloud build has extended its useful life (with the limited flash size), the limited available IO renders this chip a poor choice for future designs. We are therefore going to restrict acceptance of new targets with this chipset, in favour of AT32, PICO or G4 options. Existing targets will continue to be supported for the time being.
+- The STM32 F411 has been a stable option for smaller flight controllers, and the cloud build has extended its useful life despite its limited flash. Its limited IO makes it a poor choice for new designs, and we recommend AT32, PICO or G4 options instead. Existing F411 targets continue to be built.
 
-- New targets for designs that use SPI for RX communications will not be accepted. This is because we favour the use of serial for RX communications, which is also inline with the wishes of the ELRS development team. Existing targets will maintain support for the time being.
+- Serial receivers are preferred to SPI receivers, in line with the direction of the ExpressLRS project. Existing SPI receiver targets continue to be built.
 
-- The BMI270 IMU is no longer recommended due to calibration issues (drift). Where an existing PCB is second-sourced between a BMI270 and an ICM-42688-P on the same footprint, see the [`ENABLE_BMI270_ALIGN_AS_ICM` define](manufacturer-design-guidelines#4211-bmi270-on-a-shared-icm-42688-p-footprint).
+- The BMI270 IMU is no longer recommended due to calibration issues (drift), and is accepted only as a second source on an ICM-42688-P footprint. Where a PCB is second-sourced between a BMI270 and an ICM-42688-P on the same footprint, see the [`ENABLE_BMI270_ALIGN_AS_ICM` define](manufacturer-design-guidelines#4211-bmi270-on-a-shared-icm-42688-p-footprint).
   :::
 
 :::note
@@ -34,12 +34,12 @@ For the full list of MCU platforms and target names the firmware supports, and w
 
 :::note
 
-**Betaflight is free software**, and will continue to be free, however the automated build and delivery system is not free and comes with operational costs. Supporting the costs of running the cloud build system is optional. You are free to distribute your own hexes however you choose. Your customers are able to flash your distributed firmware using the “Load Local” function of the betaflight configuration and maintenance application.
+**Betaflight is free software**, and will continue to be free, however the automated build and delivery system is not free and comes with operational costs. Supporting the costs of running the cloud build system is optional. You are free to distribute your own hex files however you choose, and your customers can flash them with the "Load Local" function of the Betaflight App.
 
 :::
 
 :::note
 
-It is advised to start a dialogue with the Betaflight team before you move to making prototypes. The Betaflight team will endeavor to create a reference library to assist manufacturers as early as possible in the process.
+We recommend starting a dialogue with the Betaflight team at [hardware@betaflight.com](mailto:hardware@betaflight.com) before you move to making prototypes. The Betaflight team will endeavour to create a reference library to assist manufacturers as early as possible in the process.
 
 :::
