@@ -22,7 +22,7 @@ ADRC is an experimental, optional, complete replacement for PID. Instead of rely
 - **Better resistance to being knocked off course.** A sudden gust or a bump is corrected automatically, so the pilot never has to respond. There are limits: the motors still need enough power, and a tiny whoop can't fly in a hurricane — it will just be noticeably harder to push around. This is probably most useful for something like a cinematic drone, where smooth flight matters most.
 - **Forgiveness when things go wrong.** ADRC compensates for basically anything that makes the craft behave differently than expected. A crash that snaps off part of a propeller blade can still fly normally. This has happened a couple of times in testing, and the damage wasn't noticed until the drone was close enough to hear.
 
-**Simpler tuning.** The tuning parameters are also a little easier to understand than PID's. The main one is a physical value specific to your craft — essentially its acceleration on each axis. The other two simply control how fast you want the craft to respond.
+**Simpler tuning.** The tuning parameters are also a little easier to understand than PID's. The main one is a physical value specific to your craft — essentially how hard and how quickly it accelerates on each axis. The other two simply control how fast you want the craft to respond.
 
 :::tip Coming from PID?
 Early ADRC research describes it as an extension of PID, and you can think of it as a PID controller that constantly re-tunes itself. That is a simplification, but it is a somewhat reasonable way to think about how ADRC works.
@@ -48,9 +48,9 @@ The control output is a virtual PD law: `u = (kp·(setpoint − z1) − kd·z2 �
 
 Three tunables set the whole thing per axis:
 
-- **`adrc_wc`** — controller bandwidth (ωc). Higher = faster/crisper correction. Its practical ceiling is set by `wo`: in most cases **`wc` should stay below `wo`** — the firmware doesn't enforce it, but with `wc` at or above `wo` the controller acts before the observer can see the disturbance, and the loop can go unstable. Because `wo` is in turn limited by gyro noise (below), that noise ceiling effectively applies to `wc` as well.
+- **`adrc_wc`** — controller bandwidth (ωc). Higher = faster/crisper correction. The hard stability ceiling comes from motor lag — roughly `wc·τ ≈ 2`, where τ is the motor time constant — not from the `wc`/`wo` ratio. In most cases **`wc` should still stay below `wo`** (the firmware doesn't enforce it): pushing `wc` up to or past `wo` doesn't cause a sudden instability, but it reduces stability margins, adds overshoot and gives up disturbance rejection. Because `wc` normally sits below `wo`, and `wo` is limited by gyro noise (below), that noise ceiling effectively limits `wc` as well.
 - **`adrc_wo`** — observer bandwidth (ωo). How fast the ESO tracks/estimates. Has a **practical ceiling set by gyro noise**, not by stability — set it as high as the craft's noise floor allows. If throttle-up produces a "singing"/chatter noise that gets louder with RPM, `wo` (and with it `wc`) is too high for your filtering. The `wc`/`wo` ratio trades disturbance rejection (lower ratio) against stick responsiveness (higher ratio) — see [Bandwidth ratio](#wc-wo-ratio).
-- **`adrc_b0`** — control-input gain estimate: how much rotational acceleration one unit of output produces. Roughly scales with motor KV × thrust ÷ mass. Under-estimating causes instability; over-estimating is comparatively harmless (softer response).
+- **`adrc_b0`** — control-input gain estimate: how hard and how quickly the craft accelerates per unit of command. In the second-order model the ESO uses, `b0` = (angular acceleration per unit of command) ÷ (motor time constant), so how quickly the motors respond matters as much as how hard they push — which is why whoops, with the fastest motors, have the largest `b0` values. Under-estimating causes instability; over-estimating is comparatively harmless (softer response).
 
 On top of the core ADRC controller, this implementation adds a few extra mechanisms:
 
@@ -147,7 +147,7 @@ This procedure uses `adrc_b0_law` and `adrc_ground_wc`, which were added in the 
 
 _Set per axis._
 
-This is the most important parameter, as it gives the controller an estimate of how each axis responds for a given input. Think of it as how much the controller expects the craft to accelerate for a given amount of motor power. A craft with a high thrust-to-weight ratio will have a higher `b0` than one with a low thrust-to-weight ratio.
+This is the most important parameter, as it gives the controller an estimate of how each axis responds for a given input. Think of it as how hard and how quickly the controller expects the craft to accelerate per unit of command. Both parts matter: how hard the motors push and how quickly they respond. That's why whoops, with the fastest motors, have the largest `b0` values.
 
 It only needs to be a reasonably close ballpark estimate, as a gap between the craft's actual gain (_b_) and the control gain is lumped into the disturbance estimate. However, if `b0` is too far off the actual _b_, the mismatch can exceed what the controller is able to correct, resulting in motor oscillations, tracking lag and instability. This value can be determined by fitting a blackbox log with the [plant fit](https://jmsweng.github.io/ADRC-utils/Plant%20fitting/) tool.
 
@@ -161,7 +161,7 @@ This governs how fast the observer is able to detect and estimate disturbances. 
 
 _Set per axis. Units: rad/s._
 
-This governs how fast the controller attempts to adjust the craft. If it is too low, the craft will be sluggish and respond slowly to inputs. If it is too high, the craft will feel twitchy and can overshoot commanded movements. This is _similar_ but not exactly the same as the P gain in a PID controller. In most cases **it should stay below the observer bandwidth** — the firmware doesn't enforce this, but otherwise the controller will attempt adjustments before it can see disturbances, which can create instabilities.
+This governs how fast the controller attempts to adjust the craft. If it is too low, the craft will be sluggish and respond slowly to inputs. If it is too high, the craft will feel twitchy and can overshoot commanded movements. This is _similar_ but not exactly the same as the P gain in a PID controller. In most cases **it should stay below the observer bandwidth** — the firmware doesn't enforce this. Going above it doesn't cause a sudden instability, but it reduces stability margins and increases overshoot.
 
 #### `adrc_b0_law` — scaling for `b0`
 
@@ -187,7 +187,7 @@ The step-by-step procedure — baseline PID flight, calculating `b0`, filter set
 | --- | --- | --- | --- | --- |
 | Observer bandwidth (`wo`) | How quickly the craft notices things like wind gusts or extra weight. | The craft overreacts to tiny vibrations. The motors buzz and twitch, run hot, and drain the battery faster. | The craft is slow to notice wind or changes, so it drifts and wobbles before correcting. | Increase it until the motors start sounding rough, then turn it back down a bit. |
 | Controller bandwidth (`wc`) | How quickly and firmly the craft responds to commands and corrections. | The craft is twitchy and overshoots its target. It can start oscillating and potentially lose stability. | The craft feels sluggish to respond to commanded movements and hold position. | Start low and increase gradually until the craft feels crisp but not twitchy. |
-| Nominal control gain (`b0`) | The controller's guess of how strongly the craft responds to motor changes. | The controller doesn't request motor power quickly enough, so the craft feels sluggish and soft. | The controller requests motor power too quickly, so the craft overshoots or oscillates. This causes instability. | If unsure, guess a little high. Sluggish and stable is safer than twitchy and unstable. |
+| Nominal control gain (`b0`) | The controller's estimate of how hard and how quickly the craft accelerates per unit of command. | The controller doesn't request motor power quickly enough, so the craft feels sluggish and soft. | The controller requests motor power too quickly, so the craft overshoots or oscillates. This causes instability. | If unsure, guess a little high. Sluggish and stable is safer than twitchy and unstable. |
 
 ### Bandwidth ratio {#wc-wo-ratio}
 
@@ -197,7 +197,7 @@ The step-by-step procedure — baseline PID flight, calculating `b0`, filter set
 | High rejection (conservative) | ≈ 0.30 – 0.50 | Prioritizes rejecting external forces, wind, prop wash and frame anomalies. | Slower response to pilot control inputs. |
 | High responsiveness (aggressive) | ≈ 0.80 – 0.90 | Fast tracking to stick inputs with minimal lag. | Slower disturbance rejection (though a 0.9 ratio on a 5" craft can still fly with damaged or missing prop blades). |
 | Too high (marginal) | &gt; 0.90 – 0.95 | Extremely reactive, twitchy feel; can feel over-sensitive to stick inputs. | Prone to overshoot on aggressive maneuvers; disturbance rejection becomes sluggish. |
-| Critical limit / instability | ≥ 1.0 (`wc` ≥ `wo`) | Controller attempts to make physical adjustments before the observer can detect and estimate disturbances. | Control instability, potential for rapid self-excited oscillations. |
+| At or above `wo` | ≥ 1.0 (`wc` ≥ `wo`) | Controller attempts to make physical adjustments faster than the observer can detect and estimate disturbances. | Reduced stability margins and more overshoot. The firmware doesn't enforce `wc` < `wo`. |
 
 :::tip Try it
 The [interactive tuning sandbox](https://jmsweng.github.io/ADRC-utils/ADRC%20demo/) lets you drag `wc`, `wo` and `b0` on a simulated rate loop and watch the step response and disturbance recovery change.
