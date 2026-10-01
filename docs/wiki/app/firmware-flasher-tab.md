@@ -222,7 +222,7 @@ It is also possible to make a build from any previous point in time by entering 
 
 :::info
 
-If your board, or a pad or peripheral on it, does not work as advertised after flashing, contact the board's manufacturer. They support their hardware and maintain its config and documentation, whatever its status. [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support) explains where to go with other problems.
+If your board, or a pad or peripheral on it, does not work as advertised after flashing, contact the board's manufacturer. They support their hardware whatever its status, and maintain its config and documentation unless the board is Legacy. [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support) explains where to go with other problems.
 
 If you have found an error in a board's config, such as a wrong pin or a missing sensor, you can also create an issue in the [Betaflight config repo](https://github.com/betaflight/config/issues). Issues there are for config errors, not for help with a board or a build.
 

@@ -16,7 +16,7 @@ The config repository now holds 630 boards. The Betaflight team is small and lar
 
 ## For Pilots
 
-The firmware flasher shows each board as **Betaflight Supported** (reviewed by the team), **Manufacturer supported** (config reviewed and accepted) or **Legacy** (no longer maintained). Whatever the status, hardware faults and warranty go to the manufacturer, and a board's config is maintained by its manufacturer or, for community and homebrew boards, its named maintainer. [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support) says where to take each kind of problem, and how to report a genuine Betaflight bug so that we can fix it.
+The firmware flasher shows each board as **Betaflight Supported** (reviewed by the team), **Manufacturer supported** (config reviewed and accepted) or **Legacy** (no longer maintained). Whatever the status, hardware faults and warranty go to the manufacturer, and a board's config is maintained by its manufacturer or, for community and homebrew boards, its named maintainer. Legacy boards have no active maintainer. [Hardware Support and Getting Help](/docs/wiki/getting-started/hardware-support) says where to take each kind of problem, and how to report a genuine Betaflight bug so that we can fix it.
 
 ## For Manufacturers
 

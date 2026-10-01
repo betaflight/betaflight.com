@@ -28,7 +28,7 @@ Every board in the [firmware flasher](/docs/wiki/app/firmware-flasher-tab) carri
 
 ## Firmware From a Manufacturer's Website
 
-Some manufacturers distribute their own Betaflight firmware, for example for a board that is not in the firmware flasher, or with their own defaults. You flash it with "Load Firmware [Local]". The manufacturer built it and supports it; the Betaflight team has not reviewed the board or the build, and cannot help with it. If you think you have found a Betaflight bug, check that it also happens with firmware from the firmware flasher before reporting it.
+Some manufacturers distribute their own Betaflight firmware, for example for a board that is not in the firmware flasher, or with their own defaults. You flash it with "Load Firmware [Local]". The manufacturer built it and supports it; the Betaflight team has not reviewed the board or the build, and cannot help with it. If you think you have found a Betaflight bug and the board is in the firmware flasher, check that it also happens with firmware from there before reporting it. If the board is not in the flasher, ask the manufacturer to confirm the bug first, and they can raise it with us.
 
 ## Choosing a Board
 
