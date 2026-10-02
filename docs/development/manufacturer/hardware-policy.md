@@ -26,7 +26,7 @@ The team does not provide end-user hardware support for any board, including Bet
 
 ## Why Support Is Shared
 
-The [Betaflight config repository](https://github.com/betaflight/config) holds 630 boards from around 140 manufacturers. The team is small and largely volunteer, and our automated builds exercise only a handful of those boards on every change. We cannot test, diagnose or support hundreds of boards and many thousands of individual builds, and it would not be fair to ask volunteers to.
+The [Betaflight config repository](https://github.com/betaflight/config) holds a significant and growing number of boards from a considerable number of manufacturers. The team is small and largely volunteer, and our automated builds exercise only a handful of those boards on every change. We cannot test, diagnose or support every one of those boards and the individual builds they go into, and it would not be fair to ask volunteers to.
 
 What we can do is keep the door open to as much hardware as possible, be clear about who supports what, and spend our own time where it improves Betaflight for every pilot.
 

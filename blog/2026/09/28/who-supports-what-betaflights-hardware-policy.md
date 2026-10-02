@@ -4,7 +4,7 @@ date: 2026-09-28
 authors: ['blckmn']
 ---
 
-Betaflight is free, open-source flight control software for every kind of drone, from racing and freestyle to cinematic filming, long range, micros and wings. It runs on flight controllers from around 140 manufacturers, and we want to keep it that way. Today we are publishing a [Hardware Policy](/docs/development/manufacturer/hardware-policy) that sets out how we keep that breadth sustainable, in one sentence:
+Betaflight is free, open-source flight control software for every kind of drone, from racing and freestyle to cinematic filming, long range, micros and wings. It runs on flight controllers from a considerable number of manufacturers, and we want to keep it that way. Today we are publishing a [Hardware Policy](/docs/development/manufacturer/hardware-policy) that sets out how we keep that breadth sustainable, in one sentence:
 
 **We fix Betaflight. Manufacturers support their hardware. Pilots own their builds.**
 
@@ -12,7 +12,7 @@ Betaflight is free, open-source flight control software for every kind of drone,
 
 ## Why
 
-The config repository now holds 630 boards. The Betaflight team is small and largely volunteer, and our automated builds exercise only a handful of those boards on every change. We cannot test, diagnose or support every board and every build, and pretending otherwise helps nobody: pilots wait for answers we cannot give, and our time goes into hardware questions instead of Betaflight.
+The config repository holds a significant and growing number of boards. The Betaflight team is small and largely volunteer, and our automated builds exercise only a handful of those boards on every change. We cannot test, diagnose or support every board and every build, and pretending otherwise helps nobody: pilots wait for answers we cannot give, and our time goes into hardware questions instead of Betaflight.
 
 ## For Pilots
 
