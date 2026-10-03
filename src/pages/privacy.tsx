@@ -45,9 +45,9 @@ export default function PrivacyPolicy() {
                   <div>
                     <h4 className="text-lg font-bold text-primary-600 mb-2">Betaflight Account</h4>
                     <p className="mb-2">
-                      If you create or sign in to a Betaflight account, we collect your email address and, if you add them, your name and avatar, and keep them on Betaflight servers. We use the email
-                      address to send one-time sign-in codes and to identify your account. Sign-in codes expire after 30 minutes or once used. Passkeys you register are kept by your device or password
-                      manager; we store only the public key needed to verify them. Sign-in tokens are kept in secure storage on your device.
+                      If you create or sign in to a Betaflight account, we collect your email address and, if you add them, your name, postal address, country and avatar, and keep them on Betaflight
+                      servers. We use the email address to send one-time sign-in codes and to identify your account. Sign-in codes expire after 30 minutes or once used. Passkeys you register are kept
+                      by your device or password manager; we store only the public key needed to verify them. Sign-in tokens are kept in secure storage on your device.
                     </p>
                     <p>Your account is linked to your email address. We use it only to run your account, and never sell it or use it for advertising.</p>
                   </div>

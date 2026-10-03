@@ -38,8 +38,8 @@ export default function Support() {
                   <div>
                     <h3 className="text-xl font-bold text-primary-600 mb-3">What is deleted</h3>
                     <p className="mb-2">
-                      Deleting your account permanently removes your profile (name, email address, address and avatar), passkeys, sign-in tokens and cloud backups from Betaflight servers. Deletion
-                      completes within 30 days.
+                      Deleting your account permanently removes your profile (name, email address, postal address, country and avatar), passkeys, sign-in tokens and cloud backups from Betaflight
+                      servers. Deletion completes within 30 days.
                     </p>
                     <p>Anonymous app usage statistics use a random install ID that isn't linked to your account, so they aren't affected. You can turn them off in the app's Options.</p>
                   </div>
