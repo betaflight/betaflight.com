@@ -123,8 +123,15 @@ export default function PrivacyPolicy() {
                 <ul className="list-disc ml-8 space-y-1 mb-2">
                   <li>You can delete individual cloud backups at any time in the Betaflight App or the iOS app.</li>
                   <li>
-                    You can delete your account from the account screen in the Betaflight App or the iOS app. Deleting your account permanently removes your profile, cloud backups, passkeys and
-                    sign-in tokens from Betaflight servers.
+                    You can delete your account from the account screen in the Betaflight App or the iOS app, or on the web at{' '}
+                    <a className="fancy-link" target="_blank" rel="noopener noreferrer" href="https://app.betaflight.com/delete">
+                      app.betaflight.com/delete
+                    </a>
+                    . Deleting your account permanently removes your profile, cloud backups, passkeys and sign-in tokens from Betaflight servers, and completes within 30 days. See{' '}
+                    <a className="fancy-link" href="/support#delete-account">
+                      how to delete your account
+                    </a>
+                    .
                   </li>
                   <li>
                     You can also ask us to delete your account, or to send you a copy of your data, by emailing{' '}

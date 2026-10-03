@@ -35,7 +35,7 @@ Pre-commit hooks (Husky) run ESLint, Prettier, title-case check, and file-name c
 **Custom React code** lives in `src/`:
 
 - `src/components/` — reusable React components (charts, carousels, sponsor layouts, etc.)
-- `src/pages/` — standalone pages: `download.tsx`, `stats.tsx`, `sponsors.mdx`, `privacy.tsx`
+- `src/pages/` — standalone pages: `download.tsx`, `stats.tsx`, `sponsors.mdx`, `privacy.tsx`, `support.tsx`
 - `src/theme/` — swizzled Docusaurus theme components (Footer, DocCard, BlogPostItem, SearchBar, etc.)
 - `src/css/` — global styles: `custom.css`, `tailwind.scss`, `mermaid.scss`
 
