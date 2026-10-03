@@ -20,8 +20,6 @@ For new designs, gyroscopes must be connected over SPI. I2C gyros are only suppo
 | :--------------------------------- | :-- | :-------------------------------------------------------------------------- |
 | ICM-42688-P                        | SPI | Recommended for new designs; 8 kHz sampling, external clock input supported |
 | LSM6DSK320X                        | SPI | Supported alternative where the ICM-42688-P cannot be sourced               |
-| LSM6DSV16X                         | SPI |                                                                             |
-| LSM6DSO / LSM6DSOX                 | SPI |                                                                             |
 | ICM-42605                          | SPI |                                                                             |
 | ICM-42622-P                        | SPI |                                                                             |
 | ICM-42686-P                        | SPI |                                                                             |
@@ -42,7 +40,7 @@ For new designs, gyroscopes must be connected over SPI. I2C gyros are only suppo
 | MPU-6050                           | I2C | Legacy only; I2C gyros are not accepted for new designs                     |
 | L3GD20                             | SPI | Obsolete gyro-only part                                                     |
 
-The BMI323 is **not** supported.
+The BMI323. BMI088, and LSM6D**S**O IMUs are **not** supported.
 
 ## Barometer
 
