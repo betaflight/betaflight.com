@@ -117,7 +117,7 @@ This procedure uses `adrc_b0_law` and `adrc_ground_wc`, which were added in the 
   ```
 
 - Disable all PID filters except for motor RPM (see [Disable unnecessary filters](#disable-filters)).
-- Use the [plant fit](https://jmsweng.github.io/ADRC-utils/Plant%20fitting/) tool to obtain `b0` values. Make sure the _ctrl-free_ and _eRPM_ values are reasonably close to one another. Multiply these by two and use them as the `adrc_b0` parameters for each axis. Set `wc` to 80 and `wo` to 90 on each axis:
+- Use the [plant fit](https://jmsweng.github.io/ADRC-utils/Plant%20fitting/) tool to obtain `b0` values, with **Proposed wc** set to 80. Make sure the _ctrl-free_ and _eRPM_ values are reasonably close to one another, then use them directly as the `adrc_b0` parameters for each axis. Set `wc` to 80 and `wo` to 90 on each axis:
 
   ```
   set adrc_b0_roll = <calculated_roll_b0>
@@ -265,7 +265,7 @@ Fly the craft using standard PID controls. Note the throttle percentage required
 
 #### Calculate `b0` values from the recorded baseline flight
 
-Run the recorded blackbox log through the [plant fit](https://jmsweng.github.io/ADRC-utils/Plant%20fitting/) tool to determine the nominal control gain (`b0`). The output includes several plots showing the points used for the fit along with the fit itself. Below is an example of a fit performed on the baseline flight from a 5" craft.
+Run the recorded blackbox log through the [plant fit](https://jmsweng.github.io/ADRC-utils/Plant%20fitting/) tool to determine the nominal control gain (`b0`). Before dropping in the log, set **Proposed wc** to the controller bandwidth you plan to fly (80 if you're following this guide). The output includes several plots showing the points used for the fit along with the fit itself. Below is an example of a fit performed on the baseline flight from a 5" craft.
 
 ![Plant fitting output for roll, pitch and yaw: recovered gain against frequency, with the controller-free fit band, controller-free fit and eRPM path.](/img/adrc/plant-fit-example.png)
 
@@ -273,7 +273,7 @@ _Example plant-fitting output from a 5" drone baseline flight._
 
 Make sure the fit output looks reasonable: the fit curves should overlap reasonably with the points used for the fit. Also check that the calculated _ctrl-free_ and _eRPM_ values are reasonably close to each other. If the fits on the plot don't line up well, or the ctrl-free and eRPM values are very far apart, redo the baseline PID flight with more movement on each axis.
 
-These output values correspond to fairly conservative control parameters for use with an observer bandwidth (`wo`) around 50–60. **Multiply each value by two** — these are your initial values for `b0`.
+The fitter reports `b0` matched to the `wc` you entered, so the output values can be used directly as your initial `b0` values with no further adjustment. If you later change `wc`, rerun the fit with the new value to get a matching `b0`.
 
 :::note Fit warnings
 Occasionally the output includes a warning like:
