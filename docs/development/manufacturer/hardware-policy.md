@@ -36,7 +36,7 @@ There are two separate ways Betaflight firmware reaches a pilot, and they are no
 
 **The Betaflight cloud build.** The config repository and the cloud build carry designs that the Betaflight team has reviewed and accepted. Pilots find these boards in the firmware flasher of the Betaflight App, which builds firmware for them on demand. Getting a board in is covered by [Cloud Build Acceptance](#cloud-build-acceptance) below.
 
-**The manufacturer's own distribution.** Betaflight is free software under the GPLv3, and any manufacturer is free to build firmware themselves and distribute it on their own terms, for example from their website, for pilots to flash with "Load Firmware [Local]" in the Betaflight App. This is how a design that is not in the cloud build, including one we do not accept, reaches pilots. We cannot stop it and do not try to. The GPL does ask something in return: distributing firmware means making its corresponding source, including the board config, available to those who receive it. The Betaflight name and logo still need the project's permission, see section 5 of the [Manufacturer Design Guidelines](manufacturer-design-guidelines).
+**The manufacturer's own distribution.** Betaflight is free software under the GPLv3, and any manufacturer is free to build firmware themselves and distribute it on their own terms, for example from their website, for pilots to flash with "Load Firmware [Local]" in the Betaflight App. This is how a design that is not in the cloud build, including one we do not accept, reaches pilots. We cannot stop it and do not try to. The GPL does ask something in return: distributing firmware means making its corresponding source, including the board config, available to those who receive it. The Betaflight name and logo still need written permission from Betaflight, see section 5 of the [Manufacturer Design Guidelines](manufacturer-design-guidelines).
 
 A board accepted into the cloud build can also be distributed by its manufacturer, for example with their own defaults. Acceptance into the cloud build is about what Betaflight hosts and vouches for. It does not limit what a manufacturer may ship themselves.
 
@@ -116,7 +116,7 @@ We advise against these, but a review of the board's config cannot tell whether 
 
 ### The Betaflight Name and Logo
 
-Using the Betaflight name or logo on a product needs the project's permission, and using the Betaflight logo requires the board to follow the [Connector Standard](connector-standard). The standard is what keeps a pilot from plugging a harness into the wrong socket, which is why it retired the 6-pin GPS connector and moved 2-pin power off JST SH.
+Using the Betaflight name or logo on a product needs written permission from Betaflight, and using a Betaflight logo also requires adherence to Betaflight standards, such as the [Connector Standard](connector-standard). The [connector logo](connector-standard#logo) is the exception: it indicates adherence to the Connector Standard, and may be used once the Betaflight team has verified that the product meets it. The Connector Standard is what keeps a pilot from plugging a harness into the wrong socket, which is why it retired the 6-pin GPS connector and moved 2-pin power off JST SH.
 
 ### Cloud Build Acceptance
 

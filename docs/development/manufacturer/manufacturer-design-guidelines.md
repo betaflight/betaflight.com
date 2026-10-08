@@ -889,7 +889,7 @@ Gyro external clock input (`GYRO_CLKIN`) is available on STM32, AT32, RP2350 and
 
 - Betaflight is free, open-source flight control software for every kind of drone, from racing and freestyle to cinematic filming, long range, micros and wings.
 
-- The Betaflight name and logos are registered trademarks and may not be used in any commercial products or services without permission from the project. Using the Betaflight logo on a product also requires the board to follow the [Connector Standard](connector-standard).
+- The Betaflight name and logos are registered trademarks and may not be used in any commercial products or services without written permission from Betaflight. Using a Betaflight logo on a product requires both that permission and adherence to Betaflight standards, such as the [Connector Standard](connector-standard). The exception is the [connector logo](connector-standard#logo), which indicates adherence to the Connector Standard and may be used once the Betaflight team has verified that the product meets it.
 
 - Betaflight is a fork of Baseflight and Cleanflight, with an emphasis focused on flight performance, leading-edge feature additions, and wide target support. Combining cutting edge flight performance with diverse hardware support, Betaflight is the leading solution for high performance small unmanned aircraft.
 
