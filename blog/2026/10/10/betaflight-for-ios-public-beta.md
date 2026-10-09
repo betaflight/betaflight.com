@@ -30,19 +30,19 @@ It is written entirely in Swift and SwiftUI, including its own MSP implementatio
 
 Tabs that write settings are locked while the craft is armed.
 
-<p align="center">
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
   <img src="/img/ios-app/preflight.png" alt="Pre-flight checks" width="30%" />
   <img src="/img/ios-app/tune.png" alt="PID and rate tuning" width="30%" />
   <img src="/img/ios-app/gps.png" alt="GPS and Locate" width="30%" />
-</p>
+</div>
 
 ## Is it worth flying?
 
 The **Conditions** tab answers that with a simple go or no-go for your location or a saved site. That verdict is based on the current weather, wind at 10, 80 and 120 metres, and the geomagnetic Kp index, because a disturbed magnetic field can upset your GPS fix and GPS Rescue. An optional airspace and NOTAM check is available if you supply your own API keys. If you lose signal at the field, the last reading is still there.
 
-<p align="center">
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
   <img src="/img/ios-app/conditions.png" alt="Flying conditions" width="30%" />
-</p>
+</div>
 
 ## Connecting
 
