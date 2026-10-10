@@ -4,7 +4,7 @@ date: 2026-10-10
 authors: ['blckmn']
 ---
 
-The Betaflight App is coming to the iPhone, and it is native from top to bottom. It is being prepared for the upcoming Betaflight 2026.12 release, and the public beta is open now on TestFlight. Places are limited, so first in, best dressed: [join the beta](https://testflight.apple.com/join/E6bH9Rcf).
+The Betaflight App is coming to the iPhone, and it is native from top to bottom. It is being prepared for the upcoming Betaflight 2026.12 release, and the public beta is open now on TestFlight: [join the beta](https://testflight.apple.com/join/E6bH9Rcf).
 
 ![Betaflight for iOS](/img/ios-app/header.jpg)
 
@@ -38,7 +38,7 @@ Tabs that write settings are locked while the craft is armed.
 
 ## Is it worth flying?
 
-The **Conditions** tab answers that with a simple go or no-go for your location or a saved site. That verdict is based on the current weather, wind at 10, 80 and 120 metres, and the geomagnetic Kp index, because a disturbed magnetic field can upset your GPS fix and GPS Rescue. An optional airspace and NOTAM check is available if you supply your own API keys. If you lose signal at the field, the last reading is still there.
+The **Conditions** tab answers that with a verdict from GO to NO-GO for your location or a saved site. That verdict is based on the current weather, wind at 10, 80 and 120 metres, and the geomagnetic Kp index, because a disturbed magnetic field can upset your GPS fix and GPS Rescue. An optional airspace and NOTAM check is available if you supply your own API keys. If you lose signal at the field, the last reading is still there.
 
 <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
   <img src="/img/ios-app/conditions.png" alt="Flying conditions" width="30%" />
@@ -64,4 +64,4 @@ Recent connections are remembered for one-tap reconnect. The first time you conn
 
 This is a beta, and we want to hear what breaks. Send feedback from inside TestFlight: take a screenshot in the app, or use **Send Beta Feedback** in the TestFlight app. Tell us your flight controller, firmware version and how you connected.
 
-The App Store release follows once the beta has settled. Until then, [grab a TestFlight spot](https://testflight.apple.com/join/E6bH9Rcf) while they last.
+The App Store release follows once the beta has settled. Until then, [join the TestFlight beta](https://testflight.apple.com/join/E6bH9Rcf).
