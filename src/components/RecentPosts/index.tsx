@@ -1,46 +1,35 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 import { BlogProps } from '@site/src/types';
-import { NewspaperIcon } from '@heroicons/react/24/solid';
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString('en-AU', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+}
 
 export default function RecentPosts({ recentPosts }: BlogProps) {
-  function clampAndFormatMinutes(minutes?: number) {
-    if (minutes === undefined) {
-      return 'Reading time unavailable';
-    }
-    if (minutes < 1) {
-      return 'One minute read';
-    }
-    return `${minutes} minutes read`;
-  }
-
-  function formatDate(date: string) {
-    const dateObj = new Date(date);
-    return dateObj.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: '2-digit',
-    });
-  }
-
   return (
-    <div className="flex flex-col mb-4">
-      <div className="text-primary-600 font-bold text-3xl uppercase mb-4 mt-8">
-        <NewspaperIcon className="h-8 w-8 inline-block mr-4"></NewspaperIcon>
-        Recent Posts
-      </div>
-      <div className="flex-grow flex flex-col space-y-4 text-inherit">
-        {recentPosts.map(({ content: BlogPostContent }) => (
-          <div key={BlogPostContent.metadata.source}>
-            <a className="text-primary-600 text-2xl font-bold" href={BlogPostContent.metadata.permalink}>
-              {BlogPostContent.metadata.title}
-            </a>
-            <div className="text-sm">
-              {formatDate(BlogPostContent.metadata.date)} - {clampAndFormatMinutes(BlogPostContent.metadata.readingTime)}
-            </div>
-            <div className="text-lg">{BlogPostContent.metadata.description}</div>
-          </div>
+    <div className="flex flex-col w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 xl:gap-6 w-full">
+        {recentPosts.map(({ content: { metadata } }) => (
+          <Link
+            key={metadata.permalink}
+            to={metadata.permalink}
+            className="flex flex-col rounded-2xl p-4 xl:p-6 bg-neutral-500/10 hover:bg-neutral-500/20 transition-colors duration-300 text-inherit hover:text-inherit hover:no-underline"
+          >
+            <span className="text-sm opacity-70">{formatDate(metadata.date)}</span>
+            <span className="text-primary-600 font-bold text-lg xl:text-xl mt-1">{metadata.title}</span>
+            <span className="mt-2 line-clamp-3">{metadata.description}</span>
+          </Link>
         ))}
       </div>
+      <Link to="/blog" className="self-end mt-4 fancy-link no-underline">
+        All posts →
+      </Link>
     </div>
   );
 }
