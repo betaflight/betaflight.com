@@ -1,0 +1,51 @@
+---
+hide_table_of_contents: true
+---
+
+import DiagramViewer from '@site/src/components/DiagramViewer';
+
+# Signal Flow Diagram
+
+How a stick movement becomes a motor command, and how the gyro measurement gets back to the PID
+controller. The diagram covers the multirotor control loop: RX through RC smoothing, rates,
+feedforward, the PID controller, the mixer and the motor output, together with the gyro and D-term
+filter chains, the throttle and RPM feedback paths, the attitude (Angle/Horizon) outer loop, and the
+airframe that closes the physical loop back to the gyro.
+
+It reflects **`master` @ `617e84f11f` (2026-09-16, `2026.12.0-alpha`)**, and was drawn from the
+firmware source.
+
+<DiagramViewer
+  light="/img/betaflight/signal-flow-light.svg"
+  dark="/img/betaflight/signal-flow-dark.svg"
+  overviewLight="/img/betaflight/signal-flow-overview-light.svg"
+  overviewDark="/img/betaflight/signal-flow-overview-dark.svg"
+  alt="Betaflight signal flow diagram for the current master branch"
+/>
+
+## Editing
+
+The four SVGs (`signal-flow-{light,dark}.svg` and `signal-flow-overview-{light,dark}.svg`) are
+generated — do not edit them by hand. The diagram is defined as a plain-JavaScript
+model in [`tools/signal-flow/model.mjs`](https://github.com/betaflight/betaflight.com/blob/master/tools/signal-flow/model.mjs)
+(blocks, lanes, groups, edges, junctions and CLI parameter callouts). `layout.mjs` computes the
+coordinates and orthogonal edge routes from it, and `npm run signal-flow` validates the geometry
+(`check.mjs`) and re-renders both themes (`render.mjs`). Because light and dark come from the same
+model, they cannot drift apart. No external tools or dependencies are involved — the generator is
+dependency-free and the SVGs are self-contained.
+
+`npm run signal-flow:preview` serves a live preview that re-renders on every save. `npm run check`
+and the pre-commit hook fail when the committed SVGs are out of date with the model (`fresh.mjs`). On this page the SVG is
+inlined by the `DiagramViewer` component (`src/components/DiagramViewer`), which hides the
+`data-layer="parameters"` group until the reader zooms in far enough to read it. The Simplified view
+is a second, hand-arranged model of the same loop, ten modules and no crossing lines, in
+[`tools/signal-flow/overview.mjs`](https://github.com/betaflight/betaflight.com/blob/master/tools/signal-flow/overview.mjs).
+It uses the same layout engine, checks and renderer, and is written to
+`signal-flow-overview-{light,dark}.svg`. When a module changes in `model.mjs`, update its one-line
+summary there too.
+
+## Credits
+
+Derived from the [betaflight_processing](https://github.com/mrRobot62/betaflight_processing)
+diagram by @mrRobot62, with earlier layout work by @hdavid.
+Licensed under the GNU General Public License v3.0.
