@@ -11,8 +11,10 @@ import TeamFeature from '../Team';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import SponsorBanner from '../Sponsors/SponsorBanner';
+import RecentPosts from '../RecentPosts';
+import { BlogProps } from '@site/src/types';
 
-export default function Home() {
+export default function Home({ recentPosts }: BlogProps) {
   function onClickDonate(service: string) {
     switch (service) {
       case 'paypal':
@@ -53,6 +55,9 @@ export default function Home() {
       <div className="m-4 flex flex-col space-y-4">
         <HomepageFeature title="Sponsors" blur={true}>
           <SponsorBanner />
+        </HomepageFeature>
+        <HomepageFeature title="Latest News" compact={true}>
+          <RecentPosts recentPosts={recentPosts} />
         </HomepageFeature>
         <HomepageFeature title="About" compact={true}>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 w-full">
