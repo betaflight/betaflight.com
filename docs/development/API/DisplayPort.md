@@ -92,7 +92,7 @@ One of the following sub-commands will then follow.
 | row       | uint8     | Row on which to position the first character of the string    |
 | column    | uint8     | Column on which to position the first character of the string |
 | attribute | uint8     | Byte indicating the font to use and if the text should flash  |
-| string    | uint8 x n | NULL terminated string of up to 30 characters in length       |
+| string    | uint8 x n | Up to 30 characters, not NULL terminated; the length is given by the MSP payload size |
 
 The `attribute` parameter is encoded thus.
 
@@ -102,6 +102,8 @@ The `attribute` parameter is encoded thus.
 | DISPLAYPORT_MSP_ATTR_BLINK | 6     | Set to have the display device automatically blink the string |
 | Reserved                   | 2 - 5 | Must be 0                                                     |
 | Font number                | 0 - 1 | Selects one of four fonts, each of 256 8 bit characters       |
+
+Betaflight splits longer strings into several MSP_DP_WRITE_STRING commands and does not send spaces that fall on cells left blank by the last MSP_DP_CLEAR_SCREEN, so one OSD element may arrive as more than one write.
 
 #### MSP_DP_DRAW_SCREEN
 
@@ -146,3 +148,55 @@ typedef enum {
     DISPLAYPORT_SYS_COUNT,
 } displayPortSystemElement_e;
 ```
+
+## Display device behaviour
+
+Display devices implement the protocol differently. The following was measured on a DJI O3 Air Unit (firmware 2024-07) with DJI Goggles 2 (firmware 2025-02) using a fake flight controller on the Air Unit UART and frame captures from the goggles.
+
+| Behaviour | DJI O3 + Goggles 2 |
+| --------- | ------------------ |
+| Canvas | 53x20 in HD canvas mode, 30x16 in Normal mode, selected in the goggles menu only. MSP_SET_OSD_CANVAS / MSP_OSD_CANVAS pushed by the FC are ignored and the device never sends MSP_SET_OSD_CANVAS. |
+| Screen load | The goggles keep what was written since the last MSP_DP_CLEAR_SCREEN, spaces included. Rewriting a cell does not count again and erasing with spaces does not free it. A MSP_DP_DRAW_SCREEN whose load is over the limit is discarded as a whole and the previous frame stays on screen, which looks like a frozen OSD. Only MSP_DP_CLEAR_SCREEN frees it. The limit is not a plain count of cells: 637 cells fit in solid rows of 53 columns, 620 in rows of 50, 459 in pairs and 361 when they are two columns apart. With the goggles' "Flight Controller" menu set to INAV it is about 15% lower: 537 cells in solid rows of 53, 326 cells two columns apart. |
+| String length | Up to 32 characters per MSP_DP_WRITE_STRING are drawn. A string starting inside the canvas but running past the last column continues on the next row. |
+| Frame rate | About 30-40 MSP_DP_DRAW_SCREEN per second are rendered; faster updates are queued and latency grows (up to 5 s at 100 Hz). A full screen is limited to about 8 frames per second by the 115200 baud UART. |
+| Persistence | Content is kept between draws without a clear. MSP_DP_RELEASE clears the OSD. Without MSP_DP_HEARTBEAT the OSD is hidden after about 5 s but its content is kept. |
+| Attribute | Ignored in Betaflight mode: one font page, no device blink, bit 7 ignored. In INAV mode page 0 holds the INAV font and page 1 other INAV symbols; pages 2 and 3 are empty. |
+| Not supported | MSP_DP_OPTIONS, MSP_DP_SYS (all elements), MSP_DP_FONTCHAR_WRITE and sub-commands 7-255 are ignored, as are MSP_DISPLAYPORT frames in MSP v2. The FC variant is not queried. |
+
+HDZero VTX announces its canvas with MSP_SET_OSD_CANVAS when it starts and keeps a fixed grid of cells that its clear fills with spaces. No limit like the one above is known for it; none was measured.
+
+### How Betaflight keeps within the limit
+
+Betaflight keeps a map of the device cells written since the last MSP_DP_CLEAR_SCREEN and works out the load the screen puts on the goggles: one per cell, plus 0.75 for a cell two columns from the one before it in screen order and 1.3 for one three or more columns away. This is an empirical fit to the measurements above, as the goggles' internals are unknown.
+
+Spaces that land on blank cells are not sent. Inner runs of such spaces are sent along with the string when that costs fewer bytes than starting a new write, unless the previous screen was short of budget. The OSD sends MSP_DP_CLEAR_SCREEN at the start of every frame, so the limit applies to each frame on its own.
+
+With `displayport_msp_cell_budget` set, a write that would take the screen over the budget is dropped, so the device still accepts the frame and only the elements drawn last are missing. If content was built up over several frames without a clear, as the CMS menus do, Betaflight sends MSP_DP_CLEAR_SCREEN once and the menu is repainted in full.
+
+The budget is disabled at runtime once the display device announces its canvas with MSP_SET_OSD_CANVAS, as HDZero does, and at start-up when the saved HD canvas is not the default 53x20. For other devices without such a limit set it to 0.
+
+Set `debug_mode = MSP_DISPLAYPORT` to check how close a layout is to the limit.
+
+| debug | Value |
+| ----- | ----- |
+| 0 | Screen load, in cells, at the time of the draw |
+| 1 | Cell budget in effect, 0 when disabled |
+| 2 | Writes dropped in the frame for lack of budget |
+| 3 | MSP_DP_WRITE_STRING bytes sent in the frame |
+| 4 | Cells written since the last clear |
+
+## Settings
+
+| Setting | Default | Notes |
+| ------- | ------- | ----- |
+| `displayport_msp_cell_budget` | 620 | Maximum screen load, in cells. 620 suits DJI goggles in Betaflight mode (the limit is 637 or more), 520 in INAV mode. 0 disables the limit. |
+| `displayport_msp_fonts` | 0,1,2,3 | Font page for normal, info, warning and critical severity. |
+| `displayport_msp_use_device_blink` | OFF | When ON the blink attribute is sent and the device blinks the text. DJI O3/Goggles 2 ignore it, so leave it OFF there. |
+| `displayport_msp_col_adjust`, `displayport_msp_row_adjust` | 0 | Reduce the area used by the OSD in SD mode. |
+| `osd_framerate_hz` | 12 | Keep it at or below 30 for DJI goggles. Higher rates only add latency. |
+
+### DJI goggles in INAV mode
+
+Set the goggles' "Flight Controller" menu to Betaflight when flying Betaflight. The menu is global and the flight controller cannot detect it, because the goggles never query the FC variant.
+
+In INAV mode page 0 holds the INAV font, whose symbols do not match Betaflight's. The default `displayport_msp_fonts = 0,1,2,3` draws info text from page 1, which holds other INAV symbols, and warning and critical text from pages 2 and 3, which are empty, so no warning is visible. A pilot who keeps INAV mode should set `displayport_msp_fonts = 0,0,0,0` and `displayport_msp_cell_budget = 520`.
