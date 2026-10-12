@@ -23,7 +23,7 @@ It is written entirely in Swift and SwiftUI, including its own MSP implementatio
 - **Tune:** PIDs using the firmware's simplified tuning sliders, with an optional Expert mode, and rates with a live curve. A diff backup is taken before any change is written.
 - **Filters:** the gyro and D-term filter sliders.
 - **VTX:** band, channel and power from your VTX table.
-- **GPS and Locate:** satellite count and fix, plus your GPS Rescue minimum satellites. Locate remembers the last known position and gives you distance and bearing to the quad even after the link drops, and it can trigger the beeper.
+- **GPS and Locate:** satellite count and fix, plus your GPS Rescue minimum satellites. Locate remembers the last known position and gives you distance and bearing to the quad even after the link drops, and it can trigger the beeper. It only sees the quad while the app is connected, so in the field this needs MSP over your ELRS transmitter link; Bluetooth and the bridge will not reach a quad that has gone down out of range.
 - **Flight plan:** draft waypoint missions on the phone and follow progress in flight (requires firmware built with `USE_FLIGHT_PLAN`).
 - **Backups:** sign in with your Betaflight account to store configuration backups and restore them, with compatibility warnings before anything is written.
 - **CLI:** the full CLI, with the transcript kept as you move between tabs.
