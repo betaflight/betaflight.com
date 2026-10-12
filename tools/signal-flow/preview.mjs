@@ -5,30 +5,30 @@
 // without losing its scroll position. Rendering goes to a temp folder, so a broken
 // edit never touches static/img/betaflight/; `npm run signal-flow` still writes those.
 // Dependency-free, like the rest of tools/signal-flow.
-import { createServer } from 'node:http'
-import { spawnSync } from 'node:child_process'
-import { readFileSync, existsSync, mkdirSync, watch } from 'node:fs'
-import { tmpdir } from 'node:os'
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { createServer } from 'node:http';
+import { spawnSync } from 'node:child_process';
+import { readFileSync, existsSync, mkdirSync, watch } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const HERE = dirname(fileURLToPath(import.meta.url))
-const OUT = join(tmpdir(), 'signal-flow-preview')
-const PORT = Number(process.env.PORT) || 5178
+const HERE = dirname(fileURLToPath(import.meta.url));
+const OUT = join(tmpdir(), 'signal-flow-preview');
+const PORT = Number(process.env.PORT) || 5178;
 
-mkdirSync(OUT, { recursive: true })
+mkdirSync(OUT, { recursive: true });
 
-let state = { version: 0, ok: false, check: '', error: '', at: '' }
-const clients = new Set()
+let state = { version: 0, ok: false, check: '', error: '', at: '' };
+const clients = new Set();
 
 function run(script, args = []) {
-  const r = spawnSync(process.execPath, [join(HERE, script), ...args], { cwd: HERE, encoding: 'utf-8' })
-  return { code: r.status, out: (r.stdout || '') + (r.stderr || '') }
+  const r = spawnSync(process.execPath, [join(HERE, script), ...args], { cwd: HERE, encoding: 'utf-8' });
+  return { code: r.status, out: (r.stdout || '') + (r.stderr || '') };
 }
 
 function build() {
-  const check = run('check.mjs')
-  const render = run('render.mjs', [OUT])
+  const check = run('check.mjs');
+  const render = run('render.mjs', [OUT]);
   state = {
     version: state.version + 1,
     ok: check.code === 0 && render.code === 0,
@@ -36,20 +36,24 @@ function build() {
     // keep the last good SVGs on screen when the model itself fails to load
     error: render.code === 0 ? '' : render.out.trim(),
     at: new Date().toLocaleTimeString(),
+  };
+  const msg = `event: build\ndata: ${JSON.stringify(state)}\n\n`;
+  for (const res of clients) {
+    res.write(msg);
   }
-  const msg = `event: build\ndata: ${JSON.stringify(state)}\n\n`
-  for (const res of clients) res.write(msg)
-  console.log(`[${state.at}] build ${state.version}: ${state.ok ? 'layout OK' : 'PROBLEMS'}`)
+  console.log(`[${state.at}] build ${state.version}: ${state.ok ? 'layout OK' : 'PROBLEMS'}`);
 }
 
-let timer = null
+let timer = null;
 watch(HERE, (_, file) => {
-  if (!file || !file.endsWith('.mjs') || file === 'preview.mjs') return
-  clearTimeout(timer)
-  timer = setTimeout(build, 150)
-})
+  if (!file?.endsWith('.mjs') || file === 'preview.mjs') {
+    return;
+  }
+  clearTimeout(timer);
+  timer = setTimeout(build, 150);
+});
 
-const PAGE = `<!doctype html>
+const PAGE = String.raw`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -110,7 +114,7 @@ const PAGE = `<!doctype html>
     $('status').textContent = (s.ok ? 'layout OK' : 'problems') + ' · build ' + s.version + ' · ' + s.at
     $('status').className = s.ok ? 'ok' : 'bad'
     // a model that fails to load breaks check and render alike: show that trace once
-    const text = [s.error, s.ok || s.check === s.error ? '' : s.check].filter(Boolean).join('\\n\\n')
+    const text = [s.error, s.ok || s.check === s.error ? '' : s.check].filter(Boolean).join('\n\n')
     $('problems').textContent = text
     $('problems').hidden = !text
     for (const t of ['light', 'dark', 'overview-light', 'overview-dark']) $('i-' + t).src = '/' + t + '.svg?v=' + s.version
@@ -134,35 +138,38 @@ const PAGE = `<!doctype html>
 </script>
 </body>
 </html>
-`
+`;
 
 createServer((req, res) => {
-  const path = req.url.split('?')[0]
+  const path = req.url.split('?')[0];
   if (path === '/') {
-    res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' })
-    return res.end(PAGE)
+    res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
+    return res.end(PAGE);
   }
   if (path === '/status') {
-    res.writeHead(200, { 'content-type': 'application/json' })
-    return res.end(JSON.stringify(state))
+    res.writeHead(200, { 'content-type': 'application/json' });
+    return res.end(JSON.stringify(state));
   }
   if (path === '/events') {
-    res.writeHead(200, { 'content-type': 'text/event-stream', 'cache-control': 'no-cache', connection: 'keep-alive' })
-    res.write(': connected\n\n')
-    clients.add(res)
-    const beat = setInterval(() => res.write(': ping\n\n'), 25000)
-    req.on('close', () => { clearInterval(beat); clients.delete(res) })
-    return
+    res.writeHead(200, { 'content-type': 'text/event-stream', 'cache-control': 'no-cache', connection: 'keep-alive' });
+    res.write(': connected\n\n');
+    clients.add(res);
+    const beat = setInterval(() => res.write(': ping\n\n'), 25000);
+    req.on('close', () => {
+      clearInterval(beat);
+      clients.delete(res);
+    });
+    return;
   }
-  const m = path.match(/^\/((?:overview-)?(?:light|dark))\.svg$/)
-  const file = m && join(OUT, `signal-flow-${m[1]}.svg`)
+  const m = path.match(/^\/((?:overview-)?(?:light|dark))\.svg$/);
+  const file = m && join(OUT, `signal-flow-${m[1]}.svg`);
   if (file && existsSync(file)) {
-    res.writeHead(200, { 'content-type': 'image/svg+xml', 'cache-control': 'no-store' })
-    return res.end(readFileSync(file))
+    res.writeHead(200, { 'content-type': 'image/svg+xml', 'cache-control': 'no-store' });
+    return res.end(readFileSync(file));
   }
-  res.writeHead(404)
-  res.end('not found')
+  res.writeHead(404);
+  res.end('not found');
 }).listen(PORT, '127.0.0.1', () => {
-  console.log(`signal-flow preview on http://localhost:${PORT} (rendering to ${OUT})`)
-  build()
-})
+  console.log(`signal-flow preview on http://localhost:${PORT} (rendering to ${OUT})`);
+  build();
+});

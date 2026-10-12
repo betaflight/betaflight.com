@@ -15,7 +15,7 @@
  * Dependency-free.
  */
 
-import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
 import { useColorMode } from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './DiagramViewer.module.css';
@@ -49,7 +49,90 @@ const MAX_SCALE = 3;
 const PARAM_SCALE = 0.75;
 const STEP = 1.4;
 
-export default function DiagramViewer({ light, dark, alt, overviewLight, overviewDark, defaultDetail = 'detailed' }: DiagramViewerProps): JSX.Element {
+type Point = { x: number; y: number };
+
+/** mean position of the active pointers */
+const centroid = (pts: Point[]): Point => pts.reduce((a, p) => ({ x: a.x + p.x / pts.length, y: a.y + p.y / pts.length }), { x: 0, y: 0 });
+
+/** distance between the first two pointers (0 with fewer) */
+const spread = (pts: Point[]): number => (pts.length > 1 ? Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) : 0);
+
+/** viewport height: in full screen the room below the toolbar, in the page the drawing's aspect ratio */
+function portHeight(el: HTMLElement, w: number, ratio: number, full: boolean): number {
+  if (full) return window.innerHeight - (el.querySelector(`.${styles.toolbar}`)?.clientHeight ?? 0);
+  // never shorter than half the window (capped at 420px), so a phone still shows something
+  // to pan, nor taller than the window, so a tall drawing does not push the page around
+  const floor = Math.min(window.innerHeight * 0.5, 420);
+  const ceil = Math.max(window.innerHeight - 160, floor);
+  return Math.round(Math.min(Math.max(w * ratio, floor), ceil));
+}
+
+/** scale at which the whole drawing fits the viewport (1 until both are measured) */
+function fitScaleFor(svg: { w: number; h: number } | null, port: { w: number; h: number }): number {
+  if (!svg || !port.w) return 1;
+  const fitHeight = port.h ? port.h / svg.h : Infinity;
+  return Math.min(port.w / svg.w, fitHeight);
+}
+
+const PARAM_CHOICES: [ParamMode, string, string][] = [
+  ['auto', 'Auto', 'Shown once zoomed in far enough to read them'],
+  ['on', 'Show', 'Always shown'],
+  ['off', 'Hide', 'Always hidden'],
+];
+
+/** the Auto / Show / Hide switch for the CLI parameter captions */
+function ParamsControl({ params, off, onChange }: Readonly<{ params: ParamMode; off: boolean; onChange: (mode: ParamMode) => void }>): JSX.Element {
+  return (
+    <div className={`${styles.params} ${off ? styles.paramsOff : ''}`}>
+      <span className={styles.muted} aria-hidden="true">
+        Parameters
+      </span>
+      <fieldset className={styles.track}>
+        <legend className={styles.srOnly}>Parameters</legend>
+        {PARAM_CHOICES.map(([mode, label, title]) => (
+          <button key={mode} type="button" onClick={() => onChange(mode)} aria-pressed={params === mode} disabled={off} title={`CLI parameter names: ${title.toLowerCase()}`}>
+            {label}
+          </button>
+        ))}
+      </fieldset>
+    </div>
+  );
+}
+
+/** the full-screen toggle; below 640 px only the icon shows, so the name comes from aria-label */
+function FullScreenButton({ full, onToggle }: Readonly<{ full: boolean; onToggle: () => void }>): JSX.Element {
+  const label = full ? 'Exit full screen' : 'Full screen';
+  return (
+    // the label carries the state, so no aria-pressed as well
+    <button type="button" className={styles.btn} onClick={onToggle} aria-label={label}>
+      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+        <path d={full ? 'M5 2v3H2M9 2v3h3M12 9H9v3M2 9h3v3' : 'M2 5V2h3M9 2h3v3M12 9v3H9M5 12H2V9'} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <span className={styles.btnLabel}>{label}</span>
+    </button>
+  );
+}
+
+/** the text elements whose content contains the (lower-case) query */
+function findTexts(root: SVGSVGElement, q: string): SVGTextElement[] {
+  // the legend / title block describes the drawing; it is not something to find in it
+  return [...root.querySelectorAll('text')].filter((t) => !t.closest('#sf-legend') && t.textContent?.toLowerCase().includes(q));
+}
+
+/** outline the found text with a rectangle */
+function markHit(root: SVGSVGElement, b: DOMRect): void {
+  const mark = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  mark.dataset.searchHit = '';
+  mark.setAttribute('class', styles.searchHit);
+  mark.setAttribute('x', String(b.x - 4));
+  mark.setAttribute('y', String(b.y - 3));
+  mark.setAttribute('width', String(b.width + 8));
+  mark.setAttribute('height', String(b.height + 6));
+  mark.setAttribute('rx', '3');
+  root.appendChild(mark);
+}
+
+export default function DiagramViewer({ light, dark, alt, overviewLight, overviewDark, defaultDetail = 'detailed' }: Readonly<DiagramViewerProps>): JSX.Element {
   const { colorMode } = useColorMode();
   const isDark = colorMode === 'dark';
   const detailedUrl = useBaseUrl(isDark ? dark : light);
@@ -61,7 +144,7 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
   const [view, setView] = useState<View>({ s: 1, x: 0, y: 0 });
   const [fitted, setFitted] = useState(true);
   const [params, setParams] = useState<ParamMode>('auto');
-  const [detail, setDetailState] = useState<Detail>(defaultDetail);
+  const [detail, setDetail] = useState<Detail>(defaultDetail);
   const url = detail === 'simplified' && hasOverview ? overviewUrl : detailedUrl;
   // memoised: the geometry hooks depend on it, and a fresh object every render would loop them
   const svg = useMemo(() => (svgs[url] ? { url, ...svgs[url] } : null), [svgs, url]);
@@ -70,7 +153,6 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
   const [query, setQuery] = useState('');
   const [hit, setHit] = useState<{ n: number; of: number } | null>(null);
   const [port, setPort] = useState({ w: 0, h: 0 });
-  const paramsId = useId();
 
   const rootRef = useRef<HTMLDivElement>(null);
   const portRef = useRef<HTMLDivElement>(null);
@@ -88,13 +170,13 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
   useEffect(() => {
     try {
       const saved = localStorage.getItem(DETAIL_KEY);
-      if (saved === 'detailed' || saved === 'simplified') setDetailState(saved);
+      if (saved === 'detailed' || saved === 'simplified') setDetail(saved);
     } catch {
       /* storage blocked: keep the default */
     }
   }, []);
-  const setDetail = (d: Detail) => {
-    setDetailState(d);
+  const chooseDetail = (d: Detail) => {
+    setDetail(d);
     matchIndex.current = -1;
     pendingSearch.current = false;
     stageRef.current?.querySelector('[data-search-hit]')?.remove();
@@ -122,7 +204,7 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
           // drop the licence comment ahead of <svg>; it is kept in the file itself
           const html = text.slice(text.indexOf('<svg'));
           loaded.current.add(u);
-          setSvgs((all) => ({ ...all, [u]: { html, w: parseFloat(vb[1]), h: parseFloat(vb[2]) } }));
+          setSvgs((all) => ({ ...all, [u]: { html, w: Number.parseFloat(vb[1]), h: Number.parseFloat(vb[2]) } }));
         })
         .catch(() => {
           /* the <img> fallback stays on screen */
@@ -146,7 +228,7 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
   }, [isDark]);
 
   // ------------------------------------------------------------- geometry
-  const fitScale = svg && port.w ? Math.min(port.w / svg.w, port.h ? port.h / svg.h : Infinity) : 1;
+  const fitScale = fitScaleFor(svg, port);
   const minScale = fitScale * 0.8;
 
   const clamp = useCallback(
@@ -172,12 +254,7 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
     const measure = () => {
       const w = el.clientWidth;
       const ratio = svg ? svg.h / svg.w : 0.64;
-      // in the page the viewport takes the drawing's aspect ratio, but never gets shorter
-      // than half the window (capped at 420px), so a phone still shows something to pan,
-      // nor taller than the window, so a tall drawing does not push the page around
-      const floor = Math.min(window.innerHeight * 0.5, 420);
-      const ceil = Math.max(window.innerHeight - 160, floor);
-      const h = full ? window.innerHeight - (el.querySelector(`.${styles.toolbar}`)?.clientHeight ?? 0) : Math.round(Math.min(Math.max(w * ratio, floor), ceil));
+      const h = portHeight(el, w, ratio, full);
       setPort((p) => (p.w === w && p.h === h ? p : { w, h }));
     };
     measure();
@@ -244,9 +321,7 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
   // --------------------------------------------------- pointer: pan / pinch
   const startGesture = () => {
     const pts = [...pointers.current.values()];
-    const c = pts.reduce((a, p) => ({ x: a.x + p.x / pts.length, y: a.y + p.y / pts.length }), { x: 0, y: 0 });
-    const d = pts.length > 1 ? Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) : 0;
-    gesture.current = { ...c, d, v: viewRef.current };
+    gesture.current = { ...centroid(pts), d: spread(pts), v: viewRef.current };
   };
   const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
     if (e.button !== 0) return;
@@ -258,11 +333,11 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
     if (!pointers.current.has(e.pointerId) || !gesture.current) return;
     pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
     const pts = [...pointers.current.values()];
-    const c = pts.reduce((a, p) => ({ x: a.x + p.x / pts.length, y: a.y + p.y / pts.length }), { x: 0, y: 0 });
+    const c = centroid(pts);
     const g = gesture.current;
     let s = g.v.s;
     if (pts.length > 1 && g.d > 0) {
-      s = Math.min(MAX_SCALE, Math.max(minScale, g.v.s * (Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) / g.d)));
+      s = Math.min(MAX_SCALE, Math.max(minScale, g.v.s * (spread(pts) / g.d)));
     }
     const r = portRef.current?.getBoundingClientRect();
     const ox = r ? g.x - r.left : 0;
@@ -333,11 +408,10 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
       setHit(null);
       return;
     }
-    // the legend / title block describes the drawing; it is not something to find in it
-    const all = [...root.querySelectorAll('text')].filter((t) => !t.closest('#sf-legend') && t.textContent?.toLowerCase().includes(q));
+    const all = findTexts(root, q);
     if (!all.length && detail === 'simplified' && hasOverview) {
-      setDetail('detailed');
-      pendingSearch.current = true; // after setDetail, which clears it
+      chooseDetail('detailed');
+      pendingSearch.current = true; // after chooseDetail, which clears it
       return;
     }
     if (!all.length) {
@@ -348,15 +422,7 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
     const t = all[matchIndex.current];
     if (t.closest('[data-layer="parameters"]') && params === 'off') setParams('on');
     const b = t.getBBox();
-    const mark = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    mark.setAttribute('data-search-hit', '');
-    mark.setAttribute('class', styles.searchHit);
-    mark.setAttribute('x', String(b.x - 4));
-    mark.setAttribute('y', String(b.y - 3));
-    mark.setAttribute('width', String(b.width + 8));
-    mark.setAttribute('height', String(b.height + 6));
-    mark.setAttribute('rx', '3');
-    root.appendChild(mark);
+    markHit(root, b);
     const s = Math.max(viewRef.current.s, 1.1);
     setFitted(false);
     setView(clamp({ s, x: port.w / 2 - (b.x + b.width / 2) * s, y: port.h / 2 - (b.y + b.height / 2) * s }));
@@ -384,16 +450,12 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
   const html = useMemo(() => ({ __html: svg?.html ?? '' }), [svg]);
   // the overview has no parameter captions
   const paramsOff = detail === 'simplified' && hasOverview;
-  const paramChoices: [ParamMode, string, string][] = [
-    ['auto', 'Auto', 'Shown once zoomed in far enough to read them'],
-    ['on', 'Show', 'Always shown'],
-    ['off', 'Hide', 'Always hidden'],
-  ];
 
   return (
     <div ref={rootRef} className={`${styles.root} ${full ? styles.full : ''}`}>
-      {/* a labelled group, not role="toolbar": it has no arrow-key navigation */}
-      <div className={styles.toolbar} role="group" aria-label="Diagram controls">
+      {/* a fieldset (native grouping, named by its hidden legend), not role="toolbar": it has no arrow-key navigation */}
+      <fieldset className={styles.toolbar}>
+        <legend className={styles.srOnly}>Diagram controls</legend>
         <div className={styles.group}>
           <button type="button" className={styles.icon} onClick={() => zoomAt(1 / STEP)} aria-label="Zoom out" title="Zoom out (−)">
             <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
@@ -418,27 +480,17 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
           </button>
         </div>
         {hasOverview && (
-          <div className={styles.track} role="group" aria-label="Level of detail">
-            <button type="button" onClick={() => setDetail('simplified')} aria-pressed={detail === 'simplified'} title="One box per module and the connections between them">
+          <fieldset className={styles.track}>
+            <legend className={styles.srOnly}>Level of detail</legend>
+            <button type="button" onClick={() => chooseDetail('simplified')} aria-pressed={detail === 'simplified'} title="One box per module and the connections between them">
               Simplified
             </button>
-            <button type="button" onClick={() => setDetail('detailed')} aria-pressed={detail === 'detailed'} title="Every block, signal, parameter and note">
+            <button type="button" onClick={() => chooseDetail('detailed')} aria-pressed={detail === 'detailed'} title="Every block, signal, parameter and note">
               Detailed
             </button>
-          </div>
+          </fieldset>
         )}
-        <div className={`${styles.params} ${paramsOff ? styles.paramsOff : ''}`}>
-          <span id={paramsId} className={styles.muted}>
-            Parameters
-          </span>
-          <div className={styles.track} role="group" aria-labelledby={paramsId}>
-            {paramChoices.map(([mode, label, title]) => (
-              <button key={mode} type="button" onClick={() => setParams(mode)} aria-pressed={params === mode} disabled={paramsOff} title={`CLI parameter names: ${title.toLowerCase()}`}>
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
+        <ParamsControl params={params} off={paramsOff} onChange={setParams} />
         <form
           className={`${styles.search} ${hit ? styles.counting : ''}`}
           role="search"
@@ -471,22 +523,8 @@ export default function DiagramViewer({ light, dark, alt, overviewLight, overvie
           {hit && <span className={styles.hits}>{hit.of ? `${hit.n} / ${hit.of}` : 'no match'}</span>}
         </form>
         <span className={styles.spacer} />
-        {/* below 640 px only the icon shows, so the name comes from aria-label */}
-        {/* the label carries the state, so no aria-pressed as well */}
-        <button type="button" className={styles.btn} onClick={toggleFull} aria-label={full ? 'Exit full screen' : 'Full screen'}>
-          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-            <path
-              d={full ? 'M5 2v3H2M9 2v3h3M12 9H9v3M2 9h3v3' : 'M2 5V2h3M9 2h3v3M12 9v3H9M5 12H2V9'}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span className={styles.btnLabel}>{full ? 'Exit full screen' : 'Full screen'}</span>
-        </button>
-      </div>
+        <FullScreenButton full={full} onToggle={toggleFull} />
+      </fieldset>
       {/* a pannable canvas: it takes keyboard focus for zoom and pan, pointer and touch drag it.
           role="application" is the ARIA role for exactly this, but jsx-a11y counts it as
           non-interactive, hence the two rules switched off for this element only */}

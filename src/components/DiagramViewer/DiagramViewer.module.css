@@ -54,6 +54,16 @@
 }
 
 /* ---------------------------------------------------------------- toolbar */
+/* the toolbar and the segmented tracks are fieldsets (grouping semantics); drop their default look.
+   Declared first so the rules below win where they set their own border or padding */
+.toolbar,
+.track {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;
