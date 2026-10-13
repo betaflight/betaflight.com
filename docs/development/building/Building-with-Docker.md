@@ -104,9 +104,9 @@ podman build -t betaflight-dev -f .devcontainer/containerfile .devcontainer/
 podman run --rm -v ${PWD}:/workspace:Z -w /workspace betaflight-dev make TARGET=SPEEDYBEEF405WING
 ```
 
-## Hardware Access (Flashing via DFU)
+## Hardware Access (Flashing via DFU or UART)
 
-The devcontainer includes DFU utilities for flashing firmware directly to your flight controller.
+The devcontainer includes `dfu-util` for flashing over USB DFU and `stm32flash` for flashing an STM32 through its UART bootloader with a USB-to-serial adapter (FTDI, CP210x, CH340 and similar). The container runs privileged with the host's `/dev` mounted, so access to these devices is granted by udev rules on the host.
 
 ### Linux Host
 
@@ -115,9 +115,23 @@ Set up udev rules on your host system for device access:
 1. Create `/etc/udev/rules.d/99-betaflight.rules`:
 
    ```bash
+   # STM32 Virtual COM Port
    SUBSYSTEM=="tty", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0666", TAG+="uaccess"
+   # STM32 DFU
    SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="df11", MODE="0666"
+
+   # USB-to-serial adapters for stm32flash (these vendors make only bridge chips, so all products match)
+   # FTDI
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", MODE="0666", TAG+="uaccess"
+   # Silicon Labs CP210x
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", MODE="0666", TAG+="uaccess"
+   # WCH CH34x / CH343 / CH9102
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", MODE="0666", TAG+="uaccess"
+   # Prolific PL2303
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="067b", MODE="0666", TAG+="uaccess"
    ```
+
+   Keep each comment on its own line: udev rejects a rule line that ends in a comment and silently skips that rule.
 
 2. Reload udev rules:
 
@@ -126,7 +140,15 @@ Set up udev rules on your host system for device access:
    sudo udevadm trigger
    ```
 
-3. Unplug and replug your flight controller
+3. Unplug and replug your flight controller or USB-to-serial adapter
+
+To flash over UART, wire the adapter to the flight controller's UART1 (TX to RX, RX to TX, GND to GND), hold the BOOT button while powering up so the MCU starts in its bootloader, then run inside the container:
+
+```bash
+stm32flash -w obj/betaflight_*_SPEEDYBEEF405WING.hex -v -g 0x0 /dev/ttyUSB0
+```
+
+Replace `SPEEDYBEEF405WING` with the target you built, and `/dev/ttyUSB0` with your adapter's port (`ls /dev/ttyUSB*` shows it).
 
 ### Windows Host
 
