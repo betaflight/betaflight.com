@@ -159,28 +159,35 @@ Display devices implement the protocol differently. The following was measured o
 | Screen load | The goggles keep what was written since the last MSP_DP_CLEAR_SCREEN, spaces included. Rewriting a cell does not count again and erasing with spaces does not free it. A MSP_DP_DRAW_SCREEN whose load is over the limit is discarded as a whole and the previous frame stays on screen, which looks like a frozen OSD. Only MSP_DP_CLEAR_SCREEN frees it. The limit is not a plain count of cells: 637 cells fit in solid rows of 53 columns, 620 in rows of 50, 459 in pairs and 361 when they are two columns apart. With the goggles' "Flight Controller" menu set to INAV it is about 15% lower: 537 cells in solid rows of 53, 326 cells two columns apart. |
 | String length | Up to 32 characters per MSP_DP_WRITE_STRING are drawn. A string starting inside the canvas but running past the last column continues on the next row. |
 | Frame rate | About 30-40 MSP_DP_DRAW_SCREEN per second are rendered; faster updates are queued and latency grows (up to 5 s at 100 Hz). A full screen is limited to about 8 frames per second by the 115200 baud UART. |
-| Persistence | Content is kept between draws without a clear. MSP_DP_RELEASE clears the OSD. Without MSP_DP_HEARTBEAT the OSD is hidden after about 5 s but its content is kept. |
+| Persistence | Content is kept between draws without a clear. MSP_DP_RELEASE clears the OSD. Without MSP_DP_HEARTBEAT the OSD is hidden after about 5 s but its content is kept. Goggles switched off and on again draw nothing until the next MSP_DP_CLEAR_SCREEN. The Air Unit polls the flight controller the same way whether the goggles are on or off, so the flight controller cannot tell. |
 | Attribute | Ignored in Betaflight mode: one font page, no device blink, bit 7 ignored. In INAV mode page 0 holds the INAV font and page 1 other INAV symbols; pages 2 and 3 are empty. |
 | Not supported | MSP_DP_OPTIONS, MSP_DP_SYS (all elements), MSP_DP_FONTCHAR_WRITE and sub-commands 7-255 are ignored, as are MSP_DISPLAYPORT frames in MSP v2. The FC variant is not queried. |
 
 HDZero VTX announces its canvas with MSP_SET_OSD_CANVAS when it starts and keeps a fixed grid of cells that its clear fills with spaces. No limit like the one above is known for it; none was measured.
 
-### How Betaflight keeps within the limit
+### How Betaflight sends the screen
 
-Betaflight keeps a map of the device cells written since the last MSP_DP_CLEAR_SCREEN and works out the load the screen puts on the goggles: one per cell, plus 0.75 for a cell two columns from the one before it in screen order and 1.3 for one three or more columns away. This is an empirical fit to the measurements above, as the goggles' internals are unknown.
+A busy OSD sent whole every frame, as clear, every element and draw, does not fit through a 115200 baud UART together with the answers to the Air Unit's polls. What does not fit in the serial transmit buffer is dropped without a trace, so elements go missing and draws are lost: on a flight controller with a heavy layout, only about 5 of 12 draws a second reached the goggles, and half the frames were incomplete. With `displayport_msp_send_changes = ON`, the default:
 
-Spaces that land on blank cells are not sent. Inner runs of such spaces are sent along with the string when that costs fewer bytes than starting a new write, unless the previous screen was short of budget. The OSD sends MSP_DP_CLEAR_SCREEN at the start of every frame, so the limit applies to each frame on its own.
+- The OSD waits for room in the serial buffer before it writes, instead of losing what does not fit.
+- Betaflight keeps a table of the writes the device holds (place, length, attribute and a hash of the characters, no copy of the screen) and sends only the writes that changed. Writes a frame does not repeat are blanked with spaces. No MSP_DP_DRAW_SCREEN is sent when nothing changed. Spaces are not sent to cells that are blank on the device.
+- Once a second the device is cleared and sent the whole screen in one draw. This brings back goggles that were switched off and on, repairs a write the device missed, and frees the DJI screen load. The device shows a frame at the draw, so the clear does not flash.
+- The CMS draws without clearing, so the once-a-second clear does not run while the menus are open. Each menu page starts with a clear.
 
-With `displayport_msp_cell_budget` set, a write that would take the screen over the budget is dropped, so the device still accepts the frame and only the elements drawn last are missing. If content was built up over several frames without a clear, as the CMS menus do, Betaflight sends MSP_DP_CLEAR_SCREEN once and the menu is repainted in full.
+On the same flight controller this took the UART from about 100 % to 43 % at `osd_framerate_hz = 12` and 62 % at 30, with every frame complete. This applies to the default HD canvas of 53x20 and smaller ones. For a device that does not keep its screen between draws, set `displayport_msp_send_changes = OFF`.
+
+For the DJI screen load, Betaflight keeps a map of the device cells written since the last MSP_DP_CLEAR_SCREEN and works out the load: one per cell, plus 0.75 for a cell two columns from the one before it in screen order and 1.3 for one three or more columns away. This is an empirical fit to the measurements above, as the goggles' internals are unknown. A write that would take the load over `displayport_msp_cell_budget` is held back and the device is cleared at the start of the next frame. A screen too big even right after a clear leaves out what does not fit until the next clear.
 
 The budget applies to the default HD canvas of 53x20 only. DJI never announces a canvas, while a device that does, as HDZero does with 50x18 in MSP_SET_OSD_CANVAS, sets the canvas of the OSD and so switches the budget off. For other devices without such a limit that use the default canvas, set it to 0.
 
-Set `debug_mode = MSP_DISPLAYPORT` to check how close a layout is to the limit.
+Set `debug_mode = MSP_DISPLAYPORT` to see what the link and the device carry.
 
 | debug | Value |
 | ----- | ----- |
-| 0 | Screen load, in cells, at the time of the draw |
-| 1 | Writes dropped in the frame for lack of budget |
+| 0 | Bytes sent in the frame |
+| 1 | Cells sent in the frame |
+| 2 | Screen load since the last clear, in cells |
+| 3 | Writes held in the table (up to 96) |
 
 ### The goggles' own interface
 
@@ -188,8 +195,8 @@ DJI goggles draw their own widgets over the characters sent by the flight contro
 
 | Zone | Rows | Columns | What |
 | ---- | ---- | ------- | ---- |
-| A | 5-7 | 44-49 | Remaining recording time of the air unit and of the goggles |
-| B | 15-16 | 36-49 | Notifications, with their own background |
+| A | 5-6 | 44-49 | Remaining recording time of the air unit and of the goggles |
+| B | 16 | 36-49 | Notifications, with their own background |
 | C | 18 | 35-48 | Air unit voltage, link, bitrate, goggles battery |
 
 ```
@@ -202,7 +209,7 @@ DJI goggles draw their own widgets over the characters sent by the flight contro
  4 .....................................................
  5 ............................................AAAAAA...
  6 ............................................AAAAAA...
- 7 ............................................AAAAAA...
+ 7 .....................................................
  8 .....................................................
  9 .....................................................
 10 .....................................................
@@ -210,24 +217,25 @@ DJI goggles draw their own widgets over the characters sent by the flight contro
 12 .....................................................
 13 .....................................................
 14 .....................................................
-15 ....................................BBBBBBBBBBBBBB...
+15 .....................................................
 16 ....................................BBBBBBBBBBBBBB...
 17 .....................................................
 18 ...................................CCCCCCCCCCCCCC....
 19 .....................................................
 ```
 
-Keep elements out of these cells. Everywhere else the goggles draw nothing of their own, up to the edges of the screen. Other goggles settings, other firmware and the Normal canvas mode were not measured, and a goggles interface with more widgets enabled will use more cells.
+Each widget is given the rows its text lines sit in; their edges reach a few pixels into the next row. Keep elements out of these cells. Everywhere else the goggles draw nothing of their own, up to the edges of the screen. Other goggles settings, other firmware and the Normal canvas mode were not measured, and a goggles interface with more widgets enabled will use more cells.
 
 ## Settings
 
 | Setting | Default | Notes |
 | ------- | ------- | ----- |
+| `displayport_msp_send_changes` | ON | Send only the writes that changed, and the whole screen once a second. OFF sends every frame whole, for a device that does not keep its screen. |
 | `displayport_msp_cell_budget` | 620 | Maximum screen load, in cells. 620 suits DJI goggles in Betaflight mode (the limit is 637 or more), 520 in INAV mode. 0 disables the limit. |
 | `displayport_msp_fonts` | 0,1,2,3 | Font page for normal, info, warning and critical severity. |
 | `displayport_msp_use_device_blink` | OFF | When ON the blink attribute is sent and the device blinks the text. DJI O3/Goggles 2 ignore it, so leave it OFF there. |
 | `displayport_msp_col_adjust`, `displayport_msp_row_adjust` | 0 | Reduce the area used by the OSD in SD mode. |
-| `osd_framerate_hz` | 12 | Keep it at or below 30 for DJI goggles. Higher rates only add latency. |
+| `osd_framerate_hz` | 12 | With `displayport_msp_send_changes = ON`, DJI goggles can take up to 30. They render at most about 35-40 draws a second, so higher rates only add latency. |
 
 ### DJI goggles in INAV mode
 
