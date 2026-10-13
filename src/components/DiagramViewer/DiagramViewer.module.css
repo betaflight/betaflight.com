@@ -1,0 +1,364 @@
+/* zinc neutrals, matching the diagram; amber for the pressed state and the focus ring */
+.root {
+  --dv-frame: #d4d4d8;
+  --dv-bar: #fafafa;
+  --dv-rule: #e4e4e7;
+  --dv-ctl: #d4d4d8;
+  --dv-ctl-bg: #ffffff;
+  --dv-text: #18181b;
+  --dv-muted: #52525b;
+  --dv-track: #f0f0f2;
+  --dv-hover: #ececef;
+  --dv-hover-line: #8e8e96;
+  --dv-field-line: #8e8e96;
+  --dv-on-line: #9a5b00;
+  --dv-focus: #9a5b00;
+  --dv-page: #ffffff;
+  --dv-accent: #ffbb00;
+  --dv-h: 32px;
+  position: relative;
+  border: 1px solid var(--dv-frame);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--dv-page);
+}
+
+:global([data-theme='dark']) .root {
+  --dv-frame: #3f3f46;
+  --dv-bar: #1f1f23;
+  --dv-rule: #34343a;
+  --dv-ctl: #3f3f46;
+  --dv-ctl-bg: #18181b;
+  --dv-text: #f4f4f5;
+  --dv-muted: #a1a1aa;
+  --dv-track: #27272a;
+  --dv-hover: #2f2f35;
+  --dv-hover-line: #6b6b74;
+  --dv-field-line: #6b6b74;
+  --dv-on-line: #ffbb00;
+  --dv-focus: #ffbb00;
+  --dv-page: #18181b;
+}
+
+.full {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  border: 0;
+  border-radius: 0;
+}
+
+.root:fullscreen {
+  border: 0;
+  border-radius: 0;
+}
+
+/* ---------------------------------------------------------------- toolbar */
+/* the toolbar and the segmented tracks are fieldsets (grouping semantics); drop their default look.
+   Declared first so the rules below win where they set their own border or padding */
+.toolbar,
+.track {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--dv-rule);
+  background: var(--dv-bar);
+  color: var(--dv-text);
+  font-size: 13px;
+}
+
+.toolbar button {
+  font: inherit;
+  line-height: 1;
+  color: var(--dv-text);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.toolbar button:focus-visible,
+.search input:focus-visible {
+  outline: 2px solid var(--dv-focus);
+  outline-offset: 1px;
+}
+
+.toolbar svg {
+  flex: none;
+}
+
+/* zoom: one bordered group */
+.group {
+  display: flex;
+  align-items: center;
+  height: var(--dv-h);
+  box-sizing: border-box;
+  border: 1px solid var(--dv-ctl);
+  border-radius: 6px;
+  background: var(--dv-ctl-bg);
+}
+
+.group button {
+  height: calc(var(--dv-h) - 2px);
+  padding: 0 10px;
+  border: 0;
+  border-radius: 5px;
+}
+
+.group button.icon {
+  width: var(--dv-h);
+  padding: 0;
+}
+
+.group button:hover {
+  background: var(--dv-hover);
+}
+
+.readout {
+  min-width: 48px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--dv-muted);
+}
+
+.sep {
+  width: 1px;
+  height: 18px;
+  background: var(--dv-rule);
+}
+
+/* segmented: level of detail, parameters */
+.track {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: var(--dv-h);
+  box-sizing: border-box;
+  padding: 2px;
+  border-radius: 6px;
+  background: var(--dv-track);
+}
+
+.track button {
+  height: calc(var(--dv-h) - 4px);
+  padding: 0 12px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.track button:hover:not(:disabled):not([aria-pressed='true']) {
+  background: var(--dv-hover);
+}
+
+.track button[aria-pressed='true'] {
+  background: var(--dv-accent);
+  border-color: var(--dv-on-line);
+  color: #18181b;
+  font-weight: 600;
+}
+
+.track button:disabled {
+  cursor: default;
+}
+
+.params {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.paramsOff {
+  opacity: 0.45;
+}
+
+.muted {
+  color: var(--dv-muted);
+}
+
+/* search: magnifier and hit count inside the field */
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 10px;
+  color: var(--dv-muted);
+  pointer-events: none;
+}
+
+.search input {
+  width: 240px;
+  height: var(--dv-h);
+  box-sizing: border-box;
+  padding: 0 10px 0 30px;
+  font: inherit;
+  color: var(--dv-text);
+  background: var(--dv-ctl-bg);
+  border: 1px solid var(--dv-field-line);
+  border-radius: 6px;
+}
+
+/* room for the hit count only while it shows, so the placeholder is not clipped */
+.search.counting input {
+  padding-right: 64px;
+}
+
+.search input::placeholder {
+  color: var(--dv-muted);
+  opacity: 1;
+}
+
+.hits {
+  position: absolute;
+  right: 10px;
+  color: var(--dv-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* full screen */
+.toolbar button.btn {
+  height: var(--dv-h);
+  box-sizing: border-box;
+  gap: 6px;
+  padding: 0 10px;
+  border-color: var(--dv-ctl);
+  border-radius: 6px;
+  background: var(--dv-ctl-bg);
+}
+
+.toolbar button.btn:hover {
+  background: var(--dv-hover);
+  border-color: var(--dv-hover-line);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* touch: 40 px targets */
+@media (pointer: coarse) {
+  .root {
+    --dv-h: 40px;
+  }
+}
+
+/* narrow: search on its own last row, full screen as an icon */
+@media (max-width: 640px) {
+  .search {
+    flex: 1 1 100%;
+    order: 1;
+  }
+
+  .search input {
+    width: 100%;
+  }
+
+  .btnLabel {
+    display: none;
+  }
+
+  .toolbar button.btn {
+    width: var(--dv-h);
+    padding: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- canvas */
+.port {
+  position: relative;
+  overflow: hidden;
+  overflow: clip;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.port:focus-visible {
+  outline: 2px solid var(--dv-focus);
+  outline-offset: -2px;
+}
+
+.port:active {
+  cursor: grabbing;
+}
+
+.stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+}
+
+.stage :global(svg) {
+  display: block;
+}
+
+/* visibility, not display: the search still needs getBBox() of a hidden caption */
+.port[data-params='hide'] :global([data-layer='parameters']) {
+  visibility: hidden;
+}
+
+.fallback {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.searchHit {
+  fill: none;
+  stroke: var(--dv-accent);
+  stroke-width: 3;
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: rgb(0 0 0 / 72%);
+  color: #fff;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.hintOn {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint {
+    transition: none;
+  }
+}

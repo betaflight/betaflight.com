@@ -5,5 +5,6 @@
     ],
     "**/*.{html,md,mdx,less,css,json}": ["prettier --write --ignore-unknown"],
     "**/*.{md,mdx}": ["node tools/check_file_names.mjs", "node tools/check_title_case.mjs"],
-    "tools/team_generation.mjs": ["node tools/team_generation.mjs"]
+    "tools/team_generation.mjs": ["node tools/team_generation.mjs"],
+    "{tools/signal-flow/*.mjs,static/img/betaflight/signal-flow*.svg}": ["node tools/signal-flow/check.mjs", "node tools/signal-flow/fresh.mjs"]
 }

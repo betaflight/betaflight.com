@@ -1,0 +1,675 @@
+<!--
+  Betaflight signal-flow diagram.
+  Firmware revision depicted: master @ 617e84f11f (2026-09-16, 2026.12.0-alpha)
+  Derived from the betaflight_processing diagram by mrRobot62:
+  https://github.com/mrRobot62/betaflight_processing
+  Licensed under the GNU General Public License v3.0.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="3388" height="2065" viewBox="0 0 3388 2065" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Betaflight signal flow diagram for the current master branch">
+<title>Betaflight signal flow &#8212; master @ 617e84f11f (2026-09-16, 2026.12.0-alpha)</title>
+<desc>RX to motor command path, gyro and D-term filter chains, PID controller, mixer and motor output, the attitude outer loop and the airframe, with the RPM telemetry, throttle scheduling and physical feedback paths. Derived from the betaflight_processing diagram by mrRobot62, GPL-3.0.</desc>
+<defs>
+<marker id="sf-dark-a-sig" viewBox="0 0 9 7" refX="4.45" refY="3.5" markerWidth="9" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0 0 L 9 3.5 L 0 7 z" fill="#f4f4f5"/></marker>
+<marker id="sf-dark-a-wide" viewBox="0 0 12 9" refX="6.1" refY="4.5" markerWidth="12" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0 0 L 12 4.5 L 0 9 z" fill="#f4f4f5"/></marker>
+<marker id="sf-dark-a-mix" viewBox="0 0 9 7" refX="4.45" refY="3.5" markerWidth="9" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0 0 L 9 3.5 L 0 7 z" fill="#f4f4f5"/></marker>
+<marker id="sf-dark-a-mod" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0.8 0.8 L 7.2 4 L 0.8 7.2" fill="none" stroke="#a1a1aa" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="sf-dark-a-tlm" viewBox="0 0 8 6.5" refX="3.9" refY="3.25" markerWidth="8" markerHeight="6.5" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0 0 L 8 3.25 L 0 6.5 z" fill="#8ccdf2"/></marker>
+<marker id="sf-dark-a-phys" viewBox="0 0 14 12" refX="7.2" refY="6" markerWidth="14" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0 0 L 14 6 L 0 12 z" fill="#c8c8d0"/></marker>
+<marker id="sf-dark-a-ext" viewBox="0 0 8 6" refX="3.9" refY="3" markerWidth="8" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0 0 L 8 3 L 0 6 z" fill="#f4f4f5"/></marker>
+</defs>
+<rect x="0" y="0" width="3388" height="2065" class="bg" fill="#18181b"/>
+<g id="sf-groups">
+<rect x="2076" y="72" width="592" height="179" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="108" y="316" width="2249.4" height="191" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="102" y="560" width="2238" height="179" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="1420" y="844" width="1248" height="189" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="83.6" y="844" width="944.4" height="189" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="1092" y="844" width="264" height="189" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="108" y="1088" width="920" height="167" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="1092" y="1088" width="1904" height="167" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="1748" y="1315" width="1576" height="440" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="1092" y="1315" width="592" height="440" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="2723.15" y="72" width="281.7" height="951" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+</g>
+<g id="sf-loop">
+<path class="casing" d="M 2316 390 L 2514 390" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2558 390 L 2756 390" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2650 390 L 2650 634 L 2756 634" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 348 634 L 460 634" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 676 634 L 788 634" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1004 634 L 1116 634" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1332 634 L 1444 634" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1660 634 L 1772 634" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1988 634 L 2100 634" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2316 634 L 2536 634 L 2536 412" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2536 634 L 2536 814 L 1552 814 L 1552 878" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1660 918 L 1772 918" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1988 918 L 2100 918" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2316 918 L 2428 918" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2644 918 L 2756 918" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2972 390 L 3040 390 L 3040 510 L 3166 510" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2972 634 L 3040 634 L 3040 534 L 3166 534" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2972 918 L 3192 918 L 3192 548" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 3218 522 L 3260 522 L 3260 1366" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 3084 1406 L 2972 1406" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2756 1406 L 2644 1406" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2428 1406 L 2316 1406" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 2100 1406 L 1988 1406" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1772 1406 L 1660 1406" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1444 1406 L 1332 1406" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1116 1406 L 1004 1406" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 788 1406 L 64 1406 L 64 634 L 132 634" fill="none" stroke="#3d3210" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="sf-edges">
+<path class="ln sig wide" d="M 348 390 L 454.1 390" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<text class="elab" x="387.5" y="380.827" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">rcData</text>
+<path class="ln sig wide" d="M 676 390 L 782.1 390" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<text class="elab" x="702.5" y="380.827" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">rcCommand</text>
+<line x1="728.5" y1="396" x2="735.5" y2="384" class="bw" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="round"/>
+<text class="bwt" x="734" y="407" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="700" fill="#f4f4f5" text-anchor="middle">3</text>
+<path class="ln sig wide" d="M 1004 390 L 1110.1 390" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<path class="ln sig wide" d="M 1332 390 L 1438.1 390" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<path class="ln sig wide" d="M 1660 390 L 1766.1 390" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<path class="ln sig wide" d="M 1988 390 L 2094.1 390" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<path class="ln sig wide" d="M 2316 390 L 2508.1 390" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<text class="elab" x="2395" y="377.942" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">setpoint</text>
+<line x1="2371.9" y1="396" x2="2378.9" y2="384" class="bw" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="round"/>
+<text class="bwt" x="2377.4" y="407" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="700" fill="#f4f4f5" text-anchor="middle">3</text>
+<path class="ln sig" d="M 1388 390 L 1388 146 L 2095.45 146" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<text class="elab" x="1395" y="272" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">rawSetpoint</text>
+<path class="ln sig" d="M 2316 146 L 2423.45 146" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2644 146 L 2751.45 146" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<text class="elab" x="2670" y="136.827" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">feedforward</text>
+<path class="ln sig" d="M 2700 146 L 2700 898 L 2751.45 898" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<text class="elab" x="2657" y="826.8" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">D_MAX</text>
+<path class="ln sig" d="M 2700 270 L 2268 270 L 2268 345.45" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<text class="elab" x="2463" y="260.827" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">angle FF</text>
+<path class="ln sig" d="M 2558 390 L 2695 390 A 5 5 0 0 1 2705 390 L 2751.45 390" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2650 390 L 2650 634 L 2695 634 A 5 5 0 0 1 2705 634 L 2751.45 634" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 348 634 L 455.45 634" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 676 634 L 783.45 634" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<line x1="728.5" y1="640" x2="735.5" y2="628" class="bw" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="round"/>
+<text class="bwt" x="734" y="651" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="700" fill="#f4f4f5" text-anchor="middle">3</text>
+<path class="ln sig" d="M 1004 634 L 1111.45 634" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 1332 634 L 1439.45 634" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 1660 634 L 1767.45 634" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 1988 634 L 2095.45 634" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2316 634 L 2536 634 L 2536 416.55" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2536 634 L 2536 814 L 1885 814 A 5 5 0 0 0 1875 814 L 1552 814 L 1552 873.45" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<text class="elab" x="1983.5" y="801.942" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">gyro.gyroADCf to D-term</text>
+<path class="ln sig" d="M 2536 634 L 2536 814 L 1885 814 A 5 5 0 0 0 1875 814 L 1224 814 L 1224 873.45" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 1660 918 L 1767.45 918" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 1988 918 L 2095.45 918" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2316 918 L 2423.45 918" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2644 918 L 2751.45 918" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<text class="elab" x="2671.2" y="939.173" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">Kd x (−dgyro/dt)</text>
+<path class="ln sig" d="M 2972 146 L 3192 146 L 3192 491.45" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2972 390 L 3040 390 L 3040 510 L 3164.38 510" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2972 634 L 3040 634 L 3040 534 L 3164.38 534" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2972 918 L 3192 918 L 3192 552.55" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig wide" d="M 3218 522 L 3260 522 L 3260 1360.1" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<line x1="3256.5" y1="781.2" x2="3263.5" y2="769.2" class="bw" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="round"/>
+<text class="bwt" x="3269" y="779.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="700" fill="#f4f4f5">3</text>
+<path class="ln mix wide" d="M 3084 1406 L 2977.9 1406" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<text class="elab" x="2990.5" y="1362.83" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">PID sums R/P/Y</text>
+<path class="ln mix wide" d="M 2756 1406 L 2649.9 1406" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<text class="elab" x="2673.5" y="1362.83" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">motorMix[]</text>
+<line x1="2696.5" y1="1412" x2="2703.5" y2="1400" class="bw" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="round"/>
+<text class="bwt" x="2702" y="1423" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="700" fill="#f4f4f5" text-anchor="middle">N</text>
+<path class="ln mix wide" d="M 2428 1406 L 2321.9 1406" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<text class="elab" x="2330.5" y="1362.83" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">mix, clamped thr.</text>
+<path class="ln mix wide" d="M 2100 1406 L 1993.9 1406" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<text class="elab" x="2009.5" y="1362.83" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">per-motor 0..1</text>
+<path class="ln mix wide" d="M 1772 1406 L 1735.25 1406 A 7.25 7.25 0 0 0 1720.75 1406 L 1665.9 1406" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<text class="elab" x="1686.3" y="1362.83" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">motor[]</text>
+<line x1="1695.7" y1="1412" x2="1702.7" y2="1400" class="bw" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="round"/>
+<text class="bwt" x="1701.2" y="1423" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="700" fill="#f4f4f5" text-anchor="middle">N</text>
+<path class="ln mix wide" d="M 1444 1406 L 1337.9 1406" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<text class="elab" x="1357.5" y="1362.83" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">DShot frame</text>
+<path class="ln sig" d="M 348 1162 L 455.45 1162" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 676 1162 L 783.45 1162" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 1004 1162 L 1067 1162 A 5 5 0 0 1 1077 1162 L 1111.45 1162" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 1332 1162 L 1439.45 1162" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 1660 1162 L 1767.45 1162" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 1988 1162 L 2095.45 1162" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2316 1162 L 2423.45 1162" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2644 1162 L 2751.45 1162" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<path class="ln sig" d="M 2864 1202 L 2864 1299 L 2536 1299 L 2536 1361.45" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<text class="elab" x="2871" y="1235.1" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">throttle 0..1</text>
+<path class="ln mod" d="M 1704 1162 L 1704 1061 L 1077 1061 A 5 5 0 0 0 1067 1061 L 896 1061 L 896 958.6" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<text class="elab" x="1235.5" y="1051.83" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">throttle (limited, pre-boost)</text>
+<path class="ln mod" d="M 1704 1162 L 1704 1061 L 1077 1061 A 5 5 0 0 0 1067 1061 L 568 1061 L 568 958.6" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<path class="ln mod" d="M 1704 1162 L 1704 1061 L 1077 1061 A 5 5 0 0 0 1067 1061 L 240 1061 L 240 958.6" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<path class="ln mod" d="M 896 878 L 896 770 L 1195 770 A 5 5 0 0 1 1205 770 L 1880 770 L 1880 877.4" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<path class="ln mod" d="M 896 878 L 896 770 L 1195 770 A 5 5 0 0 1 1205 770 L 1880 770 L 1880 674.6" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<path class="ln mod" d="M 1880 1610 L 1880 1446.6" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<text class="elab" x="1887" y="1532" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">▲ raises the floor</text>
+<path class="ln mod" d="M 2230 1610 L 2230 1506 L 1924 1506 L 1924 1446.6" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<text class="elab" x="2028.5" y="1496.83" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">▼ lowers the ceiling</text>
+<path class="ln tlm" d="M 1224 1446 L 1224 1605.9" fill="none" stroke="#8ccdf2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.01 3.6" marker-end="url(#sf-dark-a-tlm)"/>
+<text class="elab" x="1231" y="1532" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">bidirectional DShot: eRPM</text>
+<path class="ln tlm" d="M 1116 1650 L 1072 1650 L 1072 792 L 1200 792 L 1200 678.1" fill="none" stroke="#8ccdf2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.01 3.6" marker-end="url(#sf-dark-a-tlm)"/>
+<text class="elab" x="1079" y="1293.64" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">per-motor Hz</text>
+<path class="ln tlm" d="M 1332 1650 L 1767.9 1650" fill="none" stroke="#8ccdf2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.01 3.6" marker-end="url(#sf-dark-a-tlm)"/>
+<text class="elab" x="1519.5" y="1640.83" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">min motor Hz</text>
+<path class="ln tlm" d="M 1224 1520 L 1728 1520 L 1728 1285 L 2566 1285 L 2566 1206.1" fill="none" stroke="#8ccdf2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.01 3.6" marker-end="url(#sf-dark-a-tlm)"/>
+<text class="elab" x="2100" y="1275.83" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">avg RPM, unfiltered</text>
+<path class="ln phys" d="M 1116 1406 L 1081.88 1406 A 9.875 9.875 0 0 0 1062.13 1406 L 1010.8 1406" fill="none" stroke="#c8c8d0" stroke-width="4.5" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-phys)"/>
+<text class="elab" x="1023.1" y="1393.94" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">thrust</text>
+<path class="ln phys" d="M 788 1406 L 64 1406 L 64 634 L 125.2 634" fill="none" stroke="#c8c8d0" stroke-width="4.5" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-phys)"/>
+<text class="elab" x="351.5" y="1393.94" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">body rates, sensed by the gyro</text>
+<path class="ln ext" d="M 1224 303.5 L 1224 345.9" fill="none" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-ext)"/>
+<circle class="term" cx="1224" cy="300" r="3.5" fill="#18181b" stroke="#f4f4f5" stroke-width="1.25"/>
+<text class="elab" x="1216" y="304" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic" text-anchor="end">GPS rescue / autopilot: yaw rate</text>
+<path class="ln ext" d="M 2140 303.5 L 2140 345.9" fill="none" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-ext)"/>
+<circle class="term" cx="2140" cy="300" r="3.5" fill="#18181b" stroke="#f4f4f5" stroke-width="1.25"/>
+<text class="elab" x="2132" y="304" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic" text-anchor="end">GPS rescue / pos hold: R/P angle</text>
+<path class="ln ext" d="M 2796 1075.5 L 2796 1117.9" fill="none" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-ext)"/>
+<circle class="term" cx="2796" cy="1072" r="3.5" fill="#18181b" stroke="#f4f4f5" stroke-width="1.25"/>
+<text class="elab" x="2804" y="1076" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">autopilot throttle</text>
+<path class="ln mod" d="M 676 918 L 694 918" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3"/>
+<polygon class="tag" points="694,910 721.4,910 728.4,918 721.4,926 694,926" fill="#27272a" stroke="#c4c4cc" stroke-width="1.1" stroke-linejoin="round"/>
+<text class="tagt" x="707.7" y="921.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#f4f4f5" letter-spacing=".04em" text-anchor="middle">TPA</text>
+<path class="ln mod" d="M 2796 324 L 2796 349.4" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<polygon class="tag" points="2782.3,301 2809.7,301 2809.7,317 2796,324 2782.3,317" fill="#27272a" stroke="#c4c4cc" stroke-width="1.1" stroke-linejoin="round"/>
+<text class="tagt" x="2796" y="312.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#f4f4f5" letter-spacing=".04em" text-anchor="middle">TPA</text>
+<path class="ln mod" d="M 2796 852 L 2796 877.4" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<polygon class="tag" points="2782.3,829 2809.7,829 2809.7,845 2796,852 2782.3,845" fill="#27272a" stroke="#c4c4cc" stroke-width="1.1" stroke-linejoin="round"/>
+<text class="tagt" x="2796" y="840.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#f4f4f5" letter-spacing=".04em" text-anchor="middle">TPA</text>
+<path class="ln mod" d="M 348 918 L 366 918" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3"/>
+<polygon class="tag" points="366,910 387.6,910 394.6,918 387.6,926 366,926" fill="#27272a" stroke="#c4c4cc" stroke-width="1.1" stroke-linejoin="round"/>
+<text class="tagt" x="376.8" y="921.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#f4f4f5" letter-spacing=".04em" text-anchor="middle">AG</text>
+<path class="ln mod" d="M 2878 324 L 2878 349.4" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<polygon class="tag" points="2867.2,301 2888.8,301 2888.8,317 2878,324 2867.2,317" fill="#27272a" stroke="#c4c4cc" stroke-width="1.1" stroke-linejoin="round"/>
+<text class="tagt" x="2878" y="312.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#f4f4f5" letter-spacing=".04em" text-anchor="middle">AG</text>
+<path class="ln mod" d="M 2796 568 L 2796 593.4" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<polygon class="tag" points="2785.2,545 2806.8,545 2806.8,561 2796,568 2785.2,561" fill="#27272a" stroke="#c4c4cc" stroke-width="1.1" stroke-linejoin="round"/>
+<text class="tagt" x="2796" y="556.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#f4f4f5" letter-spacing=".04em" text-anchor="middle">AG</text>
+<path class="ln mod" d="M 1332 918 L 1350 918" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3"/>
+<polygon class="tag" points="1350,910 1377.4,910 1384.4,918 1377.4,926 1350,926" fill="#27272a" stroke="#c4c4cc" stroke-width="1.1" stroke-linejoin="round"/>
+<text class="tagt" x="1363.7" y="921.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#f4f4f5" letter-spacing=".04em" text-anchor="middle">ATT</text>
+<path class="ln mod" d="M 2204 300 L 2204 349.4" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<polygon class="tag" points="2190.3,277 2217.7,277 2217.7,293 2204,300 2190.3,293" fill="#27272a" stroke="#c4c4cc" stroke-width="1.1" stroke-linejoin="round"/>
+<text class="tagt" x="2204" y="288.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#f4f4f5" letter-spacing=".04em" text-anchor="middle">ATT</text>
+</g>
+<g id="sf-group-labels">
+<text class="grpt" x="2092" y="90" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">FEEDFORWARD</text>
+<text class="src" x="2205.2" y="89.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">fc/rc.c: FF per RX packet, PT3 per PID loop</text>
+<text class="grpt" x="124" y="334" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">RC / SETPOINT PATH</text>
+<text class="src" x="301.6" y="333.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">fc/rc.c</text>
+<text class="grpt" x="118" y="578" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">GYRO FILTER CHAIN</text>
+<text class="src" x="286.4" y="577.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">sensors/gyro.c: gyroUpdate() at gyro rate, filterGyro() at PID rate</text>
+<text class="grpt" x="1436" y="1023" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">D-TERM CHAIN</text>
+<text class="src" x="1558.4" y="1022.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">flight/pid.c</text>
+<text class="grpt" x="99.6" y="862" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">COMPUTED IN THE MIXER</text>
+<text class="src" x="304.8" y="861.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">consumed by the NEXT PID loop</text>
+<text class="grpt" x="1108" y="1023" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">ATTITUDE</text>
+<text class="src" x="1193.6" y="1022.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">flight/imu.c</text>
+<text class="grpt" x="124" y="1106" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">THROTTLE (RC)</text>
+<text class="src" x="255.6" y="1105.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">fc/rc.c</text>
+<text class="grpt" x="1108" y="1106" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">THROTTLE (MIXER)</text>
+<text class="src" x="1267.2" y="1105.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">mixTable, flight/mixer.c</text>
+<text class="grpt" x="1764" y="1333" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">MIXER</text>
+<text class="src" x="1822" y="1332.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">flight/mixer.c</text>
+<text class="grpt" x="1108" y="1333" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">MOTOR OUTPUT</text>
+<text class="src" x="1230.4" y="1332.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">drivers/motor.c, drivers/dshot.c</text>
+<text class="grpt" x="2739.15" y="90" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">PID CONTROLLER</text>
+<text class="src" x="2879.95" y="89.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">flight/pid.c</text>
+</g>
+<g id="sf-nodes">
+<rect x="2100" y="106" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="ttl" x="2208" y="126.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Feedforward</text>
+<text class="sub" x="2208" y="142.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">d(setpoint)/dt per RX packet</text>
+<text class="sub" x="2208" y="155" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">PT1 first, then boost, jitter,</text>
+<text class="sub" x="2208" y="167.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">max rate, yaw hold, transition, avg</text>
+<text class="sub" x="2208" y="180" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">jitter / dup. tests read rcCommand</text>
+<rect x="2106" y="112" width="19.2" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="2115.6" y="121.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">RX</text>
+<rect x="2428" y="106" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25" stroke-dasharray="5 3"/>
+<line x1="2433" y1="115" x2="2433" y2="177" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="2639" y1="115" x2="2639" y2="177" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="2536" y="132.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">FF smoothing</text>
+<text class="sub" x="2536" y="148.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">PT3 at PID rate, shares the</text>
+<text class="sub" x="2536" y="161" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">RC smoothing setpoint cutoff</text>
+<text class="cnd" x="2536" y="178.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">when rc_smoothing on</text>
+<rect x="132" y="350" width="216" height="80" class="bx io" rx="40" fill="#2a2a2f" stroke="#c8c8d0" stroke-width="2.25"/>
+<text class="ttl" x="240" y="389.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">RX</text>
+<text class="sub" x="240" y="405.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">rcData[]</text>
+<rect x="154" y="356" width="19.2" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="163.6" y="365.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">RX</text>
+<rect x="460" y="350" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="ttl" x="568" y="389.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">rcCommand</text>
+<text class="sub" x="568" y="405.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">deadband, centring</text>
+<rect x="466" y="356" width="19.2" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="475.6" y="365.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">RX</text>
+<rect x="788" y="350" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="ttl" x="896" y="389.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Rates and expo</text>
+<text class="sub" x="896" y="405.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">deflection to deg/s</text>
+<rect x="794" y="356" width="19.2" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="803.6" y="365.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">RX</text>
+<rect x="1116" y="350" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="ttl" x="1224" y="395.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Rate limit</text>
+<rect x="1122" y="356" width="19.2" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="1131.6" y="365.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">RX</text>
+<rect x="1444" y="350" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25" stroke-dasharray="5 3"/>
+<text class="ttl" x="1552" y="376.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">FPV camera mix</text>
+<text class="sub" x="1552" y="392.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">rotates roll / yaw setpoint</text>
+<text class="sub" x="1552" y="405" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">feedforward taps before it</text>
+<text class="cnd" x="1552" y="422.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">FPV ANGLE MIX mode</text>
+<rect x="1450" y="356" width="19.2" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="1459.6" y="365.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">RX</text>
+<rect x="1772" y="350" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25" stroke-dasharray="5 3"/>
+<line x1="1777" y1="359" x2="1777" y2="421" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="1983" y1="359" x2="1983" y2="421" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="1880" y="382.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">RC smoothing</text>
+<text class="sub" x="1880" y="398.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">PT3, at PID rate</text>
+<text class="cnd" x="1880" y="422.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">optional</text>
+<rect x="2100" y="350" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="ttl" x="2208" y="376.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Setpoint conditioning</text>
+<text class="sub" x="2208" y="392.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">flight/pid.c: levelling,</text>
+<text class="sub" x="2208" y="405.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">acro trainer, launch control</text>
+<text class="sub" x="2208" y="417.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">angle: P x (target − attitude)</text>
+<rect x="132" y="594" width="216" height="80" class="bx io" rx="40" fill="#2a2a2f" stroke="#c8c8d0" stroke-width="2.25"/>
+<text class="ttl" x="240" y="633.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Gyro</text>
+<text class="sub" x="240" y="649.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">sensor(s)</text>
+<rect x="154" y="600" width="30.4" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="169.2" y="609.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">GYRO</text>
+<rect x="460" y="594" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="ttl" x="568" y="633.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Align, scale</text>
+<text class="sub" x="568" y="649.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">average of N gyros</text>
+<rect x="466" y="600" width="30.4" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="481.2" y="609.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">GYRO</text>
+<rect x="788" y="594" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25"/>
+<line x1="793" y1="603" x2="793" y2="665" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="999" y1="603" x2="999" y2="665" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="896" y="627" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Gyro LPF2</text>
+<text class="sub" x="896" y="643" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">decimator, runs at</text>
+<text class="sub" x="896" y="655.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">raw sensor ODR</text>
+<rect x="794" y="600" width="30.4" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="809.2" y="609.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">GYRO</text>
+<circle class="nmk" cx="1002" cy="596" r="8" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="1002" y="599.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">1</text>
+<rect x="1116" y="594" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25" stroke-dasharray="5 3"/>
+<line x1="1121" y1="603" x2="1121" y2="665" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="1327" y1="603" x2="1327" y2="665" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="1224" y="620.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">RPM filter</text>
+<text class="sub" x="1224" y="636.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">one block over</text>
+<text class="sub" x="1224" y="649" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">all three axes</text>
+<text class="cnd" x="1224" y="666.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">needs bidir DShot</text>
+<rect x="1444" y="594" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25" stroke-dasharray="5 3"/>
+<line x1="1449" y1="603" x2="1449" y2="665" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="1655" y1="603" x2="1655" y2="665" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="1552" y="626.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Notch 1 and 2</text>
+<text class="sub" x="1552" y="642.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">static</text>
+<text class="cnd" x="1552" y="666.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">off by default</text>
+<rect x="1772" y="594" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25"/>
+<line x1="1777" y1="603" x2="1777" y2="665" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="1983" y1="603" x2="1983" y2="665" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="1880" y="627" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Gyro LPF1</text>
+<text class="sub" x="1880" y="643" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">dyn LPF retunes</text>
+<text class="sub" x="1880" y="655.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">this same filter</text>
+<rect x="2100" y="594" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25" stroke-dasharray="5 3"/>
+<line x1="2105" y1="603" x2="2105" y2="665" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="2311" y1="603" x2="2311" y2="665" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="2208" y="620.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Dynamic notch</text>
+<text class="sub" x="2208" y="636.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">SDFT, N peaks</text>
+<text class="sub" x="2208" y="649" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">per axis</text>
+<text class="cnd" x="2208" y="666.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">PID loop &gt;= 2 kHz</text>
+<rect x="1444" y="878" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25" stroke-dasharray="5 3"/>
+<line x1="1449" y1="887" x2="1449" y2="949" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="1655" y1="887" x2="1655" y2="949" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="1552" y="917" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">D notch</text>
+<text class="cnd" x="1552" y="950.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">off by default</text>
+<rect x="1772" y="878" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25"/>
+<line x1="1777" y1="887" x2="1777" y2="949" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="1983" y1="887" x2="1983" y2="949" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="1880" y="917.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">D LPF1</text>
+<text class="sub" x="1880" y="933.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">dynamic</text>
+<rect x="2100" y="878" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25"/>
+<line x1="2105" y1="887" x2="2105" y2="949" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="2311" y1="887" x2="2311" y2="949" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="2208" y="917.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">D LPF2</text>
+<text class="sub" x="2208" y="933.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">static</text>
+<rect x="2428" y="878" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="ttl" x="2536" y="911" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">−d/dt, then x Kd</text>
+<text class="sub" x="2536" y="927" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">derivative on measurement</text>
+<text class="sub" x="2536" y="939.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">(filtered gyro, not error)</text>
+<rect x="132" y="878" width="216" height="80" class="bx fb" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25" stroke-dasharray="3 3"/>
+<text class="ttl" x="240" y="917.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Anti-gravity</text>
+<text class="sub" x="240" y="933.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">boosts I and P on throttle moves</text>
+<rect x="460" y="878" width="216" height="80" class="bx fb" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25" stroke-dasharray="3 3"/>
+<text class="ttl" x="568" y="917.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">TPA</text>
+<text class="sub" x="568" y="933.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">to P (if tpa_mode = PD) and D</text>
+<rect x="788" y="878" width="216" height="80" class="bx fb" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25" stroke-dasharray="3 3"/>
+<text class="ttl" x="896" y="917.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Dynamic LPF cutoffs</text>
+<text class="sub" x="896" y="933.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">retunes gyro LPF1 and D LPF1</text>
+<circle class="nmk" cx="1002" cy="880" r="8" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="1002" y="883.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">2</text>
+<rect x="1116" y="878" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="ttl" x="1224" y="904.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Attitude (IMU)</text>
+<text class="sub" x="1224" y="920.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">Mahony AHRS: gyro + acc</text>
+<text class="sub" x="1224" y="933.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">gyro via own 200 Hz PT1</text>
+<text class="sub" x="1224" y="945.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">(+ mag, GPS course if fitted)</text>
+<rect x="1122" y="884" width="24.8" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="1134.4" y="893.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">ATT</text>
+<circle class="nmk" cx="1330" cy="880" r="8" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="1330" y="883.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">5</text>
+<rect x="132" y="1122" width="216" height="80" class="bx io" rx="40" fill="#2a2a2f" stroke="#c8c8d0" stroke-width="2.25"/>
+<text class="ttl" x="240" y="1155" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Throttle in</text>
+<text class="sub" x="240" y="1171" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">rcData[THROTTLE] → 0 .. 1000</text>
+<text class="sub" x="240" y="1183.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">x LVC % once voltage critical</text>
+<rect x="154" y="1128" width="19.2" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="163.6" y="1137.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">RX</text>
+<rect x="460" y="1122" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="ttl" x="568" y="1155" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Throttle curve</text>
+<text class="sub" x="568" y="1171" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">Bezier</text>
+<text class="sub" x="568" y="1183.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">output: rcCommand[THROTTLE]</text>
+<rect x="466" y="1128" width="19.2" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="475.6" y="1137.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">RX</text>
+<rect x="788" y="1122" width="216" height="80" class="bx filt" rx="3" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25" stroke-dasharray="5 3"/>
+<line x1="793" y1="1131" x2="793" y2="1193" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<line x1="999" y1="1131" x2="999" y2="1193" class="rail" stroke="#2fc79a" stroke-width="1"/>
+<text class="ttl" x="896" y="1154.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">RC smoothing</text>
+<text class="sub" x="896" y="1170.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">PT3</text>
+<text class="cnd" x="896" y="1194.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">optional</text>
+<rect x="1116" y="1122" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="ttl" x="1224" y="1155" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Normalise</text>
+<text class="sub" x="1224" y="1171" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">(thr − 1000 + tilt corr.) / 1000</text>
+<text class="sub" x="1224" y="1183.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">tilt corr.: attitude, Angle/Horizon</text>
+<rect x="1444" y="1122" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25" stroke-dasharray="5 3"/>
+<text class="ttl" x="1552" y="1161" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Throttle limit</text>
+<text class="cnd" x="1552" y="1194.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">optional</text>
+<rect x="1772" y="1122" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25" stroke-dasharray="5 3"/>
+<text class="ttl" x="1880" y="1161" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Throttle boost</text>
+<text class="cnd" x="1880" y="1194.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">optional</text>
+<rect x="2100" y="1122" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25" stroke-dasharray="5 3"/>
+<text class="ttl" x="2208" y="1148.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle" textLength="177.4" lengthAdjust="spacingAndGlyphs">Thrust-lin. compensation</text>
+<text class="sub" x="2208" y="1164.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">approx. inverse of forward curve</text>
+<text class="sub" x="2208" y="1177" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">keeps hover throttle</text>
+<text class="cnd" x="2208" y="1194.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">off by default</text>
+<rect x="2428" y="1122" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25" stroke-dasharray="5 3"/>
+<text class="ttl" x="2536" y="1154.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">RPM limiter</text>
+<text class="sub" x="2536" y="1170.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">PID on avg RPM, own 6 Hz PT1</text>
+<text class="cnd" x="2536" y="1194.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">needs bidir DShot</text>
+<rect x="2756" y="1122" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25" stroke-dasharray="5 3"/>
+<text class="ttl" x="2864" y="1148.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Throttle override</text>
+<text class="sub" x="2864" y="1164.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">yaw-spin 0.5 (no airmode); launch 0</text>
+<text class="sub" x="2864" y="1177" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">alt hold / GPS rescue: autopilot</text>
+<text class="cnd" x="2864" y="1194.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">mode dependent</text>
+<polygon class="bx mix" points="3094,1366 3290,1366 3300,1376 3300,1436 3290,1446 3094,1446 3084,1436 3084,1376" stroke-linejoin="round" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25"/>
+<text class="ttl" x="3192" y="1399" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">PID sum limit</text>
+<text class="sub" x="3192" y="1415" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">applied here, not in pid.c</text>
+<text class="sub" x="3192" y="1427.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">yaw: 1000 in yaw-spin recovery</text>
+<circle class="nmk" cx="3298" cy="1368" r="8" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="3298" y="1371.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">3</text>
+<polygon class="bx mix" points="2766,1366 2962,1366 2972,1376 2972,1436 2962,1446 2766,1446 2756,1436 2756,1376" stroke-linejoin="round" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25"/>
+<text class="ttl" x="2864" y="1405.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Motor mix</text>
+<text class="sub" x="2864" y="1421.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">R/P/Y x mixer table</text>
+<polygon class="bx mix" points="2438,1366 2634,1366 2644,1376 2644,1436 2634,1446 2438,1446 2428,1436 2428,1376" stroke-linejoin="round" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25"/>
+<text class="ttl" x="2536" y="1392.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle" textLength="179.7" lengthAdjust="spacingAndGlyphs">Mix adjustment (airmode)</text>
+<text class="sub" x="2536" y="1408.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">mix / range if range &gt; 1</text>
+<text class="sub" x="2536" y="1421.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">throttle clamped: no motor clips</text>
+<text class="sub" x="2536" y="1433.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">airmode off: mix x 0.5..1 (thr&lt;50%)</text>
+<circle class="nmk" cx="2642" cy="1368" r="8" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="2642" y="1371.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">4</text>
+<polygon class="bx mix" points="2110,1366 2306,1366 2316,1376 2316,1436 2306,1446 2110,1446 2100,1436 2100,1376" stroke-linejoin="round" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25"/>
+<text class="ttl" x="2208" y="1399" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Mix + throttle</text>
+<text class="sub" x="2208" y="1415" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">per motor, 0 .. 1</text>
+<text class="sub" x="2208" y="1427.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">thrust_linear &gt; 0: forward curve</text>
+<polygon class="bx mix" points="1782,1366 1978,1366 1988,1376 1988,1436 1978,1446 1782,1446 1772,1436 1772,1376" stroke-linejoin="round" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25"/>
+<text class="ttl" x="1880" y="1399" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Scale to range</text>
+<text class="sub" x="1880" y="1415" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">[motorRangeMin ..</text>
+<text class="sub" x="1880" y="1427.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">motorRangeMax]</text>
+<polygon class="bx mix" points="1454,1366 1650,1366 1660,1376 1660,1436 1650,1446 1454,1446 1444,1436 1444,1376" stroke-linejoin="round" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25"/>
+<text class="ttl" x="1552" y="1405.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Motor output</text>
+<text class="sub" x="1552" y="1421.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">DShot packet</text>
+<rect x="1116" y="1366" width="216" height="80" class="bx io" rx="40" fill="#2a2a2f" stroke="#c8c8d0" stroke-width="2.25"/>
+<text class="ttl" x="1224" y="1411.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">ESC and motors</text>
+<rect x="788" y="1366" width="216" height="80" class="bx plant" rx="2" fill="#2a2a2f" stroke="#c8c8d0" stroke-width="3"/>
+<text class="ttl" x="896" y="1399" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Airframe</text>
+<text class="sub" x="896" y="1415" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">thrust → torque → rotation</text>
+<text class="sub" x="896" y="1427.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">physics, not firmware</text>
+<rect x="1116" y="1610" width="216" height="80" class="bx proc" rx="3" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25" stroke-dasharray="5 3"/>
+<text class="ttl" x="1224" y="1636.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">eRPM to Hz</text>
+<text class="sub" x="1224" y="1652.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">/ pole pairs, PT1 per motor</text>
+<text class="sub" x="1224" y="1665" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">start of the filter task</text>
+<text class="cnd" x="1224" y="1682.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">needs bidir DShot</text>
+<polygon class="bx mix" points="1782,1610 1978,1610 1988,1620 1988,1680 1978,1690 1782,1690 1772,1680 1772,1620" stroke-linejoin="round" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25" stroke-dasharray="5 3"/>
+<text class="ttl" x="1880" y="1636.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">Dynamic idle</text>
+<text class="sub" x="1880" y="1652.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">PID on min motor Hz</text>
+<text class="sub" x="1880" y="1665" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">raises motorRangeMin</text>
+<text class="cnd" x="1880" y="1682.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">needs bidir DShot</text>
+<polygon class="bx mix" points="2110,1610 2306,1610 2316,1620 2316,1680 2306,1690 2110,1690 2100,1680 2100,1620" stroke-linejoin="round" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25" stroke-dasharray="5 3"/>
+<text class="ttl" x="2208" y="1642.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">V-bat sag comp.</text>
+<text class="sub" x="2208" y="1658.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">lowers motorRangeMax</text>
+<text class="cnd" x="2208" y="1682.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">optional</text>
+<rect x="2756" y="106" width="216" height="80" class="bx pid" rx="2" fill="#2d2510" stroke="#e69f00" stroke-width="1.75"/>
+<rect x="2760" y="110" width="208" height="72" class="inner" rx="1" fill="none" stroke="#e69f00" stroke-width="0.75"/>
+<text class="ttl" x="2864" y="139" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">F</text>
+<text class="sub" x="2864" y="155" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">Kf x smoothed feedforward</text>
+<text class="sub" x="2864" y="167.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">R/P: zero in Angle (not Horizon)</text>
+<rect x="2756" y="350" width="216" height="80" class="bx pid" rx="2" fill="#2d2510" stroke="#e69f00" stroke-width="1.75"/>
+<rect x="2760" y="354" width="208" height="72" class="inner" rx="1" fill="none" stroke="#e69f00" stroke-width="0.75"/>
+<text class="ttl" x="2864" y="383" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">P</text>
+<text class="sub" x="2864" y="399" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">x TPA only if tpa_mode = PD</text>
+<text class="sub" x="2864" y="411.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">R/P: x anti-gravity; yaw: PT1</text>
+<rect x="2756" y="594" width="216" height="80" class="bx pid" rx="2" fill="#2d2510" stroke="#e69f00" stroke-width="1.75"/>
+<rect x="2760" y="598" width="208" height="72" class="inner" rx="1" fill="none" stroke="#e69f00" stroke-width="0.75"/>
+<text class="ttl" x="2864" y="620.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">I</text>
+<text class="sub" x="2864" y="636.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">relax scales error by setpoint HPF</text>
+<text class="sub" x="2864" y="649.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">clamp: windup % of pidsum_limit</text>
+<text class="sub" x="2864" y="661.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">(pidsum_limit_yaw on yaw)</text>
+<rect x="2756" y="878" width="216" height="80" class="bx pid" rx="2" fill="#2d2510" stroke="#e69f00" stroke-width="1.75"/>
+<rect x="2760" y="882" width="208" height="72" class="inner" rx="1" fill="none" stroke="#e69f00" stroke-width="0.75"/>
+<text class="ttl" x="2864" y="904.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#f4f4f5" text-anchor="middle">D</text>
+<text class="sub" x="2864" y="920.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">input: Kd x (−dgyro/dt)</text>
+<text class="sub" x="2864" y="933.25" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">x D_MAX: max(|FF|, |dgyro|) boost</text>
+<text class="sub" x="2864" y="945.75" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#a1a1aa" text-anchor="middle">FF part 0 in Angle; then x TPA</text>
+<circle class="op" cx="2536" cy="390" r="22" fill="#2d2510" stroke="#e69f00" stroke-width="1.75"/>
+<text class="opg" x="2536" y="396" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#f4f4f5" text-anchor="middle">Σ</text>
+<circle class="op" cx="3192" cy="522" r="26" fill="#2d2510" stroke="#e69f00" stroke-width="1.75"/>
+<text class="opg" x="3192" y="528" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#f4f4f5" text-anchor="middle">Σ</text>
+<text class="opc" x="3168" y="482" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic" text-anchor="end">PID sum</text>
+<circle class="jdot" cx="1388" cy="390" r="3.5" fill="#f4f4f5"/>
+<circle class="jdot" cx="2650" cy="390" r="3.5" fill="#f4f4f5"/>
+<circle class="jdot" cx="2536" cy="634" r="3.5" fill="#f4f4f5"/>
+<circle class="jdot" cx="2700" cy="146" r="3.5" fill="#f4f4f5"/>
+<circle class="jdot" cx="2700" cy="270" r="3.5" fill="#f4f4f5"/>
+<circle class="jdot" cx="1704" cy="1162" r="3.5" fill="#f4f4f5"/>
+<circle class="jdot" cx="1224" cy="1520" r="3.5" fill="#8ccdf2"/>
+<circle class="jdot" cx="1552" cy="814" r="3.5" fill="#f4f4f5"/>
+<circle class="jdot" cx="896" cy="1061" r="3.5" fill="#a1a1aa"/>
+<circle class="jdot" cx="568" cy="1061" r="3.5" fill="#a1a1aa"/>
+<circle class="jdot" cx="1880" cy="770" r="3.5" fill="#a1a1aa"/>
+</g>
+<g id="sf-floats">
+<text class="sign" x="2506" y="379" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#f4f4f5" text-anchor="end">+</text>
+<text class="sign" x="2544" y="430" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#f4f4f5">−</text>
+<text class="elab" x="2564" y="378" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">error</text>
+<text class="cnd" x="2536" y="346" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">crash / yaw-spin recovery may</text>
+<text class="cnd" x="2536" y="358" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic" text-anchor="middle">override setpoint, error, I</text>
+<text class="elab" x="2547" y="558" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#a1a1aa" font-style="italic">gyro.gyroADCf</text>
+<text class="sign" x="3200" y="490" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#f4f4f5">+</text>
+<text class="sign" x="3158" y="499" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#f4f4f5" text-anchor="end">+</text>
+<text class="sign" x="3158" y="557" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#f4f4f5" text-anchor="end">+</text>
+<text class="sign" x="3200" y="566" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#f4f4f5">+</text>
+</g>
+<g id="sf-parameters" data-layer="parameters">
+<text class="par" x="2100" y="199" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">feedforward_transition · feedforward_boost · feedforward_jitter_factor</text>
+<text class="par" x="2100" y="211" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">feedforward_max_rate_limit · feedforward_averaging · feedforward_smooth_factor</text>
+<text class="par" x="2100" y="223" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">feedforward_yaw_hold_gain · feedforward_yaw_hold_time</text>
+<text class="par" x="240" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">serialrx_provider · rx_min_usec</text>
+<text class="par" x="240" y="456" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">rx_max_usec</text>
+<text class="par" x="568" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">deadband · yaw_deadband</text>
+<text class="par" x="568" y="456" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">yaw_control_reversed</text>
+<text class="par" x="896" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">rates_type · roll_rc_rate · roll_expo</text>
+<text class="par" x="896" y="456" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">roll_srate</text>
+<text class="par" x="1224" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">roll_rate_limit · pitch_rate_limit</text>
+<text class="par" x="1224" y="456" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">yaw_rate_limit</text>
+<text class="par" x="1552" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">fpv_mix_degrees</text>
+<text class="par" x="1880" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">rc_smoothing · rc_smoothing_setpoint_cutoff</text>
+<text class="par" x="1880" y="456" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">rc_smoothing_auto_factor</text>
+<text class="par" x="2208" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">angle_p_gain · angle_feedforward</text>
+<text class="par" x="2208" y="456" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">angle_feedforward_smoothing_ms · angle_limit</text>
+<text class="par" x="2208" y="468" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">angle_earth_ref · horizon_limit_degrees</text>
+<text class="par" x="2208" y="480" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">horizon_delay_ms · acc_limit · acc_limit_yaw</text>
+<text class="par" x="240" y="688" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">gyro_enabled_bitmask · gyro_hardware_lpf</text>
+<text class="par" x="568" y="688" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">align_board_roll · align_board_pitch</text>
+<text class="par" x="568" y="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">align_board_yaw</text>
+<text class="par" x="896" y="688" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">gyro_lpf2_type · gyro_lpf2_static_hz</text>
+<text class="par" x="1193" y="688" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">rpm_filter_harmonics</text>
+<text class="par" x="1193" y="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">rpm_filter_weights</text>
+<text class="par" x="1193" y="712" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">rpm_filter_q</text>
+<text class="par" x="1207" y="688" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">rpm_filter_min_hz</text>
+<text class="par" x="1207" y="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">rpm_filter_fade_range_hz</text>
+<text class="par" x="1552" y="688" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">gyro_notch1_hz · gyro_notch1_cutoff</text>
+<text class="par" x="1552" y="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">gyro_notch2_hz · gyro_notch2_cutoff</text>
+<text class="par" x="1873" y="688" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">gyro_lpf1_type</text>
+<text class="par" x="1873" y="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">gyro_lpf1_static_hz</text>
+<text class="par" x="1873" y="712" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">gyro_lpf1_dyn_min_hz</text>
+<text class="par" x="1887" y="688" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">gyro_lpf1_dyn_max_hz</text>
+<text class="par" x="1887" y="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">gyro_lpf1_dyn_expo</text>
+<text class="par" x="2208" y="688" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">dyn_notch_count · dyn_notch_q</text>
+<text class="par" x="2208" y="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">dyn_notch_min_hz · dyn_notch_max_hz</text>
+<text class="par" x="1552" y="972" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">dterm_notch_hz · dterm_notch_cutoff</text>
+<text class="par" x="1880" y="972" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">dterm_lpf1_type · dterm_lpf1_static_hz</text>
+<text class="par" x="1880" y="984" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">dterm_lpf1_dyn_min_hz</text>
+<text class="par" x="1880" y="996" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">dterm_lpf1_dyn_max_hz · dterm_lpf1_dyn_expo</text>
+<text class="par" x="2208" y="972" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">dterm_lpf2_type · dterm_lpf2_static_hz</text>
+<text class="par" x="233" y="972" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">anti_gravity_gain</text>
+<text class="par" x="233" y="984" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">anti_gravity_cutoff_hz</text>
+<text class="par" x="247" y="972" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">anti_gravity_p_gain</text>
+<text class="par" x="561" y="972" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">tpa_rate</text>
+<text class="par" x="561" y="984" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">tpa_breakpoint</text>
+<text class="par" x="561" y="996" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">tpa_mode</text>
+<text class="par" x="575" y="972" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">tpa_low_rate</text>
+<text class="par" x="575" y="984" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">tpa_low_breakpoint</text>
+<text class="par" x="896" y="950" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">gyro_lpf1_dyn_* · dterm_lpf1_dyn_*</text>
+<text class="par" x="1224" y="972" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">imu_dcm_kp · imu_dcm_ki · acc_lpf_hz</text>
+<text class="par" x="1224" y="984" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">small_angle · imu_process_denom</text>
+<text class="par" x="240" y="1216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">min_check · vbat_cutoff_percent</text>
+<text class="par" x="568" y="1216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">thr_mid · thr_expo · thr_hover</text>
+<text class="par" x="896" y="1216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">rc_smoothing_throttle_cutoff</text>
+<text class="par" x="896" y="1228" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">rc_smoothing_auto_factor_throttle</text>
+<text class="par" x="1224" y="1216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">thr_corr_value · thr_corr_angle</text>
+<text class="par" x="1552" y="1216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">throttle_limit_type · throttle_limit_percent</text>
+<text class="par" x="1880" y="1216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">throttle_boost · throttle_boost_cutoff</text>
+<text class="par" x="2208" y="1216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">thrust_linear</text>
+<text class="par" x="2559" y="1216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="end">rpm_limit</text>
+<text class="par" x="2573" y="1216" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">rpm_limit_value</text>
+<text class="par" x="3192" y="1460" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">pidsum_limit · pidsum_limit_yaw</text>
+<text class="par" x="2864" y="1460" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">yaw_motors_reversed</text>
+<text class="par" x="2536" y="1460" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">mixer_type · ez_landing_threshold</text>
+<text class="par" x="2536" y="1472" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">ez_landing_limit · ez_landing_speed</text>
+<text class="par" x="2208" y="1460" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">thrust_linear</text>
+<text class="par" x="1880" y="1357" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">motor_idle · motor_output_limit</text>
+<text class="par" x="1552" y="1460" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">motor_pwm_protocol · dshot_bidir</text>
+<text class="par" x="1224" y="1704" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">motor_poles · rpm_filter_lpf_hz</text>
+<text class="par" x="1880" y="1704" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">dyn_idle_min_rpm · dyn_idle_p_gain</text>
+<text class="par" x="1880" y="1716" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">dyn_idle_i_gain · dyn_idle_d_gain</text>
+<text class="par" x="1880" y="1728" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">dyn_idle_max_increase</text>
+<text class="par" x="2208" y="1704" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">vbat_sag_compensation</text>
+<text class="par" x="2864" y="200" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">f_roll · f_pitch · f_yaw</text>
+<text class="par" x="2864" y="444" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">p_roll · p_pitch · p_yaw · yaw_lowpass_hz</text>
+<text class="par" x="2864" y="688" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">i_roll · i_pitch · i_yaw · iterm_relax</text>
+<text class="par" x="2864" y="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">iterm_relax_type · iterm_relax_cutoff</text>
+<text class="par" x="2864" y="712" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">iterm_rotation · iterm_windup</text>
+<text class="par" x="2864" y="972" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">d_roll · d_pitch · d_yaw · d_max_roll</text>
+<text class="par" x="2864" y="984" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">d_max_pitch · d_max_yaw · d_max_gain</text>
+<text class="par" x="2864" y="996" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98" text-anchor="middle">d_max_advance</text>
+</g>
+<g id="sf-notes">
+<rect x="132" y="92" width="872" height="131" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<rect x="148" y="101" width="4" height="11" fill="#ffbb00"/>
+<text class="grpt" x="160" y="110" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#c4c4cc" letter-spacing=".1em">NOTES</text>
+<circle class="nmk" cx="156" cy="132" r="7.5" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="156" y="135.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">1</text>
+<text class="note" x="174" y="136" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Gyro LPF2 is the decimator: it runs at the raw sensor rate, ahead of the RPM filter.</text>
+<circle class="nmk" cx="156" cy="151" r="7.5" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="156" y="154.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">2</text>
+<text class="note" x="174" y="155" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Dynamic LPF adds no filter of its own, it retunes gyro LPF1 and D LPF1 from throttle.</text>
+<circle class="nmk" cx="156" cy="170" r="7.5" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="156" y="173.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">3</text>
+<text class="note" x="174" y="174" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">mixTable() limits the PID sum and updates TPA and anti-gravity (used one loop later).</text>
+<circle class="nmk" cx="156" cy="189" r="7.5" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="156" y="192.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">4</text>
+<text class="note" x="174" y="193" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">The mixer desaturates the mix (mixer_type, airmode) before throttle is added.</text>
+<circle class="nmk" cx="156" cy="208" r="7.5" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="156" y="211.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">5</text>
+<text class="note" x="174" y="212" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Attitude closes a slower outer loop: setpoint conditioning levels from it.</text>
+</g>
+<g id="sf-legend">
+<rect x="64" y="1819" width="3260" height="182" class="grp" rx="4" fill="#1f1f23" stroke="#34343a" stroke-width="1"/>
+<line x1="64" y1="1875" x2="3324" y2="1875" stroke="#34343a" stroke-width="1"/>
+<line x1="424" y1="1819" x2="424" y2="1875" stroke="#34343a" stroke-width="1"/>
+<line x1="1164" y1="1819" x2="1164" y2="1875" stroke="#34343a" stroke-width="1"/>
+<rect x="84" y="1834" width="5" height="26" fill="#ffbb00"/>
+<text class="tb" x="100" y="1849" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="800" fill="#f4f4f5" letter-spacing=".12em">BETAFLIGHT SIGNAL FLOW</text>
+<text class="src" x="100" y="1865" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">signal-flow diagram v1.0</text>
+<text class="cap" x="444" y="1841" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#8e8e98" letter-spacing=".16em">FIRMWARE REVISION</text>
+<text class="mono" x="444" y="1861" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="10.5" font-weight="400" fill="#a1a1aa">master @ 617e84f11f (2026-09-16, 2026.12.0-alpha)</text>
+<text class="src" x="784" y="1861" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="400" fill="#8e8e98">content verified against the firmware source</text>
+<text class="cap" x="1184" y="1841" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#8e8e98" letter-spacing=".16em">LICENCE</text>
+<text class="mono" x="1184" y="1861" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="10.5" font-weight="400" fill="#a1a1aa">Derived from the betaflight_processing diagram by mrRobot62 &#183; GPL-3.0</text>
+<text class="lgh" x="84" y="1907" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#8e8e98" letter-spacing=".16em">BLOCKS</text>
+<rect x="180" y="1896" width="22" height="14" rx="7" fill="#2a2a2f" stroke="#c8c8d0" stroke-width="2"/>
+<text class="lgt" x="210" y="1907" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Signal source / sink</text>
+<rect x="348" y="1896" width="22" height="14" rx="2" fill="#0e2536" stroke="#4aa6e6" stroke-width="1.25"/>
+<text class="lgt" x="378" y="1907" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Processing</text>
+<rect x="455" y="1896" width="22" height="14" rx="2" fill="#0f2a22" stroke="#2fc79a" stroke-width="1.25"/>
+<line x1="458" y1="1899" x2="458" y2="1907" stroke="#2fc79a" stroke-width="1"/>
+<line x1="474" y1="1899" x2="474" y2="1907" stroke="#2fc79a" stroke-width="1"/>
+<text class="lgt" x="485" y="1907" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Filter</text>
+<rect x="537.6" y="1896" width="22" height="14" rx="1.5" fill="#2d2510" stroke="#e69f00" stroke-width="1.5"/>
+<rect x="540.1" y="1898.5" width="17" height="9" fill="none" stroke="#e69f00" stroke-width="0.75"/>
+<text class="lgt" x="567.6" y="1907" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">PID term</text>
+<polygon points="636.4,1896 650.4,1896 654.4,1900 654.4,1906 650.4,1910 636.4,1910 632.4,1906 632.4,1900" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25"/>
+<text class="lgt" x="662.4" y="1907" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Mixer / output</text>
+<rect x="763.8" y="1896" width="22" height="14" fill="#2e1d29" stroke="#e08cbd" stroke-width="1.25" stroke-dasharray="3 3"/>
+<text class="lgt" x="793.8" y="1907" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Computed in the mixer, used next loop</text>
+<rect x="1035.5" y="1896" width="22" height="14" rx="1.5" fill="#2a2a2f" stroke="#c8c8d0" stroke-width="2.5"/>
+<text class="lgt" x="1065.5" y="1907" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Physics (not firmware)</text>
+<rect x="1215.7" y="1896" width="22" height="14" rx="2" fill="#27272a" stroke="#c4c4cc" stroke-width="1.25" stroke-dasharray="5 3"/>
+<text class="cnd" x="1245.7" y="1907" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="500" fill="#e69f00" font-style="italic">optional</text>
+<text class="lgt" x="1293.7" y="1907" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">= dashed outline + condition</text>
+<rect x="1493.4" y="1897" width="19.2" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="1503" y="1906.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">RX</text>
+<rect x="1519.4" y="1897" width="30.4" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="1534.6" y="1906.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">GYRO</text>
+<rect x="1559.4" y="1897" width="24.8" height="13" class="ratebg" rx="2" fill="#2f2f35"/>
+<text class="rate" x="1571.8" y="1906.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="8.5" font-weight="700" fill="#c4c4cc" letter-spacing=".06em" text-anchor="middle">ATT</text>
+<text class="lgt" x="1593.4" y="1907" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">runs per RX packet / at gyro rate / in the attitude task; unmarked = every PID loop</text>
+<text class="lgh" x="84" y="1943" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#8e8e98" letter-spacing=".16em">LINES</text>
+<path d="M 180 1939 h 30" stroke="#3d3210" stroke-width="12" stroke-linecap="round" fill="none"/>
+<path class="ln sig" d="M 180 1939 L 205.45 1939" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-sig)"/>
+<text class="lgt" x="222" y="1943" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Main control loop</text>
+<path class="ln sig wide" d="M 337.7 1939 L 361.8 1939" fill="none" stroke="#f4f4f5" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-wide)"/>
+<text class="lgt" x="379.7" y="1943" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Signal (thick: RX-to-motor spine)</text>
+<path class="ln mod" d="M 593 1939 L 622.4 1939" fill="none" stroke="#a1a1aa" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="8 3 1.5 3" marker-end="url(#sf-dark-a-mod)"/>
+<text class="lgt" x="635" y="1943" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Scheduling: sets a gain, cutoff or limit</text>
+<path class="ln tlm" d="M 891 1939 L 916.9 1939" fill="none" stroke="#8ccdf2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.01 3.6" marker-end="url(#sf-dark-a-tlm)"/>
+<text class="lgt" x="933" y="1943" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">ESC telemetry (bidirectional DShot)</text>
+<path class="ln phys" d="M 1158.5 1939 L 1181.7 1939" fill="none" stroke="#c8c8d0" stroke-width="4.5" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-phys)"/>
+<text class="lgt" x="1200.5" y="1943" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Physics: thrust and rotation</text>
+<path class="ln ext" d="M 1387.3 1939 L 1409.2 1939" fill="none" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-dark-a-ext)"/>
+<circle cx="1387.3" cy="1939" r="3.5" fill="#18181b" stroke="#f4f4f5" stroke-width="1.25"/>
+<text class="lgt" x="1425.3" y="1943" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">External input (autopilot, GPS rescue)</text>
+<text class="lgh" x="84" y="1979" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#8e8e98" letter-spacing=".16em">MARKS</text>
+<circle cx="190" cy="1975" r="10" fill="#2d2510" stroke="#e69f00" stroke-width="1.5"/>
+<text class="opg" x="190" y="1979.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#f4f4f5" text-anchor="middle">&#931;</text>
+<text class="lgt" x="208" y="1979" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Summing point (signs at the entries)</text>
+<circle cx="459.6" cy="1975" r="3.5" fill="#f4f4f5"/>
+<text class="lgt" x="471.6" y="1979" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Signal branch</text>
+<polygon class="tag" points="578.9,1967 606.3,1967 613.3,1975 606.3,1983 578.9,1983" fill="#27272a" stroke="#c4c4cc" stroke-width="1.1" stroke-linejoin="round"/>
+<text class="tagt" x="592.6" y="1978.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9" font-weight="700" fill="#f4f4f5" letter-spacing=".04em" text-anchor="middle">TPA</text>
+<text class="lgt" x="626.9" y="1979" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Off-sheet connector: continues at the tag with the same name</text>
+<line x1="1010.9" y1="1975" x2="1040.9" y2="1975" stroke="#f4f4f5" stroke-width="1.6"/>
+<line x1="1022.4" y1="1981" x2="1029.4" y2="1969" class="bw" stroke="#f4f4f5" stroke-width="1.25" stroke-linecap="round"/>
+<text class="bwt" x="1027.9" y="1992" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" font-weight="700" fill="#f4f4f5" text-anchor="middle">3</text>
+<text class="lgt" x="1052.9" y="1979" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">Bus width: 3 = roll / pitch / yaw, N = one per motor</text>
+<circle class="nmk" cx="1382.1" cy="1975" r="8" fill="#ffbb00" stroke="#18181b" stroke-width="1.5"/>
+<text class="nmkt" x="1382.1" y="1978.4" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="800" fill="#18181d" text-anchor="middle">1</text>
+<text class="lgt" x="1398.1" y="1979" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">See note with that number</text>
+<text class="lgt" x="1572.6" y="1979" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#a1a1aa">▲▼ shift the motor output window [motorRangeMin .. motorRangeMax]</text>
+</g>
+</svg>

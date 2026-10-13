@@ -1,0 +1,110 @@
+<!--
+  Betaflight signal-flow diagram.
+  Firmware revision depicted: master @ 617e84f11f (2026-09-16, 2026.12.0-alpha)
+  Derived from the betaflight_processing diagram by mrRobot62:
+  https://github.com/mrRobot62/betaflight_processing
+  Licensed under the GNU General Public License v3.0.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1888" height="776" viewBox="0 0 1888 776" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Betaflight signal flow module overview for the current master branch">
+<title>Betaflight signal flow, module overview &#8212; master @ 617e84f11f (2026-09-16, 2026.12.0-alpha)</title>
+<desc>Module overview: RC and setpoint, feedforward, gyro and D-term filtering, attitude, PID controller, throttle, mixer, motor output and airframe, and the connections between them. Derived from the betaflight_processing diagram by mrRobot62, GPL-3.0.</desc>
+<defs>
+<marker id="sf-ov-light-a-sig" viewBox="0 0 12 9" refX="6.1" refY="4.5" markerWidth="12" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0 0 L 12 4.5 L 0 9 z" fill="#18181b"/></marker>
+<marker id="sf-ov-light-a-wide" viewBox="0 0 15 12" refX="7.75" refY="6" markerWidth="15" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0 0 L 15 6 L 0 12 z" fill="#18181b"/></marker>
+<marker id="sf-ov-light-a-phys" viewBox="0 0 18 15" refX="9.4" refY="7.5" markerWidth="18" markerHeight="15" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0 0 L 18 7.5 L 0 15 z" fill="#3c3c44"/></marker>
+</defs>
+<rect x="0" y="0" width="1888" height="776" class="bg" fill="#ffffff"/>
+<g id="sf-groups">
+</g>
+<g id="sf-loop">
+<path class="casing" d="M 304 282 L 350 282" fill="none" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 398 282 L 444 282" fill="none" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 684 282 L 824 282" fill="none" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1064 282 L 1204 282" fill="none" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1444 282 L 1584 282" fill="none" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1704 324 L 1704 418" fill="none" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 1704 502 L 1704 536 L 374 536" fill="none" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 374 536 L 374 306" fill="none" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 564 536 L 564 502" fill="none" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="casing" d="M 564 418 L 564 324" fill="none" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="sf-edges">
+<path class="ln sig wide" d="M 304 282 L 342.75 282" fill="none" stroke="#18181b" stroke-width="3.5" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-wide)"/>
+<path class="ln sig wide" d="M 398 282 L 436.75 282" fill="none" stroke="#18181b" stroke-width="3.5" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-wide)"/>
+<path class="ln sig wide" d="M 684 282 L 816.75 282" fill="none" stroke="#18181b" stroke-width="3.5" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-wide)"/>
+<path class="ln sig wide" d="M 1064 282 L 1196.75 282" fill="none" stroke="#18181b" stroke-width="3.5" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-wide)"/>
+<path class="ln phys wide" d="M 1444 282 L 1575.4 282" fill="none" stroke="#3c3c44" stroke-width="6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-phys)"/>
+<path class="ln phys" d="M 1704 324 L 1704 409.4" fill="none" stroke="#3c3c44" stroke-width="6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-phys)"/>
+<text class="elab" x="1720" y="375" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" font-style="italic">body rates</text>
+<path class="ln sig" d="M 1704 502 L 1704 536 L 184 536 L 184 507.9" fill="none" stroke="#18181b" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-sig)"/>
+<text class="elab" x="894" y="518.808" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" font-style="italic">filtered gyro</text>
+<path class="ln sig" d="M 374 536 L 374 311.9" fill="none" stroke="#18181b" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-sig)"/>
+<path class="ln sig" d="M 564 536 L 564 507.9" fill="none" stroke="#18181b" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-sig)"/>
+<path class="ln sig" d="M 564 418 L 564 329.9" fill="none" stroke="#18181b" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-sig)"/>
+<path class="ln sig" d="M 184 418 L 184 329.9" fill="none" stroke="#18181b" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-sig)"/>
+<text class="elab" x="191" y="375" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" font-style="italic">angle</text>
+<path class="ln sig" d="M 184 240 L 184 104 L 438.1 104" fill="none" stroke="#18181b" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-sig)"/>
+<path class="ln sig" d="M 564 146 L 564 234.1" fill="none" stroke="#18181b" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-sig)"/>
+<path class="ln sig" d="M 944 146 L 944 234.1" fill="none" stroke="#18181b" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-sig)"/>
+</g>
+<g id="sf-group-labels">
+</g>
+<g id="sf-nodes">
+<rect x="444" y="62" width="240" height="84" class="bx proc" rx="4" fill="#f4f4f5" stroke="#3f3f46" stroke-width="1.75"/>
+<text class="ttl" x="564" y="101" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#18181b" text-anchor="middle">Feedforward</text>
+<text class="sub" x="564" y="126" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="middle">from stick speed</text>
+<rect x="824" y="62" width="240" height="84" class="bx proc" rx="4" fill="#f4f4f5" stroke="#3f3f46" stroke-width="1.75"/>
+<text class="ttl" x="944" y="101" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#18181b" text-anchor="middle">Throttle</text>
+<text class="sub" x="944" y="126" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="middle">curve, limit, boost</text>
+<rect x="64" y="240" width="240" height="84" class="bx proc" rx="4" fill="#f4f4f5" stroke="#3f3f46" stroke-width="1.75"/>
+<text class="ttl" x="184" y="279" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#18181b" text-anchor="middle">RC / setpoint</text>
+<text class="sub" x="184" y="304" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="middle">sticks → rotation rate</text>
+<rect x="444" y="240" width="240" height="84" class="bx pid" rx="2" fill="#fff3d1" stroke="#9a5b00" stroke-width="2"/>
+<rect x="449" y="245" width="230" height="74" class="inner" rx="1" fill="none" stroke="#9a5b00" stroke-width="1"/>
+<text class="ttl" x="564" y="279" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#18181b" text-anchor="middle">PID controller</text>
+<text class="sub" x="564" y="304" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="middle">P + I + D + F per axis</text>
+<rect x="824" y="240" width="240" height="84" class="bx proc" rx="4" fill="#f4f4f5" stroke="#3f3f46" stroke-width="1.75"/>
+<text class="ttl" x="944" y="279" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#18181b" text-anchor="middle">Mixer</text>
+<text class="sub" x="944" y="304" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="middle">axes → motors</text>
+<rect x="1204" y="240" width="240" height="84" class="bx proc" rx="4" fill="#f4f4f5" stroke="#3f3f46" stroke-width="1.75"/>
+<text class="ttl" x="1324" y="279" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#18181b" text-anchor="middle">Motor output</text>
+<text class="sub" x="1324" y="304" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="middle">DShot to the ESCs</text>
+<rect x="1584" y="240" width="240" height="84" class="bx plant" rx="2" fill="#ececee" stroke="#3c3c44" stroke-width="3.5"/>
+<text class="ttl" x="1704" y="279" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#18181b" text-anchor="middle">Airframe</text>
+<text class="sub" x="1704" y="304" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="middle">thrust → rotation</text>
+<rect x="64" y="418" width="240" height="84" class="bx proc" rx="4" fill="#f4f4f5" stroke="#3f3f46" stroke-width="1.75"/>
+<text class="ttl" x="184" y="457" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#18181b" text-anchor="middle">Attitude</text>
+<text class="sub" x="184" y="482" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="middle">angle estimate (IMU)</text>
+<rect x="444" y="418" width="240" height="84" class="bx proc" rx="4" fill="#f4f4f5" stroke="#3f3f46" stroke-width="1.75"/>
+<text class="ttl" x="564" y="457" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#18181b" text-anchor="middle">D-term filtering</text>
+<text class="sub" x="564" y="482" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="middle">derivative of the gyro</text>
+<rect x="1584" y="418" width="240" height="84" class="bx proc" rx="4" fill="#f4f4f5" stroke="#3f3f46" stroke-width="1.75"/>
+<text class="ttl" x="1704" y="457" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#18181b" text-anchor="middle">Gyro filtering</text>
+<text class="sub" x="1704" y="482" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="middle">sensor, notches, LPFs</text>
+<circle class="op" cx="374" cy="282" r="24" fill="#fff3d1" stroke="#9a5b00" stroke-width="2"/>
+<text class="opg" x="374" y="289.5" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#18181b" text-anchor="middle">Σ</text>
+<circle class="jdot" cx="374" cy="536" r="5" fill="#18181b"/>
+<circle class="jdot" cx="564" cy="536" r="5" fill="#18181b"/>
+</g>
+<g id="sf-floats">
+<text class="sign" x="344" y="252" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#18181b" text-anchor="end">+</text>
+<text class="sign" x="344" y="326" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#18181b" text-anchor="end">−</text>
+</g>
+<g id="sf-parameters" data-layer="parameters">
+</g>
+<g id="sf-legend">
+<rect x="64" y="600" width="1760" height="112" class="grp" rx="4" fill="#f4f4f5" stroke="#dcdce0" stroke-width="1"/>
+<line x1="64" y1="652" x2="1824" y2="652" stroke="#dcdce0" stroke-width="1"/>
+<rect x="84" y="614" width="5" height="24" fill="#ffbb00"/>
+<text class="tb" x="100" y="632" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="800" fill="#18181b" letter-spacing=".12em">BETAFLIGHT SIGNAL FLOW</text>
+<text class="note" x="404" y="632" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b">Simplified &#183; diagram v1.0 &#183; master @ 617e84f11f (2026-09-16, 2026.12.0-alpha)</text>
+<path d="M 84 682 h 36" stroke="#ffe9ad" stroke-width="18" stroke-linecap="round" fill="none"/>
+<path class="ln sig" d="M 84 682 L 114.1 682" fill="none" stroke="#18181b" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-sig)"/>
+<text class="lgt" x="136" y="688" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b">Main control loop</text>
+<path class="ln sig wide" d="M 322.2 682 L 350.95 682" fill="none" stroke="#18181b" stroke-width="3.5" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-wide)"/>
+<text class="lgt" x="374.2" y="688" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b">Signal (thick: forward path)</text>
+<path class="ln phys" d="M 655 682 L 682.4 682" fill="none" stroke="#3c3c44" stroke-width="6" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#sf-ov-light-a-phys)"/>
+<text class="lgt" x="707" y="688" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b">Physics: thrust and rotation</text>
+<text class="lgt" x="1804" y="688" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#52525b" text-anchor="end">Detailed view: every block, parameter and side path</text>
+</g>
+</svg>
