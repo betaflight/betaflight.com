@@ -171,19 +171,16 @@ Betaflight keeps a map of the device cells written since the last MSP_DP_CLEAR_S
 
 Spaces that land on blank cells are not sent. Inner runs of such spaces are sent along with the string when that costs fewer bytes than starting a new write, unless the previous screen was short of budget. The OSD sends MSP_DP_CLEAR_SCREEN at the start of every frame, so the limit applies to each frame on its own.
 
-With `displayport_msp_cell_budget` set, a write that would take the screen over the budget is dropped, so the device still accepts the frame and only the elements drawn last are missing. If content was built up over several frames without a clear, as the CMS menus do, Betaflight sends MSP_DP_CLEAR_SCREEN once and the menu is repainted in full.
+With `displayport_msp_cell_budget` set, a write that would take the screen over the budget is dropped, so the device still accepts the frame and only the elements drawn last are missing.
 
-The budget is disabled at runtime once the display device announces its canvas with MSP_SET_OSD_CANVAS, as HDZero does, and at start-up when the saved HD canvas is not the default 53x20. For other devices without such a limit set it to 0.
+The budget applies to the default HD canvas of 53x20 only. DJI never announces a canvas, while a device that does, as HDZero does with 50x18 in MSP_SET_OSD_CANVAS, sets the canvas of the OSD and so switches the budget off. For other devices without such a limit that use the default canvas, set it to 0.
 
 Set `debug_mode = MSP_DISPLAYPORT` to check how close a layout is to the limit.
 
 | debug | Value |
 | ----- | ----- |
 | 0 | Screen load, in cells, at the time of the draw |
-| 1 | Cell budget in effect, 0 when disabled |
-| 2 | Writes dropped in the frame for lack of budget |
-| 3 | MSP_DP_WRITE_STRING bytes sent in the frame |
-| 4 | Cells written since the last clear |
+| 1 | Writes dropped in the frame for lack of budget |
 
 ### The goggles' own interface
 
