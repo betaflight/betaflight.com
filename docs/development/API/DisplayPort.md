@@ -171,7 +171,7 @@ Betaflight keeps a map of the device cells written since the last MSP_DP_CLEAR_S
 
 Spaces that land on blank cells are not sent. Inner runs of such spaces are sent along with the string when that costs fewer bytes than starting a new write, unless the previous screen was short of budget. The OSD sends MSP_DP_CLEAR_SCREEN at the start of every frame, so the limit applies to each frame on its own.
 
-With `displayport_msp_cell_budget` set, a write that would take the screen over the budget is dropped, so the device still accepts the frame and only the elements drawn last are missing.
+With `displayport_msp_cell_budget` set, a write that would take the screen over the budget is dropped, so the device still accepts the frame and only the elements drawn last are missing. If content was built up over several frames without a clear, as the CMS menus do, Betaflight sends MSP_DP_CLEAR_SCREEN once and the menu is repainted in full.
 
 The budget applies to the default HD canvas of 53x20 only. DJI never announces a canvas, while a device that does, as HDZero does with 50x18 in MSP_SET_OSD_CANVAS, sets the canvas of the OSD and so switches the budget off. For other devices without such a limit that use the default canvas, set it to 0.
 
