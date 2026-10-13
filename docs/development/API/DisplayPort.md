@@ -172,7 +172,7 @@ A busy OSD sent whole every frame, as clear, every element and draw, does not fi
 - The OSD waits for room in the serial buffer before it writes, instead of losing what does not fit.
 - Betaflight keeps a table of the writes the device holds (place, length, attribute and a hash of the characters, no copy of the screen) and sends only the writes that changed. Writes a frame does not repeat are blanked with spaces. No MSP_DP_DRAW_SCREEN is sent when nothing changed. Spaces are not sent to cells that are blank on the device.
 - Once a second the device is cleared and sent the whole screen in one draw. This brings back goggles that were switched off and on, repairs a write the device missed, and frees the DJI screen load. The device shows a frame at the draw, so the clear does not flash.
-- The CMS draws without clearing, so the once-a-second clear does not run while the menus are open. Each menu page starts with a clear.
+- The CMS draws without clearing, so while a menu is open Betaflight sends the clear itself and has the CMS draw its page again. The draw waits until the page is back, so the goggles never show half a page. Each new menu page also starts with a clear.
 
 On the same flight controller this took the UART from about 100 % to 43 % at `osd_framerate_hz = 12` and 62 % at 30, with every frame complete. This applies to the default HD canvas of 53x20 and smaller ones. For a device that does not keep its screen between draws, set `displayport_msp_send_changes = OFF`.
 
