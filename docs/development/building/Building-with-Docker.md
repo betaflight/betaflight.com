@@ -112,13 +112,13 @@ The devcontainer includes `dfu-util` for flashing over USB DFU and `stm32flash` 
 
 Set up udev rules on your host system for device access:
 
-1. Create `/etc/udev/rules.d/99-betaflight.rules`:
+1. Create `/etc/udev/rules.d/70-betaflight.rules`:
 
    ```bash
    # STM32 Virtual COM Port
-   SUBSYSTEM=="tty", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0666", TAG+="uaccess"
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", TAG+="uaccess"
    # STM32 DFU
-   SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="df11", MODE="0666"
+   SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="df11", TAG+="uaccess"
 
    # USB-to-serial adapters for stm32flash (these vendors make only bridge chips, so all products match)
    # FTDI
@@ -133,7 +133,9 @@ Set up udev rules on your host system for device access:
 
    Keep each comment on its own line: udev rejects a rule line that ends in a comment and silently skips that rule.
 
-   The adapter rules set no `MODE`, so the port keeps the distribution's default (`root:dialout`, or `root:uucp` on Arch, mode `0660`) and `uaccess` adds access only for the user logged in at the machine. The container user has the same uid (1000) as the usual first desktop user, so that access carries into the container. On a host without a local login session, for example over SSH, `uaccess` grants nothing: run `sudo stm32flash` inside a Docker container, or with Podman add your host user to `dialout` (`uucp` on Arch) and add `--group-add=keep-groups` to `runArgs` in `.devcontainer/devcontainer.json`.
+   The file number must stay below 73: systemd applies `uaccess` in `73-seat-late.rules`, so a tag added by a later file is ignored.
+
+   The rules set no `MODE`, so each device keeps the distribution's default (serial ports `root:dialout`, or `root:uucp` on Arch, mode `0660`; DFU devices `root:root`, mode `0664`) and `uaccess` adds access only for the user logged in at the machine. The container user has the same uid (1000) as the usual first desktop user, so that access carries into the container. On a host without a local login session, for example over SSH, `uaccess` grants nothing: run the flashing tool with `sudo` inside a Docker container (`sudo stm32flash`, `sudo dfu-util`). With Podman, add your host user to `dialout` (`uucp` on Arch) and add `--group-add=keep-groups` to `runArgs` in `.devcontainer/devcontainer.json`; this covers serial ports only, not DFU.
 
 2. Reload udev rules:
 
