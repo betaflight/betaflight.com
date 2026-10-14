@@ -122,16 +122,18 @@ Set up udev rules on your host system for device access:
 
    # USB-to-serial adapters for stm32flash (these vendors make only bridge chips, so all products match)
    # FTDI
-   SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", MODE="0666", TAG+="uaccess"
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", TAG+="uaccess"
    # Silicon Labs CP210x
-   SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", MODE="0666", TAG+="uaccess"
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", TAG+="uaccess"
    # WCH CH34x / CH343 / CH9102
-   SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", MODE="0666", TAG+="uaccess"
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", TAG+="uaccess"
    # Prolific PL2303
-   SUBSYSTEM=="tty", ATTRS{idVendor}=="067b", MODE="0666", TAG+="uaccess"
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="067b", TAG+="uaccess"
    ```
 
    Keep each comment on its own line: udev rejects a rule line that ends in a comment and silently skips that rule.
+
+   The adapter rules set no `MODE`, so the port keeps the distribution's default (`root:dialout`, or `root:uucp` on Arch, mode `0660`) and `uaccess` adds access only for the user logged in at the machine. The container user has the same uid (1000) as the usual first desktop user, so that access carries into the container. On a host without a local login session, for example over SSH, `uaccess` grants nothing: run `sudo stm32flash` inside a Docker container, or with Podman add your host user to `dialout` (`uucp` on Arch) and add `--group-add=keep-groups` to `runArgs` in `.devcontainer/devcontainer.json`.
 
 2. Reload udev rules:
 
