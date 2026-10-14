@@ -174,7 +174,15 @@ A busy OSD sent whole every frame, as clear, every element and draw, does not fi
 - Once a second the device is cleared and sent the whole screen in one draw. This brings back goggles that were switched off and on, repairs a write the device missed, and frees the DJI screen load. The device shows a frame at the draw, so the clear does not flash.
 - The CMS draws without clearing, so while a menu is open Betaflight sends the clear itself and has the CMS draw its page again. The draw waits until the page is back, so the goggles never show half a page. Each new menu page also starts with a clear.
 
-On the same flight controller this took the UART from about 100 % to 43 % at `osd_framerate_hz = 12` and 62 % at 30, with every frame complete. This applies to the default HD canvas of 53x20 and smaller ones. For a device that does not keep its screen between draws, set `displayport_msp_send_changes = OFF`.
+On the same flight controller this took the UART from about 100 % to 43 % at `osd_framerate_hz = 12` and 62 % at 30, with every frame complete. The layout of those tests has 50 elements, among them the artificial horizon and sidebars, the compass bar, both stick overlays, PIDs, GPS, timers, battery and power values and warnings:
+
+![The OSD layout of the flight controller tests, as the goggles show it](/img/displayport/osd-layout-heavy.jpg)
+
+With the flight controller turned by hand, the goggles were snapshotted twice a second. Ten seconds of those snapshots, at twice the speed, master on the left and the change on the right; for master they are the ten seconds with the most elements missing, and the two sides are separate runs:
+
+![Before and after at osd_framerate_hz 12](/img/displayport/motion-12hz.gif)
+
+![Before and after at osd_framerate_hz 30](/img/displayport/motion-30hz.gif) This applies to the default HD canvas of 53x20 and smaller ones. For a device that does not keep its screen between draws, set `displayport_msp_send_changes = OFF`.
 
 For the DJI screen load, Betaflight keeps a map of the device cells written since the last MSP_DP_CLEAR_SCREEN and works out the load: one per cell, plus 0.75 for a cell two columns from the one before it in screen order and 1.3 for one three or more columns away. This is an empirical fit to the measurements above, as the goggles' internals are unknown. A write that would take the load over `displayport_msp_cell_budget` is held back and the device is cleared at the start of the next frame. A screen too big even right after a clear leaves out what does not fit until the next clear.
 
@@ -198,6 +206,8 @@ DJI goggles draw their own widgets over the characters sent by the flight contro
 | A | 5-6 | 44-49 | Remaining recording time of the air unit and of the goggles |
 | B | 16 | 36-49 | Notifications, with their own background |
 | C | 18 | 35-48 | Air unit voltage, link, bitrate, goggles battery |
+
+![Where the goggles draw their own widgets on the 53x20 canvas](/img/displayport/dji-safe-zone.jpg)
 
 ```
    0         1         2         3         4         5  
