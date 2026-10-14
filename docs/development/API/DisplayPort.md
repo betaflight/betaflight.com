@@ -171,7 +171,7 @@ HDZero VTX announces its canvas with MSP_SET_OSD_CANVAS when it starts and keeps
 A busy OSD sent whole every frame, as clear, every element and draw, does not fit through a 115200 baud UART together with the answers to the Air Unit's polls. What does not fit in the serial transmit buffer is dropped without a trace, so elements go missing and draws are lost: on a flight controller with a heavy layout, only about 5 of 12 draws a second reached the goggles, and half the frames were incomplete. With `displayport_msp_send_changes = ON`, the default:
 
 - The OSD waits for room in the serial buffer before it writes, instead of losing what does not fit.
-- Betaflight keeps a table of the writes the device holds (place, length, attribute and a hash of the characters, no copy of the screen) and sends only the writes that changed. Writes a frame does not repeat are blanked, with spaces or, for DJI, with 0. No MSP_DP_DRAW_SCREEN is sent when nothing changed. Spaces at the start and end of a write are left out where they fall on cells that are blank on the device; spaces inside a write are sent, as 0 to DJI.
+- Betaflight keeps a copy of what the device holds, cell by cell, as it does for a MAX7456, and sends only the cells that changed: a changed digit of a value sends that digit. Unchanged cells between two changed ones go along when there are fewer of them than a write of its own costs. The cells a frame does not write are blanked, with spaces or, for DJI, with 0. No MSP_DP_DRAW_SCREEN is sent when nothing changed. A space on a cell that is blank on the device is no change, and goes only among changed cells around it; a space that is sent goes as 0 to DJI.
 - Once a second the device is cleared and sent the whole screen in one draw. This brings back goggles that were switched off and on and repairs a write the device missed. The device shows a frame at the draw, so the clear does not flash.
 - The CMS draws without clearing, so while a menu is open Betaflight sends the clear itself and has the CMS draw its page again. The draw waits until the page is back, so the goggles never show half a page. Each new menu page also starts with a clear.
 
@@ -196,7 +196,7 @@ Set `debug_mode = MSP_DISPLAYPORT` to see what the link and the device carry.
 | 0 | Bytes sent in the frame |
 | 1 | Cells sent in the frame |
 | 2 | Size of the screen the DJI goggles hold, in bytes (0 for other devices) |
-| 3 | Writes held in the table (up to 96) |
+| 3 | Cells that show something on the device |
 
 ### The goggles' own interface
 
