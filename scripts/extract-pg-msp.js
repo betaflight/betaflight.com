@@ -483,11 +483,8 @@ const mspInPayloads = {};
 if (mspCContent) {
   const lines = mspCContent.split('\n');
 
-  // Line ranges for out vs in handlers (0-indexed)
-  // mspCommonProcessOutCommand: ~line 627
-  // mspProcessOutCommand: ~line 1085
-  // mspProcessInCommand: ~line 2647
-  // Detect by scanning for function signatures
+  // Line ranges for out vs in handlers (0-indexed), detected by scanning for function signatures:
+  // out = mspCommonProcessOutCommand .. mspProcessInCommand, in = mspProcessInCommand .. mspFcProcessCommand
   let outStart = -1;
   let inStart = -1;
   let inEnd = -1;
