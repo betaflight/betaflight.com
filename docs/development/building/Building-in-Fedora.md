@@ -92,7 +92,7 @@ Add yourself to the `dialout` group:
 $ sudo usermod -aG dialout $(whoami)
 ```
 
-Create the udev rules file for DFU device access. Save and reboot after adding the following contents:
+Create the udev rules file for DFU and USB-to-serial device access. Save and reboot after adding the following contents:
 
 ```bash
 $ sudo nano /etc/udev/rules.d/45-stdfu-permissions.rules
@@ -115,6 +115,50 @@ ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", ENV{ID_MM_DEVICE_IGNORE}="1"
 # RP2350 (Raspberry Pi Pico) Bootloader
 ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", ENV{ID_MM_DEVICE_IGNORE}="1"
 
+# USB-to-Serial
+# FTDI FT232R
+ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ENV{ID_MM_DEVICE_IGNORE}="1"
+# FTDI FT2232H (also ESP-Prog)
+ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ENV{ID_MM_DEVICE_IGNORE}="1"
+# FTDI FT4232H
+ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ENV{ID_MM_DEVICE_IGNORE}="1"
+# FTDI FT232H
+ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", ENV{ID_MM_DEVICE_IGNORE}="1"
+# FTDI FT230X/FT231X
+ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", ENV{ID_MM_DEVICE_IGNORE}="1"
+# Silicon Labs CP210x
+ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ENV{ID_MM_DEVICE_IGNORE}="1"
+# Silicon Labs CP210x
+ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea61", ENV{ID_MM_DEVICE_IGNORE}="1"
+# Silicon Labs CP210x
+ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea62", ENV{ID_MM_DEVICE_IGNORE}="1"
+# Silicon Labs CP2105
+ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea70", ENV{ID_MM_DEVICE_IGNORE}="1"
+# Silicon Labs CP2108
+ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea71", ENV{ID_MM_DEVICE_IGNORE}="1"
+# WCH CH341
+ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5523", ENV{ID_MM_DEVICE_IGNORE}="1"
+# WCH CH340 (variant)
+ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7522", ENV{ID_MM_DEVICE_IGNORE}="1"
+# WCH CH340
+ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", ENV{ID_MM_DEVICE_IGNORE}="1"
+# WCH CH340S
+ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7584", ENV{ID_MM_DEVICE_IGNORE}="1"
+# WCH CH343
+ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="55d3", ENV{ID_MM_DEVICE_IGNORE}="1"
+# WCH CH9102
+ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="55d4", ENV{ID_MM_DEVICE_IGNORE}="1"
+# Prolific PL2303
+ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", ENV{ID_MM_DEVICE_IGNORE}="1"
+# Prolific PL2303GC
+ATTRS{idVendor}=="067b", ATTRS{idProduct}=="23a3", ENV{ID_MM_DEVICE_IGNORE}="1"
+# Microchip MCP2221
+ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00dd", ENV{ID_MM_DEVICE_IGNORE}="1"
+# Microchip MCP2200
+ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00df", ENV{ID_MM_DEVICE_IGNORE}="1"
+# Espressif ESP32-S3/C3 USB-Serial/JTAG
+ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", ENV{ID_MM_DEVICE_IGNORE}="1"
+
 LABEL="mm_usb_device_blacklist_end"
 
 # STM32 DFU Access
@@ -129,6 +173,50 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", TAG+="uacce
 SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", TAG+="uaccess"
 # RP2350 (Raspberry Pi Pico) Bootloader Access
 SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", TAG+="uaccess"
+
+# USB-to-Serial Access
+# FTDI FT232R
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", TAG+="uaccess"
+# FTDI FT2232H (also ESP-Prog)
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", TAG+="uaccess"
+# FTDI FT4232H
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", TAG+="uaccess"
+# FTDI FT232H
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", TAG+="uaccess"
+# FTDI FT230X/FT231X
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", TAG+="uaccess"
+# Silicon Labs CP210x
+SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", TAG+="uaccess"
+# Silicon Labs CP210x
+SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea61", TAG+="uaccess"
+# Silicon Labs CP210x
+SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea62", TAG+="uaccess"
+# Silicon Labs CP2105
+SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea70", TAG+="uaccess"
+# Silicon Labs CP2108
+SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea71", TAG+="uaccess"
+# WCH CH341
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5523", TAG+="uaccess"
+# WCH CH340 (variant)
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7522", TAG+="uaccess"
+# WCH CH340
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", TAG+="uaccess"
+# WCH CH340S
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7584", TAG+="uaccess"
+# WCH CH343
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="55d3", TAG+="uaccess"
+# WCH CH9102
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="55d4", TAG+="uaccess"
+# Prolific PL2303
+SUBSYSTEM=="usb", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", TAG+="uaccess"
+# Prolific PL2303GC
+SUBSYSTEM=="usb", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="23a3", TAG+="uaccess"
+# Microchip MCP2221
+SUBSYSTEM=="usb", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00dd", TAG+="uaccess"
+# Microchip MCP2200
+SUBSYSTEM=="usb", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00df", TAG+="uaccess"
+# Espressif ESP32-S3/C3 USB-Serial/JTAG
+SUBSYSTEM=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", TAG+="uaccess"
 ```
 
 ## Using Devcontainers

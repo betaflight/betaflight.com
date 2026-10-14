@@ -135,7 +135,33 @@ ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="010
 # X32
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
 
-# WCH CH340/CH341 USB-to-Serial
+# FTDI USB-to-Serial
+
+# FT232R
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE="0664", GROUP="plugdev"
+# FT2232H (also ESP-Prog)
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", MODE="0664", GROUP="plugdev"
+# FT4232H
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", MODE="0664", GROUP="plugdev"
+# FT232H
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", MODE="0664", GROUP="plugdev"
+# FT230X/FT231X
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", MODE="0664", GROUP="plugdev"
+
+# Silicon Labs CP210x USB-to-Serial
+
+# CP210x
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", MODE="0664", GROUP="plugdev"
+# CP210x
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea61", MODE="0664", GROUP="plugdev"
+# CP210x
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea62", MODE="0664", GROUP="plugdev"
+# CP2105
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea70", MODE="0664", GROUP="plugdev"
+# CP2108
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea71", MODE="0664", GROUP="plugdev"
+
+# WCH CH34x/CH9102 USB-to-Serial
 
 # CH341
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5523", MODE="0664", GROUP="plugdev"
@@ -145,6 +171,29 @@ ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="752
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="0664", GROUP="plugdev"
 # CH340S
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7584", MODE="0664", GROUP="plugdev"
+# CH343
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="55d3", MODE="0664", GROUP="plugdev"
+# CH9102
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="55d4", MODE="0664", GROUP="plugdev"
+
+# Prolific USB-to-Serial
+
+# PL2303
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", MODE="0664", GROUP="plugdev"
+# PL2303GC
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="23a3", MODE="0664", GROUP="plugdev"
+
+# Microchip USB-to-Serial
+
+# MCP2221
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00dd", MODE="0664", GROUP="plugdev"
+# MCP2200
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00df", MODE="0664", GROUP="plugdev"
+
+# Espressif native USB
+
+# ESP32-S3/C3 USB-Serial/JTAG
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", MODE="0664", GROUP="plugdev"
 EOF
 ```
 
