@@ -175,7 +175,9 @@ A busy OSD sent whole every frame, as clear, every element and draw, does not fi
 - Once a second the device is cleared and sent the whole screen in one draw. This brings back goggles that were switched off and on and repairs a write the device missed. The device shows a frame at the draw, so the clear does not flash.
 - The CMS draws without clearing, so while a menu is open Betaflight sends the clear itself and has the CMS draw its page again. The draw waits until the page is back, so the goggles never show half a page. Each new menu page also starts with a clear.
 
-On the same flight controller this took the UART from about 100 % to 43 % at `osd_framerate_hz = 12` and 62 % at 30, with every frame complete. The layout of those tests has 50 elements, among them the artificial horizon and sidebars, the compass bar, both stick overlays, PIDs, GPS, timers, battery and power values and warnings:
+On the same flight controller this took the UART from about 100 % to 43 % at `osd_framerate_hz = 12` and 62 % at 30, with every frame complete. This applies to the default HD canvas of 53x20 and smaller ones. For a device that does not keep its screen between draws, set `displayport_msp_send_changes = OFF`.
+
+The layout of those tests has 50 elements, among them the artificial horizon and sidebars, the compass bar, both stick overlays, PIDs, GPS, timers, battery and power values and warnings:
 
 ![The OSD layout of the flight controller tests, as the goggles show it](/img/displayport/osd-layout-heavy.jpg)
 
@@ -183,7 +185,7 @@ With the flight controller turned by hand, the goggles were snapshotted twice a 
 
 ![Before and after at osd_framerate_hz 12](/img/displayport/motion-12hz.gif)
 
-![Before and after at osd_framerate_hz 30](/img/displayport/motion-30hz.gif) This applies to the default HD canvas of 53x20 and smaller ones. For a device that does not keep its screen between draws, set `displayport_msp_send_changes = OFF`.
+![Before and after at osd_framerate_hz 30](/img/displayport/motion-30hz.gif)
 
 Betaflight tells a DJI O3 Air Unit by its polls on the display's port: it asks for FILTER_CONFIG and never for OSD_CONFIG or ATTITUDE, which the DJI air unit before it (V1, Vista) and Configurator ask for. After five FILTER_CONFIG polls, about a second, the screen is sent again for DJI: spaces go as 0, and Betaflight works out the size of the screen the goggles hold, as above, from two bits a cell. A write that would take it over `displayport_msp_dji_budget` is held back and the device is cleared at the start of the next frame. A screen too big even right after a clear leaves out what does not fit until the next clear. Any other device gets spaces and no budget. An O4 was not measured.
 
