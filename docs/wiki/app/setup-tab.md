@@ -23,8 +23,10 @@ _Screenshot from App 2026.6.1 using a virtual flight controller._
 
 ### Calibrate Accelerometer
 
-Open the [Sensors tab's Accelerometer section](/docs/wiki/app/sensors-tab#accelerometer) and use
-**Calibrate**. Follow the instructions there to keep the flight controller level and still during calibration.
+In App 2026.6.1 and later, open the
+[Sensors tab's Accelerometer section](/docs/wiki/app/sensors-tab#accelerometer) and use **Calibrate**.
+In App 2025.12.1 and Configurator 10.10.0, use the accelerometer calibration control on the Setup tab.
+Place the flight controller on a flat, level surface and keep it still during calibration.
 
 :::info
 
@@ -35,9 +37,13 @@ not intend to use these features, you can skip this step, or even disable the ac
 
 ### Calibrate Magnetometer
 
-Open the [Sensors tab's Magnetometer section](/docs/wiki/app/sensors-tab#magnetometer) for compass
-alignment and calibration. The available calibration modes depend on your firmware; follow the
+In App 2026.6.1 and later, open the
+[Sensors tab's Magnetometer section](/docs/wiki/app/sensors-tab#magnetometer) for compass alignment
+and calibration. The available calibration modes depend on your firmware; follow the
 [calibration instructions](/docs/wiki/app/sensors-tab#calibration) for the selected mode.
+
+In App 2025.12.1 and Configurator 10.10.0, use the magnetometer calibration control on the Setup tab
+and configure compass alignment on the Configuration tab.
 
 ### Reset Settings
 
