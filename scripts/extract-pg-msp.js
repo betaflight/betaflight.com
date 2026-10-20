@@ -188,6 +188,24 @@ const cFiles = getAllCFiles(path.join(firmwarePath, 'src/main'));
 console.log(`  Scanning ${cFiles.length} .c files...`);
 
 const pgRegistrations = {};
+
+/**
+ * Resolve a PG version argument to a number. Numeric literals parse directly; a macro name is
+ * followed through `#define NAME VALUE` lines in the same file. When a macro has several
+ * (conditional) definitions, the first one that resolves to a plain number wins.
+ */
+function resolveVersion(token, content, depth = 0) {
+  const n = parseInt(token, 10);
+  if (!isNaN(n) && /^\d+$/.test(token)) return n;
+  if (depth > 5 || !/^[A-Za-z_]\w*$/.test(token)) return NaN;
+  const defRe = new RegExp(`^#define\\s+${token}\\s+(.+?)\\s*(?://.*)?$`, 'gm');
+  let d;
+  while ((d = defRe.exec(content)) !== null) {
+    const v = resolveVersion(d[1].trim(), content, depth + 1);
+    if (!isNaN(v)) return v;
+  }
+  return NaN;
+}
 const macroRe = /(PG_REGISTER(?:_ARRAY)?(?:_WITH_RESET_(?:FN|TEMPLATE))?)\s*\(([^)]*)\)\s*;/g;
 
 for (const file of cFiles) {
@@ -206,12 +224,12 @@ for (const file of cFiles) {
       if (rawArgs.length < 5) continue;
       structType = rawArgs[0];
       pgConstant = rawArgs[3];
-      version = parseInt(rawArgs[4], 10);
+      version = resolveVersion(rawArgs[4], content);
     } else {
       if (rawArgs.length < 4) continue;
       structType = rawArgs[0];
       pgConstant = rawArgs[2];
-      version = parseInt(rawArgs[3], 10);
+      version = resolveVersion(rawArgs[3], content);
     }
     if (!pgConstant || !pgConstant.startsWith('PG_')) continue;
     if (!pgRegistrations[pgConstant]) {
@@ -465,32 +483,31 @@ const mspInPayloads = {};
 if (mspCContent) {
   const lines = mspCContent.split('\n');
 
-  // Line ranges for out vs in handlers (0-indexed)
-  // mspCommonProcessOutCommand: ~line 627
-  // mspProcessOutCommand: ~line 1085
-  // mspProcessInCommand: ~line 2647
-  // Detect by scanning for function signatures
+  // Line ranges for out vs in handlers (0-indexed), detected by scanning for function signatures:
+  // out = mspCommonProcessOutCommand .. mspProcessInCommand, in = mspProcessInCommand .. mspFcProcessCommand
   let outStart = -1;
   let inStart = -1;
   let inEnd = -1;
 
   for (let i = 0; i < lines.length; i++) {
     const l = lines[i];
-    if (l.match(/^static bool mspCommonProcessOutCommand|^static bool mspProcessOutCommand/)) {
+    // Signatures may carry attribute macros such as RAM_CODE or NOINLINE before `static`
+    if (l.match(/^(?:[A-Z_]+\s+)*static bool msp(?:Common)?ProcessOutCommand\s*\(/)) {
       if (outStart === -1) outStart = i;
     }
-    if (l.match(/^static mspResult_e mspProcessInCommand/)) {
+    if (l.match(/^(?:[A-Z_]+\s+)*static mspResult_e mspProcessInCommand\s*\(/)) {
       inStart = i;
     }
-    if (l.match(/^mspResult_e mspFcProcessCommand/)) {
+    if (l.match(/^(?:[A-Z_]+\s+)*mspResult_e mspFcProcessCommand\s*\(/)) {
       inEnd = i;
       break;
     }
   }
 
-  if (outStart === -1) outStart = 627;
-  if (inStart === -1) inStart = 2647;
-  if (inEnd === -1) inEnd = 4421;
+  if (outStart === -1 || inStart === -1 || inEnd === -1) {
+    console.error(`Error: could not locate MSP handler functions in msp.c (outStart=${outStart}, inStart=${inStart}, inEnd=${inEnd})`);
+    process.exit(1);
+  }
 
   // Parse a range of lines for case blocks and sbuf calls
   const parseHandlerRange = (startLine, endLine, direction, payloadsMap) => {
@@ -557,9 +574,10 @@ if (mspCContent) {
         }
       } else {
         // IN direction: match config->field = sbufReadU8(src) or bare sbufReadU8(src)
-        const rm = line.match(/sbufRead(U8|U16|U32|S8|S16|S32|Float)(?:LE|BE)?\s*\(\s*src\s*\)/);
+        // Also match sbufReadXxConstrained(src, min, max), and sbufReadLookupIndex(src, TABLE_x) which reads a U8
+        const rm = line.match(/sbufRead(U8|U16|U32|S8|S16|S32|Float)(?:LE|BE)?(?:\s*\(\s*src\s*\)|Constrained\s*\(\s*src\s*,)|sbufReadLookupIndex\s*\(\s*src\s*,/);
         if (rm) {
-          const ctype = rm[1];
+          const ctype = rm[1] ?? 'U8';
           const bytes = ctypeBytes(ctype);
           // Try to extract lvalue field name
           const assignMatch = line.match(/(\w+(?:\(\)|))\s*->\s*(\w+)\s*=\s*sbufRead/);
