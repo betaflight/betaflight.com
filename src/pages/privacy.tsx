@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
         <HomepageFeature blur title="Privacy Policy">
           <div className="w-full max-w-5xl">
             <p className="text-sm mb-6 text-neutral-600 dark:text-neutral-400">
-              <strong>Effective date:</strong> October 1, 2026
+              <strong>Effective date:</strong> October 25, 2026
             </p>
 
             <div className="space-y-8 text-sm leading-relaxed">
@@ -97,7 +97,20 @@ export default function PrivacyPolicy() {
                         <strong>Preference Cookies.</strong> We use Preference Cookies to remember your preferences and various settings.
                       </li>
                     </ul>
-                    <p className="mt-2">The iOS app does not use cookies, analytics or tracking, and does not show advertising.</p>
+                    <p className="mt-2">The iOS app does not use cookies and does not show advertising.</p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-primary-600 mb-2">Usage Statistics</h4>
+                    <p className="mb-2">
+                      The Betaflight App and the iOS app collect anonymous usage statistics and send them to Betaflight servers. This can include the number of launches, your app version and operating
+                      system, your approximate region, the types of flight controller and firmware versions you connect, which tabs and screens you use, settings you change and errors the app reports.
+                    </p>
+                    <p className="mb-2">
+                      Each install is identified by a random ID created on your device. It is not linked to your Betaflight account, name or email address. We use these statistics to understand how
+                      the apps are used and to improve them.
+                    </p>
+                    <p>You can opt out at any time in the app's options or settings. When you opt out, the app stops sending usage statistics.</p>
                   </div>
                 </div>
               </section>
@@ -258,7 +271,10 @@ export default function PrivacyPolicy() {
                 </ul>
 
                 <h3 className="text-xl font-bold text-primary-600 mt-6 mb-3">Analytics</h3>
-                <p className="mb-4">We may use third-party Service Providers to monitor and analyze the use of the Website and the Betaflight App. The iOS app does not use them.</p>
+                <p className="mb-4">
+                  We may use third-party Service Providers to monitor and analyze the use of the Website. Current versions of the Betaflight App and the iOS app send their usage statistics only to
+                  Betaflight servers. Older versions of the Betaflight App may still send them to Google Analytics.
+                </p>
 
                 <div className="space-y-4 ml-4">
                   <div className="bg-neutral-500/5 p-4 rounded-lg">
