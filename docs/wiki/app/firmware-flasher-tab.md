@@ -153,33 +153,7 @@ For CRSF, ELRS, FPORT or GHST protocols, this is included by default to simplify
 
 ### Other Options
 
-These are custom functions or features that you can add to the firmware.
-
-| Option                    | Description                                                                                                                                                                            |
-| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AKK (SA Fix)              | SmartAudio patch for AKK hardware                                                                                                                                                      |
-| Acro Trainer              | Enable Acro Trainer support                                                                                                                                                            |
-| Altitude Hold             | Enable Altitude Hold Mode support. See [#13816](https://github.com/betaflight/betaflight/pull/13816)                                                                                   |
-| Batt. Continue            | See [#11084](https://github.com/betaflight/betaflight/pull/11084)                                                                                                                      |
-| Cam. Control              | Enable Camera Control                                                                                                                                                                  |
-| Dashboard                 | Enable external i2c OLED Display device (to be deprecated)                                                                                                                             |
-| EMFAT (AutoRun, Icon)     | Enable FAT emulation and icon for onboard flash or MSC                                                                                                                                 |
-| ESC Serial (SK) Inc. 4way | Enable SimonK and ESC Serial support for flashing via 4way interface                                                                                                                   |
-| Flash Storage             | 4.4 and earlier only. Enables Blackbox Flash Storage support. In 4.5, is auto-included via the FC config file. To manually add Flash to a 4.5 build, enter `FLASH` in `Custom Defines` |
-| FrSky OSD                 | Enables FrSky OSD support                                                                                                                                                              |
-| GPS                       | Enable GPS and GPS_PLUS_CODES                                                                                                                                                          |
-| LED Strip                 | Enable 32 LEDs                                                                                                                                                                         |
-| LED Strip 64              | Enable 64 LEDs                                                                                                                                                                         |
-| Magnetometers             | Enable magnetometer (compass)                                                                                                                                                          |
-| OSD (SD)                  | Enable SD OSD (onboard MAX7456 required)                                                                                                                                               |
-| OSD (HD)                  | Enable HD OSD (eg DJI, HDZero, Walksnail)                                                                                                                                              |
-| PIN IO                    | Enable PINIO                                                                                                                                                                           |
-| Position Hold             | Enable Position Hold Mode support. See [#13975](https://github.com/betaflight/betaflight/pull/13975)                                                                                   |
-| RACE PRO                  | see [Betaflight 4.5 Release notes](/docs/wiki/release/Betaflight-4-5-Release-Notes#161-race-pro-build-option)                                                                          |
-| Soft Serial               | Enable support for [Software Serial](/docs/wiki/guides/current/SoftSerial)                                                                                                             |
-| Servos                    | Enable Servo support                                                                                                                                                                   |
-| VTX                       | Enable VTX                                                                                                                                                                             |
-| Wing                      | TPA mode PDS + Wing setpoint attenuation. See [#14010](https://github.com/betaflight/betaflight/pull/14010)                                                                            |
+These are custom functions or features that you can add to the firmware. The [Build Options](/docs/wiki/guides/current/Build-Options#other-options) page gives a description of each option.
 
 ### Motor Protocol
 
@@ -193,7 +167,7 @@ It allows the user to enter the coded 'name' for a 'hardware define', forcing th
 
 For example, the local build options `-DUSE_RANGEFINDER -DUSE_ACCGYRO_LSM6DSO` can be included as Custom Defines when making a cloud build with `RANGEFINDER ACCGYRO_LSM6DSO`.
 
-For advanced users, the [Defines](/docs/development/Defines) page in our development section provides a list of Custom Define options available early 2024.
+The [Build Options](/docs/wiki/guides/current/Build-Options#manual-build-options) page gives the manual build options that you can type in this field.
 
 ### Select Pull Request or Commit
 
