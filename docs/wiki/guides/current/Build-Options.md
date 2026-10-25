@@ -13,7 +13,7 @@ The board configuration adds the hardware drivers for the parts on the flight co
 
 ## How To Read the Tables
 
-- **Flag**: The name of the option without the `USE_` prefix. Type this name in `Custom Defines`.
+- **Flag**: The name of the option without the `USE_` prefix. Type this name in `Custom Defines`. You do not have to type the `USE_` prefix, because the build server adds it.
 - **Default**: "Yes" if the app selects the option by default.
 - **Also adds**: The build server adds these flags automatically when you select the option.
 - **Introduced**: The first firmware release that has the flag. "&lt; 2025.12" means that the flag was in Betaflight 4.5 or earlier. "2026.12" means that the flag is only in the development (master) version at this time. "(app X)" means that the app shows the option in its list from release X.
@@ -109,8 +109,10 @@ These options add functions to the firmware.
 You can add these options in the `Custom Defines` field of the Firmware Flasher tab:
 
 1. Set the app to expert mode.
-2. In `Custom Defines`, type the flag names without the `USE_` prefix. Put a space between each name. For example: `RANGEFINDER TRANSPONDER`.
+2. In `Custom Defines`, type the flag names. Put a space between each name. For example: `RANGEFINDER TRANSPONDER`. You do not have to type the `USE_` prefix, because the build server adds it.
 3. Build and flash the firmware.
+
+The build server does not add a prefix to `ENABLE_` flags. Type each `ENABLE_` flag in full, with its value. For example: `ENABLE_OSD_CUSTOM_TEXT=0`.
 
 For a local build, add each flag with the `USE_` prefix in `OPTIONS`. For example: `make SPEEDYBEEF405V4 OPTIONS="USE_RANGEFINDER USE_TRANSPONDER"`. A local build does not use `CLOUD_BUILD`, so it already has many of these options.
 
@@ -122,22 +124,22 @@ Manual build options are not tested on all boards. Each option uses flash memory
 
 ### Sensors
 
-| Flag             | Description                                                                                                                                                                                                            | Requires                           | Introduced   |
-| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------- | :----------- |
-| `BARO`           | Adds the barometer subsystem. Altitude Hold, GPS Rescue and the variometer use barometer data. Board configs set it when the board has a barometer. For an external barometer, also add the driver flag for that part. | at least one USE*BARO* driver flag | &lt; 2025.12 |
-| `BARO_2SMBP_02B` | Adds the driver for the Omron 2SMPB-02B barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                   | `BARO`                             | &lt; 2025.12 |
-| `BARO_BMP085`    | Adds the driver for the Bosch BMP085 barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                      | `BARO`                             | &lt; 2025.12 |
-| `BARO_BMP280`    | Adds the driver for the Bosch BMP280 barometer on the I2C bus. Board configs also set it for barometers on the flight controller. The firmware removes it when the build has no I2C.                                   | `BARO`                             | &lt; 2025.12 |
-| `BARO_BMP388`    | Adds the driver for the Bosch BMP388 barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                      | `BARO`                             | &lt; 2025.12 |
-| `BARO_BMP580`    | Adds the driver for the Bosch BMP580 barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                      | `BARO`                             | 2026.6       |
-| `BARO_BMP581`    | Adds the driver for the Bosch BMP581 barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                      | `BARO`                             | 2026.6       |
-| `BARO_DPS310`    | Adds the driver for the Infineon DPS310 barometer on the I2C bus. This driver also reads the SPL07-003 and SPA06-003. Board configs also set it for barometers on the flight controller.                               | `BARO`                             | &lt; 2025.12 |
-| `BARO_LPS22DF`   | Adds the driver for the ST LPS22DF barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                        | `BARO`                             | &lt; 2025.12 |
-| `BARO_MS5611`    | Adds the driver for the TE MS5611 barometer on the I2C bus. Board configs also set it for barometers on the flight controller. The firmware removes it when the build has no I2C.                                      | `BARO`                             | &lt; 2025.12 |
-| `BARO_QMP6988`   | Adds the driver for the QST QMP6988 barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                       | `BARO`                             | &lt; 2025.12 |
-| `BARO_SPA06_003` | Adds support for the Goertek SPA06-003 barometer. It uses the DPS310 driver and shows the part name as SPA06_003. This flag turns on `USE_BARO_DPS310` automatically. No board config uses it at this time.            | `BARO`                             | 2026.6       |
-| `PITOT`          | Adds pitot tube airspeed sensor support for wings. The sensor connects through I2C or DroneCAN. For an I2C sensor, also add `USE_PITOT_MS4525`.                                                                        |                                    | 2026.12      |
-| `PITOT_MS4525`   | Adds the driver for the TE MS4525DO I2C differential pressure sensor, used as a pitot airspeed sensor.                                                                                                                 | `PITOT`                            | 2026.12      |
+| Flag             | Description                                                                                                                                                                                                            | Requires                         | Introduced   |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------- | :----------- |
+| `BARO`           | Adds the barometer subsystem. Altitude Hold, GPS Rescue and the variometer use barometer data. Board configs set it when the board has a barometer. For an external barometer, also add the driver flag for that part. | the matching `BARO_` driver flag | &lt; 2025.12 |
+| `BARO_2SMBP_02B` | Adds the driver for the Omron 2SMPB-02B barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                   | `BARO`                           | &lt; 2025.12 |
+| `BARO_BMP085`    | Adds the driver for the Bosch BMP085 barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                      | `BARO`                           | &lt; 2025.12 |
+| `BARO_BMP280`    | Adds the driver for the Bosch BMP280 barometer on the I2C bus. Board configs also set it for barometers on the flight controller. The firmware removes it when the build has no I2C.                                   | `BARO`                           | &lt; 2025.12 |
+| `BARO_BMP388`    | Adds the driver for the Bosch BMP388 barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                      | `BARO`                           | &lt; 2025.12 |
+| `BARO_BMP580`    | Adds the driver for the Bosch BMP580 barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                      | `BARO`                           | 2026.6       |
+| `BARO_BMP581`    | Adds the driver for the Bosch BMP581 barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                      | `BARO`                           | 2026.6       |
+| `BARO_DPS310`    | Adds the driver for the Infineon DPS310 barometer on the I2C bus. This driver also reads the SPL07-003 and SPA06-003. Board configs also set it for barometers on the flight controller.                               | `BARO`                           | &lt; 2025.12 |
+| `BARO_LPS22DF`   | Adds the driver for the ST LPS22DF barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                        | `BARO`                           | &lt; 2025.12 |
+| `BARO_MS5611`    | Adds the driver for the TE MS5611 barometer on the I2C bus. Board configs also set it for barometers on the flight controller. The firmware removes it when the build has no I2C.                                      | `BARO`                           | &lt; 2025.12 |
+| `BARO_QMP6988`   | Adds the driver for the QST QMP6988 barometer on the I2C bus. Board configs also set it for barometers on the flight controller.                                                                                       | `BARO`                           | &lt; 2025.12 |
+| `BARO_SPA06_003` | Adds support for the Goertek SPA06-003 barometer. It uses the DPS310 driver and shows the part name as SPA06_003. This flag turns on `USE_BARO_DPS310` automatically. No board config uses it at this time.            | `BARO`                           | 2026.6       |
+| `PITOT`          | Adds pitot tube airspeed sensor support for wings. The sensor connects through I2C or DroneCAN. For an I2C sensor, also add `USE_PITOT_MS4525`.                                                                        |                                  | 2026.12      |
+| `PITOT_MS4525`   | Adds the driver for the TE MS4525DO I2C differential pressure sensor, used as a pitot airspeed sensor.                                                                                                                 | `PITOT`                          | 2026.12      |
 
 ### GPS and Navigation
 
