@@ -40,7 +40,7 @@ For new designs, gyroscopes must be connected over SPI. I2C gyros are only suppo
 | MPU-6050                           | I2C | Legacy only; I2C gyros are not accepted for new designs                     |
 | L3GD20                             | SPI | Obsolete gyro-only part                                                     |
 
-The BMI323. BMI088, and LSM6D**S**O IMUs are **not** supported.
+The BMI323. BMI088, LSM6DSO, and LSM6DSOX IMUs are **not** supported.
 
 ## Barometer
 
