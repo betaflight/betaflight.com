@@ -335,13 +335,6 @@ CRSF_LINK_STATISTICS_UPLINK
 - [2] = Uplink Link Quality
 - [3] = RF Mode
 
-CRSF_LINK_STATISTICS_UPLINK
-
-- [0] = Uplink RSSI 1
-- [1] = Uplink RSSI 2
-- [2] = Uplink Link Quality
-- [3] = RF Mode
-
 CRSF_LINK_STATISTICS_PWR
 
 - [0] = Antenna
