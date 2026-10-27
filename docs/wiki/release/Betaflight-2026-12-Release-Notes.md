@@ -429,7 +429,7 @@ Airspeed is available in:
 * **`status`:** now shows detected optical flow and pitot sensors
 
 :::note
-Pitot support is not in the standard builds. To include it, select **PITOT** in the build options on the Firmware Flasher tab.
+Pitot support is not in the standard builds. To include it, select **Pitot** in the build options on the Firmware Flasher tab. This includes the MS4525 driver on boards with I2C. For a DroneCAN airspeed sensor, also select **DroneCAN**.
 :::
 
 #### DroneCAN Improvements
