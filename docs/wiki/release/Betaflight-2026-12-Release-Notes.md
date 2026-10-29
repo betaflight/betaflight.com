@@ -260,10 +260,6 @@ The `serial` command is still available:
 * The **legacy line form** (`serial <port> <mask> <msp baud> <gps baud> <telemetry baud> <blackbox baud>`) still operates, so you can restore a `diff` from older firmware. The firmware changes it to the new settings and shows a deprecation warning
 * `dump` and `diff` no longer contain `serial` lines
 
-:::warning
-**Nooploop rangefinder and OSD custom text ports:** these do not restore correctly from a 2026.6 diff, because their function bits changed. After you restore, set them again with `set rangefinder_uart = ...` or `set osd_custom_text_uart = ...`.
-:::
-
 :::note
 The MSP messages `MSP_SET_CF_SERIAL_CONFIG` and `MSP2_COMMON_SET_SERIAL_CONFIG` are retired. The read messages now report a zero function mask. Use the 2026.12 app to configure ports. Older apps show all ports as unassigned.
 :::
