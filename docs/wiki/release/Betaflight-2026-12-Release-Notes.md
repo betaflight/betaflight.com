@@ -325,7 +325,7 @@ These changes apply to the standard GPS Rescue in all GPS builds:
 
 * **Near home:** if a rescue starts above or very near home, the craft climbs straight up. It does not fly away first
 * **Smoother return:** the craft accelerates smoothly at the start of the return. It starts to slow down at two times `gps_rescue_descent_dist` from home. In flight tests, heading errors were one or two degrees. Landings were typically 1.5 m to 2 m from the take-off point (this depends on the GPS)
-* **Faster rotation:** the rescue uses the shared yaw controller (`ap_yaw_p`, `ap_max_yaw_rate`), so it turns toward home much faster
+* **Faster rotation:** the rescue uses the shared yaw controller (`ap_yaw_p`, `ap_max_yaw_rate`), so it turns toward home much faster. `gps_rescue_yaw_p` had no effect and is removed
 * **Heading recovery:** on a craft with no trusted heading, the rescue now pitches forward to learn its heading. Before, it could stay stopped until it timed out
 * **Long flights:** a rescue that starts more than approximately 36 minutes after power-up no longer fails a timing check
 * The `GPS_RESCUE_TRACKING` debug mode has new fields: 0 ground speed, 1 target speed, 2 current altitude, 3 target altitude, 4 heading, 5 heading error, 6 distance to home, 7 rescue phase
@@ -655,6 +655,7 @@ Settings with a changed or new default, range or name, compared to 2026.6. For t
 | `use_integrated_yaw` | Integrated yaw is removed |
 | `integrated_yaw_relax` | Integrated yaw is removed |
 | `ap_yaw_d` | Removed with the shared yaw controller |
+| `gps_rescue_yaw_p` | GPS Rescue uses `ap_yaw_p`. Also removed from the OSD menu |
 | `opticalflow_lpf` | Removed with the Kalman estimator |
 
 #### Changed
