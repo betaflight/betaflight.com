@@ -1,6 +1,6 @@
 ---
-title: Configurator Architecture
-sidebar_label: Configurator Architecture
+title: App Architecture
+sidebar_label: App Architecture
 ---
 
 import { useColorMode } from '@docusaurus/theme-common';
@@ -8,16 +8,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 export function ArchitectureDiagram() {
   const { colorMode } = useColorMode();
-  const src = useBaseUrl('/diagrams/configurator-architecture');
+  const src = useBaseUrl('/diagrams/app-architecture');
   return (
     <>
-      <iframe
-        key={colorMode}
-        src={`${src}?embed=1&theme=${colorMode}`}
-        title="Betaflight Configurator architecture diagram"
-        loading="lazy"
-        style={{ width: '100%', aspectRatio: '1160 / 700', border: 0 }}
-      />
+      <iframe key={colorMode} src={`${src}?embed=1&theme=${colorMode}`} title="Betaflight App architecture diagram" loading="lazy" style={{ width: '100%', aspectRatio: '1160 / 700', border: 0 }} />
       <p>
         <a href={src} target="_blank" rel="noopener noreferrer">
           Open the diagram full screen
@@ -28,9 +22,9 @@ export function ArchitectureDiagram() {
   );
 }
 
-# Configurator Architecture
+# App Architecture
 
-This page gives a high-level overview of how [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator) is put together, from the user interface down to the flight controller.
+This page gives a high-level overview of how the [Betaflight App](https://github.com/betaflight/betaflight-configurator) is put together, from the user interface down to the flight controller.
 It is aimed at developers who want to find their way around the codebase before making a change.
 
 <ArchitectureDiagram />
@@ -42,7 +36,7 @@ It is aimed at developers who want to find their way around the codebase before 
 - **MSP protocol layer** - `src/js/msp/` encodes and decodes [MSP](./MSP-Protocol-Reference-Dev.md) messages (`MSPCodes`, `MSPHelper`, `MSPConnector`). Only stores, composables and code under `src/js` should call the MSP client.
 - **Transport backends** - `src/js/protocols/` holds pluggable transports: WebSerial, WebBluetooth, USB DFU (firmware flashing), Tauri (desktop) and Capacitor (Android).
 - **Flight controller** - the Betaflight firmware acts as the MSP server.
-- **Blackbox** - flight logs are pulled from the flight controller's dataflash and opened in the Blackbox log viewer, which ships as a tab inside the Configurator. Its Canvas graph renderers stay framework-agnostic.
+- **Blackbox** - flight logs are pulled from the flight controller's dataflash and opened in the Blackbox log viewer, which ships as a tab inside the App. Its Canvas graph renderers stay framework-agnostic.
 
 ## Platforms
 
