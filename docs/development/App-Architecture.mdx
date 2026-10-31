@@ -36,7 +36,7 @@ It is aimed at developers who want to find their way around the codebase before 
 - **MSP protocol layer** - `src/js/msp/` encodes and decodes [MSP](./MSP-Protocol-Reference-Dev.md) messages (`MSPCodes`, `MSPHelper`, `MSPConnector`). Only stores, composables and code under `src/js` should call the MSP client.
 - **Transport backends** - `src/js/protocols/` holds pluggable transports: WebSerial, WebBluetooth, USB DFU (firmware flashing), Tauri (desktop) and Capacitor (Android).
 - **Flight controller** - the Betaflight firmware acts as the MSP server.
-- **Blackbox** - flight logs are pulled from the flight controller's dataflash and opened in the Blackbox log viewer, which ships as a tab inside the App. Its Canvas graph renderers stay framework-agnostic.
+- **Blackbox** - flight logs are pulled from the flight controller's dataflash and opened in the Blackbox log viewer, which ships as a tab inside the App. Its Canvas renderers (graphs, spectrum, map, sticks and 2D/3D craft) read graph, workspace and settings state from Pinia stores.
 
 ## Platforms
 
