@@ -17,7 +17,7 @@ node scripts/extract-pg-msp.js --firmware-path <path-to-betaflight-repo>
 
 <!-- PG_TABLE_START -->
 
-_Generated from firmware commit: `c925d4f68202d5882af011b3b33bb3afee9a54e3`_
+_Generated from firmware commit: `75e58fbbfe7e53dc77eeaecbdd0dbb08f9066074`_
 
 | ID   | Name                             | Struct Type                  | PG Version | Source File                          |
 | ---- | -------------------------------- | ---------------------------- | ---------- | ------------------------------------ |
@@ -33,8 +33,8 @@ _Generated from firmware commit: `c925d4f68202d5882af011b3b33bb3afee9a54e3`_
 | 10   | PG_GYRO_CONFIG                   | gyroConfig_t                 | 10         | src/main/sensors/gyro.c              |
 | 11   | PG_BATTERY_CONFIG                | batteryConfig_t              | 4          | src/main/sensors/battery.c           |
 | 12   | PG_CONTROL_RATE_PROFILES         | controlRateConfig_t          | 7          | src/main/fc/controlrate_profile.c    |
-| 13   | PG_SERIAL_CONFIG                 | serialConfig_t               | 1          | src/main/io/serial.c                 |
-| 14   | PG_PID_PROFILE                   | pidProfile_t                 | 11         | src/main/flight/pid.c                |
+| 13   | PG_SERIAL_CONFIG                 | serialConfig_t               | 2          | src/main/io/serial.c                 |
+| 14   | PG_PID_PROFILE                   | pidProfile_t                 | 12         | src/main/flight/pid.c                |
 | 16   | PG_ARMING_CONFIG                 | armingConfig_t               | 2          | src/main/fc/rc_controls.c            |
 | 17   | PG_TRANSPONDER_CONFIG            | transponderConfig_t          | 0          | src/main/io/transponder_ir.c         |
 | 18   | PG_SYSTEM_CONFIG                 | systemConfig_t               | 4          | src/main/config/config.c             |
@@ -50,14 +50,14 @@ _Generated from firmware commit: `c925d4f68202d5882af011b3b33bb3afee9a54e3`_
 | 28   | PG_COLOR_CONFIG                  | —                            | —          | —                                    |
 | 29   | PG_AIRPLANE_CONFIG               | —                            | —          | —                                    |
 | 30   | PG_GPS_CONFIG                    | gpsConfig_t                  | 4          | src/main/pg/gps.c                    |
-| 31   | PG_TELEMETRY_CONFIG              | telemetryConfig_t            | 6          | src/main/telemetry/telemetry.c       |
+| 31   | PG_TELEMETRY_CONFIG              | telemetryConfig_t            | 7          | src/main/telemetry/telemetry.c       |
 | 32   | PG_FRSKY_TELEMETRY_CONFIG        | —                            | —          | —                                    |
 | 33   | PG_HOTT_TELEMETRY_CONFIG         | —                            | —          | —                                    |
 | 34   | PG_NAVIGATION_CONFIG             | —                            | —          | —                                    |
 | 35   | PG_ACCELEROMETER_CONFIG          | accelerometerConfig_t        | 2          | src/main/sensors/acceleration_init.c |
 | 36   | PG_RATE_PROFILE_SELECTION        | —                            | —          | —                                    |
 | 37   | PG_ADJUSTMENT_RANGE_CONFIG       | adjustmentRange_t            | 2          | src/main/fc/rc_adjustments.c         |
-| 38   | PG_BAROMETER_CONFIG              | barometerConfig_t            | 3          | src/main/sensors/barometer.c         |
+| 38   | PG_BAROMETER_CONFIG              | barometerConfig_t            | 4          | src/main/sensors/barometer.c         |
 | 39   | PG_THROTTLE_CORRECTION_CONFIG    | throttleCorrectionConfig_t   | 0          | src/main/fc/core.c                   |
 | 40   | PG_COMPASS_CONFIG                | compassConfig_t              | 4          | src/main/sensors/compass.c           |
 | 41   | PG_MODE_ACTIVATION_PROFILE       | modeActivationCondition_t    | 5          | src/main/fc/rc_modes.c               |
@@ -73,13 +73,13 @@ _Generated from firmware commit: `c925d4f68202d5882af011b3b33bb3afee9a54e3`_
 | 51   | PG_DEBUG_CONFIG                  | —                            | —          | —                                    |
 | 52   | PG_SERVO_CONFIG                  | servoConfig_t                | 0          | src/main/flight/servos.c             |
 | 53   | PG_IBUS_TELEMETRY_CONFIG         | —                            | —          | —                                    |
-| 55   | PG_GPS_RESCUE                    | gpsRescueConfig_t            | 7          | src/main/pg/gps_rescue_multirotor.c  |
+| 55   | PG_GPS_RESCUE                    | gpsRescueConfig_t            | 8          | src/main/pg/gps_rescue_multirotor.c  |
 | 56   | PG_POSITION                      | positionConfig_t             | 7          | src/main/flight/position.c           |
 | 57   | PG_VTX_IO_CONFIG                 | vtxIOConfig_t                | 0          | src/main/pg/vtx_io.c                 |
 | 58   | PG_GPS_LAP_TIMER                 | gpsLapTimerConfig_t          | 1          | src/main/pg/gps_lap_timer.c          |
 | 59   | PG_ALTHOLD_CONFIG                | altHoldConfig_t              | 4          | src/main/pg/alt_hold_multirotor.c    |
-| 60   | PG_AUTOPILOT                     | autopilotConfig_t            | 6          | src/main/pg/autopilot.c              |
-| 61   | PG_POSHOLD_CONFIG                | posHoldConfig_t              | 1          | src/main/pg/pos_hold_multirotor.c    |
+| 60   | PG_AUTOPILOT                     | autopilotConfig_t            | 13         | src/main/pg/autopilot.c              |
+| 61   | PG_POSHOLD_CONFIG                | posHoldConfig_t              | 2          | src/main/pg/pos_hold_multirotor.c    |
 | 100  | PG_DRIVER_PWM_RX_CONFIG          | —                            | —          | —                                    |
 | 101  | PG_DRIVER_FLASHCHIP_CONFIG       | —                            | —          | —                                    |
 | 256  | PG_CURRENT_SENSOR_ADC_CONFIG     | currentSensorADCConfig_t     | 0          | src/main/sensors/current.c           |
@@ -113,7 +113,7 @@ _Generated from firmware commit: `c925d4f68202d5882af011b3b33bb3afee9a54e3`_
 | 524  | PG_MAX7456_CONFIG                | max7456Config_t              | 0          | src/main/pg/max7456.c                |
 | 525  | PG_FLYSKY_CONFIG                 | flySkyConfig_t               | 1          | src/main/rx/a7105_flysky.c           |
 | 526  | PG_TIME_CONFIG                   | timeConfig_t                 | 0          | src/main/common/time.c               |
-| 527  | PG_RANGEFINDER_CONFIG            | rangefinderConfig_t          | 0          | src/main/sensors/rangefinder.c       |
+| 527  | PG_RANGEFINDER_CONFIG            | rangefinderConfig_t          | 1          | src/main/sensors/rangefinder.c       |
 | 528  | PG_TRICOPTER_CONFIG              | tricopterMixerConfig_t       | 0          | src/main/flight/mixer_tricopter.c    |
 | 529  | PG_PINIO_CONFIG                  | pinioConfig_t                | 0          | src/main/pg/pinio.c                  |
 | 530  | PG_PINIOBOX_CONFIG               | pinioBoxConfig_t             | 1          | src/main/pg/piniobox.c               |
@@ -145,15 +145,20 @@ _Generated from firmware commit: `c925d4f68202d5882af011b3b33bb3afee9a54e3`_
 | 556  | PG_SCHEDULER_CONFIG              | schedulerConfig_t            | 2          | src/main/pg/scheduler.c              |
 | 557  | PG_MSP_CONFIG                    | mspConfig_t                  | 0          | src/main/pg/msp.c                    |
 | 559  | PG_GIMBAL_TRACK_CONFIG           | gimbalTrackConfig_t          | 0          | src/main/pg/gimbal.c                 |
-| 560  | PG_OPTICALFLOW_CONFIG            | opticalflowConfig_t          | 1          | src/main/sensors/opticalflow.c       |
+| 560  | PG_OPTICALFLOW_CONFIG            | opticalflowConfig_t          | 3          | src/main/sensors/opticalflow.c       |
 | 561  | PG_BATTERY_PROFILES              | batteryProfile_t             | 1          | src/main/sensors/battery.c           |
-| 561  | PG_DISPLAY_PORT_FBOSD_CONFIG     | displayPortProfile_t         | 0          | src/main/pg/displayport_profiles.c   |
-| 562  | PG_FLIGHT_PLAN_CONFIG            | flightPlanConfig_t           | 0          | src/main/pg/flight_plan.c            |
-| 563  | PG_CAN_PIN_CONFIG                | canPinConfig_t               | 0          | src/main/pg/can.c                    |
+| 562  | PG_FLIGHT_PLAN_CONFIG            | flightPlanConfig_t           | 2          | src/main/pg/flight_plan.c            |
+| 563  | PG_CAN_PIN_CONFIG                | canPinConfig_t               | 1          | src/main/pg/can.c                    |
 | 564  | PG_CAN_CONFIG                    | canConfig_t                  | 0          | src/main/pg/can.c                    |
 | 565  | PG_DRONECAN_CONFIG               | dronecanConfig_t             | 0          | src/main/pg/dronecan.c               |
+| 566  | PG_DISPLAY_PORT_FBOSD_CONFIG     | displayPortProfile_t         | 1          | src/main/pg/displayport_profiles.c   |
+| 567  | PG_DRONECAN_DNA_CONFIG           | dronecanDnaConfig_t          | 0          | src/main/pg/dronecan_dna.c           |
+| 568  | PG_OSD_NAV_MAP_CONFIG            | osdNavMapConfig_t            | 0          | src/main/pg/osd_nav_map.c            |
+| 569  | PG_PITOT_CONFIG                  | pitotConfig_t                | 0          | src/main/sensors/pitot.c             |
+| 570  | PG_LAUNCH_WING_CONFIG            | launchWingConfig_t           | 1          | src/main/pg/launch_wing.c            |
+| 571  | PG_AUTOPILOT_WING                | autopilotWingConfig_t        | 0          | src/main/pg/autopilot_wing.c         |
 | 2044 | PG_OSD_CUSTOM_TEXT_CONFIG        | osdCustomTextConfig_t        | 0          | src/main/osd/osd_custom_text.c       |
-| 2045 | PG_OSD_ELEMENT_CONFIG            | osdElementConfig_t           | 3          | src/main/osd/osd.c                   |
+| 2045 | PG_OSD_ELEMENT_CONFIG            | osdElementConfig_t           | 4          | src/main/osd/osd.c                   |
 | 2046 | PG_OSD_VIDEO_CONFIG              | —                            | —          | —                                    |
 | 2047 | PG_OSD_FONT_CONFIG               | —                            | —          | —                                    |
 | 4093 | PG_RESERVED_FOR_TESTING_3        | —                            | —          | —                                    |
