@@ -26,7 +26,7 @@ Linux requires udev rules to allow write access to USB devices for users. An exa
 
 ```sh
 sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null <<'EOF'
-# DFU (Internal bootloader for STM32, GD32, AT32, APM32, X32, UM32 and RP2350 MCUs)
+# USB bootloaders (DFU for STM32, GD32, AT32, APM32, X32 and UM32; BOOTSEL for RP2350)
 # STM32
 SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
 # GD32
@@ -39,9 +39,11 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", MODE="0664"
 SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
 # UM32
 SUBSYSTEM=="usb", ATTRS{idVendor}=="396a", ATTRS{idProduct}=="df00", MODE="0664", GROUP="plugdev"
-# RP2350 (Raspberry Pi Pico)
+# RP2350 BOOTSEL (Raspberry Pi Pico)
 SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0664", GROUP="plugdev"
 EOF
+sudo udevadm control --reload-rules
+sudo udevadm trigger --action=add --subsystem-match=usb
 ```
 
 This assigns the device to the plugdev group(a standard group in Ubuntu). To check that your account is in the plugdev group type `groups` in the shell and ensure plugdev is listed. If not you can add yourself as shown (`$USER` automatically refers to your currently logged-in account, so nothing needs to be replaced):
@@ -57,7 +59,7 @@ Instead use the `uaccess` tag in your udev rule for dfu:
 
 ```sh
 sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null <<'EOF'
-# DFU (Internal bootloader for STM32, GD32, AT32, APM32, X32, UM32 and RP2350 MCUs)
+# USB bootloaders (DFU for STM32, GD32, AT32, APM32, X32 and UM32; BOOTSEL for RP2350)
 # STM32
 SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", TAG+="uaccess"
 # GD32
@@ -70,9 +72,11 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", TAG+="uacce
 SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", TAG+="uaccess"
 # UM32
 SUBSYSTEM=="usb", ATTRS{idVendor}=="396a", ATTRS{idProduct}=="df00", TAG+="uaccess"
-# RP2350 (Raspberry Pi Pico)
+# RP2350 BOOTSEL (Raspberry Pi Pico)
 SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", TAG+="uaccess"
 EOF
+sudo udevadm control --reload-rules
+sudo udevadm trigger --action=add --subsystem-match=usb
 ```
 
 ### Connectivity Issues: Modem Manager

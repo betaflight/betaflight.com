@@ -133,7 +133,7 @@ Set up udev rules on your host system for device access:
    # RP2350 (Raspberry Pi Pico)
    SUBSYSTEM=="tty", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0009", TAG+="uaccess"
 
-   # DFU bootloaders
+   # USB bootloaders (DFU; BOOTSEL for RP2350)
    # STM32
    SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="df11", TAG+="uaccess"
    # GD32
@@ -146,7 +146,7 @@ Set up udev rules on your host system for device access:
    SUBSYSTEM=="usb", ATTR{idVendor}=="3997", ATTR{idProduct}=="df11", TAG+="uaccess"
    # UM32
    SUBSYSTEM=="usb", ATTR{idVendor}=="396a", ATTR{idProduct}=="df00", TAG+="uaccess"
-   # RP2350 (Raspberry Pi Pico)
+   # RP2350 BOOTSEL (Raspberry Pi Pico)
    SUBSYSTEM=="usb", ATTR{idVendor}=="2e8a", ATTR{idProduct}=="000f", TAG+="uaccess"
 
    # USB-to-serial adapters for stm32flash (these vendors make only bridge chips, so all products match)

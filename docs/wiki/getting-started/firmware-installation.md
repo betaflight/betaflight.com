@@ -109,7 +109,7 @@ Since we will be using the CLI, simply copy and paste this command into your ter
 
 ```sh
 sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null <<'EOF'
-# DFU (Internal bootloader for STM32, GD32, AT32, APM32, X32, UM32 and RP2350 MCUs)
+# USB bootloaders (DFU for STM32, GD32, AT32, APM32, X32 and UM32; BOOTSEL for RP2350)
 # STM32
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
 # GD32
@@ -122,12 +122,14 @@ ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="010
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
 # UM32
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="396a", ATTRS{idProduct}=="df00", MODE="0664", GROUP="plugdev"
-# RP2350 (Raspberry Pi Pico)
+# RP2350 BOOTSEL (Raspberry Pi Pico)
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0664", GROUP="plugdev"
 EOF
+sudo udevadm control --reload-rules
+sudo udevadm trigger --action=add --subsystem-match=usb
 ```
 
-The file created is `/etc/udev/rules.d/45-stdfu-permissions.rules`, which is used when your flight controller is in DFU mode.
+The file created is `/etc/udev/rules.d/45-stdfu-permissions.rules`, which is used when your flight controller is in its bootloader (DFU, or BOOTSEL on RP2350). The last two commands reload the rules and apply them to a board that is already connected.
 
 #### Step 2:
 

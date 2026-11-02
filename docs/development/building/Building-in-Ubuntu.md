@@ -121,7 +121,7 @@ sudo usermod -a -G dialout $USER
 sudo usermod -a -G plugdev $USER
 sudo apt-get remove modemmanager
 sudo tee -a /etc/udev/rules.d/46-stdfu-permissions.rules <<EOF
-# DFU (Internal bootloader for STM32, GD32, AT32, APM32, X32, UM32 and RP2350 MCUs)
+# USB bootloaders (DFU for STM32, GD32, AT32, APM32, X32 and UM32; BOOTSEL for RP2350)
 
 # STM32
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
@@ -129,7 +129,7 @@ ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df1
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="28e9", ATTRS{idProduct}=="0189", MODE="0664", GROUP="plugdev"
 # AT32
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
-# RP2350
+# RP2350 BOOTSEL (Raspberry Pi Pico)
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0664", GROUP="plugdev"
 # APM32
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", MODE="0664", GROUP="plugdev"
@@ -198,6 +198,8 @@ ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00d
 # ESP32-S3/C3 USB-Serial/JTAG
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", MODE="0664", GROUP="plugdev"
 EOF
+sudo udevadm control --reload-rules
+sudo udevadm trigger --action=add --subsystem-match=usb
 ```
 
 The flight controller's own USB port (VCP) shows up as `/dev/ttyACM*`, which belongs to the `dialout` group, so it needs no rule of its own.

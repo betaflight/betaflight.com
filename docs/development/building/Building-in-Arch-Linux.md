@@ -68,7 +68,7 @@ DFU devices need a udev rule. The `uaccess` tag grants access to the user logged
 
 ```bash
 sudo tee /etc/udev/rules.d/70-betaflight-dfu.rules > /dev/null <<'EOF'
-# DFU (Internal bootloader for STM32, GD32, AT32, APM32, X32, UM32 and RP2350 MCUs)
+# USB bootloaders (DFU for STM32, GD32, AT32, APM32, X32 and UM32; BOOTSEL for RP2350)
 # STM32
 SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", TAG+="uaccess"
 # GD32
@@ -81,7 +81,7 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", TAG+="uacce
 SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", TAG+="uaccess"
 # UM32
 SUBSYSTEM=="usb", ATTRS{idVendor}=="396a", ATTRS{idProduct}=="df00", TAG+="uaccess"
-# RP2350 (Raspberry Pi Pico)
+# RP2350 BOOTSEL (Raspberry Pi Pico)
 SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", TAG+="uaccess"
 EOF
 ```
