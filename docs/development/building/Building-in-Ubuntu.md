@@ -56,7 +56,8 @@ npm run dev
 ```
 
 This will start a local server for the Betaflight App.
-- Use a Web-Serial compatible web browser to visit `http://localhost:8080/`. 
+
+- Use a Web-Serial compatible web browser to visit `http://localhost:8080/`.
 - Press `Ctrl+C` in the terminal to quit.
 - Check https://github.com/betaflight/betaflight-configurator?tab=readme-ov-file#betaflight-configurator for further details.
 
@@ -120,7 +121,7 @@ sudo usermod -a -G dialout $USER
 sudo usermod -a -G plugdev $USER
 sudo apt-get remove modemmanager
 sudo tee -a /etc/udev/rules.d/46-stdfu-permissions.rules <<EOF
-# DFU (Internal bootloader for STM32, GD32, AT32, APM32, X32 and RP2350 MCUs)
+# DFU (Internal bootloader for STM32, GD32, AT32, APM32, X32, UM32 and RP2350 MCUs)
 
 # STM32
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
@@ -134,6 +135,8 @@ ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", MODE="0664", GROUP="plugdev"
 # X32
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
+# UM32
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="396a", ATTRS{idProduct}=="df00", MODE="0664", GROUP="plugdev"
 
 # FTDI USB-to-Serial
 
@@ -196,6 +199,8 @@ ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00d
 ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", MODE="0664", GROUP="plugdev"
 EOF
 ```
+
+The flight controller's own USB port (VCP) shows up as `/dev/ttyACM*`, which belongs to the `dialout` group, so it needs no rule of its own.
 
 Each label sits on its own line because udev rejects a rule line that ends in a comment (`Invalid key/value pair, ignoring`), which silently disables the rule. Check your file with `udevadm verify /etc/udev/rules.d/46-stdfu-permissions.rules` after editing it.
 

@@ -112,8 +112,30 @@ ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", ENV{ID_MM_DEVICE_IGNORE}="1"
 ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", ENV{ID_MM_DEVICE_IGNORE}="1"
 # X32 DFU
 ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", ENV{ID_MM_DEVICE_IGNORE}="1"
+# UM32 DFU
+ATTRS{idVendor}=="396a", ATTRS{idProduct}=="df00", ENV{ID_MM_DEVICE_IGNORE}="1"
 # RP2350 (Raspberry Pi Pico) Bootloader
 ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", ENV{ID_MM_DEVICE_IGNORE}="1"
+
+# Flight controller USB (VCP)
+# STM32 VCP
+ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", ENV{ID_MM_DEVICE_IGNORE}="1"
+# STM32 ST-Link VCP (NUCLEO boards)
+ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", ENV{ID_MM_DEVICE_IGNORE}="1"
+# STM32 in HID mode
+ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3256", ENV{ID_MM_DEVICE_IGNORE}="1"
+# GD32 VCP
+ATTRS{idVendor}=="28e9", ATTRS{idProduct}=="018a", ENV{ID_MM_DEVICE_IGNORE}="1"
+# AT32 VCP
+ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="5740", ENV{ID_MM_DEVICE_IGNORE}="1"
+# APM32 VCP
+ATTRS{idVendor}=="314b", ATTRS{idProduct}=="5740", ENV{ID_MM_DEVICE_IGNORE}="1"
+# X32 VCP
+ATTRS{idVendor}=="3997", ATTRS{idProduct}=="5740", ENV{ID_MM_DEVICE_IGNORE}="1"
+# UM32 VCP
+ATTRS{idVendor}=="396a", ATTRS{idProduct}=="1000", ENV{ID_MM_DEVICE_IGNORE}="1"
+# RP2350 (Raspberry Pi Pico) VCP
+ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0009", ENV{ID_MM_DEVICE_IGNORE}="1"
 
 # USB-to-Serial
 # FTDI FT232R
@@ -171,6 +193,8 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", TAG+="uacce
 SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", TAG+="uaccess"
 # X32 DFU Access
 SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", TAG+="uaccess"
+# UM32 DFU Access
+SUBSYSTEM=="usb", ATTRS{idVendor}=="396a", ATTRS{idProduct}=="df00", TAG+="uaccess"
 # RP2350 (Raspberry Pi Pico) Bootloader Access
 SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", TAG+="uaccess"
 
