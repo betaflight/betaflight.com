@@ -72,7 +72,7 @@ On wing builds with API 1.49 firmware, the PID Tuning tab has a new **Wing Setti
 
 * **S term**, next to P, I, D and FF
 * **SPA:** mode (Off, I Freeze, I, PID, PD I Freeze), centre and width
-* **TPA:** basic or advanced speed estimation, and classic, hyperbolic or reference-speed curves, with a curve chart
+* **TPA:** basic or advanced speed estimation, and classic, hyperbolic or reference-speed curves, with a curve chart. The reference-speed curve has its own settings: reference speed, power, minimum and maximum
 * **Miscellaneous:** yaw type (rudder or differential thrust) and pitch offset
 
 The app supports **pitot (airspeed) sensors**. The Sensors tab shows airspeed. The Blackbox tab can log it. The OSD tab has an airspeed element.
@@ -116,6 +116,7 @@ On Android, the app has a new **phone layout**. The sidebar and status bar float
 * **Native file dialogs:** the desktop app uses native save and open dialogs. File export now operates on macOS and Linux. The app writes large blackbox files to disk in parts
 * **Folder memory:** each save and open dialog remembers its last folder. This includes firmware, CLI, backups, VTX tables, blackbox logs, exports, OSD fonts and boot logos
 * **Linux:** the WebKitGTK DMA-BUF renderer is off by default. This stops buttons (for example **Save**) from disappearing on some GPUs. To change it, use `WEBKIT_DISABLE_DMABUF_RENDERER`
+* **Linux AppImage:** the AppImage no longer contains its own Wayland libraries. It now opens on distributions with a newer Mesa (for example Fedora, Bazzite and CachyOS). Before, it showed a blank window and stopped. On a Wayland desktop, the AppImage now uses Wayland. To use X11, set `GDK_BACKEND=x11`
 * **Downloads page:** nightly builds are grouped in the same way as release downloads
 
 ### 1.7 Blackbox Viewer
@@ -185,6 +186,10 @@ Almost all of the app source is now **TypeScript**, and CI does a type check. Al
 
 ### 1.16 Other App Changes
 
+* **Settings menu:** a gear button next to your avatar at the bottom of the sidebar opens a menu with Options, Log, dark mode and Expert Mode. It replaces the separate icons
+* **Log panel:** the log opens in a floating panel. You can move and resize it, and continue to use the app. The pop-out button shows the log in a separate window (not on Android)
+* **Preflight tab:** a light timeline replaces the Flight Window tiles. It shows night, blue hour, golden hour, daylight, sunrise, sunset and the current time, in the time zone of the forecast location. Hover over or tap a segment to see its times
+* **OSD tab:** when you drag an element, the preview shows where the element will go. It moves from cell to cell
 * **Magnetometer calibration:** the tool now uses the full auto-align tumble only. The magnetic model can get its location from GPS, a cached location, IP lookup, the device or pasted coordinates. Zone coverage agrees with the sphere view. "Finish calibration" operates on a compass that has no calibration. On older firmware, you can calibrate more than once, and a countdown shows
 * **Integrated Yaw** does not show on API 1.49 and later, because the firmware no longer has it
 * **OSD:** compact CRSF link quality variant and the airspeed element. The preview updates when you change an element variant
@@ -197,7 +202,6 @@ Almost all of the app source is now **TypeScript**, and CI does a type check. Al
 
 ### 1.17 App Bug Fixes
 
-* Fixed motor stop with 3D mode. Motors could stay at high reverse throttle after the motor direction wizard, the reorder wizard, or when you left the Motors tab
 * Fixed the Octo Flat + motor order diagram. The motor numbers were 45 degrees out
 * Fixed the Modes tab, which showed "255" for a range saved on Auto
 * Fixed the drag of channel ranges in right-to-left layouts
@@ -208,6 +212,7 @@ Almost all of the app source is now **TypeScript**, and CI does a type check. Al
 * Fixed the Pitot switch in the live sensor panel
 * Fixed the packet error count in the status bar
 * Fixed graph axis labels in right-to-left layouts
+* Fixed the Blackbox Viewer status bar text, which you could not read in light mode
 
 ## 2. The Firmware
 
@@ -258,6 +263,7 @@ The `serial` command is still available:
 
 * With no arguments, it shows each port claim as a `set` command
 * The **legacy line form** (`serial <port> <mask> <msp baud> <gps baud> <telemetry baud> <blackbox baud>`) still operates, so you can restore a `diff` from older firmware. The firmware changes it to the new settings and shows a deprecation warning
+* A legacy line for DJI, HDZero or Walksnail goggles (MSP and VTX_MSP, for example `serial UART1 131073 ...`) also sets `osd_uart`. This also applies to builds without a VTX option
 * `dump` and `diff` no longer contain `serial` lines
 
 :::note
@@ -356,6 +362,7 @@ Changes:
 * **MAVLink:** the firmware accepts uploaded waypoints with no yaw value (NaN)
 * **Climb rate limits:** `gps_rescue_ascend_rate` and `alt_hold_climb_rate` now limit the climb rate correctly. Before, a 1 m/s setting gave 3.6 m/s. Altitude Hold now recovers more slowly from a large altitude error
 * New debug modes: `FLIGHT_PLAN`, `AUTOPILOT_CLIMB`, `AUTOPILOT_GUIDANCE` and `AUTOPILOT_LANDING`
+* **Status flags in debug logs:** the status field of the `AUTOPILOT_PID` and `AUTOPILOT_STOP` debug modes now contains bit flags (for example Nav Active, Braking, Control Failure and Sensors Not Ok). The Blackbox Viewer shows the name of each flag. A failure flag no longer hides the other flags. `AUTOPILOT_STOP[7]` now logs the braking time (unit 0.01 s)
 
 #### Fixed-Wing Navigation, Launch and Autoland (Experimental)
 
@@ -493,6 +500,8 @@ These fixes come from STMicroelectronics:
 #### Other Platform Changes
 
 * **ExpressLRS SPI receivers on AT32F435** boards
+* **STM32H7 SPI6** now uses DMA (through BDMA). Before, SPI6 operated without DMA
+* **RISC-V (ESP32, CH32):** more fixes for unaligned memory access, in blackbox download through MSP and in SRXL2 receivers
 * **X32M7:** removing the SD card no longer causes long delays
 * **USB device name:** all platforms now show as **`Betaflight (<board name>)`**, and USB mass storage as `Betaflight (<board name>) MSC`. If a script or udev rule uses the old USB product name, update it
 
@@ -514,6 +523,8 @@ Sensor fixes:
 * **ICM-45686:** the anti-alias filter and the gyro low-pass filter were not enabled. They are now enabled, and noise is near the ICM-42688-P level. The default gyro hardware low-pass is now 200 Hz
 * **LSM6DSV16X and LSM6DSK320X:** now run at the correct 1 kHz and 8 kHz rates (were 960 Hz and 7.68 kHz). The accelerometer low-pass is on
 * **ICM-56686:** filter and interrupt setup follows the datasheet
+* **BMP388 and BMP390:** the firmware used an incorrect scale for the pressure. The pressure was approximately 39% of the real value, so the measured altitude change was too small (for example 70 m for an 84 m climb). This affected Altitude Hold, GPS Rescue and the autopilot. Fixed
+* **LSM6DSO:** the gyro timing now uses the data-ready signal of the sensor. The firmware also uses the measured internal rate of the sensor
 
 #### Flash and Storage
 
@@ -526,6 +537,9 @@ Sensor fixes:
 * **Ground station commands:** a GCS can change the flight mode (`DO_SET_MODE`), start return to launch (`NAV_RETURN_TO_LAUNCH`, which starts GPS Rescue), set home (`DO_SET_HOME`), reboot (`PREFLIGHT_REBOOT_SHUTDOWN`, not when armed) and disarm (`COMPONENT_ARM_DISARM`). The firmware replies with `COMMAND_ACK`
 * **Missions:** `MISSION_SET_CURRENT` goes to a selected waypoint. The firmware accepts geofence upload and download (in RAM only; it does not save or apply the geofence yet)
 * The firmware accepts waypoints with no yaw value (NaN). QGroundControl sends this by default
+* **Waypoint hold time:** a FLYBY or FLYOVER waypoint with a hold time now holds for that time. Before, the craft went to the next waypoint immediately. A mission download includes the hold time
+* **Return to launch items:** the firmware rejects a `NAV_RETURN_TO_LAUNCH` mission item. Before, it accepted the item but did not fly it, so the craft did not return home at the end of the mission
+* **Mission upload:** a rejected, cancelled or incomplete upload keeps the previous mission. The firmware rejects an upload while the autopilot is active
 * Betaflight now identifies as **`MAV_AUTOPILOT_BETAFLIGHT`** in `HEARTBEAT`. It now uses the upstream MAVLink library
 * The firmware rejects `MAV_CMD_NAV_FOLLOW` mission items (removed from the MAVLink standard)
 * Telemetry runs on the port of a MAVLink receiver automatically
@@ -557,6 +571,7 @@ Standard builds **cannot arm through MAVLink**. A GCS can disarm, change mode, r
 * The **current draw** element shows a minus sign for negative current
 * The RSSI alarm now operates correctly when `osd_rssi_alarm = 100`
 * CMS: timer precision **Tenths** shows correctly. The failsafe landing time shows in seconds
+* CMS: the **Persistent Stats** menu has an **ENABLED** item (OFF or ON). Before, one stick movement could change the minimum armed time from -1 (off) to 0 and turn on persistent stats. With persistent stats on, the firmware saves the configuration after each disarm. On H743 boards, this can cause some ESCs to play their startup tones
 
 ### 2.5 CLI Changes
 
@@ -580,6 +595,7 @@ Standard builds **cannot arm through MAVLink**. A GCS can disarm, change mode, r
 * **Dynamic notch at low frequencies:** with `dyn_notch_min_hz` below approximately 60 Hz, notches could stop in place for some seconds. The firmware now calculates the noise floor from 60 Hz up. The search range does not change. The default (100 Hz) is not affected
 * **Chirp in Angle mode:** in Angle mode, the firmware now injects the chirp before the angle controller. One chirp log can tune both the angle loop and the rate loop. Acro mode does not change. The new `chirp_repeat` setting (1 to 9, default 1) repeats the chirp on the current axis while you hold the CHIRP switch, with 750 ms between runs. The OSD shows the axis and progress (for example `R2/5`)
 * **Motor test safety:** if the USB link stops while motors spin disarmed (for example in a motor test), the motors stop in approximately 10 ms. This applies to all disarmed motor tests, also through UART or wireless. It does not affect armed flight. USB disconnect detection on F4 is fixed
+* **Feed-forward averaging at power-up:** before, `feedforward_averaging` was off after each power-up until you saved the settings. Now the setting applies from power-up. With the default (`2_POINT`), feed-forward can feel smoother than before
 * **`min_check`:** the maximum is now 1999. A value of 2000 caused a division by zero
 * **Smoother throttle:** the throttle curve and `min_check` now use floating point. Before, up to 3 µs of throttle was lost
 * **Blackbox rcCommand:** the firmware now logs rcCommand as normalised stick deflection: roll, pitch and yaw are -1000 to 1000, and throttle is 0 to 1000. A new `rc_command_scale` header identifies this format. `DEBUG_FEEDFORWARD[3]` now has a unit of 0.001
@@ -614,6 +630,7 @@ Standard builds **cannot arm through MAVLink**. A GCS can disarm, change mode, r
 * **Horizon strength adjustment:** as a select adjustment, it went back to a low value above approximately 1924 µs. Full stick now gives 200
 * **Servo throttle with DShot:** on airplane and flying-wing mixers, a servo on the stabilised throttle input stayed at minimum until approximately half throttle. Fixed
 * **IMU heading from GPS course:** the attitude initialisation from the GPS course used the wrong sign. Fixed
+* **Anti-gravity in crash flip:** while crash flip was active, the anti-gravity value increased on each loop until it was not a valid number. The roll and pitch P and I terms then became invalid. Fixed
 * **GPS Rescue descent distance:** a value of 0 through MSP made the rescue hover above home. The firmware now limits it to 5 m to 500 m
 
 **Buses, DMA and motors**
@@ -626,6 +643,9 @@ Standard builds **cannot arm through MAVLink**. A GCS can disarm, change mode, r
 * **STM32G4 LPUART1** operates again (for example a GPS on the GEPRC TAKERG4AIO)
 * The firmware now applies the default UART6 to UART8 DMA options from board configs
 * The `dma` CLI shows the correct peripheral mappings
+* **AT32 and APM32 DShot bitbang:** a motor with no timer (for example `resource MOTOR 1 none`) now gives `MOTOR_PIN_CONFLICT`, as on the other platforms. Before, the firmware used a timer that did not exist
+* **AT32F435 startup:** a configuration save during startup (for example after the first gyro detection) could stop the board or cause a hard fault. The firmware now disables interrupts while it erases and writes the configuration flash
+* **Raspberry Pi Pico:** the firmware reserves the ADC pins (battery, current, RSSI) and the OSD pins. It no longer changes them when it sets the unused pins
 
 **Sensors and receivers**
 
@@ -642,6 +662,10 @@ Standard builds **cannot arm through MAVLink**. A GCS can disarm, change mode, r
 
 * The firmware rejects blackbox download requests past the end of the flash
 * SD card initialisation gets the full 1 second that the SD specification permits
+* **SDIO SD card:** a card fault could stop the scheduler, and the flight control tasks with it. The firmware now ends a failed transfer and tries again on the next poll
+* **W25N NAND flash on QSPI:** after the first blackbox log since power-up, logs were missing or truncated, and the used space went back after a power cycle. Fixed
+* **W25Q128FV flash on STM32 QSPI** (for example SPRACINGH7EXTREME): blackbox did not write to the flash. Fixed
+* **W25M stacked NAND flash** (for example W25M02G): reads longer than one page gave incorrect data. This affected blackbox download. Fixed
 
 ### 2.9 Settings Changes
 
@@ -765,6 +789,7 @@ This section is for persons who **build Betaflight from source**. It does not af
 * **SITL harness:** `src/test/sitl/sitl_harness.py` has a fixed-wing model (`--binary-wing`, build with `-DUSE_WING`) and wing, rescue and heading recovery scenarios
 * **Hardware support policy:** the README gives the purpose of Betaflight and its hardware support policy (manufacturers support their hardware). It sends support questions to Discord. The release schedule is now on the [Betaflight GitHub organisation profile](https://github.com/betaflight). There is no beta phase (Alpha, then Release Candidate, then Release)
 * The old STM32F1 USB VCP stack is removed
+* **`ENABLE_BMI423_ALIGN_AS_ICM`:** a board config can set this to rotate BMI423 data to the ICM-42688-P frame, as `ENABLE_BMI270_ALIGN_AS_ICM` does for the BMI270. It is off by default
 
 ## 3. Betaflight Bridge
 
@@ -832,11 +857,11 @@ Betaflight 2026.12 is the work of a dedicated community. We thank every contribu
 
 ### Firmware Contributors
 
-Adarsh D, Alex Klimaj, Anatol Pomozov, blckmn, ctzsnooze, doggiecode0707, Dominic Clifton, Eric Katzfey, Firat Hajiyev, g945643frankie, Houston Sasseen, Jan Post, Janick Dort, jianpingwu1, Jordan Peck, Jury D'Ambros, JustStan, Kevin Plaizier, Kyrylo Yakovenko, limiez, Mark Haslinghuis, Matthias A. Eckhart, mjs1441, Mohamed A.Taha, msli-dev, nerdCopter, Oskar Neumann, Qutibah Ananzeh, Rami Kronbi, Rob Thomson, RunnyCow, Shiro, Soorya_, Steve Evans, Supafly FPV, Thomas Vestergaard, tianrking, Vladimir Demidov, Yaros, Yves
+Adarsh D, Alex Klimaj, Anatol Pomozov, blckmn, ctzsnooze, doggiecode0707, Dominic Clifton, Eric Katzfey, Firat Hajiyev, g945643frankie, GyroGhost, Houston Sasseen, inskr, Jan Post, Janick Dort, jianpingwu1, Jordan Peck, Jury D'Ambros, JustStan, Kevin Plaizier, Kyrylo Yakovenko, limiez, LYNHQQ, Mark Haslinghuis, Matthias A. Eckhart, mjs1441, Mohamed A.Taha, msli-dev, nerdCopter, Oskar Neumann, Pavletic, Qutibah Ananzeh, Rami Kronbi, Rob Thomson, RunnyCow, Shiro, Soorya_, Steve Evans, Supafly FPV, Thomas Vestergaard, tianrking, Vladimir Demidov, Vladimir Sobolev, Yaros, Yves
 
 ### App Contributors
 
-Adarsh D, Albert Tumanov, Alexander Brevig, Anatol Pomozov, Atpark, avboivin, BaderFPV, Benjamin Collingwood, blckmn, ChrisRosser, ctzsnooze, GyroGhost, jianpingwu1, Jordan Peck, JosephShortt, Jury D'Ambros, Lukasz Grzella, Mark Haslinghuis, Matt Van Horn, Míguel Ángel Mulero Martínez, mjs1441, nerdCopter, Qutibah Ananzeh, rtlopez, Sam Bai, Supafly FPV, Vladimir Demidov, Vladimir Sobolev, Yaros
+Adarsh D, Albert Tumanov, Alexander Brevig, Anatol Pomozov, Atpark, avboivin, BaderFPV, Benjamin Collingwood, blckmn, ChrisRosser, ctzsnooze, GyroGhost, jianpingwu1, Jordan Peck, JosephShortt, Jury D'Ambros, Lukasz Grzella, Manuel Muehlberger, Mark Haslinghuis, Matt Van Horn, Míguel Ángel Mulero Martínez, mjs1441, nerdCopter, Qutibah Ananzeh, rtlopez, Sam Bai, Supafly FPV, Vladimir Demidov, Vladimir Sobolev, Yaros
 
 ### Bridge Contributors
 
