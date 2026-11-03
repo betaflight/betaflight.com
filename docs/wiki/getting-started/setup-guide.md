@@ -65,7 +65,9 @@ If you do need to install or reinstall firmware, see the [Firmware Installation]
 
 ## First Connection and Backup
 
-Once connected, you will land on the [Setup Tab](/docs/wiki/app/setup-tab). Move the flight controller and confirm the 3D model in the configurator moves accordingly — a good sign that the board is alive and working. From here you can calibrate the gyroscope and accelerometer using the on-screen buttons. Magnetometer calibration is optional and only relevant if your FC has one.
+Once connected, you will land on the [Setup Tab](/docs/wiki/app/setup-tab). Move the flight controller and confirm the 3D model in the configurator moves accordingly — a good sign that the board is alive and working.
+
+In App 2026.6.1 and later, open the [Sensors Tab](/docs/wiki/app/sensors-tab#accelerometer) to calibrate the accelerometer. For older app versions, see the version note on the Setup Tab page. [Magnetometer calibration](/docs/wiki/app/sensors-tab#magnetometer) is only relevant if your flight controller has a magnetometer.
 
 ### Backup Your Configuration
 
