@@ -5,7 +5,7 @@ sidebar_label: 2026.12 Release Notes
 
 # 2026.12 Release Notes
 
-Welcome to Betaflight 2026.12! This release changes how you assign serial ports: each feature now has its own port setting. It adds a new Kalman filter position estimator, heading hold in Position Hold, and a faster, more accurate GPS Rescue. Fixed-wing aircraft get navigation, a launch mode and pitot airspeed sensors, all experimental. Other additions are GD32H7 and STM32H753 support, more DroneCAN and MAVLink features, and new sensors. The app gets global settings search, a wing tuning page, a 3D flight path view and video export in the Blackbox Viewer, and right-to-left languages. iOS users get a new native app. Betaflight Bridge now has its first final release and can flash a flight controller.
+Welcome to Betaflight 2026.12! This release changes how you assign serial ports: each feature now has its own port setting. It adds a new Kalman filter position estimator, heading hold in Position Hold, and a faster, more accurate GPS Rescue. Fixed-wing aircraft get navigation, a launch mode and pitot airspeed sensors, all experimental. Other additions are GD32H7, GD32F4 and STM32H753 support, more DroneCAN and MAVLink features, and new sensors. The app gets global settings search, a wing tuning page, a 3D flight path view and video export in the Blackbox Viewer, and right-to-left languages. iOS users get a new native app. Betaflight Bridge now has its first final release and can flash a flight controller.
 
 We tried to make this release as free of bugs as possible. If you find a **bug**, open an **issue on our [GitHub tracker](https://github.com/betaflight/betaflight/issues)**.
 
@@ -171,6 +171,8 @@ You can delete your Betaflight account from the User Profile tab, or at [app.bet
 * **Board support labels** follow the new [hardware support policy](https://betaflight.com/blog/who-supports-what-betaflights-hardware-policy). Each target is **Betaflight Supported**, **Manufacturer supported** or **Legacy**. A banner tells you where to get help
 * **Withdrawn releases** do not show for a board
 * **Local firmware** from a file shows that it is not from the Betaflight cloud build
+* **Build details:** for a cloud build, the flasher shows the commit hash (with a link to GitHub) and the commit date
+* The **Configuration Filename** row shows only for builds that use a board configuration file
 * **Release options:** "early releases" (releases less than 14 days old) replace release candidates. The options are "Show releases", "Show all releases" and "Show development releases"
 * **New USB IDs:** UnicMicro **UM32** (VCP and DFU) and **GD32H7** DFU
 * **RP2350 pixel OSD:** the OSD tab can load and preview the small font for the Pico framebuffer OSD
@@ -212,6 +214,7 @@ Almost all of the app source is now **TypeScript**, and CI does a type check. Al
 * Fixed the Pitot switch in the live sensor panel
 * Fixed the packet error count in the status bar
 * Fixed graph axis labels in right-to-left layouts
+* Fixed DFU flashing when the app cannot open the device. Before, the flasher showed "Please wait" and did not stop. Now the flash status shows the error, with a driver hint on Windows and a udev hint on Linux
 * Fixed the Blackbox Viewer status bar text, which you could not read in light mode
 
 ## 2. The Firmware
@@ -459,6 +462,10 @@ Pitot support is not in the standard builds. To include it, select **Pitot** in 
 GD32H7 support is a base for manufacturers to bring up new hardware. There are no production GD32H7 flight controllers yet.
 :::
 
+#### GD32F4 (Initial)
+
+2026.12 adds the GigaDevice **GD32F4** platform, with a **GD32F460RG** reference target. It supports UART, soft serial, SPI, I2C, ADC, USB VCP, DShot, EXTI, beeper and SD card (SPI and SDIO).
+
 #### STM32H753
 
 The **STM32H753** is now a build target, with 2 MB flash.
@@ -488,6 +495,7 @@ These fixes come from STMicroelectronics:
 * Hardware UART options stay the same after a baud rate change
 * Approximately 5.5 KB of RAM saved on non-trace builds
 * Board configs can make the framebuffer OSD the default display port
+* Board configs can invert the LED strip output (`ENABLE_LED_STRIP_INVERSION`), for boards with an inverting level shifter (for example OpenFC-Lite-Mini)
 
 #### ESP32-S3
 
@@ -500,6 +508,7 @@ These fixes come from STMicroelectronics:
 #### Other Platform Changes
 
 * **ExpressLRS SPI receivers on AT32F435** boards
+* **STM32F765** MCU target. Boards can use the UART pins that only F76x processors have
 * **STM32H7 SPI6** now uses DMA (through BDMA). Before, SPI6 operated without DMA
 * **RISC-V (ESP32, CH32):** more fixes for unaligned memory access, in blackbox download through MSP and in SRXL2 receivers
 * **X32M7:** removing the SD card no longer causes long delays
@@ -523,6 +532,7 @@ Sensor fixes:
 * **ICM-45686:** the anti-alias filter and the gyro low-pass filter were not enabled. They are now enabled, and noise is near the ICM-42688-P level. The default gyro hardware low-pass is now 200 Hz
 * **LSM6DSV16X and LSM6DSK320X:** now run at the correct 1 kHz and 8 kHz rates (were 960 Hz and 7.68 kHz). The accelerometer low-pass is on
 * **ICM-56686:** filter and interrupt setup follows the datasheet
+* **ICM-45686 and ICM-45605:** the gyro reads with SPI DMA again. On a board with no gyro interrupt line, the driver now uses polling. Before, it waited for an interrupt that did not come
 * **BMP388 and BMP390:** the firmware used an incorrect scale for the pressure. The pressure was approximately 39% of the real value, so the measured altitude change was too small (for example 70 m for an 84 m climb). This affected Altitude Hold, GPS Rescue and the autopilot. Fixed
 * **LSM6DSO:** the gyro timing now uses the data-ready signal of the sensor. The firmware also uses the measured internal rate of the sensor
 
@@ -643,6 +653,8 @@ Standard builds **cannot arm through MAVLink**. A GCS can disarm, change mode, r
 * **STM32G4 LPUART1** operates again (for example a GPS on the GEPRC TAKERG4AIO)
 * The firmware now applies the default UART6 to UART8 DMA options from board configs
 * The `dma` CLI shows the correct peripheral mappings
+* **UART transmit:** the free space calculation could give 0 when the buffer was almost empty. Blackbox to a serial port then lost data. Fixed
+* **LED strip:** since 2025.12, some LED controllers (for example the BETAFPV NightFire on the Pavo20 Pro) stayed dark. On STM32, APM32 and X32, the firmware sends the full-length frame again
 * **AT32 and APM32 DShot bitbang:** a motor with no timer (for example `resource MOTOR 1 none`) now gives `MOTOR_PIN_CONFLICT`, as on the other platforms. Before, the firmware used a timer that did not exist
 * **AT32F435 startup:** a configuration save during startup (for example after the first gyro detection) could stop the board or cause a hard fault. The firmware now disables interrupts while it erases and writes the configuration flash
 * **Raspberry Pi Pico:** the firmware reserves the ADC pins (battery, current, RSSI) and the OSD pins. It no longer changes them when it sets the unused pins
@@ -654,6 +666,7 @@ Standard builds **cannot arm through MAVLink**. A GCS can disarm, change mode, r
 * Builds with only IIM-42652, only BMP580/581 on SPI, or only 2SMPB-02B on SPI are fixed
 * **GPS:** the baud scan is limited, so it no longer re-initialises the UART again and again. The firmware no longer configures the GPS when no GPS port is open
 * **XBus RJ01** receivers decode correctly
+* **SUMD:** the firmware rejects frames with more than 32 channels. Before, such a frame caused a read past the end of the buffer
 * **SX1280 (ELRS SPI)** no longer misses a frequency hop
 * **Parallel PWM receivers** (`RX_PARALLEL_PWM`) can be enabled again
 * `USE_ESC_SENSOR` is gated correctly
@@ -662,7 +675,7 @@ Standard builds **cannot arm through MAVLink**. A GCS can disarm, change mode, r
 
 * The firmware rejects blackbox download requests past the end of the flash
 * SD card initialisation gets the full 1 second that the SD specification permits
-* **SDIO SD card:** a card fault could stop the scheduler, and the flight control tasks with it. The firmware now ends a failed transfer and tries again on the next poll
+* **SDIO SD card:** a card fault could stop the scheduler, and the flight control tasks with it. The firmware now ends a failed transfer and tries again on the next poll. After too many failed resets, it marks the card as not present
 * **W25N NAND flash on QSPI:** after the first blackbox log since power-up, logs were missing or truncated, and the used space went back after a power cycle. Fixed
 * **W25Q128FV flash on STM32 QSPI** (for example SPRACINGH7EXTREME): blackbox did not write to the flash. Fixed
 * **W25M stacked NAND flash** (for example W25M02G): reads longer than one page gave incorrect data. This affected blackbox download. Fixed
@@ -789,6 +802,8 @@ This section is for persons who **build Betaflight from source**. It does not af
 * **SITL harness:** `src/test/sitl/sitl_harness.py` has a fixed-wing model (`--binary-wing`, build with `-DUSE_WING`) and wing, rescue and heading recovery scenarios
 * **Hardware support policy:** the README gives the purpose of Betaflight and its hardware support policy (manufacturers support their hardware). It sends support questions to Discord. The release schedule is now on the [Betaflight GitHub organisation profile](https://github.com/betaflight). There is no beta phase (Alpha, then Release Candidate, then Release)
 * The old STM32F1 USB VCP stack is removed
+* **Array settings groups:** if a stored array group (for example the PID profiles) has a different size, the firmware now resets it to defaults. Before, it loaded shifted values. You must still increase the group version when you change its layout
+* **`AGENTS.md`** gives the rules for AI coding agents and automated contributors, with a link to the Betaflight AI Contribution Policy
 * **`ENABLE_BMI423_ALIGN_AS_ICM`:** a board config can set this to rotate BMI423 data to the ICM-42688-P frame, as `ENABLE_BMI270_ALIGN_AS_ICM` does for the BMI270. It is off by default
 
 ## 3. Betaflight Bridge
@@ -857,7 +872,7 @@ Betaflight 2026.12 is the work of a dedicated community. We thank every contribu
 
 ### Firmware Contributors
 
-Adarsh D, Alex Klimaj, Anatol Pomozov, blckmn, ctzsnooze, doggiecode0707, Dominic Clifton, Eric Katzfey, Firat Hajiyev, g945643frankie, GyroGhost, Houston Sasseen, inskr, Jan Post, Janick Dort, jianpingwu1, Jordan Peck, Jury D'Ambros, JustStan, Kevin Plaizier, Kyrylo Yakovenko, limiez, LYNHQQ, Mark Haslinghuis, Matthias A. Eckhart, mjs1441, Mohamed A.Taha, msli-dev, nerdCopter, Oskar Neumann, Pavletic, Qutibah Ananzeh, Rami Kronbi, Rob Thomson, RunnyCow, Shiro, Soorya_, Steve Evans, Supafly FPV, Thomas Vestergaard, tianrking, Vladimir Demidov, Vladimir Sobolev, Yaros, Yves
+Adarsh D, Alex Klimaj, Anatol Pomozov, blckmn, ctzsnooze, Daniil, doggiecode0707, Dominic Clifton, Eric Katzfey, Firat Hajiyev, g945643frankie, GyroGhost, Houston Sasseen, inskr, Jan Post, j-w9, Janick Dort, jianpingwu1, Jim Florrick, Joe Fernandez, Johan Arias, Jordan Peck, Jury D'Ambros, JustStan, Kevin Plaizier, Kyrylo Yakovenko, limiez, LYNHQQ, Mark Haslinghuis, Matthias A. Eckhart, mjs1441, Mohamed A.Taha, msli-dev, nerdCopter, Oskar Neumann, Pavletic, Peter van der Perk, Qutibah Ananzeh, Rami Kronbi, Rob Thomson, RunnyCow, Shiro, Soorya_, Steve Evans, Supafly FPV, Thomas Vestergaard, tianrking, Vladimir Demidov, Vladimir Sobolev, Yaros, Yves
 
 ### App Contributors
 
