@@ -262,6 +262,17 @@ function evalIntExpr(text) {
   return value;
 }
 
+/** Parse the argument of `#define NAME VALUE` under the active conditions; null for function-like or empty defines. */
+function parseDefineArg(arg, conds) {
+  const space = arg.search(/\s/);
+  const name = space > 0 ? arg.slice(0, space) : '';
+  if (!/^\w+$/.test(name)) {
+    return null;
+  }
+  const condition = conds.length > 0 ? conds.join(' && ') : null;
+  return { name, entry: { value: arg.slice(space).trim(), condition } };
+}
+
 /**
  * Collect `#define NAME VALUE` lines in a file together with the preprocessor condition they sit
  * under (e.g. `USE_WING`, `!USE_WING`), so conditional definitions can all be reported.
@@ -289,11 +300,10 @@ function collectDefines(content) {
     if (Object.hasOwn(conditional, directive)) {
       conditional[directive](arg);
     } else if (directive === 'define') {
-      const space = arg.search(/\s/);
-      const name = space > 0 ? arg.slice(0, space) : '';
-      if (/^\w+$/.test(name)) {
-        defines[name] ??= [];
-        defines[name].push({ value: arg.slice(space).trim(), condition: conds.length > 0 ? conds.join(' && ') : null });
+      const def = parseDefineArg(arg, conds);
+      if (def) {
+        defines[def.name] ??= [];
+        defines[def.name].push(def.entry);
       }
     }
   }
