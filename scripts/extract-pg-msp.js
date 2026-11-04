@@ -358,6 +358,15 @@ function summarizeVersion(variants) {
   return { version: primary.value, variants: distinct };
 }
 
+/** Resolve a PG version, warning when it can't be resolved (it is then reported as 0, indistinguishable from a real 0). */
+function resolvePgVersion(pgConstant, token, defines) {
+  const variants = resolveVersionVariants(token, defines);
+  if (variants.length === 0) {
+    console.warn(`  Warning: could not resolve PG version "${token}" for ${pgConstant}; reporting 0`);
+  }
+  return summarizeVersion(variants);
+}
+
 const macroRe = /(PG_REGISTER(?:_ARRAY)?(?:_WITH_RESET_(?:FN|TEMPLATE))?)\s*\(([^)]*)\)\s*;/g;
 
 for (const file of cFiles) {
@@ -377,12 +386,12 @@ for (const file of cFiles) {
       if (rawArgs.length < 5) continue;
       structType = rawArgs[0];
       pgConstant = rawArgs[3];
-      version = summarizeVersion(resolveVersionVariants(rawArgs[4], defines));
+      version = resolvePgVersion(pgConstant, rawArgs[4], defines);
     } else {
       if (rawArgs.length < 4) continue;
       structType = rawArgs[0];
       pgConstant = rawArgs[2];
-      version = summarizeVersion(resolveVersionVariants(rawArgs[3], defines));
+      version = resolvePgVersion(pgConstant, rawArgs[3], defines);
     }
     if (!pgConstant || !pgConstant.startsWith('PG_')) continue;
     if (!pgRegistrations[pgConstant]) {
