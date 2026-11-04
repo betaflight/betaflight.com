@@ -187,7 +187,7 @@ With the flight controller turned by hand, the goggles were snapshotted twice a 
 
 ![Before and after at osd_framerate_hz 30](/img/displayport/motion-30hz.gif)
 
-Betaflight tells a DJI O3 Air Unit by its polls on the display's port: it asks for FILTER_CONFIG and never for OSD_CONFIG or ATTITUDE, which the DJI air unit before it (V1, Vista) and Configurator ask for. After five FILTER_CONFIG polls, about a second, the screen is sent again for DJI: spaces go as 0, and Betaflight works out the size of the screen the goggles hold, as above, from two bits a cell. A write that would take it over `displayport_msp_dji_budget` is held back and the device is cleared at the start of the next frame. A screen too big even right after a clear leaves out what does not fit until the next clear. Any other device gets spaces and no budget. An O4 was not measured.
+Betaflight tells a DJI O3 Air Unit by its polls on the display's port: it asks for FILTER_CONFIG and never for OSD_CONFIG or ATTITUDE, which the DJI air unit before it (V1, Vista) and Configurator ask for. After five FILTER_CONFIG polls, about a second, the screen is sent again for DJI: spaces go as 0, and Betaflight works out the size of the screen the goggles hold, as above, from two bits a cell. A write that would take it over `displayport_msp_dji_budget_bytes` is held back and the device is cleared at the start of the next frame. A screen too big even right after a clear leaves out what does not fit until the next clear. Any other device gets spaces and no budget. An O4 was not measured.
 
 A typical heavy layout of 50 elements takes 545-600 bytes of the 902, so the budget only comes into play with very busy screens.
 
@@ -197,7 +197,7 @@ Set `debug_mode = MSP_DISPLAYPORT` to see what the link and the device carry.
 | ----- | ----- |
 | 0 | Bytes sent in the frame |
 | 1 | Cells sent in the frame |
-| 2 | Size of the screen the DJI goggles hold, in bytes (0 for other devices) |
+| 2 | Size of the screen the DJI goggles hold, in bytes. 0 when no O3 Air Unit was found, so it shows whether Betaflight found one |
 | 3 | Cells that show something on the device |
 
 ### The goggles' own interface
@@ -244,7 +244,7 @@ Each widget is given the rows its text lines sit in; their edges reach a few pix
 | Setting | Default | Notes |
 | ------- | ------- | ----- |
 | `displayport_msp_send_changes` | ON | Send only the writes that changed, and the whole screen once a second. OFF sends every frame whole, for a device that does not keep its screen. |
-| `displayport_msp_dji_budget` | 902 | Largest screen sent to a DJI O3 Air Unit, in bytes of the goggles' encoding (see above). 0 disables the limit. Other devices have no limit. |
+| `displayport_msp_dji_budget_bytes` | 902 | Largest screen sent to a DJI O3 Air Unit, in bytes of the goggles' encoding (see above). 0 disables the limit. Other devices have no limit. |
 | `displayport_msp_fonts` | 0,1,2,3 | Font page for normal, info, warning and critical severity. |
 | `displayport_msp_use_device_blink` | OFF | When ON the blink attribute is sent and the device blinks the text. DJI O3/Goggles 2 ignore it, so leave it OFF there. |
 | `displayport_msp_col_adjust`, `displayport_msp_row_adjust` | 0 | Reduce the area used by the OSD in SD mode. |
