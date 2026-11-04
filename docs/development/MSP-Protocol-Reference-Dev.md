@@ -372,9 +372,9 @@ _Sets a single mode range_
 
 _Get feature configuration_
 
-| Offset | Field           | Type | Bytes | Default          | Min                | Max                  | Notes           |
-| ------ | --------------- | ---- | ----- | ---------------- | ------------------ | -------------------- | --------------- | --- | --- | --- |
-| 0      | enabledFeatures | U32  | 4     | DEFAULT_FEATURES | DEFAULT_RX_FEATURE | FEATURE_ANTI_GRAVITY | FEATURE_AIRMODE |     |     |     |
+| Offset | Field           | Type | Bytes | Default                                                                           | Min | Max | Notes |
+| ------ | --------------- | ---- | ----- | --------------------------------------------------------------------------------- | --- | --- | ----- |
+| 0      | enabledFeatures | U32  | 4     | DEFAULT_FEATURES \| DEFAULT_RX_FEATURE \| FEATURE_ANTI_GRAVITY \| FEATURE_AIRMODE |     |     |       |
 
 ### MSP_SET_FEATURE_CONFIG — 37 — to FC
 

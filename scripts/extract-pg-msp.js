@@ -639,7 +639,13 @@ for (const code of allMspCodes) {
 // Generate Markdown tables
 // ---------------------------------------------------------------------------
 
-function buildTable(headers, rows) {
+// Escape `|` so C expressions such as `A | B` don't split a Markdown table cell.
+function escapeCell(cell) {
+  return String(cell ?? '').replace(/(?<!\\)\|/g, '\\|');
+}
+
+function buildTable(headers, rawRows) {
+  const rows = rawRows.map((r) => r.map(escapeCell));
   const widths = headers.map((h, i) => Math.max(h.length, ...rows.map((r) => String(r[i] ?? '').length)));
   const header = `| ${headers.map((h, i) => padEnd(h, widths[i])).join(' | ')} |`;
   const sep = `| ${widths.map((w) => '-'.repeat(w)).join(' | ')} |`;
