@@ -38,7 +38,7 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_API_VERSION                  | 1      | from FC   | 3      | Get API version                                                                               |
 | MSP_FC_VARIANT                   | 2      | from FC   | 1      | Get flight controller variant                                                                 |
 | MSP_FC_VERSION                   | 3      | from FC   | 4      | Get flight controller version                                                                 |
-| MSP_BOARD_INFO                   | 4      | from FC   | 21     | Get board information                                                                         |
+| MSP_BOARD_INFO                   | 4      | from FC   | 14     | Get board information                                                                         |
 | MSP_BUILD_INFO                   | 5      | from FC   | 3      | Get build information                                                                         |
 | MSP_NAME                         | 10     | from FC   | 1      | Returns user set board name - betaflight                                                      |
 | MSP_SET_NAME                     | 11     | to FC     | —      | Sets board name - betaflight                                                                  |
@@ -53,13 +53,13 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_CURRENT_METER_CONFIG         | 40     | from FC   | 11     | Get current meter configuration                                                               |
 | MSP_SET_CURRENT_METER_CONFIG     | 41     | to FC     | 7      | Set current meter configuration                                                               |
 | MSP_MIXER_CONFIG                 | 42     | from FC   | 2      | Get mixer configuration                                                                       |
-| MSP_SET_MIXER_CONFIG             | 43     | to FC     | 3      | Set mixer configuration                                                                       |
-| MSP_RX_CONFIG                    | 44     | from FC   | 38     | Get RX configuration                                                                          |
-| MSP_SET_RX_CONFIG                | 45     | to FC     | 37     | Set RX configuration                                                                          |
+| MSP_SET_MIXER_CONFIG             | 43     | to FC     | 2      | Set mixer configuration                                                                       |
+| MSP_RX_CONFIG                    | 44     | from FC   | 25     | Get RX configuration                                                                          |
+| MSP_SET_RX_CONFIG                | 45     | to FC     | 24     | Set RX configuration                                                                          |
 | MSP_LED_COLORS                   | 46     | from FC   | 3      | Get LED colors                                                                                |
 | MSP_SET_LED_COLORS               | 47     | to FC     | 3      | Set LED colors                                                                                |
-| MSP_LED_STRIP_CONFIG             | 48     | from FC   | 5      | Get LED strip configuration                                                                   |
-| MSP_SET_LED_STRIP_CONFIG         | 49     | to FC     | 4      | Set LED strip configuration                                                                   |
+| MSP_LED_STRIP_CONFIG             | 48     | from FC   | 3      | Get LED strip configuration                                                                   |
+| MSP_SET_LED_STRIP_CONFIG         | 49     | to FC     | 3      | Set LED strip configuration                                                                   |
 | MSP_RSSI_CONFIG                  | 50     | from FC   | 1      | Get RSSI configuration                                                                        |
 | MSP_SET_RSSI_CONFIG              | 51     | to FC     | 1      | Set RSSI configuration                                                                        |
 | MSP_ADJUSTMENT_RANGES            | 52     | from FC   | 8      | Get adjustment ranges                                                                         |
@@ -67,7 +67,7 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_CF_SERIAL_CONFIG             | 54     | from FC   | 2      | Get Cleanflight serial configuration                                                          |
 | MSP_VOLTAGE_METER_CONFIG         | 56     | from FC   | 7      | Get voltage meter configuration                                                               |
 | MSP_SET_VOLTAGE_METER_CONFIG     | 57     | to FC     | 7      | Set voltage meter configuration                                                               |
-| MSP_SONAR_ALTITUDE               | 58     | from FC   | 2      | Get sonar altitude [cm]                                                                       |
+| MSP_SONAR_ALTITUDE               | 58     | from FC   | 1      | Get sonar altitude [cm]                                                                       |
 | MSP_PID_CONTROLLER               | 59     | from FC   | 1      | Get PID controller                                                                            |
 | MSP_SET_PID_CONTROLLER           | 60     | to FC     | —      | Set PID controller                                                                            |
 | MSP_ARMING_CONFIG                | 61     | from FC   | 4      | Get arming configuration                                                                      |
@@ -83,35 +83,35 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_RXFAIL_CONFIG                | 77     | from FC   | 2      | Get RX failsafe settings                                                                      |
 | MSP_SET_RXFAIL_CONFIG            | 78     | to FC     | 3      | Set RX failsafe settings                                                                      |
 | MSP_SDCARD_SUMMARY               | 79     | from FC   | —      | Get SD card state                                                                             |
-| MSP_BLACKBOX_CONFIG              | 80     | from FC   | 14     | Get blackbox settings                                                                         |
+| MSP_BLACKBOX_CONFIG              | 80     | from FC   | 7      | Get blackbox settings                                                                         |
 | MSP_SET_BLACKBOX_CONFIG          | 81     | to FC     | 6      | Set blackbox settings                                                                         |
-| MSP_TRANSPONDER_CONFIG           | 82     | from FC   | 6      | Get transponder settings                                                                      |
+| MSP_TRANSPONDER_CONFIG           | 82     | from FC   | 5      | Get transponder settings                                                                      |
 | MSP_SET_TRANSPONDER_CONFIG       | 83     | to FC     | 2      | Set transponder settings                                                                      |
-| MSP_OSD_CONFIG                   | 84     | from FC   | 27     | Get OSD settings                                                                              |
-| MSP_SET_OSD_CONFIG               | 85     | to FC     | 22     | Set OSD settings                                                                              |
+| MSP_OSD_CONFIG                   | 84     | from FC   | 23     | Get OSD settings                                                                              |
+| MSP_SET_OSD_CONFIG               | 85     | to FC     | 19     | Set OSD settings                                                                              |
 | MSP_OSD_CHAR_READ                | 86     | from FC   | —      | Get OSD characters                                                                            |
 | MSP_OSD_CHAR_WRITE               | 87     | to FC     | 5      | Set OSD characters                                                                            |
-| MSP_VTX_CONFIG                   | 88     | from FC   | 17     | Get VTX settings                                                                              |
-| MSP_SET_VTX_CONFIG               | 89     | to FC     | 16     | Set VTX settings                                                                              |
+| MSP_VTX_CONFIG                   | 88     | from FC   | 13     | Get VTX settings                                                                              |
+| MSP_SET_VTX_CONFIG               | 89     | to FC     | 12     | Set VTX settings                                                                              |
 | MSP_ADVANCED_CONFIG              | 90     | from FC   | 16     | Get advanced configuration                                                                    |
-| MSP_SET_ADVANCED_CONFIG          | 91     | to FC     | 16     | Set advanced configuration                                                                    |
-| MSP_FILTER_CONFIG                | 92     | from FC   | 50     | Get filter configuration                                                                      |
-| MSP_SET_FILTER_CONFIG            | 93     | to FC     | 50     | Set filter configuration                                                                      |
-| MSP_PID_ADVANCED                 | 94     | from FC   | 68     | Get advanced PID settings                                                                     |
-| MSP_SET_PID_ADVANCED             | 95     | to FC     | 68     | Set advanced PID settings                                                                     |
-| MSP_SENSOR_CONFIG                | 96     | from FC   | 12     | Get sensor configuration                                                                      |
-| MSP_SET_SENSOR_CONFIG            | 97     | to FC     | 12     | Set sensor configuration                                                                      |
+| MSP_SET_ADVANCED_CONFIG          | 91     | to FC     | 15     | Set advanced configuration                                                                    |
+| MSP_FILTER_CONFIG                | 92     | from FC   | 34     | Get filter configuration                                                                      |
+| MSP_SET_FILTER_CONFIG            | 93     | to FC     | 34     | Set filter configuration                                                                      |
+| MSP_PID_ADVANCED                 | 94     | from FC   | 49     | Get advanced PID settings                                                                     |
+| MSP_SET_PID_ADVANCED             | 95     | to FC     | 49     | Set advanced PID settings                                                                     |
+| MSP_SENSOR_CONFIG                | 96     | from FC   | 6      | Get sensor configuration                                                                      |
+| MSP_SET_SENSOR_CONFIG            | 97     | to FC     | 6      | Set sensor configuration                                                                      |
 | MSP_CAMERA_CONTROL               | 98     | both      | 1      | Camera control                                                                                |
 | MSP_SET_ARMING_DISABLED          | 99     | to FC     | 2      | Enable/disable arming                                                                         |
-| MSP_STATUS                       | 101    | from FC   | 20     | Cycletime & errors_count & sensor present & box activation & current setting number           |
-| MSP_RAW_IMU                      | 102    | from FC   | 5      | 9 DOF                                                                                         |
+| MSP_STATUS                       | 101    | from FC   | 18     | Cycletime & errors_count & sensor present & box activation & current setting number           |
+| MSP_RAW_IMU                      | 102    | from FC   | 3      | 9 DOF                                                                                         |
 | MSP_SERVO                        | 103    | from FC   | 1      | Servos                                                                                        |
-| MSP_MOTOR                        | 104    | from FC   | 3      | Motors                                                                                        |
+| MSP_MOTOR                        | 104    | from FC   | 1      | Motors                                                                                        |
 | MSP_RC                           | 105    | from FC   | 1      | RC channels and more                                                                          |
 | MSP_RAW_GPS                      | 106    | from FC   | 11     | Fix, numsat, lat, lon, alt, speed, ground course                                              |
 | MSP_COMP_GPS                     | 107    | from FC   | 3      | Distance home, direction home                                                                 |
 | MSP_ATTITUDE                     | 108    | from FC   | 3      | 2 angles 1 heading                                                                            |
-| MSP_ALTITUDE                     | 109    | from FC   | 3      | Altitude, variometer                                                                          |
+| MSP_ALTITUDE                     | 109    | from FC   | 2      | Altitude, variometer                                                                          |
 | MSP_ANALOG                       | 110    | from FC   | 5      | Vbat, powermetersum, rssi if available on RX                                                  |
 | MSP_RC_TUNING                    | 111    | from FC   | 18     | RC rate, rc expo, rollpitch rate, yaw rate, dyn throttle PID                                  |
 | MSP_PID                          | 112    | from FC   | 3      | P I D coeff (9 are used currently)                                                            |
@@ -123,13 +123,13 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_NAV_STATUS                   | 121    | from FC   | —      | Returns navigation status                                                                     |
 | MSP_NAV_CONFIG                   | 122    | from FC   | —      | Returns navigation parameters                                                                 |
 | MSP_MOTOR_3D_CONFIG              | 124    | from FC   | 3      | Settings needed for reversible ESCs                                                           |
-| MSP_RC_DEADBAND                  | 125    | from FC   | 5      | Deadbands for yaw alt pitch roll                                                              |
-| MSP_SENSOR_ALIGNMENT             | 126    | from FC   | 12     | Orientation of acc,gyro,mag                                                                   |
+| MSP_RC_DEADBAND                  | 125    | from FC   | 4      | Deadbands for yaw alt pitch roll                                                              |
+| MSP_SENSOR_ALIGNMENT             | 126    | from FC   | 8      | Orientation of acc,gyro,mag                                                                   |
 | MSP_LED_STRIP_MODECOLOR          | 127    | from FC   | 9      | Get LED strip mode_color settings                                                             |
 | MSP_VOLTAGE_METERS               | 128    | from FC   | 2      | Voltage (per meter)                                                                           |
 | MSP_CURRENT_METERS               | 129    | from FC   | 3      | Amperage (per meter)                                                                          |
 | MSP_BATTERY_STATE                | 130    | from FC   | 7      | Connected/Disconnected, Voltage, Current Used                                                 |
-| MSP_MOTOR_CONFIG                 | 131    | from FC   | 10     | Motor configuration (min/max throttle, etc)                                                   |
+| MSP_MOTOR_CONFIG                 | 131    | from FC   | 8      | Motor configuration (min/max throttle, etc)                                                   |
 | MSP_GPS_CONFIG                   | 132    | from FC   | 6      | GPS configuration                                                                             |
 | MSP_COMPASS_CONFIG               | 133    | from FC   | 1      | Compass configuration                                                                         |
 | MSP_ESC_SENSOR_DATA              | 134    | from FC   | 6      | Extra ESC data from 32-Bit ESCs (Temperature, RPM)                                            |
@@ -150,13 +150,13 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_GPSSTATISTICS                | 166    | from FC   | —      | Get GPS debugging data                                                                        |
 | MSP_ATTITUDE_QUATERNION          | 167    | from FC   | 4      | Orientation quaternion components (w, x, y, z)                                                |
 | MSP_WING                         | 169    | from FC   | 24     | WING settings                                                                                 |
-| MSP_PITOT                        | 170    | from FC   | 4      | Pitot data                                                                                    |
+| MSP_PITOT                        | 170    | from FC   | 2      | Pitot data                                                                                    |
 | MSP_OSD_VIDEO_CONFIG             | 180    | from FC   | —      | Get OSD video settings                                                                        |
 | MSP_SET_OSD_VIDEO_CONFIG         | 181    | to FC     | —      | Set OSD video settings                                                                        |
 | MSP_DISPLAYPORT                  | 182    | from FC   | —      | External OSD displayport mode                                                                 |
 | MSP_COPY_PROFILE                 | 183    | to FC     | 3      | Copy settings between profiles                                                                |
 | MSP_BEEPER_CONFIG                | 184    | from FC   | 3      | Get beeper configuration                                                                      |
-| MSP_SET_BEEPER_CONFIG            | 185    | to FC     | 4      | Set beeper configuration                                                                      |
+| MSP_SET_BEEPER_CONFIG            | 185    | to FC     | 3      | Set beeper configuration                                                                      |
 | MSP_SET_TX_INFO                  | 186    | to FC     | 1      | Set runtime information from TX lua scripts                                                   |
 | MSP_TX_INFO                      | 187    | from FC   | 2      | Get runtime information for TX lua scripts                                                    |
 | MSP_SET_OSD_CANVAS               | 188    | to FC     | 2      | Set OSD canvas size COLSxROWS                                                                 |
@@ -164,7 +164,7 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_SET_RAW_RC                   | 200    | to FC     | 1      | 8 rc chan                                                                                     |
 | MSP_SET_RAW_GPS                  | 201    | to FC     | 6      | Fix, numsat, lat, lon, alt, speed                                                             |
 | MSP_SET_PID                      | 202    | to FC     | 3      | P I D coeff (9 are used currently)                                                            |
-| MSP_SET_WING                     | 203    | to FC     | 27     | Set WING settings                                                                             |
+| MSP_SET_WING                     | 203    | to FC     | 24     | Set WING settings                                                                             |
 | MSP_SET_RC_TUNING                | 204    | to FC     | 18     | RC rate, rc expo, rollpitch rate, yaw rate, dyn throttle PID, yaw expo                        |
 | MSP_ACC_CALIBRATION              | 205    | to FC     | —      | No param - calibrate accelerometer                                                            |
 | MSP_MAG_CALIBRATION              | 206    | to FC     | —      | No param - calibrate magnetometer                                                             |
@@ -176,11 +176,11 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_SET_MOTOR                    | 214    | to FC     | 1      | PropBalance function                                                                          |
 | MSP_SET_NAV_CONFIG               | 215    | to FC     | —      | Sets nav config parameters                                                                    |
 | MSP_SET_MOTOR_3D_CONFIG          | 217    | to FC     | 3      | Settings needed for reversible ESCs                                                           |
-| MSP_SET_RC_DEADBAND              | 218    | to FC     | 5      | Deadbands for yaw alt pitch roll                                                              |
+| MSP_SET_RC_DEADBAND              | 218    | to FC     | 4      | Deadbands for yaw alt pitch roll                                                              |
 | MSP_SET_RESET_CURR_PID           | 219    | to FC     | —      | Reset current PID profile to defaults                                                         |
-| MSP_SET_SENSOR_ALIGNMENT         | 220    | to FC     | 11     | Set the orientation of acc,gyro,mag                                                           |
+| MSP_SET_SENSOR_ALIGNMENT         | 220    | to FC     | 7      | Set the orientation of acc,gyro,mag                                                           |
 | MSP_SET_LED_STRIP_MODECOLOR      | 221    | to FC     | 3      | Set LED strip mode_color settings                                                             |
-| MSP_SET_MOTOR_CONFIG             | 222    | to FC     | 7      | Motor configuration (min/max throttle, etc)                                                   |
+| MSP_SET_MOTOR_CONFIG             | 222    | to FC     | 6      | Motor configuration (min/max throttle, etc)                                                   |
 | MSP_SET_GPS_CONFIG               | 223    | to FC     | 6      | GPS configuration                                                                             |
 | MSP_SET_COMPASS_CONFIG           | 224    | to FC     | 1      | Compass configuration                                                                         |
 | MSP_SET_GPS_RESCUE               | 225    | to FC     | 15     | Set GPS Rescue parameters                                                                     |
@@ -218,7 +218,7 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP2_SET_TEXT                    | 0x3007 | to FC     | 2      |                                                                                               |
 | MSP2_GET_LED_STRIP_CONFIG_VALUES | 0x3008 | from FC   | 3      |                                                                                               |
 | MSP2_SET_LED_STRIP_CONFIG_VALUES | 0x3009 | to FC     | 3      |                                                                                               |
-| MSP2_SENSOR_CONFIG_ACTIVE        | 0x300a | from FC   | 14     |                                                                                               |
+| MSP2_SENSOR_CONFIG_ACTIVE        | 0x300a | from FC   | 7      |                                                                                               |
 | MSP2_SENSOR_OPTICALFLOW          | 0x300b | unknown   | —      |                                                                                               |
 | MSP2_MCU_INFO                    | 0x300c | from FC   | 2      |                                                                                               |
 | MSP2_GYRO_SENSOR_ACTIVE          | 0x300d | from FC   | 2      |                                                                                               |
@@ -273,25 +273,18 @@ _Get board information_
 | ------ | ------------------ | ----- | ----- | -------------------------------- | --- | --- | ----------------------------------------------------------------------------------------------- |
 | 0      | (variable data)    | bytes | ?     |                                  |     |     | variable-length data                                                                            |
 | ?      | (value)            | U16   | 2     |                                  |     |     |                                                                                                 |
-| ?      | (value)            | U16   | 2     |                                  |     |     | No other build targets currently have hardware revision detection.                              |
 | ?      | (value)            | U8    | 1     |                                  |     |     | 2 == FC with MAX7456                                                                            |
-| ?      | (value)            | U8    | 1     |                                  |     |     | 0 == FC                                                                                         |
 | ?      | (value)            | U8    | 1     |                                  |     |     |                                                                                                 |
 | ?      | (string)           | str   | ?     |                                  |     |     | string data                                                                                     |
 | ?      | (string)           | str   | ?     |                                  |     |     | string data                                                                                     |
 | ?      | (string)           | str   | ?     |                                  |     |     | string data                                                                                     |
-| ?      | (value)            | U8    | 1     |                                  |     |     | deprecated/padding                                                                              |
-| ?      | (value)            | U8    | 1     |                                  |     |     | deprecated/padding                                                                              |
-| ?      | (variable data)    | bytes | ?     |                                  |     |     | variable-length data                                                                            |
 | ?      | (variable data)    | bytes | ?     |                                  |     |     | variable-length data                                                                            |
 | ?      | (value)            | U8    | 1     |                                  |     |     |                                                                                                 |
 | ?      | configurationState | U8    | 1     | CONFIGURATION_STATE_UNCONFIGURED |     |     |                                                                                                 |
 | ?      | sampleRateHz       | U16   | 2     |                                  |     |     | informational so the configurator can display the correct gyro/pid frequencies in the drop-down |
 | ?      | (value)            | U32   | 4     |                                  |     |     |                                                                                                 |
 | ?      | (value)            | U8    | 1     |                                  |     |     |                                                                                                 |
-| ?      | (value)            | U8    | 1     |                                  |     |     | deprecated/padding                                                                              |
 | ?      | (value)            | U8    | 1     |                                  |     |     |                                                                                                 |
-| ?      | (value)            | U8    | 1     |                                  |     |     | deprecated/padding                                                                              |
 
 ### MSP_BUILD_INFO — 5 — from FC
 
@@ -347,12 +340,12 @@ _Set battery configuration_
 
 _Returns all mode ranges_
 
-| Offset | Field           | Type | Bytes | Default | Min | Max | Notes |
-| ------ | --------------- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | permanentId     | U8   | 1     |         |     |     |       |
-| 1      | auxChannelIndex | U8   | 1     |         |     |     |       |
-| 2      | startStep       | U8   | 1     |         |     |     |       |
-| 3      | endStep         | U8   | 1     |         |     |     |       |
+| Offset | Field           | Type | Bytes | Default | Min | Max | Notes                                                        |
+| ------ | --------------- | ---- | ----- | ------- | --- | --- | ------------------------------------------------------------ |
+| 0      | permanentId     | U8   | 1     |         |     |     | repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 4 |
+| 1      | auxChannelIndex | U8   | 1     |         |     |     | repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 4 |
+| 2      | startStep       | U8   | 1     |         |     |     | repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 4 |
+| 3      | endStep         | U8   | 1     |         |     |     | repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 4 |
 
 ### MSP_SET_MODE_RANGE — 35 — to FC
 
@@ -452,8 +445,7 @@ _Set mixer configuration_
 | Offset | Field               | Type | Bytes | Default             | Min | Max | Notes                |
 | ------ | ------------------- | ---- | ----- | ------------------- | --- | --- | -------------------- |
 | 0      | (read)              | U8   | 1     |                     |     |     | deprecated/ignored   |
-| 1      | (read)              | U8   | 1     |                     |     |     | deprecated/ignored   |
-| 2      | yaw_motors_reversed | U8   | 1     | YAW_MOTORS_REVERSED |     |     | lookup: TABLE_OFF_ON |
+| 1      | yaw_motors_reversed | U8   | 1     | YAW_MOTORS_REVERSED |     |     | lookup: TABLE_OFF_ON |
 
 ### MSP_RX_CONFIG — 44 — from FC
 
@@ -474,31 +466,18 @@ _Get RX configuration_
 | 16     | rx_spi_protocol                   | U8    | 1     | 0       |                              |                              | lookup: TABLE_RX_SPI                                                   |
 | 17     | rx_spi_id                         | U32   | 4     |         |                              |                              |                                                                        |
 | 21     | rx_spi_rf_channel_count           | U8    | 1     |         |                              |                              |                                                                        |
-| 22     | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
-| 23     | (value)                           | U32   | 4     |         |                              |                              | deprecated/padding                                                     |
-| 27     | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
-| 28     | fpvCamAngleDegrees                | U8    | 1     |         | 0                            | RX_FPV_CAM_ANGLE_MAX         |                                                                        |
-| 29     | (value)                           | U8    | 1     |         |                              |                              | not required in API 1.44, was rxConfig()->rcSmoothingChannels          |
-| 30     | (value)                           | U8    | 1     |         |                              |                              | not required in API 1.44, was rxConfig()->rc_smoothing_type            |
-| 31     | rc_smoothing_setpoint_cutoff      | U8    | 1     |         | 0                            | UINT8_MAX                    |                                                                        |
-| 32     | rc_smoothing_throttle_cutoff      | U8    | 1     |         | 0                            | UINT8_MAX                    | was rc_smoothing_feedforward_cutoff                                    |
-| 33     | rc_smoothing_auto_factor_throttle | U8    | 1     |         | RC_SMOOTHING_AUTO_FACTOR_MIN | RC_SMOOTHING_AUTO_FACTOR_MAX | , was rxConfig()->rc_smoothing_input_type                              |
-| 34     | (value)                           | U8    | 1     |         |                              |                              | not required in API 1.44, was rxConfig()->rc_smoothing_derivative_type |
-| 35     | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
-| 36     | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
-| 37     | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
-| 38     | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
-| 39     | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
-| 40     | type                              | U8    | 1     | DEFAULT |                              |                              | lookup: TABLE_OFF_ON                                                   |
-| 41     | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
-| 42     | rc_smoothing_auto_factor_rpy      | U8    | 1     |         | RC_SMOOTHING_AUTO_FACTOR_MIN | RC_SMOOTHING_AUTO_FACTOR_MAX |                                                                        |
-| 43     | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
-| 44     | rc_smoothing                      | U8    | 1     |         |                              |                              | lookup: TABLE_OFF_ON                                                   |
-| 45     | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
-| 46     | (variable data)                   | bytes | ?     |         |                              |                              | variable-length data                                                   |
-| ?      | (variable data)                   | bytes | ?     |         |                              |                              | variable-length data                                                   |
+| 22     | fpvCamAngleDegrees                | U8    | 1     |         | 0                            | RX_FPV_CAM_ANGLE_MAX         |                                                                        |
+| 23     | (value)                           | U8    | 1     |         |                              |                              | not required in API 1.44, was rxConfig()->rcSmoothingChannels          |
+| 24     | (value)                           | U8    | 1     |         |                              |                              | not required in API 1.44, was rxConfig()->rc_smoothing_type            |
+| 25     | rc_smoothing_setpoint_cutoff      | U8    | 1     |         | 0                            | UINT8_MAX                    |                                                                        |
+| 26     | rc_smoothing_throttle_cutoff      | U8    | 1     |         | 0                            | UINT8_MAX                    | was rc_smoothing_feedforward_cutoff                                    |
+| 27     | rc_smoothing_auto_factor_throttle | U8    | 1     |         | RC_SMOOTHING_AUTO_FACTOR_MIN | RC_SMOOTHING_AUTO_FACTOR_MAX | , was rxConfig()->rc_smoothing_input_type                              |
+| 28     | (value)                           | U8    | 1     |         |                              |                              | not required in API 1.44, was rxConfig()->rc_smoothing_derivative_type |
+| 29     | type                              | U8    | 1     | DEFAULT |                              |                              | lookup: TABLE_OFF_ON                                                   |
+| 30     | rc_smoothing_auto_factor_rpy      | U8    | 1     |         | RC_SMOOTHING_AUTO_FACTOR_MIN | RC_SMOOTHING_AUTO_FACTOR_MAX |                                                                        |
+| 31     | rc_smoothing                      | U8    | 1     |         |                              |                              | lookup: TABLE_OFF_ON                                                   |
+| 32     | (variable data)                   | bytes | ?     |         |                              |                              | variable-length data                                                   |
 | ?      | modelId                           | U8    | 1     | 0xFF    | 0                            | UINT8_MAX                    |                                                                        |
-| ?      | (value)                           | U8    | 1     |         |                              |                              | deprecated/padding                                                     |
 
 ### MSP_SET_RX_CONFIG — 45 — to FC
 
@@ -507,74 +486,59 @@ _Set RX configuration_
 | Offset | Field                   | Type | Bytes | Default | Min | Max                  | Notes                                                                    |
 | ------ | ----------------------- | ---- | ----- | ------- | --- | -------------------- | ------------------------------------------------------------------------ |
 | 0      | (read)                  | U8   | 1     |         |     |                      |                                                                          |
-| 1      | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 2      | (read)                  | U16  | 2     |         |     |                      |                                                                          |
-| 4      | (read)                  | U16  | 2     |         |     |                      |                                                                          |
-| 6      | (read)                  | U16  | 2     |         |     |                      |                                                                          |
-| 8      | (read)                  | U8   | 1     |         |     |                      |                                                                          |
-| 9      | (read)                  | U16  | 2     |         |     |                      |                                                                          |
-| 11     | (read)                  | U16  | 2     |         |     |                      |                                                                          |
-| 13     | (read)                  | U8   | 1     |         |     |                      | not required in API 1.44, was rxConfigMutable()->rcInterpolation         |
-| 14     | (read)                  | U8   | 1     |         |     |                      | not required in API 1.44, was rxConfigMutable()->rcInterpolationInterval |
-| 15     | (read)                  | U16  | 2     |         |     |                      |                                                                          |
-| 17     | rx_spi_protocol         | U8   | 1     | 0       |     |                      | lookup: TABLE_RX_SPI                                                     |
-| 18     | rx_spi_id               | U32  | 4     |         |     |                      |                                                                          |
-| 22     | rx_spi_rf_channel_count | U8   | 1     |         |     |                      |                                                                          |
-| 23     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 24     | (read)                  | U32  | 4     |         |     |                      |                                                                          |
-| 28     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 29     | fpvCamAngleDegrees      | U8   | 1     |         | 0   | RX_FPV_CAM_ANGLE_MAX |                                                                          |
-| 30     | (read)                  | U8   | 1     |         |     |                      | not required in API 1.44, was rxConfigMutable()->rcSmoothingChannels     |
-| 31     | (read)                  | U8   | 1     |         |     |                      | not required in API 1.44, was rc_smoothing_type                          |
-| 32     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 33     | (read)                  | U8   | 1     |         |     |                      | was rc_smoothing_feedforward_cutoff                                      |
-| 34     | (read)                  | U8   | 1     |         |     |                      | was rc_smoothing_input_type                                              |
-| 35     | (read)                  | U8   | 1     |         |     |                      | not required in API 1.44, was rc_smoothing_derivative_type               |
-| 36     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 37     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 38     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 39     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 40     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 41     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 42     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 43     | (read)                  | U8   | 1     |         |     |                      |                                                                          |
-| 44     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 45     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 46     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
-| 47     | modelId                 | U8   | 1     | 0xFF    | 0   | UINT8_MAX            |                                                                          |
-| 48     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
+| 1      | (read)                  | U16  | 2     |         |     |                      |                                                                          |
+| 3      | (read)                  | U16  | 2     |         |     |                      |                                                                          |
+| 5      | (read)                  | U16  | 2     |         |     |                      |                                                                          |
+| 7      | (read)                  | U8   | 1     |         |     |                      |                                                                          |
+| 8      | (read)                  | U16  | 2     |         |     |                      |                                                                          |
+| 10     | (read)                  | U16  | 2     |         |     |                      |                                                                          |
+| 12     | (read)                  | U8   | 1     |         |     |                      | not required in API 1.44, was rxConfigMutable()->rcInterpolation         |
+| 13     | (read)                  | U8   | 1     |         |     |                      | not required in API 1.44, was rxConfigMutable()->rcInterpolationInterval |
+| 14     | (read)                  | U16  | 2     |         |     |                      |                                                                          |
+| 16     | rx_spi_protocol         | U8   | 1     | 0       |     |                      | lookup: TABLE_RX_SPI                                                     |
+| 17     | rx_spi_id               | U32  | 4     |         |     |                      |                                                                          |
+| 21     | rx_spi_rf_channel_count | U8   | 1     |         |     |                      |                                                                          |
+| 22     | fpvCamAngleDegrees      | U8   | 1     |         | 0   | RX_FPV_CAM_ANGLE_MAX |                                                                          |
+| 23     | (read)                  | U8   | 1     |         |     |                      | not required in API 1.44, was rxConfigMutable()->rcSmoothingChannels     |
+| 24     | (read)                  | U8   | 1     |         |     |                      | not required in API 1.44, was rc_smoothing_type                          |
+| 25     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
+| 26     | (read)                  | U8   | 1     |         |     |                      | was rc_smoothing_feedforward_cutoff                                      |
+| 27     | (read)                  | U8   | 1     |         |     |                      | was rc_smoothing_input_type                                              |
+| 28     | (read)                  | U8   | 1     |         |     |                      | not required in API 1.44, was rc_smoothing_derivative_type               |
+| 29     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
+| 30     | (read)                  | U8   | 1     |         |     |                      |                                                                          |
+| 31     | (read)                  | U8   | 1     |         |     |                      | deprecated/ignored                                                       |
+| 32     | modelId                 | U8   | 1     | 0xFF    | 0   | UINT8_MAX            |                                                                          |
 
 ### MSP_LED_COLORS — 46 — from FC
 
 _Get LED colors_
 
-| Offset | Field | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ----- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | h     | U16  | 2     |         |     |     |       |
-| 2      | s     | U8   | 1     |         |     |     |       |
-| 3      | v     | U8   | 1     |         |     |     |       |
+| Offset | Field | Type | Bytes | Default | Min | Max | Notes                                                 |
+| ------ | ----- | ---- | ----- | ------- | --- | --- | ----------------------------------------------------- |
+| 0      | h     | U16  | 2     |         |     |     | repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4 |
+| 2      | s     | U8   | 1     |         |     |     | repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4 |
+| 3      | v     | U8   | 1     |         |     |     | repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4 |
 
 ### MSP_SET_LED_COLORS — 47 — to FC
 
 _Set LED colors_
 
-| Offset | Field | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ----- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | h     | U16  | 2     |         |     |     |       |
-| 2      | s     | U8   | 1     |         |     |     |       |
-| 3      | v     | U8   | 1     |         |     |     |       |
+| Offset | Field | Type | Bytes | Default | Min | Max | Notes                                                 |
+| ------ | ----- | ---- | ----- | ------- | --- | --- | ----------------------------------------------------- |
+| 0      | h     | U16  | 2     |         |     |     | repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4 |
+| 2      | s     | U8   | 1     |         |     |     | repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4 |
+| 3      | v     | U8   | 1     |         |     |     | repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4 |
 
 ### MSP_LED_STRIP_CONFIG — 48 — from FC
 
 _Get LED strip configuration_
 
-| Offset | Field            | Type | Bytes | Default            | Min | Max | Notes                          |
-| ------ | ---------------- | ---- | ----- | ------------------ | --- | --- | ------------------------------ |
-| 0      | (value)          | U32  | 4     |                    |     |     |                                |
-| 4      | (value)          | U32  | 4     |                    |     |     | deprecated/padding             |
-| 8      | (value)          | U8   | 1     |                    |     |     | advanced ledstrip available    |
-| 9      | (value)          | U8   | 1     |                    |     |     | only simple ledstrip available |
-| 10     | ledstrip_profile | U8   | 1     | LED_PROFILE_STATUS |     |     | lookup: TABLE_LED_PROFILE      |
+| Offset | Field            | Type | Bytes | Default            | Min | Max | Notes                                           |
+| ------ | ---------------- | ---- | ----- | ------------------ | --- | --- | ----------------------------------------------- |
+| 0      | (value)          | U32  | 4     |                    |     |     | repeated × LED_STRIP_MAX_LENGTH (runtime count) |
+| ?      | (value)          | U8   | 1     |                    |     |     | advanced ledstrip available                     |
+| ?      | ledstrip_profile | U8   | 1     | LED_PROFILE_STATUS |     |     | lookup: TABLE_LED_PROFILE                       |
 
 ### MSP_SET_LED_STRIP_CONFIG — 49 — to FC
 
@@ -584,8 +548,7 @@ _Set LED strip configuration_
 | ------ | ---------------- | ---- | ----- | ------------------ | --- | --- | ------------------------- |
 | 0      | (read)           | U8   | 1     |                    |     |     | deprecated/ignored        |
 | 1      | (read)           | U32  | 4     |                    |     |     |                           |
-| 5      | (read)           | U32  | 4     |                    |     |     |                           |
-| 9      | ledstrip_profile | U8   | 1     | LED_PROFILE_STATUS |     |     | lookup: TABLE_LED_PROFILE |
+| 5      | ledstrip_profile | U8   | 1     | LED_PROFILE_STATUS |     |     | lookup: TABLE_LED_PROFILE |
 
 ### MSP_RSSI_CONFIG — 50 — from FC
 
@@ -607,16 +570,16 @@ _Set RSSI configuration_
 
 _Get adjustment ranges_
 
-| Offset | Field                 | Type | Bytes | Default | Min | Max | Notes                         |
-| ------ | --------------------- | ---- | ----- | ------- | --- | --- | ----------------------------- |
-| 0      | (value)               | U8   | 1     |         |     |     | was adjRange->adjustmentIndex |
-| 1      | auxChannelIndex       | U8   | 1     |         |     |     |                               |
-| 2      | startStep             | U8   | 1     |         |     |     |                               |
-| 3      | endStep               | U8   | 1     |         |     |     |                               |
-| 4      | adjustmentConfig      | U8   | 1     |         |     |     |                               |
-| 5      | auxSwitchChannelIndex | U8   | 1     |         |     |     |                               |
-| 6      | adjustmentCenter      | U16  | 2     |         |     |     |                               |
-| 8      | adjustmentScale       | U16  | 2     |         |     |     |                               |
+| Offset | Field                 | Type | Bytes | Default | Min | Max | Notes                                                                               |
+| ------ | --------------------- | ---- | ----- | ------- | --- | --- | ----------------------------------------------------------------------------------- |
+| 0      | (value)               | U8   | 1     |         |     |     | repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10; was adjRange->adjustmentIndex |
+| 1      | auxChannelIndex       | U8   | 1     |         |     |     | repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10                                |
+| 2      | startStep             | U8   | 1     |         |     |     | repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10                                |
+| 3      | endStep               | U8   | 1     |         |     |     | repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10                                |
+| 4      | adjustmentConfig      | U8   | 1     |         |     |     | repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10                                |
+| 5      | auxSwitchChannelIndex | U8   | 1     |         |     |     | repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10                                |
+| 6      | adjustmentCenter      | U16  | 2     |         |     |     | repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10                                |
+| 8      | adjustmentScale       | U16  | 2     |         |     |     | repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10                                |
 
 ### MSP_SET_ADJUSTMENT_RANGE — 53 — to FC
 
@@ -638,24 +601,24 @@ _Set adjustment range_
 
 _Get Cleanflight serial configuration_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (value) | U8   | 1     |         |     |     |                    |
-| 1      | (value) | U16  | 2     |         |     |     | deprecated/padding |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                                            |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ---------------------------------------------------------------- |
+| 0      | (value) | U8   | 1     |         |     |     | repeated × SERIAL_PORT_COUNT (runtime count)                     |
+| 1      | (value) | U16  | 2     |         |     |     | repeated × SERIAL_PORT_COUNT (runtime count); deprecated/padding |
 
 ### MSP_VOLTAGE_METER_CONFIG — 56 — from FC
 
 _Get voltage meter configuration_
 
-| Offset | Field                | Type | Bytes | Default | Min                 | Max                 | Notes                                                                |
-| ------ | -------------------- | ---- | ----- | ------- | ------------------- | ------------------- | -------------------------------------------------------------------- |
-| 0      | (value)              | U8   | 1     |         |                     |                     | voltage meters in payload                                            |
-| 1      | (value)              | U8   | 1     |         |                     |                     | ADC sensor sub-frame length                                          |
-| 2      | (value)              | U8   | 1     |         |                     |                     | id of the sensor                                                     |
-| 3      | (value)              | U8   | 1     |         |                     |                     | indicate the type of sensor that the next part of the payload is for |
-| 4      | vbatscale            | U8   | 1     |         | VBAT_SCALE_MIN      | VBAT_SCALE_MAX      |                                                                      |
-| 5      | vbatresdivval        | U8   | 1     |         | VBAT_DIVIDER_MIN    | VBAT_DIVIDER_MAX    |                                                                      |
-| 6      | vbatresdivmultiplier | U8   | 1     |         | VBAT_MULTIPLIER_MIN | VBAT_MULTIPLIER_MAX |                                                                      |
+| Offset | Field                | Type | Bytes | Default | Min                 | Max                 | Notes                                                                                              |
+| ------ | -------------------- | ---- | ----- | ------- | ------------------- | ------------------- | -------------------------------------------------------------------------------------------------- |
+| 0      | (value)              | U8   | 1     |         |                     |                     | voltage meters in payload                                                                          |
+| 1      | (value)              | U8   | 1     |         |                     |                     | repeated × n (runtime count); ADC sensor sub-frame length                                          |
+| 2      | (value)              | U8   | 1     |         |                     |                     | repeated × n (runtime count); id of the sensor                                                     |
+| 3      | (value)              | U8   | 1     |         |                     |                     | repeated × n (runtime count); indicate the type of sensor that the next part of the payload is for |
+| 4      | vbatscale            | U8   | 1     |         | VBAT_SCALE_MIN      | VBAT_SCALE_MAX      | repeated × n (runtime count)                                                                       |
+| 5      | vbatresdivval        | U8   | 1     |         | VBAT_DIVIDER_MIN    | VBAT_DIVIDER_MAX    | repeated × n (runtime count)                                                                       |
+| 6      | vbatresdivmultiplier | U8   | 1     |         | VBAT_MULTIPLIER_MIN | VBAT_MULTIPLIER_MAX | repeated × n (runtime count)                                                                       |
 
 ### MSP_SET_VOLTAGE_METER_CONFIG — 57 — to FC
 
@@ -675,10 +638,9 @@ _Set voltage meter configuration_
 
 _Get sonar altitude [cm]_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (value) | U32  | 4     |         |     |     |                    |
-| 4      | (value) | U32  | 4     |         |     |     | deprecated/padding |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ----- |
+| 0      | (value) | U32  | 4     |         |     |     |       |
 
 ### MSP_PID_CONTROLLER — 59 — from FC
 
@@ -722,9 +684,9 @@ _Get RX map (also returns number of channels total)_
 
 _Set RX map, numchannels to set comes from MSP_RX_MAP_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                                                       |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | ----------------------------------------------------------- |
+| 0      | (read) | U8   | 1     |         |     |     | repeated ×8 (RX_MAPPABLE_CHANNEL_COUNT); deprecated/ignored |
 
 ### MSP_REBOOT — 68 — to FC
 
@@ -766,10 +728,10 @@ _Set failsafe settings_
 
 _Get RX failsafe settings_
 
-| Offset | Field   | Type | Bytes | Default              | Min | Max | Notes                       |
-| ------ | ------- | ---- | ----- | -------------------- | --- | --- | --------------------------- |
-| 0      | mode    | U8   | 1     | BLACKBOX_MODE_NORMAL |     |     | lookup: TABLE_BLACKBOX_MODE |
-| 1      | (value) | U16  | 2     |                      |     |     |                             |
+| Offset | Field   | Type | Bytes | Default              | Min | Max | Notes                                                                               |
+| ------ | ------- | ---- | ----- | -------------------- | --- | --- | ----------------------------------------------------------------------------------- |
+| 0      | mode    | U8   | 1     | BLACKBOX_MODE_NORMAL |     |     | lookup: TABLE_BLACKBOX_MODE; repeated × rxRuntimeState.channelCount (runtime count) |
+| 1      | (value) | U16  | 2     |                      |     |     | repeated × rxRuntimeState.channelCount (runtime count)                              |
 
 ### MSP_SET_RXFAIL_CONFIG — 78 — to FC
 
@@ -794,13 +756,6 @@ _Get blackbox settings_
 | 4      | (value)              | U16  | 2     |                         |     |              |                                    |
 | 6      | sample_rate          | U8   | 1     | BLACKBOX_RATE_QUARTER   |     |              | lookup: TABLE_BLACKBOX_SAMPLE_RATE |
 | 7      | fields_disabled_mask | U32  | 4     | 0                       |     |              |                                    |
-| 11     | (value)              | U8   | 1     |                         |     |              | Blackbox not supported             |
-| 12     | (value)              | U8   | 1     |                         |     |              | deprecated/padding                 |
-| 13     | (value)              | U8   | 1     |                         |     |              | deprecated/padding                 |
-| 14     | (value)              | U8   | 1     |                         |     |              | deprecated/padding                 |
-| 15     | (value)              | U16  | 2     |                         |     |              | deprecated/padding                 |
-| 17     | (value)              | U8   | 1     |                         |     |              | deprecated/padding                 |
-| 18     | (value)              | U32  | 4     |                         |     |              | deprecated/padding                 |
 
 ### MSP_SET_BLACKBOX_CONFIG — 81 — to FC
 
@@ -819,57 +774,52 @@ _Set blackbox settings_
 
 _Get transponder settings_
 
-| Offset | Field      | Type | Bytes | Default     | Min | Max | Notes                      |
-| ------ | ---------- | ---- | ----- | ----------- | --- | --- | -------------------------- |
-| 0      | (value)    | U8   | 1     |             |     |     |                            |
-| 1      | provider   | U8   | 1     | GPS_VIRTUAL |     |     | lookup: TABLE_GPS_PROVIDER |
-| 2      | dataLength | U8   | 1     |             |     |     |                            |
-| 3      | (value)    | U8   | 1     |             |     |     |                            |
-| 4      | (value)    | U8   | 1     |             |     |     |                            |
-| 5      | (value)    | U8   | 1     |             |     |     | no providers               |
+| Offset | Field      | Type | Bytes | Default     | Min | Max | Notes                                                    |
+| ------ | ---------- | ---- | ----- | ----------- | --- | --- | -------------------------------------------------------- |
+| 0      | (value)    | U8   | 1     |             |     |     |                                                          |
+| 1      | provider   | U8   | 1     | GPS_VIRTUAL |     |     | lookup: TABLE_GPS_PROVIDER; repeated × n (runtime count) |
+| 2      | dataLength | U8   | 1     |             |     |     | repeated × n (runtime count)                             |
+| ?      | (value)    | U8   | 1     |             |     |     |                                                          |
+| ?      | data[]     | U8   | 1     |             |     |     | repeated × n (runtime count)                             |
 
 ### MSP_SET_TRANSPONDER_CONFIG — 83 — to FC
 
 _Set transponder settings_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 1      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                        |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | ---------------------------- |
+| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored           |
+| 1      | data[] | U8   | 1     |         |     |     | repeated × n (runtime count) |
 
 ### MSP_OSD_CONFIG — 84 — from FC
 
 _Get OSD settings_
 
-| Offset | Field               | Type | Bytes | Default                                  | Min                              | Max                              | Notes                      |
-| ------ | ------------------- | ---- | ----- | ---------------------------------------- | -------------------------------- | -------------------------------- | -------------------------- |
-| 0      | (value)             | U8   | 1     |                                          |                                  |                                  |                            |
-| 1      | video_system        | U8   | 1     | DEFAULT_VIDEO_SYSTEM                     |                                  |                                  | lookup: TABLE_VIDEO_SYSTEM |
-| 2      | (value)             | U8   | 1     |                                          |                                  |                                  |                            |
-| 3      | units               | U8   | 1     | UNIT_METRIC                              |                                  |                                  | lookup: TABLE_UNIT         |
-| 4      | rssi_alarm          | U8   | 1     | 20                                       | 0                                | OSD_RSSI_ALARM_MAX               |                            |
-| 5      | cap_alarm           | U16  | 2     | 2200                                     | 0                                | OSD_CAP_ALARM_MAX                |                            |
-| 7      | (value)             | U8   | 1     |                                          |                                  |                                  | deprecated/padding         |
-| 8      | (value)             | U8   | 1     |                                          |                                  |                                  |                            |
-| 9      | alt_alarm           | U16  | 2     | 100                                      | 0                                | OSD_ALT_ALARM_MAX                |                            |
-| 11     | (value)             | U16  | 2     |                                          |                                  |                                  |                            |
-| 13     | (value)             | U8   | 1     |                                          |                                  |                                  |                            |
-| 14     | (value)             | U8   | 1     |                                          |                                  |                                  |                            |
-| 15     | (value)             | U8   | 1     |                                          |                                  |                                  |                            |
-| 16     | (value)             | U16  | 2     |                                          |                                  |                                  |                            |
-| 18     | (value)             | U16  | 2     |                                          |                                  |                                  |                            |
-| 20     | (value)             | U8   | 1     |                                          |                                  |                                  |                            |
-| 21     | enabledWarnings     | U32  | 4     |                                          |                                  |                                  |                            |
-| 25     | (value)             | U8   | 1     |                                          |                                  |                                  | available profiles         |
-| 26     | osdProfileIndex     | U8   | 1     | 1                                        | 1                                | OSD_PROFILE_COUNT                | selected profile           |
-| 27     | (value)             | U8   | 1     |                                          |                                  |                                  |                            |
-| 28     | (value)             | U8   | 1     |                                          |                                  |                                  |                            |
-| 29     | overlay_radio_mode  | U8   | 1     | 2                                        | OSD_STICK_OVERLAY_RADIO_MODE_MIN | OSD_STICK_OVERLAY_RADIO_MODE_MAX |                            |
-| 30     | (value)             | U8   | 1     |                                          |                                  |                                  | deprecated/padding         |
-| 31     | camera_frame_width  | U8   | 1     | (OSD_CAMERA_FRAME_MAX_WIDTH \* 4) / 5    | OSD_CAMERA_FRAME_MIN_WIDTH       | OSD_CAMERA_FRAME_MAX_WIDTH       |                            |
-| 32     | camera_frame_height | U8   | 1     | (OSD_CAMERA_FRAME_MAX_HEIGHT \* 11) / 16 | OSD_CAMERA_FRAME_MIN_HEIGHT      | OSD_CAMERA_FRAME_MAX_HEIGHT      |                            |
-| 33     | link_quality_alarm  | U16  | 2     | 80                                       | 0                                | OSD_LINK_QUALITY_ALARM_MAX       |                            |
-| 35     | rssi_dbm_alarm      | U16  | 2     | -60                                      | CRSF_RSSI_MIN                    | CRSF_RSSI_MAX                    |                            |
+| Offset | Field               | Type | Bytes | Default                                  | Min                              | Max                              | Notes                                      |
+| ------ | ------------------- | ---- | ----- | ---------------------------------------- | -------------------------------- | -------------------------------- | ------------------------------------------ |
+| 0      | (value)             | U8   | 1     |                                          |                                  |                                  |                                            |
+| 1      | video_system        | U8   | 1     | DEFAULT_VIDEO_SYSTEM                     |                                  |                                  | lookup: TABLE_VIDEO_SYSTEM                 |
+| 2      | units               | U8   | 1     | UNIT_METRIC                              |                                  |                                  | lookup: TABLE_UNIT                         |
+| 3      | rssi_alarm          | U8   | 1     | 20                                       | 0                                | OSD_RSSI_ALARM_MAX               |                                            |
+| 4      | cap_alarm           | U16  | 2     | 2200                                     | 0                                | OSD_CAP_ALARM_MAX                |                                            |
+| 6      | (value)             | U8   | 1     |                                          |                                  |                                  | deprecated/padding                         |
+| 7      | (value)             | U8   | 1     |                                          |                                  |                                  |                                            |
+| 8      | alt_alarm           | U16  | 2     | 100                                      | 0                                | OSD_ALT_ALARM_MAX                |                                            |
+| 10     | item_pos[]          | U16  | 2     |                                          |                                  |                                  | repeated × itemCount (runtime count)       |
+| ?      | (value)             | U8   | 1     |                                          |                                  |                                  |                                            |
+| ?      | (value)             | U8   | 1     |                                          |                                  |                                  | repeated × OSD_STAT_COUNT (runtime count)  |
+| ?      | (value)             | U8   | 1     |                                          |                                  |                                  |                                            |
+| ?      | timers[]            | U16  | 2     |                                          |                                  |                                  | repeated × OSD_TIMER_COUNT (runtime count) |
+| ?      | (value)             | U16  | 2     |                                          |                                  |                                  |                                            |
+| ?      | (value)             | U8   | 1     |                                          |                                  |                                  |                                            |
+| ?      | enabledWarnings     | U32  | 4     |                                          |                                  |                                  |                                            |
+| ?      | (value)             | U8   | 1     |                                          |                                  |                                  | available profiles                         |
+| ?      | osdProfileIndex     | U8   | 1     | 1                                        | 1                                | OSD_PROFILE_COUNT                | selected profile                           |
+| ?      | overlay_radio_mode  | U8   | 1     | 2                                        | OSD_STICK_OVERLAY_RADIO_MODE_MIN | OSD_STICK_OVERLAY_RADIO_MODE_MAX |                                            |
+| ?      | camera_frame_width  | U8   | 1     | (OSD_CAMERA_FRAME_MAX_WIDTH \* 4) / 5    | OSD_CAMERA_FRAME_MIN_WIDTH       | OSD_CAMERA_FRAME_MAX_WIDTH       |                                            |
+| ?      | camera_frame_height | U8   | 1     | (OSD_CAMERA_FRAME_MAX_HEIGHT \* 11) / 16 | OSD_CAMERA_FRAME_MIN_HEIGHT      | OSD_CAMERA_FRAME_MAX_HEIGHT      |                                            |
+| ?      | link_quality_alarm  | U16  | 2     | 80                                       | 0                                | OSD_LINK_QUALITY_ALARM_MAX       |                                            |
+| ?      | rssi_dbm_alarm      | U16  | 2     | -60                                      | CRSF_RSSI_MIN                    | CRSF_RSSI_MAX                    |                                            |
 
 ### MSP_SET_OSD_CONFIG — 85 — to FC
 
@@ -879,38 +829,35 @@ _Set OSD settings_
 | ------ | ------------------- | ---- | ----- | ---------------------------------------- | -------------------------------- | -------------------------------- | ---------------------------------- |
 | 0      | (read)              | U8   | 1     |                                          |                                  |                                  | deprecated/ignored                 |
 | 1      | (read)              | U8   | 1     |                                          |                                  |                                  |                                    |
-| 2      | (read)              | U8   | 1     |                                          |                                  |                                  | deprecated/ignored                 |
-| 3      | units               | U8   | 1     | UNIT_METRIC                              |                                  |                                  | lookup: TABLE_UNIT                 |
-| 4      | rssi_alarm          | U8   | 1     | 20                                       | 0                                | OSD_RSSI_ALARM_MAX               |                                    |
-| 5      | cap_alarm           | U16  | 2     | 2200                                     | 0                                | OSD_CAP_ALARM_MAX                |                                    |
-| 7      | (read)              | U16  | 2     |                                          |                                  |                                  | Skip unused (previously fly timer) |
-| 9      | alt_alarm           | U16  | 2     | 100                                      | 0                                | OSD_ALT_ALARM_MAX                |                                    |
-| 11     | enabledWarnings     | U16  | 2     |                                          |                                  |                                  |                                    |
-| 13     | enabledWarnings     | U32  | 4     |                                          |                                  |                                  |                                    |
-| 17     | (read)              | U8   | 1     |                                          |                                  |                                  | deprecated/ignored                 |
-| 18     | (read)              | U8   | 1     |                                          |                                  |                                  | deprecated/ignored                 |
-| 19     | overlay_radio_mode  | U8   | 1     | 2                                        | OSD_STICK_OVERLAY_RADIO_MODE_MIN | OSD_STICK_OVERLAY_RADIO_MODE_MAX |                                    |
-| 20     | (read)              | U8   | 1     |                                          |                                  |                                  | deprecated/ignored                 |
-| 21     | camera_frame_width  | U8   | 1     | (OSD_CAMERA_FRAME_MAX_WIDTH \* 4) / 5    | OSD_CAMERA_FRAME_MIN_WIDTH       | OSD_CAMERA_FRAME_MAX_WIDTH       |                                    |
-| 22     | camera_frame_height | U8   | 1     | (OSD_CAMERA_FRAME_MAX_HEIGHT \* 11) / 16 | OSD_CAMERA_FRAME_MIN_HEIGHT      | OSD_CAMERA_FRAME_MAX_HEIGHT      |                                    |
-| 23     | link_quality_alarm  | U16  | 2     | 80                                       | 0                                | OSD_LINK_QUALITY_ALARM_MAX       |                                    |
-| 25     | rssi_dbm_alarm      | S16  | 2     | -60                                      | CRSF_RSSI_MIN                    | CRSF_RSSI_MAX                    |                                    |
-| 27     | (read)              | U8   | 1     |                                          |                                  |                                  | deprecated/ignored                 |
-| 28     | (read)              | U16  | 2     |                                          |                                  |                                  |                                    |
-| 30     | (read)              | U16  | 2     |                                          |                                  |                                  |                                    |
-| 32     | (read)              | U8   | 1     |                                          |                                  |                                  | deprecated/ignored                 |
+| 2      | units               | U8   | 1     | UNIT_METRIC                              |                                  |                                  | lookup: TABLE_UNIT                 |
+| 3      | rssi_alarm          | U8   | 1     | 20                                       | 0                                | OSD_RSSI_ALARM_MAX               |                                    |
+| 4      | cap_alarm           | U16  | 2     | 2200                                     | 0                                | OSD_CAP_ALARM_MAX                |                                    |
+| 6      | (read)              | U16  | 2     |                                          |                                  |                                  | Skip unused (previously fly timer) |
+| 8      | alt_alarm           | U16  | 2     | 100                                      | 0                                | OSD_ALT_ALARM_MAX                |                                    |
+| 10     | enabledWarnings     | U16  | 2     |                                          |                                  |                                  |                                    |
+| 12     | enabledWarnings     | U32  | 4     |                                          |                                  |                                  |                                    |
+| 16     | (read)              | U8   | 1     |                                          |                                  |                                  | deprecated/ignored                 |
+| 17     | overlay_radio_mode  | U8   | 1     | 2                                        | OSD_STICK_OVERLAY_RADIO_MODE_MIN | OSD_STICK_OVERLAY_RADIO_MODE_MAX |                                    |
+| 18     | camera_frame_width  | U8   | 1     | (OSD_CAMERA_FRAME_MAX_WIDTH \* 4) / 5    | OSD_CAMERA_FRAME_MIN_WIDTH       | OSD_CAMERA_FRAME_MAX_WIDTH       |                                    |
+| 19     | camera_frame_height | U8   | 1     | (OSD_CAMERA_FRAME_MAX_HEIGHT \* 11) / 16 | OSD_CAMERA_FRAME_MIN_HEIGHT      | OSD_CAMERA_FRAME_MAX_HEIGHT      |                                    |
+| 20     | link_quality_alarm  | U16  | 2     | 80                                       | 0                                | OSD_LINK_QUALITY_ALARM_MAX       |                                    |
+| 22     | rssi_dbm_alarm      | S16  | 2     | -60                                      | CRSF_RSSI_MIN                    | CRSF_RSSI_MAX                    |                                    |
+| 24     | (read)              | U8   | 1     |                                          |                                  |                                  | deprecated/ignored                 |
+| 25     | timers[]            | U16  | 2     |                                          |                                  |                                  |                                    |
+| 27     | (read)              | U16  | 2     |                                          |                                  |                                  |                                    |
+| 29     | (read)              | U8   | 1     |                                          |                                  |                                  | deprecated/ignored                 |
 
 ### MSP_OSD_CHAR_WRITE — 87 — to FC
 
 _Set OSD characters_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (read) | U16  | 2     |         |     |     |                    |
-| 2      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 3      | (read) | U16  | 2     |         |     |     |                    |
-| 5      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 6      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                                                                                   |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | --------------------------------------------------------------------------------------- |
+| 0      | (read) | U16  | 2     |         |     |     |                                                                                         |
+| 2      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                                                      |
+| 3      | (read) | U16  | 2     |         |     |     |                                                                                         |
+| 5      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                                                      |
+| 6      | (read) | U8   | 1     |         |     |     | repeated × MIN(osdCharacterBytes, sizeof(chr.data)) (runtime count); deprecated/ignored |
 
 ### MSP_VTX_CONFIG — 88 — from FC
 
@@ -931,10 +878,6 @@ _Get VTX settings_
 | 12     | bands          | U8   | 1     | 0                        |     |                                |                                    |
 | 13     | channels       | U8   | 1     | 0                        |     |                                |                                    |
 | 14     | powerLevels    | U8   | 1     | 0                        |     |                                |                                    |
-| 15     | (value)        | U8   | 1     |                          |     |                                | deprecated/padding                 |
-| 16     | (value)        | U8   | 1     |                          |     |                                | deprecated/padding                 |
-| 17     | (value)        | U8   | 1     |                          |     |                                | deprecated/padding                 |
-| 18     | (value)        | U8   | 1     |                          |     |                                | deprecated/padding                 |
 
 ### MSP_SET_VTX_CONFIG — 89 — to FC
 
@@ -954,10 +897,6 @@ _Set VTX settings_
 | 12     | (read)         | U8   | 1     |                          |     |                                | deprecated/ignored                 |
 | 13     | (read)         | U8   | 1     |                          |     |                                | deprecated/ignored                 |
 | 14     | (read)         | U8   | 1     |                          |     |                                | deprecated/ignored                 |
-| 15     | (read)         | U8   | 1     |                          |     |                                | deprecated/ignored                 |
-| 16     | (read)         | U8   | 1     |                          |     |                                | deprecated/ignored                 |
-| 17     | (read)         | U8   | 1     |                          |     |                                | deprecated/ignored                 |
-| 18     | (read)         | U8   | 1     |                          |     |                                | deprecated/ignored                 |
 
 ### MSP_ADVANCED_CONFIG — 90 — from FC
 
@@ -1002,8 +941,7 @@ _Set advanced configuration_
 | 13     | gyroCalibrationDuration          | U16  | 2     | 125                          | GYRO_CALIB_DURATION_MIN | GYRO_CALIB_DURATION_MAX    |                                                                |
 | 15     | gyro_offset_yaw                  | S16  | 2     | 0                            | -GYRO_OFFSET_YAW_MAX    | GYRO_OFFSET_YAW_MAX        |                                                                |
 | 17     | checkOverflow                    | U8   | 1     | GYRO_OVERFLOW_CHECK_ALL_AXES |                         |                            | lookup: TABLE_GYRO_OVERFLOW_CHECK                              |
-| 18     | checkOverflow                    | U8   | 1     | GYRO_OVERFLOW_CHECK_ALL_AXES |                         |                            | lookup: TABLE_GYRO_OVERFLOW_CHECK                              |
-| 19     | debug_mode                       | U8   | 1     | DEBUG_MODE                   |                         |                            | lookup: TABLE_DEBUG                                            |
+| 18     | debug_mode                       | U8   | 1     | DEBUG_MODE                   |                         |                            | lookup: TABLE_DEBUG                                            |
 
 ### MSP_FILTER_CONFIG — 92 — from FC
 
@@ -1033,91 +971,59 @@ _Get filter configuration_
 | 31     | gyro_lpf1_dyn_max_hz     | U16  | 2     | 500                      | 0                     | DYN_LPF_MAX_HZ               |                                          |
 | 33     | dterm_lpf1_dyn_min_hz    | U16  | 2     |                          | 0                     | DYN_LPF_MAX_HZ               |                                          |
 | 35     | dterm_lpf1_dyn_max_hz    | U16  | 2     |                          | 0                     | DYN_LPF_MAX_HZ               |                                          |
-| 37     | (value)                  | U16  | 2     |                          |                       |                              | deprecated/padding                       |
-| 39     | (value)                  | U16  | 2     |                          |                       |                              | deprecated/padding                       |
-| 41     | (value)                  | U16  | 2     |                          |                       |                              | deprecated/padding                       |
-| 43     | (value)                  | U16  | 2     |                          |                       |                              | deprecated/padding                       |
-| 45     | (value)                  | U8   | 1     |                          |                       |                              | DEPRECATED 1.43: dyn_notch_range         |
-| 46     | (value)                  | U8   | 1     |                          |                       |                              | DEPRECATED 1.44: dyn_notch_width_percent |
-| 47     | dyn_notch_q              | U16  | 2     | 300                      | DYN_NOTCH_Q_MIN       | DYN_NOTCH_Q_MAX              |                                          |
-| 49     | dyn_notch_min_hz         | U16  | 2     | 100                      | DYN_NOTCH_MIN_HZ_MIN  | DYN_NOTCH_MIN_HZ_MAX         |                                          |
-| 51     | (value)                  | U8   | 1     |                          |                       |                              | deprecated/padding                       |
-| 52     | (value)                  | U8   | 1     |                          |                       |                              | deprecated/padding                       |
-| 53     | (value)                  | U16  | 2     |                          |                       |                              | deprecated/padding                       |
-| 55     | (value)                  | U16  | 2     |                          |                       |                              | deprecated/padding                       |
-| 57     | rpm_filter_harmonics     | U8   | 1     | 3                        | 0                     | RPM_FILTER_HARMONICS_MAX     |                                          |
-| 58     | rpm_filter_min_hz        | U8   | 1     | 100                      | RPM_FILTER_MIN_HZ_MIN | RPM_FILTER_MIN_HZ_MAX        |                                          |
-| 59     | (value)                  | U8   | 1     |                          |                       |                              | deprecated/padding                       |
-| 60     | (value)                  | U8   | 1     |                          |                       |                              | deprecated/padding                       |
-| 61     | dyn_notch_max_hz         | U16  | 2     | 600                      | DYN_NOTCH_MAX_HZ_MIN  | DYN_NOTCH_MAX_HZ_MAX         |                                          |
-| 63     | (value)                  | U16  | 2     |                          |                       |                              | deprecated/padding                       |
-| 65     | dterm_lpf1_dyn_expo      | U8   | 1     |                          | 0                     | DTERM_LPF1_DYN_EXPO_MAX      |                                          |
-| 66     | (value)                  | U8   | 1     |                          |                       |                              | deprecated/padding                       |
-| 67     | dyn_notch_count          | U8   | 1     | 3                        | 0                     | DYN_NOTCH_COUNT_MAX          |                                          |
-| 68     | (value)                  | U8   | 1     |                          |                       |                              | deprecated/padding                       |
-| 69     | rpm_filter_fade_range_hz | U16  | 2     | 50                       | 0                     | RPM_FILTER_FADE_RANGE_HZ_MAX |                                          |
-| 71     | rpm_filter_q             | U16  | 2     | 500                      | RPM_FILTER_Q_MIN      | RPM_FILTER_Q_MAX             |                                          |
-| 73     | (value)                  | U8   | 1     |                          |                       |                              |                                          |
-| 74     | (value)                  | U16  | 2     |                          |                       |                              | deprecated/padding                       |
-| 76     | (value)                  | U16  | 2     |                          |                       |                              | deprecated/padding                       |
-| 78     | (value)                  | U8   | 1     |                          |                       |                              | deprecated/padding                       |
+| 37     | (value)                  | U8   | 1     |                          |                       |                              | DEPRECATED 1.43: dyn_notch_range         |
+| 38     | (value)                  | U8   | 1     |                          |                       |                              | DEPRECATED 1.44: dyn_notch_width_percent |
+| 39     | dyn_notch_q              | U16  | 2     | 300                      | DYN_NOTCH_Q_MIN       | DYN_NOTCH_Q_MAX              |                                          |
+| 41     | dyn_notch_min_hz         | U16  | 2     | 100                      | DYN_NOTCH_MIN_HZ_MIN  | DYN_NOTCH_MIN_HZ_MAX         |                                          |
+| 43     | rpm_filter_harmonics     | U8   | 1     | 3                        | 0                     | RPM_FILTER_HARMONICS_MAX     |                                          |
+| 44     | rpm_filter_min_hz        | U8   | 1     | 100                      | RPM_FILTER_MIN_HZ_MIN | RPM_FILTER_MIN_HZ_MAX        |                                          |
+| 45     | dyn_notch_max_hz         | U16  | 2     | 600                      | DYN_NOTCH_MAX_HZ_MIN  | DYN_NOTCH_MAX_HZ_MAX         |                                          |
+| 47     | dterm_lpf1_dyn_expo      | U8   | 1     |                          | 0                     | DTERM_LPF1_DYN_EXPO_MAX      |                                          |
+| 48     | dyn_notch_count          | U8   | 1     | 3                        | 0                     | DYN_NOTCH_COUNT_MAX          |                                          |
+| 49     | rpm_filter_fade_range_hz | U16  | 2     | 50                       | 0                     | RPM_FILTER_FADE_RANGE_HZ_MAX |                                          |
+| 51     | rpm_filter_q             | U16  | 2     | 500                      | RPM_FILTER_Q_MIN      | RPM_FILTER_Q_MAX             |                                          |
+| 53     | rpm_filter_weights[]     | U8   | 1     |                          |                       |                              | repeated ×3 (RPM_FILTER_HARMONICS_MAX)   |
 
 ### MSP_SET_FILTER_CONFIG — 93 — to FC
 
 _Set filter configuration_
 
-| Offset | Field                    | Type | Bytes | Default                  | Min                   | Max                      | Notes                                    |
-| ------ | ------------------------ | ---- | ----- | ------------------------ | --------------------- | ------------------------ | ---------------------------------------- |
-| 0      | gyro_lpf1_static_hz      | U8   | 1     | 250                      | 0                     | LPF_MAX_HZ               |                                          |
-| 1      | dterm_lpf1_static_hz     | U16  | 2     |                          | 0                     | LPF_MAX_HZ               |                                          |
-| 3      | yaw_lowpass_hz           | U16  | 2     |                          | 0                     | YAW_LOWPASS_HZ_MAX       |                                          |
-| 5      | gyro_soft_notch_hz_1     | U16  | 2     | 0                        | 0                     | LPF_MAX_HZ               |                                          |
-| 7      | gyro_soft_notch_cutoff_1 | U16  | 2     | 0                        | 0                     | LPF_MAX_HZ               |                                          |
-| 9      | dterm_notch_hz           | U16  | 2     |                          | 0                     | LPF_MAX_HZ               |                                          |
-| 11     | dterm_notch_cutoff       | U16  | 2     |                          | 0                     | LPF_MAX_HZ               |                                          |
-| 13     | gyro_soft_notch_hz_2     | U16  | 2     | 0                        | 0                     | LPF_MAX_HZ               |                                          |
-| 15     | gyro_soft_notch_cutoff_2 | U16  | 2     | 0                        | 0                     | LPF_MAX_HZ               |                                          |
-| 17     | dterm_lpf1_type          | U8   | 1     |                          |                       |                          | lookup: TABLE_DTERM_LPF_TYPE             |
-| 18     | gyro_hardware_lpf        | U8   | 1     | GYRO_HARDWARE_LPF_NORMAL |                       |                          | lookup: TABLE_GYRO_HARDWARE_LPF          |
-| 19     | (read)                   | U8   | 1     |                          |                       |                          | DEPRECATED: gyro_32khz_hardware_lpf      |
-| 20     | gyro_lpf1_static_hz      | U16  | 2     | 250                      | 0                     | LPF_MAX_HZ               |                                          |
-| 22     | gyro_lpf2_static_hz      | U16  | 2     | 500                      | 0                     | LPF_MAX_HZ               |                                          |
-| 24     | gyro_lpf1_type           | U8   | 1     | FILTER_PT1               |                       |                          | lookup: TABLE_GYRO_LPF_TYPE              |
-| 25     | gyro_lpf2_type           | U8   | 1     | FILTER_PT1               |                       |                          | lookup: TABLE_GYRO_LPF_TYPE              |
-| 26     | dterm_lpf2_static_hz     | U16  | 2     |                          | 0                     | LPF_MAX_HZ               |                                          |
-| 28     | dterm_lpf2_type          | U8   | 1     |                          |                       |                          | lookup: TABLE_DTERM_LPF_TYPE             |
-| 29     | gyro_lpf1_dyn_min_hz     | U16  | 2     | 250                      | 0                     | DYN_LPF_MAX_HZ           |                                          |
-| 31     | gyro_lpf1_dyn_max_hz     | U16  | 2     | 500                      | 0                     | DYN_LPF_MAX_HZ           |                                          |
-| 33     | dterm_lpf1_dyn_min_hz    | U16  | 2     |                          | 0                     | DYN_LPF_MAX_HZ           |                                          |
-| 35     | dterm_lpf1_dyn_max_hz    | U16  | 2     |                          | 0                     | DYN_LPF_MAX_HZ           |                                          |
-| 37     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 39     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 41     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 43     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 45     | (read)                   | U8   | 1     |                          |                       |                          | DEPRECATED 1.43: dyn_notch_range         |
-| 46     | (read)                   | U8   | 1     |                          |                       |                          | DEPRECATED 1.44: dyn_notch_width_percent |
-| 47     | dyn_notch_q              | U16  | 2     | 300                      | DYN_NOTCH_Q_MIN       | DYN_NOTCH_Q_MAX          |                                          |
-| 49     | dyn_notch_min_hz         | U16  | 2     | 100                      | DYN_NOTCH_MIN_HZ_MIN  | DYN_NOTCH_MIN_HZ_MAX     |                                          |
-| 51     | (read)                   | U8   | 1     |                          |                       |                          | deprecated/ignored                       |
-| 52     | (read)                   | U8   | 1     |                          |                       |                          | deprecated/ignored                       |
-| 53     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 55     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 57     | rpm_filter_harmonics     | U8   | 1     | 3                        | 0                     | RPM_FILTER_HARMONICS_MAX |                                          |
-| 58     | rpm_filter_min_hz        | U8   | 1     | 100                      | RPM_FILTER_MIN_HZ_MIN | RPM_FILTER_MIN_HZ_MAX    |                                          |
-| 59     | (read)                   | U8   | 1     |                          |                       |                          | deprecated/ignored                       |
-| 60     | (read)                   | U8   | 1     |                          |                       |                          | deprecated/ignored                       |
-| 61     | dyn_notch_max_hz         | U16  | 2     | 600                      | DYN_NOTCH_MAX_HZ_MIN  | DYN_NOTCH_MAX_HZ_MAX     |                                          |
-| 63     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 65     | dterm_lpf1_dyn_expo      | U8   | 1     |                          | 0                     | DTERM_LPF1_DYN_EXPO_MAX  |                                          |
-| 66     | (read)                   | U8   | 1     |                          |                       |                          | deprecated/ignored                       |
-| 67     | (read)                   | U8   | 1     |                          |                       |                          | deprecated/ignored                       |
-| 68     | (read)                   | U8   | 1     |                          |                       |                          | deprecated/ignored                       |
-| 69     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 71     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 73     | (read)                   | U8   | 1     |                          |                       |                          | deprecated/ignored                       |
-| 74     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 76     | (read)                   | U16  | 2     |                          |                       |                          |                                          |
-| 78     | (read)                   | U8   | 1     |                          |                       |                          | deprecated/ignored                       |
+| Offset | Field                    | Type | Bytes | Default                  | Min                   | Max                      | Notes                                                      |
+| ------ | ------------------------ | ---- | ----- | ------------------------ | --------------------- | ------------------------ | ---------------------------------------------------------- |
+| 0      | gyro_lpf1_static_hz      | U8   | 1     | 250                      | 0                     | LPF_MAX_HZ               |                                                            |
+| 1      | dterm_lpf1_static_hz     | U16  | 2     |                          | 0                     | LPF_MAX_HZ               |                                                            |
+| 3      | yaw_lowpass_hz           | U16  | 2     |                          | 0                     | YAW_LOWPASS_HZ_MAX       |                                                            |
+| 5      | gyro_soft_notch_hz_1     | U16  | 2     | 0                        | 0                     | LPF_MAX_HZ               |                                                            |
+| 7      | gyro_soft_notch_cutoff_1 | U16  | 2     | 0                        | 0                     | LPF_MAX_HZ               |                                                            |
+| 9      | dterm_notch_hz           | U16  | 2     |                          | 0                     | LPF_MAX_HZ               |                                                            |
+| 11     | dterm_notch_cutoff       | U16  | 2     |                          | 0                     | LPF_MAX_HZ               |                                                            |
+| 13     | gyro_soft_notch_hz_2     | U16  | 2     | 0                        | 0                     | LPF_MAX_HZ               |                                                            |
+| 15     | gyro_soft_notch_cutoff_2 | U16  | 2     | 0                        | 0                     | LPF_MAX_HZ               |                                                            |
+| 17     | dterm_lpf1_type          | U8   | 1     |                          |                       |                          | lookup: TABLE_DTERM_LPF_TYPE                               |
+| 18     | gyro_hardware_lpf        | U8   | 1     | GYRO_HARDWARE_LPF_NORMAL |                       |                          | lookup: TABLE_GYRO_HARDWARE_LPF                            |
+| 19     | (read)                   | U8   | 1     |                          |                       |                          | DEPRECATED: gyro_32khz_hardware_lpf                        |
+| 20     | gyro_lpf1_static_hz      | U16  | 2     | 250                      | 0                     | LPF_MAX_HZ               |                                                            |
+| 22     | gyro_lpf2_static_hz      | U16  | 2     | 500                      | 0                     | LPF_MAX_HZ               |                                                            |
+| 24     | gyro_lpf1_type           | U8   | 1     | FILTER_PT1               |                       |                          | lookup: TABLE_GYRO_LPF_TYPE                                |
+| 25     | gyro_lpf2_type           | U8   | 1     | FILTER_PT1               |                       |                          | lookup: TABLE_GYRO_LPF_TYPE                                |
+| 26     | dterm_lpf2_static_hz     | U16  | 2     |                          | 0                     | LPF_MAX_HZ               |                                                            |
+| 28     | dterm_lpf2_type          | U8   | 1     |                          |                       |                          | lookup: TABLE_DTERM_LPF_TYPE                               |
+| 29     | gyro_lpf1_dyn_min_hz     | U16  | 2     | 250                      | 0                     | DYN_LPF_MAX_HZ           |                                                            |
+| 31     | gyro_lpf1_dyn_max_hz     | U16  | 2     | 500                      | 0                     | DYN_LPF_MAX_HZ           |                                                            |
+| 33     | dterm_lpf1_dyn_min_hz    | U16  | 2     |                          | 0                     | DYN_LPF_MAX_HZ           |                                                            |
+| 35     | dterm_lpf1_dyn_max_hz    | U16  | 2     |                          | 0                     | DYN_LPF_MAX_HZ           |                                                            |
+| 37     | (read)                   | U8   | 1     |                          |                       |                          | DEPRECATED 1.43: dyn_notch_range                           |
+| 38     | (read)                   | U8   | 1     |                          |                       |                          | DEPRECATED 1.44: dyn_notch_width_percent                   |
+| 39     | dyn_notch_q              | U16  | 2     | 300                      | DYN_NOTCH_Q_MIN       | DYN_NOTCH_Q_MAX          |                                                            |
+| 41     | dyn_notch_min_hz         | U16  | 2     | 100                      | DYN_NOTCH_MIN_HZ_MIN  | DYN_NOTCH_MIN_HZ_MAX     |                                                            |
+| 43     | rpm_filter_harmonics     | U8   | 1     | 3                        | 0                     | RPM_FILTER_HARMONICS_MAX |                                                            |
+| 44     | rpm_filter_min_hz        | U8   | 1     | 100                      | RPM_FILTER_MIN_HZ_MIN | RPM_FILTER_MIN_HZ_MAX    |                                                            |
+| 45     | dyn_notch_max_hz         | U16  | 2     | 600                      | DYN_NOTCH_MAX_HZ_MIN  | DYN_NOTCH_MAX_HZ_MAX     |                                                            |
+| 47     | dterm_lpf1_dyn_expo      | U8   | 1     |                          | 0                     | DTERM_LPF1_DYN_EXPO_MAX  |                                                            |
+| 48     | (read)                   | U8   | 1     |                          |                       |                          | deprecated/ignored                                         |
+| 49     | (read)                   | U16  | 2     |                          |                       |                          |                                                            |
+| 51     | (read)                   | U16  | 2     |                          |                       |                          |                                                            |
+| 53     | (read)                   | U8   | 1     |                          |                       |                          | repeated ×3 (RPM_FILTER_HARMONICS_MAX); deprecated/ignored |
 
 ### MSP_PID_ADVANCED — 94 — from FC
 
@@ -1131,68 +1037,49 @@ _Get advanced PID settings_
 | 6      | (value)                    | U8   | 1     |         |                                |                                | reserved                                               |
 | 7      | (value)                    | U8   | 1     |         |                                |                                | was vbatPidCompensation                                |
 | 8      | feedforward_transition     | U8   | 1     |         | 0                              | FEEDFORWARD_TRANSITION_MAX     |                                                        |
-| 9      | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 10     | (value)                    | U8   | 1     |         |                                |                                | was low byte of currentPidProfile->dtermSetpointWeight |
+| 9      | (value)                    | U8   | 1     |         |                                |                                | was low byte of currentPidProfile->dtermSetpointWeight |
+| 10     | (value)                    | U8   | 1     |         |                                |                                | reserved                                               |
 | 11     | (value)                    | U8   | 1     |         |                                |                                | reserved                                               |
 | 12     | (value)                    | U8   | 1     |         |                                |                                | reserved                                               |
-| 13     | (value)                    | U8   | 1     |         |                                |                                | reserved                                               |
-| 14     | rateAccelLimit             | U16  | 2     |         | 0                              | RATE_ACCEL_LIMIT_MAX           |                                                        |
-| 16     | yawRateAccelLimit          | U16  | 2     |         | 0                              | RATE_ACCEL_LIMIT_MAX           |                                                        |
-| 18     | angle_limit                | U8   | 1     |         | ANGLE_LIMIT_MIN                | ANGLE_LIMIT_MAX                |                                                        |
-| 19     | (value)                    | U8   | 1     |         |                                |                                | was pidProfile.levelSensitivity                        |
-| 20     | (value)                    | U16  | 2     |         |                                |                                | was currentPidProfile->itermThrottleThreshold          |
-| 22     | anti_gravity_gain          | U16  | 2     |         | ANTI_GRAVITY_GAIN_OFF          | ANTI_GRAVITY_GAIN_MAX          |                                                        |
-| 24     | (value)                    | U16  | 2     |         |                                |                                | was currentPidProfile->dtermSetpointWeight             |
-| 26     | iterm_rotation             | U8   | 1     |         |                                |                                | lookup: TABLE_OFF_ON                                   |
-| 27     | (value)                    | U8   | 1     |         |                                |                                | was currentPidProfile->smart_feedforward               |
-| 28     | iterm_relax                | U8   | 1     |         |                                |                                | lookup: TABLE_ITERM_RELAX                              |
-| 29     | iterm_relax_type           | U8   | 1     |         |                                |                                | lookup: TABLE_ITERM_RELAX_TYPE                         |
-| 30     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 31     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 32     | (value)                    | U8   | 1     |         |                                |                                | was abs_control_gain                                   |
-| 33     | throttle_boost             | U8   | 1     |         | 0                              | THROTTLE_BOOST_MAX             |                                                        |
-| 34     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 35     | acro_trainer_angle_limit   | U8   | 1     |         | ACRO_TRAINER_ANGLE_LIMIT_MIN   | ACRO_TRAINER_ANGLE_LIMIT_MAX   |                                                        |
-| 36     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 37     | F                          | U16  | 2     |         |                                |                                |                                                        |
-| 39     | F                          | U16  | 2     |         |                                |                                |                                                        |
-| 41     | F                          | U16  | 2     |         |                                |                                |                                                        |
-| 43     | (value)                    | U8   | 1     |         |                                |                                | was currentPidProfile->antiGravityMode                 |
-| 44     | (value)                    | U8   | 1     |         |                                |                                |                                                        |
-| 45     | (value)                    | U8   | 1     |         |                                |                                |                                                        |
-| 46     | (value)                    | U8   | 1     |         |                                |                                |                                                        |
-| 47     | d_max_gain                 | U8   | 1     |         | 0                              | D_MAX_GAIN_MAX                 |                                                        |
-| 48     | d_max_advance              | U8   | 1     |         | 0                              | D_MAX_ADVANCE_MAX              |                                                        |
-| 49     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 50     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 51     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 52     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 53     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 54     | (value)                    | U8   | 1     |         |                                |                                | was use_integrated_yaw                                 |
-| 55     | (value)                    | U8   | 1     |         |                                |                                | was integrated_yaw_relax                               |
-| 56     | iterm_relax_cutoff         | U8   | 1     |         | ITERM_RELAX_CUTOFF_MIN         | ITERM_RELAX_CUTOFF_MAX         |                                                        |
-| 57     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 58     | motor_output_limit         | U8   | 1     |         | MOTOR_OUTPUT_LIMIT_PERCENT_MIN | MOTOR_OUTPUT_LIMIT_PERCENT_MAX |                                                        |
-| 59     | auto_profile_cell_count    | U8   | 1     |         | AUTO_PROFILE_CELL_COUNT_CHANGE | MAX_AUTO_DETECT_CELL_COUNT     |                                                        |
-| 60     | dyn_idle_min_rpm           | U8   | 1     |         | 0                              | DYN_IDLE_MIN_RPM_MAX           |                                                        |
-| 61     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 62     | feedforward_averaging      | U8   | 1     |         |                                |                                | lookup: TABLE_FEEDFORWARD_AVERAGING                    |
-| 63     | feedforward_smooth_factor  | U8   | 1     |         | 0                              | FEEDFORWARD_SMOOTH_FACTOR_MAX  |                                                        |
-| 64     | feedforward_boost          | U8   | 1     |         | 0                              | FEEDFORWARD_BOOST_MAX          |                                                        |
-| 65     | feedforward_max_rate_limit | U8   | 1     |         | 0                              | FEEDFORWARD_MAX_RATE_LIMIT_MAX |                                                        |
-| 66     | feedforward_jitter_factor  | U8   | 1     |         | 0                              | FEEDFORWARD_JITTER_FACTOR_MAX  |                                                        |
-| 67     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 68     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 69     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 70     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 71     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 72     | vbat_sag_compensation      | U8   | 1     |         | 0                              | VBAT_SAG_COMPENSATION_MAX      |                                                        |
-| 73     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 74     | thrustLinearization        | U8   | 1     |         | 0                              | THRUST_LINEARIZATION_MAX       |                                                        |
-| 75     | (value)                    | U8   | 1     |         |                                |                                | deprecated/padding                                     |
-| 76     | tpa_mode                   | U8   | 1     |         |                                |                                | lookup: TABLE_TPA_MODE                                 |
-| 77     | tpa_rate                   | U8   | 1     |         | 0                              | TPA_MAX                        |                                                        |
-| 78     | tpa_breakpoint             | U16  | 2     |         | PWM_RANGE_MIN                  | PWM_RANGE_MAX                  | was currentControlRateProfile->tpa_breakpoint          |
+| 13     | rateAccelLimit             | U16  | 2     |         | 0                              | RATE_ACCEL_LIMIT_MAX           |                                                        |
+| 15     | yawRateAccelLimit          | U16  | 2     |         | 0                              | RATE_ACCEL_LIMIT_MAX           |                                                        |
+| 17     | angle_limit                | U8   | 1     |         | ANGLE_LIMIT_MIN                | ANGLE_LIMIT_MAX                |                                                        |
+| 18     | (value)                    | U8   | 1     |         |                                |                                | was pidProfile.levelSensitivity                        |
+| 19     | (value)                    | U16  | 2     |         |                                |                                | was currentPidProfile->itermThrottleThreshold          |
+| 21     | anti_gravity_gain          | U16  | 2     |         | ANTI_GRAVITY_GAIN_OFF          | ANTI_GRAVITY_GAIN_MAX          |                                                        |
+| 23     | (value)                    | U16  | 2     |         |                                |                                | was currentPidProfile->dtermSetpointWeight             |
+| 25     | iterm_rotation             | U8   | 1     |         |                                |                                | lookup: TABLE_OFF_ON                                   |
+| 26     | (value)                    | U8   | 1     |         |                                |                                | was currentPidProfile->smart_feedforward               |
+| 27     | iterm_relax                | U8   | 1     |         |                                |                                | lookup: TABLE_ITERM_RELAX                              |
+| 28     | iterm_relax_type           | U8   | 1     |         |                                |                                | lookup: TABLE_ITERM_RELAX_TYPE                         |
+| 29     | (value)                    | U8   | 1     |         |                                |                                | was abs_control_gain                                   |
+| 30     | throttle_boost             | U8   | 1     |         | 0                              | THROTTLE_BOOST_MAX             |                                                        |
+| 31     | acro_trainer_angle_limit   | U8   | 1     |         | ACRO_TRAINER_ANGLE_LIMIT_MIN   | ACRO_TRAINER_ANGLE_LIMIT_MAX   |                                                        |
+| 32     | F                          | U16  | 2     |         |                                |                                |                                                        |
+| 34     | F                          | U16  | 2     |         |                                |                                |                                                        |
+| 36     | F                          | U16  | 2     |         |                                |                                |                                                        |
+| 38     | (value)                    | U8   | 1     |         |                                |                                | was currentPidProfile->antiGravityMode                 |
+| 39     | d_max[]                    | U8   | 1     |         |                                |                                |                                                        |
+| 40     | d_max[]                    | U8   | 1     |         |                                |                                |                                                        |
+| 41     | d_max[]                    | U8   | 1     |         |                                |                                |                                                        |
+| 42     | d_max_gain                 | U8   | 1     |         | 0                              | D_MAX_GAIN_MAX                 |                                                        |
+| 43     | d_max_advance              | U8   | 1     |         | 0                              | D_MAX_ADVANCE_MAX              |                                                        |
+| 44     | (value)                    | U8   | 1     |         |                                |                                | was use_integrated_yaw                                 |
+| 45     | (value)                    | U8   | 1     |         |                                |                                | was integrated_yaw_relax                               |
+| 46     | iterm_relax_cutoff         | U8   | 1     |         | ITERM_RELAX_CUTOFF_MIN         | ITERM_RELAX_CUTOFF_MAX         |                                                        |
+| 47     | motor_output_limit         | U8   | 1     |         | MOTOR_OUTPUT_LIMIT_PERCENT_MIN | MOTOR_OUTPUT_LIMIT_PERCENT_MAX |                                                        |
+| 48     | auto_profile_cell_count    | U8   | 1     |         | AUTO_PROFILE_CELL_COUNT_CHANGE | MAX_AUTO_DETECT_CELL_COUNT     |                                                        |
+| 49     | dyn_idle_min_rpm           | U8   | 1     |         | 0                              | DYN_IDLE_MIN_RPM_MAX           |                                                        |
+| 50     | feedforward_averaging      | U8   | 1     |         |                                |                                | lookup: TABLE_FEEDFORWARD_AVERAGING                    |
+| 51     | feedforward_smooth_factor  | U8   | 1     |         | 0                              | FEEDFORWARD_SMOOTH_FACTOR_MAX  |                                                        |
+| 52     | feedforward_boost          | U8   | 1     |         | 0                              | FEEDFORWARD_BOOST_MAX          |                                                        |
+| 53     | feedforward_max_rate_limit | U8   | 1     |         | 0                              | FEEDFORWARD_MAX_RATE_LIMIT_MAX |                                                        |
+| 54     | feedforward_jitter_factor  | U8   | 1     |         | 0                              | FEEDFORWARD_JITTER_FACTOR_MAX  |                                                        |
+| 55     | vbat_sag_compensation      | U8   | 1     |         | 0                              | VBAT_SAG_COMPENSATION_MAX      |                                                        |
+| 56     | thrustLinearization        | U8   | 1     |         | 0                              | THRUST_LINEARIZATION_MAX       |                                                        |
+| 57     | tpa_mode                   | U8   | 1     |         |                                |                                | lookup: TABLE_TPA_MODE                                 |
+| 58     | tpa_rate                   | U8   | 1     |         | 0                              | TPA_MAX                        |                                                        |
+| 59     | tpa_breakpoint             | U16  | 2     |         | PWM_RANGE_MIN                  | PWM_RANGE_MAX                  | was currentControlRateProfile->tpa_breakpoint          |
 
 ### MSP_SET_PID_ADVANCED — 95 — to FC
 
@@ -1206,68 +1093,49 @@ _Set advanced PID settings_
 | 6      | (read)                     | U8   | 1     |         |                                |                                | reserved                                               |
 | 7      | (read)                     | U8   | 1     |         |                                |                                | was vbatPidCompensation                                |
 | 8      | feedforward_transition     | U8   | 1     |         | 0                              | FEEDFORWARD_TRANSITION_MAX     |                                                        |
-| 9      | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 10     | (read)                     | U8   | 1     |         |                                |                                | was low byte of currentPidProfile->dtermSetpointWeight |
+| 9      | (read)                     | U8   | 1     |         |                                |                                | was low byte of currentPidProfile->dtermSetpointWeight |
+| 10     | (read)                     | U8   | 1     |         |                                |                                | reserved                                               |
 | 11     | (read)                     | U8   | 1     |         |                                |                                | reserved                                               |
 | 12     | (read)                     | U8   | 1     |         |                                |                                | reserved                                               |
-| 13     | (read)                     | U8   | 1     |         |                                |                                | reserved                                               |
-| 14     | rateAccelLimit             | U16  | 2     |         | 0                              | RATE_ACCEL_LIMIT_MAX           |                                                        |
-| 16     | yawRateAccelLimit          | U16  | 2     |         | 0                              | RATE_ACCEL_LIMIT_MAX           |                                                        |
-| 18     | angle_limit                | U8   | 1     |         | ANGLE_LIMIT_MIN                | ANGLE_LIMIT_MAX                |                                                        |
-| 19     | (read)                     | U8   | 1     |         |                                |                                | was pidProfile.levelSensitivity                        |
-| 20     | (read)                     | U16  | 2     |         |                                |                                | was currentPidProfile->itermThrottleThreshold          |
-| 22     | anti_gravity_gain          | U16  | 2     |         | ANTI_GRAVITY_GAIN_OFF          | ANTI_GRAVITY_GAIN_MAX          |                                                        |
-| 24     | (read)                     | U16  | 2     |         |                                |                                | was currentPidProfile->dtermSetpointWeight             |
-| 26     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 27     | (read)                     | U8   | 1     |         |                                |                                | was currentPidProfile->smart_feedforward               |
-| 28     | iterm_relax                | U8   | 1     |         |                                |                                | lookup: TABLE_ITERM_RELAX                              |
-| 29     | iterm_relax_type           | U8   | 1     |         |                                |                                | lookup: TABLE_ITERM_RELAX_TYPE                         |
-| 30     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 31     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 32     | (read)                     | U8   | 1     |         |                                |                                | was abs_control_gain                                   |
-| 33     | throttle_boost             | U8   | 1     |         | 0                              | THROTTLE_BOOST_MAX             |                                                        |
-| 34     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 35     | acro_trainer_angle_limit   | U8   | 1     |         | ACRO_TRAINER_ANGLE_LIMIT_MIN   | ACRO_TRAINER_ANGLE_LIMIT_MAX   |                                                        |
-| 36     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 37     | (read)                     | U16  | 2     |         |                                |                                |                                                        |
-| 39     | (read)                     | U16  | 2     |         |                                |                                |                                                        |
-| 41     | (read)                     | U16  | 2     |         |                                |                                |                                                        |
-| 43     | (read)                     | U8   | 1     |         |                                |                                | was currentPidProfile->antiGravityMode                 |
-| 44     | (read)                     | U8   | 1     |         |                                |                                |                                                        |
-| 45     | (read)                     | U8   | 1     |         |                                |                                |                                                        |
-| 46     | (read)                     | U8   | 1     |         |                                |                                |                                                        |
-| 47     | d_max_gain                 | U8   | 1     |         | 0                              | D_MAX_GAIN_MAX                 |                                                        |
-| 48     | d_max_advance              | U8   | 1     |         | 0                              | D_MAX_ADVANCE_MAX              |                                                        |
-| 49     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
+| 13     | rateAccelLimit             | U16  | 2     |         | 0                              | RATE_ACCEL_LIMIT_MAX           |                                                        |
+| 15     | yawRateAccelLimit          | U16  | 2     |         | 0                              | RATE_ACCEL_LIMIT_MAX           |                                                        |
+| 17     | angle_limit                | U8   | 1     |         | ANGLE_LIMIT_MIN                | ANGLE_LIMIT_MAX                |                                                        |
+| 18     | (read)                     | U8   | 1     |         |                                |                                | was pidProfile.levelSensitivity                        |
+| 19     | (read)                     | U16  | 2     |         |                                |                                | was currentPidProfile->itermThrottleThreshold          |
+| 21     | anti_gravity_gain          | U16  | 2     |         | ANTI_GRAVITY_GAIN_OFF          | ANTI_GRAVITY_GAIN_MAX          |                                                        |
+| 23     | (read)                     | U16  | 2     |         |                                |                                | was currentPidProfile->dtermSetpointWeight             |
+| 25     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
+| 26     | (read)                     | U8   | 1     |         |                                |                                | was currentPidProfile->smart_feedforward               |
+| 27     | iterm_relax                | U8   | 1     |         |                                |                                | lookup: TABLE_ITERM_RELAX                              |
+| 28     | iterm_relax_type           | U8   | 1     |         |                                |                                | lookup: TABLE_ITERM_RELAX_TYPE                         |
+| 29     | (read)                     | U8   | 1     |         |                                |                                | was abs_control_gain                                   |
+| 30     | throttle_boost             | U8   | 1     |         | 0                              | THROTTLE_BOOST_MAX             |                                                        |
+| 31     | acro_trainer_angle_limit   | U8   | 1     |         | ACRO_TRAINER_ANGLE_LIMIT_MIN   | ACRO_TRAINER_ANGLE_LIMIT_MAX   |                                                        |
+| 32     | (read)                     | U16  | 2     |         |                                |                                |                                                        |
+| 34     | (read)                     | U16  | 2     |         |                                |                                |                                                        |
+| 36     | (read)                     | U16  | 2     |         |                                |                                |                                                        |
+| 38     | (read)                     | U8   | 1     |         |                                |                                | was currentPidProfile->antiGravityMode                 |
+| 39     | d_max[]                    | U8   | 1     |         |                                |                                |                                                        |
+| 40     | d_max[]                    | U8   | 1     |         |                                |                                |                                                        |
+| 41     | d_max[]                    | U8   | 1     |         |                                |                                |                                                        |
+| 42     | d_max_gain                 | U8   | 1     |         | 0                              | D_MAX_GAIN_MAX                 |                                                        |
+| 43     | d_max_advance              | U8   | 1     |         | 0                              | D_MAX_ADVANCE_MAX              |                                                        |
+| 44     | (read)                     | U8   | 1     |         |                                |                                | was use_integrated_yaw                                 |
+| 45     | (read)                     | U8   | 1     |         |                                |                                | was integrated_yaw_relax                               |
+| 46     | iterm_relax_cutoff         | U8   | 1     |         | ITERM_RELAX_CUTOFF_MIN         | ITERM_RELAX_CUTOFF_MAX         |                                                        |
+| 47     | motor_output_limit         | U8   | 1     |         | MOTOR_OUTPUT_LIMIT_PERCENT_MIN | MOTOR_OUTPUT_LIMIT_PERCENT_MAX |                                                        |
+| 48     | auto_profile_cell_count    | S8   | 1     |         | AUTO_PROFILE_CELL_COUNT_CHANGE | MAX_AUTO_DETECT_CELL_COUNT     |                                                        |
+| 49     | dyn_idle_min_rpm           | U8   | 1     |         | 0                              | DYN_IDLE_MIN_RPM_MAX           |                                                        |
 | 50     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 51     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 52     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 53     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 54     | (read)                     | U8   | 1     |         |                                |                                | was use_integrated_yaw                                 |
-| 55     | (read)                     | U8   | 1     |         |                                |                                | was integrated_yaw_relax                               |
-| 56     | iterm_relax_cutoff         | U8   | 1     |         | ITERM_RELAX_CUTOFF_MIN         | ITERM_RELAX_CUTOFF_MAX         |                                                        |
-| 57     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 58     | motor_output_limit         | U8   | 1     |         | MOTOR_OUTPUT_LIMIT_PERCENT_MIN | MOTOR_OUTPUT_LIMIT_PERCENT_MAX |                                                        |
-| 59     | auto_profile_cell_count    | S8   | 1     |         | AUTO_PROFILE_CELL_COUNT_CHANGE | MAX_AUTO_DETECT_CELL_COUNT     |                                                        |
-| 60     | dyn_idle_min_rpm           | U8   | 1     |         | 0                              | DYN_IDLE_MIN_RPM_MAX           |                                                        |
-| 61     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 62     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 63     | feedforward_smooth_factor  | U8   | 1     |         | 0                              | FEEDFORWARD_SMOOTH_FACTOR_MAX  |                                                        |
-| 64     | feedforward_boost          | U8   | 1     |         | 0                              | FEEDFORWARD_BOOST_MAX          |                                                        |
-| 65     | feedforward_max_rate_limit | U8   | 1     |         | 0                              | FEEDFORWARD_MAX_RATE_LIMIT_MAX |                                                        |
-| 66     | feedforward_jitter_factor  | U8   | 1     |         | 0                              | FEEDFORWARD_JITTER_FACTOR_MAX  |                                                        |
-| 67     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 68     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 69     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 70     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 71     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 72     | vbat_sag_compensation      | U8   | 1     |         | 0                              | VBAT_SAG_COMPENSATION_MAX      |                                                        |
-| 73     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 74     | thrustLinearization        | U8   | 1     |         | 0                              | THRUST_LINEARIZATION_MAX       |                                                        |
-| 75     | (read)                     | U8   | 1     |         |                                |                                | deprecated/ignored                                     |
-| 76     | tpa_mode                   | U8   | 1     |         |                                |                                | lookup: TABLE_TPA_MODE                                 |
-| 77     | tpa_rate                   | U8   | 1     |         | 0                              | TPA_MAX                        |                                                        |
-| 78     | tpa_breakpoint             | U16  | 2     |         | PWM_RANGE_MIN                  | PWM_RANGE_MAX                  |                                                        |
+| 51     | feedforward_smooth_factor  | U8   | 1     |         | 0                              | FEEDFORWARD_SMOOTH_FACTOR_MAX  |                                                        |
+| 52     | feedforward_boost          | U8   | 1     |         | 0                              | FEEDFORWARD_BOOST_MAX          |                                                        |
+| 53     | feedforward_max_rate_limit | U8   | 1     |         | 0                              | FEEDFORWARD_MAX_RATE_LIMIT_MAX |                                                        |
+| 54     | feedforward_jitter_factor  | U8   | 1     |         | 0                              | FEEDFORWARD_JITTER_FACTOR_MAX  |                                                        |
+| 55     | vbat_sag_compensation      | U8   | 1     |         | 0                              | VBAT_SAG_COMPENSATION_MAX      |                                                        |
+| 56     | thrustLinearization        | U8   | 1     |         | 0                              | THRUST_LINEARIZATION_MAX       |                                                        |
+| 57     | tpa_mode                   | U8   | 1     |         |                                |                                | lookup: TABLE_TPA_MODE                                 |
+| 58     | tpa_rate                   | U8   | 1     |         | 0                              | TPA_MAX                        |                                                        |
+| 59     | tpa_breakpoint             | U16  | 2     |         | PWM_RANGE_MIN                  | PWM_RANGE_MAX                  |                                                        |
 
 ### MSP_SENSOR_CONFIG — 96 — from FC
 
@@ -1276,17 +1144,11 @@ _Get sensor configuration_
 | Offset | Field                | Type | Bytes | Default             | Min | Max | Notes                                                            |
 | ------ | -------------------- | ---- | ----- | ------------------- | --- | --- | ---------------------------------------------------------------- |
 | 0      | acc_hardware         | U8   | 1     |                     |     |     | lookup: TABLE_ACC_HARDWARE                                       |
-| 1      | (value)              | U8   | 1     |                     |     |     |                                                                  |
-| 2      | baro_hardware        | U8   | 1     | DEFAULT_BARO_DEVICE |     |     | lookup: TABLE_BARO_HARDWARE                                      |
-| 3      | (value)              | U8   | 1     |                     |     |     |                                                                  |
-| 4      | mag_hardware         | U8   | 1     | MAG_DEFAULT         |     |     | lookup: TABLE_MAG_HARDWARE                                       |
-| 5      | (value)              | U8   | 1     |                     |     |     |                                                                  |
-| 6      | rangefinder_hardware | U8   | 1     | RANGEFINDER_NONE    |     |     | lookup: TABLE_RANGEFINDER_HARDWARE; no RANGEFINDER_DEFAULT value |
-| 7      | (value)              | U8   | 1     |                     |     |     |                                                                  |
-| 8      | opticalflow_hardware | U8   | 1     | OPTICALFLOW_NONE    |     |     | lookup: TABLE_OPTICALFLOW_HARDWARE                               |
-| 9      | (value)              | U8   | 1     |                     |     |     |                                                                  |
-| 10     | pitot_hardware       | U8   | 1     | PITOT_NONE          |     |     | lookup: TABLE_PITOT_HARDWARE                                     |
-| 11     | (value)              | U8   | 1     |                     |     |     |                                                                  |
+| 1      | baro_hardware        | U8   | 1     | DEFAULT_BARO_DEVICE |     |     | lookup: TABLE_BARO_HARDWARE                                      |
+| 2      | mag_hardware         | U8   | 1     | MAG_DEFAULT         |     |     | lookup: TABLE_MAG_HARDWARE                                       |
+| 3      | rangefinder_hardware | U8   | 1     | RANGEFINDER_NONE    |     |     | lookup: TABLE_RANGEFINDER_HARDWARE; no RANGEFINDER_DEFAULT value |
+| 4      | opticalflow_hardware | U8   | 1     | OPTICALFLOW_NONE    |     |     | lookup: TABLE_OPTICALFLOW_HARDWARE                               |
+| 5      | pitot_hardware       | U8   | 1     | PITOT_NONE          |     |     | lookup: TABLE_PITOT_HARDWARE                                     |
 
 ### MSP_SET_SENSOR_CONFIG — 97 — to FC
 
@@ -1295,17 +1157,11 @@ _Set sensor configuration_
 | Offset | Field                | Type | Bytes | Default             | Min | Max | Notes                              |
 | ------ | -------------------- | ---- | ----- | ------------------- | --- | --- | ---------------------------------- |
 | 0      | acc_hardware         | U8   | 1     |                     |     |     | lookup: TABLE_ACC_HARDWARE         |
-| 1      | (read)               | U8   | 1     |                     |     |     | deprecated/ignored                 |
-| 2      | baro_hardware        | U8   | 1     | DEFAULT_BARO_DEVICE |     |     | lookup: TABLE_BARO_HARDWARE        |
-| 3      | (read)               | U8   | 1     |                     |     |     | deprecated/ignored                 |
-| 4      | mag_hardware         | U8   | 1     | MAG_DEFAULT         |     |     | lookup: TABLE_MAG_HARDWARE         |
-| 5      | (read)               | U8   | 1     |                     |     |     | deprecated/ignored                 |
-| 6      | rangefinder_hardware | U8   | 1     | RANGEFINDER_NONE    |     |     | lookup: TABLE_RANGEFINDER_HARDWARE |
-| 7      | (read)               | U8   | 1     |                     |     |     | deprecated/ignored                 |
-| 8      | opticalflow_hardware | U8   | 1     | OPTICALFLOW_NONE    |     |     | lookup: TABLE_OPTICALFLOW_HARDWARE |
-| 9      | (read)               | U8   | 1     |                     |     |     | deprecated/ignored                 |
-| 10     | pitot_hardware       | U8   | 1     | PITOT_NONE          |     |     | lookup: TABLE_PITOT_HARDWARE       |
-| 11     | (read)               | U8   | 1     |                     |     |     | deprecated/ignored                 |
+| 1      | baro_hardware        | U8   | 1     | DEFAULT_BARO_DEVICE |     |     | lookup: TABLE_BARO_HARDWARE        |
+| 2      | mag_hardware         | U8   | 1     | MAG_DEFAULT         |     |     | lookup: TABLE_MAG_HARDWARE         |
+| 3      | rangefinder_hardware | U8   | 1     | RANGEFINDER_NONE    |     |     | lookup: TABLE_RANGEFINDER_HARDWARE |
+| 4      | opticalflow_hardware | U8   | 1     | OPTICALFLOW_NONE    |     |     | lookup: TABLE_OPTICALFLOW_HARDWARE |
+| 5      | pitot_hardware       | U8   | 1     | PITOT_NONE          |     |     | lookup: TABLE_PITOT_HARDWARE       |
 
 ### MSP_CAMERA_CONTROL — 98 — both
 
@@ -1332,9 +1188,8 @@ _Cycletime & errors_count & sensor present & box activation & current setting nu
 | ------ | --------------- | ----- | ----- | ------- | --- | --- | ------------------------------------------ |
 | 0      | (value)         | U16   | 2     |         |     |     |                                            |
 | 2      | (value)         | U16   | 2     |         |     |     |                                            |
-| 4      | (value)         | U16   | 2     |         |     |     | deprecated/padding                         |
-| 6      | (value)         | U16   | 2     |         |     |     |                                            |
-| 8      | (variable data) | bytes | ?     |         |     |     | unconditional part of flags, first 32 bits |
+| 4      | (value)         | U16   | 2     |         |     |     |                                            |
+| 6      | (variable data) | bytes | ?     |         |     |     | unconditional part of flags, first 32 bits |
 | ?      | (value)         | U8    | 1     |         |     |     |                                            |
 | ?      | (value)         | U16   | 2     |         |     |     |                                            |
 | ?      | (value)         | U8    | 1     |         |     |     |                                            |
@@ -1346,7 +1201,6 @@ _Cycletime & errors_count & sensor present & box activation & current setting nu
 | ?      | (value)         | U32   | 4     |         |     |     |                                            |
 | ?      | (value)         | U8    | 1     |         |     |     |                                            |
 | ?      | (value)         | U16   | 2     |         |     |     |                                            |
-| ?      | (value)         | U16   | 2     |         |     |     | deprecated/padding                         |
 | ?      | (value)         | U8    | 1     |         |     |     |                                            |
 | ?      | (value)         | U8    | 1     |         |     |     |                                            |
 | ?      | (value)         | U8    | 1     |         |     |     |                                            |
@@ -1355,13 +1209,11 @@ _Cycletime & errors_count & sensor present & box activation & current setting nu
 
 _9 DOF_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (value) | U16  | 2     |         |     |     |                    |
-| 2      | (value) | U16  | 2     |         |     |     | deprecated/padding |
-| 4      | (value) | U16  | 2     |         |     |     |                    |
-| 6      | (value) | U16  | 2     |         |     |     |                    |
-| 8      | (value) | U16  | 2     |         |     |     | deprecated/padding |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes       |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ----------- |
+| 0      | (value) | U16  | 2     |         |     |     | repeated ×3 |
+| 6      | (value) | U16  | 2     |         |     |     | repeated ×3 |
+| 12     | (value) | U16  | 2     |         |     |     | repeated ×3 |
 
 ### MSP_SERVO — 103 — from FC
 
@@ -1375,19 +1227,17 @@ _Servos_
 
 _Motors_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (value) | U16  | 2     |         |     |     | deprecated/padding |
-| 2      | (value) | U16  | 2     |         |     |     |                    |
-| 4      | (value) | U16  | 2     |         |     |     | deprecated/padding |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes       |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ----------- |
+| 0      | (value) | U16  | 2     |         |     |     | repeated ×8 |
 
 ### MSP_RC — 105 — from FC
 
 _RC channels and more_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | (value) | U16  | 2     |         |     |     |       |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                                  |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------------------------------------------ |
+| 0      | (value) | U16  | 2     |         |     |     | repeated × rxRuntimeState.channelCount (runtime count) |
 
 ### MSP_RAW_GPS — 106 — from FC
 
@@ -1431,11 +1281,10 @@ _2 angles 1 heading_
 
 _Altitude, variometer_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (value) | U32  | 4     |         |     |     |                    |
-| 4      | (value) | U16  | 2     |         |     |     |                    |
-| 6      | (value) | U16  | 2     |         |     |     | deprecated/padding |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ----- |
+| 0      | (value) | U32  | 4     |         |     |     |       |
+| 4      | (value) | U16  | 2     |         |     |     |       |
 
 ### MSP_ANALOG — 110 — from FC
 
@@ -1453,57 +1302,57 @@ _Vbat, powermetersum, rssi if available on RX_
 
 _RC rate, rc expo, rollpitch rate, yaw rate, dyn throttle PID_
 
-| Offset | Field                  | Type | Bytes | Default | Min                                            | Max                                            | Notes                                         |
-| ------ | ---------------------- | ---- | ----- | ------- | ---------------------------------------------- | ---------------------------------------------- | --------------------------------------------- |
-| 0      | (value)                | U8   | 1     |         |                                                |                                                |                                               |
-| 1      | (value)                | U8   | 1     |         |                                                |                                                |                                               |
-| 2      | (value)                | U8   | 1     |         |                                                |                                                | R,P,Y see flight_dynamics_index_t             |
-| 3      | (value)                | U8   | 1     |         |                                                |                                                | was currentControlRateProfile->tpa_rate       |
-| 4      | thrMid8                | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_MID_MAX                |                                               |
-| 5      | thrExpo8               | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_EXPO_MAX               |                                               |
-| 6      | (value)                | U16  | 2     |         |                                                |                                                | was currentControlRateProfile->tpa_breakpoint |
-| 8      | (value)                | U8   | 1     |         |                                                |                                                |                                               |
-| 9      | (value)                | U8   | 1     |         |                                                |                                                |                                               |
-| 10     | (value)                | U8   | 1     |         |                                                |                                                |                                               |
-| 11     | (value)                | U8   | 1     |         |                                                |                                                |                                               |
-| 12     | throttle_limit_type    | U8   | 1     |         |                                                |                                                | lookup: TABLE_THROTTLE_LIMIT_TYPE             |
-| 13     | throttle_limit_percent | U8   | 1     |         | CONTROL_RATE_CONFIG_THROTTLE_LIMIT_PERCENT_MIN | CONTROL_RATE_CONFIG_THROTTLE_LIMIT_PERCENT_MAX |                                               |
-| 14     | (value)                | U16  | 2     |         |                                                |                                                |                                               |
-| 16     | (value)                | U16  | 2     |         |                                                |                                                |                                               |
-| 18     | (value)                | U16  | 2     |         |                                                |                                                |                                               |
-| 20     | rates_type             | U8   | 1     |         |                                                |                                                | lookup: TABLE_RATES_TYPE                      |
-| 21     | thrHover8              | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_HOVER_MAX              |                                               |
+| Offset | Field                  | Type | Bytes | Default | Min                                            | Max                                            | Notes                                          |
+| ------ | ---------------------- | ---- | ----- | ------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| 0      | rcRates[]              | U8   | 1     |         |                                                |                                                |                                                |
+| 1      | rcExpo[]               | U8   | 1     |         |                                                |                                                |                                                |
+| 2      | rates[]                | U8   | 1     |         |                                                |                                                | repeated ×3; R,P,Y see flight_dynamics_index_t |
+| 5      | (value)                | U8   | 1     |         |                                                |                                                | was currentControlRateProfile->tpa_rate        |
+| 6      | thrMid8                | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_MID_MAX                |                                                |
+| 7      | thrExpo8               | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_EXPO_MAX               |                                                |
+| 8      | (value)                | U16  | 2     |         |                                                |                                                | was currentControlRateProfile->tpa_breakpoint  |
+| 10     | rcExpo[]               | U8   | 1     |         |                                                |                                                |                                                |
+| 11     | rcRates[]              | U8   | 1     |         |                                                |                                                |                                                |
+| 12     | rcRates[]              | U8   | 1     |         |                                                |                                                |                                                |
+| 13     | rcExpo[]               | U8   | 1     |         |                                                |                                                |                                                |
+| 14     | throttle_limit_type    | U8   | 1     |         |                                                |                                                | lookup: TABLE_THROTTLE_LIMIT_TYPE              |
+| 15     | throttle_limit_percent | U8   | 1     |         | CONTROL_RATE_CONFIG_THROTTLE_LIMIT_PERCENT_MIN | CONTROL_RATE_CONFIG_THROTTLE_LIMIT_PERCENT_MAX |                                                |
+| 16     | rate_limit[]           | U16  | 2     |         |                                                |                                                |                                                |
+| 18     | rate_limit[]           | U16  | 2     |         |                                                |                                                |                                                |
+| 20     | rate_limit[]           | U16  | 2     |         |                                                |                                                |                                                |
+| 22     | rates_type             | U8   | 1     |         |                                                |                                                | lookup: TABLE_RATES_TYPE                       |
+| 23     | thrHover8              | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_HOVER_MAX              |                                                |
 
 ### MSP_PID — 112 — from FC
 
 _P I D coeff (9 are used currently)_
 
-| Offset | Field | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ----- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | P     | U8   | 1     |         |     |     |       |
-| 1      | I     | U8   | 1     |         |     |     |       |
-| 2      | D     | U8   | 1     |         |     |     |       |
+| Offset | Field | Type | Bytes | Default | Min | Max | Notes                                     |
+| ------ | ----- | ---- | ----- | ------- | --- | --- | ----------------------------------------- |
+| 0      | P     | U8   | 1     |         |     |     | repeated × PID_ITEM_COUNT (runtime count) |
+| 1      | I     | U8   | 1     |         |     |     | repeated × PID_ITEM_COUNT (runtime count) |
+| 2      | D     | U8   | 1     |         |     |     | repeated × PID_ITEM_COUNT (runtime count) |
 
 ### MSP_PIDNAMES — 117 — from FC
 
 _The PID names_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | (value) | U8   | 1     |         |     |     |       |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                        |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ---------------------------- |
+| 0      | (value) | U8   | 1     |         |     |     | repeated × n (runtime count) |
 
 ### MSP_SERVO_CONFIGURATIONS — 120 — from FC
 
 _All servo configurations_
 
-| Offset | Field              | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------------------ | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | min                | U16  | 2     |         |     |     |       |
-| 2      | max                | U16  | 2     |         |     |     |       |
-| 4      | middle             | U16  | 2     |         |     |     |       |
-| 6      | rate               | U8   | 1     |         |     |     |       |
-| 7      | forwardFromChannel | U8   | 1     |         |     |     |       |
-| 8      | reversedSources    | U32  | 4     |         |     |     |       |
+| Offset | Field              | Type | Bytes | Default | Min | Max | Notes                                           |
+| ------ | ------------------ | ---- | ----- | ------- | --- | --- | ----------------------------------------------- |
+| 0      | min                | U16  | 2     |         |     |     | repeated × MAX_SUPPORTED_SERVOS (runtime count) |
+| 2      | max                | U16  | 2     |         |     |     | repeated × MAX_SUPPORTED_SERVOS (runtime count) |
+| 4      | middle             | U16  | 2     |         |     |     | repeated × MAX_SUPPORTED_SERVOS (runtime count) |
+| 6      | rate               | U8   | 1     |         |     |     | repeated × MAX_SUPPORTED_SERVOS (runtime count) |
+| 7      | forwardFromChannel | U8   | 1     |         |     |     | repeated × MAX_SUPPORTED_SERVOS (runtime count) |
+| 8      | reversedSources    | U32  | 4     |         |     |     | repeated × MAX_SUPPORTED_SERVOS (runtime count) |
 
 ### MSP_MOTOR_3D_CONFIG — 124 — from FC
 
@@ -1519,13 +1368,12 @@ _Settings needed for reversible ESCs_
 
 _Deadbands for yaw alt pitch roll_
 
-| Offset | Field               | Type | Bytes | Default | Min                     | Max                     | Notes              |
-| ------ | ------------------- | ---- | ----- | ------- | ----------------------- | ----------------------- | ------------------ |
-| 0      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |                    |
-| 1      | yaw_deadband        | U8   | 1     | 0       | 0                       | RC_YAW_DEADBAND_MAX     |                    |
-| 2      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |                    |
-| 3      | (value)             | U8   | 1     |         |                         |                         | deprecated/padding |
-| 4      | deadband3d_throttle | U16  | 2     | 50      | DEADBAND3D_THROTTLE_MIN | DEADBAND3D_THROTTLE_MAX |                    |
+| Offset | Field               | Type | Bytes | Default | Min                     | Max                     | Notes |
+| ------ | ------------------- | ---- | ----- | ------- | ----------------------- | ----------------------- | ----- |
+| 0      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |       |
+| 1      | yaw_deadband        | U8   | 1     | 0       | 0                       | RC_YAW_DEADBAND_MAX     |       |
+| 2      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |       |
+| 3      | deadband3d_throttle | U16  | 2     | 50      | DEADBAND3D_THROTTLE_MIN | DEADBAND3D_THROTTLE_MAX |       |
 
 ### MSP_SENSOR_ALIGNMENT — 126 — from FC
 
@@ -1536,50 +1384,46 @@ _Orientation of acc,gyro,mag_
 | 0      | (value)              | U8   | 1     |                      |     |     |                                                       |
 | 1      | (value)              | U8   | 1     |                      |     |     | Starting with 4.0 gyro and acc alignment are the same |
 | 2      | mag_alignment        | U8   | 1     | MAG_ALIGN            |     |     | lookup: TABLE_ALIGNMENT                               |
-| 3      | (value)              | U8   | 1     |                      |     |     | deprecated/padding                                    |
-| 4      | (value)              | U8   | 1     |                      |     |     |                                                       |
-| 5      | gyro_enabled_bitmask | U8   | 1     | DEFAULT_GYRO_ENABLED |     |     | deprecates gyro_to_use                                |
-| 6      | roll                 | U16  | 2     |                      |     |     |                                                       |
-| 8      | pitch                | U16  | 2     |                      |     |     |                                                       |
-| 10     | yaw                  | U16  | 2     |                      |     |     |                                                       |
-| 12     | (value)              | U16  | 2     |                      |     |     | deprecated/padding                                    |
-| 14     | (value)              | U16  | 2     |                      |     |     | deprecated/padding                                    |
-| 16     | (value)              | U16  | 2     |                      |     |     | deprecated/padding                                    |
+| 3      | (value)              | U8   | 1     |                      |     |     |                                                       |
+| 4      | gyro_enabled_bitmask | U8   | 1     | DEFAULT_GYRO_ENABLED |     |     | deprecates gyro_to_use                                |
+| 5      | roll                 | U16  | 2     |                      |     |     |                                                       |
+| 7      | pitch                | U16  | 2     |                      |     |     |                                                       |
+| 9      | yaw                  | U16  | 2     |                      |     |     |                                                       |
 
 ### MSP_LED_STRIP_MODECOLOR — 127 — from FC
 
 _Get LED strip mode_color settings_
 
-| Offset | Field                | Type | Bytes | Default  | Min | Max | Notes              |
-| ------ | -------------------- | ---- | ----- | -------- | --- | --- | ------------------ |
-| 0      | (value)              | U8   | 1     |          |     |     |                    |
-| 1      | (value)              | U8   | 1     |          |     |     |                    |
-| 2      | (value)              | U8   | 1     |          |     |     |                    |
-| 3      | (value)              | U8   | 1     |          |     |     |                    |
-| 4      | (value)              | U8   | 1     |          |     |     |                    |
-| 5      | (value)              | U8   | 1     |          |     |     |                    |
-| 6      | (value)              | U8   | 1     |          |     |     |                    |
-| 7      | (value)              | U8   | 1     |          |     |     | deprecated/padding |
-| 8      | ledstrip_aux_channel | U8   | 1     | THROTTLE |     |     |                    |
+| Offset | Field                | Type | Bytes | Default  | Min | Max | Notes                                                                                |
+| ------ | -------------------- | ---- | ----- | -------- | --- | --- | ------------------------------------------------------------------------------------ |
+| 0      | (value)              | U8   | 1     |          |     |     | repeated ×6 (LED_MODE_COUNT), stride 18; repeated ×6 (LED_DIRECTION_COUNT), stride 3 |
+| 1      | (value)              | U8   | 1     |          |     |     | repeated ×6 (LED_MODE_COUNT), stride 18; repeated ×6 (LED_DIRECTION_COUNT), stride 3 |
+| 2      | color[]              | U8   | 1     |          |     |     | repeated ×6 (LED_MODE_COUNT), stride 18; repeated ×6 (LED_DIRECTION_COUNT), stride 3 |
+| 108    | (value)              | U8   | 1     |          |     |     | repeated ×11 (LED_SPECIAL_COLOR_COUNT), stride 3                                     |
+| 109    | (value)              | U8   | 1     |          |     |     | repeated ×11 (LED_SPECIAL_COLOR_COUNT), stride 3                                     |
+| 110    | color[]              | U8   | 1     |          |     |     | repeated ×11 (LED_SPECIAL_COLOR_COUNT), stride 3                                     |
+| 141    | (value)              | U8   | 1     |          |     |     |                                                                                      |
+| 142    | (value)              | U8   | 1     |          |     |     | deprecated/padding                                                                   |
+| 143    | ledstrip_aux_channel | U8   | 1     | THROTTLE |     |     |                                                                                      |
 
 ### MSP_VOLTAGE_METERS — 128 — from FC
 
 _Voltage (per meter)_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | (value) | U8   | 1     |         |     |     |       |
-| 1      | (value) | U8   | 1     |         |     |     |       |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                            |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | -------------------------------- |
+| 0      | (value) | U8   | 1     |         |     |     | repeated × count (runtime count) |
+| 1      | (value) | U8   | 1     |         |     |     | repeated × count (runtime count) |
 
 ### MSP_CURRENT_METERS — 129 — from FC
 
 _Amperage (per meter)_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                                                    |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------------------------------------------------------------ |
-| 0      | (value) | U8   | 1     |         |     |     |                                                                          |
-| 1      | (value) | U16  | 2     |         |     |     | milliamp hours drawn from battery                                        |
-| 3      | (value) | U16  | 2     |         |     |     | send amperage in 0.001 A steps (mA). Negative range is truncated to zero |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                                                                                      |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ---------------------------------------------------------------------------------------------------------- |
+| 0      | (value) | U8   | 1     |         |     |     | repeated × count (runtime count)                                                                           |
+| 1      | (value) | U16  | 2     |         |     |     | repeated × count (runtime count); milliamp hours drawn from battery                                        |
+| 3      | (value) | U16  | 2     |         |     |     | repeated × count (runtime count); send amperage in 0.001 A steps (mA). Negative range is truncated to zero |
 
 ### MSP_BATTERY_STATE — 130 — from FC
 
@@ -1607,10 +1451,8 @@ _Motor configuration (min/max throttle, etc)_
 | 6      | (value)        | U8   | 1     |         |                      |               |                                 |
 | 7      | motorPoleCount | U8   | 1     | 14      | MOTOR_POLE_COUNT_MIN | UINT8_MAX     |                                 |
 | 8      | (value)        | U8   | 1     |         |                      |               |                                 |
-| 9      | (value)        | U8   | 1     |         |                      |               | deprecated/padding              |
-| 10     | (value)        | U8   | 1     |         |                      |               | ESC sensor available            |
-| 11     | (value)        | U8   | 1     |         |                      |               | deprecated/padding              |
-| 12     | kv             | U16  | 2     | 1960    | 1                    | 40000         |                                 |
+| 9      | (value)        | U8   | 1     |         |                      |               | ESC sensor available            |
+| 10     | kv             | U16  | 2     | 1960    | 1                    | 40000         |                                 |
 
 ### MSP_GPS_CONFIG — 132 — from FC
 
@@ -1637,14 +1479,14 @@ _Compass configuration_
 
 _Extra ESC data from 32-Bit ESCs (Temperature, RPM)_
 
-| Offset | Field       | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ----------- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | (value)     | U8   | 1     |         |     |     |       |
-| 1      | temperature | U8   | 1     |         |     |     |       |
-| 2      | rpm         | U16  | 2     |         |     |     |       |
-| 4      | (value)     | U8   | 1     |         |     |     |       |
-| 5      | (value)     | U8   | 1     |         |     |     |       |
-| 6      | (value)     | U16  | 2     |         |     |     |       |
+| Offset | Field           | Type | Bytes | Default | Min | Max | Notes                                      |
+| ------ | --------------- | ---- | ----- | ------- | --- | --- | ------------------------------------------ |
+| 0      | (value)         | U8   | 1     |         |     |     |                                            |
+| 1      | temperature     | U8   | 1     |         |     |     | repeated × getMotorCount() (runtime count) |
+| 2      | rpm             | U16  | 2     |         |     |     | repeated × getMotorCount() (runtime count) |
+| ?      | (value)         | U8   | 1     |         |     |     |                                            |
+| ?      | telemetryData[] | U8   | 1     |         |     |     | repeated × getMotorCount() (runtime count) |
+| ?      | (value)         | U16  | 2     |         |     |     | repeated × getMotorCount() (runtime count) |
 
 ### MSP_GPS_RESCUE — 135 — from FC
 
@@ -1686,40 +1528,40 @@ _GPS Rescue throttleP and velocity PIDS + yaw P_
 
 _VTX table band/channel data_
 
-| Offset | Field    | Type | Bytes | Default | Min | Max | Notes                                   |
-| ------ | -------- | ---- | ----- | ------- | --- | --- | --------------------------------------- |
-| 0      | (value)  | U8   | 1     |         |     |     | band number (same as request)           |
-| 1      | (value)  | U8   | 1     |         |     |     | band name length                        |
-| 2      | (value)  | U8   | 1     |         |     |     |                                         |
-| 3      | (value)  | U8   | 1     |         |     |     | band letter                             |
-| 4      | (value)  | U8   | 1     |         |     |     | CUSTOM = 0; FACTORY = 1                 |
-| 5      | channels | U8   | 1     | 0       |     |     | number of channel frequencies to follow |
-| 6      | (value)  | U16  | 2     |         |     |     |                                         |
+| Offset | Field    | Type | Bytes | Default | Min | Max | Notes                                                 |
+| ------ | -------- | ---- | ----- | ------- | --- | --- | ----------------------------------------------------- |
+| 0      | (value)  | U8   | 1     |         |     |     | band number (same as request)                         |
+| 1      | (value)  | U8   | 1     |         |     |     | band name length                                      |
+| 2      | (value)  | U8   | 1     |         |     |     | repeated × VTX_TABLE_BAND_NAME_LENGTH (runtime count) |
+| ?      | (value)  | U8   | 1     |         |     |     | band letter                                           |
+| ?      | (value)  | U8   | 1     |         |     |     | CUSTOM = 0; FACTORY = 1                               |
+| ?      | channels | U8   | 1     | 0       |     |     | number of channel frequencies to follow               |
+| ?      | (value)  | U16  | 2     |         |     |     | repeated × vtxTableConfig()->channels (runtime count) |
 
 ### MSP_VTXTABLE_POWERLEVEL — 138 — from FC
 
 _VTX table powerLevel data_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                               |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ----------------------------------- |
-| 0      | (value) | U8   | 1     |         |     |     | powerLevel number (same as request) |
-| 1      | (value) | U16  | 2     |         |     |     |                                     |
-| 3      | (value) | U8   | 1     |         |     |     | powerLevel label length             |
-| 4      | (value) | U8   | 1     |         |     |     |                                     |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                                   |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------------------------------------------- |
+| 0      | (value) | U8   | 1     |         |     |     | powerLevel number (same as request)                     |
+| 1      | (value) | U16  | 2     |         |     |     |                                                         |
+| 3      | (value) | U8   | 1     |         |     |     | powerLevel label length                                 |
+| 4      | (value) | U8   | 1     |         |     |     | repeated × VTX_TABLE_POWER_LABEL_LENGTH (runtime count) |
 
 ### MSP_MOTOR_TELEMETRY — 139 — from FC
 
 _Per-motor telemetry data (RPM, packet stats, ESC temp, etc.)_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | (value) | U8   | 1     |         |     |     |       |
-| 1      | (value) | U32  | 4     |         |     |     |       |
-| 5      | (value) | U16  | 2     |         |     |     |       |
-| 7      | (value) | U8   | 1     |         |     |     |       |
-| 8      | (value) | U16  | 2     |         |     |     |       |
-| 10     | (value) | U16  | 2     |         |     |     |       |
-| 12     | (value) | U16  | 2     |         |     |     |       |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                      |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------------------------------ |
+| 0      | (value) | U8   | 1     |         |     |     |                                            |
+| 1      | (value) | U32  | 4     |         |     |     | repeated × getMotorCount() (runtime count) |
+| 5      | (value) | U16  | 2     |         |     |     | repeated × getMotorCount() (runtime count) |
+| 7      | (value) | U8   | 1     |         |     |     | repeated × getMotorCount() (runtime count) |
+| 8      | (value) | U16  | 2     |         |     |     | repeated × getMotorCount() (runtime count) |
+| 10     | (value) | U16  | 2     |         |     |     | repeated × getMotorCount() (runtime count) |
+| 12     | (value) | U16  | 2     |         |     |     | repeated × getMotorCount() (runtime count) |
 
 ### MSP_VALIDATE_SIMPLIFIED_TUNING — 145 — from FC
 
@@ -1745,13 +1587,13 @@ _Unique device ID_
 
 _Get Signal Strength (only U-Blox)_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | (value) | U8   | 1     |         |     |     |       |
-| 1      | chn     | U8   | 1     |         |     |     |       |
-| 2      | svid    | U8   | 1     |         |     |     |       |
-| 3      | quality | U8   | 1     |         |     |     |       |
-| 4      | cno     | U8   | 1     |         |     |     |       |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------------------------ |
+| 0      | (value) | U8   | 1     |         |     |     |                                      |
+| 1      | chn     | U8   | 1     |         |     |     | repeated × GPS_numCh (runtime count) |
+| 2      | svid    | U8   | 1     |         |     |     | repeated × GPS_numCh (runtime count) |
+| 3      | quality | U8   | 1     |         |     |     | repeated × GPS_numCh (runtime count) |
+| 4      | cno     | U8   | 1     |         |     |     | repeated × GPS_numCh (runtime count) |
 
 ### MSP_ATTITUDE_QUATERNION — 167 — from FC
 
@@ -1770,41 +1612,39 @@ _WING settings_
 
 | Offset | Field                    | Type | Bytes | Default | Min                     | Max                          | Notes                        |
 | ------ | ------------------------ | ---- | ----- | ------- | ----------------------- | ---------------------------- | ---------------------------- |
-| 0      | S                        | U8   | 1     |         |                         |                              |                              |
-| 1      | (value)                  | U16  | 2     |         |                         |                              |                              |
-| 3      | (value)                  | U16  | 2     |         |                         |                              |                              |
-| 5      | (value)                  | U8   | 1     |         |                         |                              |                              |
-| 6      | tpa_curve_type           | U8   | 1     |         |                         |                              | lookup: TABLE_TPA_CURVE_TYPE |
-| 7      | tpa_curve_stall_throttle | U8   | 1     |         | 0                       | TPA_CURVE_STALL_THROTTLE_MAX |                              |
-| 8      | tpa_curve_pid_thr0       | U16  | 2     |         | 0                       | TPA_CURVE_PID_MAX            |                              |
-| 10     | tpa_curve_pid_thr100     | U16  | 2     |         | 0                       | TPA_CURVE_PID_MAX            |                              |
-| 12     | tpa_curve_expo           | U8   | 1     |         | TPA_CURVE_EXPO_MIN      | TPA_CURVE_EXPO_MAX           |                              |
-| 13     | tpa_speed_type           | U8   | 1     |         |                         |                              | lookup: TABLE_TPA_SPEED_TYPE |
-| 14     | tpa_speed_basic_delay    | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
-| 16     | tpa_speed_basic_gravity  | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
-| 18     | tpa_speed_adv_prop_pitch | U16  | 2     |         | 0                       | UINT16_MAX                   |                              |
-| 20     | tpa_speed_adv_mass       | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
-| 22     | tpa_speed_adv_drag_k     | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
-| 24     | tpa_speed_adv_thrust     | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
-| 26     | tpa_speed_max_voltage    | U16  | 2     |         | 0                       | UINT16_MAX                   |                              |
-| 28     | tpa_speed_pitch_offset   | U16  | 2     |         | INT16_MIN               | INT16_MAX                    |                              |
-| 30     | yaw_type                 | U8   | 1     |         |                         |                              | lookup: TABLE_YAW_TYPE       |
-| 31     | angle_pitch_offset       | U16  | 2     |         | -ANGLE_PITCH_OFFSET_MAX | ANGLE_PITCH_OFFSET_MAX       |                              |
-| 33     | speed_curve_vref         | U8   | 1     |         | 1                       | 85                           |                              |
-| 34     | speed_curve_power        | U8   | 1     |         | 5                       | 30                           |                              |
-| 35     | speed_curve_min          | U16  | 2     |         | 5                       | 99                           |                              |
-| 37     | speed_curve_max          | U16  | 2     |         | 100                     | 1000                         |                              |
+| 0      | S                        | U8   | 1     |         |                         |                              | repeated ×3 (XYZ_AXIS_COUNT) |
+| 3      | spa_center[]             | U16  | 2     |         |                         |                              | repeated ×3 (XYZ_AXIS_COUNT) |
+| 9      | spa_width[]              | U16  | 2     |         |                         |                              | repeated ×3 (XYZ_AXIS_COUNT) |
+| 15     | spa_mode[]               | U8   | 1     |         |                         |                              | repeated ×3 (XYZ_AXIS_COUNT) |
+| 18     | tpa_curve_type           | U8   | 1     |         |                         |                              | lookup: TABLE_TPA_CURVE_TYPE |
+| 19     | tpa_curve_stall_throttle | U8   | 1     |         | 0                       | TPA_CURVE_STALL_THROTTLE_MAX |                              |
+| 20     | tpa_curve_pid_thr0       | U16  | 2     |         | 0                       | TPA_CURVE_PID_MAX            |                              |
+| 22     | tpa_curve_pid_thr100     | U16  | 2     |         | 0                       | TPA_CURVE_PID_MAX            |                              |
+| 24     | tpa_curve_expo           | U8   | 1     |         | TPA_CURVE_EXPO_MIN      | TPA_CURVE_EXPO_MAX           |                              |
+| 25     | tpa_speed_type           | U8   | 1     |         |                         |                              | lookup: TABLE_TPA_SPEED_TYPE |
+| 26     | tpa_speed_basic_delay    | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
+| 28     | tpa_speed_basic_gravity  | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
+| 30     | tpa_speed_adv_prop_pitch | U16  | 2     |         | 0                       | UINT16_MAX                   |                              |
+| 32     | tpa_speed_adv_mass       | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
+| 34     | tpa_speed_adv_drag_k     | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
+| 36     | tpa_speed_adv_thrust     | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
+| 38     | tpa_speed_max_voltage    | U16  | 2     |         | 0                       | UINT16_MAX                   |                              |
+| 40     | tpa_speed_pitch_offset   | U16  | 2     |         | INT16_MIN               | INT16_MAX                    |                              |
+| 42     | yaw_type                 | U8   | 1     |         |                         |                              | lookup: TABLE_YAW_TYPE       |
+| 43     | angle_pitch_offset       | U16  | 2     |         | -ANGLE_PITCH_OFFSET_MAX | ANGLE_PITCH_OFFSET_MAX       |                              |
+| 45     | speed_curve_vref         | U8   | 1     |         | 1                       | 85                           |                              |
+| 46     | speed_curve_power        | U8   | 1     |         | 5                       | 30                           |                              |
+| 47     | speed_curve_min          | U16  | 2     |         | 5                       | 99                           |                              |
+| 49     | speed_curve_max          | U16  | 2     |         | 100                     | 1000                         |                              |
 
 ### MSP_PITOT — 170 — from FC
 
 _Pitot data_
 
-| Offset | Field        | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | airspeed     | U32  | 4     |         |     |     |                    |
-| 4      | diffPressure | U32  | 4     |         |     |     |                    |
-| 8      | (value)      | U32  | 4     |         |     |     | deprecated/padding |
-| 12     | (value)      | U32  | 4     |         |     |     | deprecated/padding |
+| Offset | Field        | Type | Bytes | Default | Min | Max | Notes |
+| ------ | ------------ | ---- | ----- | ------- | --- | --- | ----- |
+| 0      | airspeed     | U32  | 4     |         |     |     |       |
+| 4      | diffPressure | U32  | 4     |         |     |     |       |
 
 ### MSP_COPY_PROFILE — 183 — to FC
 
@@ -1834,8 +1674,7 @@ _Set beeper configuration_
 | ------ | ------------------- | ---- | ----- | ------------------------------ | ----------------- | ----------------- | ----- |
 | 0      | beeper_off_flags    | U32  | 4     | DEFAULT_BEEPER_OFF_FLAGS       |                   |                   |       |
 | 4      | dshotBeaconTone     | U8   | 1     | 1                              | DSHOT_CMD_BEACON1 | DSHOT_CMD_BEACON5 |       |
-| 5      | dshotBeaconTone     | U8   | 1     | 1                              | DSHOT_CMD_BEACON1 | DSHOT_CMD_BEACON5 |       |
-| 6      | dshotBeaconOffFlags | U32  | 4     | DEFAULT_DSHOT_BEACON_OFF_FLAGS |                   |                   |       |
+| 5      | dshotBeaconOffFlags | U32  | 4     | DEFAULT_DSHOT_BEACON_OFF_FLAGS |                   |                   |       |
 
 ### MSP_SET_TX_INFO — 186 — to FC
 
@@ -1876,9 +1715,9 @@ _Get OSD canvas size COLSxROWS_
 
 _8 rc chan_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | (read) | U16  | 2     |         |     |     |       |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                                   |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | --------------------------------------- |
+| 0      | (read) | U16  | 2     |         |     |     | repeated × channelCount (runtime count) |
 
 ### MSP_SET_RAW_GPS — 201 — to FC
 
@@ -1897,11 +1736,11 @@ _Fix, numsat, lat, lon, alt, speed_
 
 _P I D coeff (9 are used currently)_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 1      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 2      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                                                         |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------------------------------------------------- |
+| 0      | (read) | U8   | 1     |         |     |     | repeated × PID_ITEM_COUNT (runtime count); deprecated/ignored |
+| 1      | (read) | U8   | 1     |         |     |     | repeated × PID_ITEM_COUNT (runtime count); deprecated/ignored |
+| 2      | (read) | U8   | 1     |         |     |     | repeated × PID_ITEM_COUNT (runtime count); deprecated/ignored |
 
 ### MSP_SET_WING — 203 — to FC
 
@@ -1909,33 +1748,30 @@ _Set WING settings_
 
 | Offset | Field                    | Type | Bytes | Default | Min                     | Max                          | Notes                        |
 | ------ | ------------------------ | ---- | ----- | ------- | ----------------------- | ---------------------------- | ---------------------------- |
-| 0      | (read)                   | U8   | 1     |         |                         |                              |                              |
-| 1      | (read)                   | U16  | 2     |         |                         |                              |                              |
-| 3      | (read)                   | U16  | 2     |         |                         |                              |                              |
-| 5      | (read)                   | U8   | 1     |         |                         |                              |                              |
-| 6      | tpa_curve_type           | U8   | 1     |         |                         |                              | lookup: TABLE_TPA_CURVE_TYPE |
-| 7      | tpa_curve_type           | U8   | 1     |         |                         |                              | lookup: TABLE_TPA_CURVE_TYPE |
-| 8      | tpa_curve_stall_throttle | U8   | 1     |         | 0                       | TPA_CURVE_STALL_THROTTLE_MAX |                              |
-| 9      | tpa_curve_pid_thr0       | U16  | 2     |         | 0                       | TPA_CURVE_PID_MAX            |                              |
-| 11     | tpa_curve_pid_thr100     | U16  | 2     |         | 0                       | TPA_CURVE_PID_MAX            |                              |
-| 13     | tpa_curve_expo           | S8   | 1     |         | TPA_CURVE_EXPO_MIN      | TPA_CURVE_EXPO_MAX           |                              |
-| 14     | tpa_speed_type           | U8   | 1     |         |                         |                              | lookup: TABLE_TPA_SPEED_TYPE |
-| 15     | tpa_speed_type           | U8   | 1     |         |                         |                              | lookup: TABLE_TPA_SPEED_TYPE |
-| 16     | tpa_speed_basic_delay    | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
-| 18     | tpa_speed_basic_gravity  | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
-| 20     | tpa_speed_adv_prop_pitch | U16  | 2     |         | 0                       | UINT16_MAX                   |                              |
-| 22     | tpa_speed_adv_mass       | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
-| 24     | tpa_speed_adv_drag_k     | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
-| 26     | tpa_speed_adv_thrust     | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
-| 28     | tpa_speed_max_voltage    | U16  | 2     |         | 0                       | UINT16_MAX                   |                              |
-| 30     | (read)                   | U16  | 2     |         |                         |                              |                              |
-| 32     | yaw_type                 | U8   | 1     |         |                         |                              | lookup: TABLE_YAW_TYPE       |
-| 33     | yaw_type                 | U8   | 1     |         |                         |                              | lookup: TABLE_YAW_TYPE       |
-| 34     | angle_pitch_offset       | S16  | 2     |         | -ANGLE_PITCH_OFFSET_MAX | ANGLE_PITCH_OFFSET_MAX       |                              |
-| 36     | speed_curve_vref         | U8   | 1     |         | 1                       | 85                           |                              |
-| 37     | speed_curve_power        | U8   | 1     |         | 5                       | 30                           |                              |
-| 38     | speed_curve_min          | U16  | 2     |         | 5                       | 99                           |                              |
-| 40     | speed_curve_max          | U16  | 2     |         | 100                     | 1000                         |                              |
+| 0      | (read)                   | U8   | 1     |         |                         |                              | repeated ×3 (XYZ_AXIS_COUNT) |
+| 3      | spa_center[]             | U16  | 2     |         |                         |                              | repeated ×3 (XYZ_AXIS_COUNT) |
+| 9      | spa_width[]              | U16  | 2     |         |                         |                              | repeated ×3 (XYZ_AXIS_COUNT) |
+| 15     | spa_mode[]               | U8   | 1     |         |                         |                              | repeated ×3 (XYZ_AXIS_COUNT) |
+| 18     | tpa_curve_type           | U8   | 1     |         |                         |                              | lookup: TABLE_TPA_CURVE_TYPE |
+| 19     | tpa_curve_stall_throttle | U8   | 1     |         | 0                       | TPA_CURVE_STALL_THROTTLE_MAX |                              |
+| 20     | tpa_curve_pid_thr0       | U16  | 2     |         | 0                       | TPA_CURVE_PID_MAX            |                              |
+| 22     | tpa_curve_pid_thr100     | U16  | 2     |         | 0                       | TPA_CURVE_PID_MAX            |                              |
+| 24     | tpa_curve_expo           | S8   | 1     |         | TPA_CURVE_EXPO_MIN      | TPA_CURVE_EXPO_MAX           |                              |
+| 25     | tpa_speed_type           | U8   | 1     |         |                         |                              | lookup: TABLE_TPA_SPEED_TYPE |
+| 26     | tpa_speed_basic_delay    | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
+| 28     | tpa_speed_basic_gravity  | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
+| 30     | tpa_speed_adv_prop_pitch | U16  | 2     |         | 0                       | UINT16_MAX                   |                              |
+| 32     | tpa_speed_adv_mass       | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
+| 34     | tpa_speed_adv_drag_k     | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
+| 36     | tpa_speed_adv_thrust     | U16  | 2     |         | TPA_SPEED_PARAM_MIN     | UINT16_MAX                   |                              |
+| 38     | tpa_speed_max_voltage    | U16  | 2     |         | 0                       | UINT16_MAX                   |                              |
+| 40     | (read)                   | U16  | 2     |         |                         |                              |                              |
+| 42     | yaw_type                 | U8   | 1     |         |                         |                              | lookup: TABLE_YAW_TYPE       |
+| 43     | angle_pitch_offset       | S16  | 2     |         | -ANGLE_PITCH_OFFSET_MAX | ANGLE_PITCH_OFFSET_MAX       |                              |
+| 45     | speed_curve_vref         | U8   | 1     |         | 1                       | 85                           |                              |
+| 46     | speed_curve_power        | U8   | 1     |         | 5                       | 30                           |                              |
+| 47     | speed_curve_min          | U16  | 2     |         | 5                       | 99                           |                              |
+| 49     | speed_curve_max          | U16  | 2     |         | 100                     | 1000                         |                              |
 
 ### MSP_SET_RC_TUNING — 204 — to FC
 
@@ -1945,22 +1781,22 @@ _RC rate, rc expo, rollpitch rate, yaw rate, dyn throttle PID, yaw expo_
 | ------ | ---------------------- | ---- | ----- | ------- | ---------------------------------------------- | ---------------------------------------------- | -------------------------------------- |
 | 0      | (read)                 | U8   | 1     |         |                                                |                                                |                                        |
 | 1      | (read)                 | U8   | 1     |         |                                                |                                                |                                        |
-| 2      | (read)                 | U8   | 1     |         |                                                |                                                | deprecated/ignored                     |
-| 3      | (read)                 | U8   | 1     |         |                                                |                                                | tpa_rate is moved to PID profile       |
-| 4      | thrMid8                | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_MID_MAX                |                                        |
-| 5      | thrExpo8               | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_EXPO_MAX               |                                        |
-| 6      | (read)                 | U16  | 2     |         |                                                |                                                | tpa_breakpoint is moved to PID profile |
-| 8      | (read)                 | U8   | 1     |         |                                                |                                                |                                        |
-| 9      | (read)                 | U8   | 1     |         |                                                |                                                |                                        |
-| 10     | (read)                 | U8   | 1     |         |                                                |                                                |                                        |
-| 11     | (read)                 | U8   | 1     |         |                                                |                                                |                                        |
-| 12     | throttle_limit_type    | U8   | 1     |         |                                                |                                                | lookup: TABLE_THROTTLE_LIMIT_TYPE      |
-| 13     | throttle_limit_percent | U8   | 1     |         | CONTROL_RATE_CONFIG_THROTTLE_LIMIT_PERCENT_MIN | CONTROL_RATE_CONFIG_THROTTLE_LIMIT_PERCENT_MAX |                                        |
-| 14     | (read)                 | U16  | 2     |         |                                                |                                                |                                        |
-| 16     | (read)                 | U16  | 2     |         |                                                |                                                |                                        |
-| 18     | (read)                 | U16  | 2     |         |                                                |                                                |                                        |
-| 20     | rates_type             | U8   | 1     |         |                                                |                                                | lookup: TABLE_RATES_TYPE               |
-| 21     | thrHover8              | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_HOVER_MAX              |                                        |
+| 2      | rates[]                | U8   | 1     |         |                                                |                                                | repeated ×3                            |
+| 5      | (read)                 | U8   | 1     |         |                                                |                                                | tpa_rate is moved to PID profile       |
+| 6      | thrMid8                | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_MID_MAX                |                                        |
+| 7      | thrExpo8               | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_EXPO_MAX               |                                        |
+| 8      | (read)                 | U16  | 2     |         |                                                |                                                | tpa_breakpoint is moved to PID profile |
+| 10     | rcExpo[]               | U8   | 1     |         |                                                |                                                |                                        |
+| 11     | rcRates[]              | U8   | 1     |         |                                                |                                                |                                        |
+| 12     | rcRates[]              | U8   | 1     |         |                                                |                                                |                                        |
+| 13     | rcExpo[]               | U8   | 1     |         |                                                |                                                |                                        |
+| 14     | throttle_limit_type    | U8   | 1     |         |                                                |                                                | lookup: TABLE_THROTTLE_LIMIT_TYPE      |
+| 15     | throttle_limit_percent | U8   | 1     |         | CONTROL_RATE_CONFIG_THROTTLE_LIMIT_PERCENT_MIN | CONTROL_RATE_CONFIG_THROTTLE_LIMIT_PERCENT_MAX |                                        |
+| 16     | rate_limit[]           | U16  | 2     |         |                                                |                                                |                                        |
+| 18     | rate_limit[]           | U16  | 2     |         |                                                |                                                |                                        |
+| 20     | rate_limit[]           | U16  | 2     |         |                                                |                                                |                                        |
+| 22     | rates_type             | U8   | 1     |         |                                                |                                                | lookup: TABLE_RATES_TYPE               |
+| 23     | thrHover8              | U8   | 1     |         | 0                                              | CONTROL_RATE_CONFIG_THR_HOVER_MAX              |                                        |
 
 ### MSP_RESET_CONF — 208 — to FC
 
@@ -1996,9 +1832,9 @@ _Servo settings_
 
 _PropBalance function_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | (read) | U16  | 2     |         |     |     |       |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                                      |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------------------------------ |
+| 0      | (read) | U16  | 2     |         |     |     | repeated × getMotorCount() (runtime count) |
 
 ### MSP_SET_MOTOR_3D_CONFIG — 217 — to FC
 
@@ -2014,13 +1850,12 @@ _Settings needed for reversible ESCs_
 
 _Deadbands for yaw alt pitch roll_
 
-| Offset | Field               | Type | Bytes | Default | Min                     | Max                     | Notes              |
-| ------ | ------------------- | ---- | ----- | ------- | ----------------------- | ----------------------- | ------------------ |
-| 0      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |                    |
-| 1      | yaw_deadband        | U8   | 1     | 0       | 0                       | RC_YAW_DEADBAND_MAX     |                    |
-| 2      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |                    |
-| 3      | (read)              | U8   | 1     |         |                         |                         | deprecated/ignored |
-| 4      | deadband3d_throttle | U16  | 2     | 50      | DEADBAND3D_THROTTLE_MIN | DEADBAND3D_THROTTLE_MAX |                    |
+| Offset | Field               | Type | Bytes | Default | Min                     | Max                     | Notes |
+| ------ | ------------------- | ---- | ----- | ------- | ----------------------- | ----------------------- | ----- |
+| 0      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |       |
+| 1      | yaw_deadband        | U8   | 1     | 0       | 0                       | RC_YAW_DEADBAND_MAX     |       |
+| 2      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |       |
+| 3      | deadband3d_throttle | U16  | 2     | 50      | DEADBAND3D_THROTTLE_MIN | DEADBAND3D_THROTTLE_MAX |       |
 
 ### MSP_SET_SENSOR_ALIGNMENT — 220 — to FC
 
@@ -2031,14 +1866,10 @@ _Set the orientation of acc,gyro,mag_
 | 0      | (read)               | U8   | 1     |                      |     |     | deprecated/ignored           |
 | 1      | (read)               | U8   | 1     |                      |     |     | discard deprecated acc_align |
 | 2      | mag_alignment        | U8   | 1     | MAG_ALIGN            |     |     | lookup: TABLE_ALIGNMENT      |
-| 3      | (read)               | U8   | 1     |                      |     |     | deprecated/ignored           |
-| 4      | gyro_enabled_bitmask | U8   | 1     | DEFAULT_GYRO_ENABLED |     |     |                              |
-| 5      | (read)               | S16  | 2     |                      |     |     |                              |
-| 7      | (read)               | S16  | 2     |                      |     |     |                              |
-| 9      | (read)               | S16  | 2     |                      |     |     |                              |
-| 11     | (read)               | U16  | 2     |                      |     |     |                              |
-| 13     | (read)               | U16  | 2     |                      |     |     |                              |
-| 15     | (read)               | U16  | 2     |                      |     |     |                              |
+| 3      | gyro_enabled_bitmask | U8   | 1     | DEFAULT_GYRO_ENABLED |     |     |                              |
+| 4      | (read)               | S16  | 2     |                      |     |     |                              |
+| 6      | (read)               | S16  | 2     |                      |     |     |                              |
+| 8      | (read)               | S16  | 2     |                      |     |     |                              |
 
 ### MSP_SET_LED_STRIP_MODECOLOR — 221 — to FC
 
@@ -2061,8 +1892,7 @@ _Motor configuration (min/max throttle, etc)_
 | 4      | mincommand     | U16  | 2     | 1000    | PWM_PULSE_MIN        | PWM_PULSE_MAX |                               |
 | 6      | motorPoleCount | U8   | 1     | 14      | MOTOR_POLE_COUNT_MIN | UINT8_MAX     |                               |
 | 7      | (read)         | U8   | 1     |         |                      |               | deprecated/ignored            |
-| 8      | (read)         | U8   | 1     |         |                      |               | deprecated/ignored            |
-| 9      | kv             | U16  | 2     | 1960    | 1                    | 40000         |                               |
+| 8      | kv             | U16  | 2     | 1960    | 1                    | 40000         |                               |
 
 ### MSP_SET_GPS_CONFIG — 223 — to FC
 
@@ -2125,37 +1955,37 @@ _Set GPS Rescue PID values_
 
 _Set vtxTable band/channel data_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 1      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 2      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 3      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 4      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 5      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 6      | (read) | U16  | 2     |         |     |     |                    |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                                                         |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------------------------------------------------- |
+| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                            |
+| 1      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                            |
+| 2      | (read) | U8   | 1     |         |     |     | repeated × bandNameLength (runtime count); deprecated/ignored |
+| ?      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                            |
+| ?      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                            |
+| ?      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                            |
+| ?      | (read) | U16  | 2     |         |     |     | repeated × channelCount (runtime count)                       |
 
 ### MSP_SET_VTXTABLE_POWERLEVEL — 228 — to FC
 
 _Set vtxTable powerLevel data_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 1      | (read) | U16  | 2     |         |     |     |                    |
-| 3      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 4      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                                                                |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | -------------------------------------------------------------------- |
+| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                                   |
+| 1      | (read) | U16  | 2     |         |     |     |                                                                      |
+| 3      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                                   |
+| 4      | (read) | U8   | 1     |         |     |     | repeated × powerLevelLabelLength (runtime count); deprecated/ignored |
 
 ### MSP_MODE_RANGES_EXTRA — 238 — from FC
 
 _Extra mode range data_
 
-| Offset | Field       | Type | Bytes | Default | Min | Max | Notes                                                       |
-| ------ | ----------- | ---- | ----- | ------- | --- | --- | ----------------------------------------------------------- |
-| 0      | (value)     | U8   | 1     |         |     |     | prepend number of EXTRAs array elements                     |
-| 1      | permanentId | U8   | 1     |         |     |     | each element is aligned with MODE_RANGES by the permanentId |
-| 2      | modeLogic   | U8   | 1     |         |     |     |                                                             |
-| 3      | permanentId | U8   | 1     |         |     |     |                                                             |
+| Offset | Field       | Type | Bytes | Default | Min | Max | Notes                                                                                                                     |
+| ------ | ----------- | ---- | ----- | ------- | --- | --- | ------------------------------------------------------------------------------------------------------------------------- |
+| 0      | (value)     | U8   | 1     |         |     |     | prepend number of EXTRAs array elements                                                                                   |
+| 1      | permanentId | U8   | 1     |         |     |     | repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 3; each element is aligned with MODE_RANGES by the permanentId |
+| 2      | modeLogic   | U8   | 1     |         |     |     | repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 3                                                              |
+| 3      | permanentId | U8   | 1     |         |     |     | repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 3                                                              |
 
 ### MSP_SET_ACC_TRIM — 239 — to FC
 
@@ -2179,15 +2009,15 @@ _Get acc angle trim values_
 
 _Get servo mixer configuration_
 
-| Offset | Field         | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------------- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | targetChannel | U8   | 1     |         |     |     |       |
-| 1      | inputSource   | U8   | 1     |         |     |     |       |
-| 2      | rate          | U8   | 1     |         |     |     |       |
-| 3      | speed         | U8   | 1     |         |     |     |       |
-| 4      | min           | U8   | 1     |         |     |     |       |
-| 5      | max           | U8   | 1     |         |     |     |       |
-| 6      | box           | U8   | 1     |         |     |     |       |
+| Offset | Field         | Type | Bytes | Default | Min | Max | Notes                                      |
+| ------ | ------------- | ---- | ----- | ------- | --- | --- | ------------------------------------------ |
+| 0      | targetChannel | U8   | 1     |         |     |     | repeated × MAX_SERVO_RULES (runtime count) |
+| 1      | inputSource   | U8   | 1     |         |     |     | repeated × MAX_SERVO_RULES (runtime count) |
+| 2      | rate          | U8   | 1     |         |     |     | repeated × MAX_SERVO_RULES (runtime count) |
+| 3      | speed         | U8   | 1     |         |     |     | repeated × MAX_SERVO_RULES (runtime count) |
+| 4      | min           | U8   | 1     |         |     |     | repeated × MAX_SERVO_RULES (runtime count) |
+| 5      | max           | U8   | 1     |         |     |     | repeated × MAX_SERVO_RULES (runtime count) |
+| 6      | box           | U8   | 1     |         |     |     | repeated × MAX_SERVO_RULES (runtime count) |
 
 ### MSP_SET_SERVO_MIX_RULE — 242 — to FC
 
@@ -2240,17 +2070,17 @@ _Set the board information_
 
 _debug1,debug2,debug3,debug4_
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                               |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | --------------------------------------------------- |
-| 0      | (value) | U16  | 2     |         |     |     | 4 variables are here for general monitoring purpose |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                                                                  |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | -------------------------------------------------------------------------------------- |
+| 0      | (value) | U16  | 2     |         |     |     | repeated ×8 (DEBUG16_VALUE_COUNT); 4 variables are here for general monitoring purpose |
 
 ### MSP2_COMMON_SERIAL_CONFIG — 0x1009 — from FC
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (value) | U8   | 1     |         |     |     |                    |
-| 1      | (value) | U8   | 1     |         |     |     |                    |
-| 2      | (value) | U32  | 4     |         |     |     | deprecated/padding |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                                            |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ---------------------------------------------------------------- |
+| 0      | (value) | U8   | 1     |         |     |     |                                                                  |
+| 1      | (value) | U8   | 1     |         |     |     | repeated × SERIAL_PORT_COUNT (runtime count)                     |
+| 2      | (value) | U32  | 4     |         |     |     | repeated × SERIAL_PORT_COUNT (runtime count); deprecated/padding |
 
 ### MSP2_SENSOR_GPS — 0x1f03 — to FC
 
@@ -2282,26 +2112,26 @@ _debug1,debug2,debug3,debug4_
 
 ### MSP2_MOTOR_OUTPUT_REORDERING — 0x3001 — from FC
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | (value) | U8   | 1     |         |     |     |       |
-| 1      | (value) | U8   | 1     |         |     |     |       |
+| Offset | Field                   | Type | Bytes | Default | Min | Max | Notes                                           |
+| ------ | ----------------------- | ---- | ----- | ------- | --- | --- | ----------------------------------------------- |
+| 0      | (value)                 | U8   | 1     |         |     |     |                                                 |
+| 1      | motorOutputReordering[] | U8   | 1     |         |     |     | repeated × MAX_SUPPORTED_MOTORS (runtime count) |
 
 ### MSP2_SET_MOTOR_OUTPUT_REORDERING — 0x3002 — to FC
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 1      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                                                               |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------------------------------------------------------- |
+| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                                  |
+| 1      | (read) | U8   | 1     |         |     |     | repeated × MAX_SUPPORTED_MOTORS (runtime count); deprecated/ignored |
 
 ### MSP2_SEND_DSHOT_COMMAND — 0x3003 — to FC
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 1      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 2      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 3      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                                                       |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | ----------------------------------------------------------- |
+| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                          |
+| 1      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                          |
+| 2      | (read) | U8   | 1     |         |     |     | deprecated/ignored                                          |
+| 3      | (read) | U8   | 1     |         |     |     | repeated × commandCount (runtime count); deprecated/ignored |
 
 ### MSP2_GET_OSD_WARNINGS — 0x3005 — from FC
 
@@ -2353,13 +2183,6 @@ _returns active OSD warning message text_
 | 4      | (value) | U8   | 1     |         |     |     |       |
 | 5      | (value) | U8   | 1     |         |     |     |       |
 | 6      | (value) | U8   | 1     |         |     |     |       |
-| 7      | (value) | U8   | 1     |         |     |     |       |
-| 8      | (value) | U8   | 1     |         |     |     |       |
-| 9      | (value) | U8   | 1     |         |     |     |       |
-| 10     | (value) | U8   | 1     |         |     |     |       |
-| 11     | (value) | U8   | 1     |         |     |     |       |
-| 12     | (value) | U8   | 1     |         |     |     |       |
-| 13     | (value) | U8   | 1     |         |     |     |       |
 
 ### MSP2_MCU_INFO — 0x300c — from FC
 
@@ -2370,10 +2193,10 @@ _returns active OSD warning message text_
 
 ### MSP2_GYRO_SENSOR_ACTIVE — 0x300d — from FC
 
-| Offset | Field   | Type | Bytes | Default | Min | Max | Notes |
-| ------ | ------- | ---- | ----- | ------- | --- | --- | ----- |
-| 0      | (value) | U8   | 1     |         |     |     |       |
-| 1      | (value) | U8   | 1     |         |     |     |       |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                 |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------------------------- |
+| 0      | (value) | U8   | 1     |         |     |     |                                       |
+| 1      | (value) | U8   | 1     |         |     |     | repeated × GYRO_COUNT (runtime count) |
 
 ### MSP2_BATTERY_PROFILE — 0x300e — from FC
 

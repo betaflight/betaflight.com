@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T18:47:13.386Z",
+  "generated": "2026-11-04T19:03:41.366Z",
   "firmwareCommit": "897cf61e7bdf4278d03ced50b8cc8075d79c400a",
   "source": "scripts/extract-pg-msp.js",
   "pgGroups": [
@@ -1171,18 +1171,6 @@
         {
           "offset": "?",
           "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "No other build targets currently have hardware revision detection."
-        },
-        {
-          "offset": "?",
-          "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -1191,18 +1179,6 @@
           "settingsType": null,
           "lookupTable": null,
           "notes": "2 == FC with MAX7456"
-        },
-        {
-          "offset": "?",
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "0 == FC"
         },
         {
           "offset": "?",
@@ -1251,42 +1227,6 @@
           "settingsType": null,
           "lookupTable": null,
           "notes": "string data"
-        },
-        {
-          "offset": "?",
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": "?",
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": "?",
-          "fieldName": "(variable data)",
-          "ctype": "bytes",
-          "bytes": null,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "variable-length data"
         },
         {
           "offset": "?",
@@ -1370,31 +1310,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": "?",
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
           "notes": null
-        },
-        {
-          "offset": "?",
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
         }
       ]
     },
@@ -1723,7 +1639,7 @@
           "max": null,
           "settingsType": "UINT8",
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 4"
         },
         {
           "offset": 1,
@@ -1735,7 +1651,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 4"
         },
         {
           "offset": 2,
@@ -1747,7 +1663,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 4"
         },
         {
           "offset": 3,
@@ -1759,7 +1675,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 4"
         }
       ]
     },
@@ -2276,18 +2192,6 @@
         },
         {
           "offset": 1,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 2,
           "fieldName": "yaw_motors_reversed",
           "ctype": "U8",
           "bytes": 1,
@@ -2465,42 +2369,6 @@
         },
         {
           "offset": 22,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 23,
-          "fieldName": "(value)",
-          "ctype": "U32",
-          "bytes": 4,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 27,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 28,
           "fieldName": "fpvCamAngleDegrees",
           "ctype": "U8",
           "bytes": 1,
@@ -2512,7 +2380,7 @@
           "notes": null
         },
         {
-          "offset": 29,
+          "offset": 23,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -2524,7 +2392,7 @@
           "notes": "not required in API 1.44, was rxConfig()->rcSmoothingChannels"
         },
         {
-          "offset": 30,
+          "offset": 24,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -2536,7 +2404,7 @@
           "notes": "not required in API 1.44, was rxConfig()->rc_smoothing_type"
         },
         {
-          "offset": 31,
+          "offset": 25,
           "fieldName": "rc_smoothing_setpoint_cutoff",
           "ctype": "U8",
           "bytes": 1,
@@ -2548,7 +2416,7 @@
           "notes": null
         },
         {
-          "offset": 32,
+          "offset": 26,
           "fieldName": "rc_smoothing_throttle_cutoff",
           "ctype": "U8",
           "bytes": 1,
@@ -2560,7 +2428,7 @@
           "notes": "was rc_smoothing_feedforward_cutoff"
         },
         {
-          "offset": 33,
+          "offset": 27,
           "fieldName": "rc_smoothing_auto_factor_throttle",
           "ctype": "U8",
           "bytes": 1,
@@ -2572,7 +2440,7 @@
           "notes": ", was rxConfig()->rc_smoothing_input_type"
         },
         {
-          "offset": 34,
+          "offset": 28,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -2584,67 +2452,7 @@
           "notes": "not required in API 1.44, was rxConfig()->rc_smoothing_derivative_type"
         },
         {
-          "offset": 35,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 36,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 37,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 38,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 39,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 40,
+          "offset": 29,
           "fieldName": "type",
           "ctype": "U8",
           "bytes": 1,
@@ -2656,19 +2464,7 @@
           "notes": null
         },
         {
-          "offset": 41,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 42,
+          "offset": 30,
           "fieldName": "rc_smoothing_auto_factor_rpy",
           "ctype": "U8",
           "bytes": 1,
@@ -2680,19 +2476,7 @@
           "notes": null
         },
         {
-          "offset": 43,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 44,
+          "offset": 31,
           "fieldName": "rc_smoothing",
           "ctype": "U8",
           "bytes": 1,
@@ -2704,31 +2488,7 @@
           "notes": null
         },
         {
-          "offset": 45,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 46,
-          "fieldName": "(variable data)",
-          "ctype": "bytes",
-          "bytes": null,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "variable-length data"
-        },
-        {
-          "offset": "?",
+          "offset": 32,
           "fieldName": "(variable data)",
           "ctype": "bytes",
           "bytes": null,
@@ -2750,18 +2510,6 @@
           "settingsType": "UINT8",
           "lookupTable": null,
           "notes": null
-        },
-        {
-          "offset": "?",
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
         }
       ]
     },
@@ -2787,44 +2535,44 @@
         {
           "offset": 1,
           "fieldName": "(read)",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 3,
+          "fieldName": "(read)",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 5,
+          "fieldName": "(read)",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 7,
+          "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 2,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 4,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 6,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
           "default": null,
           "min": null,
           "max": null,
@@ -2835,8 +2583,8 @@
         {
           "offset": 8,
           "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
+          "ctype": "U16",
+          "bytes": 2,
           "default": null,
           "min": null,
           "max": null,
@@ -2845,7 +2593,7 @@
           "notes": null
         },
         {
-          "offset": 9,
+          "offset": 10,
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -2857,19 +2605,7 @@
           "notes": null
         },
         {
-          "offset": 11,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 13,
+          "offset": 12,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -2881,7 +2617,7 @@
           "notes": "not required in API 1.44, was rxConfigMutable()->rcInterpolation"
         },
         {
-          "offset": 14,
+          "offset": 13,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -2893,7 +2629,7 @@
           "notes": "not required in API 1.44, was rxConfigMutable()->rcInterpolationInterval"
         },
         {
-          "offset": 15,
+          "offset": 14,
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -2905,7 +2641,7 @@
           "notes": null
         },
         {
-          "offset": 17,
+          "offset": 16,
           "fieldName": "rx_spi_protocol",
           "ctype": "U8",
           "bytes": 1,
@@ -2917,7 +2653,7 @@
           "notes": null
         },
         {
-          "offset": 18,
+          "offset": 17,
           "fieldName": "rx_spi_id",
           "ctype": "U32",
           "bytes": 4,
@@ -2929,7 +2665,7 @@
           "notes": null
         },
         {
-          "offset": 22,
+          "offset": 21,
           "fieldName": "rx_spi_rf_channel_count",
           "ctype": "U8",
           "bytes": 1,
@@ -2937,6 +2673,18 @@
           "min": null,
           "max": null,
           "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 22,
+          "fieldName": "fpvCamAngleDegrees",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": "0",
+          "max": "RX_FPV_CAM_ANGLE_MAX",
+          "settingsType": "UINT8",
           "lookupTable": null,
           "notes": null
         },
@@ -2950,58 +2698,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 24,
-          "fieldName": "(read)",
-          "ctype": "U32",
-          "bytes": 4,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 28,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 29,
-          "fieldName": "fpvCamAngleDegrees",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": "0",
-          "max": "RX_FPV_CAM_ANGLE_MAX",
-          "settingsType": "UINT8",
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 30,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
           "notes": "not required in API 1.44, was rxConfigMutable()->rcSmoothingChannels"
         },
         {
-          "offset": 31,
+          "offset": 24,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -3013,7 +2713,7 @@
           "notes": "not required in API 1.44, was rc_smoothing_type"
         },
         {
-          "offset": 32,
+          "offset": 25,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -3025,7 +2725,7 @@
           "notes": "deprecated/ignored"
         },
         {
-          "offset": 33,
+          "offset": 26,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -3037,7 +2737,7 @@
           "notes": "was rc_smoothing_feedforward_cutoff"
         },
         {
-          "offset": 34,
+          "offset": 27,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -3049,7 +2749,7 @@
           "notes": "was rc_smoothing_input_type"
         },
         {
-          "offset": 35,
+          "offset": 28,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -3061,7 +2761,7 @@
           "notes": "not required in API 1.44, was rc_smoothing_derivative_type"
         },
         {
-          "offset": 36,
+          "offset": 29,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -3073,79 +2773,7 @@
           "notes": "deprecated/ignored"
         },
         {
-          "offset": 37,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 38,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 39,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 40,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 41,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 42,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 43,
+          "offset": 30,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -3157,7 +2785,7 @@
           "notes": null
         },
         {
-          "offset": 44,
+          "offset": 31,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -3169,31 +2797,7 @@
           "notes": "deprecated/ignored"
         },
         {
-          "offset": 45,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 46,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 47,
+          "offset": 32,
           "fieldName": "modelId",
           "ctype": "U8",
           "bytes": 1,
@@ -3203,18 +2807,6 @@
           "settingsType": "UINT8",
           "lookupTable": null,
           "notes": null
-        },
-        {
-          "offset": 48,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
         }
       ]
     },
@@ -3235,7 +2827,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4"
         },
         {
           "offset": 2,
@@ -3247,7 +2839,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4"
         },
         {
           "offset": 3,
@@ -3259,7 +2851,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4"
         }
       ]
     },
@@ -3280,7 +2872,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4"
         },
         {
           "offset": 2,
@@ -3292,7 +2884,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4"
         },
         {
           "offset": 3,
@@ -3304,7 +2896,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×16 (LED_CONFIGURABLE_COLOR_COUNT), stride 4"
         }
       ]
     },
@@ -3325,22 +2917,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × LED_STRIP_MAX_LENGTH (runtime count)"
         },
         {
-          "offset": 4,
-          "fieldName": "(value)",
-          "ctype": "U32",
-          "bytes": 4,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 8,
+          "offset": "?",
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -3352,19 +2932,7 @@
           "notes": "advanced ledstrip available"
         },
         {
-          "offset": 9,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "only simple ledstrip available"
-        },
-        {
-          "offset": 10,
+          "offset": "?",
           "fieldName": "ledstrip_profile",
           "ctype": "U8",
           "bytes": 1,
@@ -3410,18 +2978,6 @@
         },
         {
           "offset": 5,
-          "fieldName": "(read)",
-          "ctype": "U32",
-          "bytes": 4,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 9,
           "fieldName": "ledstrip_profile",
           "ctype": "U8",
           "bytes": 1,
@@ -3493,7 +3049,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "was adjRange->adjustmentIndex"
+          "notes": "repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10; was adjRange->adjustmentIndex"
         },
         {
           "offset": 1,
@@ -3505,7 +3061,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10"
         },
         {
           "offset": 2,
@@ -3517,7 +3073,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10"
         },
         {
           "offset": 3,
@@ -3529,7 +3085,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10"
         },
         {
           "offset": 4,
@@ -3541,7 +3097,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10"
         },
         {
           "offset": 5,
@@ -3553,7 +3109,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10"
         },
         {
           "offset": 6,
@@ -3565,7 +3121,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10"
         },
         {
           "offset": 8,
@@ -3577,7 +3133,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×30 (MAX_ADJUSTMENT_RANGE_COUNT), stride 10"
         }
       ]
     },
@@ -3715,7 +3271,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × SERIAL_PORT_COUNT (runtime count)"
         },
         {
           "offset": 1,
@@ -3727,7 +3283,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/padding"
+          "notes": "repeated × SERIAL_PORT_COUNT (runtime count); deprecated/padding"
         }
       ]
     },
@@ -3760,7 +3316,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "ADC sensor sub-frame length"
+          "notes": "repeated × n (runtime count); ADC sensor sub-frame length"
         },
         {
           "offset": 2,
@@ -3772,7 +3328,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "id of the sensor"
+          "notes": "repeated × n (runtime count); id of the sensor"
         },
         {
           "offset": 3,
@@ -3784,7 +3340,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "indicate the type of sensor that the next part of the payload is for"
+          "notes": "repeated × n (runtime count); indicate the type of sensor that the next part of the payload is for"
         },
         {
           "offset": 4,
@@ -3796,7 +3352,7 @@
           "max": "VBAT_SCALE_MAX",
           "settingsType": "UINT8",
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × n (runtime count)"
         },
         {
           "offset": 5,
@@ -3808,7 +3364,7 @@
           "max": "VBAT_DIVIDER_MAX",
           "settingsType": "UINT8",
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × n (runtime count)"
         },
         {
           "offset": 6,
@@ -3820,7 +3376,7 @@
           "max": "VBAT_MULTIPLIER_MAX",
           "settingsType": "UINT8",
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × n (runtime count)"
         }
       ]
     },
@@ -3935,18 +3491,6 @@
           "settingsType": null,
           "lookupTable": null,
           "notes": null
-        },
-        {
-          "offset": 4,
-          "fieldName": "(value)",
-          "ctype": "U32",
-          "bytes": 4,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
         }
       ]
     },
@@ -4131,7 +3675,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated ×8 (RX_MAPPABLE_CHANNEL_COUNT); deprecated/ignored"
         }
       ]
     },
@@ -4383,7 +3927,7 @@
           "max": null,
           "settingsType": "UINT8",
           "lookupTable": "TABLE_BLACKBOX_MODE",
-          "notes": null
+          "notes": "repeated × rxRuntimeState.channelCount (runtime count)"
         },
         {
           "offset": 1,
@@ -4395,7 +3939,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × rxRuntimeState.channelCount (runtime count)"
         }
       ]
     },
@@ -4542,90 +4086,6 @@
           "settingsType": "UINT32",
           "lookupTable": null,
           "notes": null
-        },
-        {
-          "offset": 11,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "Blackbox not supported"
-        },
-        {
-          "offset": 12,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 13,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 14,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 15,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 17,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 18,
-          "fieldName": "(value)",
-          "ctype": "U32",
-          "bytes": 4,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
         }
       ]
     },
@@ -4739,7 +4199,7 @@
           "max": null,
           "settingsType": "UINT8",
           "lookupTable": "TABLE_GPS_PROVIDER",
-          "notes": null
+          "notes": "repeated × n (runtime count)"
         },
         {
           "offset": 2,
@@ -4751,10 +4211,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × n (runtime count)"
         },
         {
-          "offset": 3,
+          "offset": "?",
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -4766,8 +4226,8 @@
           "notes": null
         },
         {
-          "offset": 4,
-          "fieldName": "(value)",
+          "offset": "?",
+          "fieldName": "data[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -4775,19 +4235,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 5,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "no providers"
+          "notes": "repeated × n (runtime count)"
         }
       ]
     },
@@ -4812,7 +4260,7 @@
         },
         {
           "offset": 1,
-          "fieldName": "(read)",
+          "fieldName": "data[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -4820,7 +4268,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated × n (runtime count)"
         }
       ]
     },
@@ -4857,18 +4305,6 @@
         },
         {
           "offset": 2,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 3,
           "fieldName": "units",
           "ctype": "U8",
           "bytes": 1,
@@ -4880,7 +4316,7 @@
           "notes": null
         },
         {
-          "offset": 4,
+          "offset": 3,
           "fieldName": "rssi_alarm",
           "ctype": "U8",
           "bytes": 1,
@@ -4892,7 +4328,7 @@
           "notes": null
         },
         {
-          "offset": 5,
+          "offset": 4,
           "fieldName": "cap_alarm",
           "ctype": "U16",
           "bytes": 2,
@@ -4904,7 +4340,7 @@
           "notes": null
         },
         {
-          "offset": 7,
+          "offset": 6,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -4916,7 +4352,7 @@
           "notes": "deprecated/padding"
         },
         {
-          "offset": 8,
+          "offset": 7,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -4928,7 +4364,7 @@
           "notes": null
         },
         {
-          "offset": 9,
+          "offset": 8,
           "fieldName": "alt_alarm",
           "ctype": "U16",
           "bytes": 2,
@@ -4940,7 +4376,67 @@
           "notes": null
         },
         {
-          "offset": 11,
+          "offset": 10,
+          "fieldName": "item_pos[]",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "repeated × itemCount (runtime count)"
+        },
+        {
+          "offset": "?",
+          "fieldName": "(value)",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": "?",
+          "fieldName": "(value)",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "repeated × OSD_STAT_COUNT (runtime count)"
+        },
+        {
+          "offset": "?",
+          "fieldName": "(value)",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": "?",
+          "fieldName": "timers[]",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "repeated × OSD_TIMER_COUNT (runtime count)"
+        },
+        {
+          "offset": "?",
           "fieldName": "(value)",
           "ctype": "U16",
           "bytes": 2,
@@ -4952,7 +4448,7 @@
           "notes": null
         },
         {
-          "offset": 13,
+          "offset": "?",
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -4964,67 +4460,7 @@
           "notes": null
         },
         {
-          "offset": 14,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 15,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 16,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 18,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 20,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 21,
+          "offset": "?",
           "fieldName": "enabledWarnings",
           "ctype": "U32",
           "bytes": 4,
@@ -5036,7 +4472,7 @@
           "notes": null
         },
         {
-          "offset": 25,
+          "offset": "?",
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -5048,7 +4484,7 @@
           "notes": "available profiles"
         },
         {
-          "offset": 26,
+          "offset": "?",
           "fieldName": "osdProfileIndex",
           "ctype": "U8",
           "bytes": 1,
@@ -5060,31 +4496,7 @@
           "notes": "selected profile"
         },
         {
-          "offset": 27,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 28,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 29,
+          "offset": "?",
           "fieldName": "overlay_radio_mode",
           "ctype": "U8",
           "bytes": 1,
@@ -5096,19 +4508,7 @@
           "notes": null
         },
         {
-          "offset": 30,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 31,
+          "offset": "?",
           "fieldName": "camera_frame_width",
           "ctype": "U8",
           "bytes": 1,
@@ -5120,7 +4520,7 @@
           "notes": null
         },
         {
-          "offset": 32,
+          "offset": "?",
           "fieldName": "camera_frame_height",
           "ctype": "U8",
           "bytes": 1,
@@ -5132,7 +4532,7 @@
           "notes": null
         },
         {
-          "offset": 33,
+          "offset": "?",
           "fieldName": "link_quality_alarm",
           "ctype": "U16",
           "bytes": 2,
@@ -5144,7 +4544,7 @@
           "notes": null
         },
         {
-          "offset": 35,
+          "offset": "?",
           "fieldName": "rssi_dbm_alarm",
           "ctype": "U16",
           "bytes": 2,
@@ -5190,18 +4590,6 @@
         },
         {
           "offset": 2,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 3,
           "fieldName": "units",
           "ctype": "U8",
           "bytes": 1,
@@ -5213,7 +4601,7 @@
           "notes": null
         },
         {
-          "offset": 4,
+          "offset": 3,
           "fieldName": "rssi_alarm",
           "ctype": "U8",
           "bytes": 1,
@@ -5225,7 +4613,7 @@
           "notes": null
         },
         {
-          "offset": 5,
+          "offset": 4,
           "fieldName": "cap_alarm",
           "ctype": "U16",
           "bytes": 2,
@@ -5237,7 +4625,7 @@
           "notes": null
         },
         {
-          "offset": 7,
+          "offset": 6,
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -5249,7 +4637,7 @@
           "notes": "Skip unused (previously fly timer)"
         },
         {
-          "offset": 9,
+          "offset": 8,
           "fieldName": "alt_alarm",
           "ctype": "U16",
           "bytes": 2,
@@ -5261,7 +4649,7 @@
           "notes": null
         },
         {
-          "offset": 11,
+          "offset": 10,
           "fieldName": "enabledWarnings",
           "ctype": "U16",
           "bytes": 2,
@@ -5273,7 +4661,7 @@
           "notes": null
         },
         {
-          "offset": 13,
+          "offset": 12,
           "fieldName": "enabledWarnings",
           "ctype": "U32",
           "bytes": 4,
@@ -5285,31 +4673,19 @@
           "notes": null
         },
         {
+          "offset": 16,
+          "fieldName": "(read)",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "deprecated/ignored"
+        },
+        {
           "offset": 17,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 18,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 19,
           "fieldName": "overlay_radio_mode",
           "ctype": "U8",
           "bytes": 1,
@@ -5321,19 +4697,7 @@
           "notes": null
         },
         {
-          "offset": 20,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 21,
+          "offset": 18,
           "fieldName": "camera_frame_width",
           "ctype": "U8",
           "bytes": 1,
@@ -5345,7 +4709,7 @@
           "notes": null
         },
         {
-          "offset": 22,
+          "offset": 19,
           "fieldName": "camera_frame_height",
           "ctype": "U8",
           "bytes": 1,
@@ -5357,7 +4721,7 @@
           "notes": null
         },
         {
-          "offset": 23,
+          "offset": 20,
           "fieldName": "link_quality_alarm",
           "ctype": "U16",
           "bytes": 2,
@@ -5369,7 +4733,7 @@
           "notes": null
         },
         {
-          "offset": 25,
+          "offset": 22,
           "fieldName": "rssi_dbm_alarm",
           "ctype": "S16",
           "bytes": 2,
@@ -5381,7 +4745,7 @@
           "notes": null
         },
         {
-          "offset": 27,
+          "offset": 24,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -5393,7 +4757,19 @@
           "notes": "deprecated/ignored"
         },
         {
-          "offset": 28,
+          "offset": 25,
+          "fieldName": "timers[]",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 27,
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -5405,19 +4781,7 @@
           "notes": null
         },
         {
-          "offset": 30,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 32,
+          "offset": 29,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -5503,7 +4867,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated × MIN(osdCharacterBytes, sizeof(chr.data)) (runtime count); deprecated/ignored"
         }
       ]
     },
@@ -5669,54 +5033,6 @@
           "settingsType": null,
           "lookupTable": null,
           "notes": null
-        },
-        {
-          "offset": 15,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 16,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 17,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 18,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
         }
       ]
     },
@@ -5861,54 +5177,6 @@
         },
         {
           "offset": 14,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 15,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 16,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 17,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 18,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -6299,18 +5567,6 @@
         },
         {
           "offset": 18,
-          "fieldName": "checkOverflow",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": "GYRO_OVERFLOW_CHECK_ALL_AXES",
-          "min": null,
-          "max": null,
-          "settingsType": "UINT8",
-          "lookupTable": "TABLE_GYRO_OVERFLOW_CHECK",
-          "notes": null
-        },
-        {
-          "offset": 19,
           "fieldName": "debug_mode",
           "ctype": "U8",
           "bytes": 1,
@@ -6597,54 +5853,6 @@
         {
           "offset": 37,
           "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 39,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 41,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 43,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 45,
-          "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -6655,7 +5863,7 @@
           "notes": "DEPRECATED 1.43: dyn_notch_range"
         },
         {
-          "offset": 46,
+          "offset": 38,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -6667,7 +5875,7 @@
           "notes": "DEPRECATED 1.44: dyn_notch_width_percent"
         },
         {
-          "offset": 47,
+          "offset": 39,
           "fieldName": "dyn_notch_q",
           "ctype": "U16",
           "bytes": 2,
@@ -6679,7 +5887,7 @@
           "notes": null
         },
         {
-          "offset": 49,
+          "offset": 41,
           "fieldName": "dyn_notch_min_hz",
           "ctype": "U16",
           "bytes": 2,
@@ -6691,55 +5899,7 @@
           "notes": null
         },
         {
-          "offset": 51,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 52,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 53,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 55,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 57,
+          "offset": 43,
           "fieldName": "rpm_filter_harmonics",
           "ctype": "U8",
           "bytes": 1,
@@ -6751,7 +5911,7 @@
           "notes": null
         },
         {
-          "offset": 58,
+          "offset": 44,
           "fieldName": "rpm_filter_min_hz",
           "ctype": "U8",
           "bytes": 1,
@@ -6763,31 +5923,7 @@
           "notes": null
         },
         {
-          "offset": 59,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 60,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 61,
+          "offset": 45,
           "fieldName": "dyn_notch_max_hz",
           "ctype": "U16",
           "bytes": 2,
@@ -6799,19 +5935,7 @@
           "notes": null
         },
         {
-          "offset": 63,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 65,
+          "offset": 47,
           "fieldName": "dterm_lpf1_dyn_expo",
           "ctype": "U8",
           "bytes": 1,
@@ -6823,19 +5947,7 @@
           "notes": null
         },
         {
-          "offset": 66,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 67,
+          "offset": 48,
           "fieldName": "dyn_notch_count",
           "ctype": "U8",
           "bytes": 1,
@@ -6847,19 +5959,7 @@
           "notes": null
         },
         {
-          "offset": 68,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 69,
+          "offset": 49,
           "fieldName": "rpm_filter_fade_range_hz",
           "ctype": "U16",
           "bytes": 2,
@@ -6871,7 +5971,7 @@
           "notes": null
         },
         {
-          "offset": 71,
+          "offset": 51,
           "fieldName": "rpm_filter_q",
           "ctype": "U16",
           "bytes": 2,
@@ -6883,8 +5983,8 @@
           "notes": null
         },
         {
-          "offset": 73,
-          "fieldName": "(value)",
+          "offset": 53,
+          "fieldName": "rpm_filter_weights[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -6892,43 +5992,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 74,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 76,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 78,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
+          "notes": "repeated ×3 (RPM_FILTER_HARMONICS_MAX)"
         }
       ]
     },
@@ -7206,54 +6270,6 @@
         {
           "offset": 37,
           "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 39,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 41,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 43,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 45,
-          "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -7264,7 +6280,7 @@
           "notes": "DEPRECATED 1.43: dyn_notch_range"
         },
         {
-          "offset": 46,
+          "offset": 38,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -7276,7 +6292,7 @@
           "notes": "DEPRECATED 1.44: dyn_notch_width_percent"
         },
         {
-          "offset": 47,
+          "offset": 39,
           "fieldName": "dyn_notch_q",
           "ctype": "U16",
           "bytes": 2,
@@ -7288,7 +6304,7 @@
           "notes": null
         },
         {
-          "offset": 49,
+          "offset": 41,
           "fieldName": "dyn_notch_min_hz",
           "ctype": "U16",
           "bytes": 2,
@@ -7300,55 +6316,7 @@
           "notes": null
         },
         {
-          "offset": 51,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 52,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 53,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 55,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 57,
+          "offset": 43,
           "fieldName": "rpm_filter_harmonics",
           "ctype": "U8",
           "bytes": 1,
@@ -7360,7 +6328,7 @@
           "notes": null
         },
         {
-          "offset": 58,
+          "offset": 44,
           "fieldName": "rpm_filter_min_hz",
           "ctype": "U8",
           "bytes": 1,
@@ -7372,31 +6340,7 @@
           "notes": null
         },
         {
-          "offset": 59,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 60,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 61,
+          "offset": 45,
           "fieldName": "dyn_notch_max_hz",
           "ctype": "U16",
           "bytes": 2,
@@ -7408,19 +6352,7 @@
           "notes": null
         },
         {
-          "offset": 63,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 65,
+          "offset": 47,
           "fieldName": "dterm_lpf1_dyn_expo",
           "ctype": "U8",
           "bytes": 1,
@@ -7432,7 +6364,7 @@
           "notes": null
         },
         {
-          "offset": 66,
+          "offset": 48,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -7444,31 +6376,7 @@
           "notes": "deprecated/ignored"
         },
         {
-          "offset": 67,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 68,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 69,
+          "offset": 49,
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -7480,7 +6388,7 @@
           "notes": null
         },
         {
-          "offset": 71,
+          "offset": 51,
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -7492,7 +6400,7 @@
           "notes": null
         },
         {
-          "offset": 73,
+          "offset": 53,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -7501,43 +6409,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 74,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 76,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 78,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated ×3 (RPM_FILTER_HARMONICS_MAX); deprecated/ignored"
         }
       ]
     },
@@ -7630,7 +6502,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/padding"
+          "notes": "was low byte of currentPidProfile->dtermSetpointWeight"
         },
         {
           "offset": 10,
@@ -7642,7 +6514,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "was low byte of currentPidProfile->dtermSetpointWeight"
+          "notes": "reserved"
         },
         {
           "offset": 11,
@@ -7670,18 +6542,6 @@
         },
         {
           "offset": 13,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "reserved"
-        },
-        {
-          "offset": 14,
           "fieldName": "rateAccelLimit",
           "ctype": "U16",
           "bytes": 2,
@@ -7693,7 +6553,7 @@
           "notes": null
         },
         {
-          "offset": 16,
+          "offset": 15,
           "fieldName": "yawRateAccelLimit",
           "ctype": "U16",
           "bytes": 2,
@@ -7705,7 +6565,7 @@
           "notes": null
         },
         {
-          "offset": 18,
+          "offset": 17,
           "fieldName": "angle_limit",
           "ctype": "U8",
           "bytes": 1,
@@ -7717,7 +6577,7 @@
           "notes": null
         },
         {
-          "offset": 19,
+          "offset": 18,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -7729,7 +6589,7 @@
           "notes": "was pidProfile.levelSensitivity"
         },
         {
-          "offset": 20,
+          "offset": 19,
           "fieldName": "(value)",
           "ctype": "U16",
           "bytes": 2,
@@ -7741,7 +6601,7 @@
           "notes": "was currentPidProfile->itermThrottleThreshold"
         },
         {
-          "offset": 22,
+          "offset": 21,
           "fieldName": "anti_gravity_gain",
           "ctype": "U16",
           "bytes": 2,
@@ -7753,7 +6613,7 @@
           "notes": null
         },
         {
-          "offset": 24,
+          "offset": 23,
           "fieldName": "(value)",
           "ctype": "U16",
           "bytes": 2,
@@ -7765,7 +6625,7 @@
           "notes": "was currentPidProfile->dtermSetpointWeight"
         },
         {
-          "offset": 26,
+          "offset": 25,
           "fieldName": "iterm_rotation",
           "ctype": "U8",
           "bytes": 1,
@@ -7777,7 +6637,7 @@
           "notes": null
         },
         {
-          "offset": 27,
+          "offset": 26,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -7789,7 +6649,7 @@
           "notes": "was currentPidProfile->smart_feedforward"
         },
         {
-          "offset": 28,
+          "offset": 27,
           "fieldName": "iterm_relax",
           "ctype": "U8",
           "bytes": 1,
@@ -7801,7 +6661,7 @@
           "notes": null
         },
         {
-          "offset": 29,
+          "offset": 28,
           "fieldName": "iterm_relax_type",
           "ctype": "U8",
           "bytes": 1,
@@ -7813,31 +6673,7 @@
           "notes": null
         },
         {
-          "offset": 30,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 31,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 32,
+          "offset": 29,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -7849,7 +6685,7 @@
           "notes": "was abs_control_gain"
         },
         {
-          "offset": 33,
+          "offset": 30,
           "fieldName": "throttle_boost",
           "ctype": "U8",
           "bytes": 1,
@@ -7861,19 +6697,7 @@
           "notes": null
         },
         {
-          "offset": 34,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 35,
+          "offset": 31,
           "fieldName": "acro_trainer_angle_limit",
           "ctype": "U8",
           "bytes": 1,
@@ -7885,19 +6709,31 @@
           "notes": null
         },
         {
+          "offset": 32,
+          "fieldName": "F",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 34,
+          "fieldName": "F",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
           "offset": 36,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 37,
           "fieldName": "F",
           "ctype": "U16",
           "bytes": 2,
@@ -7909,31 +6745,7 @@
           "notes": null
         },
         {
-          "offset": 39,
-          "fieldName": "F",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 41,
-          "fieldName": "F",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 43,
+          "offset": 38,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -7945,8 +6757,8 @@
           "notes": "was currentPidProfile->antiGravityMode"
         },
         {
-          "offset": 44,
-          "fieldName": "(value)",
+          "offset": 39,
+          "fieldName": "d_max[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -7957,8 +6769,8 @@
           "notes": null
         },
         {
-          "offset": 45,
-          "fieldName": "(value)",
+          "offset": 40,
+          "fieldName": "d_max[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -7969,8 +6781,8 @@
           "notes": null
         },
         {
-          "offset": 46,
-          "fieldName": "(value)",
+          "offset": 41,
+          "fieldName": "d_max[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -7981,7 +6793,7 @@
           "notes": null
         },
         {
-          "offset": 47,
+          "offset": 42,
           "fieldName": "d_max_gain",
           "ctype": "U8",
           "bytes": 1,
@@ -7993,7 +6805,7 @@
           "notes": null
         },
         {
-          "offset": 48,
+          "offset": 43,
           "fieldName": "d_max_advance",
           "ctype": "U8",
           "bytes": 1,
@@ -8005,67 +6817,7 @@
           "notes": null
         },
         {
-          "offset": 49,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 50,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 51,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 52,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 53,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 54,
+          "offset": 44,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -8077,7 +6829,7 @@
           "notes": "was use_integrated_yaw"
         },
         {
-          "offset": 55,
+          "offset": 45,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -8089,7 +6841,7 @@
           "notes": "was integrated_yaw_relax"
         },
         {
-          "offset": 56,
+          "offset": 46,
           "fieldName": "iterm_relax_cutoff",
           "ctype": "U8",
           "bytes": 1,
@@ -8101,19 +6853,7 @@
           "notes": null
         },
         {
-          "offset": 57,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 58,
+          "offset": 47,
           "fieldName": "motor_output_limit",
           "ctype": "U8",
           "bytes": 1,
@@ -8125,7 +6865,7 @@
           "notes": null
         },
         {
-          "offset": 59,
+          "offset": 48,
           "fieldName": "auto_profile_cell_count",
           "ctype": "U8",
           "bytes": 1,
@@ -8137,7 +6877,7 @@
           "notes": null
         },
         {
-          "offset": 60,
+          "offset": 49,
           "fieldName": "dyn_idle_min_rpm",
           "ctype": "U8",
           "bytes": 1,
@@ -8149,19 +6889,7 @@
           "notes": null
         },
         {
-          "offset": 61,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 62,
+          "offset": 50,
           "fieldName": "feedforward_averaging",
           "ctype": "U8",
           "bytes": 1,
@@ -8173,7 +6901,7 @@
           "notes": null
         },
         {
-          "offset": 63,
+          "offset": 51,
           "fieldName": "feedforward_smooth_factor",
           "ctype": "U8",
           "bytes": 1,
@@ -8185,7 +6913,7 @@
           "notes": null
         },
         {
-          "offset": 64,
+          "offset": 52,
           "fieldName": "feedforward_boost",
           "ctype": "U8",
           "bytes": 1,
@@ -8197,7 +6925,7 @@
           "notes": null
         },
         {
-          "offset": 65,
+          "offset": 53,
           "fieldName": "feedforward_max_rate_limit",
           "ctype": "U8",
           "bytes": 1,
@@ -8209,7 +6937,7 @@
           "notes": null
         },
         {
-          "offset": 66,
+          "offset": 54,
           "fieldName": "feedforward_jitter_factor",
           "ctype": "U8",
           "bytes": 1,
@@ -8221,67 +6949,7 @@
           "notes": null
         },
         {
-          "offset": 67,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 68,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 69,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 70,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 71,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 72,
+          "offset": 55,
           "fieldName": "vbat_sag_compensation",
           "ctype": "U8",
           "bytes": 1,
@@ -8293,19 +6961,7 @@
           "notes": null
         },
         {
-          "offset": 73,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 74,
+          "offset": 56,
           "fieldName": "thrustLinearization",
           "ctype": "U8",
           "bytes": 1,
@@ -8317,19 +6973,7 @@
           "notes": null
         },
         {
-          "offset": 75,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 76,
+          "offset": 57,
           "fieldName": "tpa_mode",
           "ctype": "U8",
           "bytes": 1,
@@ -8341,7 +6985,7 @@
           "notes": null
         },
         {
-          "offset": 77,
+          "offset": 58,
           "fieldName": "tpa_rate",
           "ctype": "U8",
           "bytes": 1,
@@ -8353,7 +6997,7 @@
           "notes": null
         },
         {
-          "offset": 78,
+          "offset": 59,
           "fieldName": "tpa_breakpoint",
           "ctype": "U16",
           "bytes": 2,
@@ -8455,7 +7099,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "was low byte of currentPidProfile->dtermSetpointWeight"
         },
         {
           "offset": 10,
@@ -8467,7 +7111,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "was low byte of currentPidProfile->dtermSetpointWeight"
+          "notes": "reserved"
         },
         {
           "offset": 11,
@@ -8495,18 +7139,6 @@
         },
         {
           "offset": 13,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "reserved"
-        },
-        {
-          "offset": 14,
           "fieldName": "rateAccelLimit",
           "ctype": "U16",
           "bytes": 2,
@@ -8518,7 +7150,7 @@
           "notes": null
         },
         {
-          "offset": 16,
+          "offset": 15,
           "fieldName": "yawRateAccelLimit",
           "ctype": "U16",
           "bytes": 2,
@@ -8530,7 +7162,7 @@
           "notes": null
         },
         {
-          "offset": 18,
+          "offset": 17,
           "fieldName": "angle_limit",
           "ctype": "U8",
           "bytes": 1,
@@ -8542,7 +7174,7 @@
           "notes": null
         },
         {
-          "offset": 19,
+          "offset": 18,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -8554,7 +7186,7 @@
           "notes": "was pidProfile.levelSensitivity"
         },
         {
-          "offset": 20,
+          "offset": 19,
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -8566,7 +7198,7 @@
           "notes": "was currentPidProfile->itermThrottleThreshold"
         },
         {
-          "offset": 22,
+          "offset": 21,
           "fieldName": "anti_gravity_gain",
           "ctype": "U16",
           "bytes": 2,
@@ -8578,7 +7210,7 @@
           "notes": null
         },
         {
-          "offset": 24,
+          "offset": 23,
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -8590,7 +7222,7 @@
           "notes": "was currentPidProfile->dtermSetpointWeight"
         },
         {
-          "offset": 26,
+          "offset": 25,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -8602,7 +7234,7 @@
           "notes": "deprecated/ignored"
         },
         {
-          "offset": 27,
+          "offset": 26,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -8614,7 +7246,7 @@
           "notes": "was currentPidProfile->smart_feedforward"
         },
         {
-          "offset": 28,
+          "offset": 27,
           "fieldName": "iterm_relax",
           "ctype": "U8",
           "bytes": 1,
@@ -8626,7 +7258,7 @@
           "notes": null
         },
         {
-          "offset": 29,
+          "offset": 28,
           "fieldName": "iterm_relax_type",
           "ctype": "U8",
           "bytes": 1,
@@ -8638,31 +7270,7 @@
           "notes": null
         },
         {
-          "offset": 30,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 31,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 32,
+          "offset": 29,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -8674,7 +7282,7 @@
           "notes": "was abs_control_gain"
         },
         {
-          "offset": 33,
+          "offset": 30,
           "fieldName": "throttle_boost",
           "ctype": "U8",
           "bytes": 1,
@@ -8686,19 +7294,7 @@
           "notes": null
         },
         {
-          "offset": 34,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 35,
+          "offset": 31,
           "fieldName": "acro_trainer_angle_limit",
           "ctype": "U8",
           "bytes": 1,
@@ -8710,20 +7306,32 @@
           "notes": null
         },
         {
+          "offset": 32,
+          "fieldName": "(read)",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 34,
+          "fieldName": "(read)",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
           "offset": 36,
           "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 37,
-          "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
           "default": null,
@@ -8734,31 +7342,7 @@
           "notes": null
         },
         {
-          "offset": 39,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 41,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 43,
+          "offset": 38,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -8770,8 +7354,8 @@
           "notes": "was currentPidProfile->antiGravityMode"
         },
         {
-          "offset": 44,
-          "fieldName": "(read)",
+          "offset": 39,
+          "fieldName": "d_max[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -8782,8 +7366,8 @@
           "notes": null
         },
         {
-          "offset": 45,
-          "fieldName": "(read)",
+          "offset": 40,
+          "fieldName": "d_max[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -8794,8 +7378,8 @@
           "notes": null
         },
         {
-          "offset": 46,
-          "fieldName": "(read)",
+          "offset": 41,
+          "fieldName": "d_max[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -8806,7 +7390,7 @@
           "notes": null
         },
         {
-          "offset": 47,
+          "offset": 42,
           "fieldName": "d_max_gain",
           "ctype": "U8",
           "bytes": 1,
@@ -8818,7 +7402,7 @@
           "notes": null
         },
         {
-          "offset": 48,
+          "offset": 43,
           "fieldName": "d_max_advance",
           "ctype": "U8",
           "bytes": 1,
@@ -8830,7 +7414,7 @@
           "notes": null
         },
         {
-          "offset": 49,
+          "offset": 44,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -8839,7 +7423,67 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "was use_integrated_yaw"
+        },
+        {
+          "offset": 45,
+          "fieldName": "(read)",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "was integrated_yaw_relax"
+        },
+        {
+          "offset": 46,
+          "fieldName": "iterm_relax_cutoff",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": "ITERM_RELAX_CUTOFF_MIN",
+          "max": "ITERM_RELAX_CUTOFF_MAX",
+          "settingsType": "UINT8",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 47,
+          "fieldName": "motor_output_limit",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": "MOTOR_OUTPUT_LIMIT_PERCENT_MIN",
+          "max": "MOTOR_OUTPUT_LIMIT_PERCENT_MAX",
+          "settingsType": "UINT8",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 48,
+          "fieldName": "auto_profile_cell_count",
+          "ctype": "S8",
+          "bytes": 1,
+          "default": null,
+          "min": "AUTO_PROFILE_CELL_COUNT_CHANGE",
+          "max": "MAX_AUTO_DETECT_CELL_COUNT",
+          "settingsType": "INT8",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 49,
+          "fieldName": "dyn_idle_min_rpm",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": "0",
+          "max": "DYN_IDLE_MIN_RPM_MAX",
+          "settingsType": "UINT8",
+          "lookupTable": null,
+          "notes": null
         },
         {
           "offset": 50,
@@ -8855,150 +7499,6 @@
         },
         {
           "offset": 51,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 52,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 53,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 54,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "was use_integrated_yaw"
-        },
-        {
-          "offset": 55,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "was integrated_yaw_relax"
-        },
-        {
-          "offset": 56,
-          "fieldName": "iterm_relax_cutoff",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": "ITERM_RELAX_CUTOFF_MIN",
-          "max": "ITERM_RELAX_CUTOFF_MAX",
-          "settingsType": "UINT8",
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 57,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 58,
-          "fieldName": "motor_output_limit",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": "MOTOR_OUTPUT_LIMIT_PERCENT_MIN",
-          "max": "MOTOR_OUTPUT_LIMIT_PERCENT_MAX",
-          "settingsType": "UINT8",
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 59,
-          "fieldName": "auto_profile_cell_count",
-          "ctype": "S8",
-          "bytes": 1,
-          "default": null,
-          "min": "AUTO_PROFILE_CELL_COUNT_CHANGE",
-          "max": "MAX_AUTO_DETECT_CELL_COUNT",
-          "settingsType": "INT8",
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 60,
-          "fieldName": "dyn_idle_min_rpm",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": "0",
-          "max": "DYN_IDLE_MIN_RPM_MAX",
-          "settingsType": "UINT8",
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 61,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 62,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 63,
           "fieldName": "feedforward_smooth_factor",
           "ctype": "U8",
           "bytes": 1,
@@ -9010,7 +7510,7 @@
           "notes": null
         },
         {
-          "offset": 64,
+          "offset": 52,
           "fieldName": "feedforward_boost",
           "ctype": "U8",
           "bytes": 1,
@@ -9022,7 +7522,7 @@
           "notes": null
         },
         {
-          "offset": 65,
+          "offset": 53,
           "fieldName": "feedforward_max_rate_limit",
           "ctype": "U8",
           "bytes": 1,
@@ -9034,7 +7534,7 @@
           "notes": null
         },
         {
-          "offset": 66,
+          "offset": 54,
           "fieldName": "feedforward_jitter_factor",
           "ctype": "U8",
           "bytes": 1,
@@ -9046,67 +7546,7 @@
           "notes": null
         },
         {
-          "offset": 67,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 68,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 69,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 70,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 71,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 72,
+          "offset": 55,
           "fieldName": "vbat_sag_compensation",
           "ctype": "U8",
           "bytes": 1,
@@ -9118,19 +7558,7 @@
           "notes": null
         },
         {
-          "offset": 73,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 74,
+          "offset": 56,
           "fieldName": "thrustLinearization",
           "ctype": "U8",
           "bytes": 1,
@@ -9142,19 +7570,7 @@
           "notes": null
         },
         {
-          "offset": 75,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 76,
+          "offset": 57,
           "fieldName": "tpa_mode",
           "ctype": "U8",
           "bytes": 1,
@@ -9166,7 +7582,7 @@
           "notes": null
         },
         {
-          "offset": 77,
+          "offset": 58,
           "fieldName": "tpa_rate",
           "ctype": "U8",
           "bytes": 1,
@@ -9178,7 +7594,7 @@
           "notes": null
         },
         {
-          "offset": 78,
+          "offset": 59,
           "fieldName": "tpa_breakpoint",
           "ctype": "U16",
           "bytes": 2,
@@ -9212,18 +7628,6 @@
         },
         {
           "offset": 1,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 2,
           "fieldName": "baro_hardware",
           "ctype": "U8",
           "bytes": 1,
@@ -9235,19 +7639,7 @@
           "notes": null
         },
         {
-          "offset": 3,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 4,
+          "offset": 2,
           "fieldName": "mag_hardware",
           "ctype": "U8",
           "bytes": 1,
@@ -9259,19 +7651,7 @@
           "notes": null
         },
         {
-          "offset": 5,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 6,
+          "offset": 3,
           "fieldName": "rangefinder_hardware",
           "ctype": "U8",
           "bytes": 1,
@@ -9283,19 +7663,7 @@
           "notes": "no RANGEFINDER_DEFAULT value"
         },
         {
-          "offset": 7,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 8,
+          "offset": 4,
           "fieldName": "opticalflow_hardware",
           "ctype": "U8",
           "bytes": 1,
@@ -9307,19 +7675,7 @@
           "notes": null
         },
         {
-          "offset": 9,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 10,
+          "offset": 5,
           "fieldName": "pitot_hardware",
           "ctype": "U8",
           "bytes": 1,
@@ -9328,18 +7684,6 @@
           "max": null,
           "settingsType": "UINT8",
           "lookupTable": "TABLE_PITOT_HARDWARE",
-          "notes": null
-        },
-        {
-          "offset": 11,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
           "notes": null
         }
       ]
@@ -9365,18 +7709,6 @@
         },
         {
           "offset": 1,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 2,
           "fieldName": "baro_hardware",
           "ctype": "U8",
           "bytes": 1,
@@ -9388,19 +7720,7 @@
           "notes": null
         },
         {
-          "offset": 3,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 4,
+          "offset": 2,
           "fieldName": "mag_hardware",
           "ctype": "U8",
           "bytes": 1,
@@ -9412,19 +7732,7 @@
           "notes": null
         },
         {
-          "offset": 5,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 6,
+          "offset": 3,
           "fieldName": "rangefinder_hardware",
           "ctype": "U8",
           "bytes": 1,
@@ -9436,19 +7744,7 @@
           "notes": null
         },
         {
-          "offset": 7,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 8,
+          "offset": 4,
           "fieldName": "opticalflow_hardware",
           "ctype": "U8",
           "bytes": 1,
@@ -9460,19 +7756,7 @@
           "notes": null
         },
         {
-          "offset": 9,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 10,
+          "offset": 5,
           "fieldName": "pitot_hardware",
           "ctype": "U8",
           "bytes": 1,
@@ -9482,18 +7766,6 @@
           "settingsType": "UINT8",
           "lookupTable": "TABLE_PITOT_HARDWARE",
           "notes": null
-        },
-        {
-          "offset": 11,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
         }
       ]
     },
@@ -9592,22 +7864,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 6,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
           "notes": null
         },
         {
-          "offset": 8,
+          "offset": 6,
           "fieldName": "(variable data)",
           "ctype": "bytes",
           "bytes": null,
@@ -9753,18 +8013,6 @@
         {
           "offset": "?",
           "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": "?",
-          "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -9817,31 +8065,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 2,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 4,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×3"
         },
         {
           "offset": 6,
@@ -9853,10 +8077,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×3"
         },
         {
-          "offset": 8,
+          "offset": 12,
           "fieldName": "(value)",
           "ctype": "U16",
           "bytes": 2,
@@ -9865,7 +8089,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/padding"
+          "notes": "repeated ×3"
         }
       ]
     },
@@ -9907,31 +8131,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 2,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 4,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
+          "notes": "repeated ×8"
         }
       ]
     },
@@ -9952,7 +8152,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × rxRuntimeState.channelCount (runtime count)"
         }
       ]
     },
@@ -10217,18 +8417,6 @@
           "settingsType": null,
           "lookupTable": null,
           "notes": null
-        },
-        {
-          "offset": 6,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
         }
       ]
     },
@@ -10310,7 +8498,7 @@
       "fields": [
         {
           "offset": 0,
-          "fieldName": "(value)",
+          "fieldName": "rcRates[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -10322,7 +8510,7 @@
         },
         {
           "offset": 1,
-          "fieldName": "(value)",
+          "fieldName": "rcExpo[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -10334,7 +8522,7 @@
         },
         {
           "offset": 2,
-          "fieldName": "(value)",
+          "fieldName": "rates[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -10342,10 +8530,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "R,P,Y see flight_dynamics_index_t"
+          "notes": "repeated ×3; R,P,Y see flight_dynamics_index_t"
         },
         {
-          "offset": 3,
+          "offset": 5,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -10357,7 +8545,7 @@
           "notes": "was currentControlRateProfile->tpa_rate"
         },
         {
-          "offset": 4,
+          "offset": 6,
           "fieldName": "thrMid8",
           "ctype": "U8",
           "bytes": 1,
@@ -10369,7 +8557,7 @@
           "notes": null
         },
         {
-          "offset": 5,
+          "offset": 7,
           "fieldName": "thrExpo8",
           "ctype": "U8",
           "bytes": 1,
@@ -10381,7 +8569,7 @@
           "notes": null
         },
         {
-          "offset": 6,
+          "offset": 8,
           "fieldName": "(value)",
           "ctype": "U16",
           "bytes": 2,
@@ -10393,32 +8581,8 @@
           "notes": "was currentControlRateProfile->tpa_breakpoint"
         },
         {
-          "offset": 8,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 9,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
           "offset": 10,
-          "fieldName": "(value)",
+          "fieldName": "rcExpo[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -10430,7 +8594,7 @@
         },
         {
           "offset": 11,
-          "fieldName": "(value)",
+          "fieldName": "rcRates[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -10442,6 +8606,30 @@
         },
         {
           "offset": 12,
+          "fieldName": "rcRates[]",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 13,
+          "fieldName": "rcExpo[]",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 14,
           "fieldName": "throttle_limit_type",
           "ctype": "U8",
           "bytes": 1,
@@ -10453,7 +8641,7 @@
           "notes": null
         },
         {
-          "offset": 13,
+          "offset": 15,
           "fieldName": "throttle_limit_percent",
           "ctype": "U8",
           "bytes": 1,
@@ -10465,20 +8653,8 @@
           "notes": null
         },
         {
-          "offset": 14,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
           "offset": 16,
-          "fieldName": "(value)",
+          "fieldName": "rate_limit[]",
           "ctype": "U16",
           "bytes": 2,
           "default": null,
@@ -10490,7 +8666,7 @@
         },
         {
           "offset": 18,
-          "fieldName": "(value)",
+          "fieldName": "rate_limit[]",
           "ctype": "U16",
           "bytes": 2,
           "default": null,
@@ -10502,6 +8678,18 @@
         },
         {
           "offset": 20,
+          "fieldName": "rate_limit[]",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 22,
           "fieldName": "rates_type",
           "ctype": "U8",
           "bytes": 1,
@@ -10513,7 +8701,7 @@
           "notes": null
         },
         {
-          "offset": 21,
+          "offset": 23,
           "fieldName": "thrHover8",
           "ctype": "U8",
           "bytes": 1,
@@ -10543,7 +8731,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × PID_ITEM_COUNT (runtime count)"
         },
         {
           "offset": 1,
@@ -10555,7 +8743,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × PID_ITEM_COUNT (runtime count)"
         },
         {
           "offset": 2,
@@ -10567,7 +8755,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × PID_ITEM_COUNT (runtime count)"
         }
       ]
     },
@@ -10596,7 +8784,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × n (runtime count)"
         }
       ]
     },
@@ -10633,7 +8821,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SUPPORTED_SERVOS (runtime count)"
         },
         {
           "offset": 2,
@@ -10645,7 +8833,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SUPPORTED_SERVOS (runtime count)"
         },
         {
           "offset": 4,
@@ -10657,7 +8845,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SUPPORTED_SERVOS (runtime count)"
         },
         {
           "offset": 6,
@@ -10669,7 +8857,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SUPPORTED_SERVOS (runtime count)"
         },
         {
           "offset": 7,
@@ -10681,7 +8869,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SUPPORTED_SERVOS (runtime count)"
         },
         {
           "offset": 8,
@@ -10693,7 +8881,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SUPPORTED_SERVOS (runtime count)"
         }
       ]
     },
@@ -10803,18 +8991,6 @@
         },
         {
           "offset": 3,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 4,
           "fieldName": "deadband3d_throttle",
           "ctype": "U16",
           "bytes": 2,
@@ -10880,22 +9056,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 4,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
           "notes": null
         },
         {
-          "offset": 5,
+          "offset": 4,
           "fieldName": "gyro_enabled_bitmask",
           "ctype": "U8",
           "bytes": 1,
@@ -10907,7 +9071,7 @@
           "notes": "deprecates gyro_to_use"
         },
         {
-          "offset": 6,
+          "offset": 5,
           "fieldName": "roll",
           "ctype": "U16",
           "bytes": 2,
@@ -10919,7 +9083,7 @@
           "notes": null
         },
         {
-          "offset": 8,
+          "offset": 7,
           "fieldName": "pitch",
           "ctype": "U16",
           "bytes": 2,
@@ -10931,7 +9095,7 @@
           "notes": null
         },
         {
-          "offset": 10,
+          "offset": 9,
           "fieldName": "yaw",
           "ctype": "U16",
           "bytes": 2,
@@ -10941,42 +9105,6 @@
           "settingsType": null,
           "lookupTable": null,
           "notes": null
-        },
-        {
-          "offset": 12,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 14,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 16,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
         }
       ]
     },
@@ -10997,7 +9125,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×6 (LED_MODE_COUNT), stride 18; repeated ×6 (LED_DIRECTION_COUNT), stride 3"
         },
         {
           "offset": 1,
@@ -11009,10 +9137,58 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×6 (LED_MODE_COUNT), stride 18; repeated ×6 (LED_DIRECTION_COUNT), stride 3"
         },
         {
           "offset": 2,
+          "fieldName": "color[]",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "repeated ×6 (LED_MODE_COUNT), stride 18; repeated ×6 (LED_DIRECTION_COUNT), stride 3"
+        },
+        {
+          "offset": 108,
+          "fieldName": "(value)",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "repeated ×11 (LED_SPECIAL_COLOR_COUNT), stride 3"
+        },
+        {
+          "offset": 109,
+          "fieldName": "(value)",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "repeated ×11 (LED_SPECIAL_COLOR_COUNT), stride 3"
+        },
+        {
+          "offset": 110,
+          "fieldName": "color[]",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "repeated ×11 (LED_SPECIAL_COLOR_COUNT), stride 3"
+        },
+        {
+          "offset": 141,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -11024,55 +9200,7 @@
           "notes": null
         },
         {
-          "offset": 3,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 4,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 5,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 6,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 7,
+          "offset": 142,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -11084,7 +9212,7 @@
           "notes": "deprecated/padding"
         },
         {
-          "offset": 8,
+          "offset": 143,
           "fieldName": "ledstrip_aux_channel",
           "ctype": "U8",
           "bytes": 1,
@@ -11114,7 +9242,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × count (runtime count)"
         },
         {
           "offset": 1,
@@ -11126,7 +9254,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × count (runtime count)"
         }
       ]
     },
@@ -11147,7 +9275,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × count (runtime count)"
         },
         {
           "offset": 1,
@@ -11159,7 +9287,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "milliamp hours drawn from battery"
+          "notes": "repeated × count (runtime count); milliamp hours drawn from battery"
         },
         {
           "offset": 3,
@@ -11171,7 +9299,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "send amperage in 0.001 A steps (mA). Negative range is truncated to zero"
+          "notes": "repeated × count (runtime count); send amperage in 0.001 A steps (mA). Negative range is truncated to zero"
         }
       ]
     },
@@ -11357,34 +9485,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 10,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
           "notes": "ESC sensor available"
         },
         {
-          "offset": 11,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 12,
+          "offset": 10,
           "fieldName": "kv",
           "ctype": "U16",
           "bytes": 2,
@@ -11528,7 +9632,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         },
         {
           "offset": 2,
@@ -11540,10 +9644,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         },
         {
-          "offset": 4,
+          "offset": "?",
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -11555,8 +9659,8 @@
           "notes": null
         },
         {
-          "offset": 5,
-          "fieldName": "(value)",
+          "offset": "?",
+          "fieldName": "telemetryData[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -11564,10 +9668,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         },
         {
-          "offset": 6,
+          "offset": "?",
           "fieldName": "(value)",
           "ctype": "U16",
           "bytes": 2,
@@ -11576,7 +9680,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         }
       ]
     },
@@ -11903,10 +10007,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × VTX_TABLE_BAND_NAME_LENGTH (runtime count)"
         },
         {
-          "offset": 3,
+          "offset": "?",
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -11918,7 +10022,7 @@
           "notes": "band letter"
         },
         {
-          "offset": 4,
+          "offset": "?",
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -11930,7 +10034,7 @@
           "notes": "CUSTOM = 0; FACTORY = 1"
         },
         {
-          "offset": 5,
+          "offset": "?",
           "fieldName": "channels",
           "ctype": "U8",
           "bytes": 1,
@@ -11942,7 +10046,7 @@
           "notes": "number of channel frequencies to follow"
         },
         {
-          "offset": 6,
+          "offset": "?",
           "fieldName": "(value)",
           "ctype": "U16",
           "bytes": 2,
@@ -11951,7 +10055,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × vtxTableConfig()->channels (runtime count)"
         }
       ]
     },
@@ -12008,7 +10112,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × VTX_TABLE_POWER_LABEL_LENGTH (runtime count)"
         }
       ]
     },
@@ -12041,7 +10145,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         },
         {
           "offset": 5,
@@ -12053,7 +10157,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         },
         {
           "offset": 7,
@@ -12065,7 +10169,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         },
         {
           "offset": 8,
@@ -12077,7 +10181,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         },
         {
           "offset": 10,
@@ -12089,7 +10193,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         },
         {
           "offset": 12,
@@ -12101,7 +10205,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         }
       ]
     },
@@ -12272,7 +10376,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × GPS_numCh (runtime count)"
         },
         {
           "offset": 2,
@@ -12284,7 +10388,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × GPS_numCh (runtime count)"
         },
         {
           "offset": 3,
@@ -12296,7 +10400,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × GPS_numCh (runtime count)"
         },
         {
           "offset": 4,
@@ -12308,7 +10412,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × GPS_numCh (runtime count)"
         }
       ]
     },
@@ -12394,23 +10498,11 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 1,
-          "fieldName": "(value)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×3 (XYZ_AXIS_COUNT)"
         },
         {
           "offset": 3,
-          "fieldName": "(value)",
+          "fieldName": "spa_center[]",
           "ctype": "U16",
           "bytes": 2,
           "default": null,
@@ -12418,11 +10510,23 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×3 (XYZ_AXIS_COUNT)"
         },
         {
-          "offset": 5,
-          "fieldName": "(value)",
+          "offset": 9,
+          "fieldName": "spa_width[]",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "repeated ×3 (XYZ_AXIS_COUNT)"
+        },
+        {
+          "offset": 15,
+          "fieldName": "spa_mode[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -12430,10 +10534,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×3 (XYZ_AXIS_COUNT)"
         },
         {
-          "offset": 6,
+          "offset": 18,
           "fieldName": "tpa_curve_type",
           "ctype": "U8",
           "bytes": 1,
@@ -12445,7 +10549,7 @@
           "notes": null
         },
         {
-          "offset": 7,
+          "offset": 19,
           "fieldName": "tpa_curve_stall_throttle",
           "ctype": "U8",
           "bytes": 1,
@@ -12457,7 +10561,7 @@
           "notes": null
         },
         {
-          "offset": 8,
+          "offset": 20,
           "fieldName": "tpa_curve_pid_thr0",
           "ctype": "U16",
           "bytes": 2,
@@ -12469,7 +10573,7 @@
           "notes": null
         },
         {
-          "offset": 10,
+          "offset": 22,
           "fieldName": "tpa_curve_pid_thr100",
           "ctype": "U16",
           "bytes": 2,
@@ -12481,7 +10585,7 @@
           "notes": null
         },
         {
-          "offset": 12,
+          "offset": 24,
           "fieldName": "tpa_curve_expo",
           "ctype": "U8",
           "bytes": 1,
@@ -12493,7 +10597,7 @@
           "notes": null
         },
         {
-          "offset": 13,
+          "offset": 25,
           "fieldName": "tpa_speed_type",
           "ctype": "U8",
           "bytes": 1,
@@ -12505,7 +10609,7 @@
           "notes": null
         },
         {
-          "offset": 14,
+          "offset": 26,
           "fieldName": "tpa_speed_basic_delay",
           "ctype": "U16",
           "bytes": 2,
@@ -12517,7 +10621,7 @@
           "notes": null
         },
         {
-          "offset": 16,
+          "offset": 28,
           "fieldName": "tpa_speed_basic_gravity",
           "ctype": "U16",
           "bytes": 2,
@@ -12529,7 +10633,7 @@
           "notes": null
         },
         {
-          "offset": 18,
+          "offset": 30,
           "fieldName": "tpa_speed_adv_prop_pitch",
           "ctype": "U16",
           "bytes": 2,
@@ -12541,7 +10645,7 @@
           "notes": null
         },
         {
-          "offset": 20,
+          "offset": 32,
           "fieldName": "tpa_speed_adv_mass",
           "ctype": "U16",
           "bytes": 2,
@@ -12553,7 +10657,7 @@
           "notes": null
         },
         {
-          "offset": 22,
+          "offset": 34,
           "fieldName": "tpa_speed_adv_drag_k",
           "ctype": "U16",
           "bytes": 2,
@@ -12565,7 +10669,7 @@
           "notes": null
         },
         {
-          "offset": 24,
+          "offset": 36,
           "fieldName": "tpa_speed_adv_thrust",
           "ctype": "U16",
           "bytes": 2,
@@ -12577,7 +10681,7 @@
           "notes": null
         },
         {
-          "offset": 26,
+          "offset": 38,
           "fieldName": "tpa_speed_max_voltage",
           "ctype": "U16",
           "bytes": 2,
@@ -12589,7 +10693,7 @@
           "notes": null
         },
         {
-          "offset": 28,
+          "offset": 40,
           "fieldName": "tpa_speed_pitch_offset",
           "ctype": "U16",
           "bytes": 2,
@@ -12601,7 +10705,7 @@
           "notes": null
         },
         {
-          "offset": 30,
+          "offset": 42,
           "fieldName": "yaw_type",
           "ctype": "U8",
           "bytes": 1,
@@ -12613,7 +10717,7 @@
           "notes": null
         },
         {
-          "offset": 31,
+          "offset": 43,
           "fieldName": "angle_pitch_offset",
           "ctype": "U16",
           "bytes": 2,
@@ -12625,7 +10729,7 @@
           "notes": null
         },
         {
-          "offset": 33,
+          "offset": 45,
           "fieldName": "speed_curve_vref",
           "ctype": "U8",
           "bytes": 1,
@@ -12637,7 +10741,7 @@
           "notes": null
         },
         {
-          "offset": 34,
+          "offset": 46,
           "fieldName": "speed_curve_power",
           "ctype": "U8",
           "bytes": 1,
@@ -12649,7 +10753,7 @@
           "notes": null
         },
         {
-          "offset": 35,
+          "offset": 47,
           "fieldName": "speed_curve_min",
           "ctype": "U16",
           "bytes": 2,
@@ -12661,7 +10765,7 @@
           "notes": null
         },
         {
-          "offset": 37,
+          "offset": 49,
           "fieldName": "speed_curve_max",
           "ctype": "U16",
           "bytes": 2,
@@ -12704,30 +10808,6 @@
           "settingsType": null,
           "lookupTable": null,
           "notes": null
-        },
-        {
-          "offset": 8,
-          "fieldName": "(value)",
-          "ctype": "U32",
-          "bytes": 4,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
-        },
-        {
-          "offset": 12,
-          "fieldName": "(value)",
-          "ctype": "U32",
-          "bytes": 4,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/padding"
         }
       ]
     },
@@ -12878,18 +10958,6 @@
         },
         {
           "offset": 5,
-          "fieldName": "dshotBeaconTone",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": "1",
-          "min": "DSHOT_CMD_BEACON1",
-          "max": "DSHOT_CMD_BEACON5",
-          "settingsType": "UINT8",
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 6,
           "fieldName": "dshotBeaconOffFlags",
           "ctype": "U32",
           "bytes": 4,
@@ -13039,7 +11107,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × channelCount (runtime count)"
         }
       ]
     },
@@ -13141,7 +11209,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated × PID_ITEM_COUNT (runtime count); deprecated/ignored"
         },
         {
           "offset": 1,
@@ -13153,7 +11221,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated × PID_ITEM_COUNT (runtime count); deprecated/ignored"
         },
         {
           "offset": 2,
@@ -13165,7 +11233,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated × PID_ITEM_COUNT (runtime count); deprecated/ignored"
         }
       ]
     },
@@ -13186,23 +11254,11 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 1,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×3 (XYZ_AXIS_COUNT)"
         },
         {
           "offset": 3,
-          "fieldName": "(read)",
+          "fieldName": "spa_center[]",
           "ctype": "U16",
           "bytes": 2,
           "default": null,
@@ -13210,11 +11266,23 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×3 (XYZ_AXIS_COUNT)"
         },
         {
-          "offset": 5,
-          "fieldName": "(read)",
+          "offset": 9,
+          "fieldName": "spa_width[]",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "repeated ×3 (XYZ_AXIS_COUNT)"
+        },
+        {
+          "offset": 15,
+          "fieldName": "spa_mode[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -13222,10 +11290,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×3 (XYZ_AXIS_COUNT)"
         },
         {
-          "offset": 6,
+          "offset": 18,
           "fieldName": "tpa_curve_type",
           "ctype": "U8",
           "bytes": 1,
@@ -13237,19 +11305,7 @@
           "notes": null
         },
         {
-          "offset": 7,
-          "fieldName": "tpa_curve_type",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": "UINT8",
-          "lookupTable": "TABLE_TPA_CURVE_TYPE",
-          "notes": null
-        },
-        {
-          "offset": 8,
+          "offset": 19,
           "fieldName": "tpa_curve_stall_throttle",
           "ctype": "U8",
           "bytes": 1,
@@ -13261,7 +11317,7 @@
           "notes": null
         },
         {
-          "offset": 9,
+          "offset": 20,
           "fieldName": "tpa_curve_pid_thr0",
           "ctype": "U16",
           "bytes": 2,
@@ -13273,7 +11329,7 @@
           "notes": null
         },
         {
-          "offset": 11,
+          "offset": 22,
           "fieldName": "tpa_curve_pid_thr100",
           "ctype": "U16",
           "bytes": 2,
@@ -13285,7 +11341,7 @@
           "notes": null
         },
         {
-          "offset": 13,
+          "offset": 24,
           "fieldName": "tpa_curve_expo",
           "ctype": "S8",
           "bytes": 1,
@@ -13297,7 +11353,7 @@
           "notes": null
         },
         {
-          "offset": 14,
+          "offset": 25,
           "fieldName": "tpa_speed_type",
           "ctype": "U8",
           "bytes": 1,
@@ -13309,19 +11365,7 @@
           "notes": null
         },
         {
-          "offset": 15,
-          "fieldName": "tpa_speed_type",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": "UINT8",
-          "lookupTable": "TABLE_TPA_SPEED_TYPE",
-          "notes": null
-        },
-        {
-          "offset": 16,
+          "offset": 26,
           "fieldName": "tpa_speed_basic_delay",
           "ctype": "U16",
           "bytes": 2,
@@ -13333,7 +11377,7 @@
           "notes": null
         },
         {
-          "offset": 18,
+          "offset": 28,
           "fieldName": "tpa_speed_basic_gravity",
           "ctype": "U16",
           "bytes": 2,
@@ -13345,7 +11389,7 @@
           "notes": null
         },
         {
-          "offset": 20,
+          "offset": 30,
           "fieldName": "tpa_speed_adv_prop_pitch",
           "ctype": "U16",
           "bytes": 2,
@@ -13357,7 +11401,7 @@
           "notes": null
         },
         {
-          "offset": 22,
+          "offset": 32,
           "fieldName": "tpa_speed_adv_mass",
           "ctype": "U16",
           "bytes": 2,
@@ -13369,7 +11413,7 @@
           "notes": null
         },
         {
-          "offset": 24,
+          "offset": 34,
           "fieldName": "tpa_speed_adv_drag_k",
           "ctype": "U16",
           "bytes": 2,
@@ -13381,7 +11425,7 @@
           "notes": null
         },
         {
-          "offset": 26,
+          "offset": 36,
           "fieldName": "tpa_speed_adv_thrust",
           "ctype": "U16",
           "bytes": 2,
@@ -13393,7 +11437,7 @@
           "notes": null
         },
         {
-          "offset": 28,
+          "offset": 38,
           "fieldName": "tpa_speed_max_voltage",
           "ctype": "U16",
           "bytes": 2,
@@ -13405,7 +11449,7 @@
           "notes": null
         },
         {
-          "offset": 30,
+          "offset": 40,
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -13417,7 +11461,7 @@
           "notes": null
         },
         {
-          "offset": 32,
+          "offset": 42,
           "fieldName": "yaw_type",
           "ctype": "U8",
           "bytes": 1,
@@ -13429,19 +11473,7 @@
           "notes": null
         },
         {
-          "offset": 33,
-          "fieldName": "yaw_type",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": "UINT8",
-          "lookupTable": "TABLE_YAW_TYPE",
-          "notes": null
-        },
-        {
-          "offset": 34,
+          "offset": 43,
           "fieldName": "angle_pitch_offset",
           "ctype": "S16",
           "bytes": 2,
@@ -13453,7 +11485,7 @@
           "notes": null
         },
         {
-          "offset": 36,
+          "offset": 45,
           "fieldName": "speed_curve_vref",
           "ctype": "U8",
           "bytes": 1,
@@ -13465,7 +11497,7 @@
           "notes": null
         },
         {
-          "offset": 37,
+          "offset": 46,
           "fieldName": "speed_curve_power",
           "ctype": "U8",
           "bytes": 1,
@@ -13477,7 +11509,7 @@
           "notes": null
         },
         {
-          "offset": 38,
+          "offset": 47,
           "fieldName": "speed_curve_min",
           "ctype": "U16",
           "bytes": 2,
@@ -13489,7 +11521,7 @@
           "notes": null
         },
         {
-          "offset": 40,
+          "offset": 49,
           "fieldName": "speed_curve_max",
           "ctype": "U16",
           "bytes": 2,
@@ -13535,7 +11567,7 @@
         },
         {
           "offset": 2,
-          "fieldName": "(read)",
+          "fieldName": "rates[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -13543,10 +11575,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated ×3"
         },
         {
-          "offset": 3,
+          "offset": 5,
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -13558,7 +11590,7 @@
           "notes": "tpa_rate is moved to PID profile"
         },
         {
-          "offset": 4,
+          "offset": 6,
           "fieldName": "thrMid8",
           "ctype": "U8",
           "bytes": 1,
@@ -13570,7 +11602,7 @@
           "notes": null
         },
         {
-          "offset": 5,
+          "offset": 7,
           "fieldName": "thrExpo8",
           "ctype": "U8",
           "bytes": 1,
@@ -13582,7 +11614,7 @@
           "notes": null
         },
         {
-          "offset": 6,
+          "offset": 8,
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -13594,32 +11626,8 @@
           "notes": "tpa_breakpoint is moved to PID profile"
         },
         {
-          "offset": 8,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 9,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
           "offset": 10,
-          "fieldName": "(read)",
+          "fieldName": "rcExpo[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -13631,7 +11639,7 @@
         },
         {
           "offset": 11,
-          "fieldName": "(read)",
+          "fieldName": "rcRates[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -13643,6 +11651,30 @@
         },
         {
           "offset": 12,
+          "fieldName": "rcRates[]",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 13,
+          "fieldName": "rcExpo[]",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 14,
           "fieldName": "throttle_limit_type",
           "ctype": "U8",
           "bytes": 1,
@@ -13654,7 +11686,7 @@
           "notes": null
         },
         {
-          "offset": 13,
+          "offset": 15,
           "fieldName": "throttle_limit_percent",
           "ctype": "U8",
           "bytes": 1,
@@ -13666,20 +11698,8 @@
           "notes": null
         },
         {
-          "offset": 14,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
           "offset": 16,
-          "fieldName": "(read)",
+          "fieldName": "rate_limit[]",
           "ctype": "U16",
           "bytes": 2,
           "default": null,
@@ -13691,7 +11711,7 @@
         },
         {
           "offset": 18,
-          "fieldName": "(read)",
+          "fieldName": "rate_limit[]",
           "ctype": "U16",
           "bytes": 2,
           "default": null,
@@ -13703,6 +11723,18 @@
         },
         {
           "offset": 20,
+          "fieldName": "rate_limit[]",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 22,
           "fieldName": "rates_type",
           "ctype": "U8",
           "bytes": 1,
@@ -13714,7 +11746,7 @@
           "notes": null
         },
         {
-          "offset": 21,
+          "offset": 23,
           "fieldName": "thrHover8",
           "ctype": "U8",
           "bytes": 1,
@@ -13911,7 +11943,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × getMotorCount() (runtime count)"
         }
       ]
     },
@@ -14013,18 +12045,6 @@
         },
         {
           "offset": 3,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 4,
           "fieldName": "deadband3d_throttle",
           "ctype": "U16",
           "bytes": 2,
@@ -14090,18 +12110,6 @@
         },
         {
           "offset": 3,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 4,
           "fieldName": "gyro_enabled_bitmask",
           "ctype": "U8",
           "bytes": 1,
@@ -14113,7 +12121,7 @@
           "notes": null
         },
         {
-          "offset": 5,
+          "offset": 4,
           "fieldName": "(read)",
           "ctype": "S16",
           "bytes": 2,
@@ -14125,7 +12133,7 @@
           "notes": null
         },
         {
-          "offset": 7,
+          "offset": 6,
           "fieldName": "(read)",
           "ctype": "S16",
           "bytes": 2,
@@ -14137,45 +12145,9 @@
           "notes": null
         },
         {
-          "offset": 9,
+          "offset": 8,
           "fieldName": "(read)",
           "ctype": "S16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 11,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 13,
-          "fieldName": "(read)",
-          "ctype": "U16",
-          "bytes": 2,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 15,
-          "fieldName": "(read)",
-          "ctype": "U16",
           "bytes": 2,
           "default": null,
           "min": null,
@@ -14300,18 +12272,6 @@
         },
         {
           "offset": 8,
-          "fieldName": "(read)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": "deprecated/ignored"
-        },
-        {
-          "offset": 9,
           "fieldName": "kv",
           "ctype": "U16",
           "bytes": 2,
@@ -14749,10 +12709,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated × bandNameLength (runtime count); deprecated/ignored"
         },
         {
-          "offset": 3,
+          "offset": "?",
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -14764,7 +12724,7 @@
           "notes": "deprecated/ignored"
         },
         {
-          "offset": 4,
+          "offset": "?",
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -14776,7 +12736,7 @@
           "notes": "deprecated/ignored"
         },
         {
-          "offset": 5,
+          "offset": "?",
           "fieldName": "(read)",
           "ctype": "U8",
           "bytes": 1,
@@ -14788,7 +12748,7 @@
           "notes": "deprecated/ignored"
         },
         {
-          "offset": 6,
+          "offset": "?",
           "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
@@ -14797,7 +12757,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × channelCount (runtime count)"
         }
       ]
     },
@@ -14854,7 +12814,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated × powerLevelLabelLength (runtime count); deprecated/ignored"
         }
       ]
     },
@@ -14895,7 +12855,7 @@
           "max": null,
           "settingsType": "UINT8",
           "lookupTable": null,
-          "notes": "each element is aligned with MODE_RANGES by the permanentId"
+          "notes": "repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 3; each element is aligned with MODE_RANGES by the permanentId"
         },
         {
           "offset": 2,
@@ -14907,7 +12867,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 3"
         },
         {
           "offset": 3,
@@ -14919,7 +12879,7 @@
           "max": null,
           "settingsType": "UINT8",
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated ×20 (MAX_MODE_ACTIVATION_CONDITION_COUNT), stride 3"
         }
       ]
     },
@@ -15006,7 +12966,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SERVO_RULES (runtime count)"
         },
         {
           "offset": 1,
@@ -15018,7 +12978,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SERVO_RULES (runtime count)"
         },
         {
           "offset": 2,
@@ -15030,7 +12990,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SERVO_RULES (runtime count)"
         },
         {
           "offset": 3,
@@ -15042,7 +13002,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SERVO_RULES (runtime count)"
         },
         {
           "offset": 4,
@@ -15054,7 +13014,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SERVO_RULES (runtime count)"
         },
         {
           "offset": 5,
@@ -15066,7 +13026,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SERVO_RULES (runtime count)"
         },
         {
           "offset": 6,
@@ -15078,7 +13038,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SERVO_RULES (runtime count)"
         }
       ]
     },
@@ -15411,7 +13371,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "4 variables are here for general monitoring purpose"
+          "notes": "repeated ×8 (DEBUG16_VALUE_COUNT); 4 variables are here for general monitoring purpose"
         }
       ]
     },
@@ -15452,7 +13412,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × SERIAL_PORT_COUNT (runtime count)"
         },
         {
           "offset": 2,
@@ -15464,7 +13424,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/padding"
+          "notes": "repeated × SERIAL_PORT_COUNT (runtime count); deprecated/padding"
         }
       ]
     },
@@ -15798,7 +13758,7 @@
         },
         {
           "offset": 1,
-          "fieldName": "(value)",
+          "fieldName": "motorOutputReordering[]",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -15806,7 +13766,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × MAX_SUPPORTED_MOTORS (runtime count)"
         }
       ]
     },
@@ -15839,7 +13799,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated × MAX_SUPPORTED_MOTORS (runtime count); deprecated/ignored"
         }
       ]
     },
@@ -15896,7 +13856,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": "repeated × commandCount (runtime count); deprecated/ignored"
         }
       ]
     },
@@ -16187,90 +14147,6 @@
           "settingsType": null,
           "lookupTable": null,
           "notes": null
-        },
-        {
-          "offset": 7,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 8,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 9,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 10,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 11,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 12,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
-        },
-        {
-          "offset": 13,
-          "fieldName": "(value)",
-          "ctype": "U8",
-          "bytes": 1,
-          "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
-          "lookupTable": null,
-          "notes": null
         }
       ]
     },
@@ -16344,7 +14220,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "repeated × GYRO_COUNT (runtime count)"
         }
       ]
     },

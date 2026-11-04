@@ -137,6 +137,11 @@ function ctypeBytes(ctype) {
 function extractFieldName(expr) {
   if (!expr) return null;
   expr = expr.trim();
+  // Array element inside a loop, e.g. `profile->spa_center[i]` → `spa_center[]`
+  const indexed = expr.match(/[->.)(]+(\w+)\s*\[\s*\w+\s*\]$/);
+  if (indexed) {
+    return `${indexed[1]}[]`;
+  }
   // Match: ...->fieldName or ...).fieldName at end
   const m = expr.match(/[->.)(]+(\w+)\s*$/);
   if (m) return m[1];
@@ -476,6 +481,56 @@ console.log(`  MSP v1: ${mspV1Codes.length}, v2 common: ${mspV2CommonCodes.lengt
 // Parse msp.c to extract per-command payload fields
 // ---------------------------------------------------------------------------
 
+// Numeric macros usable as fixed loop counts. A macro qualifies only if src/main defines it
+// exactly once, as a plain integer, and not behind `#ifndef NAME` (targets may override those).
+// Anything else (target-dependent, enum terminators, runtime values) is treated as unresolved.
+const fixedCountMacros = (() => {
+  const defs = {};
+  for (const file of [...cFiles, ...hFiles]) {
+    const fileLines = (readFile(file) ?? '').split('\n');
+    let prev = '';
+    for (const l of fileLines) {
+      const m = l.match(/^\s*#\s*define\s+(\w+)\s+(\S.*?)\s*(?:\/\/.*|\/\*.*)?$/);
+      if (m) {
+        const guarded = new RegExp(String.raw`^\s*#\s*ifndef\s+${m[1]}\b`).test(prev);
+        (defs[m[1]] ??= []).push(guarded || !/^\d+$/.test(m[2]) ? null : Number.parseInt(m[2], 10));
+      }
+      if (l.trim()) {
+        prev = l;
+      }
+    }
+  }
+  const result = {};
+  for (const [name, values] of Object.entries(defs)) {
+    if (values.length === 1 && values[0] !== null) {
+      result[name] = values[0];
+    }
+  }
+  return result;
+})();
+
+// Resolve the iteration count of `for (<type> i = 0; i < BOUND; i++)`; null if not a fixed count.
+function resolveLoopCount(forLine) {
+  const m = forLine.match(/for\s*\(\s*(?:\w+\s+)?(\w+)\s*=\s*0\s*;\s*\1\s*<\s*([^;]+?)\s*;/);
+  if (!m) {
+    return { count: null, bound: null };
+  }
+  const bound = m[2];
+  if (/^\d+$/.test(bound)) {
+    return { count: Number.parseInt(bound, 10), bound };
+  }
+  return { count: fixedCountMacros[bound] ?? null, bound };
+}
+
+// Count net `{` minus `}` on a line, ignoring string/char literals and comments.
+function braceDelta(line) {
+  const code = line
+    .replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, '')
+    .replace(/\/\/.*$/, '')
+    .replace(/\/\*.*?\*\//g, '');
+  return (code.match(/\{/g)?.length ?? 0) - (code.match(/\}/g)?.length ?? 0);
+}
+
 console.log('Parsing msp.c for payload fields...');
 const mspCPath = path.join(firmwarePath, 'src/main/msp/msp.c');
 const mspCContent = readFile(mspCPath);
@@ -519,10 +574,84 @@ if (mspCContent) {
     let currentCommand = null;
     let byteOffset = 0;
     let offsetUnknown = false; // true after a variable-length field; subsequent offsets are unreliable
+    let depth = 0; // brace depth, used to find the end of `for` loop bodies
+    let loops = []; // open `for` loops in the current case: { bodyDepth, count, bound, startOffset, firstField }
+    // `if` blocks inside loops. A block that writes fields and ends in `continue;` is an early-out
+    // alternative to the rest of the iteration (e.g. MSP_MOTOR writes 0 for disabled motors), so its
+    // fields describe the same bytes and are dropped.
+    let ifBlocks = []; // { bodyDepth, startOffset, firstField }
+    let lastStatement = '';
+    // Preprocessor conditionals. Only the first #if/#elif/#else branch that yields fields for a command
+    // is counted, since mutually exclusive branches describe the same payload bytes.
+    const ppStack = []; // { inAlt, cmds: commands with fields so far, taken: commands covered by earlier branches }
+
+    const addField = (cmd, field) => {
+      cmd.fields.push(field);
+      for (const frame of ppStack) {
+        frame.cmds.add(currentCommand);
+      }
+    };
+
+    const closeLoop = (cmd, loop) => {
+      const body = cmd.fields.slice(loop.firstField);
+      if (body.length === 0) {
+        return;
+      }
+      const bodyBytes = byteOffset - loop.startOffset;
+      let label;
+      if (loop.count === null) {
+        label = `repeated × ${loop.bound ?? 'n'} (runtime count)`;
+      } else {
+        label = loop.bound === String(loop.count) ? `repeated ×${loop.count}` : `repeated ×${loop.count} (${loop.bound})`;
+        if (body.length > 1) {
+          label += `, stride ${bodyBytes}`;
+        }
+      }
+      for (const f of body) {
+        f.notes = f.notes ? `${label}; ${f.notes}` : label;
+      }
+      if (loop.count === null) {
+        offsetUnknown = true;
+      } else if (!offsetUnknown) {
+        byteOffset = loop.startOffset + loop.count * bodyBytes;
+      }
+    };
 
     for (let i = startLine; i < endLine && i < lines.length; i++) {
       const line = lines[i];
       const trimmed = line.trim();
+
+      // Preprocessor conditionals
+      const pp = trimmed.match(/^#\s*(if|ifdef|ifndef|elif|else|endif)\b/);
+      if (pp) {
+        if (pp[1].startsWith('if')) {
+          ppStack.push({ inAlt: false, cmds: new Set(), taken: new Set() });
+        } else if (pp[1] === 'endif') {
+          ppStack.pop();
+        } else if (ppStack.length > 0) {
+          const frame = ppStack.at(-1);
+          frame.taken = new Set(frame.cmds);
+          frame.inAlt = true;
+        }
+        continue;
+      }
+
+      // Track brace depth; close any `for` loops whose body ended on this line
+      depth += braceDelta(line);
+      while (currentCommand && ifBlocks.length > 0 && depth < ifBlocks.at(-1).bodyDepth) {
+        const block = ifBlocks.pop();
+        const cmd = payloadsMap[currentCommand];
+        if (lastStatement === 'continue;' && cmd.fields.length > block.firstField) {
+          cmd.fields.splice(block.firstField);
+          byteOffset = block.startOffset;
+        }
+      }
+      while (currentCommand && loops.length > 0 && depth < loops.at(-1).bodyDepth) {
+        closeLoop(payloadsMap[currentCommand], loops.pop());
+      }
+      if (trimmed && !/^[{}]+$/.test(trimmed)) {
+        lastStatement = trimmed;
+      }
 
       // Detect new case label
       const caseMatch = trimmed.match(/^case\s+(MSP2?_\w+)\s*:/);
@@ -530,6 +659,8 @@ if (mspCContent) {
         currentCommand = caseMatch[1];
         byteOffset = 0;
         offsetUnknown = false;
+        loops = [];
+        ifBlocks = [];
         if (!payloadsMap[currentCommand]) {
           payloadsMap[currentCommand] = { direction, fields: [] };
         }
@@ -546,6 +677,8 @@ if (mspCContent) {
           currentCommand = null;
           byteOffset = 0;
           offsetUnknown = false;
+          loops = [];
+          ifBlocks = [];
           continue;
         }
       }
@@ -553,6 +686,22 @@ if (mspCContent) {
       if (!currentCommand) continue;
 
       const cmd = payloadsMap[currentCommand];
+
+      // Open a `for` loop; its body sits at the depth reached after this line's `{`
+      if (/^for\s*\(/.test(trimmed)) {
+        const { count, bound } = resolveLoopCount(trimmed);
+        loops.push({ bodyDepth: depth, count, bound, startOffset: byteOffset, firstField: cmd.fields.length });
+        continue;
+      }
+      if (loops.length > 0 && /^if\s*\(.*\{$/.test(trimmed)) {
+        ifBlocks.push({ bodyDepth: depth, startOffset: byteOffset, firstField: cmd.fields.length });
+        continue;
+      }
+
+      // Skip a later #else/#elif branch when an earlier branch already described this command's bytes
+      if (ppStack.some((frame) => frame.inAlt && frame.taken.has(currentCommand))) {
+        continue;
+      }
 
       if (direction === 'out') {
         // Match: sbufWriteU8(dst, expr) or sbufWriteU16LE(dst, expr) etc.
@@ -564,17 +713,17 @@ if (mspCContent) {
           const fieldName = extractFieldName(expr);
           const comment = extractComment(line);
           const notes = comment || (expr === '0' ? 'deprecated/padding' : null);
-          cmd.fields.push({ fieldName: fieldName || '(value)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr, notes });
+          addField(cmd, { fieldName: fieldName || '(value)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr, notes });
           byteOffset += bytes;
         }
         // Match sbufWriteData/sbufWriteString — variable length; mark subsequent offsets unknown
         else if (line.match(/sbufWriteData\s*\(\s*dst/)) {
           const comment = extractComment(line);
-          cmd.fields.push({ fieldName: '(variable data)', ctype: 'bytes', bytes: null, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes: comment || 'variable-length data' });
+          addField(cmd, { fieldName: '(variable data)', ctype: 'bytes', bytes: null, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes: comment || 'variable-length data' });
           offsetUnknown = true;
         } else if (line.match(/sbufWriteString\s*\(\s*dst|sbufWritePString\s*\(\s*dst/)) {
           const comment = extractComment(line);
-          cmd.fields.push({ fieldName: '(string)', ctype: 'str', bytes: null, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes: comment || 'string data' });
+          addField(cmd, { fieldName: '(string)', ctype: 'str', bytes: null, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes: comment || 'string data' });
           offsetUnknown = true;
         }
       } else {
@@ -586,12 +735,12 @@ if (mspCContent) {
           const ctype = typedRead ? typedRead[1] : 'U8';
           const bytes = ctypeBytes(ctype);
           // Try to extract lvalue field name
-          const assignMatch = line.match(/(\w+(?:\(\)|))\s*->\s*(\w+)\s*=\s*sbufRead/);
-          const fieldName = assignMatch ? assignMatch[2] : null;
+          const assignMatch = line.match(/(\w+(?:\(\)|))\s*->\s*(\w+)(\s*\[\s*\w+\s*\])?\s*=\s*sbufRead/);
+          const fieldName = assignMatch ? `${assignMatch[2]}${assignMatch[3] ? '[]' : ''}` : null;
           const comment = extractComment(line);
           const expr = trimmed.includes('sbufReadU8(src)') && !assignMatch ? '(ignored)' : null;
           const notes = comment || (expr === '(ignored)' ? 'deprecated/ignored' : null);
-          cmd.fields.push({ fieldName: fieldName || '(read)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes });
+          addField(cmd, { fieldName: fieldName || '(read)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes });
           byteOffset += bytes;
         }
       }
