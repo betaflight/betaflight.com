@@ -32,3 +32,5 @@ nbproject/
 .project
 .settings/
 test-results-junit/
+# Generated standalone diagrams, committed as-is
+static/diagrams/
