@@ -205,34 +205,145 @@ console.log(`  Scanning ${cFiles.length} .c files...`);
 
 const pgRegistrations = {};
 
-/**
- * Resolve a PG version argument to a number. Numeric literals parse directly; a macro name is
- * followed through `#define NAME VALUE` lines in the same file. When a macro has several
- * (conditional) definitions, the first one that resolves to a plain number wins.
- */
-function resolveVersion(token, content, depth = 0) {
-  if (/^\d+$/.test(token)) {
-    return Number.parseInt(token, 10);
-  }
-  if (depth > 5 || !/^[A-Za-z_]\w*$/.test(token)) {
-    return Number.NaN;
-  }
-  const defRe = new RegExp(String.raw`^#define\s+${token}\s+(.+?)\s*(?://.*)?$`, 'gm');
-  let d;
-  while ((d = defRe.exec(content)) !== null) {
-    const v = resolveVersion(d[1].trim(), content, depth + 1);
-    if (!Number.isNaN(v)) {
+/** Evaluate a C integer constant expression (literals, parentheses, + - * / << >> & ^ | ~). Throws on anything else. */
+function evalIntExpr(text) {
+  const tokens = text.match(/0[xX][\da-fA-F]+|\d+|<<|>>|[-+*/&|^~()]|\S/g) ?? [];
+  let pos = 0;
+  const binary = (next, ops) => () => {
+    let v = next();
+    while (ops[tokens[pos]]) {
+      const op = tokens[pos++];
+      v = ops[op](v, next());
+    }
+    return v;
+  };
+  const primary = () => {
+    const t = tokens[pos++];
+    if (t === '(') {
+      const v = orExpr();
+      if (tokens[pos++] !== ')') {
+        throw new Error('unbalanced parentheses');
+      }
       return v;
     }
+    if (t === '-') {
+      return -primary();
+    }
+    if (t === '~') {
+      return ~primary();
+    }
+    if (/^0[xX]/.test(t ?? '')) {
+      return Number.parseInt(t, 16);
+    }
+    if (/^\d+$/.test(t ?? '')) {
+      return Number.parseInt(t, 10);
+    }
+    throw new Error(`unexpected token ${t}`);
+  };
+  const mulExpr = binary(primary, { '*': (a, b) => a * b, '/': (a, b) => Math.trunc(a / b) });
+  const addExpr = binary(mulExpr, { '+': (a, b) => a + b, '-': (a, b) => a - b });
+  const shiftExpr = binary(addExpr, { '<<': (a, b) => a << b, '>>': (a, b) => a >> b });
+  const andExpr = binary(shiftExpr, { '&': (a, b) => a & b });
+  const xorExpr = binary(andExpr, { '^': (a, b) => a ^ b });
+  const orExpr = binary(xorExpr, { '|': (a, b) => a | b });
+  const value = orExpr();
+  if (pos !== tokens.length) {
+    throw new Error('trailing tokens');
   }
-  return Number.NaN;
+  return value;
 }
+
+/**
+ * Collect `#define NAME VALUE` lines in a file together with the preprocessor condition they sit
+ * under (e.g. `USE_WING`, `!USE_WING`), so conditional definitions can all be reported.
+ */
+function collectDefines(content) {
+  const defines = {};
+  const conds = [];
+  const negate = (c) => (c.startsWith('!') ? c.slice(1) : `!${c}`);
+  for (const line of content.split('\n')) {
+    const pp = line.trim().match(/^#\s*(ifdef|ifndef|if|elif|else|endif|define)\b\s*(.*)$/);
+    if (!pp) {
+      continue;
+    }
+    const [, directive, rest] = pp;
+    const arg = stripLineComment(rest).trim();
+    if (directive === 'ifdef' || directive === 'if') {
+      conds.push(arg.replace(/^defined\s*\(\s*(\w+)\s*\)$/, '$1'));
+    } else if (directive === 'ifndef') {
+      conds.push(`!${arg}`);
+    } else if (directive === 'elif') {
+      conds[conds.length - 1] = arg;
+    } else if (directive === 'else' && conds.length > 0) {
+      conds[conds.length - 1] = negate(conds.at(-1));
+    } else if (directive === 'endif') {
+      conds.pop();
+    } else if (directive === 'define') {
+      const def = arg.match(/^(\w+)\s+(\S.*)$/);
+      if (def) {
+        defines[def[1]] ??= [];
+        defines[def[1]].push({ value: def[2], condition: conds.length > 0 ? conds.join(' && ') : null });
+      }
+    }
+  }
+  return defines;
+}
+
+/**
+ * Resolve a PG version argument to every value it can take: [{ value, condition }]. Literals and
+ * integer expressions evaluate directly; macros are followed through all their (conditional)
+ * `#define`s in the same file. Macros inside an expression must have a single definition.
+ */
+function resolveVersionVariants(token, defines, depth = 0) {
+  const expr = token.trim();
+  if (depth > 5) {
+    return [];
+  }
+  if (/^[A-Za-z_]\w*$/.test(expr)) {
+    return (defines[expr] ?? []).flatMap((d) =>
+      resolveVersionVariants(d.value, defines, depth + 1).map((v) => ({
+        value: v.value,
+        condition: [d.condition, v.condition].filter(Boolean).join(' && ') || null,
+      })),
+    );
+  }
+  try {
+    const substituted = expr.replace(/\b[A-Za-z_]\w*/g, (id) => {
+      const vs = resolveVersionVariants(id, defines, depth + 1);
+      if (vs.length !== 1) {
+        throw new Error(`ambiguous ${id}`);
+      }
+      return String(vs[0].value);
+    });
+    return [{ value: evalIntExpr(substituted), condition: null }];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Pick the reported PG version from its variants. Distinct conditional values are kept as
+ * `variants`; the primary is the build without the optional feature (a negated condition).
+ */
+function summarizeVersion(variants) {
+  const distinct = variants.filter((v, i) => variants.findIndex((w) => w.value === v.value) === i);
+  if (distinct.length === 0) {
+    return { version: 0, variants: null };
+  }
+  if (distinct.length === 1) {
+    return { version: distinct[0].value, variants: null };
+  }
+  const primary = distinct.find((v) => v.condition?.startsWith('!')) ?? distinct[0];
+  return { version: primary.value, variants: distinct };
+}
+
 const macroRe = /(PG_REGISTER(?:_ARRAY)?(?:_WITH_RESET_(?:FN|TEMPLATE))?)\s*\(([^)]*)\)\s*;/g;
 
 for (const file of cFiles) {
   const content = readFile(file);
   if (!content) continue;
   macroRe.lastIndex = 0;
+  const defines = collectDefines(content);
   let match;
   while ((match = macroRe.exec(content)) !== null) {
     const macroName = match[1];
@@ -245,18 +356,19 @@ for (const file of cFiles) {
       if (rawArgs.length < 5) continue;
       structType = rawArgs[0];
       pgConstant = rawArgs[3];
-      version = resolveVersion(rawArgs[4], content);
+      version = summarizeVersion(resolveVersionVariants(rawArgs[4], defines));
     } else {
       if (rawArgs.length < 4) continue;
       structType = rawArgs[0];
       pgConstant = rawArgs[2];
-      version = resolveVersion(rawArgs[3], content);
+      version = summarizeVersion(resolveVersionVariants(rawArgs[3], defines));
     }
     if (!pgConstant || !pgConstant.startsWith('PG_')) continue;
     if (!pgRegistrations[pgConstant]) {
       pgRegistrations[pgConstant] = {
         structType,
-        version: isNaN(version) ? 0 : version,
+        version: version.version,
+        versionVariants: version.variants,
         sourceFile: path.relative(firmwarePath, file),
       };
     }
@@ -278,6 +390,8 @@ const pgGroups = Object.entries(pgIdMap)
       name,
       structType: reg ? reg.structType : null,
       pgVersion: reg ? reg.version : null,
+      // Only present when the version differs between builds, e.g. [{ value: 14, condition: 'USE_WING' }, ...]
+      pgVersionVariants: reg?.versionVariants ?? undefined,
       sourceFile: reg ? reg.sourceFile : null,
     };
   });
@@ -892,6 +1006,18 @@ function buildTable(headers, rawRows) {
 
 const directionLabel = { out: 'from FC', in: 'to FC', both: 'both', system: 'system', unknown: 'unknown' };
 
+/** PG version cell; build-dependent versions read e.g. `13 (14 with USE_WING)`. */
+function formatPgVersion(g) {
+  if (g.pgVersion === null) {
+    return '—';
+  }
+  const others = (g.pgVersionVariants ?? []).filter((v) => v.value !== g.pgVersion);
+  if (others.length === 0) {
+    return String(g.pgVersion);
+  }
+  return `${g.pgVersion} (${others.map((v) => `${v.value} with ${v.condition}`).join(', ')})`;
+}
+
 // Summary table
 const mspSummaryTable = buildTable(
   ['Command', 'Msg Id', 'Direction', 'Fields', 'Notes'],
@@ -901,7 +1027,7 @@ const mspSummaryTable = buildTable(
 // PG table
 const pgTable = buildTable(
   ['ID', 'Name', 'Struct Type', 'PG Version', 'Source File'],
-  pgGroups.map((g) => [g.id, g.name, g.structType ?? '—', g.pgVersion ?? '—', g.sourceFile ?? '—']),
+  pgGroups.map((g) => [g.id, g.name, g.structType ?? '—', formatPgVersion(g), g.sourceFile ?? '—']),
 );
 
 // Per-command detail sections

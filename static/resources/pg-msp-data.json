@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T19:08:42.770Z",
+  "generated": "2026-11-04T19:20:32.480Z",
   "firmwareCommit": "897cf61e7bdf4278d03ced50b8cc8075d79c400a",
   "source": "scripts/extract-pg-msp.js",
   "pgGroups": [
@@ -407,6 +407,16 @@
       "name": "PG_AUTOPILOT",
       "structType": "autopilotConfig_t",
       "pgVersion": 13,
+      "pgVersionVariants": [
+        {
+          "value": 14,
+          "condition": "USE_WING"
+        },
+        {
+          "value": 13,
+          "condition": "!USE_WING"
+        }
+      ],
       "sourceFile": "src/main/pg/autopilot.c"
     },
     {
