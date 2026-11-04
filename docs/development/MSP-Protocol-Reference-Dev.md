@@ -401,33 +401,33 @@ _Set board alignment configuration_
 
 _Get current meter configuration_
 
-| Offset | Field   | Type | Bytes | Default                      | Min                           | Max                          | Notes                                                                |
-| ------ | ------- | ---- | ----- | ---------------------------- | ----------------------------- | ---------------------------- | -------------------------------------------------------------------- |
-| 0      | (value) | U8   | 1     |                              |                               |                              |                                                                      |
-| 1      | (value) | U8   | 1     |                              |                               |                              |                                                                      |
-| 2      | (value) | U8   | 1     |                              |                               |                              | the id of the meter                                                  |
-| 3      | (value) | U8   | 1     |                              |                               |                              | indicate the type of sensor that the next part of the payload is for |
-| 4      | scale   | U16  | 2     | DEFAULT_CURRENT_METER_SCALE  | -CURRENT_METER_SCALE_MAX      | CURRENT_METER_SCALE_MAX      |                                                                      |
-| 6      | offset  | U16  | 2     | DEFAULT_CURRENT_METER_OFFSET | -CURRENT_METER_ADC_OFFSET_MAX | CURRENT_METER_ADC_OFFSET_MAX |                                                                      |
-| 8      | (value) | U8   | 1     |                              |                               |                              |                                                                      |
-| 9      | (value) | U8   | 1     |                              |                               |                              | the id of the meter                                                  |
-| 10     | (value) | U8   | 1     |                              |                               |                              | indicate the type of sensor that the next part of the payload is for |
-| 11     | scale   | U16  | 2     | DEFAULT_CURRENT_METER_SCALE  | -CURRENT_METER_SCALE_MAX      | CURRENT_METER_SCALE_MAX      |                                                                      |
-| 13     | offset  | U16  | 2     | DEFAULT_CURRENT_METER_OFFSET | -CURRENT_METER_ADC_OFFSET_MAX | CURRENT_METER_ADC_OFFSET_MAX |                                                                      |
+| Offset | Field   | Type | Bytes | Default                      | Min                           | Max                              | Notes                                                                |
+| ------ | ------- | ---- | ----- | ---------------------------- | ----------------------------- | -------------------------------- | -------------------------------------------------------------------- |
+| 0      | (value) | U8   | 1     |                              |                               |                                  |                                                                      |
+| 1      | (value) | U8   | 1     |                              |                               |                                  |                                                                      |
+| 2      | (value) | U8   | 1     |                              |                               |                                  | the id of the meter                                                  |
+| 3      | (value) | U8   | 1     |                              |                               |                                  | indicate the type of sensor that the next part of the payload is for |
+| 4      | scale   | U16  | 2     | DEFAULT_CURRENT_METER_SCALE  | -CURRENT_METER_SCALE_MAX      | CURRENT_METER_SCALE_MAX          |                                                                      |
+| 6      | offset  | U16  | 2     | DEFAULT_CURRENT_METER_OFFSET | -CURRENT_METER_ADC_OFFSET_MAX | CURRENT_METER_ADC_OFFSET_MAX     |                                                                      |
+| 8      | (value) | U8   | 1     |                              |                               |                                  |                                                                      |
+| 9      | (value) | U8   | 1     |                              |                               |                                  | the id of the meter                                                  |
+| 10     | (value) | U8   | 1     |                              |                               |                                  | indicate the type of sensor that the next part of the payload is for |
+| 11     | scale   | U16  | 2     |                              | -CURRENT_METER_SCALE_MAX      | CURRENT_METER_SCALE_MAX          |                                                                      |
+| 13     | offset  | U16  | 2     |                              | 0                             | CURRENT_METER_VIRTUAL_OFFSET_MAX |                                                                      |
 
 ### MSP_SET_CURRENT_METER_CONFIG — 41 — to FC
 
 _Set current meter configuration_
 
-| Offset | Field  | Type | Bytes | Default                      | Min                           | Max                          | Notes              |
-| ------ | ------ | ---- | ----- | ---------------------------- | ----------------------------- | ---------------------------- | ------------------ |
-| 0      | (read) | U8   | 1     |                              |                               |                              | deprecated/ignored |
-| 1      | scale  | S16  | 2     | DEFAULT_CURRENT_METER_SCALE  | -CURRENT_METER_SCALE_MAX      | CURRENT_METER_SCALE_MAX      |                    |
-| 3      | offset | S16  | 2     | DEFAULT_CURRENT_METER_OFFSET | -CURRENT_METER_ADC_OFFSET_MAX | CURRENT_METER_ADC_OFFSET_MAX |                    |
-| 5      | scale  | S16  | 2     | DEFAULT_CURRENT_METER_SCALE  | -CURRENT_METER_SCALE_MAX      | CURRENT_METER_SCALE_MAX      |                    |
-| 7      | offset | U16  | 2     | DEFAULT_CURRENT_METER_OFFSET | -CURRENT_METER_ADC_OFFSET_MAX | CURRENT_METER_ADC_OFFSET_MAX |                    |
-| 9      | (read) | U16  | 2     |                              |                               |                              |                    |
-| 11     | (read) | U16  | 2     |                              |                               |                              |                    |
+| Offset | Field  | Type | Bytes | Default                      | Min                           | Max                              | Notes              |
+| ------ | ------ | ---- | ----- | ---------------------------- | ----------------------------- | -------------------------------- | ------------------ |
+| 0      | (read) | U8   | 1     |                              |                               |                                  | deprecated/ignored |
+| 1      | scale  | S16  | 2     | DEFAULT_CURRENT_METER_SCALE  | -CURRENT_METER_SCALE_MAX      | CURRENT_METER_SCALE_MAX          |                    |
+| 3      | offset | S16  | 2     | DEFAULT_CURRENT_METER_OFFSET | -CURRENT_METER_ADC_OFFSET_MAX | CURRENT_METER_ADC_OFFSET_MAX     |                    |
+| 5      | scale  | S16  | 2     |                              | -CURRENT_METER_SCALE_MAX      | CURRENT_METER_SCALE_MAX          |                    |
+| 7      | offset | U16  | 2     |                              | 0                             | CURRENT_METER_VIRTUAL_OFFSET_MAX |                    |
+| 9      | (read) | U16  | 2     |                              |                               |                                  |                    |
+| 11     | (read) | U16  | 2     |                              |                               |                                  |                    |
 
 ### MSP_MIXER_CONFIG — 42 — from FC
 
@@ -624,15 +624,15 @@ _Get voltage meter configuration_
 
 _Set voltage meter configuration_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 1      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 2      | (read) | U8   | 1     |         |     |     |                    |
-| 3      | (read) | U8   | 1     |         |     |     |                    |
-| 4      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 5      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 6      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
+| Offset | Field                | Type | Bytes | Default | Min                 | Max                 | Notes              |
+| ------ | -------------------- | ---- | ----- | ------- | ------------------- | ------------------- | ------------------ |
+| 0      | (read)               | U8   | 1     |         |                     |                     | deprecated/ignored |
+| 1      | vbatscale            | U8   | 1     |         | VBAT_SCALE_MIN      | VBAT_SCALE_MAX      |                    |
+| 2      | vbatresdivval        | U8   | 1     |         | VBAT_DIVIDER_MIN    | VBAT_DIVIDER_MAX    |                    |
+| 3      | vbatresdivmultiplier | U8   | 1     |         | VBAT_MULTIPLIER_MIN | VBAT_MULTIPLIER_MAX |                    |
+| 4      | (read)               | U8   | 1     |         |                     |                     | deprecated/ignored |
+| 5      | (read)               | U8   | 1     |         |                     |                     | deprecated/ignored |
+| 6      | (read)               | U8   | 1     |         |                     |                     | deprecated/ignored |
 
 ### MSP_SONAR_ALTITUDE — 58 — from FC
 
@@ -728,10 +728,10 @@ _Set failsafe settings_
 
 _Get RX failsafe settings_
 
-| Offset | Field   | Type | Bytes | Default              | Min | Max | Notes                                                                               |
-| ------ | ------- | ---- | ----- | -------------------- | --- | --- | ----------------------------------------------------------------------------------- |
-| 0      | mode    | U8   | 1     | BLACKBOX_MODE_NORMAL |     |     | lookup: TABLE_BLACKBOX_MODE; repeated × rxRuntimeState.channelCount (runtime count) |
-| 1      | (value) | U16  | 2     |                      |     |     | repeated × rxRuntimeState.channelCount (runtime count)                              |
+| Offset | Field   | Type | Bytes | Default | Min | Max | Notes                                                  |
+| ------ | ------- | ---- | ----- | ------- | --- | --- | ------------------------------------------------------ |
+| 0      | mode    | U8   | 1     |         |     |     | repeated × rxRuntimeState.channelCount (runtime count) |
+| 1      | (value) | U16  | 2     |         |     |     | repeated × rxRuntimeState.channelCount (runtime count) |
 
 ### MSP_SET_RXFAIL_CONFIG — 78 — to FC
 
@@ -740,56 +740,56 @@ _Set RX failsafe settings_
 | Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
 | ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
 | 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 1      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
+| 1      | mode   | U8   | 1     |         |     |     |                    |
 | 2      | (read) | U16  | 2     |         |     |     |                    |
 
 ### MSP_BLACKBOX_CONFIG — 80 — from FC
 
 _Get blackbox settings_
 
-| Offset | Field                | Type | Bytes | Default                 | Min | Max          | Notes                              |
-| ------ | -------------------- | ---- | ----- | ----------------------- | --- | ------------ | ---------------------------------- |
-| 0      | (value)              | U8   | 1     |                         |     |              | Blackbox supported                 |
-| 1      | device               | U8   | 1     | DEFAULT_BLACKBOX_DEVICE | 0   | ADCDEV_COUNT |                                    |
-| 2      | (value)              | U8   | 1     |                         |     |              | Rate numerator, not used anymore   |
-| 3      | (value)              | U8   | 1     |                         |     |              |                                    |
-| 4      | (value)              | U16  | 2     |                         |     |              |                                    |
-| 6      | sample_rate          | U8   | 1     | BLACKBOX_RATE_QUARTER   |     |              | lookup: TABLE_BLACKBOX_SAMPLE_RATE |
-| 7      | fields_disabled_mask | U32  | 4     | 0                       |     |              |                                    |
+| Offset | Field                | Type | Bytes | Default                 | Min | Max | Notes                              |
+| ------ | -------------------- | ---- | ----- | ----------------------- | --- | --- | ---------------------------------- |
+| 0      | (value)              | U8   | 1     |                         |     |     | Blackbox supported                 |
+| 1      | device               | U8   | 1     | DEFAULT_BLACKBOX_DEVICE |     |     | lookup: TABLE_BLACKBOX_DEVICE      |
+| 2      | (value)              | U8   | 1     |                         |     |     | Rate numerator, not used anymore   |
+| 3      | (value)              | U8   | 1     |                         |     |     |                                    |
+| 4      | (value)              | U16  | 2     |                         |     |     |                                    |
+| 6      | sample_rate          | U8   | 1     | BLACKBOX_RATE_QUARTER   |     |     | lookup: TABLE_BLACKBOX_SAMPLE_RATE |
+| 7      | fields_disabled_mask | U32  | 4     | 0                       |     |     |                                    |
 
 ### MSP_SET_BLACKBOX_CONFIG — 81 — to FC
 
 _Set blackbox settings_
 
-| Offset | Field                | Type | Bytes | Default                 | Min | Max          | Notes              |
-| ------ | -------------------- | ---- | ----- | ----------------------- | --- | ------------ | ------------------ |
-| 0      | device               | U8   | 1     | DEFAULT_BLACKBOX_DEVICE | 0   | ADCDEV_COUNT |                    |
-| 1      | (read)               | U8   | 1     |                         |     |              | was rate_num       |
-| 2      | (read)               | U8   | 1     |                         |     |              | was rate_denom     |
-| 3      | (read)               | U16  | 2     |                         |     |              |                    |
-| 5      | (read)               | U8   | 1     |                         |     |              | deprecated/ignored |
-| 6      | fields_disabled_mask | U32  | 4     | 0                       |     |              |                    |
+| Offset | Field                | Type | Bytes | Default                 | Min | Max | Notes                         |
+| ------ | -------------------- | ---- | ----- | ----------------------- | --- | --- | ----------------------------- |
+| 0      | device               | U8   | 1     | DEFAULT_BLACKBOX_DEVICE |     |     | lookup: TABLE_BLACKBOX_DEVICE |
+| 1      | (read)               | U8   | 1     |                         |     |     | was rate_num                  |
+| 2      | (read)               | U8   | 1     |                         |     |     | was rate_denom                |
+| 3      | (read)               | U16  | 2     |                         |     |     |                               |
+| 5      | (read)               | U8   | 1     |                         |     |     | deprecated/ignored            |
+| 6      | fields_disabled_mask | U32  | 4     | 0                       |     |     |                               |
 
 ### MSP_TRANSPONDER_CONFIG — 82 — from FC
 
 _Get transponder settings_
 
-| Offset | Field      | Type | Bytes | Default     | Min | Max | Notes                                                    |
-| ------ | ---------- | ---- | ----- | ----------- | --- | --- | -------------------------------------------------------- |
-| 0      | (value)    | U8   | 1     |             |     |     |                                                          |
-| 1      | provider   | U8   | 1     | GPS_VIRTUAL |     |     | lookup: TABLE_GPS_PROVIDER; repeated × n (runtime count) |
-| 2      | dataLength | U8   | 1     |             |     |     | repeated × n (runtime count)                             |
-| ?      | (value)    | U8   | 1     |             |     |     |                                                          |
-| ?      | data[]     | U8   | 1     |             |     |     | repeated × n (runtime count)                             |
+| Offset | Field      | Type | Bytes | Default | Min | Max | Notes                                              |
+| ------ | ---------- | ---- | ----- | ------- | --- | --- | -------------------------------------------------- |
+| 0      | (value)    | U8   | 1     |         |     |     |                                                    |
+| 1      | provider   | U8   | 1     |         |     |     | repeated ×3 (TRANSPONDER_PROVIDER_COUNT), stride 2 |
+| 2      | dataLength | U8   | 1     |         |     |     | repeated ×3 (TRANSPONDER_PROVIDER_COUNT), stride 2 |
+| 7      | (value)    | U8   | 1     |         |     |     |                                                    |
+| 8      | data[]     | U8   | 1     |         |     |     | repeated × providerDataLength (runtime count)      |
 
 ### MSP_SET_TRANSPONDER_CONFIG — 83 — to FC
 
 _Set transponder settings_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                        |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ---------------------------- |
-| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored           |
-| 1      | data[] | U8   | 1     |         |     |     | repeated × n (runtime count) |
+| Offset | Field  | Type | Bytes | Default | Min | Max | Notes                                          |
+| ------ | ------ | ---- | ----- | ------- | --- | --- | ---------------------------------------------- |
+| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored                             |
+| 1      | data[] | U8   | 1     |         |     |     | repeated × transponderDataSize (runtime count) |
 
 ### MSP_OSD_CONFIG — 84 — from FC
 
@@ -1372,7 +1372,7 @@ _Deadbands for yaw alt pitch roll_
 | ------ | ------------------- | ---- | ----- | ------- | ----------------------- | ----------------------- | ----- |
 | 0      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |       |
 | 1      | yaw_deadband        | U8   | 1     | 0       | 0                       | RC_YAW_DEADBAND_MAX     |       |
-| 2      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |       |
+| 2      | deadband            | U8   | 1     | 5       | 0                       | POSHOLD_DEADBAND_MAX    |       |
 | 3      | deadband3d_throttle | U16  | 2     | 50      | DEADBAND3D_THROTTLE_MIN | DEADBAND3D_THROTTLE_MAX |       |
 
 ### MSP_SENSOR_ALIGNMENT — 126 — from FC
@@ -1818,15 +1818,15 @@ _Select setting number (0-2)_
 
 _Servo settings_
 
-| Offset | Field  | Type | Bytes | Default | Min | Max | Notes              |
-| ------ | ------ | ---- | ----- | ------- | --- | --- | ------------------ |
-| 0      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 1      | (read) | U16  | 2     |         |     |     |                    |
-| 3      | (read) | U16  | 2     |         |     |     |                    |
-| 5      | (read) | U16  | 2     |         |     |     |                    |
-| 7      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 8      | (read) | U8   | 1     |         |     |     | deprecated/ignored |
-| 9      | (read) | U32  | 4     |         |     |     |                    |
+| Offset | Field              | Type | Bytes | Default | Min | Max | Notes              |
+| ------ | ------------------ | ---- | ----- | ------- | --- | --- | ------------------ |
+| 0      | (read)             | U8   | 1     |         |     |     | deprecated/ignored |
+| 1      | (read)             | U16  | 2     |         |     |     |                    |
+| 3      | (read)             | U16  | 2     |         |     |     |                    |
+| 5      | (read)             | U16  | 2     |         |     |     |                    |
+| 7      | (read)             | U8   | 1     |         |     |     | deprecated/ignored |
+| 8      | forwardFromChannel | U8   | 1     |         |     |     |                    |
+| 9      | reversedSources    | U32  | 4     |         |     |     |                    |
 
 ### MSP_SET_MOTOR — 214 — to FC
 
@@ -1854,7 +1854,7 @@ _Deadbands for yaw alt pitch roll_
 | ------ | ------------------- | ---- | ----- | ------- | ----------------------- | ----------------------- | ----- |
 | 0      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |       |
 | 1      | yaw_deadband        | U8   | 1     | 0       | 0                       | RC_YAW_DEADBAND_MAX     |       |
-| 2      | deadband            | U8   | 1     | 0       | 0                       | RC_DEADBAND_MAX         |       |
+| 2      | deadband            | U8   | 1     | 5       | 0                       | POSHOLD_DEADBAND_MAX    |       |
 | 3      | deadband3d_throttle | U16  | 2     | 50      | DEADBAND3D_THROTTLE_MIN | DEADBAND3D_THROTTLE_MAX |       |
 
 ### MSP_SET_SENSOR_ALIGNMENT — 220 — to FC

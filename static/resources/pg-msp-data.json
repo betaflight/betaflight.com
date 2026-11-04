@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T19:03:41.366Z",
+  "generated": "2026-11-04T19:08:42.770Z",
   "firmwareCommit": "897cf61e7bdf4278d03ced50b8cc8075d79c400a",
   "source": "scripts/extract-pg-msp.js",
   "pgGroups": [
@@ -2024,7 +2024,7 @@
           "fieldName": "scale",
           "ctype": "U16",
           "bytes": 2,
-          "default": "DEFAULT_CURRENT_METER_SCALE",
+          "default": null,
           "min": "-CURRENT_METER_SCALE_MAX",
           "max": "CURRENT_METER_SCALE_MAX",
           "settingsType": "INT16",
@@ -2036,10 +2036,10 @@
           "fieldName": "offset",
           "ctype": "U16",
           "bytes": 2,
-          "default": "DEFAULT_CURRENT_METER_OFFSET",
-          "min": "-CURRENT_METER_ADC_OFFSET_MAX",
-          "max": "CURRENT_METER_ADC_OFFSET_MAX",
-          "settingsType": "INT16",
+          "default": null,
+          "min": "0",
+          "max": "CURRENT_METER_VIRTUAL_OFFSET_MAX",
+          "settingsType": "UINT16",
           "lookupTable": null,
           "notes": null
         }
@@ -2093,7 +2093,7 @@
           "fieldName": "scale",
           "ctype": "S16",
           "bytes": 2,
-          "default": "DEFAULT_CURRENT_METER_SCALE",
+          "default": null,
           "min": "-CURRENT_METER_SCALE_MAX",
           "max": "CURRENT_METER_SCALE_MAX",
           "settingsType": "INT16",
@@ -2105,10 +2105,10 @@
           "fieldName": "offset",
           "ctype": "U16",
           "bytes": 2,
-          "default": "DEFAULT_CURRENT_METER_OFFSET",
-          "min": "-CURRENT_METER_ADC_OFFSET_MAX",
-          "max": "CURRENT_METER_ADC_OFFSET_MAX",
-          "settingsType": "INT16",
+          "default": null,
+          "min": "0",
+          "max": "CURRENT_METER_VIRTUAL_OFFSET_MAX",
+          "settingsType": "UINT16",
           "lookupTable": null,
           "notes": null
         },
@@ -3401,37 +3401,37 @@
         },
         {
           "offset": 1,
-          "fieldName": "(read)",
+          "fieldName": "vbatscale",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
+          "min": "VBAT_SCALE_MIN",
+          "max": "VBAT_SCALE_MAX",
+          "settingsType": "UINT8",
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": null
         },
         {
           "offset": 2,
-          "fieldName": "(read)",
+          "fieldName": "vbatresdivval",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
+          "min": "VBAT_DIVIDER_MIN",
+          "max": "VBAT_DIVIDER_MAX",
+          "settingsType": "UINT8",
           "lookupTable": null,
           "notes": null
         },
         {
           "offset": 3,
-          "fieldName": "(read)",
+          "fieldName": "vbatresdivmultiplier",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
-          "min": null,
-          "max": null,
-          "settingsType": null,
+          "min": "VBAT_MULTIPLIER_MIN",
+          "max": "VBAT_MULTIPLIER_MAX",
+          "settingsType": "UINT8",
           "lookupTable": null,
           "notes": null
         },
@@ -3922,11 +3922,11 @@
           "fieldName": "mode",
           "ctype": "U8",
           "bytes": 1,
-          "default": "BLACKBOX_MODE_NORMAL",
+          "default": null,
           "min": null,
           "max": null,
-          "settingsType": "UINT8",
-          "lookupTable": "TABLE_BLACKBOX_MODE",
+          "settingsType": null,
+          "lookupTable": null,
           "notes": "repeated × rxRuntimeState.channelCount (runtime count)"
         },
         {
@@ -3964,7 +3964,7 @@
         },
         {
           "offset": 1,
-          "fieldName": "(read)",
+          "fieldName": "mode",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -3972,7 +3972,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": null
         },
         {
           "offset": 2,
@@ -4021,10 +4021,10 @@
           "ctype": "U8",
           "bytes": 1,
           "default": "DEFAULT_BLACKBOX_DEVICE",
-          "min": "0",
-          "max": "ADCDEV_COUNT",
-          "settingsType": "INT8",
-          "lookupTable": null,
+          "min": null,
+          "max": null,
+          "settingsType": "UINT8",
+          "lookupTable": "TABLE_BLACKBOX_DEVICE",
           "notes": null
         },
         {
@@ -4102,10 +4102,10 @@
           "ctype": "U8",
           "bytes": 1,
           "default": "DEFAULT_BLACKBOX_DEVICE",
-          "min": "0",
-          "max": "ADCDEV_COUNT",
-          "settingsType": "INT8",
-          "lookupTable": null,
+          "min": null,
+          "max": null,
+          "settingsType": "UINT8",
+          "lookupTable": "TABLE_BLACKBOX_DEVICE",
           "notes": null
         },
         {
@@ -4194,12 +4194,12 @@
           "fieldName": "provider",
           "ctype": "U8",
           "bytes": 1,
-          "default": "GPS_VIRTUAL",
+          "default": null,
           "min": null,
           "max": null,
-          "settingsType": "UINT8",
-          "lookupTable": "TABLE_GPS_PROVIDER",
-          "notes": "repeated × n (runtime count)"
+          "settingsType": null,
+          "lookupTable": null,
+          "notes": "repeated ×3 (TRANSPONDER_PROVIDER_COUNT), stride 2"
         },
         {
           "offset": 2,
@@ -4211,10 +4211,10 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "repeated × n (runtime count)"
+          "notes": "repeated ×3 (TRANSPONDER_PROVIDER_COUNT), stride 2"
         },
         {
-          "offset": "?",
+          "offset": 7,
           "fieldName": "(value)",
           "ctype": "U8",
           "bytes": 1,
@@ -4226,7 +4226,7 @@
           "notes": null
         },
         {
-          "offset": "?",
+          "offset": 8,
           "fieldName": "data[]",
           "ctype": "U8",
           "bytes": 1,
@@ -4235,7 +4235,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "repeated × n (runtime count)"
+          "notes": "repeated × providerDataLength (runtime count)"
         }
       ]
     },
@@ -4268,7 +4268,7 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "repeated × n (runtime count)"
+          "notes": "repeated × transponderDataSize (runtime count)"
         }
       ]
     },
@@ -8982,9 +8982,9 @@
           "fieldName": "deadband",
           "ctype": "U8",
           "bytes": 1,
-          "default": "0",
+          "default": "5",
           "min": "0",
-          "max": "RC_DEADBAND_MAX",
+          "max": "POSHOLD_DEADBAND_MAX",
           "settingsType": "UINT8",
           "lookupTable": null,
           "notes": null
@@ -11902,7 +11902,7 @@
         },
         {
           "offset": 8,
-          "fieldName": "(read)",
+          "fieldName": "forwardFromChannel",
           "ctype": "U8",
           "bytes": 1,
           "default": null,
@@ -11910,11 +11910,11 @@
           "max": null,
           "settingsType": null,
           "lookupTable": null,
-          "notes": "deprecated/ignored"
+          "notes": null
         },
         {
           "offset": 9,
-          "fieldName": "(read)",
+          "fieldName": "reversedSources",
           "ctype": "U32",
           "bytes": 4,
           "default": null,
@@ -12036,9 +12036,9 @@
           "fieldName": "deadband",
           "ctype": "U8",
           "bytes": 1,
-          "default": "0",
+          "default": "5",
           "min": "0",
-          "max": "RC_DEADBAND_MAX",
+          "max": "POSHOLD_DEADBAND_MAX",
           "settingsType": "UINT8",
           "lookupTable": null,
           "notes": null

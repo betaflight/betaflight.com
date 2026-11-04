@@ -134,13 +134,24 @@ function ctypeBytes(ctype) {
 }
 
 /** Extract the last identifier from a C accessor expression like config()->field or ptr->field */
+/** Struct type behind a PG accessor in `xxxConfig()->f` / `xxxConfigMutable(i)->f`, e.g. `xxxConfig_t`. */
+function accessorStruct(text) {
+  const m = text.match(/(\w+)\([^()]*\)\s*->/);
+  if (!m) {
+    return null;
+  }
+  const base = m[1].endsWith('Mutable') ? m[1].slice(0, -'Mutable'.length) : m[1];
+  return `${base}_t`;
+}
+
 function extractFieldName(expr) {
   if (!expr) return null;
   expr = expr.trim();
   // Array element inside a loop, e.g. `profile->spa_center[i]` → `spa_center[]`
-  const indexed = expr.match(/[->.)(]+(\w+)\s*\[\s*\w+\s*\]$/);
-  if (indexed) {
-    return `${indexed[1]}[]`;
+  const open = expr.lastIndexOf('[');
+  if (expr.endsWith(']') && open > 0 && /^\w+$/.test(expr.slice(open + 1, -1).trim())) {
+    const base = extractFieldName(expr.slice(0, open));
+    return base ? `${base}[]` : null;
   }
   // Match: ...->fieldName or ...).fieldName at end
   const m = expr.match(/[->.)(]+(\w+)\s*$/);
@@ -289,14 +300,19 @@ console.log('Parsing settings.c for field min/max/type...');
 const settingsPath = path.join(firmwarePath, 'src/main/cli/settings.c');
 const settingsContent = readFile(settingsPath);
 const fieldLookup = {}; // fieldName -> { varType, min, max, lookupTable }
+const fieldStructs = {}; // fieldName -> Set of struct types that declare a setting with this name
+const fieldLookupByStruct = {}; // `structType.fieldName` -> { varType, min, max, lookupTable }
+const ambiguousFields = new Set(); // field names declared by more than one struct
 
 if (settingsContent) {
   const lines = settingsContent.split('\n');
   for (const line of lines) {
     // Extract: offsetof(structType_t, fieldName)
-    const offsetMatch = line.match(/offsetof\s*\(\s*\w+\s*,\s*(\w+)\s*\)/);
+    const offsetMatch = line.match(/offsetof\s*\(\s*(\w+)\s*,\s*(\w+)\s*\)/);
     if (!offsetMatch) continue;
-    const fieldName = offsetMatch[1];
+    const fieldName = offsetMatch[2];
+    fieldStructs[fieldName] ??= new Set();
+    fieldStructs[fieldName].add(offsetMatch[1]);
 
     // Extract var type
     const typeMatch = line.match(/\b(VAR_UINT8|VAR_UINT16|VAR_UINT32|VAR_INT8|VAR_INT16|VAR_INT32|VAR_FLOAT)\b/);
@@ -320,8 +336,14 @@ if (settingsContent) {
     if (!fieldLookup[fieldName]) {
       fieldLookup[fieldName] = { varType, min, max, lookupTable };
     }
+    fieldLookupByStruct[`${offsetMatch[1]}.${fieldName}`] ??= { varType, min, max, lookupTable };
   }
-  console.log(`  Built lookup for ${Object.keys(fieldLookup).length} fields`);
+  for (const [name, structs] of Object.entries(fieldStructs)) {
+    if (structs.size > 1) {
+      ambiguousFields.add(name);
+    }
+  }
+  console.log(`  Built lookup for ${Object.keys(fieldLookup).length} fields (${ambiguousFields.size} names shared by several structs are not used for enrichment)`);
 }
 
 // ---------------------------------------------------------------------------
@@ -347,6 +369,15 @@ for (const hFile of hFiles) {
 
 // Build fieldName -> defaultValue from all .c files
 const defaultLookup = {};
+const defaultLookupByStruct = {}; // `structType.fieldName` -> defaultValue
+
+function recordDefault(structType, fieldName, rawVal) {
+  const value = resolveConstant(rawVal, constantMap);
+  defaultLookup[fieldName] ??= value;
+  if (structType) {
+    defaultLookupByStruct[`${structType}.${fieldName}`] ??= value;
+  }
+}
 
 for (const file of cFiles) {
   const content = readFile(file);
@@ -356,10 +387,13 @@ for (const file of cFiles) {
   // Pattern 1: PG_RESET_TEMPLATE(type, name, .field = value, ...)
   let inTemplate = false;
   let parenDepth = 0;
+  let templateType = null;
   for (const line of lines) {
     if (!inTemplate) {
-      if (line.match(/PG_RESET_TEMPLATE\s*\(/)) {
+      const tm = line.match(/PG_RESET_TEMPLATE\s*\(\s*(\w+)/);
+      if (tm) {
         inTemplate = true;
+        templateType = tm[1];
         parenDepth = (line.match(/\(/g) || []).length - (line.match(/\)/g) || []).length;
         // Also check for .field = value on same line (unlikely but safe)
       }
@@ -367,11 +401,7 @@ for (const file of cFiles) {
       parenDepth += (line.match(/\(/g) || []).length - (line.match(/\)/g) || []).length;
       const fm = line.match(/\.\s*(\w+)\s*=\s*([^,/\n]+)/);
       if (fm) {
-        const fieldName = fm[1];
-        const rawVal = fm[2].trim();
-        if (!defaultLookup[fieldName]) {
-          defaultLookup[fieldName] = resolveConstant(rawVal, constantMap);
-        }
+        recordDefault(templateType, fm[1], fm[2].trim());
       }
       if (parenDepth <= 0) inTemplate = false;
     }
@@ -380,13 +410,15 @@ for (const file of cFiles) {
   // Pattern 2: void pgResetFn_name(type *ptr) { ptr->field = value; }
   let inResetFn = false;
   let fnParam = null;
+  let fnType = null;
   let braceDepth = 0;
   for (const line of lines) {
     if (!inResetFn) {
-      const fm = line.match(/^void pgResetFn_\w+\s*\(\s*\w+\s*\*\s*(\w+)/);
+      const fm = line.match(/^void pgResetFn_\w+\s*\(\s*(\w+)\s*\*\s*(\w+)/);
       if (fm) {
         inResetFn = true;
-        fnParam = fm[1];
+        fnType = fm[1];
+        fnParam = fm[2];
         braceDepth = (line.match(/\{/g) || []).length - (line.match(/\}/g) || []).length;
       }
     } else {
@@ -395,11 +427,7 @@ for (const file of cFiles) {
         const re = new RegExp(`${fnParam}\\s*->\\s*(\\w+)\\s*=\\s*([^;\\n]+)`);
         const am = line.match(re);
         if (am) {
-          const fieldName = am[1];
-          const rawVal = am[2].trim();
-          if (!defaultLookup[fieldName]) {
-            defaultLookup[fieldName] = resolveConstant(rawVal, constantMap);
-          }
+          recordDefault(fnType, am[1], am[2].trim());
         }
       }
       if (braceDepth <= 0) {
@@ -481,19 +509,39 @@ console.log(`  MSP v1: ${mspV1Codes.length}, v2 common: ${mspV2CommonCodes.lengt
 // Parse msp.c to extract per-command payload fields
 // ---------------------------------------------------------------------------
 
+/** Strip a trailing `//` or `/*` comment from a line of C. */
+function stripLineComment(text) {
+  const cut = [text.indexOf('//'), text.indexOf('/*')].filter((i) => i >= 0);
+  return cut.length > 0 ? text.slice(0, Math.min(...cut)) : text;
+}
+
+/**
+ * Parse `#define NAME VALUE`. Returns { name, value } where value is the integer, or null when it
+ * is not a plain integer or the define sits directly under `#ifndef NAME` (overridable by targets).
+ */
+function parseCountDefine(line, prevLine) {
+  const head = line.match(/^\s*#\s*define\s+(\w+)/);
+  if (!head) {
+    return null;
+  }
+  const name = head[1];
+  const rest = stripLineComment(line.slice(head[0].length)).trim();
+  const guarded = new RegExp(String.raw`^\s*#\s*ifndef\s+${name}\b`).test(prevLine);
+  const value = !guarded && /^\d+$/.test(rest) ? Number.parseInt(rest, 10) : null;
+  return { name, value };
+}
+
 // Numeric macros usable as fixed loop counts. A macro qualifies only if src/main defines it
 // exactly once, as a plain integer, and not behind `#ifndef NAME` (targets may override those).
 // Anything else (target-dependent, enum terminators, runtime values) is treated as unresolved.
 const fixedCountMacros = (() => {
   const defs = {};
   for (const file of [...cFiles, ...hFiles]) {
-    const fileLines = (readFile(file) ?? '').split('\n');
     let prev = '';
-    for (const l of fileLines) {
-      const m = l.match(/^\s*#\s*define\s+(\w+)\s+(\S.*?)\s*(?:\/\/.*|\/\*.*)?$/);
-      if (m) {
-        const guarded = new RegExp(String.raw`^\s*#\s*ifndef\s+${m[1]}\b`).test(prev);
-        (defs[m[1]] ??= []).push(guarded || !/^\d+$/.test(m[2]) ? null : Number.parseInt(m[2], 10));
+    for (const l of (readFile(file) ?? '').split('\n')) {
+      const def = parseCountDefine(l, prev);
+      if (def) {
+        defs[def.name] = [...(defs[def.name] ?? []), def.value];
       }
       if (l.trim()) {
         prev = l;
@@ -511,11 +559,19 @@ const fixedCountMacros = (() => {
 
 // Resolve the iteration count of `for (<type> i = 0; i < BOUND; i++)`; null if not a fixed count.
 function resolveLoopCount(forLine) {
-  const m = forLine.match(/for\s*\(\s*(?:\w+\s+)?(\w+)\s*=\s*0\s*;\s*\1\s*<\s*([^;]+?)\s*;/);
-  if (!m) {
-    return { count: null, bound: null };
+  const unresolved = { count: null, bound: null };
+  const open = forLine.indexOf('(');
+  const [init, cond] = forLine.slice(open + 1).split(';');
+  if (open < 0 || cond === undefined) {
+    return unresolved;
   }
-  const bound = m[2];
+  const [lhs, rhs] = init.split('=');
+  const loopVar = lhs.trim().split(/\s+/).at(-1);
+  const lt = cond.indexOf('<');
+  if (rhs?.trim() !== '0' || lt < 0 || cond[lt + 1] === '=' || cond.slice(0, lt).trim() !== loopVar) {
+    return unresolved;
+  }
+  const bound = cond.slice(lt + 1).trim();
   if (/^\d+$/.test(bound)) {
     return { count: Number.parseInt(bound, 10), bound };
   }
@@ -524,10 +580,7 @@ function resolveLoopCount(forLine) {
 
 // Count net `{` minus `}` on a line, ignoring string/char literals and comments.
 function braceDelta(line) {
-  const code = line
-    .replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, '')
-    .replace(/\/\/.*$/, '')
-    .replace(/\/\*.*?\*\//g, '');
+  const code = stripLineComment(line.replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, '').replace(/\/\*.*?\*\//g, ''));
   return (code.match(/\{/g)?.length ?? 0) - (code.match(/\}/g)?.length ?? 0);
 }
 
@@ -617,6 +670,20 @@ if (mspCContent) {
       }
     };
 
+    // Close `if` blocks and `for` loops whose body ended at the current brace depth
+    const closeEndedBlocks = (cmd) => {
+      while (ifBlocks.length > 0 && depth < ifBlocks.at(-1).bodyDepth) {
+        const block = ifBlocks.pop();
+        if (lastStatement === 'continue;' && cmd.fields.length > block.firstField) {
+          cmd.fields.splice(block.firstField);
+          byteOffset = block.startOffset;
+        }
+      }
+      while (loops.length > 0 && depth < loops.at(-1).bodyDepth) {
+        closeLoop(cmd, loops.pop());
+      }
+    };
+
     for (let i = startLine; i < endLine && i < lines.length; i++) {
       const line = lines[i];
       const trimmed = line.trim();
@@ -638,16 +705,8 @@ if (mspCContent) {
 
       // Track brace depth; close any `for` loops whose body ended on this line
       depth += braceDelta(line);
-      while (currentCommand && ifBlocks.length > 0 && depth < ifBlocks.at(-1).bodyDepth) {
-        const block = ifBlocks.pop();
-        const cmd = payloadsMap[currentCommand];
-        if (lastStatement === 'continue;' && cmd.fields.length > block.firstField) {
-          cmd.fields.splice(block.firstField);
-          byteOffset = block.startOffset;
-        }
-      }
-      while (currentCommand && loops.length > 0 && depth < loops.at(-1).bodyDepth) {
-        closeLoop(payloadsMap[currentCommand], loops.pop());
+      if (currentCommand) {
+        closeEndedBlocks(payloadsMap[currentCommand]);
       }
       if (trimmed && !/^[{}]+$/.test(trimmed)) {
         lastStatement = trimmed;
@@ -713,7 +772,7 @@ if (mspCContent) {
           const fieldName = extractFieldName(expr);
           const comment = extractComment(line);
           const notes = comment || (expr === '0' ? 'deprecated/padding' : null);
-          addField(cmd, { fieldName: fieldName || '(value)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr, notes });
+          addField(cmd, { fieldName: fieldName || '(value)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr, notes, owner: accessorStruct(expr) });
           byteOffset += bytes;
         }
         // Match sbufWriteData/sbufWriteString — variable length; mark subsequent offsets unknown
@@ -735,12 +794,15 @@ if (mspCContent) {
           const ctype = typedRead ? typedRead[1] : 'U8';
           const bytes = ctypeBytes(ctype);
           // Try to extract lvalue field name
-          const assignMatch = line.match(/(\w+(?:\(\)|))\s*->\s*(\w+)(\s*\[\s*\w+\s*\])?\s*=\s*sbufRead/);
-          const fieldName = assignMatch ? `${assignMatch[2]}${assignMatch[3] ? '[]' : ''}` : null;
+          const assignMatch = line.match(/->\s*(\w+)(\[\w+\])?\s*=\s*sbufRead/);
+          let fieldName = null;
+          if (assignMatch) {
+            fieldName = assignMatch[2] ? `${assignMatch[1]}[]` : assignMatch[1];
+          }
           const comment = extractComment(line);
           const expr = trimmed.includes('sbufReadU8(src)') && !assignMatch ? '(ignored)' : null;
           const notes = comment || (expr === '(ignored)' ? 'deprecated/ignored' : null);
-          addField(cmd, { fieldName: fieldName || '(read)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes });
+          addField(cmd, { fieldName: fieldName || '(read)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes, owner: accessorStruct(line) });
           byteOffset += bytes;
         }
       }
@@ -760,6 +822,35 @@ if (mspCContent) {
 // Enrich MSP codes with payload fields
 // ---------------------------------------------------------------------------
 
+/**
+ * Fill min/max/type/lookup/default for a payload field from settings.c and PG reset defaults.
+ * Names shared by several structs (e.g. `mode`, `deadband`) are only enriched when the handler's
+ * PG accessor identifies the struct; a bare-name match could attach another struct's metadata.
+ */
+function enrichField(f) {
+  const { owner } = f;
+  delete f.owner;
+  if (!f.fieldName) {
+    return;
+  }
+  let setting = fieldLookup[f.fieldName];
+  let def = defaultLookup[f.fieldName];
+  if (ambiguousFields.has(f.fieldName)) {
+    const key = owner ? `${owner}.${f.fieldName}` : null;
+    setting = key ? fieldLookupByStruct[key] : undefined;
+    def = key ? defaultLookupByStruct[key] : undefined;
+  }
+  if (setting) {
+    f.min = setting.min;
+    f.max = setting.max;
+    f.settingsType = setting.varType;
+    f.lookupTable = setting.lookupTable;
+  }
+  if (def !== undefined) {
+    f.default = def;
+  }
+}
+
 for (const code of allMspCodes) {
   const outPayload = mspOutPayloads[code.name];
   const inPayload = mspInPayloads[code.name];
@@ -777,16 +868,7 @@ for (const code of allMspCodes) {
 
   // Enrich each field with min/max/default from settings and default lookups
   for (const f of code.fields) {
-    if (f.fieldName && fieldLookup[f.fieldName]) {
-      const s = fieldLookup[f.fieldName];
-      f.min = s.min;
-      f.max = s.max;
-      f.settingsType = s.varType;
-      f.lookupTable = s.lookupTable;
-    }
-    if (f.fieldName && defaultLookup[f.fieldName] !== undefined) {
-      f.default = defaultLookup[f.fieldName];
-    }
+    enrichField(f);
   }
 }
 
