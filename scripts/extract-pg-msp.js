@@ -133,17 +133,26 @@ function ctypeBytes(ctype) {
   }
 }
 
-/** Extract the last identifier from a C accessor expression like config()->field or ptr->field */
 /** Struct type behind a PG accessor in `xxxConfig()->f` / `xxxConfigMutable(i)->f`, e.g. `xxxConfig_t`. */
 function accessorStruct(text) {
-  const m = text.match(/(\w+)\([^()]*\)\s*->/);
-  if (!m) {
+  const before = text.slice(0, Math.max(text.indexOf('->'), 0)).trimEnd();
+  if (!before.endsWith(')')) {
     return null;
   }
-  const base = m[1].endsWith('Mutable') ? m[1].slice(0, -'Mutable'.length) : m[1];
+  let start = before.lastIndexOf('(');
+  const nameEnd = start;
+  while (start > 0 && /\w/.test(before[start - 1])) {
+    start--;
+  }
+  const name = before.slice(start, nameEnd);
+  if (!name) {
+    return null;
+  }
+  const base = name.endsWith('Mutable') ? name.slice(0, -'Mutable'.length) : name;
   return `${base}_t`;
 }
 
+/** Extract the last identifier from a C accessor expression like config()->field or ptr->field */
 function extractFieldName(expr) {
   if (!expr) return null;
   expr = expr.trim();
@@ -261,28 +270,30 @@ function collectDefines(content) {
   const defines = {};
   const conds = [];
   const negate = (c) => (c.startsWith('!') ? c.slice(1) : `!${c}`);
+  const conditional = {
+    ifdef: (arg) => conds.push(arg),
+    if: (arg) => conds.push(arg.replace(/^defined\s*\(\s*(\w+)\s*\)$/, '$1')),
+    ifndef: (arg) => conds.push(`!${arg}`),
+    elif: (arg) => conds.splice(-1, 1, arg),
+    else: () => conds.length > 0 && conds.splice(-1, 1, negate(conds.at(-1))),
+    endif: () => conds.pop(),
+  };
   for (const line of content.split('\n')) {
-    const pp = line.trim().match(/^#\s*(ifdef|ifndef|if|elif|else|endif|define)\b\s*(.*)$/);
-    if (!pp) {
+    const trimmed = line.trim();
+    if (!trimmed.startsWith('#')) {
       continue;
     }
-    const [, directive, rest] = pp;
-    const arg = stripLineComment(rest).trim();
-    if (directive === 'ifdef' || directive === 'if') {
-      conds.push(arg.replace(/^defined\s*\(\s*(\w+)\s*\)$/, '$1'));
-    } else if (directive === 'ifndef') {
-      conds.push(`!${arg}`);
-    } else if (directive === 'elif') {
-      conds[conds.length - 1] = arg;
-    } else if (directive === 'else' && conds.length > 0) {
-      conds[conds.length - 1] = negate(conds.at(-1));
-    } else if (directive === 'endif') {
-      conds.pop();
+    const body = trimmed.slice(1).trimStart();
+    const directive = body.match(/^[a-z]+/)?.[0] ?? '';
+    const arg = stripLineComment(body.slice(directive.length)).trim();
+    if (Object.hasOwn(conditional, directive)) {
+      conditional[directive](arg);
     } else if (directive === 'define') {
-      const def = arg.match(/^(\w+)\s+(\S.*)$/);
-      if (def) {
-        defines[def[1]] ??= [];
-        defines[def[1]].push({ value: def[2], condition: conds.length > 0 ? conds.join(' && ') : null });
+      const space = arg.search(/\s/);
+      const name = space > 0 ? arg.slice(0, space) : '';
+      if (/^\w+$/.test(name)) {
+        defines[name] ??= [];
+        defines[name].push({ value: arg.slice(space).trim(), condition: conds.length > 0 ? conds.join(' && ') : null });
       }
     }
   }
@@ -1015,7 +1026,8 @@ function formatPgVersion(g) {
   if (others.length === 0) {
     return String(g.pgVersion);
   }
-  return `${g.pgVersion} (${others.map((v) => `${v.value} with ${v.condition}`).join(', ')})`;
+  const variants = others.map((v) => `${v.value} with ${v.condition}`).join(', ');
+  return `${g.pgVersion} (${variants})`;
 }
 
 // Summary table
