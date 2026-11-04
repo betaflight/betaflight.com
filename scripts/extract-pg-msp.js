@@ -575,9 +575,10 @@ if (mspCContent) {
       } else {
         // IN direction: match config->field = sbufReadU8(src) or bare sbufReadU8(src)
         // Also match sbufReadXxConstrained(src, min, max), and sbufReadLookupIndex(src, TABLE_x) which reads a U8
-        const rm = line.match(/sbufRead(U8|U16|U32|S8|S16|S32|Float)(?:LE|BE)?(?:\s*\(\s*src\s*\)|Constrained\s*\(\s*src\s*,)|sbufReadLookupIndex\s*\(\s*src\s*,/);
-        if (rm) {
-          const ctype = rm[1] ?? 'U8';
+        const typedRead = line.match(/sbufRead(U8|U16|U32|S8|S16|S32|Float)(?:LE|BE)?(?:Constrained)?\s*\(\s*src\s*[,)]/);
+        const lookupRead = !typedRead && /sbufReadLookupIndex\s*\(\s*src\s*,/.test(line);
+        if (typedRead || lookupRead) {
+          const ctype = typedRead ? typedRead[1] : 'U8';
           const bytes = ctypeBytes(ctype);
           // Try to extract lvalue field name
           const assignMatch = line.match(/(\w+(?:\(\)|))\s*->\s*(\w+)\s*=\s*sbufRead/);
