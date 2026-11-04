@@ -30,7 +30,7 @@ The summary table below lists all MSP codes. The **Command Parameters** section 
 
 <!-- MSP_TABLE_START -->
 
-_Generated from firmware commit: `75e58fbbfe7e53dc77eeaecbdd0dbb08f9066074`_
+_Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 
 | Command                          | Msg Id | Direction | Fields | Notes                                                                                         |
 | -------------------------------- | ------ | --------- | ------ | --------------------------------------------------------------------------------------------- |
@@ -149,7 +149,7 @@ _Generated from firmware commit: `75e58fbbfe7e53dc77eeaecbdd0dbb08f9066074`_
 | MSP_GPSSVINFO                    | 164    | from FC   | 5      | Get Signal Strength (only U-Blox)                                                             |
 | MSP_GPSSTATISTICS                | 166    | from FC   | —      | Get GPS debugging data                                                                        |
 | MSP_ATTITUDE_QUATERNION          | 167    | from FC   | 4      | Orientation quaternion components (w, x, y, z)                                                |
-| MSP_WING                         | 169    | from FC   | 20     | WING settings                                                                                 |
+| MSP_WING                         | 169    | from FC   | 24     | WING settings                                                                                 |
 | MSP_PITOT                        | 170    | from FC   | 4      | Pitot data                                                                                    |
 | MSP_OSD_VIDEO_CONFIG             | 180    | from FC   | —      | Get OSD video settings                                                                        |
 | MSP_SET_OSD_VIDEO_CONFIG         | 181    | to FC     | —      | Set OSD video settings                                                                        |
@@ -164,7 +164,7 @@ _Generated from firmware commit: `75e58fbbfe7e53dc77eeaecbdd0dbb08f9066074`_
 | MSP_SET_RAW_RC                   | 200    | to FC     | 1      | 8 rc chan                                                                                     |
 | MSP_SET_RAW_GPS                  | 201    | to FC     | 6      | Fix, numsat, lat, lon, alt, speed                                                             |
 | MSP_SET_PID                      | 202    | to FC     | 3      | P I D coeff (9 are used currently)                                                            |
-| MSP_SET_WING                     | 203    | to FC     | 23     | Set WING settings                                                                             |
+| MSP_SET_WING                     | 203    | to FC     | 27     | Set WING settings                                                                             |
 | MSP_SET_RC_TUNING                | 204    | to FC     | 18     | RC rate, rc expo, rollpitch rate, yaw rate, dyn throttle PID, yaw expo                        |
 | MSP_ACC_CALIBRATION              | 205    | to FC     | —      | No param - calibrate accelerometer                                                            |
 | MSP_MAG_CALIBRATION              | 206    | to FC     | —      | No param - calibrate magnetometer                                                             |
@@ -1672,15 +1672,15 @@ _GPS Rescue angle, returnAltitude, descentDistance, groundSpeed, sanityChecks an
 
 _GPS Rescue throttleP and velocity PIDS + yaw P_
 
-| Offset | Field     | Type | Bytes | Default | Min | Max                    | Notes |
-| ------ | --------- | ---- | ----- | ------- | --- | ---------------------- | ----- |
-| 0      | altitudeP | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 2      | altitudeI | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 4      | altitudeD | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 6      | positionP | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 8      | positionI | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 10     | positionD | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 12     | yawP      | U16  | 2     | 30      | 0   | GPS_RESCUE_YAW_P_MAX   |       |
+| Offset | Field     | Type | Bytes | Default | Min | Max                    | Notes                |
+| ------ | --------- | ---- | ----- | ------- | --- | ---------------------- | -------------------- |
+| 0      | altitudeP | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 2      | altitudeI | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 4      | altitudeD | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 6      | positionP | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 8      | positionI | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 10     | positionD | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 12     | (value)   | U16  | 2     |         |     |                        | was gps_rescue_yaw_p |
 
 ### MSP_VTXTABLE_BAND — 137 — from FC
 
@@ -1790,6 +1790,10 @@ _WING settings_
 | 28     | tpa_speed_pitch_offset   | U16  | 2     |         | INT16_MIN               | INT16_MAX                    |                              |
 | 30     | yaw_type                 | U8   | 1     |         |                         |                              | lookup: TABLE_YAW_TYPE       |
 | 31     | angle_pitch_offset       | U16  | 2     |         | -ANGLE_PITCH_OFFSET_MAX | ANGLE_PITCH_OFFSET_MAX       |                              |
+| 33     | speed_curve_vref         | U8   | 1     |         | 1                       | 85                           |                              |
+| 34     | speed_curve_power        | U8   | 1     |         | 5                       | 30                           |                              |
+| 35     | speed_curve_min          | U16  | 2     |         | 5                       | 99                           |                              |
+| 37     | speed_curve_max          | U16  | 2     |         | 100                     | 1000                         |                              |
 
 ### MSP_PITOT — 170 — from FC
 
@@ -1928,6 +1932,10 @@ _Set WING settings_
 | 32     | yaw_type                 | U8   | 1     |         |                         |                              | lookup: TABLE_YAW_TYPE       |
 | 33     | yaw_type                 | U8   | 1     |         |                         |                              | lookup: TABLE_YAW_TYPE       |
 | 34     | angle_pitch_offset       | S16  | 2     |         | -ANGLE_PITCH_OFFSET_MAX | ANGLE_PITCH_OFFSET_MAX       |                              |
+| 36     | speed_curve_vref         | U8   | 1     |         | 1                       | 85                           |                              |
+| 37     | speed_curve_power        | U8   | 1     |         | 5                       | 30                           |                              |
+| 38     | speed_curve_min          | U16  | 2     |         | 5                       | 99                           |                              |
+| 40     | speed_curve_max          | U16  | 2     |         | 100                     | 1000                         |                              |
 
 ### MSP_SET_RC_TUNING — 204 — to FC
 
@@ -2103,15 +2111,15 @@ _Set GPS Rescue parameters_
 
 _Set GPS Rescue PID values_
 
-| Offset | Field     | Type | Bytes | Default | Min | Max                    | Notes |
-| ------ | --------- | ---- | ----- | ------- | --- | ---------------------- | ----- |
-| 0      | altitudeP | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 2      | altitudeI | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 4      | altitudeD | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 6      | positionP | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 8      | positionI | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 10     | positionD | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |       |
-| 12     | yawP      | U16  | 2     | 30      | 0   | GPS_RESCUE_YAW_P_MAX   |       |
+| Offset | Field     | Type | Bytes | Default | Min | Max                    | Notes                |
+| ------ | --------- | ---- | ----- | ------- | --- | ---------------------- | -------------------- |
+| 0      | altitudeP | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 2      | altitudeI | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 4      | altitudeD | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 6      | positionP | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 8      | positionI | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 10     | positionD | U16  | 2     | 30      | 0   | AUTOPILOT_PID_GAIN_MAX |                      |
+| 12     | (read)    | U16  | 2     |         |     |                        | was gps_rescue_yaw_p |
 
 ### MSP_SET_VTXTABLE_BAND — 227 — to FC
 

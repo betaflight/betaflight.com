@@ -17,7 +17,7 @@ node scripts/extract-pg-msp.js --firmware-path <path-to-betaflight-repo>
 
 <!-- PG_TABLE_START -->
 
-_Generated from firmware commit: `75e58fbbfe7e53dc77eeaecbdd0dbb08f9066074`_
+_Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 
 | ID   | Name                             | Struct Type                  | PG Version | Source File                          |
 | ---- | -------------------------------- | ---------------------------- | ---------- | ------------------------------------ |
@@ -34,7 +34,7 @@ _Generated from firmware commit: `75e58fbbfe7e53dc77eeaecbdd0dbb08f9066074`_
 | 11   | PG_BATTERY_CONFIG                | batteryConfig_t              | 4          | src/main/sensors/battery.c           |
 | 12   | PG_CONTROL_RATE_PROFILES         | controlRateConfig_t          | 7          | src/main/fc/controlrate_profile.c    |
 | 13   | PG_SERIAL_CONFIG                 | serialConfig_t               | 2          | src/main/io/serial.c                 |
-| 14   | PG_PID_PROFILE                   | pidProfile_t                 | 12         | src/main/flight/pid.c                |
+| 14   | PG_PID_PROFILE                   | pidProfile_t                 | 13         | src/main/flight/pid.c                |
 | 16   | PG_ARMING_CONFIG                 | armingConfig_t               | 2          | src/main/fc/rc_controls.c            |
 | 17   | PG_TRANSPONDER_CONFIG            | transponderConfig_t          | 0          | src/main/io/transponder_ir.c         |
 | 18   | PG_SYSTEM_CONFIG                 | systemConfig_t               | 4          | src/main/config/config.c             |

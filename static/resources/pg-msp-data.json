@@ -1,6 +1,6 @@
 {
-  "generated": "2026-10-14T22:26:25.626Z",
-  "firmwareCommit": "75e58fbbfe7e53dc77eeaecbdd0dbb08f9066074",
+  "generated": "2026-11-04T18:47:13.386Z",
+  "firmwareCommit": "897cf61e7bdf4278d03ced50b8cc8075d79c400a",
   "source": "scripts/extract-pg-msp.js",
   "pgGroups": [
     {
@@ -98,7 +98,7 @@
       "id": 14,
       "name": "PG_PID_PROFILE",
       "structType": "pidProfile_t",
-      "pgVersion": 12,
+      "pgVersion": 13,
       "sourceFile": "src/main/flight/pid.c"
     },
     {
@@ -11850,15 +11850,15 @@
         },
         {
           "offset": 12,
-          "fieldName": "yawP",
+          "fieldName": "(value)",
           "ctype": "U16",
           "bytes": 2,
-          "default": "30",
-          "min": "0",
-          "max": "GPS_RESCUE_YAW_P_MAX",
-          "settingsType": "UINT8",
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "was gps_rescue_yaw_p"
         }
       ]
     },
@@ -12621,6 +12621,54 @@
           "min": "-ANGLE_PITCH_OFFSET_MAX",
           "max": "ANGLE_PITCH_OFFSET_MAX",
           "settingsType": "INT16",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 33,
+          "fieldName": "speed_curve_vref",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": "1",
+          "max": "85",
+          "settingsType": "UINT8",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 34,
+          "fieldName": "speed_curve_power",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": "5",
+          "max": "30",
+          "settingsType": "UINT8",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 35,
+          "fieldName": "speed_curve_min",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": "5",
+          "max": "99",
+          "settingsType": "UINT16",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 37,
+          "fieldName": "speed_curve_max",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": "100",
+          "max": "1000",
+          "settingsType": "UINT16",
           "lookupTable": null,
           "notes": null
         }
@@ -13401,6 +13449,54 @@
           "min": "-ANGLE_PITCH_OFFSET_MAX",
           "max": "ANGLE_PITCH_OFFSET_MAX",
           "settingsType": "INT16",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 36,
+          "fieldName": "speed_curve_vref",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": "1",
+          "max": "85",
+          "settingsType": "UINT8",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 37,
+          "fieldName": "speed_curve_power",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": "5",
+          "max": "30",
+          "settingsType": "UINT8",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 38,
+          "fieldName": "speed_curve_min",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": "5",
+          "max": "99",
+          "settingsType": "UINT16",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 40,
+          "fieldName": "speed_curve_max",
+          "ctype": "U16",
+          "bytes": 2,
+          "default": null,
+          "min": "100",
+          "max": "1000",
+          "settingsType": "UINT16",
           "lookupTable": null,
           "notes": null
         }
@@ -14600,15 +14696,15 @@
         },
         {
           "offset": 12,
-          "fieldName": "yawP",
+          "fieldName": "(read)",
           "ctype": "U16",
           "bytes": 2,
-          "default": "30",
-          "min": "0",
-          "max": "GPS_RESCUE_YAW_P_MAX",
-          "settingsType": "UINT8",
+          "default": null,
+          "min": null,
+          "max": null,
+          "settingsType": null,
           "lookupTable": null,
-          "notes": null
+          "notes": "was gps_rescue_yaw_p"
         }
       ]
     },
