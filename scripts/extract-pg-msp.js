@@ -195,16 +195,21 @@ const pgRegistrations = {};
  * (conditional) definitions, the first one that resolves to a plain number wins.
  */
 function resolveVersion(token, content, depth = 0) {
-  const n = parseInt(token, 10);
-  if (!isNaN(n) && /^\d+$/.test(token)) return n;
-  if (depth > 5 || !/^[A-Za-z_]\w*$/.test(token)) return NaN;
-  const defRe = new RegExp(`^#define\\s+${token}\\s+(.+?)\\s*(?://.*)?$`, 'gm');
+  if (/^\d+$/.test(token)) {
+    return Number.parseInt(token, 10);
+  }
+  if (depth > 5 || !/^[A-Za-z_]\w*$/.test(token)) {
+    return Number.NaN;
+  }
+  const defRe = new RegExp(String.raw`^#define\s+${token}\s+(.+?)\s*(?://.*)?$`, 'gm');
   let d;
   while ((d = defRe.exec(content)) !== null) {
     const v = resolveVersion(d[1].trim(), content, depth + 1);
-    if (!isNaN(v)) return v;
+    if (!Number.isNaN(v)) {
+      return v;
+    }
   }
-  return NaN;
+  return Number.NaN;
 }
 const macroRe = /(PG_REGISTER(?:_ARRAY)?(?:_WITH_RESET_(?:FN|TEMPLATE))?)\s*\(([^)]*)\)\s*;/g;
 
@@ -642,7 +647,7 @@ for (const code of allMspCodes) {
 
 // Escape `|` so C expressions such as `A | B` don't split a Markdown table cell.
 function escapeCell(cell) {
-  return String(cell ?? '').replace(/(?<!\\)\|/g, '\\|');
+  return String(cell ?? '').replace(/(?<!\\)\|/g, String.raw`\|`);
 }
 
 function buildTable(headers, rawRows) {
