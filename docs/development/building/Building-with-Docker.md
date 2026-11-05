@@ -115,10 +115,39 @@ Set up udev rules on your host system for device access:
 1. Create `/etc/udev/rules.d/70-betaflight.rules`:
 
    ```bash
-   # STM32 Virtual COM Port
+   # Flight controller USB (VCP)
+   # STM32
    SUBSYSTEM=="tty", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", TAG+="uaccess"
-   # STM32 DFU
+   # STM32 ST-Link (NUCLEO boards)
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", TAG+="uaccess"
+   # GD32
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="28e9", ATTRS{idProduct}=="018a", TAG+="uaccess"
+   # AT32
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="5740", TAG+="uaccess"
+   # APM32
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="5740", TAG+="uaccess"
+   # X32
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="5740", TAG+="uaccess"
+   # UM32
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="396a", ATTRS{idProduct}=="1000", TAG+="uaccess"
+   # RP2350 (Raspberry Pi Pico)
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0009", TAG+="uaccess"
+
+   # USB bootloaders (DFU; BOOTSEL for RP2350)
+   # STM32
    SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="df11", TAG+="uaccess"
+   # GD32
+   SUBSYSTEM=="usb", ATTR{idVendor}=="28e9", ATTR{idProduct}=="0189", TAG+="uaccess"
+   # AT32
+   SUBSYSTEM=="usb", ATTR{idVendor}=="2e3c", ATTR{idProduct}=="df11", TAG+="uaccess"
+   # APM32
+   SUBSYSTEM=="usb", ATTR{idVendor}=="314b", ATTR{idProduct}=="0106", TAG+="uaccess"
+   # X32
+   SUBSYSTEM=="usb", ATTR{idVendor}=="3997", ATTR{idProduct}=="df11", TAG+="uaccess"
+   # UM32
+   SUBSYSTEM=="usb", ATTR{idVendor}=="396a", ATTR{idProduct}=="df00", TAG+="uaccess"
+   # RP2350 BOOTSEL (Raspberry Pi Pico)
+   SUBSYSTEM=="usb", ATTR{idVendor}=="2e8a", ATTR{idProduct}=="000f", TAG+="uaccess"
 
    # USB-to-serial adapters for stm32flash (these vendors make only bridge chips, so all products match)
    # FTDI
@@ -129,6 +158,14 @@ Set up udev rules on your host system for device access:
    SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", TAG+="uaccess"
    # Prolific PL2303
    SUBSYSTEM=="tty", ATTRS{idVendor}=="067b", TAG+="uaccess"
+
+   # Vendors that also make other USB devices, so only their bridge products match
+   # Microchip MCP2221
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00dd", TAG+="uaccess"
+   # Microchip MCP2200
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00df", TAG+="uaccess"
+   # Espressif ESP32-S3/C3 USB-Serial/JTAG
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", TAG+="uaccess"
    ```
 
    Keep each comment on its own line: udev rejects a rule line that ends in a comment and silently skips that rule.

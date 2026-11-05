@@ -25,9 +25,25 @@ If your logs show `unable to open serial port` you might have skipped this step.
 Linux requires udev rules to allow write access to USB devices for users. An example shell command to achieve this on Ubuntu is shown here:
 
 ```sh
-(echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
- echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"'
- echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
+sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null <<'EOF'
+# USB bootloaders (DFU for STM32, GD32, AT32, APM32, X32 and UM32; BOOTSEL for RP2350)
+# STM32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
+# GD32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="28e9", ATTRS{idProduct}=="0189", MODE="0664", GROUP="plugdev"
+# AT32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
+# APM32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", MODE="0664", GROUP="plugdev"
+# X32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"
+# UM32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="396a", ATTRS{idProduct}=="df00", MODE="0664", GROUP="plugdev"
+# RP2350 BOOTSEL (Raspberry Pi Pico)
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0664", GROUP="plugdev"
+EOF
+sudo udevadm control --reload-rules
+sudo udevadm trigger --action=add --subsystem-match=usb
 ```
 
 This assigns the device to the plugdev group(a standard group in Ubuntu). To check that your account is in the plugdev group type `groups` in the shell and ensure plugdev is listed. If not you can add yourself as shown (`$USER` automatically refers to your currently logged-in account, so nothing needs to be replaced):
@@ -42,9 +58,25 @@ If you are using Fedora, you will not need to add your account to the plugdev gr
 Instead use the `uaccess` tag in your udev rule for dfu:
 
 ```sh
-(echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
- echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", TAG+="uaccess"'
- echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", TAG+="uaccess"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
+sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null <<'EOF'
+# USB bootloaders (DFU for STM32, GD32, AT32, APM32, X32 and UM32; BOOTSEL for RP2350)
+# STM32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", TAG+="uaccess"
+# GD32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="28e9", ATTRS{idProduct}=="0189", TAG+="uaccess"
+# AT32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", TAG+="uaccess"
+# APM32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="314b", ATTRS{idProduct}=="0106", TAG+="uaccess"
+# X32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="3997", ATTRS{idProduct}=="df11", TAG+="uaccess"
+# UM32
+SUBSYSTEM=="usb", ATTRS{idVendor}=="396a", ATTRS{idProduct}=="df00", TAG+="uaccess"
+# RP2350 BOOTSEL (Raspberry Pi Pico)
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", TAG+="uaccess"
+EOF
+sudo udevadm control --reload-rules
+sudo udevadm trigger --action=add --subsystem-match=usb
 ```
 
 ### Connectivity Issues: Modem Manager
