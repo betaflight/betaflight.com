@@ -175,7 +175,7 @@ A busy OSD sent whole every frame, as clear, every element and draw, does not fi
 - Once a second the device is cleared and sent the whole screen in one draw. This brings back goggles that were switched off and on and repairs a write the device missed. The device shows a frame at the draw, so the clear does not flash.
 - The CMS draws without clearing, so while a menu is open Betaflight sends the clear itself and has the CMS draw its page again. The draw waits until the page is back, so the goggles never show half a page. Each new menu page also starts with a clear.
 
-On the same flight controller this took the UART from about 100 % to 43 % at `osd_framerate_hz = 12` and 62 % at 30, with every frame complete. This applies to the default HD canvas of 53x20 and smaller ones. For a device that does not keep its screen between draws, set `displayport_msp_send_changes = OFF`.
+On a flight controller with a heavy layout this took the UART from about 100 % to 38-47 % at `osd_framerate_hz = 12`, and to 89 % at 30 with the flight controller turned hard by hand, with every frame complete. This applies to the default HD canvas of 53x20 and smaller ones. For a device that does not keep its screen between draws, set `displayport_msp_send_changes = OFF`.
 
 The layout of those tests has 50 elements, among them the artificial horizon and sidebars, the compass bar, both stick overlays, PIDs, GPS, timers, battery and power values and warnings:
 
