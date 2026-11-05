@@ -187,7 +187,7 @@ With the flight controller turned by hand, the goggles were snapshotted twice a 
 
 ![Before and after at osd_framerate_hz 30](/img/displayport/motion-30hz.gif)
 
-Betaflight tells a DJI O3 Air Unit by its polls on the display's port: it asks for FILTER_CONFIG and never for OSD_CONFIG or ATTITUDE, which the DJI air unit before it (V1, Vista) and Configurator ask for. After five FILTER_CONFIG polls, about a second, the screen is sent again for DJI: spaces go as 0, and Betaflight works out the size of the screen the goggles hold, as above, from two bits a cell. A write that would take it over `displayport_msp_dji_budget_bytes` is held back and the device is cleared at the start of the next frame. A screen too big even right after a clear leaves out what does not fit until the next clear. Any other device gets spaces and no budget. An O4 was not measured.
+Betaflight tells a DJI O3 Air Unit by its polls on the display's port: it asks for FILTER_CONFIG and never for OSD_CONFIG or ATTITUDE, which the DJI air unit before it (V1, Vista) and Configurator ask for. After five FILTER_CONFIG polls, about a second, the screen is sent again for DJI: spaces go as 0, and Betaflight works out the size of the screen the goggles hold from the per-cell byte encoding described above. A write that would take it over `displayport_msp_dji_budget_bytes` is held back and the device is cleared at the start of the next frame. A screen too big even right after a clear leaves out what does not fit until the next clear. Any other device gets spaces and no budget. An O4 was not measured.
 
 A typical heavy layout of 50 elements takes 545-600 bytes of the 902, so the budget only comes into play with very busy screens.
 
