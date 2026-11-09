@@ -133,10 +133,35 @@ function ctypeBytes(ctype) {
   }
 }
 
+/** Struct type behind a PG accessor in `xxxConfig()->f` / `xxxConfigMutable(i)->f`, e.g. `xxxConfig_t`. */
+function accessorStruct(text) {
+  const before = text.slice(0, Math.max(text.indexOf('->'), 0)).trimEnd();
+  if (!before.endsWith(')')) {
+    return null;
+  }
+  let start = before.lastIndexOf('(');
+  const nameEnd = start;
+  while (start > 0 && /\w/.test(before[start - 1])) {
+    start--;
+  }
+  const name = before.slice(start, nameEnd);
+  if (!name) {
+    return null;
+  }
+  const base = name.endsWith('Mutable') ? name.slice(0, -'Mutable'.length) : name;
+  return `${base}_t`;
+}
+
 /** Extract the last identifier from a C accessor expression like config()->field or ptr->field */
 function extractFieldName(expr) {
   if (!expr) return null;
   expr = expr.trim();
+  // Array element inside a loop, e.g. `profile->spa_center[i]` → `spa_center[]`
+  const open = expr.lastIndexOf('[');
+  if (expr.endsWith(']') && open > 0 && /^\w+$/.test(expr.slice(open + 1, -1).trim())) {
+    const base = extractFieldName(expr.slice(0, open));
+    return base ? `${base}[]` : null;
+  }
   // Match: ...->fieldName or ...).fieldName at end
   const m = expr.match(/[->.)(]+(\w+)\s*$/);
   if (m) return m[1];
@@ -188,12 +213,167 @@ const cFiles = getAllCFiles(path.join(firmwarePath, 'src/main'));
 console.log(`  Scanning ${cFiles.length} .c files...`);
 
 const pgRegistrations = {};
+
+/** Evaluate a C integer constant expression (literals, parentheses, + - * / << >> & ^ | ~). Throws on anything else. */
+function evalIntExpr(text) {
+  const tokens = text.match(/0[xX][\da-fA-F]+|\d+|<<|>>|[-+*/&|^~()]|\S/g) ?? [];
+  let pos = 0;
+  const binary = (next, ops) => () => {
+    let v = next();
+    while (ops[tokens[pos]]) {
+      const op = tokens[pos++];
+      v = ops[op](v, next());
+    }
+    return v;
+  };
+  const primary = () => {
+    const t = tokens[pos++];
+    if (t === '(') {
+      const v = orExpr();
+      if (tokens[pos++] !== ')') {
+        throw new Error('unbalanced parentheses');
+      }
+      return v;
+    }
+    if (t === '-') {
+      return -primary();
+    }
+    if (t === '~') {
+      return ~primary();
+    }
+    if (/^0[xX]/.test(t ?? '')) {
+      return Number.parseInt(t, 16);
+    }
+    if (/^\d+$/.test(t ?? '')) {
+      return Number.parseInt(t, 10);
+    }
+    throw new Error(`unexpected token ${t}`);
+  };
+  const mulExpr = binary(primary, { '*': (a, b) => a * b, '/': (a, b) => Math.trunc(a / b) });
+  const addExpr = binary(mulExpr, { '+': (a, b) => a + b, '-': (a, b) => a - b });
+  const shiftExpr = binary(addExpr, { '<<': (a, b) => a << b, '>>': (a, b) => a >> b });
+  const andExpr = binary(shiftExpr, { '&': (a, b) => a & b });
+  const xorExpr = binary(andExpr, { '^': (a, b) => a ^ b });
+  const orExpr = binary(xorExpr, { '|': (a, b) => a | b });
+  const value = orExpr();
+  if (pos !== tokens.length) {
+    throw new Error('trailing tokens');
+  }
+  return value;
+}
+
+/** Parse the argument of `#define NAME VALUE` under the active conditions; null for function-like or empty defines. */
+function parseDefineArg(arg, conds) {
+  const space = arg.search(/\s/);
+  const name = space > 0 ? arg.slice(0, space) : '';
+  if (!/^\w+$/.test(name)) {
+    return null;
+  }
+  const condition = conds.length > 0 ? conds.join(' && ') : null;
+  return { name, entry: { value: arg.slice(space).trim(), condition } };
+}
+
+/**
+ * Collect `#define NAME VALUE` lines in a file together with the preprocessor condition they sit
+ * under (e.g. `USE_WING`, `!USE_WING`), so conditional definitions can all be reported.
+ */
+function collectDefines(content) {
+  const defines = {};
+  const conds = [];
+  const negate = (c) => (c.startsWith('!') ? c.slice(1) : `!${c}`);
+  const conditional = {
+    ifdef: (arg) => conds.push(arg),
+    if: (arg) => conds.push(arg.replace(/^defined\s*\(\s*(\w+)\s*\)$/, '$1')),
+    ifndef: (arg) => conds.push(`!${arg}`),
+    elif: (arg) => conds.splice(-1, 1, arg),
+    else: () => conds.length > 0 && conds.splice(-1, 1, negate(conds.at(-1))),
+    endif: () => conds.pop(),
+  };
+  for (const line of content.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed.startsWith('#')) {
+      continue;
+    }
+    const body = trimmed.slice(1).trimStart();
+    const directive = body.match(/^[a-z]+/)?.[0] ?? '';
+    const arg = stripLineComment(body.slice(directive.length)).trim();
+    if (Object.hasOwn(conditional, directive)) {
+      conditional[directive](arg);
+    } else if (directive === 'define') {
+      const def = parseDefineArg(arg, conds);
+      if (def) {
+        defines[def.name] ??= [];
+        defines[def.name].push(def.entry);
+      }
+    }
+  }
+  return defines;
+}
+
+/**
+ * Resolve a PG version argument to every value it can take: [{ value, condition }]. Literals and
+ * integer expressions evaluate directly; macros are followed through all their (conditional)
+ * `#define`s in the same file. Macros inside an expression must have a single definition.
+ */
+function resolveVersionVariants(token, defines, depth = 0) {
+  const expr = token.trim();
+  if (depth > 5) {
+    return [];
+  }
+  if (/^[A-Za-z_]\w*$/.test(expr)) {
+    return (defines[expr] ?? []).flatMap((d) =>
+      resolveVersionVariants(d.value, defines, depth + 1).map((v) => ({
+        value: v.value,
+        condition: [d.condition, v.condition].filter(Boolean).join(' && ') || null,
+      })),
+    );
+  }
+  try {
+    const substituted = expr.replace(/\b[A-Za-z_]\w*/g, (id) => {
+      const vs = resolveVersionVariants(id, defines, depth + 1);
+      if (vs.length !== 1) {
+        throw new Error(`ambiguous ${id}`);
+      }
+      return String(vs[0].value);
+    });
+    return [{ value: evalIntExpr(substituted), condition: null }];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Pick the reported PG version from its variants. Distinct conditional values are kept as
+ * `variants`; the primary is the build without the optional feature (a negated condition).
+ */
+function summarizeVersion(variants) {
+  const distinct = variants.filter((v, i) => variants.findIndex((w) => w.value === v.value) === i);
+  if (distinct.length === 0) {
+    return { version: 0, variants: null };
+  }
+  if (distinct.length === 1) {
+    return { version: distinct[0].value, variants: null };
+  }
+  const primary = distinct.find((v) => v.condition?.startsWith('!')) ?? distinct[0];
+  return { version: primary.value, variants: distinct };
+}
+
+/** Resolve a PG version, warning when it can't be resolved (it is then reported as 0, indistinguishable from a real 0). */
+function resolvePgVersion(pgConstant, token, defines) {
+  const variants = resolveVersionVariants(token, defines);
+  if (variants.length === 0) {
+    console.warn(`  Warning: could not resolve PG version "${token}" for ${pgConstant}; reporting 0`);
+  }
+  return summarizeVersion(variants);
+}
+
 const macroRe = /(PG_REGISTER(?:_ARRAY)?(?:_WITH_RESET_(?:FN|TEMPLATE))?)\s*\(([^)]*)\)\s*;/g;
 
 for (const file of cFiles) {
   const content = readFile(file);
   if (!content) continue;
   macroRe.lastIndex = 0;
+  const defines = collectDefines(content);
   let match;
   while ((match = macroRe.exec(content)) !== null) {
     const macroName = match[1];
@@ -206,18 +386,19 @@ for (const file of cFiles) {
       if (rawArgs.length < 5) continue;
       structType = rawArgs[0];
       pgConstant = rawArgs[3];
-      version = parseInt(rawArgs[4], 10);
+      version = resolvePgVersion(pgConstant, rawArgs[4], defines);
     } else {
       if (rawArgs.length < 4) continue;
       structType = rawArgs[0];
       pgConstant = rawArgs[2];
-      version = parseInt(rawArgs[3], 10);
+      version = resolvePgVersion(pgConstant, rawArgs[3], defines);
     }
     if (!pgConstant || !pgConstant.startsWith('PG_')) continue;
     if (!pgRegistrations[pgConstant]) {
       pgRegistrations[pgConstant] = {
         structType,
-        version: isNaN(version) ? 0 : version,
+        version: version.version,
+        versionVariants: version.variants,
         sourceFile: path.relative(firmwarePath, file),
       };
     }
@@ -239,6 +420,8 @@ const pgGroups = Object.entries(pgIdMap)
       name,
       structType: reg ? reg.structType : null,
       pgVersion: reg ? reg.version : null,
+      // Only present when the version differs between builds, e.g. [{ value: 14, condition: 'USE_WING' }, ...]
+      pgVersionVariants: reg?.versionVariants ?? undefined,
       sourceFile: reg ? reg.sourceFile : null,
     };
   });
@@ -261,14 +444,19 @@ console.log('Parsing settings.c for field min/max/type...');
 const settingsPath = path.join(firmwarePath, 'src/main/cli/settings.c');
 const settingsContent = readFile(settingsPath);
 const fieldLookup = {}; // fieldName -> { varType, min, max, lookupTable }
+const fieldStructs = {}; // fieldName -> Set of struct types that declare a setting with this name
+const fieldLookupByStruct = {}; // `structType.fieldName` -> { varType, min, max, lookupTable }
+const ambiguousFields = new Set(); // field names declared by more than one struct
 
 if (settingsContent) {
   const lines = settingsContent.split('\n');
   for (const line of lines) {
     // Extract: offsetof(structType_t, fieldName)
-    const offsetMatch = line.match(/offsetof\s*\(\s*\w+\s*,\s*(\w+)\s*\)/);
+    const offsetMatch = line.match(/offsetof\s*\(\s*(\w+)\s*,\s*(\w+)\s*\)/);
     if (!offsetMatch) continue;
-    const fieldName = offsetMatch[1];
+    const fieldName = offsetMatch[2];
+    fieldStructs[fieldName] ??= new Set();
+    fieldStructs[fieldName].add(offsetMatch[1]);
 
     // Extract var type
     const typeMatch = line.match(/\b(VAR_UINT8|VAR_UINT16|VAR_UINT32|VAR_INT8|VAR_INT16|VAR_INT32|VAR_FLOAT)\b/);
@@ -292,8 +480,14 @@ if (settingsContent) {
     if (!fieldLookup[fieldName]) {
       fieldLookup[fieldName] = { varType, min, max, lookupTable };
     }
+    fieldLookupByStruct[`${offsetMatch[1]}.${fieldName}`] ??= { varType, min, max, lookupTable };
   }
-  console.log(`  Built lookup for ${Object.keys(fieldLookup).length} fields`);
+  for (const [name, structs] of Object.entries(fieldStructs)) {
+    if (structs.size > 1) {
+      ambiguousFields.add(name);
+    }
+  }
+  console.log(`  Built lookup for ${Object.keys(fieldLookup).length} fields (${ambiguousFields.size} names shared by several structs are not used for enrichment)`);
 }
 
 // ---------------------------------------------------------------------------
@@ -319,6 +513,15 @@ for (const hFile of hFiles) {
 
 // Build fieldName -> defaultValue from all .c files
 const defaultLookup = {};
+const defaultLookupByStruct = {}; // `structType.fieldName` -> defaultValue
+
+function recordDefault(structType, fieldName, rawVal) {
+  const value = resolveConstant(rawVal, constantMap);
+  defaultLookup[fieldName] ??= value;
+  if (structType) {
+    defaultLookupByStruct[`${structType}.${fieldName}`] ??= value;
+  }
+}
 
 for (const file of cFiles) {
   const content = readFile(file);
@@ -328,10 +531,13 @@ for (const file of cFiles) {
   // Pattern 1: PG_RESET_TEMPLATE(type, name, .field = value, ...)
   let inTemplate = false;
   let parenDepth = 0;
+  let templateType = null;
   for (const line of lines) {
     if (!inTemplate) {
-      if (line.match(/PG_RESET_TEMPLATE\s*\(/)) {
+      const tm = line.match(/PG_RESET_TEMPLATE\s*\(\s*(\w+)/);
+      if (tm) {
         inTemplate = true;
+        templateType = tm[1];
         parenDepth = (line.match(/\(/g) || []).length - (line.match(/\)/g) || []).length;
         // Also check for .field = value on same line (unlikely but safe)
       }
@@ -339,11 +545,7 @@ for (const file of cFiles) {
       parenDepth += (line.match(/\(/g) || []).length - (line.match(/\)/g) || []).length;
       const fm = line.match(/\.\s*(\w+)\s*=\s*([^,/\n]+)/);
       if (fm) {
-        const fieldName = fm[1];
-        const rawVal = fm[2].trim();
-        if (!defaultLookup[fieldName]) {
-          defaultLookup[fieldName] = resolveConstant(rawVal, constantMap);
-        }
+        recordDefault(templateType, fm[1], fm[2].trim());
       }
       if (parenDepth <= 0) inTemplate = false;
     }
@@ -352,13 +554,15 @@ for (const file of cFiles) {
   // Pattern 2: void pgResetFn_name(type *ptr) { ptr->field = value; }
   let inResetFn = false;
   let fnParam = null;
+  let fnType = null;
   let braceDepth = 0;
   for (const line of lines) {
     if (!inResetFn) {
-      const fm = line.match(/^void pgResetFn_\w+\s*\(\s*\w+\s*\*\s*(\w+)/);
+      const fm = line.match(/^void pgResetFn_\w+\s*\(\s*(\w+)\s*\*\s*(\w+)/);
       if (fm) {
         inResetFn = true;
-        fnParam = fm[1];
+        fnType = fm[1];
+        fnParam = fm[2];
         braceDepth = (line.match(/\{/g) || []).length - (line.match(/\}/g) || []).length;
       }
     } else {
@@ -367,11 +571,7 @@ for (const file of cFiles) {
         const re = new RegExp(`${fnParam}\\s*->\\s*(\\w+)\\s*=\\s*([^;\\n]+)`);
         const am = line.match(re);
         if (am) {
-          const fieldName = am[1];
-          const rawVal = am[2].trim();
-          if (!defaultLookup[fieldName]) {
-            defaultLookup[fieldName] = resolveConstant(rawVal, constantMap);
-          }
+          recordDefault(fnType, am[1], am[2].trim());
         }
       }
       if (braceDepth <= 0) {
@@ -453,6 +653,81 @@ console.log(`  MSP v1: ${mspV1Codes.length}, v2 common: ${mspV2CommonCodes.lengt
 // Parse msp.c to extract per-command payload fields
 // ---------------------------------------------------------------------------
 
+/** Strip a trailing `//` or `/*` comment from a line of C. */
+function stripLineComment(text) {
+  const cut = [text.indexOf('//'), text.indexOf('/*')].filter((i) => i >= 0);
+  return cut.length > 0 ? text.slice(0, Math.min(...cut)) : text;
+}
+
+/**
+ * Parse `#define NAME VALUE`. Returns { name, value } where value is the integer, or null when it
+ * is not a plain integer or the define sits directly under `#ifndef NAME` (overridable by targets).
+ */
+function parseCountDefine(line, prevLine) {
+  const head = line.match(/^\s*#\s*define\s+(\w+)/);
+  if (!head) {
+    return null;
+  }
+  const name = head[1];
+  const rest = stripLineComment(line.slice(head[0].length)).trim();
+  const guarded = new RegExp(String.raw`^\s*#\s*ifndef\s+${name}\b`).test(prevLine);
+  const value = !guarded && /^\d+$/.test(rest) ? Number.parseInt(rest, 10) : null;
+  return { name, value };
+}
+
+// Numeric macros usable as fixed loop counts. A macro qualifies only if src/main defines it
+// exactly once, as a plain integer, and not behind `#ifndef NAME` (targets may override those).
+// Anything else (target-dependent, enum terminators, runtime values) is treated as unresolved.
+const fixedCountMacros = (() => {
+  const defs = {};
+  for (const file of [...cFiles, ...hFiles]) {
+    let prev = '';
+    for (const l of (readFile(file) ?? '').split('\n')) {
+      const def = parseCountDefine(l, prev);
+      if (def) {
+        defs[def.name] = [...(defs[def.name] ?? []), def.value];
+      }
+      if (l.trim()) {
+        prev = l;
+      }
+    }
+  }
+  const result = {};
+  for (const [name, values] of Object.entries(defs)) {
+    if (values.length === 1 && values[0] !== null) {
+      result[name] = values[0];
+    }
+  }
+  return result;
+})();
+
+// Resolve the iteration count of `for (<type> i = 0; i < BOUND; i++)`; null if not a fixed count.
+function resolveLoopCount(forLine) {
+  const unresolved = { count: null, bound: null };
+  const open = forLine.indexOf('(');
+  const [init, cond] = forLine.slice(open + 1).split(';');
+  if (open < 0 || cond === undefined) {
+    return unresolved;
+  }
+  const [lhs, rhs] = init.split('=');
+  const loopVar = lhs.trim().split(/\s+/).at(-1);
+  const lt = cond.indexOf('<');
+  if (rhs?.trim() !== '0' || lt < 0 || cond[lt + 1] === '=' || cond.slice(0, lt).trim() !== loopVar) {
+    return unresolved;
+  }
+  const bound = cond.slice(lt + 1).trim();
+  if (/^\d+$/.test(bound)) {
+    return { count: Number.parseInt(bound, 10), bound };
+  }
+  return { count: fixedCountMacros[bound] ?? null, bound };
+}
+
+// Count net `{` minus `}` on a line, ignoring string/char literals and comments.
+function braceDelta(line) {
+  const code = stripLineComment(line.replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, '').replace(/\/\*.*?\*\//g, ''));
+  return (code.match(/\{/g)?.length ?? 0) - (code.match(/\}/g)?.length ?? 0);
+}
+
 console.log('Parsing msp.c for payload fields...');
 const mspCPath = path.join(firmwarePath, 'src/main/msp/msp.c');
 const mspCContent = readFile(mspCPath);
@@ -465,42 +740,121 @@ const mspInPayloads = {};
 if (mspCContent) {
   const lines = mspCContent.split('\n');
 
-  // Line ranges for out vs in handlers (0-indexed)
-  // mspCommonProcessOutCommand: ~line 627
-  // mspProcessOutCommand: ~line 1085
-  // mspProcessInCommand: ~line 2647
-  // Detect by scanning for function signatures
+  // Line ranges for out vs in handlers (0-indexed), detected by scanning for function signatures:
+  // out = mspCommonProcessOutCommand .. mspProcessInCommand, in = mspProcessInCommand .. mspFcProcessCommand
   let outStart = -1;
   let inStart = -1;
   let inEnd = -1;
 
   for (let i = 0; i < lines.length; i++) {
     const l = lines[i];
-    if (l.match(/^static bool mspCommonProcessOutCommand|^static bool mspProcessOutCommand/)) {
+    // Signatures may carry attribute macros such as RAM_CODE or NOINLINE before `static`
+    if (l.match(/^(?:[A-Z_]+\s+)*static bool msp(?:Common)?ProcessOutCommand\s*\(/)) {
       if (outStart === -1) outStart = i;
     }
-    if (l.match(/^static mspResult_e mspProcessInCommand/)) {
+    if (l.match(/^(?:[A-Z_]+\s+)*static mspResult_e mspProcessInCommand\s*\(/)) {
       inStart = i;
     }
-    if (l.match(/^mspResult_e mspFcProcessCommand/)) {
+    if (l.match(/^(?:[A-Z_]+\s+)*mspResult_e mspFcProcessCommand\s*\(/)) {
       inEnd = i;
       break;
     }
   }
 
-  if (outStart === -1) outStart = 627;
-  if (inStart === -1) inStart = 2647;
-  if (inEnd === -1) inEnd = 4421;
+  if (outStart === -1 || inStart === -1 || inEnd === -1) {
+    console.error(`Error: could not locate MSP handler functions in msp.c (outStart=${outStart}, inStart=${inStart}, inEnd=${inEnd})`);
+    process.exit(1);
+  }
 
   // Parse a range of lines for case blocks and sbuf calls
   const parseHandlerRange = (startLine, endLine, direction, payloadsMap) => {
     let currentCommand = null;
     let byteOffset = 0;
     let offsetUnknown = false; // true after a variable-length field; subsequent offsets are unreliable
+    let depth = 0; // brace depth, used to find the end of `for` loop bodies
+    let loops = []; // open `for` loops in the current case: { bodyDepth, count, bound, startOffset, firstField }
+    // `if` blocks inside loops. A block that writes fields and ends in `continue;` is an early-out
+    // alternative to the rest of the iteration (e.g. MSP_MOTOR writes 0 for disabled motors), so its
+    // fields describe the same bytes and are dropped.
+    let ifBlocks = []; // { bodyDepth, startOffset, firstField }
+    let lastStatement = '';
+    // Preprocessor conditionals. Only the first #if/#elif/#else branch that yields fields for a command
+    // is counted, since mutually exclusive branches describe the same payload bytes.
+    const ppStack = []; // { inAlt, cmds: commands with fields so far, taken: commands covered by earlier branches }
+
+    const addField = (cmd, field) => {
+      cmd.fields.push(field);
+      for (const frame of ppStack) {
+        frame.cmds.add(currentCommand);
+      }
+    };
+
+    const closeLoop = (cmd, loop) => {
+      const body = cmd.fields.slice(loop.firstField);
+      if (body.length === 0) {
+        return;
+      }
+      const bodyBytes = byteOffset - loop.startOffset;
+      let label;
+      if (loop.count === null) {
+        label = `repeated × ${loop.bound ?? 'n'} (runtime count)`;
+      } else {
+        label = loop.bound === String(loop.count) ? `repeated ×${loop.count}` : `repeated ×${loop.count} (${loop.bound})`;
+        if (body.length > 1) {
+          label += `, stride ${bodyBytes}`;
+        }
+      }
+      for (const f of body) {
+        f.notes = f.notes ? `${label}; ${f.notes}` : label;
+      }
+      if (loop.count === null) {
+        offsetUnknown = true;
+      } else if (!offsetUnknown) {
+        byteOffset = loop.startOffset + loop.count * bodyBytes;
+      }
+    };
+
+    // Close `if` blocks and `for` loops whose body ended at the current brace depth
+    const closeEndedBlocks = (cmd) => {
+      while (ifBlocks.length > 0 && depth < ifBlocks.at(-1).bodyDepth) {
+        const block = ifBlocks.pop();
+        if (lastStatement === 'continue;' && cmd.fields.length > block.firstField) {
+          cmd.fields.splice(block.firstField);
+          byteOffset = block.startOffset;
+        }
+      }
+      while (loops.length > 0 && depth < loops.at(-1).bodyDepth) {
+        closeLoop(cmd, loops.pop());
+      }
+    };
 
     for (let i = startLine; i < endLine && i < lines.length; i++) {
       const line = lines[i];
       const trimmed = line.trim();
+
+      // Preprocessor conditionals
+      const pp = trimmed.match(/^#\s*(if|ifdef|ifndef|elif|else|endif)\b/);
+      if (pp) {
+        if (pp[1].startsWith('if')) {
+          ppStack.push({ inAlt: false, cmds: new Set(), taken: new Set() });
+        } else if (pp[1] === 'endif') {
+          ppStack.pop();
+        } else if (ppStack.length > 0) {
+          const frame = ppStack.at(-1);
+          frame.taken = new Set(frame.cmds);
+          frame.inAlt = true;
+        }
+        continue;
+      }
+
+      // Track brace depth; close any `for` loops whose body ended on this line
+      depth += braceDelta(line);
+      if (currentCommand) {
+        closeEndedBlocks(payloadsMap[currentCommand]);
+      }
+      if (trimmed && !/^[{}]+$/.test(trimmed)) {
+        lastStatement = trimmed;
+      }
 
       // Detect new case label
       const caseMatch = trimmed.match(/^case\s+(MSP2?_\w+)\s*:/);
@@ -508,6 +862,8 @@ if (mspCContent) {
         currentCommand = caseMatch[1];
         byteOffset = 0;
         offsetUnknown = false;
+        loops = [];
+        ifBlocks = [];
         if (!payloadsMap[currentCommand]) {
           payloadsMap[currentCommand] = { direction, fields: [] };
         }
@@ -524,6 +880,8 @@ if (mspCContent) {
           currentCommand = null;
           byteOffset = 0;
           offsetUnknown = false;
+          loops = [];
+          ifBlocks = [];
           continue;
         }
       }
@@ -531,6 +889,22 @@ if (mspCContent) {
       if (!currentCommand) continue;
 
       const cmd = payloadsMap[currentCommand];
+
+      // Open a `for` loop; its body sits at the depth reached after this line's `{`
+      if (/^for\s*\(/.test(trimmed)) {
+        const { count, bound } = resolveLoopCount(trimmed);
+        loops.push({ bodyDepth: depth, count, bound, startOffset: byteOffset, firstField: cmd.fields.length });
+        continue;
+      }
+      if (loops.length > 0 && /^if\s*\(.*\{$/.test(trimmed)) {
+        ifBlocks.push({ bodyDepth: depth, startOffset: byteOffset, firstField: cmd.fields.length });
+        continue;
+      }
+
+      // Skip a later #else/#elif branch when an earlier branch already described this command's bytes
+      if (ppStack.some((frame) => frame.inAlt && frame.taken.has(currentCommand))) {
+        continue;
+      }
 
       if (direction === 'out') {
         // Match: sbufWriteU8(dst, expr) or sbufWriteU16LE(dst, expr) etc.
@@ -542,32 +916,37 @@ if (mspCContent) {
           const fieldName = extractFieldName(expr);
           const comment = extractComment(line);
           const notes = comment || (expr === '0' ? 'deprecated/padding' : null);
-          cmd.fields.push({ fieldName: fieldName || '(value)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr, notes });
+          addField(cmd, { fieldName: fieldName || '(value)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr, notes, owner: accessorStruct(expr) });
           byteOffset += bytes;
         }
         // Match sbufWriteData/sbufWriteString — variable length; mark subsequent offsets unknown
         else if (line.match(/sbufWriteData\s*\(\s*dst/)) {
           const comment = extractComment(line);
-          cmd.fields.push({ fieldName: '(variable data)', ctype: 'bytes', bytes: null, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes: comment || 'variable-length data' });
+          addField(cmd, { fieldName: '(variable data)', ctype: 'bytes', bytes: null, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes: comment || 'variable-length data' });
           offsetUnknown = true;
         } else if (line.match(/sbufWriteString\s*\(\s*dst|sbufWritePString\s*\(\s*dst/)) {
           const comment = extractComment(line);
-          cmd.fields.push({ fieldName: '(string)', ctype: 'str', bytes: null, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes: comment || 'string data' });
+          addField(cmd, { fieldName: '(string)', ctype: 'str', bytes: null, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes: comment || 'string data' });
           offsetUnknown = true;
         }
       } else {
         // IN direction: match config->field = sbufReadU8(src) or bare sbufReadU8(src)
-        const rm = line.match(/sbufRead(U8|U16|U32|S8|S16|S32|Float)(?:LE|BE)?\s*\(\s*src\s*\)/);
-        if (rm) {
-          const ctype = rm[1];
+        // Also match sbufReadXxConstrained(src, min, max), and sbufReadLookupIndex(src, TABLE_x) which reads a U8
+        const typedRead = line.match(/sbufRead(U8|U16|U32|S8|S16|S32|Float)(?:LE|BE)?(?:Constrained)?\s*\(\s*src\s*[,)]/);
+        const lookupRead = !typedRead && /sbufReadLookupIndex\s*\(\s*src\s*,/.test(line);
+        if (typedRead || lookupRead) {
+          const ctype = typedRead ? typedRead[1] : 'U8';
           const bytes = ctypeBytes(ctype);
           // Try to extract lvalue field name
-          const assignMatch = line.match(/(\w+(?:\(\)|))\s*->\s*(\w+)\s*=\s*sbufRead/);
-          const fieldName = assignMatch ? assignMatch[2] : null;
+          const assignMatch = line.match(/->\s*(\w+)(\[\w+\])?\s*=\s*sbufRead/);
+          let fieldName = null;
+          if (assignMatch) {
+            fieldName = assignMatch[2] ? `${assignMatch[1]}[]` : assignMatch[1];
+          }
           const comment = extractComment(line);
           const expr = trimmed.includes('sbufReadU8(src)') && !assignMatch ? '(ignored)' : null;
           const notes = comment || (expr === '(ignored)' ? 'deprecated/ignored' : null);
-          cmd.fields.push({ fieldName: fieldName || '(read)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes });
+          addField(cmd, { fieldName: fieldName || '(read)', ctype, bytes, offset: offsetUnknown ? '?' : byteOffset, expr: null, notes, owner: accessorStruct(line) });
           byteOffset += bytes;
         }
       }
@@ -587,6 +966,35 @@ if (mspCContent) {
 // Enrich MSP codes with payload fields
 // ---------------------------------------------------------------------------
 
+/**
+ * Fill min/max/type/lookup/default for a payload field from settings.c and PG reset defaults.
+ * Names shared by several structs (e.g. `mode`, `deadband`) are only enriched when the handler's
+ * PG accessor identifies the struct; a bare-name match could attach another struct's metadata.
+ */
+function enrichField(f) {
+  const { owner } = f;
+  delete f.owner;
+  if (!f.fieldName) {
+    return;
+  }
+  let setting = fieldLookup[f.fieldName];
+  let def = defaultLookup[f.fieldName];
+  if (ambiguousFields.has(f.fieldName)) {
+    const key = owner ? `${owner}.${f.fieldName}` : null;
+    setting = key ? fieldLookupByStruct[key] : undefined;
+    def = key ? defaultLookupByStruct[key] : undefined;
+  }
+  if (setting) {
+    f.min = setting.min;
+    f.max = setting.max;
+    f.settingsType = setting.varType;
+    f.lookupTable = setting.lookupTable;
+  }
+  if (def !== undefined) {
+    f.default = def;
+  }
+}
+
 for (const code of allMspCodes) {
   const outPayload = mspOutPayloads[code.name];
   const inPayload = mspInPayloads[code.name];
@@ -604,16 +1012,7 @@ for (const code of allMspCodes) {
 
   // Enrich each field with min/max/default from settings and default lookups
   for (const f of code.fields) {
-    if (f.fieldName && fieldLookup[f.fieldName]) {
-      const s = fieldLookup[f.fieldName];
-      f.min = s.min;
-      f.max = s.max;
-      f.settingsType = s.varType;
-      f.lookupTable = s.lookupTable;
-    }
-    if (f.fieldName && defaultLookup[f.fieldName] !== undefined) {
-      f.default = defaultLookup[f.fieldName];
-    }
+    enrichField(f);
   }
 }
 
@@ -621,7 +1020,13 @@ for (const code of allMspCodes) {
 // Generate Markdown tables
 // ---------------------------------------------------------------------------
 
-function buildTable(headers, rows) {
+// Escape `|` so C expressions such as `A | B` don't split a Markdown table cell.
+function escapeCell(cell) {
+  return String(cell ?? '').replace(/(?<!\\)\|/g, String.raw`\|`);
+}
+
+function buildTable(headers, rawRows) {
+  const rows = rawRows.map((r) => r.map(escapeCell));
   const widths = headers.map((h, i) => Math.max(h.length, ...rows.map((r) => String(r[i] ?? '').length)));
   const header = `| ${headers.map((h, i) => padEnd(h, widths[i])).join(' | ')} |`;
   const sep = `| ${widths.map((w) => '-'.repeat(w)).join(' | ')} |`;
@@ -630,6 +1035,19 @@ function buildTable(headers, rows) {
 }
 
 const directionLabel = { out: 'from FC', in: 'to FC', both: 'both', system: 'system', unknown: 'unknown' };
+
+/** PG version cell; build-dependent versions read e.g. `13 (14 with USE_WING)`. */
+function formatPgVersion(g) {
+  if (g.pgVersion === null) {
+    return '—';
+  }
+  const others = (g.pgVersionVariants ?? []).filter((v) => v.value !== g.pgVersion);
+  if (others.length === 0) {
+    return String(g.pgVersion);
+  }
+  const variants = others.map((v) => `${v.value} with ${v.condition}`).join(', ');
+  return `${g.pgVersion} (${variants})`;
+}
 
 // Summary table
 const mspSummaryTable = buildTable(
@@ -640,7 +1058,7 @@ const mspSummaryTable = buildTable(
 // PG table
 const pgTable = buildTable(
   ['ID', 'Name', 'Struct Type', 'PG Version', 'Source File'],
-  pgGroups.map((g) => [g.id, g.name, g.structType ?? '—', g.pgVersion ?? '—', g.sourceFile ?? '—']),
+  pgGroups.map((g) => [g.id, g.name, g.structType ?? '—', formatPgVersion(g), g.sourceFile ?? '—']),
 );
 
 // Per-command detail sections
