@@ -4,18 +4,29 @@ sidebar_position: 1
 
 # Setup Tab
 
-A place for basic settings and flight controller information. The setup tab is the first tab you see
-when you connect to your flight controller. You can calibrate the various sensors and check the gyroscope
-live preview, view the arming prevention flags and other FC information
+The Setup tab is the first tab you see when you connect to your flight controller. It shows a live
+orientation preview, arming prevention flags and other flight controller information.
 
-![Setup tab](/img/betaflight_configurator_setup_tab.png)
+:::info App Versions
+
+In Betaflight App 2026.6.1 and later, sensor calibration and alignment controls are in the
+[Sensors tab](/docs/wiki/app/sensors-tab). In App 2025.12.1 and Configurator 10.10.0, calibration
+controls were on Setup, while board and sensor alignment controls were on Configuration.
+
+:::
+
+![Setup tab in Betaflight App 2026.6.1 with Expert Mode enabled](/img/betaflight_configurator_setup_tab.png)
+
+_Screenshot from App 2026.6.1 using a virtual flight controller._
 
 ## Basic Setup
 
 ### Calibrate Accelerometer
 
-The accelerometer is used to determine the orientation of the flight controller. It is used to determine
-the pitch, roll and yaw angles. You can calibrate it here, following the instructions
+In App 2026.6.1 and later, open the
+[Sensors tab's Accelerometer section](/docs/wiki/app/sensors-tab#accelerometer) and use **Calibrate**.
+In App 2025.12.1 and Configurator 10.10.0, use the accelerometer calibration control on the Setup tab.
+Place the flight controller on a flat, level surface and keep it still during calibration.
 
 :::info
 
@@ -26,10 +37,13 @@ not intend to use these features, you can skip this step, or even disable the ac
 
 ### Calibrate Magnetometer
 
-The magnetometer (compass) is used to determine the heading of the flight controller in 3d space. This is
-useful for more accurate information for GPS rescue. Calibrate it following the instructions
+In App 2026.6.1 and later, open the
+[Sensors tab's Magnetometer section](/docs/wiki/app/sensors-tab#magnetometer) for compass alignment
+and calibration. The available calibration modes depend on your firmware; follow the
+[calibration instructions](/docs/wiki/app/sensors-tab#calibration) for the selected mode.
 
-The magnetometer calibration process is time limited, you only have 30 seconds to do the movements
+In App 2025.12.1 and Configurator 10.10.0, use the magnetometer calibration control on the Setup tab
+and configure compass alignment on the Configuration tab.
 
 ### Reset Settings
 
@@ -41,11 +55,15 @@ unpredictable results, or you may even need to re-flash in order to even be able
 
 :::
 
+Enable **Expert Mode** to show the **Erase Settings** control in the firmware information panel.
+
 ### Activate Bootloader/DFU
 
 A manual way to put the flight controller into DFU (Device Firmware Update) mode without having to hold
 down the physical boot button. This is useful if you're having issues when flashing. Board will remain in DFU mode until cycled
 or a flash is completed
+
+This control is also shown in the firmware information panel when **Expert Mode** is enabled.
 
 ## FC Information
 
@@ -56,7 +74,8 @@ it isn't getting/giving noisy data
 
 :::info
 
-You can set the gyroscope alignment in the `Configuration` tab
+Set [board alignment](/docs/wiki/app/sensors-tab#board-alignment) in the Sensors tab. For older firmware
+with separate sensor alignment controls, see [Sensor Alignment (Legacy)](/docs/wiki/app/sensors-tab#sensor-alignment-legacy).
 
 :::
 
@@ -85,5 +104,6 @@ A graphic replica of real aircraft instruments
 
 ### Experimental Backup and Restore
 
-Allows you to back up the configuration that can be changed in the configurator itself, you cannot back up
-CLI-only settings
+The experimental backup and restore controls from older Configurator versions are not present on the
+Setup tab in App 2026.6.1 and later. Follow the [configuration backup instructions](/docs/wiki/getting-started/setup-guide#backup-your-configuration)
+before changing your settings or upgrading firmware.
