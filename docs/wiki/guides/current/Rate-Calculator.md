@@ -24,6 +24,7 @@ To compare Actual with Betaflight rates, there are charting solutions by:
 
 - [metamarc.com](https://rates.metamarc.com) - probably the best
 - [ctzsnooze on Desmos](https://www.desmos.com/calculator/r5pkxlxhtb) (has all the maths, difficult to use)
+- [fpvrates converter](https://fpvrates.com/en/guides/convert-betaflight-rates/#converter) (Betaflight to Actual, keeps center and max rate, shows the largest curve deviation)
 - [kmitchel ](https://kmitchel.github.io/) (seems to be broken).
 
 For more information about Actual rates, see:
