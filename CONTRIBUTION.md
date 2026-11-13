@@ -1,10 +1,10 @@
-# Contribution guide
+# Contribution Guide
 
 ## Licence and Contributor Licence Agreement
 
 The content of betaflight.com is not open source. All rights are reserved, except for the content listed in [LICENSE.md](LICENSE.md).
 
-Before we can merge your first pull request, you must sign the [Contributor Licence Agreement](CLA.md). The CLA check on your pull request tells you how. You keep the copyright in your contribution and can use it for any purpose. Betaflight gets a licence to publish it.
+When you open a pull request, you agree to the [Contributor Licence Agreement](CLA.md). Tick the agreement box in the pull request description to confirm. A check on your pull request fails until the box is ticked. You keep the copyright in your contribution and can use it for any purpose. Betaflight gets a licence to publish it.
 
 Do not copy content from other websites or documents unless you have the right to do so. Give the source and its licence in your pull request.
 

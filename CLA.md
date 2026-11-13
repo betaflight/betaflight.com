@@ -2,17 +2,17 @@
 
 Version 1.0
 
-Thank you for your contribution to betaflight.com. This agreement gives the terms of your contribution. Read it before you sign.
+Thank you for your contribution to betaflight.com. This agreement gives the terms of your contribution. Read it before you contribute.
 
-To sign, add the comment that the CLA check asks for on your pull request. You sign one time. The agreement then applies to all your contributions to this repository, including contributions that you made before you signed.
+You agree to this agreement when you open a pull request, or submit a Contribution in another way. The pull request template asks you to confirm this with a tick box. You can also agree by confirming it in writing to Betaflight. The agreement then applies to all your contributions to this repository, including contributions that you made before you agreed.
 
 ## 1. Definitions
 
 **"Betaflight"** means Betaflight LLC, which publishes betaflight.com, and its successors and assigns.
 
-**"You"** means the person who signs this agreement. If you make a contribution as part of your work, "You" also includes your employer (see section 6).
+**"You"** means the person who agrees to this agreement. If you make a contribution as part of your work, "You" also includes your employer (see section 6).
 
-**"Contribution"** means any work that You submit to Betaflight for the betaflight.com repository or website. This includes text, images, video, data, code and other material, and changes to existing material. You submit a Contribution when You open or update a pull request, push a commit, or make a suggestion in a review. This includes work that You submitted before You signed this agreement.
+**"Contribution"** means any work that You submit to Betaflight for the betaflight.com repository or website. This includes text, images, video, data, code and other material, and changes to existing material. You submit a Contribution when You open or update a pull request, push a commit, or make a suggestion in a review. This includes work that You submitted before You agreed to this agreement.
 
 ## 2. You keep your copyright
 
