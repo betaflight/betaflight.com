@@ -4,7 +4,7 @@ Version 1.0
 
 Thank you for your contribution to betaflight.com. This agreement gives the terms of your contribution. Read it before you sign.
 
-To sign, add the comment that the CLA check asks for on your pull request. You sign one time. The agreement then applies to all your contributions to this repository.
+To sign, add the comment that the CLA check asks for on your pull request. You sign one time. The agreement then applies to all your contributions to this repository, including contributions that you made before you signed.
 
 ## 1. Definitions
 
@@ -12,7 +12,7 @@ To sign, add the comment that the CLA check asks for on your pull request. You s
 
 **"You"** means the person who signs this agreement. If you make a contribution as part of your work, "You" also includes your employer (see section 6).
 
-**"Contribution"** means any work that You submit to Betaflight for the betaflight.com repository or website. This includes text, images, video, data, code and other material, and changes to existing material. You submit a Contribution when You open or update a pull request, push a commit, or make a suggestion in a review.
+**"Contribution"** means any work that You submit to Betaflight for the betaflight.com repository or website. This includes text, images, video, data, code and other material, and changes to existing material. You submit a Contribution when You open or update a pull request, push a commit, or make a suggestion in a review. This includes work that You submitted before You signed this agreement.
 
 ## 2. You keep your copyright
 
@@ -30,22 +30,22 @@ Some content in this repository is licensed under the GNU General Public License
 
 ## 5. No licence to other persons
 
-This agreement gives rights only to Betaflight. It gives no rights in Your Contributions to other contributors or to the public.
+Except as stated in section 4, this agreement gives rights only to Betaflight. It gives no other rights in Your Contributions to other contributors or to the public.
 
 ## 6. Your employer
 
 If Your employer has rights in the work that You create, You confirm one of these:
 
-* Your employer gave You permission to make Contributions under this agreement
-* Your employer waived its rights in Your Contributions
+- Your employer gave You permission to make Contributions under this agreement
+- Your employer waived its rights in Your Contributions
 
 ## 7. Your Contributions are your own work
 
 You confirm that:
 
-* Each Contribution is Your own original work, or You have the right to submit it under this agreement
-* If a Contribution includes material from another person (for example a manufacturer image or a quotation), You identify the source and its licence in the pull request
-* To Your knowledge, the Contribution does not infringe the rights of another person
+- Each Contribution is Your own original work, or You have the right to submit it under this agreement
+- If a Contribution includes material from another person (for example a manufacturer image or a quotation), You identify the source and its licence in the pull request
+- To Your knowledge, the Contribution does not infringe the rights of another person
 
 ## 8. Moral rights
 
