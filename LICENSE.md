@@ -1,6 +1,6 @@
 # Licence
 
-Copyright © 2018 to 2026 Betaflight and its contributors. All rights reserved.
+Copyright © 2018 to 2026 Betaflight LLC and its contributors. All rights reserved.
 
 This notice applies to the betaflight.com repository and to the betaflight.com website. It covers the documentation, blog posts, images, data and site code, unless a file or this notice says otherwise.
 
@@ -12,7 +12,7 @@ This notice gives no other licence. You must not copy, change, publish, distribu
 
 ## Contributions
 
-Each contributor keeps the copyright in their own contributions. Each contributor gives Betaflight a licence under the [Contributor Licence Agreement](CLA.md). A contributor can use their own contributions for any purpose. This gives them no rights in the contributions of other persons.
+Each contributor keeps the copyright in their own contributions. Each contributor gives Betaflight LLC a licence under the [Contributor Licence Agreement](CLA.md). A contributor can use their own contributions for any purpose. This gives them no rights in the contributions of other persons.
 
 ## Exceptions
 

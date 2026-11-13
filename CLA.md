@@ -8,7 +8,7 @@ To sign, add the comment that the CLA check asks for on your pull request. You s
 
 ## 1. Definitions
 
-**"Betaflight"** means the Betaflight project and its maintainers, who publish betaflight.com, and any legal entity that they form or appoint to hold the rights of the project.
+**"Betaflight"** means Betaflight LLC, which publishes betaflight.com, and its successors and assigns.
 
 **"You"** means the person who signs this agreement. If you make a contribution as part of your work, "You" also includes your employer (see section 6).
 
