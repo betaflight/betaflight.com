@@ -3,21 +3,84 @@ name: CLA
 on:
   pull_request_target:
     types: [opened, edited, reopened, synchronize]
+  issue_comment:
+    types: [created]
 
-permissions: {}
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+  statuses: write
 
 jobs:
   agreement:
-    if: github.event.pull_request.user.type != 'Bot'
+    if: github.event_name == 'pull_request_target' || (github.event.issue.pull_request && contains(github.event.comment.body, 'I agree to the Contributor Licence Agreement'))
     runs-on: ubuntu-latest
     steps:
-      - name: Check the agreement box is ticked
-        env:
-          PR_BODY: ${{ github.event.pull_request.body }}
-        run: |
-          if printf '%s\n' "$PR_BODY" | grep -Eiq '^[[:space:]]*[-*] \[x\] I have read the \[Contributor Licence Agreement\]'; then
-            echo "Contributor Licence Agreement accepted."
-          else
-            echo "::error::Tick the Contributor Licence Agreement box in the pull request description."
-            exit 1
-          fi
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pr = context.payload.pull_request ?? (await github.rest.pulls.get({ owner, repo, pull_number: context.issue.number })).data;
+            if (pr.state !== 'open') return;
+
+            const report = (state, description) =>
+              github.rest.repos.createCommitStatus({
+                owner,
+                repo,
+                sha: pr.head.sha,
+                state,
+                context: 'CLA',
+                description: description.slice(0, 140),
+                target_url: `${context.serverUrl}/${owner}/${repo}/blob/master/CLA.md`,
+              });
+
+            if (['dependabot[bot]', 'github-actions[bot]'].includes(pr.user.login)) {
+              return report('success', 'Automated dependency update');
+            }
+
+            if (!/^\s*[-*] \[x\] I have read the \[Contributor Licence Agreement\]/im.test(pr.body ?? '')) {
+              return report('failure', 'Tick the Contributor Licence Agreement box in the pull request description');
+            }
+
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number: pr.number, per_page: 100 });
+            const agreed = new Set(comments.filter((c) => /I agree to the Contributor Licence Agreement/i.test(c.body ?? '')).map((c) => c.user.login));
+            agreed.add(pr.user.login);
+
+            const commits = await github.paginate(github.rest.pulls.listCommits, { owner, repo, pull_number: pr.number, per_page: 100 });
+            const logins = new Set();
+            const unlinked = new Set();
+            for (const c of commits) {
+              for (const [account, identity] of [
+                [c.author, c.commit.author],
+                [c.committer, c.commit.committer],
+              ]) {
+                if (account) logins.add(account.login);
+                else unlinked.add(`${identity.name} <${identity.email}>`);
+              }
+              for (const m of c.commit.message.matchAll(/^Co-authored-by:\s*(.+?)\s*<([^>]+)>/gim)) {
+                const noreply = m[2].match(/^(?:\d+\+)?([^@]+)@users\.noreply\.github\.com$/i);
+                if (noreply) logins.add(noreply[1]);
+                else unlinked.add(`${m[1]} <${m[2]}>`);
+              }
+            }
+            logins.delete('web-flow');
+
+            const missing = [];
+            for (const login of logins) {
+              if (agreed.has(login)) continue;
+              const type = await github.rest.users.getByUsername({ username: login }).then((r) => r.data.type, () => 'User');
+              if (type !== 'Bot') missing.push(login);
+            }
+
+            if (pr.user.type === 'Bot' && ![...agreed].some((l) => l !== pr.user.login)) {
+              missing.push('a person responsible for this automated pull request');
+            }
+            if (unlinked.size) {
+              core.warning(`Commit identities not linked to a GitHub account, covered by the author's confirmation: ${[...unlinked].join(', ')}`);
+            }
+
+            if (missing.length) {
+              return report('failure', `Missing CLA agreement from: ${missing.join(', ')}`);
+            }
+            return report('success', 'All contributors agreed to the Contributor Licence Agreement');

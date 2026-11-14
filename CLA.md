@@ -4,7 +4,7 @@ Version 1.0
 
 Thank you for your contribution to betaflight.com. This agreement gives the terms of your contribution. Read it before you contribute.
 
-You agree to this agreement when you open a pull request, or submit a Contribution in another way. The pull request template asks you to confirm this with a tick box. You can also agree by confirming it in writing to Betaflight. The agreement then applies to all your contributions to this repository, including contributions that you made before you agreed.
+You agree to this agreement when you open a pull request, or submit a Contribution in another way. The pull request template asks you to confirm this with a tick box. Each other person who authors or commits work in a pull request agrees by adding the comment "I agree to the Contributor Licence Agreement" to that pull request. You can also agree by confirming it in writing to Betaflight. The agreement then applies to all your contributions to this repository, including contributions that you made before you agreed.
 
 ## 1. Definitions
 
@@ -46,6 +46,7 @@ You confirm that:
 - Each Contribution is Your own original work, or You have the right to submit it under this agreement
 - If a Contribution includes material from another person (for example a manufacturer image or a quotation), You identify the source and its licence in the pull request
 - To Your knowledge, the Contribution does not infringe the rights of another person
+- If You use AI tools or other automated tools to make a Contribution, You reviewed the result, You take responsibility for it as Your Contribution, and the terms of each tool permit You to submit the result under this agreement
 
 ## 8. Moral rights
 
