@@ -2,7 +2,7 @@ name: CLA
 
 on:
   pull_request_target:
-    types: [opened, edited, reopened, synchronize]
+    types: [opened, edited, reopened, synchronize, labeled, unlabeled]
   issue_comment:
     types: [created]
 
@@ -35,33 +35,34 @@ jobs:
                 target_url: `${context.serverUrl}/${owner}/${repo}/blob/master/CLA.md`,
               });
 
-            if (['dependabot[bot]', 'github-actions[bot]'].includes(pr.user.login)) {
-              return report('success', 'Automated dependency update');
-            }
-
-            if (!/^\s*[-*] \[x\] I have read the \[Contributor Licence Agreement\]/im.test(pr.body ?? '')) {
+            const automated = ['dependabot[bot]', 'github-actions[bot]'].includes(pr.user.login);
+            if (!automated && !/^\s*[-*] \[x\] I have read the \[Contributor Licence Agreement\]/im.test(pr.body ?? '')) {
               return report('failure', 'Tick the Contributor Licence Agreement box in the pull request description');
+            }
+            if (pr.commits > 250) {
+              return report('failure', 'Too many commits to check. Reduce the pull request to 250 commits or fewer');
             }
 
             const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number: pr.number, per_page: 100 });
-            const agreed = new Set(comments.filter((c) => /I agree to the Contributor Licence Agreement/i.test(c.body ?? '')).map((c) => c.user.login));
+            const statement = /^\s*I agree to the Contributor Licence Agreement\.?\s*$/i;
+            const agreed = new Set(comments.filter((c) => statement.test(c.body ?? '')).map((c) => c.user.login));
             agreed.add(pr.user.login);
 
             const commits = await github.paginate(github.rest.pulls.listCommits, { owner, repo, pull_number: pr.number, per_page: 100 });
             const logins = new Set();
-            const unlinked = new Set();
+            const unlinked = new Map();
             for (const c of commits) {
               for (const [account, identity] of [
                 [c.author, c.commit.author],
                 [c.committer, c.commit.committer],
               ]) {
                 if (account) logins.add(account.login);
-                else unlinked.add(`${identity.name} <${identity.email}>`);
+                else unlinked.set(identity.name, `${identity.name} <${identity.email}>`);
               }
               for (const m of c.commit.message.matchAll(/^Co-authored-by:\s*(.+?)\s*<([^>]+)>/gim)) {
                 const noreply = m[2].match(/^(?:\d+\+)?([^@]+)@users\.noreply\.github\.com$/i);
                 if (noreply) logins.add(noreply[1]);
-                else unlinked.add(`${m[1]} <${m[2]}>`);
+                else unlinked.set(m[1], `${m[1]} <${m[2]}>`);
               }
             }
             logins.delete('web-flow');
@@ -73,14 +74,15 @@ jobs:
               if (type !== 'Bot') missing.push(login);
             }
 
-            if (pr.user.type === 'Bot' && ![...agreed].some((l) => l !== pr.user.login)) {
+            if (pr.user.type === 'Bot' && !automated && ![...agreed].some((l) => l !== pr.user.login)) {
               missing.push('a person responsible for this automated pull request');
             }
-            if (unlinked.size) {
-              core.warning(`Commit identities not linked to a GitHub account, covered by the author's confirmation: ${[...unlinked].join(', ')}`);
-            }
-
             if (missing.length) {
               return report('failure', `Missing CLA agreement from: ${missing.join(', ')}`);
+            }
+
+            if (unlinked.size && !pr.labels.some((l) => l.name === 'CLA verified')) {
+              core.warning(`Commit identities not linked to a GitHub account: ${[...unlinked.values()].join(', ')}`);
+              return report('failure', `A maintainer must verify these contributors and add the CLA verified label: ${[...unlinked.keys()].join(', ')}`);
             }
             return report('success', 'All contributors agreed to the Contributor Licence Agreement');
