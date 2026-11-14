@@ -19,7 +19,7 @@ For Betaflight 4.4 and above, firmware updating uses an online build process. Th
 
 To revert to previous firmware, the same online process would apply, but you would choose the original firmware version, and then restore your saved `diff` file. <br/><br/>
 
-The Betaflight App only supports Betaflight version 4.0 and newer. Older versions of the app may be needed to flash older firmware.
+The Betaflight App connects to Betaflight 4.3 and newer (MSP API 1.44); with older firmware it only opens the CLI. Older firmware can still be flashed, but configuring it requires an older version of the app.
 
 :::
 
