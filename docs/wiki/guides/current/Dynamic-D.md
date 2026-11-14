@@ -53,8 +53,8 @@ If your build is noisy (bent props, loose hardware, dirty motors), a high **D Ma
 | `d_max_roll`    | 40      | 0–250 | D Max (roll)       | Peak D on roll — reached during fast moves and propwash                                                  |
 | `d_max_pitch`   | 46      | 0–250 | D Max (pitch)      | Peak D on pitch                                                                                          |
 | `d_max_yaw`     | 0       | 0–250 | D Max (yaw)        | Peak D on yaw                                                                                            |
-| `d_max_gain`    | 37      | 0–100 | D Max Gain         | Boost sensitivity — higher values push D toward D Max more quickly and aggressively                      |
-| `d_max_advance` | 20      | 0–200 | D Max Advance      | Setpoint contribution to the boost trigger — higher values cause D to rise earlier when sticks are moved |
+| `d_max_gain`    | 0       | 0–100 | D Max Gain         | Boost sensitivity — higher values push D toward D Max more quickly and aggressively                      |
+| `d_max_advance` | 35      | 0–200 | D Max Advance      | Setpoint contribution to the boost trigger — higher values cause D to rise earlier when sticks are moved |
 
 These are profile-specific settings.
 
