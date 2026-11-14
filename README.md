@@ -1,8 +1,7 @@
 ![Betaflight](https://raw.githubusercontent.com/betaflight/.github/main/profile/images/bf_logo.svg#gh-light-mode-only)
 ![Betaflight](https://raw.githubusercontent.com/betaflight/.github/main/profile/images/bf_logo_dark.svg#gh-dark-mode-only)
 
-
-[![Build](https://img.shields.io/github/actions/workflow/status/betaflight/betaflight.com/deploy.yml?branch=master)](https://github.com/betaflight/betaflight.com/actions/workflows/deploy.yml) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Join us on Discord!](https://img.shields.io/discord/868013470023548938)](https://discord.gg/n4E6ak4u3c)
+[![Build](https://img.shields.io/github/actions/workflow/status/betaflight/betaflight.com/deploy.yml?branch=master)](https://github.com/betaflight/betaflight.com/actions/workflows/deploy.yml) [![License: All rights reserved](https://img.shields.io/badge/License-All%20rights%20reserved-lightgrey.svg)](./LICENSE.md) [![Join us on Discord!](https://img.shields.io/discord/868013470023548938)](https://discord.gg/n4E6ak4u3c)
 
 ## Project Description
 
@@ -148,3 +147,5 @@ Husky is configured as a pre-commit hook to run both on commit, make sure it is 
 ## Contributing Guidelines
 
 Please refer to the [CONTRIBUTING.md](./CONTRIBUTION.md) file for detailed guidelines on how to contribute to Betaflight.
+
+Contributors agree to the [Contributor Licence Agreement](./CLA.md) when they open a pull request. See [LICENSE.md](./LICENSE.md) for the licence of the site and its content.
