@@ -1,0 +1,43 @@
+# Files licensed under the MIT licence
+#
+# These files came from Docusaurus (swizzled theme components and the classic
+# site template) or from docusaurus-lunr-search. They, and all changes to them,
+# are licensed under the MIT licence of their source. See ../LICENSE.md.
+
+# Docusaurus, see MIT-Docusaurus.txt
+docusaurus.config.mjs
+sidebars.js
+src/css/custom.css
+src/theme/BlogPostItem/Content/index.tsx
+src/theme/BlogPostItem/Header/Info/index.tsx
+src/theme/BlogPostItem/Header/Info/styles.module.css
+src/theme/BlogPostItem/Header/Title/index.tsx
+src/theme/BlogPostItem/Header/Title/styles.module.css
+src/theme/BlogSidebar/Content/index.tsx
+src/theme/BlogSidebar/Desktop/index.tsx
+src/theme/BlogSidebar/Desktop/styles.module.css
+src/theme/ColorModeToggle/index.js
+src/theme/ColorModeToggle/styles.module.css
+src/theme/DocCard/index.js
+src/theme/DocCardList/index.js
+src/theme/DocCard/styles.module.css
+src/theme/DocItem/Layout/index.js
+src/theme/DocItem/Layout/styles.module.css
+src/theme/DocItem/Metadata/index.js
+src/theme/Footer/index.js
+src/theme/Footer/Layout/index.js
+src/theme/Footer/LinkItem/index.js
+src/theme/Footer/Links/index.js
+src/theme/Footer/Links/MultiColumn/index.js
+src/theme/MDXPage/index.js
+src/theme/MDXPage/styles.module.css
+
+# docusaurus-lunr-search, see MIT-docusaurus-lunr-search.txt
+src/theme/SearchBar/algolia.css
+src/theme/SearchBar/DocSearch.js
+src/theme/SearchBar/HighlightSearchResults.jsx
+src/theme/SearchBar/index.jsx
+src/theme/SearchBar/lunar-search.js
+src/theme/SearchBar/styles.css
+src/theme/SearchBar/templates.js
+src/theme/SearchBar/utils.js

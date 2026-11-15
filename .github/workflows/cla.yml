@@ -2,7 +2,7 @@ name: CLA
 
 on:
   pull_request_target:
-    types: [opened, edited, reopened, synchronize, labeled, unlabeled]
+    types: [opened, edited, reopened, synchronize, labeled]
   issue_comment:
     types: [created]
 
@@ -13,8 +13,28 @@ permissions:
   statuses: write
 
 jobs:
+  verify:
+    if: github.event.action == 'labeled' && github.event.label.name == 'CLA verified'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pr = context.payload.pull_request;
+            await github.rest.repos.createCommitStatus({
+              owner,
+              repo,
+              sha: pr.head.sha,
+              state: 'success',
+              context: 'CLA verification',
+              description: `${context.actor} verified the contributors without a linked GitHub account`.slice(0, 140),
+            });
+            await github.rest.issues.removeLabel({ owner, repo, issue_number: pr.number, name: 'CLA verified' });
+
   agreement:
-    if: github.event_name == 'pull_request_target' || (github.event.issue.pull_request && contains(github.event.comment.body, 'I agree to the Contributor Licence Agreement'))
+    needs: verify
+    if: ${{ !cancelled() && (github.event_name == 'pull_request_target' || (github.event.issue.pull_request && contains(github.event.comment.body, 'I agree to the Contributor Licence Agreement'))) }}
     runs-on: ubuntu-latest
     concurrency:
       group: cla-${{ github.event.pull_request.number || github.event.issue.number }}
@@ -26,12 +46,6 @@ jobs:
             const { owner, repo } = context.repo;
             const { data: pr } = await github.rest.pulls.get({ owner, repo, pull_number: context.issue.number });
             if (pr.state !== 'open') return;
-
-            let verified = pr.labels.some((l) => l.name === 'CLA verified');
-            if (verified && context.payload.action === 'synchronize') {
-              await github.rest.issues.removeLabel({ owner, repo, issue_number: pr.number, name: 'CLA verified' });
-              verified = false;
-            }
 
             const report = (state, description) =>
               github.rest.repos.createCommitStatus({
@@ -90,6 +104,8 @@ jobs:
               return report('failure', `Missing CLA agreement from: ${missing.join(', ')}`);
             }
 
+            const statuses = unlinked.size ? await github.paginate(github.rest.repos.listCommitStatusesForRef, { owner, repo, ref: pr.head.sha, per_page: 100 }) : [];
+            const verified = statuses.some((s) => s.context === 'CLA verification' && s.state === 'success' && s.creator?.login === 'github-actions[bot]');
             if (unlinked.size && !verified) {
               core.warning(`Commit identities not linked to a GitHub account: ${[...unlinked.values()].join(', ')}`);
               return report('failure', `A maintainer must verify these contributors and add the CLA verified label: ${[...unlinked.keys()].join(', ')}`);

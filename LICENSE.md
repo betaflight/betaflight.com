@@ -20,9 +20,9 @@ Each contributor keeps the copyright in their own contributions. Each contributo
 
 Some documentation came from the Betaflight firmware repository and the old Betaflight GitHub wiki. That content, and all changes to it, are licensed under the GNU General Public License version 3.0. [LICENSES/GPL-3.0-content.txt](LICENSES/GPL-3.0-content.txt) lists these files. The licence text is in [LICENSES/GPL-3.0.txt](LICENSES/GPL-3.0.txt).
 
-### Docusaurus
+### Content licensed under the MIT licence
 
-The site is built with [Docusaurus](https://docusaurus.io/). Site code that comes from Docusaurus (for example the swizzled theme components in `src/theme`) is licensed under the MIT licence in [LICENSES/MIT-Docusaurus.txt](LICENSES/MIT-Docusaurus.txt). Each npm dependency keeps its own licence.
+The site is built with [Docusaurus](https://docusaurus.io/). Some site code came from Docusaurus or from docusaurus-lunr-search. That code, and all changes to it, are licensed under the MIT licence of its source. [LICENSES/MIT-content.txt](LICENSES/MIT-content.txt) lists these files. The licence texts are in [LICENSES/MIT-Docusaurus.txt](LICENSES/MIT-Docusaurus.txt) and [LICENSES/MIT-docusaurus-lunr-search.txt](LICENSES/MIT-docusaurus-lunr-search.txt). Each npm dependency keeps its own licence.
 
 ### Third-party material
 
