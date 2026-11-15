@@ -6,16 +6,15 @@ on:
   issue_comment:
     types: [created]
 
-permissions:
-  contents: read
-  issues: write
-  pull-requests: read
-  statuses: write
+permissions: {}
 
 jobs:
   verify:
     if: github.event.action == 'labeled' && github.event.label.name == 'CLA verified'
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      statuses: write
     steps:
       - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
@@ -36,6 +35,10 @@ jobs:
     needs: verify
     if: ${{ !cancelled() && (github.event_name == 'pull_request_target' || (github.event.issue.pull_request && contains(github.event.comment.body, 'I agree to the Contributor Licence Agreement'))) }}
     runs-on: ubuntu-latest
+    permissions:
+      issues: read
+      pull-requests: read
+      statuses: write
     concurrency:
       group: cla-${{ github.event.pull_request.number || github.event.issue.number }}
       cancel-in-progress: false
