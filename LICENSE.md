@@ -22,7 +22,7 @@ Some documentation came from the Betaflight firmware repository and the old Beta
 
 ### Content licensed under the MIT licence
 
-The site is built with [Docusaurus](https://docusaurus.io/). Some site code came from Docusaurus or from docusaurus-lunr-search. That code, and all changes to it, are licensed under the MIT licence of its source. [LICENSES/MIT-content.txt](LICENSES/MIT-content.txt) lists these files. The licence texts are in [LICENSES/MIT-Docusaurus.txt](LICENSES/MIT-Docusaurus.txt) and [LICENSES/MIT-docusaurus-lunr-search.txt](LICENSES/MIT-docusaurus-lunr-search.txt). Each npm dependency keeps its own licence.
+The site is built with [Docusaurus](https://docusaurus.io/). Some site code came from Docusaurus, docusaurus-lunr-search or docusaurus-search-local. That code, and all changes to it, are licensed under the MIT licence of its source. [LICENSES/MIT-content.txt](LICENSES/MIT-content.txt) lists these files. The licence texts are in [LICENSES/MIT-Docusaurus.txt](LICENSES/MIT-Docusaurus.txt), [LICENSES/MIT-docusaurus-lunr-search.txt](LICENSES/MIT-docusaurus-lunr-search.txt) and [LICENSES/MIT-docusaurus-search-local.txt](LICENSES/MIT-docusaurus-search-local.txt). Each npm dependency keeps its own licence.
 
 ### Third-party material
 
