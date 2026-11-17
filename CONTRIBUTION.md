@@ -4,7 +4,7 @@
 
 The content of betaflight.com is not open source. All rights are reserved, except for the content listed in [LICENSE.md](LICENSE.md).
 
-When you open a pull request, you agree to the [Contributor Licence Agreement](CLA.md) for all work in it, and for your earlier contributions to this repository. If your pull request includes work by other people, you confirm that you have the right to submit it. If you use AI or other automated tools, you take responsibility for the result as your own contribution. You keep the copyright in your contribution and can use it for any purpose. Betaflight gets a licence to publish it.
+When you open a pull request, you agree to the [Contributor Licence Agreement](CLA.md) for all work in it, and for your earlier contributions to this repository. If your pull request includes work by other people, you confirm that you have the right to submit it. If you use AI or other automated tools, you take responsibility for the result as your own contribution. You keep the copyright in your contribution and can use it for any purpose. Betaflight gets a worldwide, perpetual and irrevocable licence to use, change, publish and sublicense it, under any licence that Betaflight selects.
 
 Do not copy content from other websites or documents unless you have the right to do so. Give the source and its licence in your pull request.
 
