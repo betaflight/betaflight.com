@@ -44,10 +44,10 @@ If Your employer has rights in the work that You create, You confirm one of thes
 You confirm that:
 
 - Each Contribution is Your own original work, or You have the right to submit it under this agreement
-- If a pull request that You open includes work by other persons, You have the right to submit that work under this agreement
+- If a pull request that You open includes work by other persons, You have taken reasonable steps to ensure that You have the right to submit that work under this agreement
 - If a Contribution includes material from another person (for example a manufacturer image or a quotation), You identify the source and its licence in the pull request
 - To Your knowledge, the Contribution does not infringe the rights of another person
-- If You use AI tools or other automated tools to make a Contribution, You reviewed the result, You take responsibility for it as Your Contribution, and the terms of each tool permit You to submit the result under this agreement
+- If You use AI tools or other automated tools to make a Contribution, You have taken reasonable steps to ensure that the terms of each tool permit You to submit the result under this agreement
 
 ## 8. Moral rights
 
