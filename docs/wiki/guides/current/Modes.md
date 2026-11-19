@@ -54,6 +54,8 @@ There are various modes that can be toggled on or off. Modes can be enabled/disa
 | 55  | CHIRP                    | Enable chirp mode                                                                    |
 | 56  | AUTOPILOT                | Enable autopilot mode (requires GPS)                                                 |
 
+For what `STICK COMMANDS DISABLE` blocks, including how it behaved on some targets before Betaflight 2026.12, see [Disabling stick commands](/docs/wiki/guides/current/Controls#disabling-stick-commands).
+
 ## Auto-leveled flight
 
 The default flight mode does not stabilize the multicopter around the roll and the pitch axes. That is, the multicopter does not level on its own if you center the pitch and roll sticks on the radio. Rather, they work just like the yaw axis: the rate of rotation of each axis is controlled directly by the related stick on the radio, and by leaving them centered the flight controller will just try to keep the multicopter in whatever orientation it's in. This default mode is called "Rate" mode, also sometime called "Acro" (from "acrobatic") or "Manual" mode, and is active whenever no auto-leveled mode is enabled.
