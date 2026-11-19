@@ -20,6 +20,8 @@ Stick combinations: When disarmed use the following stick commands to select a P
 | 1       | Down     | Left | Up     | Middle |
 | 2       | Down     | Left | Middle | Right  |
 
+Profile stick commands can be turned off. See [Disabling profile stick commands](#disabling-profile-stick-commands).
+
 CLI: the `profile` command can be used to change the profile:
 
 ```
@@ -42,7 +44,7 @@ BetaFlight 3.3 > the number of Rate Profiles increased from 3 to 6 Rate Profiles
 
 ### Changing Rate Profiles
 
-Rate Profiles can be selected using a GUI, CLI, OSD, or AUX channel. Once selected (just like Profiles), changes to settings can be made and saved to the active Rate Profile. Also, when changing our Rate Profile that profile will remain the active Profile even over power cycles, except when using the AUX channel option. When BetaFlight boots the active profile is selected by the position of the AUX channel.
+Rate Profiles can be selected using a GUI, CLI, OSD, stick combinations or AUX channel. Once selected (just like Profiles), changes to settings can be made and saved to the active Rate Profile. Also, when changing our Rate Profile that profile will remain the active Profile even over power cycles, except when using the AUX channel option. When BetaFlight boots the active profile is selected by the position of the AUX channel.
 
 Betaflight App (GUI): Click PID Tuning Tab > Select a Rate Profile using the drop-down menu. Once selected, any changes you make to your settings and click Save will be store to the selected Rate Profile. The action of selecting a Rate Profile also activates that rate profile for current use.
 
@@ -52,6 +54,15 @@ Aux Channel (In-flight Adjustments): Adjustments need to be configured first usi
 Enable Expert Mode in the App > Click Adjustments
 Click the slider for If enable. Select the AUX # channel to use.
 For the Range, Select the whole Range from 900 to 2100. Select Rate Profile Selection from the drop-down menu. Via Channel is the same as the AUX channel used.
+
+Stick combinations: When disarmed and in Acro mode (Angle and Horizon off), use the following stick commands to select a Rate Profile. In Angle or Horizon mode the same combinations trim the accelerometer instead. Only the first four Rate Profiles can be selected this way.
+
+| Rate Profile | Throttle | Yaw    | Pitch  | Roll   |
+| ------------ | -------- | ------ | ------ | ------ |
+| 0            | Up       | Middle | Up     | Middle |
+| 1            | Up       | Middle | Down   | Middle |
+| 2            | Up       | Middle | Middle | Right  |
+| 3            | Up       | Middle | Middle | Left   |
 
 CLI: the `rateprofile` command can be used to change the profile:
 
@@ -64,6 +75,26 @@ To save configuration changes:
 ```
 save
 ```
+
+## Disabling Profile Stick Commands
+
+The profile stick commands share stick positions with other menus, such as the HDZero VTX menu. While using such a menu, it is easy to switch to another PID or Rate Profile by accident. If that profile still has default settings, the quad will fly very differently from your tune.
+
+From Betaflight 2026.12, you can turn off the profile stick commands in the CLI:
+
+```
+set enable_stick_profile_switch = OFF
+save
+```
+
+| Value | Behaviour                                                                       |
+| ----- | ------------------------------------------------------------------------------- |
+| `ON`  | PID and Rate Profiles can be selected with stick commands. This is the default. |
+| `OFF` | PID and Rate Profile stick commands are ignored.                                |
+
+This setting only affects profile selection. All other stick commands still work, including arming, disarming, calibration, save, the OSD menu, VTX control and camera control. Profiles can still be selected using the App, CLI, OSD menu or an adjustment channel.
+
+To turn off all disarmed stick commands instead, use the `STICK COMMANDS DISABLE` mode. See [Disabling stick commands](/docs/wiki/guides/current/Controls#disabling-stick-commands).
 
 ## Backing up Profiles and Rate Profiles
 
