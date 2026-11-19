@@ -1,0 +1,20 @@
+# Files licensed under the MIT licence
+#
+# These files came from Docusaurus (swizzled theme components and the classic
+# site template), docusaurus-lunr-search or docusaurus-search-local. They, and
+# all changes to them, are licensed under the MIT licence of their source. See
+# ../LICENSE.md.
+# "**" means all files in that folder and its subfolders.
+
+# Docusaurus, see MIT-Docusaurus.txt
+docusaurus.config.mjs
+sidebars.js
+src/css/custom.css
+src/theme/** (except src/theme/SearchBar/**, src/theme/nivoThemeDark.js and
+  src/theme/nivoThemeLight.js)
+
+# docusaurus-lunr-search, see MIT-docusaurus-lunr-search.txt
+src/theme/SearchBar/** (except src/theme/SearchBar/HighlightSearchResults.jsx)
+
+# docusaurus-search-local, see MIT-docusaurus-search-local.txt
+src/theme/SearchBar/HighlightSearchResults.jsx

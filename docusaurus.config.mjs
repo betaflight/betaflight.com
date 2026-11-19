@@ -74,7 +74,7 @@ const config = {
           type: 'all',
           title: 'Betaflight News',
           language: 'en',
-          copyright: `Copyright © ${new Date().getFullYear()} All rights reserved BetaFlight Team`,
+          copyright: `Copyright © ${new Date().getFullYear()} Betaflight LLC. All rights reserved.`,
         },
       }),
     ],
@@ -313,7 +313,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} All rights reserved Team Betaflight`,
+        copyright: `Copyright © ${new Date().getFullYear()} Betaflight LLC. All rights reserved.`,
       },
       prism: {
         theme: lightCodeTheme,
