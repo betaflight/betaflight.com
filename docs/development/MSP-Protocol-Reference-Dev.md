@@ -30,7 +30,7 @@ The summary table below lists all MSP codes. The **Command Parameters** section 
 
 <!-- MSP_TABLE_START -->
 
-_Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
+_Generated from firmware commit: `e9c4c489b1e3327e726a8f7e987835462a8f3d44`_
 
 | Command                          | Msg Id | Direction | Fields | Notes                                                                                         |
 | -------------------------------- | ------ | --------- | ------ | --------------------------------------------------------------------------------------------- |
@@ -149,7 +149,7 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_GPSSVINFO                    | 164    | from FC   | 5      | Get Signal Strength (only U-Blox)                                                             |
 | MSP_GPSSTATISTICS                | 166    | from FC   | —      | Get GPS debugging data                                                                        |
 | MSP_ATTITUDE_QUATERNION          | 167    | from FC   | 4      | Orientation quaternion components (w, x, y, z)                                                |
-| MSP_WING                         | 169    | from FC   | 24     | WING settings                                                                                 |
+| MSP_WING                         | 169    | from FC   | 25     | WING settings                                                                                 |
 | MSP_PITOT                        | 170    | from FC   | 2      | Pitot data                                                                                    |
 | MSP_OSD_VIDEO_CONFIG             | 180    | from FC   | —      | Get OSD video settings                                                                        |
 | MSP_SET_OSD_VIDEO_CONFIG         | 181    | to FC     | —      | Set OSD video settings                                                                        |
@@ -164,7 +164,7 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_SET_RAW_RC                   | 200    | to FC     | 1      | 8 rc chan                                                                                     |
 | MSP_SET_RAW_GPS                  | 201    | to FC     | 6      | Fix, numsat, lat, lon, alt, speed                                                             |
 | MSP_SET_PID                      | 202    | to FC     | 3      | P I D coeff (9 are used currently)                                                            |
-| MSP_SET_WING                     | 203    | to FC     | 24     | Set WING settings                                                                             |
+| MSP_SET_WING                     | 203    | to FC     | 25     | Set WING settings                                                                             |
 | MSP_SET_RC_TUNING                | 204    | to FC     | 18     | RC rate, rc expo, rollpitch rate, yaw rate, dyn throttle PID, yaw expo                        |
 | MSP_ACC_CALIBRATION              | 205    | to FC     | —      | No param - calibrate accelerometer                                                            |
 | MSP_MAG_CALIBRATION              | 206    | to FC     | —      | No param - calibrate magnetometer                                                             |
@@ -206,8 +206,8 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | MSP_V2_FRAME                     | 255    | system    | —      | MSPv2 payload indicator                                                                       |
 | MSP2_COMMON_SERIAL_CONFIG        | 0x1009 | from FC   | 3      |                                                                                               |
 | MSP2_SENSOR_GPS                  | 0x1f03 | to FC     | 23     |                                                                                               |
-| MSP2_SENSOR_RANGEFINDER_LIDARMT  | 0x1f01 | to FC     | —      |                                                                                               |
-| MSP2_SENSOR_OPTICALFLOW_MT       | 0x1f02 | to FC     | —      |                                                                                               |
+| MSP2_SENSOR_RANGEFINDER_LIDARMT  | 0x1f01 | unknown   | —      |                                                                                               |
+| MSP2_SENSOR_OPTICALFLOW_MT       | 0x1f02 | unknown   | —      |                                                                                               |
 | MSP2_BETAFLIGHT_BIND             | 0x3000 | to FC     | —      |                                                                                               |
 | MSP2_MOTOR_OUTPUT_REORDERING     | 0x3001 | from FC   | 2      |                                                                                               |
 | MSP2_SET_MOTOR_OUTPUT_REORDERING | 0x3002 | to FC     | 2      |                                                                                               |
@@ -1636,6 +1636,7 @@ _WING settings_
 | 46     | speed_curve_power        | U8   | 1     |         | 5                       | 30                           |                              |
 | 47     | speed_curve_min          | U16  | 2     |         | 5                       | 99                           |                              |
 | 49     | speed_curve_max          | U16  | 2     |         | 100                     | 1000                         |                              |
+| 51     | tpa_max_pitot_speed      | U8   | 1     |         | 1                       | 85                           |                              |
 
 ### MSP_PITOT — 170 — from FC
 
@@ -1772,6 +1773,7 @@ _Set WING settings_
 | 46     | speed_curve_power        | U8   | 1     |         | 5                       | 30                           |                              |
 | 47     | speed_curve_min          | U16  | 2     |         | 5                       | 99                           |                              |
 | 49     | speed_curve_max          | U16  | 2     |         | 100                     | 1000                         |                              |
+| 51     | tpa_max_pitot_speed      | U8   | 1     |         | 1                       | 85                           |                              |
 
 ### MSP_SET_RC_TUNING — 204 — to FC
 
