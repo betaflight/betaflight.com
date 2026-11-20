@@ -71,11 +71,20 @@ const templates = {
     <div class="${footerPrefix}">
     </div>
   `,
-  footerMore: `
+  // Pager shown under the results; page is zero-based. Hidden when everything
+  // fits on one page.
+  pagination: (page, pageCount) =>
+    pageCount > 1
+      ? `
     <div class="${footerPrefix}">
-      <button type="button" class="${footerPrefix}--more">Show more results</button>
+      <nav class="${prefix}-pagination" aria-label="Search results pages">
+        <button type="button" data-page="${page - 1}" ${page === 0 ? 'disabled' : ''} aria-label="Previous page">‹ Previous</button>
+        <span>Page ${page + 1} of ${pageCount}</span>
+        <button type="button" data-page="${page + 1}" ${page >= pageCount - 1 ? 'disabled' : ''} aria-label="Next page">Next ›</button>
+      </nav>
     </div>
-  `,
+  `
+      : templates.footer,
   empty: `
   <div class="${suggestionPrefix}">
     <div class="${suggestionPrefix}--wrapper">

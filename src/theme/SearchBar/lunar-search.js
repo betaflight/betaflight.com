@@ -135,15 +135,15 @@ class LunrSearchAdapter {
     }
     return this.getHit(doc, null, preview);
   }
-  search(input, limit = 5) {
+  search(input, offset = 0, limit = 5) {
     return new Promise((resolve) => {
       const results = this.getLunrResult(input);
       const hits = [];
-      this.hasMore = results.length > limit;
+      this.totalResults = results.length;
       // One hit per matched section. A wildcard query (e.g. "osd*") can match
       // dozens of distinct terms in a single section; emitting a hit per term
       // would let one section fill every result slot.
-      for (const result of results.slice(0, limit)) {
+      for (const result of results.slice(offset, offset + limit)) {
         const doc = this.searchDocs[result.ref];
         const fields = Object.values(result.matchData.metadata);
         const titleMatch = fields.find((field) => field.title);

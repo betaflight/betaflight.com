@@ -40,7 +40,7 @@ class DocSearch {
     this.isSimpleLayout = layout === 'simple';
 
     this.client = new LunrSearchAdapter(searchDocs, searchIndex, baseUrl);
-    this.resultLimit = RESULTS_PAGE_SIZE;
+    this.page = 0;
     this.lastQuery = null;
 
     if (enhancedSearchInput) {
@@ -49,12 +49,12 @@ class DocSearch {
     this.autocomplete = autocomplete(this.input, autocompleteOptions, [
       {
         source: this.getAutocompleteSource(transformData, queryHook),
-        // Results depend on resultLimit as well as the query, so the
-        // per-query suggestion cache would hide "show more" results.
+        // Results depend on the page as well as the query, so the
+        // per-query suggestion cache would serve the wrong page.
         cache: false,
         templates: {
           suggestion: DocSearch.getSuggestionTemplate(this.isSimpleLayout),
-          footer: ({ isEmpty }) => (!isEmpty && this.client.hasMore ? templates.footerMore : templates.footer),
+          footer: ({ isEmpty }) => (isEmpty ? templates.footer : templates.pagination(this.page, Math.ceil(this.client.totalResults / RESULTS_PAGE_SIZE))),
           empty: DocSearch.getEmptyTemplate(),
         },
       },
@@ -71,10 +71,10 @@ class DocSearch {
     }
 
     // The dropdown cancels mousedown, so the input keeps focus and the
-    // dropdown stays open while more results are loaded.
-    $('.algolia-autocomplete').on('click', '.algolia-docsearch-footer--more', (event) => {
+    // dropdown stays open while another page is loaded.
+    $('.algolia-autocomplete').on('click', '.algolia-docsearch-pagination button', (event) => {
       event.preventDefault();
-      this.showMoreResults();
+      this.goToPage(Number(event.currentTarget.dataset.page));
     });
 
     this.autocomplete.on('autocomplete:selected', this.handleSelected.bind(null, this.autocomplete.autocomplete));
@@ -149,9 +149,9 @@ class DocSearch {
       }
       if (query !== this.lastQuery) {
         this.lastQuery = query;
-        this.resultLimit = RESULTS_PAGE_SIZE;
+        this.page = 0;
       }
-      this.client.search(query, this.resultLimit).then((hits) => {
+      this.client.search(query, this.page * RESULTS_PAGE_SIZE, RESULTS_PAGE_SIZE).then((hits) => {
         if (this.queryDataCallback && typeof this.queryDataCallback === 'function') {
           this.queryDataCallback(hits);
         }
@@ -165,8 +165,11 @@ class DocSearch {
 
   // Given a list of hits returned by the API, will reformat them to be used in
   // a Hogan template
-  showMoreResults() {
-    this.resultLimit += RESULTS_PAGE_SIZE;
+  goToPage(page) {
+    if (!Number.isInteger(page) || page < 0) {
+      return;
+    }
+    this.page = page;
     // autocomplete.js has no public "refresh" API; re-run the current query
     // through the typeahead's dropdown directly.
     const typeahead = this.input.data('aaAutocomplete');
