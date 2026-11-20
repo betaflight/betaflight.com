@@ -77,6 +77,21 @@ class DocSearch {
       this.goToPage(Number(event.currentTarget.dataset.page));
     });
 
+    // Keyboard path to the pager: arrow keys only move between suggestions
+    // and Tab closes the dropdown, so Page Up / Page Down change pages while
+    // the input keeps focus.
+    this.input.on('keydown', (event) => {
+      const direction = { PageUp: 'prev', PageDown: 'next' }[event.key];
+      if (!direction) {
+        return;
+      }
+      const button = $(`.algolia-autocomplete .algolia-docsearch-pagination--${direction}`);
+      if (button.length && !button.prop('disabled')) {
+        event.preventDefault();
+        this.goToPage(Number(button.attr('data-page')));
+      }
+    });
+
     this.autocomplete.on('autocomplete:selected', this.handleSelected.bind(null, this.autocomplete.autocomplete));
 
     this.autocomplete.on('autocomplete:shown', this.handleShown.bind(null, this.input));

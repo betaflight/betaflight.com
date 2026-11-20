@@ -18,7 +18,7 @@ class LunrSearchAdapter {
     const { invertedIndex, fields, tokenSet } = index;
     let nextTermIndex = Object.keys(invertedIndex).length;
     for (const term of tokenSet.toArray()) {
-      if (!Object.prototype.hasOwnProperty.call(invertedIndex, term)) {
+      if (!Object.hasOwn(invertedIndex, term)) {
         const posting = { _index: nextTermIndex++ };
         for (const field of fields) {
           posting[field] = {};

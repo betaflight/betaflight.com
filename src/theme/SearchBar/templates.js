@@ -72,19 +72,25 @@ const templates = {
     </div>
   `,
   // Pager shown under the results; page is zero-based. Hidden when everything
-  // fits on one page.
-  pagination: (page, pageCount) =>
-    pageCount > 1
-      ? `
+  // fits on one page. Page Up / Page Down in the search input also page.
+  pagination: (page, pageCount) => {
+    if (pageCount <= 1) {
+      return templates.footer;
+    }
+    const prev = page - 1;
+    const next = page + 1;
+    const prevDisabled = prev < 0 ? 'disabled' : '';
+    const nextDisabled = next >= pageCount ? 'disabled' : '';
+    return `
     <div class="${footerPrefix}">
       <nav class="${prefix}-pagination" aria-label="Search results pages">
-        <button type="button" data-page="${page - 1}" ${page === 0 ? 'disabled' : ''} aria-label="Previous page">‹ Previous</button>
+        <button type="button" class="${prefix}-pagination--prev" data-page="${prev}" ${prevDisabled} aria-label="Previous page" aria-keyshortcuts="PageUp" title="Previous page (Page Up)">‹ Previous</button>
         <span>Page ${page + 1} of ${pageCount}</span>
-        <button type="button" data-page="${page + 1}" ${page >= pageCount - 1 ? 'disabled' : ''} aria-label="Next page">Next ›</button>
+        <button type="button" class="${prefix}-pagination--next" data-page="${next}" ${nextDisabled} aria-label="Next page" aria-keyshortcuts="PageDown" title="Next page (Page Down)">Next ›</button>
       </nav>
     </div>
-  `
-      : templates.footer,
+  `;
+  },
   empty: `
   <div class="${suggestionPrefix}">
     <div class="${suggestionPrefix}--wrapper">

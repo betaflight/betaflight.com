@@ -488,11 +488,10 @@
 .algolia-autocomplete .algolia-docsearch-footer {
   background-color: #fff;
   width: 100%;
-  height: 30px;
+  height: auto;
+  min-height: 30px;
   z-index: 2000;
   float: right;
-  font-size: 0;
-  line-height: 0;
 }
 
 .algolia-autocomplete .algolia-docsearch-footer--logo {
@@ -594,13 +593,6 @@ span.ds-suggestions {
 
 .algolia-autocomplete .ds-dropdown-menu:before {
   display: none;
-}
-
-.algolia-autocomplete .algolia-docsearch-footer {
-  height: auto;
-  min-height: 30px;
-  font-size: inherit;
-  line-height: inherit;
 }
 
 .algolia-autocomplete .algolia-docsearch-pagination {
