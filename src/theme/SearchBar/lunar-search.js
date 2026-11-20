@@ -5,18 +5,47 @@ class LunrSearchAdapter {
   constructor(searchDocs, searchIndex, baseUrl = '/') {
     this.searchDocs = searchDocs;
     this.lunrIndex = lunr.Index.load(searchIndex);
+    LunrSearchAdapter.patchPhantomTerms(this.lunrIndex);
     this.baseUrl = baseUrl;
   }
 
+  // lunr 2.3.9 rebuilds the index's token set on load, and its minimisation
+  // can produce terms that are not in the inverted index (e.g. "tim9_ch1154").
+  // A wildcard query that expands to one of these throws while reading
+  // `posting._index`, which breaks any search containing a one-letter word.
+  // Give each phantom term an empty posting so it simply matches nothing.
+  static patchPhantomTerms(index) {
+    const { invertedIndex, fields, tokenSet } = index;
+    let nextTermIndex = Object.keys(invertedIndex).length;
+    for (const term of tokenSet.toArray()) {
+      if (!Object.hasOwn(invertedIndex, term)) {
+        const posting = { _index: nextTermIndex++ };
+        for (const field of fields) {
+          posting[field] = {};
+        }
+        invertedIndex[term] = posting;
+      }
+    }
+  }
+
   getLunrResult(input) {
-    return this.lunrIndex.query(function (query) {
-      const tokens = lunr.tokenizer(input);
-      query.term(tokens, {
-        boost: 10,
-      });
-      query.term(tokens, {
-        wildcard: lunr.Query.wildcard.TRAILING,
-      });
+    const { pipeline } = this.lunrIndex;
+    return this.lunrIndex.query((query) => {
+      for (const token of lunr.tokenizer(input)) {
+        const word = token.toString();
+        // Exact (stemmed) matches rank highest.
+        query.term(word, { boost: 10 });
+        // Every word must match as a prefix somewhere in the section, so
+        // "osd s" means "osd AND s*" rather than "osd OR s*". The index holds
+        // stemmed terms, so stem first ("rescue" -> "rescu") and skip the
+        // pipeline. Stop words are not indexed, so they cannot be required.
+        const isStopWord = lunr.stopWordFilter(word) === undefined;
+        query.term(pipeline.runString(word)[0] || word, {
+          usePipeline: false,
+          wildcard: lunr.Query.wildcard.TRAILING,
+          presence: isStopWord ? lunr.Query.presence.OPTIONAL : lunr.Query.presence.REQUIRED,
+        });
+      }
     });
   }
 
@@ -50,16 +79,16 @@ class LunrSearchAdapter {
       },
     };
   }
-  getTitleHit(doc, position, length) {
-    const start = position[0];
-    const end = position[0] + length;
+  getTitleHit(doc, position) {
+    const [start, length] = position;
+    const end = start + length;
     let formattedTitle = `${doc.title.substring(0, start)}<span class="algolia-docsearch-suggestion--highlight">${doc.title.substring(start, end)}</span>${doc.title.substring(end, doc.title.length)}`;
     return this.getHit(doc, formattedTitle);
   }
 
-  getKeywordHit(doc, position, length) {
-    const start = position[0];
-    const end = position[0] + length;
+  getKeywordHit(doc, position) {
+    const [start, length] = position;
+    const end = start + length;
     let formattedTitle = `${doc.title}<br /><i>Keywords: ${doc.keywords.substring(0, start)}<span class="algolia-docsearch-suggestion--highlight">${doc.keywords.substring(
       start,
       end,
@@ -115,37 +144,27 @@ class LunrSearchAdapter {
     }
     return this.getHit(doc, null, preview);
   }
-  search(input) {
+  search(input, offset = 0, limit = 5) {
     return new Promise((resolve) => {
       const results = this.getLunrResult(input);
       const hits = [];
-      if (results.length > 5) {
-        results.length = 5;
-      }
-      this.titleHitsRes = [];
-      this.contentHitsRes = [];
-      results.forEach((result) => {
+      this.totalResults = results.length;
+      // One hit per matched section. A wildcard query (e.g. "osd*") can match
+      // dozens of distinct terms in a single section; emitting a hit per term
+      // would let one section fill every result slot.
+      for (const result of results.slice(offset, offset + limit)) {
         const doc = this.searchDocs[result.ref];
-        const { metadata } = result.matchData;
-        for (let i in metadata) {
-          if (metadata[i].title) {
-            if (!this.titleHitsRes.includes(result.ref)) {
-              const position = metadata[i].title.position[0];
-              hits.push(this.getTitleHit(doc, position, input.length));
-              this.titleHitsRes.push(result.ref);
-            }
-          } else if (metadata[i].content) {
-            const position = metadata[i].content.position[0];
-            hits.push(this.getContentHit(doc, position));
-          } else if (metadata[i].keywords) {
-            const position = metadata[i].keywords.position[0];
-            hits.push(this.getKeywordHit(doc, position, input.length));
-            this.titleHitsRes.push(result.ref);
-          }
+        const fields = Object.values(result.matchData.metadata);
+        const titleMatch = fields.find((field) => field.title);
+        const keywordMatch = fields.find((field) => field.keywords);
+        const contentMatch = fields.find((field) => field.content);
+        if (titleMatch) {
+          hits.push(this.getTitleHit(doc, titleMatch.title.position[0]));
+        } else if (keywordMatch) {
+          hits.push(this.getKeywordHit(doc, keywordMatch.keywords.position[0]));
+        } else if (contentMatch) {
+          hits.push(this.getContentHit(doc, contentMatch.content.position[0]));
         }
-      });
-      if (hits.length > 5) {
-        hits.length = 5;
       }
       resolve(hits);
     });

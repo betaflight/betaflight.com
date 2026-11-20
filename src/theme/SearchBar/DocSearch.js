@@ -5,6 +5,8 @@ import templates from './templates';
 import utils from './utils';
 import $ from 'autocomplete.js/zepto';
 
+const RESULTS_PAGE_SIZE = 5;
+
 class DocSearch {
   constructor({
     searchDocs,
@@ -38,6 +40,8 @@ class DocSearch {
     this.isSimpleLayout = layout === 'simple';
 
     this.client = new LunrSearchAdapter(searchDocs, searchIndex, baseUrl);
+    this.page = 0;
+    this.lastQuery = null;
 
     if (enhancedSearchInput) {
       this.input = DocSearch.injectSearchBox(this.input);
@@ -45,9 +49,12 @@ class DocSearch {
     this.autocomplete = autocomplete(this.input, autocompleteOptions, [
       {
         source: this.getAutocompleteSource(transformData, queryHook),
+        // Results depend on the page as well as the query, so the
+        // per-query suggestion cache would serve the wrong page.
+        cache: false,
         templates: {
           suggestion: DocSearch.getSuggestionTemplate(this.isSimpleLayout),
-          footer: templates.footer,
+          footer: ({ isEmpty }) => (isEmpty ? templates.footer : templates.pagination(this.page, this.getPageCount())),
           empty: DocSearch.getEmptyTemplate(),
         },
       },
@@ -62,6 +69,37 @@ class DocSearch {
         event.preventDefault();
       });
     }
+
+    // The dropdown cancels mousedown, so the input keeps focus and the
+    // dropdown stays open while another page is loaded.
+    $('.algolia-autocomplete').on('click', '.algolia-docsearch-pagination button', (event) => {
+      event.preventDefault();
+      this.goToPage(Number(event.currentTarget.dataset.page));
+    });
+
+    // Keyboard path to the pager: arrow keys only move between suggestions
+    // and Tab closes the dropdown, so Page Up / Page Down change pages while
+    // the input keeps focus. With Shift they jump to the first / last page.
+    this.input.on('keydown', (event) => {
+      if (event.key !== 'PageUp' && event.key !== 'PageDown') {
+        return;
+      }
+      // Only page while the pager is showing (dropdown open, multiple pages).
+      if (!$('.algolia-autocomplete .algolia-docsearch-pagination').length) {
+        return;
+      }
+      event.preventDefault();
+      const lastPage = this.getPageCount() - 1;
+      let target;
+      if (event.shiftKey) {
+        target = event.key === 'PageUp' ? 0 : lastPage;
+      } else {
+        target = event.key === 'PageUp' ? this.page - 1 : this.page + 1;
+      }
+      if (target >= 0 && target <= lastPage && target !== this.page) {
+        this.goToPage(target);
+      }
+    });
 
     this.autocomplete.on('autocomplete:selected', this.handleSelected.bind(null, this.autocomplete.autocomplete));
 
@@ -133,7 +171,11 @@ class DocSearch {
         // eslint-disable-next-line no-param-reassign
         query = queryHook(query) || query;
       }
-      this.client.search(query).then((hits) => {
+      if (query !== this.lastQuery) {
+        this.lastQuery = query;
+        this.page = 0;
+      }
+      this.client.search(query, this.page * RESULTS_PAGE_SIZE, RESULTS_PAGE_SIZE).then((hits) => {
         if (this.queryDataCallback && typeof this.queryDataCallback === 'function') {
           this.queryDataCallback(hits);
         }
@@ -147,6 +189,21 @@ class DocSearch {
 
   // Given a list of hits returned by the API, will reformat them to be used in
   // a Hogan template
+  getPageCount() {
+    return Math.ceil((this.client.totalResults || 0) / RESULTS_PAGE_SIZE);
+  }
+
+  goToPage(page) {
+    if (!Number.isInteger(page) || page < 0) {
+      return;
+    }
+    this.page = page;
+    // autocomplete.js has no public "refresh" API; re-run the current query
+    // through the typeahead's dropdown directly.
+    const typeahead = this.input.data('aaAutocomplete');
+    typeahead.dropdown.update(typeahead.getVal());
+  }
+
   static formatHits(receivedHits) {
     const clonedHits = utils.deepClone(receivedHits);
     const hits = clonedHits.map((hit) => {
