@@ -54,7 +54,7 @@ class DocSearch {
         cache: false,
         templates: {
           suggestion: DocSearch.getSuggestionTemplate(this.isSimpleLayout),
-          footer: ({ isEmpty }) => (isEmpty ? templates.footer : templates.pagination(this.page, Math.ceil(this.client.totalResults / RESULTS_PAGE_SIZE))),
+          footer: ({ isEmpty }) => (isEmpty ? templates.footer : templates.pagination(this.page, this.getPageCount())),
           empty: DocSearch.getEmptyTemplate(),
         },
       },
@@ -79,16 +79,25 @@ class DocSearch {
 
     // Keyboard path to the pager: arrow keys only move between suggestions
     // and Tab closes the dropdown, so Page Up / Page Down change pages while
-    // the input keeps focus.
+    // the input keeps focus. With Shift they jump to the first / last page.
     this.input.on('keydown', (event) => {
-      const direction = { PageUp: 'prev', PageDown: 'next' }[event.key];
-      if (!direction) {
+      if (event.key !== 'PageUp' && event.key !== 'PageDown') {
         return;
       }
-      const button = $(`.algolia-autocomplete .algolia-docsearch-pagination--${direction}`);
-      if (button.length && !button.prop('disabled')) {
-        event.preventDefault();
-        this.goToPage(Number(button.attr('data-page')));
+      // Only page while the pager is showing (dropdown open, multiple pages).
+      if (!$('.algolia-autocomplete .algolia-docsearch-pagination').length) {
+        return;
+      }
+      event.preventDefault();
+      const lastPage = this.getPageCount() - 1;
+      let target;
+      if (event.shiftKey) {
+        target = event.key === 'PageUp' ? 0 : lastPage;
+      } else {
+        target = event.key === 'PageUp' ? this.page - 1 : this.page + 1;
+      }
+      if (target >= 0 && target <= lastPage && target !== this.page) {
+        this.goToPage(target);
       }
     });
 
@@ -180,6 +189,10 @@ class DocSearch {
 
   // Given a list of hits returned by the API, will reformat them to be used in
   // a Hogan template
+  getPageCount() {
+    return Math.ceil((this.client.totalResults || 0) / RESULTS_PAGE_SIZE);
+  }
+
   goToPage(page) {
     if (!Number.isInteger(page) || page < 0) {
       return;

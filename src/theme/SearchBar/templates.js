@@ -72,7 +72,8 @@ const templates = {
     </div>
   `,
   // Pager shown under the results; page is zero-based. Hidden when everything
-  // fits on one page. Page Up / Page Down in the search input also page.
+  // fits on one page. Page Up / Page Down in the search input also page;
+  // with Shift they jump to the first / last page.
   pagination: (page, pageCount) => {
     if (pageCount <= 1) {
       return templates.footer;
@@ -84,9 +85,9 @@ const templates = {
     return `
     <div class="${footerPrefix}">
       <nav class="${prefix}-pagination" aria-label="Search results pages">
-        <button type="button" class="${prefix}-pagination--prev" data-page="${prev}" ${prevDisabled} aria-label="Previous page" aria-keyshortcuts="PageUp" title="Previous page (Page Up)">‹ Previous</button>
+        <button type="button" class="${prefix}-pagination--prev" data-page="${prev}" ${prevDisabled} aria-label="Previous page" aria-keyshortcuts="PageUp" title="Previous page (Page Up, Shift+Page Up for first)">‹ Previous</button>
         <span>Page ${page + 1} of ${pageCount}</span>
-        <button type="button" class="${prefix}-pagination--next" data-page="${next}" ${nextDisabled} aria-label="Next page" aria-keyshortcuts="PageDown" title="Next page (Page Down)">Next ›</button>
+        <button type="button" class="${prefix}-pagination--next" data-page="${next}" ${nextDisabled} aria-label="Next page" aria-keyshortcuts="PageDown" title="Next page (Page Down, Shift+Page Down for last)">Next ›</button>
       </nav>
     </div>
   `;
