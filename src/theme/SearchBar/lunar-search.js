@@ -5,7 +5,27 @@ class LunrSearchAdapter {
   constructor(searchDocs, searchIndex, baseUrl = '/') {
     this.searchDocs = searchDocs;
     this.lunrIndex = lunr.Index.load(searchIndex);
+    LunrSearchAdapter.patchPhantomTerms(this.lunrIndex);
     this.baseUrl = baseUrl;
+  }
+
+  // lunr 2.3.9 rebuilds the index's token set on load, and its minimisation
+  // can produce terms that are not in the inverted index (e.g. "tim9_ch1154").
+  // A wildcard query that expands to one of these throws while reading
+  // `posting._index`, which breaks any search containing a one-letter word.
+  // Give each phantom term an empty posting so it simply matches nothing.
+  static patchPhantomTerms(index) {
+    const { invertedIndex, fields, tokenSet } = index;
+    let nextTermIndex = Object.keys(invertedIndex).length;
+    for (const term of tokenSet.toArray()) {
+      if (!Object.prototype.hasOwnProperty.call(invertedIndex, term)) {
+        const posting = { _index: nextTermIndex++ };
+        for (const field of fields) {
+          posting[field] = {};
+        }
+        invertedIndex[term] = posting;
+      }
+    }
   }
 
   getLunrResult(input) {
@@ -115,37 +135,27 @@ class LunrSearchAdapter {
     }
     return this.getHit(doc, null, preview);
   }
-  search(input) {
+  search(input, limit = 5) {
     return new Promise((resolve) => {
       const results = this.getLunrResult(input);
       const hits = [];
-      if (results.length > 5) {
-        results.length = 5;
-      }
-      this.titleHitsRes = [];
-      this.contentHitsRes = [];
-      results.forEach((result) => {
+      this.hasMore = results.length > limit;
+      // One hit per matched section. A wildcard query (e.g. "osd*") can match
+      // dozens of distinct terms in a single section; emitting a hit per term
+      // would let one section fill every result slot.
+      for (const result of results.slice(0, limit)) {
         const doc = this.searchDocs[result.ref];
-        const { metadata } = result.matchData;
-        for (let i in metadata) {
-          if (metadata[i].title) {
-            if (!this.titleHitsRes.includes(result.ref)) {
-              const position = metadata[i].title.position[0];
-              hits.push(this.getTitleHit(doc, position, input.length));
-              this.titleHitsRes.push(result.ref);
-            }
-          } else if (metadata[i].content) {
-            const position = metadata[i].content.position[0];
-            hits.push(this.getContentHit(doc, position));
-          } else if (metadata[i].keywords) {
-            const position = metadata[i].keywords.position[0];
-            hits.push(this.getKeywordHit(doc, position, input.length));
-            this.titleHitsRes.push(result.ref);
-          }
+        const fields = Object.values(result.matchData.metadata);
+        const titleMatch = fields.find((field) => field.title);
+        const keywordMatch = fields.find((field) => field.keywords);
+        const contentMatch = fields.find((field) => field.content);
+        if (titleMatch) {
+          hits.push(this.getTitleHit(doc, titleMatch.title.position[0], input.length));
+        } else if (keywordMatch) {
+          hits.push(this.getKeywordHit(doc, keywordMatch.keywords.position[0], input.length));
+        } else if (contentMatch) {
+          hits.push(this.getContentHit(doc, contentMatch.content.position[0]));
         }
-      });
-      if (hits.length > 5) {
-        hits.length = 5;
       }
       resolve(hits);
     });

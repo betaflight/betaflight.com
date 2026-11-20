@@ -71,6 +71,11 @@ const templates = {
     <div class="${footerPrefix}">
     </div>
   `,
+  footerMore: `
+    <div class="${footerPrefix}">
+      <button type="button" class="${footerPrefix}--more">Show more results</button>
+    </div>
+  `,
   empty: `
   <div class="${suggestionPrefix}">
     <div class="${suggestionPrefix}--wrapper">

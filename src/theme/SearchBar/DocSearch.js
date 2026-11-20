@@ -5,6 +5,8 @@ import templates from './templates';
 import utils from './utils';
 import $ from 'autocomplete.js/zepto';
 
+const RESULTS_PAGE_SIZE = 5;
+
 class DocSearch {
   constructor({
     searchDocs,
@@ -38,6 +40,8 @@ class DocSearch {
     this.isSimpleLayout = layout === 'simple';
 
     this.client = new LunrSearchAdapter(searchDocs, searchIndex, baseUrl);
+    this.resultLimit = RESULTS_PAGE_SIZE;
+    this.lastQuery = null;
 
     if (enhancedSearchInput) {
       this.input = DocSearch.injectSearchBox(this.input);
@@ -45,9 +49,12 @@ class DocSearch {
     this.autocomplete = autocomplete(this.input, autocompleteOptions, [
       {
         source: this.getAutocompleteSource(transformData, queryHook),
+        // Results depend on resultLimit as well as the query, so the
+        // per-query suggestion cache would hide "show more" results.
+        cache: false,
         templates: {
           suggestion: DocSearch.getSuggestionTemplate(this.isSimpleLayout),
-          footer: templates.footer,
+          footer: ({ isEmpty }) => (!isEmpty && this.client.hasMore ? templates.footerMore : templates.footer),
           empty: DocSearch.getEmptyTemplate(),
         },
       },
@@ -62,6 +69,13 @@ class DocSearch {
         event.preventDefault();
       });
     }
+
+    // The dropdown cancels mousedown, so the input keeps focus and the
+    // dropdown stays open while more results are loaded.
+    $('.algolia-autocomplete').on('click', '.algolia-docsearch-footer--more', (event) => {
+      event.preventDefault();
+      this.showMoreResults();
+    });
 
     this.autocomplete.on('autocomplete:selected', this.handleSelected.bind(null, this.autocomplete.autocomplete));
 
@@ -133,7 +147,11 @@ class DocSearch {
         // eslint-disable-next-line no-param-reassign
         query = queryHook(query) || query;
       }
-      this.client.search(query).then((hits) => {
+      if (query !== this.lastQuery) {
+        this.lastQuery = query;
+        this.resultLimit = RESULTS_PAGE_SIZE;
+      }
+      this.client.search(query, this.resultLimit).then((hits) => {
         if (this.queryDataCallback && typeof this.queryDataCallback === 'function') {
           this.queryDataCallback(hits);
         }
@@ -147,6 +165,14 @@ class DocSearch {
 
   // Given a list of hits returned by the API, will reformat them to be used in
   // a Hogan template
+  showMoreResults() {
+    this.resultLimit += RESULTS_PAGE_SIZE;
+    // autocomplete.js has no public "refresh" API; re-run the current query
+    // through the typeahead's dropdown directly.
+    const typeahead = this.input.data('aaAutocomplete');
+    typeahead.dropdown.update(typeahead.getVal());
+  }
+
   static formatHits(receivedHits) {
     const clonedHits = utils.deepClone(receivedHits);
     const hits = clonedHits.map((hit) => {
