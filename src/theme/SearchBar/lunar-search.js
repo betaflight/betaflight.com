@@ -29,14 +29,23 @@ class LunrSearchAdapter {
   }
 
   getLunrResult(input) {
-    return this.lunrIndex.query(function (query) {
-      const tokens = lunr.tokenizer(input);
-      query.term(tokens, {
-        boost: 10,
-      });
-      query.term(tokens, {
-        wildcard: lunr.Query.wildcard.TRAILING,
-      });
+    const { pipeline } = this.lunrIndex;
+    return this.lunrIndex.query((query) => {
+      for (const token of lunr.tokenizer(input)) {
+        const word = token.toString();
+        // Exact (stemmed) matches rank highest.
+        query.term(word, { boost: 10 });
+        // Every word must match as a prefix somewhere in the section, so
+        // "osd s" means "osd AND s*" rather than "osd OR s*". The index holds
+        // stemmed terms, so stem first ("rescue" -> "rescu") and skip the
+        // pipeline. Stop words are not indexed, so they cannot be required.
+        const isStopWord = lunr.stopWordFilter(word) === undefined;
+        query.term(pipeline.runString(word)[0] || word, {
+          usePipeline: false,
+          wildcard: lunr.Query.wildcard.TRAILING,
+          presence: isStopWord ? lunr.Query.presence.OPTIONAL : lunr.Query.presence.REQUIRED,
+        });
+      }
     });
   }
 
@@ -70,16 +79,16 @@ class LunrSearchAdapter {
       },
     };
   }
-  getTitleHit(doc, position, length) {
-    const start = position[0];
-    const end = position[0] + length;
+  getTitleHit(doc, position) {
+    const [start, length] = position;
+    const end = start + length;
     let formattedTitle = `${doc.title.substring(0, start)}<span class="algolia-docsearch-suggestion--highlight">${doc.title.substring(start, end)}</span>${doc.title.substring(end, doc.title.length)}`;
     return this.getHit(doc, formattedTitle);
   }
 
-  getKeywordHit(doc, position, length) {
-    const start = position[0];
-    const end = position[0] + length;
+  getKeywordHit(doc, position) {
+    const [start, length] = position;
+    const end = start + length;
     let formattedTitle = `${doc.title}<br /><i>Keywords: ${doc.keywords.substring(0, start)}<span class="algolia-docsearch-suggestion--highlight">${doc.keywords.substring(
       start,
       end,
@@ -150,9 +159,9 @@ class LunrSearchAdapter {
         const keywordMatch = fields.find((field) => field.keywords);
         const contentMatch = fields.find((field) => field.content);
         if (titleMatch) {
-          hits.push(this.getTitleHit(doc, titleMatch.title.position[0], input.length));
+          hits.push(this.getTitleHit(doc, titleMatch.title.position[0]));
         } else if (keywordMatch) {
-          hits.push(this.getKeywordHit(doc, keywordMatch.keywords.position[0], input.length));
+          hits.push(this.getKeywordHit(doc, keywordMatch.keywords.position[0]));
         } else if (contentMatch) {
           hits.push(this.getContentHit(doc, contentMatch.content.position[0]));
         }
