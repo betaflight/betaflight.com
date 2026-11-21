@@ -20,6 +20,14 @@ make TARGET=SITL
 
 The output is `obj/main/betaflight_SITL.elf`.
 
+To test the wing autopilot, build a wing SITL:
+
+```bash
+make TARGET=SITL EXTRA_FLAGS="-DUSE_WING"
+```
+
+A wing build and a multirotor build have the same output file name. Copy the first build to a different name before you make the second build.
+
 SITL has these command line options:
 
 | Option            | Description                                                          |
@@ -81,6 +89,12 @@ Run one scenario:
 python3 src/test/sitl/sitl_harness.py --binary obj/main/betaflight_SITL.elf --scenario mission_flight -v
 ```
 
+Run one wing scenario. The harness uses the `--binary-wing` file for the wing scenarios:
+
+```bash
+python3 src/test/sitl/sitl_harness.py --binary betaflight_SITL_quad.elf --binary-wing betaflight_SITL_wing.elf --scenario wing_mission -v
+```
+
 Run all scenarios:
 
 ```bash
@@ -91,16 +105,21 @@ This command does not run the A/B rescue scenarios or the wing scenarios. The ha
 
 The harness writes a log for each scenario to `--workdir` (the default is `/tmp/sitl_harness`). If `blackbox_decode` is on your `PATH`, the harness also decodes the blackbox logs. If not, it does not decode them.
 
-| Scenarios                                                      | What they test                                                            |
-| -------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `mission_flight`, `mission_corner`, `mission_engage_backwards` | Legs, corners and engagement.                                             |
-| `mission_takeoff`, `mission_land`, `mission_vert_rate`         | Take off, landing with disarm, and vertical rate.                         |
-| `mission_orbit`, `mission_figure8`                             | Hold patterns.                                                            |
-| `mission_yaw`, `mission_face_target`, `mission_face_next`      | Yaw behaviour.                                                            |
-| `rx_disable`, `rx_continue`, `rx_land`                         | `ap_rx_loss_policy`.                                                      |
-| `geofence_land`, `geofence_rth`, `geofence_rth_rxloss`         | `ap_max_distance_from_home` and `ap_geofence_action`.                     |
-| `rescue*`                                                      | GPS Rescue flown as a flight plan. Some scenarios need `--binary-b`.      |
-| `wing_*`                                                       | Wing builds. These need `--binary-wing` (a SITL build with `-DUSE_WING`). |
+| Scenarios                                                                                           | What they test                                                                                                                         |
+| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `mission_flight`, `mission_corner`, `mission_engage_backwards`                                      | Legs, corners and engagement.                                                                                                          |
+| `mission_takeoff`, `mission_land`, `mission_vert_rate`                                              | Take off, landing with disarm, and vertical rate.                                                                                      |
+| `mission_orbit`, `mission_figure8`                                                                  | Hold patterns.                                                                                                                         |
+| `mission_yaw`, `mission_face_target`, `mission_face_next`                                           | Yaw behaviour.                                                                                                                         |
+| `rx_disable`, `rx_continue`, `rx_land`                                                              | `ap_rx_loss_policy`.                                                                                                                   |
+| `geofence_land`, `geofence_rth`, `geofence_rth_rxloss`                                              | `ap_max_distance_from_home` and `ap_geofence_action`.                                                                                  |
+| `rescue*`                                                                                           | GPS Rescue flown as a flight plan. Some scenarios need `--binary-b`.                                                                   |
+| `wing_mission`, `wing_mission_wind`, `wing_mission_land`                                            | Wing missions: lines, corners, loiter holds and a landing at a `LAND` waypoint. These and all `wing_*` scenarios need `--binary-wing`. |
+| `wing_autoland`, `wing_autoland_crosswind`, `wing_autoland_headwind`, `wing_autoland_tailwind_flip` | Wing landing circuit, flare and touchdown, also in wind.                                                                               |
+| `wing_go_around_stick`, `wing_go_around_baro`, `wing_go_around_gps`                                 | Wing go around.                                                                                                                        |
+| `wing_launch_into_althold`, `wing_launch_into_poshold`                                              | Hand launch, then the hold takes control.                                                                                              |
+| `wing_loiter*`, `wing_althold`, `wing_turn*`                                                        | Wing position hold (loiter), altitude hold and turns.                                                                                  |
+| `wing_rx_loss_*`, `wing_rescue*`                                                                    | Wing receiver signal loss and GPS Rescue.                                                                                              |
 
 The harness uses TCP 5761. While the harness runs, the Betaflight App cannot connect to UART1.
 

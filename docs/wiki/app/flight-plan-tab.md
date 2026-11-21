@@ -12,7 +12,7 @@ The autopilot is experimental. We test it only in simulation (SITL). Do not fly 
 
 :::
 
-For the autopilot, the waypoint types, the settings and the CLI, refer to [Flight Plan and Autopilot](/docs/wiki/guides/current/Flight-Plan-and-Autopilot).
+The tab is the same for a multirotor and a wing. A wing flies some waypoint types differently. For the autopilot, the waypoint types, the settings and the CLI, refer to [Flight Plan and Autopilot](/docs/wiki/guides/current/Flight-Plan-and-Autopilot).
 
 ![Flight Plan tab with a six waypoint mission](/img/betaflight_app_flight_plan_tab.webp)
 
@@ -52,29 +52,29 @@ The list shows all waypoints in the order that the aircraft flies them.
 
 The editor shows only the fields for the selected type:
 
-| Field                       | Types                                          | Description                                                                   |
-| --------------------------- | ---------------------------------------------- | ----------------------------------------------------------------------------- |
-| **Waypoint Type**           | All                                            | Refer to the table below.                                                     |
-| **Latitude**, **Longitude** | Waypoints with a position                      | Decimal degrees.                                                              |
-| **Altitude**                | Waypoints with a position, **Change Altitude** | Altitude AMSL.                                                                |
-| **Speed**                   | Waypoints with a position                      | Speed on the leg to this waypoint. 0 uses `ap_max_velocity`.                  |
-| **Hold Duration**           | **Fly Hold**                                   | Minutes. 0 gives no hold.                                                     |
-| **Delay Duration**          | **Delay**                                      | Minutes.                                                                      |
-| **Hold Pattern**            | **Fly Hold**                                   | **Circle**, **Figure-8** or **Orbit**. **Circle** and **Orbit** are the same. |
-| **Yaw Rate**                | **Yaw Rate Cap**                               | Maximum yaw rate, in degrees per second.                                      |
+| Field                       | Types                                          | Description                                                                                                                |
+| --------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **Waypoint Type**           | All                                            | Refer to the table below.                                                                                                  |
+| **Latitude**, **Longitude** | Waypoints with a position                      | Decimal degrees.                                                                                                           |
+| **Altitude**                | Waypoints with a position, **Change Altitude** | Altitude AMSL.                                                                                                             |
+| **Speed**                   | Waypoints with a position                      | Speed on the leg to this waypoint. 0 uses `ap_max_velocity`. A wing ignores it and flies at `ap_wing_cruise_speed`.        |
+| **Hold Duration**           | **Fly Hold**                                   | Minutes. 0 gives no hold.                                                                                                  |
+| **Delay Duration**          | **Delay**                                      | Minutes.                                                                                                                   |
+| **Hold Pattern**            | **Fly Hold**                                   | **Circle**, **Figure-8** or **Orbit**. **Circle** and **Orbit** are the same. A wing ignores it and flies a loiter circle. |
+| **Yaw Rate**                | **Yaw Rate Cap**                               | Maximum yaw rate, in degrees per second.                                                                                   |
 
 ![Waypoint types](/img/betaflight_app_flight_plan_waypoint_types.png)
 
-| Type                | Description                                               |
-| ------------------- | --------------------------------------------------------- |
-| **Fly Over**        | Flies to the point.                                       |
-| **Fly By**          | Flies to the point, with a smoother corner.               |
-| **Fly Hold**        | Flies to the point and holds there for the duration.      |
-| **Land**            | Flies to the point, lands and disarms.                    |
-| **Take Off**        | Climbs in place to the altitude.                          |
-| **Change Altitude** | Modifier. The next waypoint uses this altitude.           |
-| **Delay**           | Modifier. The next leg takes approximately this duration. |
-| **Yaw Rate Cap**    | Modifier. Sets the maximum yaw rate.                      |
+| Type                | Description                                                                                                               |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **Fly Over**        | Flies to the point.                                                                                                       |
+| **Fly By**          | Flies to the point, with a smoother corner.                                                                               |
+| **Fly Hold**        | Flies to the point and holds there for the duration. A wing flies a loiter circle.                                        |
+| **Land**            | Flies to the point, lands and disarms. A wing lands with a circuit. For a wing, set the altitude to the ground elevation. |
+| **Take Off**        | Climbs in place to the altitude. A wing climbs on a straight line.                                                        |
+| **Change Altitude** | Modifier. The next waypoint uses this altitude.                                                                           |
+| **Delay**           | Modifier. The next leg takes approximately this duration. A wing loiters at the next waypoint until the duration ends.    |
+| **Yaw Rate Cap**    | Modifier. Sets the maximum yaw rate. No effect on a wing.                                                                 |
 
 The flight controller holds a maximum of 30 waypoints. The app does not stop you when you add more. The flight controller does not keep the extra waypoints.
 
