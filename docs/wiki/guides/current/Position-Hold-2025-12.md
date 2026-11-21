@@ -2,6 +2,12 @@
 
 Betaflight 2025.12 introduces Altitude Hold and Position Hold.
 
+:::note
+
+This page is for 2025.12. In 2026.6 and later, `ap_position_cutoff` has a default of 30 (3 Hz) and a range of 10 to 50. There is a new `ap_position_f` gain. `pos_hold_without_mag` is removed. The debug mode is `AUTOPILOT_PID`. Refer to [Flight Plan and Autopilot](/docs/wiki/guides/current/Flight-Plan-and-Autopilot#position-and-altitude-control).
+
+:::
+
 When used together, these features allow the pilot to hit a switch and the aircraft will hover at a fixed location and constant altitude, in Angle Mode. The sticks can then be used to ajust altitude and location. A GPS is essential, and a Magnetometer is strongly recommended.
 
 ## Quick-Start
@@ -31,7 +37,7 @@ The pilot must configure a mode switch to enable Altitude Hold in Configurator's
 
 When active, if the throttle is kept within a deadband around the normal hover throttle stick position, the aircraft should maintain constant altitude.
 
-To adjust the altitude to a higher value, the pilot should raise throttle above the deadband zone; the aircraft should climb at a velocity proportional to stick position. At full throttle, the aircraft will climb at the `alt_hold_adjust_rate` of 5m/s by default. If throttle is below the deadband, the aircraft will descend at a steady rate. However, if throttle is put all the way down, to zero, the aircraft will hover, and neither ascend nor descend. Putting throttle hard to zero is a kind of 'short-cut' to a 'fixed altitude hover'.
+To adjust the altitude to a higher value, the pilot should raise throttle above the deadband zone; the aircraft should climb at a velocity proportional to stick position. At full throttle, the aircraft will climb at the `alt_hold_climb_rate` of 5m/s by default. If throttle is below the deadband, the aircraft will descend at a steady rate. However, if throttle is put all the way down, to zero, the aircraft will hover, and neither ascend nor descend. Putting throttle hard to zero is a kind of 'short-cut' to a 'fixed altitude hover'.
 
 When Altitude Hold is initiated, throttle is initially set to the CLI `hover_throttle` value. A PID controller then adjusts the throttle, either side of the hover value, to maintain altitude. If the `hover_throttle` value is too low, the quad will immediately drop every time Altitude Hold starts, and if it is too high, the quad will immediately climb at the start. The response at the start should be used to fine-tune the correct value. When set correctly, there will be no sudden altitude change at the start. At the field, the hover throttle value can be adjusted via the GPS Rescue OSD sub-menu.
 
@@ -49,7 +55,7 @@ While in Altitude Hold mode, the aircraft will enter Angle Mode. If Position Hol
 ** CLI OPTIONS **
 
 - `hover_throttle` : the initial value sent to throttle at the start of altitude hold. Too low and the quad drops every time you initiated altitude hold.
-- `alt_hold_adjust_rate` : Altitude responsiveness to throttle. This is intentionally a bit weak. Default is +5m/s at full throttle, and -5m/s on zero throttle.
+- `alt_hold_climb_rate` : Altitude responsiveness to throttle. This is intentionally a bit weak. Default is +5m/s at full throttle, and -5m/s on zero throttle.
 - `alt_hold_deadband` : the deadband either side of hover throttle in which altitude will automatically be held constant. Default is 20, or 20%. If, for example, hover throttle was 1400, a 20% deadband means hover with throttle anyhere in the range from 1320 to 1520
 
 ## Position Hold
@@ -76,11 +82,11 @@ For information on setting up a Magnetometer, see the [Betaflght.com wiki](https
 
 While in Position Hold, the target position can be adjusted using Roll and Pitch inputs that exceed `pos_hold_deadband`. The quad can then be moved around, and even flown, using the sticks, a bit like normal Angle Mode, especially if the deadband is set to a low value. The deadband can be adjusted in the CLI with the `pos_hold_deadband` value, in percent stick distance out from centre, to suite your requirements. If `pos_hold_deadband` is set to zero, pitch and roll inputs will be completely ignored; the quad's location will be locked until the switch is reverted.
 
-Stick responsiveness will be significantly less than in normal angle mode. The maximum angle that the pilot can command is half the `autopilot_max_angle` value, which itself defaults to 50 degrees.
+Stick responsiveness will be significantly less than in normal angle mode. The maximum angle that the pilot can command is half the `ap_max_angle` value, which itself defaults to 50 degrees.
 
 The aircraft will stop quite hard when the sticks are re-centered, especially if it is moving at speed. For example, if the quad is moving at 10-15m/s forwards, the aircraft may apply the maximum default 50 degrees of pitch back to arrest forward speed. To get a smoother stop from speed, slow the aircraft down using the sticks before recentering them.
 
-The `autopilot_max_angle` value may be increased to 70 degrees if more aggressive flight behaviours are needed.
+The `ap_max_angle` value may be increased to 70 degrees if more aggressive flight behaviours are needed.
 
 If both Position Hold and Altitude Hold are working, and failsafe is set to `landing mode`, the quad will enter a controlled descent phase at the current position, without drifting or falling. This is much nicer than the old method. GPS Rescue mode is still preferred over `landing mode`, for failsafe, and will take precedence over Position Hold.
 
@@ -88,10 +94,10 @@ If both Position Hold and Altitude Hold are working, and failsafe is set to `lan
 
 - `pos_hold_without_mag = on` : permits Position Hold without a Magnetometer
 - `pos_hold_deadband` : the deadband around center stick position, default is 5%. If set to zero, sticks will be ignored. Smaller deadbands are nicer for adjusting position or flying around.
-- `autopilot_max_angle` : the maximum angle that the autopilot code can apply to the aircraft during a hard stop. Default is 50 degrees, max is 70. The maximum angle the pilot can command is half this value.
-- `autopilot_position_P` : the P value for position hold. There are also values for pid D, I and A values, where A is 'Acceleration'. Defaults are all 30. When too high, the quad will oscillate. When too low, control is loose. Take care when adjusting these, adjust them one at a time to learn what they do.
-- `autopilot_position_cutoff` : a smoothing filter applied to the PID D and A values. Default is 80, or 0.8Hz. There is still some jittering around like this. 50 is a lot smoother, but leads to vagueness in position control. 200 is very jittery. You choose.
-- `gyro_filter_debug_axis` : selects whether Pitch or Roll distances and PIDs are logged to the `autopilot_position` debug.
+- `ap_max_angle` : the maximum angle that the autopilot code can apply to the aircraft during a hard stop. Default is 50 degrees, max is 70. The maximum angle the pilot can command is half this value.
+- `ap_position_p` : the P value for position hold. There are also `ap_position_i`, `ap_position_d` and `ap_position_a` values, where A is 'Acceleration'. Defaults are all 30. When too high, the quad will oscillate. When too low, control is loose. Take care when adjusting these, adjust them one at a time to learn what they do.
+- `ap_position_cutoff` : a smoothing filter applied to the PID D and A values. Default is 80, or 0.8Hz. There is still some jittering around like this. 50 is a lot smoother, but leads to vagueness in position control. 200 is very jittery. You choose.
+- `gyro_filter_debug_axis` : selects whether Pitch or Roll distances and PIDs are logged to the `AUTOPILOT_POSITION` debug.
 
 ### Pre-flight checks
 
@@ -127,7 +133,7 @@ If Position Hold is enabled quickly after power up, when the GPS fix is poor, bo
 
 ### Debugging - checking PIDs etc
 
-In CLI, go `set debug_mode = autopilot_position` to log position hold target, distance and PIDs.
+In CLI, go `set debug_mode = AUTOPILOT_POSITION` to log position hold target, distance and PIDs.
 
 Basic testing is easiest by flying the aircraft directly Northwards, making only Pitch adjustments, and logging pitch values with `set gyro_debug_axis = pitch`. If set to Pitch, the log will contain North-South (latitude) PIDs. When set to Roll, East-West (longitude) earth frame axis values will be logged.
 
