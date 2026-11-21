@@ -39,7 +39,7 @@ When active, if the throttle is kept within a deadband around the normal hover t
 
 To adjust the altitude to a higher value, the pilot should raise throttle above the deadband zone; the aircraft should climb at a velocity proportional to stick position. At full throttle, the aircraft will climb at the `alt_hold_climb_rate` of 5m/s by default. If throttle is below the deadband, the aircraft will descend at a steady rate. However, if throttle is put all the way down, to zero, the aircraft will hover, and neither ascend nor descend. Putting throttle hard to zero is a kind of 'short-cut' to a 'fixed altitude hover'.
 
-When Altitude Hold is initiated, throttle is initially set to the CLI `hover_throttle` value. A PID controller then adjusts the throttle, either side of the hover value, to maintain altitude. If the `hover_throttle` value is too low, the quad will immediately drop every time Altitude Hold starts, and if it is too high, the quad will immediately climb at the start. The response at the start should be used to fine-tune the correct value. When set correctly, there will be no sudden altitude change at the start. At the field, the hover throttle value can be adjusted via the GPS Rescue OSD sub-menu.
+When Altitude Hold is initiated, throttle is initially set to the CLI `ap_hover_throttle` value. A PID controller then adjusts the throttle, either side of the hover value, to maintain altitude. If the `ap_hover_throttle` value is too low, the quad will immediately drop every time Altitude Hold starts, and if it is too high, the quad will immediately climb at the start. The response at the start should be used to fine-tune the correct value. When set correctly, there will be no sudden altitude change at the start. At the field, the hover throttle value can be adjusted via the GPS Rescue OSD sub-menu.
 
 To keep the aircraft at constant height, throttle must be set either to:
 
@@ -54,8 +54,8 @@ While in Altitude Hold mode, the aircraft will enter Angle Mode. If Position Hol
 
 ** CLI OPTIONS **
 
-- `hover_throttle` : the initial value sent to throttle at the start of altitude hold. Too low and the quad drops every time you initiated altitude hold.
-- `alt_hold_climb_rate` : Altitude responsiveness to throttle. This is intentionally a bit weak. Default is +5m/s at full throttle, and -5m/s on zero throttle.
+- `ap_hover_throttle` : the initial value sent to throttle at the start of altitude hold. Too low and the quad drops every time you initiated altitude hold.
+- `alt_hold_climb_rate` : Altitude responsiveness to throttle. This is intentionally a bit weak. Default is +5m/s at full throttle, and close to -5m/s with the throttle just above zero. At zero throttle, the target altitude does not change.
 - `alt_hold_deadband` : the deadband either side of hover throttle in which altitude will automatically be held constant. Default is 20, or 20%. If, for example, hover throttle was 1400, a 20% deadband means hover with throttle anyhere in the range from 1320 to 1520
 
 ## Position Hold
@@ -103,7 +103,7 @@ If both Position Hold and Altitude Hold are working, and failsafe is set to `lan
 
 - If using a Magnetometer, validate the heading carefully with Configurator's home screen. Check by comparing the heading value against the compass on a mobile phone. The Mag should reads close to zero when the aircraft points North, near 90 when East, 180 when South, etc.It doesn't have to be perfect, but should have an error of less than 20 degrees. Check it remains accurate at pitch angles +/- 60 degrees.
 - Hover in Angle mode and confirm that the Acc is calibrated and the hover is stable. Sticks can be used to fine-tune to a perfect hover.
-- Test Altitude Hold first, alone, and check that there is no immediate drop, or climb in height, the moment you engage Altitude Hold. Adjust `hover_throttle` until altitude doesn't abruptly change when Altitude Hold is engaged. Practice adjusting altitude up or down using throttle.
+- Test Altitude Hold first, alone, and check that there is no immediate drop, or climb in height, the moment you engage Altitude Hold. Adjust `ap_hover_throttle` until altitude doesn't abruptly change when Altitude Hold is engaged. Practice adjusting altitude up or down using throttle.
 - Then enable Position Hold on the same Mode switch. Make sure you have lots of GPS sats.
 - If the aircraft does not have a Mag, it must be flown straight ahead, at some decent speed, with zero roll or yaw input, for at least 50-100m, sometimes more, until the home arrow points straight up when you are flying directly towards home. This 'calibrates' the heading of the craft to the GPS heading information. Unless this is done, Position Hold will not be available, and will not work.
 - If the aircraft has a Mag, there is no need to worry about flying forward; Position Hold can be used from the moment you take off.

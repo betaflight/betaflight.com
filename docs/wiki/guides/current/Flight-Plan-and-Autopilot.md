@@ -81,7 +81,7 @@ The pattern starts only when the duration is more than 0. The pattern radius is 
 
 Each waypoint has two optional values. Only the CLI can set them:
 
-- **Vertical rate** in cm/s. A value of 0 uses `alt_hold_climb_rate`. On a `LAND` waypoint, 0 uses `ap_landing_descent_rate`.
+- **Vertical rate** in cm/s. A value of 0 uses `alt_hold_climb_rate`, which is in units of 0.1 m/s (the default 50 is 5 m/s). On a `LAND` waypoint, 0 uses `ap_landing_descent_rate`.
 - **Yaw** behaviour:
 
 | Yaw           | What the nose does                                                                                                                            |

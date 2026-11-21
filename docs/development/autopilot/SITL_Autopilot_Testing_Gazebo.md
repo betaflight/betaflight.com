@@ -87,7 +87,9 @@ Run all scenarios:
 python3 src/test/sitl/sitl_harness.py --binary obj/main/betaflight_SITL.elf --scenario all
 ```
 
-The harness writes a log and a decoded blackbox log for each scenario to `--workdir` (the default is `/tmp/sitl_harness`).
+This command does not run the A/B rescue scenarios or the wing scenarios. The harness shows them as `SKIP`. To run them, also give `--binary-b` and `--binary-wing`. Refer to the table below.
+
+The harness writes a log for each scenario to `--workdir` (the default is `/tmp/sitl_harness`). If `blackbox_decode` is on your `PATH`, the harness also decodes the blackbox logs. If not, it does not decode them.
 
 | Scenarios                                                      | What they test                                                            |
 | -------------------------------------------------------------- | ------------------------------------------------------------------------- |
@@ -128,8 +130,12 @@ The [Betaloop](https://github.com/betaflight/betaloop) launcher (`gz` branch) st
 ```bash
 git clone -b gz https://github.com/betaflight/betaloop.git ~/betaloop
 cd ~/betaloop
-python3 start.py --gazebo-assets ~/aeroloop_gazebo --elf /path/to/betaflight/obj/main/betaflight_SITL.elf --gazebo
+python3 start.py --gazebo-assets ~/aeroloop_gazebo --world betaloop_iris_betaflight_demo_harmonic.sdf --elf /path/to/betaflight/obj/main/betaflight_SITL.elf --gazebo
 ```
+
+Betaloop also starts websockify on port 6761 for the Betaflight App, so websockify must be installed. If you do not want this, add `--disable-websockify`.
+
+Betaloop starts SITL in the directory of the ELF file (`obj/main`). Thus SITL keeps `eeprom.bin` in that directory.
 
 To start the parts manually, use two terminals:
 
@@ -154,7 +160,7 @@ Gazebo does not send RC packets. Send them to UDP 9004 with your own script, or 
 
 ## Connect the Betaflight App
 
-The browser cannot open a TCP port. Use websockify to connect the app to UART1:
+The browser cannot open a TCP port. Use websockify to connect the app to UART1. If Betaloop already started websockify, do not start a second one.
 
 ```bash
 python3 -m venv ~/.venv/websockify
@@ -164,7 +170,7 @@ python3 -m venv ~/.venv/websockify
 
 In the app options, turn on **Expert Mode** and **Enable manual connection mode**. Then select **Betaflight SITL** (`ws://127.0.0.1:6761`) and click **Connect**. The desktop app connects to `tcp://127.0.0.1:5761` directly.
 
-On SITL, `save` and `exit` stop the SITL program. Thus after you click **Save** in a tab (for example the Flight Plan tab), start SITL again. The configuration stays in `eeprom.bin`.
+On SITL, `save` and `exit` stop the SITL program. Thus after you click **Save** in a tab (for example the Flight Plan tab), start SITL again from the same directory. SITL reads `eeprom.bin` from the current directory. If you start it from a different directory, it does not find your configuration and flight plan.
 
 ## Configure SITL
 
