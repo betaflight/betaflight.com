@@ -44,7 +44,7 @@ When Altitude Hold is initiated, throttle is initially set to the CLI `ap_hover_
 To keep the aircraft at constant height, throttle must be set either to:
 
 - a position within the deadband zone either side of the hover throttle value, or
-- below `min_check` (throttle all the way down)
+- below `min_check` (throttle all the way down), except in unswitched 3D mode
 
 If Altitude Hold is enabled as an emergency response to a rapid drop, or if the quad is climbing really fast, there will be overshoot, and often a bounce-back. The code cannot stop the quad instantly, but it should return to the initiation point within a few seconds. It's wise to check behaviour in situations like these, before relying on it.
 
@@ -55,7 +55,7 @@ While in Altitude Hold mode, the aircraft will enter Angle Mode. If Position Hol
 ** CLI OPTIONS **
 
 - `ap_hover_throttle` : the initial value sent to throttle at the start of altitude hold. Too low and the quad drops every time you initiated altitude hold.
-- `alt_hold_climb_rate` : Altitude responsiveness to throttle. This is intentionally a bit weak. Default is +5m/s at full throttle, and close to -5m/s with the throttle just above `min_check`. Below `min_check`, the target altitude does not change.
+- `alt_hold_climb_rate` : Altitude responsiveness to throttle. This is intentionally a bit weak. Default is +5m/s at full throttle, and close to -5m/s with the throttle just above `min_check`. Below `min_check`, the target altitude does not change, except in unswitched 3D mode.
 - `alt_hold_deadband` : the deadband either side of hover throttle in which altitude will automatically be held constant. Default is 20, or 20%. If, for example, hover throttle was 1400, a 20% deadband means hover with throttle anyhere in the range from 1320 to 1520
 
 ## Position Hold
