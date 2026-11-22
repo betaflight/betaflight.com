@@ -174,7 +174,7 @@ During the launch, the Modes tab shows ARM, ANGLE and LAUNCH as active. AUTOPILO
 
 The climb ends after `launch_timeout`, or at `launch_max_altitude` if it is more than 0.
 
-To stop the launch, move the roll or pitch stick more than `launch_abort_deadband`. You then fly the wing manually. To start the mission after an abort, set the AUTOPILOT switch to off and on again.
+To stop the launch, move the roll or pitch stick more than `launch_abort_deadband`. If `launch_min_time` is more than 0, the sticks cannot stop the launch until this time after the detection. You then fly the wing manually. To start the mission after an abort, set the AUTOPILOT switch to off and on again.
 
 If you set the LAUNCH switch to off before the throw, the wing disarms.
 
@@ -206,7 +206,7 @@ A wing lands with a circuit, as a pilot does:
    3. The course at the end of the launch.
    4. The course just after takeoff.
    5. The course at the end of the loiter.
-3. **Wind.** If the tailwind is more than `ap_wing_land_max_tailwind`, the wing lands in the opposite direction.
+3. **Wind.** If the tailwind is more than `ap_wing_land_max_tailwind`, the wing lands in the opposite direction. If `ap_wing_land_max_tailwind` is 0, the wing does not do this check.
 4. **Circuit.** The wing flies downwind, base and final. `ap_wing_land_side` sets the side of the circuit. `ap_wing_land_final_length` sets the length of the final.
 5. **Final.** The wing descends on a glide slope of `ap_wing_land_glide_angle`. The bank is limited to `ap_wing_land_final_bank`.
 6. **Flare.** Below `ap_wing_land_flare_height`, the motor stops. The wing raises the nose up to `ap_wing_land_flare_pitch` and keeps the wings level.

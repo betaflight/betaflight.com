@@ -26,7 +26,14 @@ To test the wing autopilot, build a wing SITL:
 make TARGET=SITL EXTRA_FLAGS="-DUSE_WING"
 ```
 
-A wing build and a multirotor build have the same output file name. Copy the first build to a different name before you make the second build.
+A wing build and a multirotor build have the same output file name. To keep both, copy each build to a different name after you make it:
+
+```bash
+make TARGET=SITL
+cp obj/main/betaflight_SITL.elf betaflight_SITL_quad.elf
+make TARGET=SITL EXTRA_FLAGS="-DUSE_WING"
+cp obj/main/betaflight_SITL.elf betaflight_SITL_wing.elf
+```
 
 SITL has these command line options:
 
