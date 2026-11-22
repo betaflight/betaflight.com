@@ -103,7 +103,7 @@ python3 src/test/sitl/sitl_harness.py --binary obj/main/betaflight_SITL.elf --sc
 
 This command does not run the A/B rescue scenarios or the wing scenarios. The harness shows them as `SKIP`. To run them, also give `--binary-b` and `--binary-wing`. Refer to the table below.
 
-The harness writes a log for each scenario to `--workdir` (the default is `/tmp/sitl_harness`). If `blackbox_decode` is on your `PATH`, the harness also decodes the blackbox logs. If not, it does not decode them.
+The harness writes a log for each scenario to `--workdir` (the default is `/tmp/sitl_harness`). If `blackbox_decode` is on your `PATH`, the harness also tries to decode each `.BFL` blackbox file in the scenario directory. The harness ignores decode errors, and decoding does not change the PASS or FAIL result.
 
 | Scenarios                                                                                           | What they test                                                                                                                         |
 | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -152,7 +152,7 @@ cd ~/betaloop
 python3 start.py --gazebo-assets ~/aeroloop_gazebo --world betaloop_iris_betaflight_demo_harmonic.sdf --elf /path/to/betaflight/obj/main/betaflight_SITL.elf --gazebo
 ```
 
-Betaloop also starts websockify on port 6761 for the Betaflight App, so websockify must be installed. If you do not want this, add `--disable-websockify`.
+Betaloop also starts websockify on port 6761 for the Betaflight App. Thus websockify must be on your `PATH` before you start Betaloop. If you installed websockify in a virtual environment (refer to [Connect the Betaflight App](#connect-the-betaflight-app)), activate it first with `source ~/.venv/websockify/bin/activate`. If you do not want Betaloop to start websockify, add `--disable-websockify` and start websockify yourself.
 
 Betaloop starts SITL in the directory of the ELF file (`obj/main`). Thus SITL keeps `eeprom.bin` in that directory.
 
