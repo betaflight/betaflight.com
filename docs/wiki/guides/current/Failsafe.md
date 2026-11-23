@@ -36,11 +36,11 @@ Flight Controller failsafe will work if the wires connecting the FC to the Recei
 
 ### Flight Controller failsafe has three stages:
 
-**Signal Validation** is a short (100ms) period in which the absence of incoming data is noted, the last received values are 'held'.
+**Signal Validation** is a short period (150ms in 2025.12 and later, 100ms in 4.5 and earlier) in which the absence of incoming data is noted, the last received values are 'held'.
 
-If signal validation fails, i.e. no signal for more than 100ms:
+If signal validation fails, i.e. no signal for longer than this period:
 
-- the flight controller holds the last known good values for a further 300ms, and then activates failsafe stage 1 values, and
+- the flight controller holds the last known good values until 300ms after the last valid data, and then activates failsafe stage 1 values, and
 - an arming block will be initiated, and `RXLOSS` will shown in the OSD while that block is active; these will persist for at least the `failsafe_recovery_delay` period.
 
 **Failsafe Stage 1**, or the 'Guard' period, applies the Stage 1 **Channel Fallback Settings** for up to the `failsafe_delay` period (1.5s by default in 4.5, 1.0s in 4.4), counted from the time of the last valid packet. If any valid data arrives while in Stage 1, the flight controller will respond to it immediately, and the failsafe process stops. During stage 1, he pilot may notice jerky or intermittent stick responsiveness if the signal comes and goes.
@@ -65,7 +65,7 @@ A transmitter switch may be configured to immediately activate Flight Controller
 
 **Signal loss** means:
 
-- **no incoming data packets**, or that the receiver is sending **failsafe mode** or **frame dropped** packets, for more than 100ms, or
+- **no incoming data packets**, or that the receiver is sending **failsafe mode** or **frame dropped** packets, for more than 150ms (100ms in 4.5 and earlier), or
 - **_invalid pulse length_** data on any flight channel for more than 300ms (PPM receivers only)
 
 `RXLOSS` should be displayed in the warnings field of the OSD when signal loss is detected. This is an 'early warning' of significant packet loss - an indicator that the link is in a bad way. The `RXLOSS` message will be held for half a second (100ms in `RACE_PRO` builds, one second in 4.4), even if the signal loss is brief. During this time, the quad will not respond to arming commands, for safety reasons.
@@ -82,7 +82,7 @@ When a failsafe switch is enabled, and Failsafe is set to use Stage 1, the fligh
 
 **Stage 1** applies fixed values after confirmed signal loss.
 
-**The default Stage 1 duration**, or 'guard time' is 1.5 seconds in 4.5 (1.0s in 4.4), with a minimum of 200ms. The countdown to Stage 2 starts from the time of the last good packet. The Stage 1 duration may be customised via the "Guard time for stage 2 activation" parameter in Configurator (`failsafe_delay` in the CLI).
+**The default Stage 1 duration**, or 'guard time' is 1.5 seconds in 4.5 (1.0s in 4.4), with a minimum of 100ms. The countdown to Stage 2 starts from the time of the last good packet. The Stage 1 duration may be customised via the "Guard time for stage 2 activation" parameter in Configurator (`failsafe_delay` in the CLI).
 
 **During Stage 1 Failsafe from signal loss**, by default, all stick positions are set to the 'fallback' values (centered, throttle zero), and the current switch positions are held. These settings can be customised in Configurator's 'Channel fallback settings' panel in the failsafe tab, or with the CLI command `rxfail` (see the [rxfail](/docs/wiki/guides/current/Rx#rx-loss-configuration) section in the Rx documentation). For example, the pilot may choose a hover throttle value, or to activate Level mode, in Stage 1, by configuring the relevant fallback switch or aux channel values.
 
@@ -121,7 +121,7 @@ Stage 2 Failsafe can be activated by an aux channel switch. If the switch behavi
 When the flight controller enters Stage 2, it implements one of three (actually, four) possible Stage 2 Failsafe procedures::
 
 - **Drop**, the default, causing immediate disarm and motor stop. There is a time delay before re-arming is possible
-- **Landing Mode**, where the sticks are centered, throttle is held at a defined value, and the aux channels are set as configured for Stage 1 (which could include configuring an aux channel to enable Level mode). These settings will apply for the Landing Time (`failsafe_off_delay` period), which defaults to 1 second, but can be longer. At the end of this period, the quad will disarm (and crash). Landing Mode can be hazardous, since the motors and PIDs are active, and you cannot control where the quad goes. If the machine crashes and the props get stuck, they can burn out, though if the PID errors are bad enough, the runaway takeoff system may disarm the quad.
+- **Landing Mode**, where the sticks are centered, throttle is held at a defined value, and the aux channels are set as configured for Stage 1 (which could include configuring an aux channel to enable Level mode). These settings will apply for the Landing Time, which defaults to 60 seconds in 2025.12 and later (`failsafe_landing_time`, in seconds) and to 1 second in 4.5 and earlier (`failsafe_off_delay`, in 0.1 second steps), but can be changed. At the end of this period, the quad will disarm (and crash). Landing Mode can be hazardous, since the motors and PIDs are active, and you cannot control where the quad goes. If the machine crashes and the props get stuck, they can burn out, though if the PID errors are bad enough, the runaway takeoff system may disarm the quad.
 - **GPS Rescue**, where, with a GPS module, the quad will transfer stick and throttle control to the GPS controller, and it will fly home and land.
 - **Just Disarm**, a 'fourth' internal mode, which applies if the throttle has been held low for at least 10 seconds before entering Stage 2 (unless the mode is set to GPS Return). This can sometimes cause confusion when testing failsafe. Always test with throttle up at some point before the test. Its primary purpose is to force a disarm if the user powers down their radio after landing, but has forgotten to remove the lipo. This prevents the quad entering Landing Mode, for example, spinning the props up unintentionally.
 
@@ -175,7 +175,7 @@ You will only regain normal flight control during Landing Mode after the signal 
 **Configuring Landing Mode.**
 
 1.  Enable Landing Mode as opposed to Drop as the failsafe procedure
-2.  Set `failsafe_off_delay` to an appropriate value based on how high you fly (how long you think it will take to land at the set throttle value).
+2.  Set the Landing Time (`failsafe_landing_time` in 2025.12 and later, `failsafe_off_delay` in 4.5 and earlier) to an appropriate value based on how high you fly (how long you think it will take to land at the set throttle value).
 3.  Set `failsafe_throttle` to a value that allows the aircraft to descend at approximately one meter per second (default is 1000 which should be throttle off).
 
 The behavior with default one second of stage 1 'guard time' and a 10s Landing time is:
@@ -214,7 +214,7 @@ It is intended to 'catch' the possibility that the pilot has landed, forgotten t
 
 ## Failsafe Settings
 
-Failsafe delays are configured in 0.1 second steps.
+Failsafe delays are configured in 0.1 second steps, except `failsafe_landing_time`, which is set in seconds.
 1 step = 0.1sec
 1 second = 10 steps
 
@@ -222,9 +222,9 @@ Failsafe delays are configured in 0.1 second steps.
 
 Guard time, or Failsafe Stage 1 period; the time before for failsafe Stage 2 activation after a lost signal. This is the amount of time the flight controller waits, after a signal loss, before activating Stage 2 Failsafe.
 
-#### `failsafe_off_delay`
+#### `failsafe_landing_time` (2025.12 and later), `failsafe_off_delay` (4.5 and earlier)
 
-In Landing Mode, the time from Stage 2 initiation until the motors finally turn off. Throttle will be at 'failsafe_throttle' for this period of time. If you fly at higher altitudes you may need more time to descend safely.
+In Landing Mode, the time from Stage 2 initiation until the motors finally turn off. `failsafe_landing_time` is set in seconds (0 to 250, default 60). `failsafe_off_delay` is set in 0.1 second steps (0 to 200, default 10, i.e. 1 second). Throttle will be at 'failsafe_throttle' for this period of time. If you fly at higher altitudes you may need more time to descend safely.
 
 #### `failsafe_throttle`
 
@@ -241,7 +241,7 @@ Configure the RC switched failsafe action. It can be one of:
 - `STAGE1` - activates Stage 1 Failsafe immediately. RC controls are applied as configured for Stage 1, but aux channels remain active. After the `failsafe_delay` guard time, Stage 2 is activated. This is useful if you want to simulate signal loss failsafe behavior. Recovery of signal immediately restores full pilot control.
 - `STAGE2` - skips Stage 1 and immediately activates the selected Stage 2 procedure. Useful if you want to assign instant auto-landing, GPS Return, or Drop, to a switch.
 - `KILL` - immediately disarms the quad with no delay. Your craft will crash. Note that a single glitch on the failsafe channel will immediately crash the quad. Re-arming is blocked for 1 second after signal is restored. A similar, but safer effect can be achieved by:
-  - setting `failsafe_switch_mode` to `STAGE2`, `failsafe_procedure` to `DROP`, and `failsafe delay` to 2. This gives a 200ms delay signal validation period, the shortest allowed, so that transient glitches on the failsafe channel will not falsely trigger a disarm. Drop recovery can be made faster than Kill by configuring a short `failsafe_recovery_delay` time (which can be as short as 200ms).
+  - setting `failsafe_switch_mode` to `STAGE2`, `failsafe_procedure` to `DROP`, and `failsafe delay` to 2. This gives a 200ms delay, so that transient glitches on the failsafe channel will not falsely trigger a disarm. Drop recovery can be made faster than Kill by configuring a short `failsafe_recovery_delay` time (which can be as short as 200ms).
   - using the arm switch. This does not introduce re-arming locking.
 
 #### `failsafe_throttle_low_delay`
@@ -253,7 +253,7 @@ See [Rx documentation](/docs/wiki/guides/current/Rx).
 #### `failsafe_procedure`
 
 - `DROP`: Just kill the motors and disarm (crash the craft). Re-arming is locked until RC link is available for at least 3 seconds and the arm switch (if used) is in the OFF position.
-- `AUTO-LAND`: Enable an auto-level mode, center the flight sticks and set the throttle to a predefined value (`failsafe_throttle`) for a predefined time (`failsafe_off_delay`). This should allow the craft to come to a safer landing. Re-arming is locked until RC link is available for at least 30 seconds and the arm switch (if used) is in the OFF position.
+- `AUTO-LAND`: Enable an auto-level mode, center the flight sticks and set the throttle to a predefined value (`failsafe_throttle`) for a predefined time (`failsafe_landing_time`, or `failsafe_off_delay` in 4.5 and earlier). This should allow the craft to come to a safer landing. Re-arming is locked until RC link is available for at least 30 seconds and the arm switch (if used) is in the OFF position.
   = `GPS_RESCUE` : Enable GPS Rescue.
 
 #### `failsafe_recovery_delay`
