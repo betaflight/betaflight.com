@@ -85,7 +85,10 @@ class DocSearch {
         return;
       }
       // Only page while the pager is showing (dropdown open, multiple pages).
-      if (!$('.algolia-autocomplete .algolia-docsearch-pagination').length) {
+      // Escape hides the dropdown but leaves its footer in the DOM, so ask
+      // this instance's dropdown rather than querying for the pager markup.
+      const typeahead = this.autocomplete.data('aaAutocomplete');
+      if (!typeahead?.dropdown.isVisible() || this.getPageCount() <= 1) {
         return;
       }
       event.preventDefault();
