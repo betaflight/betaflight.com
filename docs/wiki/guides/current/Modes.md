@@ -47,12 +47,14 @@ There are various modes that can be toggled on or off. Modes can be enabled/disa
 | 48  | DISABLE VTX CONTROL      | Disable the control of VTX settings through the OSD                                  |
 | 49  | LAUNCH CONTROL           | Race start assistance system                                                         |
 | 50  | MSP OVERRIDE             | Enable MSP Override mode                                                             |
-| 51  | STICK COMMANDS DISABLE   | Disable/enable stick command                                                         |
+| 51  | STICK COMMANDS DISABLE   | Disable stick arming and stick commands while disarmed                               |
 | 52  | BEEPER MUTE              | Disable/enable beeper including warning, status and BEEPER mode                      |
 | 53  | READY                    | Show 'READY' in the OSD using a switch                                               |
 | 54  | LAP TIMER RESET          | Reset lap timer                                                                      |
 | 55  | CHIRP                    | Enable chirp mode                                                                    |
 | 56  | AUTOPILOT                | Enable autopilot mode (requires GPS)                                                 |
+
+For what `STICK COMMANDS DISABLE` blocks, including how it behaved on some targets before Betaflight 2026.12, see [Disabling stick commands](/docs/wiki/guides/current/Controls#disabling-stick-commands).
 
 ## Auto-leveled flight
 

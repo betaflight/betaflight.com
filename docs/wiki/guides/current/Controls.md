@@ -51,7 +51,17 @@ The stick positions are combined to activate different functions:
 | Enable LCD Page Cycling       | LOW      | CENTER | HIGH   | HIGH   |
 | Save setting                  | LOW      | LOW    | LOW    | HIGH   |
 
+In Acro mode (Angle and Horizon off), the four Trim Acc combinations select Rate Profiles 1 to 4 instead of trimming the accelerometer. See [Rate Profiles](/docs/wiki/guides/current/Profiles#changing-rate-profiles).
+
 ![Stick Positions](assets/images/StickPositions.png)
+
+### Disabling Stick Commands
+
+There are two ways to stop stick commands from changing settings by accident.
+
+**Profile stick commands only.** From Betaflight 2026.12, `set enable_stick_profile_switch = OFF` ignores the PID Profile and Rate Profile stick commands. All other stick commands still work. The default is `ON`. See [Disabling profile stick commands](/docs/wiki/guides/current/Profiles#disabling-profile-stick-commands).
+
+**All stick commands.** When the `STICK COMMANDS DISABLE` mode is active on an AUX switch, arming with sticks is blocked, and so are all stick commands used while disarmed: profile selection, calibration, save, accelerometer trim, LCD page cycling, VTX control and camera control. Disarming with sticks still works. Before Betaflight 2026.12, on some targets (for example AT32, APM32 and RP2350) this mode only blocked arming with sticks and the other stick commands still worked. From 2026.12 it works the same on all targets.
 
 ### History
 

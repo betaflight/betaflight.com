@@ -6,7 +6,7 @@ Profiles offer another way to perform PID or Filter tuning (currently only Dterm
 
 ## Changing profiles
 
-Profiles can be selected using the Betaflight App, CLI, OSD or stick combinations. Once selected, changes to settings can be made and saved to the active Profile. Also worth mentioning when selecting a Profile, that Profile will remain the active Profile even over power cycles.
+Profiles can be selected using the Betaflight App, CLI, OSD or stick combinations. Once selected, changes to settings can be made and saved to the active Profile. Also worth mentioning when selecting a Profile, that Profile will remain the active Profile even over power cycles, unless it was selected with sticks and not saved.
 
 Betaflight App (GUI): In the PID Tuning Tab > Select a Profile using the drop-down menu. Once a profile is chosen, that profile is activated for current use. Any modifications made are saved when pressing Save button.
 
@@ -14,11 +14,15 @@ OSD: Access CMS (Left Yaw + Pitch up) > Select `Profiles` > Change `PID Prof`.
 
 Stick combinations: When disarmed use the following stick commands to select a Profile. The status LED on your FC will flicker when changing the Profile.
 
-| Profile | Throttle | Yaw  | Pitch  | Roll   |
-| ------- | -------- | ---- | ------ | ------ |
-| 0       | Down     | Left | Middle | Left   |
-| 1       | Down     | Left | Up     | Middle |
-| 2       | Down     | Left | Middle | Right  |
+| Profile (CLI index) | Throttle | Yaw  | Pitch  | Roll   |
+| ------------------- | -------- | ---- | ------ | ------ |
+| 1 (`profile 0`)     | Down     | Left | Middle | Left   |
+| 2 (`profile 1`)     | Down     | Left | Up     | Middle |
+| 3 (`profile 2`)     | Down     | Left | Middle | Right  |
+
+A profile selected with sticks is not saved. To keep it after a power cycle, use the save stick command (throttle down, yaw left, pitch down, roll right) or `save` in the CLI.
+
+Profile stick commands can be turned off. See [Disabling profile stick commands](#disabling-profile-stick-commands).
 
 CLI: the `profile` command can be used to change the profile:
 
@@ -42,7 +46,7 @@ BetaFlight 3.3 > the number of Rate Profiles increased from 3 to 6 Rate Profiles
 
 ### Changing Rate Profiles
 
-Rate Profiles can be selected using a GUI, CLI, OSD, or AUX channel. Once selected (just like Profiles), changes to settings can be made and saved to the active Rate Profile. Also, when changing our Rate Profile that profile will remain the active Profile even over power cycles, except when using the AUX channel option. When BetaFlight boots the active profile is selected by the position of the AUX channel.
+Rate Profiles can be selected using a GUI, CLI, OSD, stick combinations or AUX channel. Once selected (just like Profiles), changes to settings can be made and saved to the active Rate Profile. Also, when changing our Rate Profile that profile will remain the active Profile even over power cycles, except when it was selected with sticks and not saved, or when using the AUX channel option. When BetaFlight boots the active profile is selected by the position of the AUX channel.
 
 Betaflight App (GUI): Click PID Tuning Tab > Select a Rate Profile using the drop-down menu. Once selected, any changes you make to your settings and click Save will be store to the selected Rate Profile. The action of selecting a Rate Profile also activates that rate profile for current use.
 
@@ -52,6 +56,17 @@ Aux Channel (In-flight Adjustments): Adjustments need to be configured first usi
 Enable Expert Mode in the App > Click Adjustments
 Click the slider for If enable. Select the AUX # channel to use.
 For the Range, Select the whole Range from 900 to 2100. Select Rate Profile Selection from the drop-down menu. Via Channel is the same as the AUX channel used.
+
+Stick combinations: When disarmed and in Acro mode (Angle and Horizon off), use the following stick commands to select a Rate Profile. In Angle or Horizon mode the same combinations trim the accelerometer instead. Only the first four Rate Profiles can be selected this way.
+
+| Rate Profile (CLI index) | Throttle | Yaw    | Pitch  | Roll   |
+| ------------------------ | -------- | ------ | ------ | ------ |
+| 1 (`rateprofile 0`)      | Up       | Middle | Up     | Middle |
+| 2 (`rateprofile 1`)      | Up       | Middle | Down   | Middle |
+| 3 (`rateprofile 2`)      | Up       | Middle | Middle | Right  |
+| 4 (`rateprofile 3`)      | Up       | Middle | Middle | Left   |
+
+As with PID Profiles, a Rate Profile selected with sticks is not saved. To keep it after a power cycle, use the save stick command or `save` in the CLI.
 
 CLI: the `rateprofile` command can be used to change the profile:
 
@@ -64,6 +79,26 @@ To save configuration changes:
 ```
 save
 ```
+
+## Disabling Profile Stick Commands
+
+The profile stick commands share stick positions with other menus, such as the HDZero VTX menu. While using such a menu, it is easy to switch to another PID or Rate Profile by accident. If that profile still has default settings, the quad will fly very differently from your tune.
+
+From Betaflight 2026.12, you can turn off the profile stick commands in the CLI:
+
+```
+set enable_stick_profile_switch = OFF
+save
+```
+
+| Value | Behaviour                                                                       |
+| ----- | ------------------------------------------------------------------------------- |
+| `ON`  | PID and Rate Profiles can be selected with stick commands. This is the default. |
+| `OFF` | PID and Rate Profile stick commands are ignored.                                |
+
+This setting only affects profile selection. All other stick commands still work, including arming, disarming, calibration, save, the OSD menu, VTX control and camera control. Profiles can still be selected using the App, CLI, OSD menu or an adjustment channel.
+
+To turn off all disarmed stick commands instead, use the `STICK COMMANDS DISABLE` mode. See [Disabling stick commands](/docs/wiki/guides/current/Controls#disabling-stick-commands).
 
 ## Backing up Profiles and Rate Profiles
 
