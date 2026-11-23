@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-04T19:20:32.480Z",
-  "firmwareCommit": "897cf61e7bdf4278d03ced50b8cc8075d79c400a",
+  "generated": "2026-11-19T19:15:21.213Z",
+  "firmwareCommit": "e9c4c489b1e3327e726a8f7e987835462a8f3d44",
   "source": "scripts/extract-pg-msp.js",
   "pgGroups": [
     {
@@ -119,7 +119,7 @@
       "id": 18,
       "name": "PG_SYSTEM_CONFIG",
       "structType": "systemConfig_t",
-      "pgVersion": 4,
+      "pgVersion": 5,
       "sourceFile": "src/main/config/config.c"
     },
     {
@@ -10785,6 +10785,18 @@
           "settingsType": "UINT16",
           "lookupTable": null,
           "notes": null
+        },
+        {
+          "offset": 51,
+          "fieldName": "tpa_max_pitot_speed",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": "1",
+          "max": "85",
+          "settingsType": "UINT8",
+          "lookupTable": null,
+          "notes": null
         }
       ]
     },
@@ -11539,6 +11551,18 @@
           "min": "100",
           "max": "1000",
           "settingsType": "UINT16",
+          "lookupTable": null,
+          "notes": null
+        },
+        {
+          "offset": 51,
+          "fieldName": "tpa_max_pitot_speed",
+          "ctype": "U8",
+          "bytes": 1,
+          "default": null,
+          "min": "1",
+          "max": "85",
+          "settingsType": "UINT8",
           "lookupTable": null,
           "notes": null
         }
@@ -13726,7 +13750,7 @@
     {
       "name": "MSP2_SENSOR_RANGEFINDER_LIDARMT",
       "code": "0x1f01",
-      "direction": "in",
+      "direction": "unknown",
       "notes": "",
       "v2": true,
       "fields": []
@@ -13734,7 +13758,7 @@
     {
       "name": "MSP2_SENSOR_OPTICALFLOW_MT",
       "code": "0x1f02",
-      "direction": "in",
+      "direction": "unknown",
       "notes": "",
       "v2": true,
       "fields": []

@@ -17,7 +17,7 @@ node scripts/extract-pg-msp.js --firmware-path <path-to-betaflight-repo>
 
 <!-- PG_TABLE_START -->
 
-_Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
+_Generated from firmware commit: `e9c4c489b1e3327e726a8f7e987835462a8f3d44`_
 
 | ID   | Name                             | Struct Type                  | PG Version            | Source File                          |
 | ---- | -------------------------------- | ---------------------------- | --------------------- | ------------------------------------ |
@@ -37,7 +37,7 @@ _Generated from firmware commit: `897cf61e7bdf4278d03ced50b8cc8075d79c400a`_
 | 14   | PG_PID_PROFILE                   | pidProfile_t                 | 13                    | src/main/flight/pid.c                |
 | 16   | PG_ARMING_CONFIG                 | armingConfig_t               | 2                     | src/main/fc/rc_controls.c            |
 | 17   | PG_TRANSPONDER_CONFIG            | transponderConfig_t          | 0                     | src/main/io/transponder_ir.c         |
-| 18   | PG_SYSTEM_CONFIG                 | systemConfig_t               | 4                     | src/main/config/config.c             |
+| 18   | PG_SYSTEM_CONFIG                 | systemConfig_t               | 5                     | src/main/config/config.c             |
 | 19   | PG_FEATURE_CONFIG                | featureConfig_t              | 1                     | src/main/config/feature.c            |
 | 20   | PG_MIXER_CONFIG                  | mixerConfig_t                | 2                     | src/main/flight/mixer_init.c         |
 | 21   | PG_SERVO_MIXER                   | servoMixer_t                 | 0                     | src/main/flight/servos.c             |
