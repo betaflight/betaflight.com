@@ -25,9 +25,9 @@ Dynamic D settings are on the **PID Tuning** tab. The PID sliders show **Damping
 
 2. **Re-enable and set D Max.** Once you have a good base D, set **D Max** to 20–30% above **D** as a starting point (e.g. D = 30 → D Max = 38–40).
 
-3. **Adjust D Max Gain.** Default (37) is conservative and safe for most builds. Raise toward 45 on very clean freestyle builds; lower toward 20–25 for racing or noisier setups.
+3. **Adjust D Max Gain.** Default (37 in 2025.12) is conservative and safe for most builds. Raise toward 45 on very clean freestyle builds; lower toward 20–25 for racing or noisier setups.
 
-4. **Check D Max Advance.** Default (20) is intentionally low — enough to take the edge off overshoot on hard moves without adding noticeable delay. Set to 0 for racing. Higher values (up to 60–80) cause D to rise earlier but introduce more delay; only explore this if gyro-triggered boost alone doesn't control overshoot on very responsive builds.
+4. **Check D Max Advance.** Default (20 in 2025.12) is intentionally low — enough to take the edge off overshoot on hard moves without adding noticeable delay. Set to 0 for racing. Higher values (up to 60–80) cause D to rise earlier but introduce more delay; only explore this if gyro-triggered boost alone doesn't control overshoot on very responsive builds.
 
 5. **Verify with logs or motor temperature.** After any change, do a short hover and check motor temperature. If motors are significantly hotter, reduce **D Max Gain** or lower **D Max**.
 
@@ -57,6 +57,10 @@ If your build is noisy (bent props, loose hardware, dirty motors), a high **D Ma
 | `d_max_advance` | 20      | 0–200 | D Max Advance      | Setpoint contribution to the boost trigger — higher values cause D to rise earlier when sticks are moved |
 
 These are profile-specific settings.
+
+:::note
+In 2026.6 the defaults changed to `d_max_gain` = 0 and `d_max_advance` = 35 ([betaflight#15395](https://github.com/betaflight/betaflight/pull/15395)). The two parameters now work independently: `d_max_gain` boosts D on gyro movement, `d_max_advance` on fast stick movement, and either can be set to zero ([comment in betaflight#15221](https://github.com/betaflight/betaflight/pull/15221#issuecomment-4464932169)). The table and the tuning steps above describe 2025.12.
+:::
 
 ## Debug Logging
 
