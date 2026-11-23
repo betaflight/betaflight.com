@@ -488,11 +488,10 @@
 .algolia-autocomplete .algolia-docsearch-footer {
   background-color: #fff;
   width: 100%;
-  height: 30px;
+  height: auto;
+  min-height: 30px;
   z-index: 2000;
   float: right;
-  font-size: 0;
-  line-height: 0;
 }
 
 .algolia-autocomplete .algolia-docsearch-footer--logo {
@@ -594,4 +593,34 @@ span.ds-suggestions {
 
 .algolia-autocomplete .ds-dropdown-menu:before {
   display: none;
+}
+
+.algolia-autocomplete .algolia-docsearch-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-top: 1px solid rgb(115 115 115 / 0.1);
+  font-size: 0.85rem;
+}
+
+.algolia-autocomplete .algolia-docsearch-pagination button {
+  padding: 0.25rem 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ifm-color-primary);
+  font-size: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.algolia-autocomplete .algolia-docsearch-pagination button:hover:not(:disabled) {
+  background: var(--ifm-hover-overlay);
+}
+
+.algolia-autocomplete .algolia-docsearch-pagination button:disabled {
+  color: var(--ifm-color-emphasis-500);
+  cursor: default;
 }
